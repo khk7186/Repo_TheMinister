@@ -19,7 +19,7 @@ public class CharacterSlotForQuest : MonoBehaviour
 
     public Character character;
 
-    public GameObject CharacterSelectWindow;
+    public PlayerCharactersInventory CharacterSelectWindow;
 
     public Image selectImage;
     private Button button;
@@ -29,12 +29,12 @@ public class CharacterSlotForQuest : MonoBehaviour
         button = GetComponent<Button>();
         GetComponent<Image>().alphaHitTestMinimumThreshold = 0.1f;
         selectImage = GetComponentInChildren<HeadImage>().GetComponent<Image>();
-        button.onClick.AddListener(SelectCharacter);
+        button.onClick.AddListener(OpenSelectCharacterWindow);
         questField =
             GetComponentInParent<Transform>().
             GetComponentInParent<Transform>().
             GetComponentInParent<QuestField>();
-        CharacterSelectWindow = FindObjectOfType<InventoryCharacters>().gameObject;
+        CharacterSelectWindow = FindObjectOfType<PlayerCharactersInventory>();
     }
 
     private void Start()
@@ -87,12 +87,12 @@ public class CharacterSlotForQuest : MonoBehaviour
         }
     }
 
-    public void SelectCharacter()
+    public void OpenSelectCharacterWindow()
     {
 
-        CharacterSelectWindow.SetActive(true);
+        CharacterSelectWindow.gameObject.SetActive(true);
         var allCharacters = CharacterSelectWindow.GetComponentsInChildren<CharacterUI>();
-        foreach (CharacterUI c in allCharacters) c.CurrentSlot = this;
+        CharacterSelectWindow.currentSlot = this;
         questField.GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 

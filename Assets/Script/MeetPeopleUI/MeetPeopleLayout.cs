@@ -10,6 +10,8 @@ public class MeetPeopleLayout : MonoBehaviour, IPointerClickHandler, IPointerEnt
     public GameObject tagList;
     public GameObject IdleImage;
 
+    public Character character;
+
     private void Awake()
     {
         tagList.gameObject.SetActive(false);
@@ -18,7 +20,14 @@ public class MeetPeopleLayout : MonoBehaviour, IPointerClickHandler, IPointerEnt
     }
     public void OnPointerClick(PointerEventData eventData)
     {
-        throw new System.NotImplementedException();
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+
+        }
+        else if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            GetComponentInParent<RightClickToClose>().RightClickEvent();
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
+using System.Linq;
 public enum Tag
 {
     Null,
@@ -188,19 +189,48 @@ public class Character : MonoBehaviour, IRound
     #endregion
 
     #region View
-    public HireStage hireStage;
+    public HireStage hireStage = HireStage.Never;
     #endregion
     private void Awake()
     {
         SpawnTagOnStart();
         UpdateVariables();
-        
+        CharacterArtCode[] cacList = (CharacterArtCode[])Enum.GetValues(typeof(CharacterArtCode));
+        characterArtCode = cacList[UnityEngine.Random.Range(0,cacList.Length)];
     }
 
     private void Start()
     {
-        if (hireStage == HireStage.Hired) CreatUI();
+        BelongCheck();
+    }
 
+    public void ChangeNextHireStage()
+    {
+        switch (hireStage)
+        {
+            case HireStage.Never:
+                hireStage = HireStage.First;
+                return;
+            case HireStage.First:
+                hireStage = HireStage.Second;
+                return;
+            case HireStage.Second:
+                hireStage = HireStage.Third;
+                return;
+            case HireStage.Third:
+                hireStage = HireStage.Hired;
+                BelongCheck();
+                return;
+        }
+    }
+
+    public void BelongCheck()
+    {
+        if (hireStage == HireStage.Hired)
+        {
+            transform.parent = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
+            CreatInventoryCardUI();
+        }
     }
 
     private bool CheckForAway()
@@ -225,6 +255,7 @@ public class Character : MonoBehaviour, IRound
 
         foreach (CharacterValueType key in Enum.GetValues(typeof(CharacterValueType)))
         {
+            
             characterValueRareDict[key] = CheckVariablesRare(characterValueDict[key]);
             //Debug.Log(key.ToString() + characterValueRareDict[key].ToString());
         }
@@ -315,7 +346,7 @@ public class Character : MonoBehaviour, IRound
         else return Raitity.Null;
     }
 
-    private void CreatUI()
+    private void CreatInventoryCardUI()
     {
         thisCharacterCard = Instantiate(characterCard, characterCardInvUI);
         thisCharacterCard.character = this;
@@ -338,7 +369,7 @@ public class Character : MonoBehaviour, IRound
 
     public void ReturnToHand()
     {
-        CreatUI();
+        CreatInventoryCardUI();
     }
 
     public void Destroy()

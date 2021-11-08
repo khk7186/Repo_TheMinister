@@ -26,15 +26,15 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPo
     public CharacterInfoUI characterInfoUI;
     private CharacterInfoUI currentCharacterInfoUI;
 
-    private CharacterSlotForQuest currentSlot;
+    private PlayerCharactersInventory inventoryCharacters;
     public bool selectMode
     {
-        get => currentSlot != null;
+        get => inventoryCharacters?.currentSlot != null;
     }
     public CharacterSlotForQuest CurrentSlot
     {
-        get => currentSlot;
-        set => currentSlot = value;
+        get => inventoryCharacters.currentSlot;
+        set => inventoryCharacters.currentSlot = value;
     }
 
     public static Dictionary<Raitity, Color> TagUIColorCode = new Dictionary<Raitity, Color>()
@@ -49,6 +49,10 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPo
         { Raitity.UR, new Color32(234, 153, 153, 255) }
     };
 
+    private void Awake()
+    {
+        inventoryCharacters = FindObjectOfType<PlayerCharactersInventory>();
+    }
 
     public void UpdateUI()
     {
@@ -110,13 +114,11 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPo
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
-            var CharacterSelectWindow = FindObjectOfType<InventoryCharacters>();
+            var CharacterSelectWindow = FindObjectOfType<PlayerCharactersInventory>();
             switch (selectMode)
             {
                 case true:
-                    currentSlot.UndisableField();
-                    var allCharacters = CharacterSelectWindow.GetComponentsInChildren<CharacterUI>();
-                    foreach (CharacterUI c in allCharacters) c.CurrentSlot = null;
+                    inventoryCharacters.RightClickSelectMode();
                     break;
                 case false:
                     break;
@@ -130,19 +132,19 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPo
     {
         if (selectMode)
         {
-            currentSlot.UndisableField();
-            currentSlot.character = character;
-            currentSlot.CheckAllQuestAchievement();
+            CurrentSlot.UndisableField();
+            CurrentSlot.character = character;
+            CurrentSlot.CheckAllQuestAchievement();
             string headshotSpritePath = ("Art/CharacterSprites/Headshot/Headshot_" + character.characterArtCode.ToString()).Replace(" ", string.Empty);
-            currentSlot.selectImage.sprite = Resources.Load<Sprite>(headshotSpritePath);
-            currentSlot.selectImage.color = new Color
+            CurrentSlot.selectImage.sprite = Resources.Load<Sprite>(headshotSpritePath);
+            CurrentSlot.selectImage.color = new Color
                 (
-                currentSlot.selectImage.color.r,
-                currentSlot.selectImage.color.g,
-                currentSlot.selectImage.color.b,
+                CurrentSlot.selectImage.color.r,
+                CurrentSlot.selectImage.color.g,
+                CurrentSlot.selectImage.color.b,
                 1f
                 );
-            var CharacterSelectWindow = FindObjectOfType<InventoryCharacters>();
+            var CharacterSelectWindow = FindObjectOfType<PlayerCharactersInventory>();
             var allCharacters = CharacterSelectWindow.GetComponentsInChildren<CharacterUI>();
             foreach (CharacterUI c in allCharacters) c.CurrentSlot = null;
 

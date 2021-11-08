@@ -9,6 +9,7 @@ public class Map : MonoBehaviour, IObserver
     [SerializeField] private int currentBlock = 0;
     [SerializeField] private Transform Player;
     [SerializeField] private float delayPerMove = 1f;
+    private List<Building> ActivatedBuildings = new List<Building>();
 
     public Transform currentTransform => (map.Count > 0) ? map[currentBlock].transform : null;
 
@@ -16,6 +17,7 @@ public class Map : MonoBehaviour, IObserver
     {
         map = GetComponentsInChildren<Block>().ToList();
         FindObjectOfType<Dice>().RegisterObserver(this);
+        SetBuildings();
     }
     private void Start()
     {
@@ -27,7 +29,6 @@ public class Map : MonoBehaviour, IObserver
         {
             StartCoroutine(MoveAndDelay((int)value));
         }
-        
     }
 
     private void MoveAStep()
@@ -44,7 +45,44 @@ public class Map : MonoBehaviour, IObserver
             MoveAStep();
             yield return new WaitForSeconds(delayPerMove);
         }
+        SetBuildings();
+    }
+
+    public List<Building> InteractebleBuildingCheck()
+    {
         
+        var colliders = Physics2D.OverlapCircleAll(Player.transform.position,1.5f);
+        var buildingList = new List<Building>(); 
+        foreach (Collider2D collider2D in colliders)
+        {
+            if (collider2D.TryGetComponent<Building>(out Building building))
+            {
+                buildingList.Add(building);
+            }
+        }
+        return buildingList;
+    }
+
+    public void SetActivateBuildingsInteracteble(List<Building> buildings, bool activate)
+    {
+        foreach (Building b in buildings)
+        {
+            b.GetComponent<InteractAsset>().Active = activate;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(Player.transform.position, 1.5f);
+    }
+    public void SetBuildings()
+    {
+        SetActivateBuildingsInteracteble(ActivatedBuildings, false);
+        ActivatedBuildings.Clear();
+        var list= InteractebleBuildingCheck();
+        SetActivateBuildingsInteracteble(list , true);
+        ActivatedBuildings = list;
     }
 
     
