@@ -19,21 +19,16 @@ public enum BuildingLevel
 public class Building : MonoBehaviour, IPointerClickHandler
 {
     public BuildingType buildingType;
-
+    public List<Character> charactersHere;
 
     public Transform BuildingCharacterSlot;
 
-    [SerializeField] private GameObject StableCanvas;
-    private MeetPeopleLayout MeetPeopleLayoutPrefab;
-
-    private void Awake()
-    {
-        MeetPeopleLayoutPrefab = Resources.Load<MeetPeopleLayout>("BuildingUI/MeetCharacter");
-    }
+    [SerializeField] private BuildingUI buildingUI;
 
     public void Stable()
     {
-        Instantiate(StableCanvas,GameObject.FindGameObjectWithTag("MainUICanvas").transform);
+        BuildingUI targetUI = Instantiate(buildingUI,GameObject.FindGameObjectWithTag("MainUICanvas").transform);
+        targetUI.UpdateUI(this);
     }
 
     public void Encounter()
@@ -48,6 +43,11 @@ public class Building : MonoBehaviour, IPointerClickHandler
 
     public void OpenMenu()
     {
+        if (charactersHere.Count <= 0)
+        {
+            WhoLiveInHere();
+        }
+        
         switch (buildingType)
         {
             default:
@@ -69,6 +69,6 @@ public class Building : MonoBehaviour, IPointerClickHandler
         InGameCharacterStorage inGameCharacterStorage = 
             GameObject.FindGameObjectWithTag("InGameCharacterInventory")
             .GetComponent<InGameCharacterStorage>();
-        inGameCharacterStorage.SelectCharacterForBuilding(5);
+        charactersHere.AddRange(inGameCharacterStorage.SelectCharacterForBuilding(5));
     }
 }

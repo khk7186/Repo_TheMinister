@@ -20,6 +20,7 @@ public class InGameCharacterStorage : MonoBehaviour
     public void UpdateCurrentCharacters()
     {
         CurrentCharacters = GetComponentsInChildren<Character>().ToList<Character>();
+        UnshowedCharacters = CurrentCharacters;
     }
 
     public void Start()
