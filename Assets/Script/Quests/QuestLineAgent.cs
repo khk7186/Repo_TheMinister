@@ -32,7 +32,7 @@ public class QuestLineAgent
     public QuestType questType;
     public int currentQuestOrder = 0;
     public QuestLine questLine;
-
+    public bool InUse = false;
     public bool Complete => CurrenQuestOnLine == null;
 
     private string destinationPath;

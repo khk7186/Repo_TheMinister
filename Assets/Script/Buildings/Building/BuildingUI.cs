@@ -8,6 +8,7 @@ public class BuildingUI : MonoBehaviour
 
     public BuildingCharacterStoreUI buildingCharacterUI;
     private MeetPeopleCharacterCardUI MeetPeopleLayoutPrefab;
+    public Transform questUIParent;
 
     private void Awake()
     {
@@ -38,6 +39,9 @@ public class BuildingUI : MonoBehaviour
 
     private void SetQuestSelectUI()
     {
-
+        foreach (QuestLineAgent questLine in building.questLineList)
+        {
+            Instantiate(questLine.CurrenQuestOnLine, questUIParent);
+        }
     }
 }

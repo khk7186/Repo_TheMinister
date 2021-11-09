@@ -1,4 +1,4 @@
-using System;
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,10 +20,12 @@ public class Building : MonoBehaviour, IPointerClickHandler
     public BuildingType buildingType;
     public List<Character> charactersHere;
 
+    public int MaxBuildingQuest = 3;
+
     public Transform BuildingCharacterSlot;
 
     [SerializeField] private BuildingUI buildingUI;
-
+    public List<QuestLineAgent> questLineList = new List<QuestLineAgent>();
     private void Awake()
     {
         UpdateType();
@@ -40,9 +42,22 @@ public class Building : MonoBehaviour, IPointerClickHandler
         UpdateType();
     }
 
+    public void UpdateQuests()
+    {
+        QuestMapAgent questMapAgent =
+        GameObject
+        .FindGameObjectWithTag("GameFiles")
+        .GetComponentInChildren<QuestMapAgent>();
+
+        questLineList = new List<QuestLineAgent>();
+        var targetLine = questMapAgent.LoadShopQuest(buildingType);
+        targetLine.InUse = true;
+        questLineList.Add(targetLine);
+    }
+
     public void CreateUI()
     {
-        BuildingUI targetUI = Instantiate(buildingUI,GameObject.FindGameObjectWithTag("MainUICanvas").transform);
+        BuildingUI targetUI = Instantiate(buildingUI, GameObject.FindGameObjectWithTag("MainUICanvas").transform);
         targetUI.UpdateUI(this);
     }
 
@@ -57,11 +72,11 @@ public class Building : MonoBehaviour, IPointerClickHandler
         {
             WhoLiveInHere();
         }
-        
+
         switch (buildingType)
         {
             default:
-            case BuildingType.Âí¾Ç:  
+            case BuildingType.Âí¾Ç:
                 break;
         }
         UpdateType();
@@ -76,9 +91,10 @@ public class Building : MonoBehaviour, IPointerClickHandler
 
     public void WhoLiveInHere()
     {
-        InGameCharacterStorage inGameCharacterStorage = 
+        InGameCharacterStorage inGameCharacterStorage =
             GameObject.FindGameObjectWithTag("InGameCharacterInventory")
             .GetComponent<InGameCharacterStorage>();
+
         charactersHere.AddRange(inGameCharacterStorage.SelectCharacterForBuilding(5));
     }
 }
