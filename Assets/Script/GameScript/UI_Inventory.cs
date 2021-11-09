@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UI_Inventory : MonoBehaviour
 {
-    [SerializeField] private Inventory inventory;
+    [SerializeField] private ItemInventory inventory;
 
     private Transform itemSlotContainer;
     private Transform itemSlotTemplate;
@@ -15,7 +15,7 @@ public class UI_Inventory : MonoBehaviour
     [Header("UIItemElement")]
     [SerializeField] private GameObject nullPrefab;
 
-    public void SetInventory(Inventory inventory)
+    public void SetInventory(ItemInventory inventory)
     {
         this.inventory = inventory;
     }

@@ -30,7 +30,7 @@ public enum ItemType
 {
     Null
 }
-public class Item : MonoBehaviour, IIcon
+public class ItemUI : MonoBehaviour, IIcon
 {
     public ItemName ItemName;
     public SOItem sOItem;

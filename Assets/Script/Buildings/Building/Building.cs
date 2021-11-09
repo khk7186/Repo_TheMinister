@@ -13,7 +13,7 @@ public enum BuildingLevel
 {
     LevelOne,
     LevelTwo,
-    LevelThree,
+    LevelThree
 }
 public class Building : MonoBehaviour, IPointerClickHandler
 {

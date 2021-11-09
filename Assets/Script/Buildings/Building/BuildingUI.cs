@@ -8,7 +8,7 @@ public class BuildingUI : MonoBehaviour
 
     public BuildingCharacterStoreUI buildingCharacterUI;
     private MeetPeopleCharacterCardUI MeetPeopleLayoutPrefab;
-    
+
     private void Awake()
     {
         MeetPeopleLayoutPrefab = Resources.Load<MeetPeopleCharacterCardUI>("BuildingUI/MeetCharacter");
@@ -17,6 +17,7 @@ public class BuildingUI : MonoBehaviour
     public void UpdateUI()
     {
         SetMeetCharacterUI();
+        SetQuestSelectUI();
     }
 
     public void UpdateUI(Building building)
@@ -25,7 +26,7 @@ public class BuildingUI : MonoBehaviour
         UpdateUI();
     }
 
-        private void SetMeetCharacterUI()
+    private void SetMeetCharacterUI()
     {
         var charList = building.charactersHere;
         foreach (Character character in charList)
@@ -33,5 +34,10 @@ public class BuildingUI : MonoBehaviour
             MeetPeopleCharacterCardUI thisLayout = Instantiate(MeetPeopleLayoutPrefab, buildingCharacterUI.transform);
             thisLayout.UpdateUI(character);
         }
+    }
+
+    private void SetQuestSelectUI()
+    {
+
     }
 }

@@ -3,15 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum QuestType
-{
-    主线事件, 支线事件, 议会事件, 突发事件
-}
 
 public class Quest : MonoBehaviour
 {
     [SerializeField] private Transform gameUI;
-    [SerializeField] private QuestField questField;
+    public QuestField questField;
     private Button button;
     private QuestField ui;
 
@@ -69,7 +65,6 @@ public class Quest : MonoBehaviour
         ui.gameObject.SetActive(!ui.gameObject.activeSelf);
 
     }
-
 
     public bool AllAchievementsComplete()
     {
