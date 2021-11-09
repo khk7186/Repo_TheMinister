@@ -13,12 +13,15 @@ public class MeetPeopleCharacterCardUI : MonoBehaviour, IPointerClickHandler, IP
 
     public Character character;
     private GameObject tagPref;
+    private CharacterInfoUI characterInfo;
+
     private void Awake()
     {
         TagSlot.gameObject.SetActive(false);
         GetComponent<RectTransform>().sizeDelta = new Vector2(37.5f, 237.5f);
         IdleBackground.GetComponent<RectTransform>().sizeDelta = new Vector2(37.5f, 237.5f);
         tagPref = Resources.Load<GameObject>("Tag/Tag");
+        characterInfo = Resources.Load<CharacterInfoUI>("CharacterInfo/CharacterInfo");
     }
 
 
@@ -46,7 +49,7 @@ public class MeetPeopleCharacterCardUI : MonoBehaviour, IPointerClickHandler, IP
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-
+            SelectCharacterInfo();
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
@@ -68,5 +71,10 @@ public class MeetPeopleCharacterCardUI : MonoBehaviour, IPointerClickHandler, IP
 
         TagSlot.gameObject.SetActive(true);
     }
-
+    public void SelectCharacterInfo()
+    {
+        CharacterInfoUI currentCharacterInfoUI;
+        currentCharacterInfoUI = Instantiate(characterInfo, FindObjectOfType<Canvas>().transform);
+        currentCharacterInfoUI.SetUp(character);
+    }
 }

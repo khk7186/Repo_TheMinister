@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-
 public enum BuildingType
 {
     Âí¾Ç
@@ -25,15 +24,26 @@ public class Building : MonoBehaviour, IPointerClickHandler
 
     [SerializeField] private BuildingUI buildingUI;
 
-    public void Stable()
+    private void Awake()
+    {
+        UpdateType();
+    }
+
+    public void UpdateType()
+    {
+        string FolderPath = ("BuildingUI/" + buildingType.ToString()).Replace(" ", string.Empty);
+        buildingUI = Resources.Load<BuildingUI>(FolderPath);
+    }
+    public void UpdateType(BuildingType buildingType)
+    {
+        this.buildingType = buildingType;
+        UpdateType();
+    }
+
+    public void CreateUI()
     {
         BuildingUI targetUI = Instantiate(buildingUI,GameObject.FindGameObjectWithTag("MainUICanvas").transform);
         targetUI.UpdateUI(this);
-    }
-
-    public void Encounter()
-    {
-        
     }
 
     public void Upgrade(BuildingType upGradeType)
@@ -51,16 +61,16 @@ public class Building : MonoBehaviour, IPointerClickHandler
         switch (buildingType)
         {
             default:
-            case BuildingType.Âí¾Ç:
-                Stable();
+            case BuildingType.Âí¾Ç:  
                 break;
         }
+        UpdateType();
+        CreateUI();
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         OpenMenu();
-        Debug.Log(1);
     }
 
 

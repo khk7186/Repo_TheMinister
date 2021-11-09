@@ -24,11 +24,8 @@ public class Inventory : MonoBehaviour
         }
         else itemDict.Add(item, 1);
     }
+    
 
-    private void AddCharacter(Character character)
-    {
-        characterList.Add(character);
-    }
 
 
 }

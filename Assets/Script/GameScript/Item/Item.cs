@@ -5,7 +5,25 @@ using UnityEngine.UI;
 
 public enum ItemName
 {
-    Null
+    Null,
+    山海经,
+    机关残卷,
+    阴阳八卦盘,
+    蛤蟆功秘籍,
+    浑天仪,
+    冰霜宝剑,
+    火炮,
+    东洋词典,
+    西洋词典,
+    杂技,
+    羽衣,
+    奉子丹,
+    麝香,
+    雕,
+    咖啡,
+    论语,
+    道德经,
+    起世经
 }
 
 public enum ItemType
