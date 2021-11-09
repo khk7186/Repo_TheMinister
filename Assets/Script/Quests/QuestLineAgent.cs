@@ -26,15 +26,17 @@ public enum QuestLine
 
 }
 
-public class QuestLineAgent : MonoBehaviour
+public class QuestLineAgent
 {
     private string rootPath = "AllQuests/";
     public QuestType questType;
     public int currentQuestOrder = 0;
     public QuestLine questLine;
 
+    public bool Complete => CurrenQuestOnLine == null;
+
     private string destinationPath;
-    public Quest currenQuestOnLine
+    public Quest CurrenQuestOnLine
     {
         get
         {
@@ -57,9 +59,19 @@ public class QuestLineAgent : MonoBehaviour
                 .Replace(" ", string.Empty);
             Quest thisQuest = Resources.Load<Quest>(QuestFinalPath);
             QuestField thisQuestField = Resources.Load<QuestField>(FieldFinalPath);
+            if (thisQuest == null)
+            {
+                return null;
+            }
             thisQuest.questField = thisQuestField;
             return thisQuest;
         }
+    }
+
+    public QuestLineAgent(QuestType questType, QuestLine questLine)
+    {
+        this.questLine = questLine;
+        this.questType = questType;
     }
 
     private void SetUp()
