@@ -33,6 +33,11 @@ public class PlayerCharactersInventory : MonoBehaviour, IPointerClickHandler
     }
     private void Start()
     {  
+        foreach (Character character in GameObject.FindGameObjectWithTag("PlayerCharacterInventory").GetComponentsInChildren<Character>())
+        {
+            character.characterCardInvUI = transform.GetComponentInChildren<Transform>().GetComponentInChildren<GridLayoutGroup>().transform;
+            character.BelongCheck();
+        }
     }
 
 
