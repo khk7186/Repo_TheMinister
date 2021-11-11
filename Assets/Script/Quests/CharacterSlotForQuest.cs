@@ -15,7 +15,7 @@ public class CharacterSlotForQuest : MonoBehaviour
 
     public TagForQuest TagRequest;
 
-    public QuestField questField;
+    public QuestFieldUI questField;
 
     public Character character;
 
@@ -33,7 +33,7 @@ public class CharacterSlotForQuest : MonoBehaviour
         questField =
             GetComponentInParent<Transform>().
             GetComponentInParent<Transform>().
-            GetComponentInParent<QuestField>();
+            GetComponentInParent<QuestFieldUI>();
         CharacterSelectWindow = FindObjectOfType<PlayerCharactersInventory>();
     }
 
@@ -89,11 +89,9 @@ public class CharacterSlotForQuest : MonoBehaviour
 
     public void OpenSelectCharacterWindow()
     {
-
-        CharacterSelectWindow.gameObject.SetActive(true);
-        var allCharacters = CharacterSelectWindow.GetComponentsInChildren<CharacterUI>();
+        GetComponent<SpawnUI>().Spawn();
+        CharacterSelectWindow = GameObject.FindObjectOfType<PlayerCharactersInventory>();
         CharacterSelectWindow.currentSlot = this;
-        questField.GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 
 

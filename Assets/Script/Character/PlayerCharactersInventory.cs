@@ -18,7 +18,7 @@ public class PlayerCharactersInventory : MonoBehaviour, IPointerClickHandler
             switch (selectMode)
             {
                 case true:
-                    RightClickSelectMode();
+                    GetComponent<RightClickToClose>().RightClickEvent();
                     break;
                 case false:
                     break;
@@ -29,13 +29,10 @@ public class PlayerCharactersInventory : MonoBehaviour, IPointerClickHandler
 
     public void RightClickSelectMode()
     {
-        currentSlot.UndisableField();
-        var allCharacters = GetComponentsInChildren<CharacterUI>();
-        foreach (CharacterUI c in allCharacters) c.CurrentSlot = null;
+        GetComponent<RightClickToClose>().RightClickEvent();
     }
     private void Start()
     {  
-        gameObject.SetActive(false);
     }
 
 

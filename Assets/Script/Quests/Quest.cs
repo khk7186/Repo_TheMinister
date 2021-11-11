@@ -7,9 +7,9 @@ using UnityEngine.UI;
 public class Quest : MonoBehaviour
 {
     [SerializeField] private Transform gameUI;
-    public QuestField questField;
+    public QuestFieldUI questField;
     private Button button;
-    private QuestField ui;
+    private QuestFieldUI ui;
 
     public int rounds = 10;
 
@@ -41,7 +41,18 @@ public class Quest : MonoBehaviour
         button = GetComponent<Button>();
         button.onClick.AddListener(OnClick);
         gameUI = FindObjectOfType<QuestUI>().transform;
+        
+    }
+
+    private void OnClick()
+    {
         ui = Instantiate(questField, gameUI);
+        var list = gameUI.GetComponentsInChildren<QuestFieldUI>();
+        foreach (QuestFieldUI questField in list)
+        {
+            questField.gameObject.SetActive(false);
+        }
+        ui.gameObject.SetActive(!ui.gameObject.activeSelf);
 
         nodes = ui.nodeRoot.transform;
 
@@ -51,19 +62,6 @@ public class Quest : MonoBehaviour
             AchievementList.AddRange(child.GetComponentsInChildren<IAchieveble>());
         }
         foreach (IAchieveble achieveble in AchievementList) achieveble.quest = this;
-
-        ui.gameObject.SetActive(false);
-    }
-
-    private void OnClick()
-    {
-        var list = gameUI.GetComponentsInChildren<QuestField>();
-        foreach (QuestField questField in list)
-        {
-            questField.gameObject.SetActive(false);
-        }
-        ui.gameObject.SetActive(!ui.gameObject.activeSelf);
-
     }
 
     public bool AllAchievementsComplete()

@@ -58,7 +58,7 @@ public class QuestLineAgent
                 )
                 .Replace(" ", string.Empty);
             Quest thisQuest = Resources.Load<Quest>(QuestFinalPath);
-            QuestField thisQuestField = Resources.Load<QuestField>(FieldFinalPath);
+            QuestFieldUI thisQuestField = Resources.Load<QuestFieldUI>(FieldFinalPath);
             if (thisQuest == null)
             {
                 return null;

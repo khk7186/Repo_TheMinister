@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class QuestField : MonoBehaviour
+public class QuestFieldUI : MonoBehaviour, IPointerClickHandler
 {
     public GameObject nodeRoot;
     public Button submitButton;
@@ -21,4 +22,11 @@ public class QuestField : MonoBehaviour
         submitButton.gameObject.SetActive(false);
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            GetComponent<RightClickToClose>().RightClickEvent();
+        }
+    }
 }

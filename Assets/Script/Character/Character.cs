@@ -126,9 +126,7 @@ public enum CharacterArtCode
 public enum HireStage
 {
     Never,
-    First,
-    Second,
-    Third,
+    InCity,
     Hired
 }
 public class Character : MonoBehaviour, IRound
@@ -209,15 +207,9 @@ public class Character : MonoBehaviour, IRound
         switch (hireStage)
         {
             case HireStage.Never:
-                hireStage = HireStage.First;
+                hireStage = HireStage.InCity;
                 return;
-            case HireStage.First:
-                hireStage = HireStage.Second;
-                return;
-            case HireStage.Second:
-                hireStage = HireStage.Third;
-                return;
-            case HireStage.Third:
+            case HireStage.InCity:
                 hireStage = HireStage.Hired;
                 BelongCheck();
                 return;
@@ -378,5 +370,26 @@ public class Character : MonoBehaviour, IRound
         Destroy(gameObject);
     }
 
+    public void TryHire()
+    {
+        int total = loyaltyMax;
+        int result = UnityEngine.Random.Range(0, loyaltyMax);
+        bool success = result < loyalty;
 
+        if (success)
+        {
+            hireStage = HireStage.Hired;
+        }
+    }
+
+    public void TryRetire()
+    {
+        if (loyalty <= 0)
+        {
+            hireStage = HireStage.InCity;
+            transform.parent = GameObject.FindGameObjectWithTag("InGameCharacterInventory").transform;
+        }
+    }
+
+    
 }
