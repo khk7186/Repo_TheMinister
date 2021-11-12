@@ -37,16 +37,16 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPo
         set => inventoryCharacters.currentSlot = value;
     }
 
-    public static Dictionary<Raitity, Color> TagUIColorCode = new Dictionary<Raitity, Color>()
+    public static Dictionary<Rarerity, Color> TagUIColorCode = new Dictionary<Rarerity, Color>()
     {
-        { Raitity.VB, new Color32(153, 0, 0, 255)},
-        { Raitity.B, new Color32(141, 75, 6, 255)},
-        { Raitity.Null, new Color32(183, 183, 183, 255)},
-        { Raitity.N, Color.white },
-        { Raitity.R, new Color32(171,219,227, 255) },
-        { Raitity.SR, new Color32(180, 167, 214, 255) },
-        { Raitity.SSR, new Color32(255, 217, 102, 255) },
-        { Raitity.UR, new Color32(234, 153, 153, 255) }
+        { Rarerity.VB, new Color32(153, 0, 0, 255)},
+        { Rarerity.B, new Color32(141, 75, 6, 255)},
+        { Rarerity.Null, new Color32(183, 183, 183, 255)},
+        { Rarerity.N, Color.white },
+        { Rarerity.R, new Color32(171,219,227, 255) },
+        { Rarerity.SR, new Color32(180, 167, 214, 255) },
+        { Rarerity.SSR, new Color32(255, 217, 102, 255) },
+        { Rarerity.UR, new Color32(234, 153, 153, 255) }
     };
 
     private void Awake()

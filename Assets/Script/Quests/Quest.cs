@@ -15,15 +15,6 @@ public class Quest : MonoBehaviour
 
     [Header("Requirement")]
     public List<Tag> ExtraTagRequirement = new List<Tag>();
-    public Dictionary<Raitity, int> QuestValueDifficulty = new Dictionary<Raitity, int>()
-    {
-        {Raitity.Null, 0},
-        {Raitity.N, 15},
-        {Raitity.R, 30},
-        {Raitity.SR, 45},
-        {Raitity.SSR, 60},
-        {Raitity.UR, 75}
-    };
     private List<IAchieveble> AchievementList = new List<IAchieveble>();
     private Transform nodes;
 

@@ -151,16 +151,16 @@ public enum Tag
     Ð¡¶ùÂé±Ô,
     Ä¿²»Ê¶¶¡,
 }
-public enum Raitity
+public enum Rarerity
 {
-    Null, 
-    VB, 
-    B, 
-    N = 30, 
-    R = 50, 
-    SR = 70, 
-    SSR = 90, 
-    UR = 110
+    Null = 0, 
+    VB = -4, 
+    B = -2, 
+    N = 2, 
+    R = 4, 
+    SR = 6, 
+    SSR = 8, 
+    UR = 10
 }
 
 public enum CharacterArtCode
@@ -190,7 +190,7 @@ public class Character : MonoBehaviour, IRound
     [SerializeField] private int healthMax = 10;
     [SerializeField] private int tagMax = 5;
 
-    [SerializeField] private List<int> TagSpawnRareRate = new List<int>(5) { 46, 33, 20, 1, 0 };
+    [SerializeField] private List<int> TagSpawnRareRate = new List<int>(5) {600, 460, 330, 10, 1, 0 };
     #endregion
 
     #region Variable
@@ -202,29 +202,29 @@ public class Character : MonoBehaviour, IRound
     private CharacterUI thisCharacterCard;
     public Transform characterCardInvUI;
 
-    
 
-    [Header("Base Variables")]
 
-    public Dictionary<CharacterValueType, int> characterValueDict =
+    public Dictionary<CharacterValueType, int> CharactersValueDict => charactersValueDict;
+
+    private Dictionary<CharacterValueType, int> charactersValueDict =
         new Dictionary<CharacterValueType, int>
         {
-            {CharacterValueType.ÖÇ, 10 },
-            {CharacterValueType.²Å, 10 },
-            {CharacterValueType.Ä±, 10 },
-            {CharacterValueType.Îä, 10 },
-            {CharacterValueType.´Ì, 10 },
-            {CharacterValueType.ÊØ, 10 },
+            {CharacterValueType.ÖÇ, 0 },
+            {CharacterValueType.²Å, 0 },
+            {CharacterValueType.Ä±, 0 },
+            {CharacterValueType.Îä, 0 },
+            {CharacterValueType.´Ì, 0 },
+            {CharacterValueType.ÊØ, 0 },
         };
-    public Dictionary<CharacterValueType, Raitity> characterValueRareDict =
-        new Dictionary<CharacterValueType, Raitity>
+    public Dictionary<CharacterValueType, Rarerity> characterValueRareDict =
+        new Dictionary<CharacterValueType, Rarerity>
         {
-            {CharacterValueType.ÖÇ, Raitity.Null },
-            {CharacterValueType.²Å, Raitity.Null },
-            {CharacterValueType.Ä±, Raitity.Null },
-            {CharacterValueType.Îä, Raitity.Null },
-            {CharacterValueType.´Ì, Raitity.Null },
-            {CharacterValueType.ÊØ, Raitity.Null },
+            {CharacterValueType.ÖÇ, Rarerity.Null },
+            {CharacterValueType.²Å, Rarerity.Null },
+            {CharacterValueType.Ä±, Rarerity.Null },
+            {CharacterValueType.Îä, Rarerity.Null },
+            {CharacterValueType.´Ì, Rarerity.Null },
+            {CharacterValueType.ÊØ, Rarerity.Null },
         };
 
     public List<Tag> tagList = new List<Tag>();
@@ -247,7 +247,7 @@ public class Character : MonoBehaviour, IRound
 
     private void Start()
     {
-        BelongCheck();
+
     }
 
     public void ChangeNextHireStage()
@@ -284,41 +284,41 @@ public class Character : MonoBehaviour, IRound
         ResetVariables();
         foreach (Tag tag in tagList)
         {
-            var varlist = Player.TagInfDict[tag];
-            characterValueDict[CharacterValueType.ÖÇ] += varlist[0];
-            characterValueDict[CharacterValueType.²Å] += varlist[1];
-            characterValueDict[CharacterValueType.Ä±] += varlist[2];
-            characterValueDict[CharacterValueType.Îä] += varlist[3];
-            characterValueDict[CharacterValueType.´Ì] += varlist[4];
-            characterValueDict[CharacterValueType.ÊØ] += varlist[5];
+            List<int> varlist = Player.TagInfDict[tag];
+            CharactersValueDict[CharacterValueType.ÖÇ] += varlist[0];
+            CharactersValueDict[CharacterValueType.²Å] += varlist[1];
+            CharactersValueDict[CharacterValueType.Ä±] += varlist[2];
+            CharactersValueDict[CharacterValueType.Îä] += varlist[3];
+            CharactersValueDict[CharacterValueType.´Ì] += varlist[4];
+            CharactersValueDict[CharacterValueType.ÊØ] += varlist[5];
         }
 
         foreach (CharacterValueType key in Enum.GetValues(typeof(CharacterValueType)))
         {
             
-            characterValueRareDict[key] = CheckVariablesRare(characterValueDict[key]);
+            characterValueRareDict[key] = CheckVariablesRare(CharactersValueDict[key]);
             //Debug.Log(key.ToString() + characterValueRareDict[key].ToString());
         }
     }
 
-    private Raitity CheckVariablesRare(int input)
+    private Rarerity CheckVariablesRare(int input)
     {
-        if (input > (int)Raitity.UR) return Raitity.UR;
-        else if (input > (int)Raitity.SSR) return Raitity.SSR;
-        else if (input > (int)Raitity.SR) return Raitity.SR;
-        else if (input > (int)Raitity.R) return Raitity.R;
-        else if (input > (int)Raitity.N) return Raitity.N;
-        else return Raitity.Null;
+        if (input > (int)Rarerity.UR) return Rarerity.UR;
+        else if (input > (int)Rarerity.SSR) return Rarerity.SSR;
+        else if (input > (int)Rarerity.SR) return Rarerity.SR;
+        else if (input > (int)Rarerity.R) return Rarerity.R;
+        else if (input > (int)Rarerity.N) return Rarerity.N;
+        else return Rarerity.Null;
     }
 
     private void ResetVariables()
     {
-        characterValueDict[CharacterValueType.ÖÇ] = 10;
-        characterValueDict[CharacterValueType.²Å] = 10;
-        characterValueDict[CharacterValueType.Ä±] = 10;
-        characterValueDict[CharacterValueType.Îä] = 10;
-        characterValueDict[CharacterValueType.´Ì] = 10;
-        characterValueDict[CharacterValueType.ÊØ] = 10;
+        CharactersValueDict[CharacterValueType.ÖÇ] = 0;
+        CharactersValueDict[CharacterValueType.²Å] = 0;
+        CharactersValueDict[CharacterValueType.Ä±] = 0;
+        CharactersValueDict[CharacterValueType.Îä] = 0;
+        CharactersValueDict[CharacterValueType.´Ì] = 0;
+        CharactersValueDict[CharacterValueType.ÊØ] = 0;
     }
 
     private void SpawnTagOnStart()
@@ -346,44 +346,55 @@ public class Character : MonoBehaviour, IRound
 
     private Tag RandomTag()
     {
-        Raitity rare = RandomRare();
+        Rarerity rare = RandomRare();
         var dict = Player.GivenableTagRareDict;
         dict.TryGetValue(rare, out List<Tag> targetList);
         int targetValue = UnityEngine.Random.Range(0, targetList.Count - 1);
         return targetList[targetValue];
     }
 
-    private Tag RandomTag(Raitity rare)
+    private Tag RandomTag(Rarerity rare)
     {
         List<Tag> targetList = Player.GivenableTagRareDict[rare];
         int targetValue = UnityEngine.Random.Range(0, targetList.Count - 1);
         return targetList[targetValue];
     }
 
-    private Raitity RandomRare()
+    private Rarerity RandomRare()
     {
-        int rare = UnityEngine.Random.Range(1, 100);
+        int max = 
+            TagSpawnRareRate[0] 
+            + TagSpawnRareRate[1] 
+            + TagSpawnRareRate[2] 
+            + TagSpawnRareRate[3] 
+            + TagSpawnRareRate[4];
+
+        int rare = UnityEngine.Random.Range(1, max);
         if (rare < TagSpawnRareRate[0])
         {
-            return Raitity.N;
+            return Rarerity.B;
         }
         else if (rare < (TagSpawnRareRate[0] + TagSpawnRareRate[1]))
         {
-            return Raitity.R;
+            return Rarerity.N;
         }
         else if (rare < (TagSpawnRareRate[0] + TagSpawnRareRate[1] + TagSpawnRareRate[2]))
         {
-            return Raitity.SR;
+            return Rarerity.R;
         }
         else if (rare < (TagSpawnRareRate[0] + TagSpawnRareRate[1] + TagSpawnRareRate[2] + TagSpawnRareRate[3]))
         {
-            return Raitity.SSR;
+            return Rarerity.SR;
         }
         else if (rare < (TagSpawnRareRate[0] + TagSpawnRareRate[1] + TagSpawnRareRate[2] + TagSpawnRareRate[3] + TagSpawnRareRate[4]))
         {
-            return Raitity.UR;
+            return Rarerity.SSR;
         }
-        else return Raitity.Null;
+        else if (rare < (TagSpawnRareRate[0] + TagSpawnRareRate[1] + TagSpawnRareRate[2] + TagSpawnRareRate[3] + TagSpawnRareRate[4] + TagSpawnRareRate[5]))
+        {
+            return Rarerity.UR;
+        }
+        else return Rarerity.Null;
     }
 
     private void CreatInventoryCardUI()

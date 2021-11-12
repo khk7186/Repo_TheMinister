@@ -22,6 +22,27 @@ public class TagSpecUI : MonoBehaviour
 
     private void SetTagInfo(Tag tag)
     {
-        
+        string output = "";
+        output +=
+            "ÖÇ" + PlusOrMinus(Player.TagInfDict[tag][0]) + " "
+            + "²Å" + PlusOrMinus(Player.TagInfDict[tag][1]) + " "
+            + "Ä±" + PlusOrMinus(Player.TagInfDict[tag][2]) + " "
+            + "Îä" + PlusOrMinus(Player.TagInfDict[tag][3]) + " "
+            + "´Ì" + PlusOrMinus(Player.TagInfDict[tag][4]) + " "
+            + "ÊØ" + PlusOrMinus(Player.TagInfDict[tag][5]);
+        Info.text = output;
+    }
+
+
+    private string PlusOrMinus(int input)
+    {
+        string output = "";
+        string outputSign = "+";
+        if (input < 0) outputSign = "-";
+        for (int i =0; i < Mathf.Abs(input); i++)
+        {
+            output += outputSign;
+        }
+        return output;
     }
 }

@@ -16,7 +16,7 @@ public enum CharacterValueType
 public class NodeForQuest : MonoBehaviour, IAchieveble
 {
     public CharacterValueType nodeType;
-    public Raitity raitity;
+    public Rarerity raitity;
     public bool achieved = false;
     public Image image;
     private Quest targetquest;

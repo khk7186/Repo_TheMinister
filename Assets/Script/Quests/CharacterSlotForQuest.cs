@@ -73,7 +73,7 @@ public class CharacterSlotForQuest : MonoBehaviour
         //Debug.Log(type);
         int compareValue = (int)nodeForQuest.raitity;
 
-        if (character.characterValueDict[type] >= compareValue)
+        if (character.CharactersValueDict[type] >= compareValue)
         {
 
             nodeForQuest.Achieved = true;

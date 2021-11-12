@@ -40,7 +40,7 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
             CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.สุ]]
             );
         SetIdle(character);
-        SetValues(character.characterValueDict);
+        SetValues(character.CharactersValueDict);
         SetTags(character.tagList);
         SetHealthAndLoyalty(character);
     }
@@ -77,6 +77,7 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
         {
             TagSpecUI thisTag = Instantiate(tagSpecUI, tagHolder);
             thisTag.SetUp(tag);
+            Debug.Log(tag.ToString() + string.Join("," ,Player.TagInfDict[tag]));
         }
     }
 

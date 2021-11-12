@@ -153,8 +153,9 @@ public class Player : MonoBehaviour
         {Tag.目不识丁,new List<int>(){-2,-2,-1,0,0,0}}
 
     };
-    public static Dictionary<Raitity, List<Tag>> GivenableTagRareDict = new Dictionary<Raitity, List<Tag>>()
-        {{ Raitity.SSR, new List<Tag>()
+    public static Dictionary<Rarerity, List<Tag>> GivenableTagRareDict = new Dictionary<Rarerity, List<Tag>>()
+        {
+        { Rarerity.SSR, new List<Tag>()
         {
             Tag.黯然销魂掌,
             Tag.围棋十段,
@@ -176,7 +177,7 @@ public class Player : MonoBehaviour
             Tag.悬壶济世,
             Tag.墨者
         } },
-        { Raitity.R, new List<Tag>()
+        { Rarerity.R, new List<Tag>()
         {
             Tag.文正,
             Tag.武忠,
@@ -215,7 +216,7 @@ public class Player : MonoBehaviour
             Tag.非攻
 
         } },
-        { Raitity.N, new List<Tag>() {
+        { Rarerity.N, new List<Tag>() {
             Tag.文贞,
             Tag.武勇,
             Tag.有勇无谋,
@@ -253,7 +254,7 @@ public class Player : MonoBehaviour
             Tag.马倌,
 
         }},
-        { Raitity.SR, new List<Tag>() {
+        { Rarerity.SR, new List<Tag>() {
             Tag.文,
             Tag.武,
             Tag.书通二酉,
@@ -286,7 +287,7 @@ public class Player : MonoBehaviour
             Tag.朝奉
 
         } },
-        { Raitity.UR, new List<Tag>(){
+        { Rarerity.UR, new List<Tag>(){
             Tag.大人时代变了,
             Tag.弈星下凡,
             Tag.钜子,
@@ -296,7 +297,7 @@ public class Player : MonoBehaviour
 
 
         } },
-        { Raitity.B, new List<Tag>(){
+        { Rarerity.B, new List<Tag>(){
            Tag.厄运缠身,
             Tag.不孝子,
             Tag.腿脚不便,
@@ -320,12 +321,12 @@ public class Player : MonoBehaviour
 
         } }
 };
-    public static Dictionary<Raitity, List<Tag>> MergeableTagRareDict = new Dictionary<Raitity, List<Tag>> { };
+    public static Dictionary<Rarerity, List<Tag>> MergeableTagRareDict = new Dictionary<Rarerity, List<Tag>> { };
     public static Dictionary<List<Tag>, Tag> MergeTagDict = new Dictionary<List<Tag>, Tag>
     {
 
     };
-    public static Dictionary<Raitity, List<Tag>> ItemgiveTagRareDict = new Dictionary<Raitity, List<Tag>>()
+    public static Dictionary<Rarerity, List<Tag>> ItemgiveTagRareDict = new Dictionary<Rarerity, List<Tag>>()
     {
 
     };
