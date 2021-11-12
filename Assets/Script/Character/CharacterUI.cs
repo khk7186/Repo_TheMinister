@@ -31,6 +31,14 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPo
     {
         get => inventoryCharacters?.currentSlot != null;
     }
+
+    public Tag newTag = Tag.Null;
+
+    public bool itemMode
+    {
+        get => newTag != Tag.Null;
+    }
+
     public CharacterSlotForQuest CurrentSlot
     {
         get => inventoryCharacters.currentSlot;
@@ -104,29 +112,34 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPo
         {
             switch (selectMode)
             {
-                case true: 
+                case true:
                     SelectCharacter();
                     break;
                 case false:
-                    SelectCharacterInfo();
+                    switch (itemMode)
+                    {
+                        case true:
+                            CreateTagSwitchUI();
+                            break;
+                        case false:
+                            SelectCharacterInfo();
+                            break;
+                    }
                     break;
+
+                    
             }
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
-            var CharacterSelectWindow = FindObjectOfType<PlayerCharactersInventory>();
-            switch (selectMode)
-            {
-                case true:
-                    inventoryCharacters.RightClickSelectMode();
-                    break;
-                case false:
-                    break;
-            }
-            CharacterSelectWindow.gameObject.SetActive(false);
+            inventoryCharacters.RightClickSelectMode();
         }
     }
 
+    private void CreateTagSwitchUI()
+    {
+        throw new NotImplementedException();
+    }
 
     public void SelectCharacter()
     {
@@ -154,7 +167,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPo
 
     public void SelectCharacterInfo()
     {
-        currentCharacterInfoUI = Instantiate(characterInfoUI,FindObjectOfType<Canvas>().transform);
+        currentCharacterInfoUI = Instantiate(characterInfoUI, FindObjectOfType<Canvas>().transform);
         currentCharacterInfoUI.SetUp(character);
         Debug.Log(currentCharacterInfoUI);
     }

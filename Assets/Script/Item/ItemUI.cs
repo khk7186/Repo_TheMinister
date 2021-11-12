@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public enum ItemName
@@ -30,17 +31,32 @@ public enum ItemType
 {
     Null
 }
-public class ItemUI : MonoBehaviour, IIcon
+public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
 {
     public ItemName ItemName;
     public SOItem sOItem;
     private Image icon;
+    
 
     public Image Icon => icon;
 
-    public void Awake()
+    public void OnPointerClick(PointerEventData eventData)
     {
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
 
+        }
+        else if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            //TODO: destroyed Mother Object
+        } 
+
+    }
+
+    public void SetUp(ItemName item)
+    {
+        string SpritePath = ("Art/ItemIcon/" + item.ToString()).Replace(" ", string.Empty);
+        icon.sprite = Resources.Load<Sprite>(SpritePath);
     }
 
     public Tag Use()
@@ -48,14 +64,4 @@ public class ItemUI : MonoBehaviour, IIcon
         return sOItem.ItemMap[ItemName];
     }
 
-    public Sprite GetSprite(ItemName itemName)
-    {
-        switch (itemName) {
-            default:
-            //for each new item, set its sprite here
-            case ItemName.Null:
-                return sOItem.NullSprite;
-        }
-
-    }
 }

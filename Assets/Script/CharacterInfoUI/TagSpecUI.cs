@@ -16,8 +16,13 @@ public class TagSpecUI : MonoBehaviour
 
     private void SetTagIcon(Tag tag)
     {
+        tagIcon.sprite = FindTagSprite(tag);
+    }
+
+    public static Sprite FindTagSprite(Tag tag)
+    {
         string FolderPathOfTags = ("Art/Tags/" + tag.ToString()).Replace(" ", string.Empty);
-        tagIcon.sprite = Resources.Load<Sprite>(FolderPathOfTags);
+        return Resources.Load<Sprite>(FolderPathOfTags);
     }
 
     private void SetTagInfo(Tag tag)
@@ -34,7 +39,7 @@ public class TagSpecUI : MonoBehaviour
     }
 
 
-    private string PlusOrMinus(int input)
+    public static string PlusOrMinus(int input)
     {
         string output = "";
         string outputSign = "+";
