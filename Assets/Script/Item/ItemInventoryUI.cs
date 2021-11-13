@@ -6,8 +6,23 @@ using UnityEngine.UI;
 
 public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
 {
-    public ItemInventory itemInventory;
     public Image ItemPrefab;
+
+    private void Awake()
+    {
+        ItemPrefab = Resources.Load<Image>("ItemInvUI/ItemUnitUI");
+        ItemInventory itemInventory = GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>();
+        SetUp(itemInventory);
+    }
+
+    private void SetUp(ItemInventory itemInventory)
+    {
+        foreach (ItemName key in itemInventory.ItemDict.Keys)
+        {
+            Image target = Instantiate(ItemPrefab, transform);
+            target.GetComponent<ItemUI>().SetUp(key, itemInventory.ItemDict[key]);
+        }
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {

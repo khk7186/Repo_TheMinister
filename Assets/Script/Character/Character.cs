@@ -303,11 +303,11 @@ public class Character : MonoBehaviour, IRound
 
     private Rarerity CheckVariablesRare(int input)
     {
-        if (input > (int)Rarerity.UR) return Rarerity.UR;
-        else if (input > (int)Rarerity.SSR) return Rarerity.SSR;
-        else if (input > (int)Rarerity.SR) return Rarerity.SR;
-        else if (input > (int)Rarerity.R) return Rarerity.R;
-        else if (input > (int)Rarerity.N) return Rarerity.N;
+        if (input >= (int)Rarerity.UR) return Rarerity.UR;
+        else if (input >= (int)Rarerity.SSR) return Rarerity.SSR;
+        else if (input >= (int)Rarerity.SR) return Rarerity.SR;
+        else if (input >= (int)Rarerity.R) return Rarerity.R;
+        else if (input >= (int)Rarerity.N) return Rarerity.N;
         else return Rarerity.Null;
     }
 
