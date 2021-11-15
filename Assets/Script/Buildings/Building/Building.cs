@@ -85,10 +85,7 @@ public class Building : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (IsPointerOverUIObject())
-        {
-            OpenMenu();
-        }
+        
     }
 
     public static bool IsPointerOverUIObject()
