@@ -6,7 +6,7 @@ using UnityEngine;
 public class SOItem : ScriptableObject
 {
     
-    public Dictionary<ItemName, Tag> ItemMap = new Dictionary<ItemName, Tag>() 
+    public static Dictionary<ItemName, Tag> ItemMap = new Dictionary<ItemName, Tag>() 
     {
         {ItemName.山海经,Tag.书通二酉},
         {ItemName.机关残卷,Tag.偃师},
@@ -26,13 +26,11 @@ public class SOItem : ScriptableObject
         {ItemName.论语,Tag.儒生},
         {ItemName.道德经,Tag.道士},
         {ItemName.起世经,Tag.僧人}
-
     };
     public Sprite NullSprite;
 
     private void Awake()
     {
-        ItemMap.Add(ItemName.Null, Tag.Null);
     }
 
 

@@ -34,10 +34,9 @@ public enum ItemType
 public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
 {
     public ItemName ItemName;
-    public SOItem sOItem;
     public Image icon;
     public Text amount;
-    
+    public TagExchangeUI tagExchangeUI;
 
     public Image Icon => icon;
 
@@ -45,7 +44,13 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-
+            PlayerCharactersInventory playerCharactersInventory = Resources.Load<PlayerCharactersInventory>("CharacterInvUI/ChraInvUI");
+            PlayerCharactersInventory current = Instantiate(playerCharactersInventory, GameObject.FindGameObjectWithTag("MainUICanvas").transform);
+            GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>().InUseItem = ItemName;
+            foreach (CharacterUI characterUI in current.characterUIList)
+            {
+                characterUI.newTag = Use();
+            }
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
@@ -56,6 +61,7 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
 
     public void SetUp(ItemName item, int amount)
     {
+        this.ItemName = item;
         string SpritePath = ("Art/ItemIcon/" + item.ToString()).Replace(" ", string.Empty);
         icon.sprite = Resources.Load<Sprite>(SpritePath);
         this.amount.text = amount.ToString();
@@ -63,7 +69,7 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
 
     public Tag Use()
     {
-        return sOItem.ItemMap[ItemName];
+        return SOItem.ItemMap[this.ItemName];
     }
 
 }

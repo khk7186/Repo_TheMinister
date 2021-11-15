@@ -32,7 +32,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPo
         get => inventoryCharacters?.currentSlot != null;
     }
 
-    public Tag newTag = Tag.Null;
+    public Tag newTag;
 
     public bool itemMode
     {
@@ -138,7 +138,9 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPo
 
     private void CreateTagSwitchUI()
     {
-        throw new NotImplementedException();
+        TagExchangeUI tagExchangeUI = Resources.Load<TagExchangeUI>("TagReplacement/TagReplacementUI");
+        var current = Instantiate(tagExchangeUI, GameObject.FindGameObjectWithTag("MainUICanvas").transform);
+        current.SetUp(newTag, character);
     }
 
     public void SelectCharacter()
@@ -169,7 +171,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPo
     {
         currentCharacterInfoUI = Instantiate(characterInfoUI, FindObjectOfType<Canvas>().transform);
         currentCharacterInfoUI.SetUp(character);
-        Debug.Log(currentCharacterInfoUI);
+        //Debug.Log(currentCharacterInfoUI);
     }
 
 }

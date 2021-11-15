@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-
+using System.Linq;
 public class PlayerCharactersInventory : MonoBehaviour, IPointerClickHandler
 {
     public CharacterSlotForQuest currentSlot;
 
     public bool selectMode => currentSlot;
     public List<CharacterUI> characterUIList = new List<CharacterUI>();
+    public Transform characterUIParent;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -31,13 +32,14 @@ public class PlayerCharactersInventory : MonoBehaviour, IPointerClickHandler
     {
         GetComponent<RightClickToClose>().RightClickEvent();
     }
-    private void Start()
-    {  
+    private void Awake()
+    {
         foreach (Character character in GameObject.FindGameObjectWithTag("PlayerCharacterInventory").GetComponentsInChildren<Character>())
         {
             character.characterCardInvUI = transform.GetComponentInChildren<Transform>().GetComponentInChildren<GridLayoutGroup>().transform;
             character.BelongCheck();
         }
+        characterUIList = characterUIParent.GetComponentsInChildren<CharacterUI>().ToList();
     }
 
 

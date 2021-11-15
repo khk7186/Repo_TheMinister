@@ -77,7 +77,7 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
         {
             TagSpecUI thisTag = Instantiate(tagSpecUI, tagHolder);
             thisTag.SetUp(tag);
-            Debug.Log(tag.ToString() + string.Join("," ,Player.TagInfDict[tag]));
+            //Debug.Log(tag.ToString() + string.Join("," ,Player.TagInfDict[tag]));
         }
     }
 

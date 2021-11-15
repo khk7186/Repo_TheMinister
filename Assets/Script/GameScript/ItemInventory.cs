@@ -7,6 +7,7 @@ public class ItemInventory : MonoBehaviour
 {
     private Dictionary<ItemName, int> itemDict = new Dictionary<ItemName, int>();
     public Dictionary<ItemName, int> ItemDict => itemDict;
+    public ItemName InUseItem;
 
     private void Awake()
     {
@@ -26,12 +27,12 @@ public class ItemInventory : MonoBehaviour
         else itemDict.Add(item, 1);
     }
 
-    public void RemoveItem(ItemName item)
+    public void RemoveItem()
     {
-        itemDict[item] -= 1;
-        if (itemDict[item] <=0)
+        itemDict[InUseItem] -= 1;
+        if (itemDict[InUseItem] <=0)
         {
-            itemDict.Remove(item);
+            itemDict.Remove(InUseItem);
         }
     }
 }

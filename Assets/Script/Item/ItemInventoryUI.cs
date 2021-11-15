@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
 {
     public Image ItemPrefab;
+    public ItemInventory itemInventory;
 
     private void Awake()
     {
@@ -17,12 +18,21 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
 
     private void SetUp(ItemInventory itemInventory)
     {
+        this.itemInventory = itemInventory;
+        SetUp();
+    }
+    public void SetUp()
+    {
+        foreach (Transform child in transform)
+        {
+            Destroy(child.gameObject);
+        }
         foreach (ItemName key in itemInventory.ItemDict.Keys)
         {
             Image target = Instantiate(ItemPrefab, transform);
-            Debug.Log(itemInventory.ItemDict[key]);
+            //Debug.Log(itemInventory.ItemDict[key]);
             target.GetComponent<ItemUI>().SetUp(key, itemInventory.ItemDict[key]);
-            
+
         }
     }
 
