@@ -24,7 +24,10 @@ public enum ItemName
     咖啡,
     毛笔,
     拂尘,
-    佛珠
+    佛珠,
+    道德经,
+    论语,
+    起世经
 }
 
 public enum ItemType
