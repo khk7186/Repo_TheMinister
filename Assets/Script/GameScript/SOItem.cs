@@ -23,9 +23,9 @@ public class SOItem : ScriptableObject
         {ItemName.麝香,Tag.不孕不育},
         {ItemName.咖啡,Tag.夜不能寐},
         {ItemName.雕,Tag.雕},
-        {ItemName.论语,Tag.儒生},
-        {ItemName.道德经,Tag.道士},
-        {ItemName.起世经,Tag.僧人}
+        {ItemName.毛笔,Tag.儒生},
+        {ItemName.拂尘,Tag.道士},
+        {ItemName.佛珠,Tag.僧人}
 
     };
     public Sprite NullSprite;

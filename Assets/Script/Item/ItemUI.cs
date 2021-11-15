@@ -22,9 +22,9 @@ public enum ItemName
     麝香,
     雕,
     咖啡,
-    论语,
-    道德经,
-    起世经
+    毛笔,
+    拂尘,
+    佛珠
 }
 
 public enum ItemType
