@@ -35,7 +35,7 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
 {
     public ItemName ItemName;
     public SOItem sOItem;
-    private Image icon;
+    public Image icon;
     public Text amount;
     
 

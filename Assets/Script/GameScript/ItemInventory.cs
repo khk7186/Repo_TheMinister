@@ -10,9 +10,10 @@ public class ItemInventory : MonoBehaviour
 
     private void Awake()
     {
-        AddItem(ItemName.Null);
-        AddItem(ItemName.Null);
-        AddItem(ItemName.Null);
+        AddItem(ItemName.É½º£¾­);
+        AddItem(ItemName.±ùËª±¦½£);
+        AddItem(ItemName.ÒõÑô°ËØÔÅÌ);
+        AddItem(ItemName.»ú¹Ø²Ð¾í);
     }
 
     //add item into dic, if dont have one, add new key, else add count.
@@ -33,8 +34,4 @@ public class ItemInventory : MonoBehaviour
             itemDict.Remove(item);
         }
     }
-    
-
-
-
 }
