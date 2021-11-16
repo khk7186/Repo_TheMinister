@@ -37,6 +37,15 @@ public class Map : MonoBehaviour, IObserver
         Player.position = map[currentBlock].transform.position;
     }
 
+    public void MoveAStep(int number)
+    {
+        for (int i = 0; i < number; i++)
+        {
+            MoveAStep();
+        }
+        SetBuildings();
+    }
+
     private IEnumerator MoveAndDelay(int steps)
     {
         

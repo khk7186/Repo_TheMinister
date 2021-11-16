@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BuildingEvents : MonoBehaviour
 {
-    public static void HorseRent()
+    public RectTransform TargetUI;
+    public void Create()
     {
-        
+
     }
 }

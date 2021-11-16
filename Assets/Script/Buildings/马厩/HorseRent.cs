@@ -1,18 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+public enum HorseRank
+{
+    N = 1,
+    R = 2,
+    SR = 3,
+    SSR = 4,
+    UR = 5
+}
 public class HorseRent : MonoBehaviour
 {
-    private enum HorseType
-    {
-        N = 1,
-        R = 2,
-        SR = 3,
-        SSR = 4,
-        UR = 5
-    }
-
     private List<int> rates = new List<int>()
     {
         50,
@@ -21,30 +19,41 @@ public class HorseRent : MonoBehaviour
         1,
         0
     };
+    public int numberOfSpawn = 5;
 
-    private HorseType RandomHorse()
+    private void Start()
+    {
+        var target = Resources.Load<HorseCardUI>("BuildingUI/HorseCard");
+        for (int i = 0; i < numberOfSpawn; i++)
+        {
+            var current = Instantiate(target, transform);
+            current.SetUp(RandomHorse());
+        }
+    }
+
+    public HorseRank RandomHorse()
     {
         int MaxValue = rates[0] + rates[1] + rates[2] + rates[3] + rates[4];
         int DrawValue = Random.Range(0, MaxValue);
         if (DrawValue < rates[0])
         {
-            return HorseType.N;
+            return HorseRank.N;
         }
         else if (DrawValue < (rates[0]+ rates[1]))
         {
-            return HorseType.R;
+            return HorseRank.R;
         }
         else if (DrawValue < (rates[0] + rates[1]+rates[2]))
         {
-            return HorseType.SR;
+            return HorseRank.SR;
         }
         else if (DrawValue < (rates[0] + rates[1] + rates[2]+rates[3]))
         {
-            return HorseType.SSR;
+            return HorseRank.SSR;
         }
         else
         {
-            return HorseType.UR;
+            return HorseRank.UR;
         }
     }
 
