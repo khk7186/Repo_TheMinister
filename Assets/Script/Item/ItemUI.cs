@@ -43,8 +43,7 @@ public enum ItemType
     ‘”ªı,
     “©≤ƒ,
     µ§“©,
-    ∆Ê ﬁ,
-
+    ∆Ê ﬁ
 }
 public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
 {

@@ -30,6 +30,39 @@ public class SOItem : ScriptableObject
         {ItemName.拂尘,Tag.道士},
         {ItemName.佛珠,Tag.僧人}
     };
+    public static Dictionary<ItemType, List<ItemName>> ItemTypeDict = new Dictionary<ItemType, List<ItemName>>()
+    {
+        { 
+            ItemType.兵器, new List<ItemName>()
+            { 
+            }
+        },
+        {
+            ItemType.丹药, new List<ItemName>()
+            {
+            }
+        },
+        {
+            ItemType.书籍, new List<ItemName>()
+            {
+            }
+        },
+        {
+            ItemType.奇兽, new List<ItemName>()
+            {
+            }
+        },
+        {
+            ItemType.服装, new List<ItemName>()
+            {
+            }
+        },
+        {
+            ItemType.机关, new List<ItemName>()
+            {
+            }
+        }
+    };
     public Sprite NullSprite;
 
     private void Awake()
