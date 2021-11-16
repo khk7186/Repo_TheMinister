@@ -32,7 +32,19 @@ public enum ItemName
 
 public enum ItemType
 {
-    Null
+    兵器,
+    坐骑,
+    书籍,
+    服装,
+    饰品,
+    机关,
+    菜品,
+    酒品,
+    杂货,
+    药材,
+    丹药,
+    奇兽,
+
 }
 public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
 {
