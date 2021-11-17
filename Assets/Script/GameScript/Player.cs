@@ -299,7 +299,6 @@ public class Player : MonoBehaviour
         Tag.弈星下凡,
         Tag.钜子,
         Tag.文武双全,
-
 }}
 
 };
