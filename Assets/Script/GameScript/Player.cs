@@ -236,7 +236,73 @@ public class Player : MonoBehaviour
        {}}
 
 };
-    public static Dictionary<Rarerity, List<Tag>> MergeableTagRareDict = new Dictionary<Rarerity, List<Tag>> { };
+    public static Dictionary<Rarerity, List<Tag>> MergeableTagRareDict = new Dictionary<Rarerity, List<Tag>> {
+        {Rarerity.B,new List<Tag>()
+        {
+        Tag.糖尿病
+    }},
+
+        {Rarerity.R,new List<Tag>()
+        {
+        Tag.文正,
+        Tag.武忠,
+        Tag.法外狂徒,
+        Tag.欢喜佛,
+        Tag.恶魔人,
+        Tag.老戏骨,
+        Tag.牧民
+
+    }},
+        {Rarerity.N,new List<Tag>()
+       {
+           }},
+        {Rarerity.SR,new List<Tag>()
+       {
+        Tag.文,
+        Tag.武,
+        Tag.天生神力,
+        Tag.阳明学派,
+        Tag.吸星大法,
+        Tag.巫妖领主,
+        Tag.龙骑士,
+        Tag.外交官,
+        Tag.老当益壮,
+        Tag.炼金术师,
+        Tag.近战精通,
+        Tag.古神转世,
+        Tag.理财大师,
+        Tag.戏精,
+        Tag.御马监,
+        Tag.驯兽大师,
+        Tag.朝奉
+    }},
+        {Rarerity.SSR,new List<Tag>()
+       {
+        Tag.黯然销魂掌,
+        Tag.围棋十段,
+        Tag.八斗之才,
+        Tag.诸武精通,
+        Tag.纸上谈兵,
+        Tag.徒有虚名,
+        Tag.投机取巧,
+        Tag.混世魔王,
+        Tag.心狠手辣,
+        Tag.墨守成规,
+        Tag.巧夺天工,
+        Tag.悬壶济世,
+        Tag.墨者
+
+    }},
+        {Rarerity.UR,new List<Tag>()
+       {
+        Tag.大人时代变了,
+        Tag.弈星下凡,
+        Tag.钜子,
+        Tag.文武双全,
+
+}}
+
+};
     public static Dictionary<List<Tag>, Tag> MergeTagDict = new Dictionary<List<Tag>, Tag>
     {
         {new List<Tag>(){Tag.文贞,Tag.文贞},Tag.文正},
