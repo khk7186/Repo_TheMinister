@@ -6,7 +6,14 @@ using UnityEngine.EventSystems;
 
 public enum BuildingType
 {
-    Âí¾Ç
+    Âí¾Ç,
+    ÔÓ»õÆÌ,
+    ÉÌÐÐ,
+    Ìú½³ÆÌ,
+    ·ÄÖ¯ÆÌ,
+    Ï·¹Ý,
+    Ò©ÆÌ,
+    ¾Æ¹Ý
 }
 
 public enum BuildingLevel
@@ -24,13 +31,14 @@ public class Building : MonoBehaviour, IPointerClickHandler
 
     public Transform BuildingCharacterSlot;
 
+    public List<ItemName> ShopList;
+
     [SerializeField] private BuildingUI buildingUI;
     public List<QuestLineAgent> questLineList = new List<QuestLineAgent>();
     private void Awake()
     {
         UpdateType();
     }
-
     public void UpdateType()
     {
         string FolderPath = ("BuildingUI/" + buildingType.ToString()).Replace(" ", string.Empty);
@@ -73,12 +81,7 @@ public class Building : MonoBehaviour, IPointerClickHandler
             WhoLiveInHere();
         }
 
-        switch (buildingType)
-        {
-            default:
-            case BuildingType.Âí¾Ç:
-                break;
-        }
+        
         UpdateType();
         CreateUI();
     }
@@ -103,6 +106,40 @@ public class Building : MonoBehaviour, IPointerClickHandler
             .GetComponent<InGameCharacterStorage>();
 
         charactersHere.AddRange(inGameCharacterStorage.SelectCharacterForBuilding(5));
+    }
+
+    public List<ItemType> ShopType()
+    {
+        switch (buildingType)
+        {
+            case BuildingType.ÔÓ»õÆÌ:
+                return new List<ItemType>() { ItemType.ÔÓ»õ, ItemType.Ò©²Ä };
+            case BuildingType.¾Æ¹Ý:
+                return new List<ItemType>() { };
+            case BuildingType.Ò©ÆÌ:
+                return new List<ItemType>() { };
+            case BuildingType.ÉÌÐÐ:
+                return new List<ItemType>() { ItemType.Êé¼®,ItemType.ÊÎÆ· };
+            case BuildingType.Ìú½³ÆÌ:
+                return new List<ItemType>() { };
+            case BuildingType.·ÄÖ¯ÆÌ:
+                return new List<ItemType>() { };
+        }
+        return new List<ItemType>() { };
+    }
+
+    public void SpawnItemBasedOnType(List<ItemType> inputTypes)
+    {
+        int outputAmount = Random.Range(5, 10);
+        List<ItemName> outputItems = new List<ItemName>(); 
+        for(int i = 0; i <outputAmount; i++)
+        {
+            if (inputTypes.Count < 1) return;
+            int randomTypeIndex = Random.Range(0, inputTypes.Count);
+            ItemName currentItem = SOItem.ItemTypeDict[inputTypes[randomTypeIndex]][0];
+            outputItems.Add(currentItem);
+        }
+        ShopList = outputItems;
     }
 
 }
