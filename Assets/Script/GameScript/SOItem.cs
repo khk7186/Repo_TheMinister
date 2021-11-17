@@ -23,9 +23,6 @@ public class SOItem : ScriptableObject
         {ItemName.麝香,Tag.不孕不育},
         {ItemName.咖啡,Tag.夜不能寐},
         {ItemName.雕,Tag.雕},
-        {ItemName.论语,Tag.儒生},
-        {ItemName.道德经,Tag.道士},
-        {ItemName.起世经,Tag.僧人},
         {ItemName.毛笔,Tag.儒生},
         {ItemName.拂尘,Tag.道士},
         {ItemName.佛珠,Tag.僧人}
@@ -34,32 +31,63 @@ public class SOItem : ScriptableObject
     {
         { 
             ItemType.兵器, new List<ItemName>()
-            { 
+            {
+                ItemName.冰霜宝剑,
+                ItemName.火炮
+
+
             }
         },
         {
             ItemType.丹药, new List<ItemName>()
             {
+                ItemName.奉子丹
             }
         },
         {
             ItemType.书籍, new List<ItemName>()
             {
+                ItemName.山海经,
+                ItemName.机关残卷,
+                ItemName.蛤蟆功秘籍,
+                ItemName.东洋词典,
+                ItemName.西洋词典,
+                ItemName.杂技
+
             }
         },
         {
             ItemType.奇兽, new List<ItemName>()
             {
+                ItemName.雕
             }
         },
         {
             ItemType.服装, new List<ItemName>()
             {
+                ItemName.羽衣
             }
         },
         {
             ItemType.机关, new List<ItemName>()
             {
+            }
+        },
+        {
+            ItemType.杂货, new List<ItemName>()
+            {
+                ItemName.阴阳八卦盘,
+                ItemName.浑天仪,
+                ItemName.咖啡,
+                ItemName.毛笔,
+                ItemName.拂尘,
+                ItemName.佛珠
+            }
+        },
+        {
+            ItemType.药材, new List<ItemName>()
+            {
+                ItemName.麝香
             }
         }
     };
