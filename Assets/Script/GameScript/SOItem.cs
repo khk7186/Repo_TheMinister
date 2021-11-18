@@ -33,9 +33,14 @@ public class SOItem : ScriptableObject
             ItemType.兵器, new List<ItemName>()
             {
                 ItemName.冰霜宝剑,
-                ItemName.火炮
-
-
+                ItemName.火炮,
+                ItemName.欧冶子的大锤,
+                ItemName.欧冶子的小锤,
+                ItemName.弓,
+                ItemName.刀,
+                ItemName.枪,
+                ItemName.剑,
+                ItemName.戟
             }
         },
         {
@@ -52,14 +57,31 @@ public class SOItem : ScriptableObject
                 ItemName.蛤蟆功秘籍,
                 ItemName.东洋词典,
                 ItemName.西洋词典,
-                ItemName.杂技
-
+                ItemName.杂技,
+                ItemName.鬼谷子,
+                ItemName.黄帝内经,
+                ItemName.本草纲目,
+                ItemName.墨子非攻,
+                ItemName.墨子兼爱,
+                ItemName.毒经,
+                ItemName.唯物论,
+                ItemName.棋诀,
+                ItemName.货殖列传,
+                ItemName.伤寒杂病论,
+                ItemName.官宸书,
+                ItemName.洗冤录,
+                ItemName.孝经暂,
+                ItemName.马经,
+                ItemName.药材大全,
+                ItemName.演员的自我修养,
+                ItemName.汤头歌诀
             }
         },
         {
             ItemType.奇兽, new List<ItemName>()
             {
-                ItemName.雕
+                ItemName.雕,
+                ItemName.吵闹的鹦鹉,
             }
         },
         {
@@ -81,7 +103,13 @@ public class SOItem : ScriptableObject
                 ItemName.咖啡,
                 ItemName.毛笔,
                 ItemName.拂尘,
-                ItemName.佛珠
+                ItemName.佛珠,
+                ItemName.御马官印,
+                ItemName.毒奶瓶,
+                ItemName.文官状,
+                ItemName.武官状,
+                ItemName.杂技,
+                ItemName.剪刀
             }
         },
         {
