@@ -465,9 +465,17 @@ public class Player : MonoBehaviour
     };
     public static Dictionary<Tag, GameObject> TagPrefabDict = new Dictionary<Tag, GameObject> { };
 
+    public static Dictionary<CharacterArtCode, Dictionary<Rarerity, List<Tag>>> CharacterFinalTagPool =
+        new Dictionary<CharacterArtCode, Dictionary<Rarerity, List<Tag>>>()
+        {
+            {CharacterArtCode.女诗人, FemalePoestTagPool },
+            {CharacterArtCode.男书生, FemalePoestTagPool },
+            {CharacterArtCode.男刀客, FemalePoestTagPool },
+            {CharacterArtCode.老者, FemalePoestTagPool },
+        };
+    private static Dictionary<Rarerity, List<Tag>> FemalePoestTagPool =
+        new Dictionary<Rarerity, List<Tag>> 
+        { 
 
-
-
-
-
+        };
 }
