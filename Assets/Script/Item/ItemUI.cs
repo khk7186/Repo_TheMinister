@@ -87,19 +87,24 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            PlayerCharactersInventory playerCharactersInventory = Resources.Load<PlayerCharactersInventory>("CharacterInvUI/ChraInvUI");
-            PlayerCharactersInventory current = Instantiate(playerCharactersInventory, GameObject.FindGameObjectWithTag("MainUICanvas").transform);
-            GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>().InUseItem = ItemName;
-            foreach (CharacterUI characterUI in current.characterUIList)
-            {
-                characterUI.newTag = Use();
-            }
+            LeftClickAction();
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
             //TODO: destroyed Mother Object
         } 
 
+    }
+
+    protected virtual void LeftClickAction()
+    {
+        PlayerCharactersInventory playerCharactersInventory = Resources.Load<PlayerCharactersInventory>("CharacterInvUI/ChraInvUI");
+        PlayerCharactersInventory current = Instantiate(playerCharactersInventory, GameObject.FindGameObjectWithTag("MainUICanvas").transform);
+        GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>().InUseItem = ItemName;
+        foreach (CharacterUI characterUI in current.characterUIList)
+        {
+            characterUI.newTag = Use();
+        }
     }
 
     public void SetUp(ItemName item, int amount)

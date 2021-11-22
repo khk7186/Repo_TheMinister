@@ -54,6 +54,7 @@ public class TagInfoCardOnExchangeUI : MonoBehaviour, IPointerClickHandler
         {
             character.tagList.Remove(thisTag);
             character.tagList.Add(newTag);
+            character.UpdateVariables();
             GetComponentInParent<Transform>().GetComponentInParent<TagExchangeUI>().FinishTheState();
         }
     }

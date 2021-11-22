@@ -5,6 +5,7 @@ using System.Linq;
 
 public class Map : MonoBehaviour, IObserver
 {
+    public static int Week = 1;
     private List<Block> map = new List<Block>();
     [SerializeField] private int currentBlock = 0;
     [SerializeField] private Transform Player;
@@ -27,6 +28,7 @@ public class Map : MonoBehaviour, IObserver
     {
         if (notificationType == NotificationType.MovePlayer)
         {
+            Week += 1;
             StartCoroutine(MoveAndDelay((int)value));
         }
     }

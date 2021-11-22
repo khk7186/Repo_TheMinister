@@ -463,8 +463,6 @@ public class Player : MonoBehaviour
         {ItemName.演员的自我修养,Tag.演员},
         {ItemName.汤头歌诀,Tag.医术}
     };
-
-
     public static Dictionary<Tag, GameObject> TagPrefabDict = new Dictionary<Tag, GameObject> { };
 
 

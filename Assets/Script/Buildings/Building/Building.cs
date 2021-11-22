@@ -1,4 +1,3 @@
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,15 +21,17 @@ public enum BuildingLevel
     LevelTwo,
     LevelThree
 }
-public class Building : MonoBehaviour, IPointerClickHandler
+public class Building : MonoBehaviour
 {
     public BuildingType buildingType;
     public List<Character> charactersHere;
 
     public int MaxBuildingQuest = 3;
 
-    public Transform BuildingCharacterSlot;
+    public int recordWeek = 0;
 
+    public Transform BuildingCharacterSlot;
+     
     public List<ItemName> ShopList;
 
     [SerializeField] private BuildingUI buildingUI;
@@ -80,25 +81,21 @@ public class Building : MonoBehaviour, IPointerClickHandler
         {
             WhoLiveInHere();
         }
-
-        
         UpdateType();
         CreateUI();
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
+        if (recordWeek < Map.Week)
+        {
+            SpawnItems();
+            var target = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
+            target?.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
+            if (buildingType == BuildingType.Âí¾Ç)
+            {
+                //TODO: SetUp Horses
+            }
+        }
         
     }
 
-    public static bool IsPointerOverUIObject()
-    {
-        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        return results.Count > 0;
-    }
     public void WhoLiveInHere()
     {
         InGameCharacterStorage inGameCharacterStorage =
@@ -142,4 +139,8 @@ public class Building : MonoBehaviour, IPointerClickHandler
         ShopList = outputItems;
     }
 
+    public void SpawnItems()
+    {
+        SpawnItemBasedOnType(ShopType());
+    }
 }

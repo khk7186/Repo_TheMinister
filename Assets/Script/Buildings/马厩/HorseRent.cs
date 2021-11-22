@@ -21,7 +21,11 @@ public class HorseRent : MonoBehaviour
     };
     public int numberOfSpawn = 5;
 
-    private void Start()
+    private void OnEnable()
+    {
+        SetUP();
+    }
+    private void SetUP()
     {
         var target = Resources.Load<HorseCardUI>("BuildingUI/HorseCard");
         for (int i = 0; i < numberOfSpawn; i++)
