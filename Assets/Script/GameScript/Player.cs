@@ -522,14 +522,7 @@ public class Player : MonoBehaviour
     };
     public static Dictionary<Tag, GameObject> TagPrefabDict = new Dictionary<Tag, GameObject> { };
 
-    public static Dictionary<CharacterArtCode, Dictionary<Rarerity, List<Tag>>> CharacterFinalTagPool =
-        new Dictionary<CharacterArtCode, Dictionary<Rarerity, List<Tag>>>()
-        {
-            {CharacterArtCode.女诗人, FemalePoestTagPool },
-            {CharacterArtCode.男书生, MaleScholarTagPool },
-            {CharacterArtCode.男刀客, MaleBladeuserTagPool },
-            {CharacterArtCode.老者, ElderlyTagPool },
-        };
+    
     private static Dictionary<Rarerity, List<Tag>> FemalePoestTagPool =
         new Dictionary<Rarerity, List<Tag>>
     {
@@ -859,5 +852,13 @@ public class Player : MonoBehaviour
         {Rarerity.UR,new List<Tag>()
         {
 }}
+        };
+    public static Dictionary<CharacterArtCode, Dictionary<Rarerity, List<Tag>>> CharacterFinalTagPool =
+        new Dictionary<CharacterArtCode, Dictionary<Rarerity, List<Tag>>>()
+        {
+            {CharacterArtCode.女诗人, FemalePoestTagPool },
+            {CharacterArtCode.男书生, MaleScholarTagPool },
+            {CharacterArtCode.男刀客, MaleBladeuserTagPool },
+            {CharacterArtCode.老者, ElderlyTagPool },
         };
 }

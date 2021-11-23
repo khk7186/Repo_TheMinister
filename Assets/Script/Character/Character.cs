@@ -377,7 +377,7 @@ public class Character : MonoBehaviour, IRound
     private Tag RandomTag()
     {
         Rarerity rare = RandomRare();
-        var dict = Player.GivenableTagRareDict;
+        Dictionary<Rarerity, List<Tag>> dict = Player.CharacterFinalTagPool[characterArtCode];
         dict.TryGetValue(rare, out List<Tag> targetList);
         int targetValue = UnityEngine.Random.Range(0, targetList.Count - 1);
         return targetList[targetValue];
