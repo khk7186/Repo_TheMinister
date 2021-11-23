@@ -6,6 +6,7 @@ using System.Linq;
 public class Map : MonoBehaviour, IObserver
 {
     public static int Week = 1;
+    public static int Day = 6;
     private List<Block> map = new List<Block>();
     [SerializeField] private int currentBlock = 0;
     [SerializeField] private Transform Player;
