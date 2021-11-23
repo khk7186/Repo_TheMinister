@@ -538,7 +538,20 @@ public class Player : MonoBehaviour
             Tag.双目失明,
             Tag.独臂,
             Tag.小儿麻痹,
-            Tag.近视
+            Tag.近视,
+            Tag.得寸进尺,
+            Tag.无能狂怒,
+            Tag.头疼,
+            Tag.半身不遂,
+            Tag.磕巴,
+            Tag.惹人嫌,
+            Tag.调皮鬼,
+            Tag.天生恶感,
+            Tag.干呕,
+            Tag.身体孱弱,
+            Tag.肥胖症,
+            Tag.长短腿,
+            Tag.义肢,
     }},
 
         {Rarerity.R,new List<Tag>()
@@ -620,7 +633,20 @@ public class Player : MonoBehaviour
             Tag.双目失明,
             Tag.独臂,
             Tag.小儿麻痹,
-            Tag.近视
+            Tag.近视,
+            Tag.得寸进尺,
+            Tag.无能狂怒,
+            Tag.头疼,
+            Tag.半身不遂,
+            Tag.磕巴,
+            Tag.惹人嫌,
+            Tag.调皮鬼,
+            Tag.天生恶感,
+            Tag.干呕,
+            Tag.身体孱弱,
+            Tag.肥胖症,
+            Tag.长短腿,
+            Tag.义肢
     }},
 
         {Rarerity.R,new List<Tag>()
@@ -702,7 +728,20 @@ public class Player : MonoBehaviour
             Tag.双目失明,
             Tag.独臂,
             Tag.小儿麻痹,
-            Tag.目不识丁
+            Tag.目不识丁,
+            Tag.得寸进尺,
+            Tag.无能狂怒,
+            Tag.头疼,
+            Tag.半身不遂,
+            Tag.磕巴,
+            Tag.惹人嫌,
+            Tag.调皮鬼,
+            Tag.天生恶感,
+            Tag.干呕,
+            Tag.身体孱弱,
+            Tag.肥胖症,
+            Tag.长短腿,
+            Tag.义肢
     }},
 
         {Rarerity.R,new List<Tag>()
@@ -786,7 +825,19 @@ public class Player : MonoBehaviour
             Tag.小儿麻痹,
             Tag.近视,
             Tag.目不识丁,
-            Tag.年老体衰
+            Tag.年老体衰,
+            Tag.得寸进尺,
+            Tag.无能狂怒,
+            Tag.头疼,
+            Tag.半身不遂,
+            Tag.磕巴,
+            Tag.惹人嫌,
+            Tag.天生恶感,
+            Tag.干呕,
+            Tag.身体孱弱,
+            Tag.肥胖症,
+            Tag.长短腿,
+            Tag.义肢
     }},
 
         {Rarerity.R,new List<Tag>()
