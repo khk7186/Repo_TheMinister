@@ -30,14 +30,23 @@ public class Map : MonoBehaviour, IObserver
         if (notificationType == NotificationType.MovePlayer)
         {
             Week += 1;
+            Day = 1;
             StartCoroutine(MoveAndDelay((int)value));
         }
     }
 
     private void MoveAStep()
     {
-        currentBlock += 1;
+        if (currentBlock+1 >= map.Count)
+        {
+            currentBlock = 0;
+        }
+        else
+        {
+            currentBlock += 1;
+        }
         Player.position = map[currentBlock].transform.position;
+
     }
 
     public void MoveAStep(int number)
@@ -51,7 +60,7 @@ public class Map : MonoBehaviour, IObserver
 
     private IEnumerator MoveAndDelay(int steps)
     {
-        
+
         for (int i = 0; i < steps; i++)
         {
             MoveAStep();
@@ -62,9 +71,9 @@ public class Map : MonoBehaviour, IObserver
 
     public List<Building> InteractebleBuildingCheck()
     {
-        
-        var colliders = Physics2D.OverlapCircleAll(Player.transform.position,1.5f);
-        var buildingList = new List<Building>(); 
+
+        var colliders = Physics2D.OverlapCircleAll(Player.transform.position, 1.5f);
+        var buildingList = new List<Building>();
         foreach (Collider2D collider2D in colliders)
         {
             if (collider2D.TryGetComponent<Building>(out Building building))
@@ -92,10 +101,10 @@ public class Map : MonoBehaviour, IObserver
     {
         SetActivateBuildingsInteracteble(ActivatedBuildings, false);
         ActivatedBuildings.Clear();
-        var list= InteractebleBuildingCheck();
-        SetActivateBuildingsInteracteble(list , true);
+        var list = InteractebleBuildingCheck();
+        SetActivateBuildingsInteracteble(list, true);
         ActivatedBuildings = list;
     }
 
-    
+
 }
