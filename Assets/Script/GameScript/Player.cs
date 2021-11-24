@@ -168,19 +168,20 @@ public class Player : MonoBehaviour
         {Tag.身怀六甲,new List<int>(){0,0,0,-1,-1,-1}},
         {Tag.小儿麻痹,new List<int>(){0,0,-1,-2,-1,-1}},
         {Tag.目不识丁,new List<int>(){-2,-2,-1,0,0,0}},
-        {Tag.得寸进尺,new List<int>(){0,-2-4,0,0,0}},
-        {Tag.无能狂怒,new List<int>(){0,00,-4,0,-2}},
-        {Tag.头疼,new List<int>(){-2,-2-4,0,0,0}},
-        {Tag.半身不遂,new List<int>(){0,00,-5,0,0}},
-        {Tag.磕巴,new List<int>(){0,-40,0,0,0}},
-        {Tag.惹人嫌,new List<int>(){-1,-1-1,0,0,0}},
-        {Tag.调皮鬼,new List<int>(){0,00,0,0,-2}},
-        {Tag.天生恶感,new List<int>(){0,-20,0,0,0}},
-        {Tag.干呕,new List<int>(){0,00,0,-5,0}},
-        {Tag.身体孱弱,new List<int>(){1,11,-3,-3,-2}},
-        {Tag.肥胖症,new List<int>(){0,00,-3,-4,2}},
-        {Tag.长短腿,new List<int>(){0,00,-4,-1,0}},
-        {Tag.义肢,new List<int>(){0,00,-3,2,-2}}
+        {Tag.得寸进尺,new List<int>(){0,-2,-4,0,0,0}},
+        {Tag.无能狂怒,new List<int>(){0,0,0,-4,0,-2}},
+        {Tag.头疼,new List<int>(){-2,-2,-4,0,0,0}},
+        {Tag.半身不遂,new List<int>(){0,0,0,-5,0,0}},
+        {Tag.磕巴,new List<int>(){0,-4,0,0,0,0}},
+        {Tag.惹人嫌,new List<int>(){-1,-1,-1,0,0,0}},
+        {Tag.调皮鬼,new List<int>(){0,0,0,0,0,-2}},
+        {Tag.天生恶感,new List<int>(){0,-2,0,0,0,0}},
+        {Tag.干呕,new List<int>(){0,0,0,0,-5,0}},
+        {Tag.身体孱弱,new List<int>(){1,1,1,-3,-3,-2}},
+        {Tag.肥胖症,new List<int>(){0,0,0,-3,-4,2}},
+        {Tag.长短腿,new List<int>(){0,0,0,-4,-1,0}},
+        {Tag.义肢,new List<int>(){0,0,0,-3,2,-2}},
+
 
     };
     public static Dictionary<Rarerity, List<Tag>> GivenableTagRareDict = new Dictionary<Rarerity, List<Tag>>()
