@@ -20,19 +20,20 @@ public class HorseRent : MonoBehaviour
         0
     };
     public int numberOfSpawn = 5;
-
     private void OnEnable()
     {
-        SetUP();
     }
-    private void SetUP()
+
+
+    public void SetUp(List<HorseRank> horseList)
     {
         var target = Resources.Load<HorseCardUI>("BuildingUI/HorseCard");
-        for (int i = 0; i < numberOfSpawn; i++)
+        foreach (HorseRank hr in horseList)
         {
             var current = Instantiate(target, transform);
-            current.SetUp(RandomHorse());
+            current.SetUp(hr);
         }
+            
     }
 
     public HorseRank RandomHorse()

@@ -5,4 +5,5 @@ using UnityEngine;
 public class ShopRef : MonoBehaviour
 {
     public Transform shopUI;
+    public Transform horseRent;
 }

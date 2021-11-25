@@ -28,14 +28,16 @@ public class Building : MonoBehaviour
 
     public int MaxBuildingQuest = 3;
 
-    public int recordWeek = 0;
+    public int recordWeek = -1;
 
     public Transform BuildingCharacterSlot;
-     
+
     public List<ItemName> ShopList;
 
     [SerializeField] private BuildingUI buildingUI;
     public List<QuestLineAgent> questLineList = new List<QuestLineAgent>();
+    private List<HorseRank> horseList;
+
     private void Awake()
     {
         UpdateType();
@@ -83,17 +85,14 @@ public class Building : MonoBehaviour
         }
         UpdateType();
         CreateUI();
-        if (recordWeek < Map.Week)
+        if (RecordWeekCheck())
         {
             SpawnItems();
-            var target = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
-            target?.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
-            if (buildingType == BuildingType.马厩)
-            {
-                //TODO: SetUp Horses
-            }
+            recordWeek = Map.Week;
         }
-        
+        var target = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
+        target.horseRent.GetComponent<HorseRent>().SetUp(horseList);
+
     }
 
     public void WhoLiveInHere()
@@ -116,11 +115,14 @@ public class Building : MonoBehaviour
             case BuildingType.药铺:
                 return new List<ItemType>() { };
             case BuildingType.商行:
-                return new List<ItemType>() { ItemType.书籍,ItemType.饰品 };
+                return new List<ItemType>() { ItemType.书籍, ItemType.饰品 };
             case BuildingType.铁匠铺:
                 return new List<ItemType>() { };
             case BuildingType.纺织铺:
                 return new List<ItemType>() { };
+            case BuildingType.马厩:
+                SetUpHorseRent();
+                return null;
         }
         return new List<ItemType>() { };
     }
@@ -128,8 +130,8 @@ public class Building : MonoBehaviour
     public void SpawnItemBasedOnType(List<ItemType> inputTypes)
     {
         int outputAmount = Random.Range(5, 10);
-        List<ItemName> outputItems = new List<ItemName>(); 
-        for(int i = 0; i <outputAmount; i++)
+        List<ItemName> outputItems = new List<ItemName>();
+        for (int i = 0; i < outputAmount; i++)
         {
             if (inputTypes.Count < 1) return;
             int randomTypeIndex = Random.Range(0, inputTypes.Count);
@@ -141,6 +143,27 @@ public class Building : MonoBehaviour
 
     public void SpawnItems()
     {
-        SpawnItemBasedOnType(ShopType());
+        var result = ShopType();
+        if (result != null)
+        {
+            SpawnItemBasedOnType(result);
+        }
+    }
+
+    public bool RecordWeekCheck()
+    {
+        if (recordWeek < Map.Week) return true;
+        else return false;
+    }
+
+    public void SetUpHorseRent()
+    {
+        var targetRef = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
+        var horserent = targetRef.horseRent.GetComponent<HorseRent>();
+        horseList = new List<HorseRank>();
+        for (int i = 0; i < horserent.numberOfSpawn; i++)
+        {
+            horseList.Add(horserent.RandomHorse());
+        }
     }
 }
