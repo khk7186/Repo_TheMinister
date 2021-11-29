@@ -119,7 +119,18 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPo
                     switch (itemMode)
                     {
                         case true:
-                            CreateTagSwitchUI();
+                            if (character.tagList.Count >= 5)
+                            {
+                                CreateTagSwitchUI();
+                            }
+                            else
+                            {
+                                character.tagList.Add(newTag);
+                                GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>().RemoveItem();
+                                FindObjectOfType<ItemInventoryUI>().SetUp();
+                                inventoryCharacters.RightClickSelectMode();
+                            }
+                                
                             break;
                         case false:
                             SelectCharacterInfo();

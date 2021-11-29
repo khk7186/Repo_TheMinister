@@ -17,8 +17,9 @@ public class ItemInventory : MonoBehaviour
         AddItem(ItemName.»ú¹Ø²Ð¾í);
     }
 
-    //add item into dic, if dont have one, add new key, else add count.
+    
     public void AddItem(ItemName item)
+    //add item into dic, if dont have one, add new key, else add count.
     {
         if (itemDict.ContainsKey(item))
         {

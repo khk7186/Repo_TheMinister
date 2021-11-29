@@ -490,7 +490,7 @@ public class Character : MonoBehaviour, IRound
     {
         foreach (var suspectList in Player.MergeTagDict.Keys)
         {
-            var intersectList = (List<Tag>)tagList.Intersect(suspectList);
+            var intersectList = tagList.Intersect(suspectList).ToList();
             if (intersectList.Count == suspectList.Count)
             {
                 foreach(Tag tag in suspectList)

@@ -121,9 +121,6 @@ public class SOItem : ScriptableObject
     };
     public Sprite NullSprite;
 
-    private void Awake()
-    {
-    }
 
 
 
