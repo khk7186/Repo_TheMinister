@@ -183,13 +183,13 @@ public enum Tag
 }
 public enum Rarerity
 {
-    Null = 0, 
-    VB = -4, 
-    B = -2, 
-    N = 2, 
-    R = 4, 
-    SR = 6, 
-    SSR = 8, 
+    Null = 0,
+    VB = -4,
+    B = -2,
+    N = 2,
+    R = 4,
+    SR = 6,
+    SSR = 8,
     UR = 10
 }
 
@@ -220,7 +220,7 @@ public class Character : MonoBehaviour, IRound
     [SerializeField] private int healthMax = 10;
     [SerializeField] private int tagMax = 5;
 
-    [SerializeField] private List<int> TagSpawnRareRate = new List<int>(5) {600, 460, 330, 10, 1, 0 };
+    [SerializeField] private List<int> TagSpawnRareRate = new List<int>(5) { 600, 460, 330, 10, 1, 0 };
     #endregion
 
     #region Variable
@@ -272,7 +272,7 @@ public class Character : MonoBehaviour, IRound
         SpawnTagOnStart();
         UpdateVariables();
         CharacterArtCode[] cacList = (CharacterArtCode[])Enum.GetValues(typeof(CharacterArtCode));
-        characterArtCode = cacList[UnityEngine.Random.Range(0,cacList.Length)];
+        characterArtCode = cacList[UnityEngine.Random.Range(0, cacList.Length)];
     }
 
     private void Start()
@@ -325,7 +325,7 @@ public class Character : MonoBehaviour, IRound
 
         foreach (CharacterValueType key in Enum.GetValues(typeof(CharacterValueType)))
         {
-            
+
             characterValueRareDict[key] = CheckVariablesRare(CharactersValueDict[key]);
             //Debug.Log(key.ToString() + characterValueRareDict[key].ToString());
         }
@@ -374,6 +374,12 @@ public class Character : MonoBehaviour, IRound
         tagList.Remove(tag);
     }
 
+    public void ExchangeTag(Tag newTag, Tag oldTag)
+    {
+        tagList.Remove(oldTag);
+        tagList.Add(newTag);
+        TryMergeTags();
+    }
     private Tag RandomTag()
     {
         Rarerity rare = RandomRare();
@@ -392,11 +398,11 @@ public class Character : MonoBehaviour, IRound
 
     private Rarerity RandomRare()
     {
-        int max = 
-            TagSpawnRareRate[0] 
-            + TagSpawnRareRate[1] 
-            + TagSpawnRareRate[2] 
-            + TagSpawnRareRate[3] 
+        int max =
+            TagSpawnRareRate[0]
+            + TagSpawnRareRate[1]
+            + TagSpawnRareRate[2]
+            + TagSpawnRareRate[3]
             + TagSpawnRareRate[4];
 
         int rare = UnityEngine.Random.Range(1, max);
@@ -480,5 +486,19 @@ public class Character : MonoBehaviour, IRound
         }
     }
 
-    
+    public void TryMergeTags()
+    {
+        foreach (var suspectList in Player.MergeTagDict.Keys)
+        {
+            var intersectList = (List<Tag>)tagList.Intersect(suspectList);
+            if (intersectList.Count == suspectList.Count)
+            {
+                foreach(Tag tag in suspectList)
+                {
+                    tagList.Remove(tag);
+                }
+                tagList.Add(Player.MergeTagDict[suspectList]);
+            } 
+        }
+    }
 }

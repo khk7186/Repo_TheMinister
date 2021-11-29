@@ -165,7 +165,9 @@ public class Building : MonoBehaviour
         {
             if (inputTypes.Count < 1) return;
             int randomTypeIndex = Random.Range(0, inputTypes.Count);
-            ItemName currentItem = SOItem.ItemTypeDict[inputTypes[randomTypeIndex]][0];
+            var targetList = SOItem.ItemTypeDict[inputTypes[randomTypeIndex]];
+            int randomItemIndex = Random.Range(0, targetList.Count);
+            ItemName currentItem = targetList[randomItemIndex];
             outputItems.Add(currentItem);
         }
         ShopList = outputItems;

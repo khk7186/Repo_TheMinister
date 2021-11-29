@@ -52,10 +52,11 @@ public class TagInfoCardOnExchangeUI : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            character.tagList.Remove(thisTag);
-            character.tagList.Add(newTag);
+            character.ExchangeTag(newTag, thisTag);
             character.UpdateVariables();
-            GetComponentInParent<Transform>().GetComponentInParent<TagExchangeUI>().FinishTheState();
+            GetComponentInParent<Transform>()
+                .GetComponentInParent<TagExchangeUI>()
+                .FinishTheState();
         }
     }
 }
