@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Quest : MonoBehaviour
 {
-    [SerializeField] private Transform gameUI;
+    [SerializeField] private Transform QuestUI;
     public QuestFieldUI questField;
     private Button button;
     private QuestFieldUI ui;
@@ -26,24 +26,18 @@ public class Quest : MonoBehaviour
     public int MinMoney;
     public int MaxMoney;
 
-
     private void Awake()
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(OnClick);
-        gameUI = FindObjectOfType<QuestUI>().transform;
-        
+        QuestUI = FindObjectOfType<QuestUI>().transform;
     }
 
     private void OnClick()
     {
-        ui = Instantiate(questField, gameUI);
-        var list = gameUI.GetComponentsInChildren<QuestFieldUI>();
-        foreach (QuestFieldUI questField in list)
-        {
-            questField.gameObject.SetActive(false);
-        }
-        ui.gameObject.SetActive(!ui.gameObject.activeSelf);
+        var mainUICanvas = GameObject.FindGameObjectWithTag("MainUICanvas").transform;
+        ui = Instantiate(questField, mainUICanvas);
+        var list = QuestUI.GetComponentsInChildren<QuestFieldUI>();
 
         nodes = ui.nodeRoot.transform;
 

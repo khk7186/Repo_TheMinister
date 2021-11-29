@@ -81,7 +81,7 @@ public class Building : MonoBehaviour
     {
         if (charactersHere.Count <= 0)
         {
-            WhoLiveInHere();
+            SetPersonHere();
         }
         UpdateType();
         CreateUI();
@@ -90,12 +90,42 @@ public class Building : MonoBehaviour
             SpawnItems();
             recordWeek = Map.Week;
         }
-        var target = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
-        target.horseRent.GetComponent<HorseRent>().SetUp(horseList);
-
+        shopRefSetUp();
     }
 
-    public void WhoLiveInHere()
+    public void shopRefSetUp()
+    {
+        var target = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
+        switch (buildingType)
+        {
+            case BuildingType.Âí¾Ç:
+                target.horseRent.GetComponent<HorseRent>().SetUp(horseList);
+                break;
+            case BuildingType.ÔÓ»õÆÌ:
+                target.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
+                break;
+            case BuildingType.·ÄÖ¯ÆÌ:
+                target.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
+                break;
+            case BuildingType.ÉÌÐÐ:
+                target.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
+                break;
+            case BuildingType.Ò©ÆÌ:
+                target.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
+                break;
+            case BuildingType.Ìú½³ÆÌ:
+                target.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
+                break;
+            case BuildingType.¾Æ¹Ý:
+                target.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
+                break;
+            case BuildingType.Ï·¹Ý:
+                target.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
+                break;
+        }
+    }
+
+    public void SetPersonHere()
     {
         InGameCharacterStorage inGameCharacterStorage =
             GameObject.FindGameObjectWithTag("InGameCharacterInventory")
