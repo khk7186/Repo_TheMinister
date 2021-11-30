@@ -119,6 +119,55 @@ public class SOItem : ScriptableObject
             }
         }
     };
+
+    public static Dictionary<BuildingType, List<ItemName>> BuildingCraftDict = new Dictionary<BuildingType, List<ItemName>>()
+    {
+        {
+            BuildingType.铁匠铺, new List<ItemName>()
+            {
+                ItemName.刀,
+                ItemName.枪,
+                ItemName.剑,
+                ItemName.戟,
+                ItemName.弓,
+                ItemName.穿石烈风弓,
+                ItemName.烈火斩云刀,
+                ItemName.紫木雷电枪,
+                ItemName.百胜刀,
+                ItemName.落日神弓,
+                ItemName.擎天枪,
+                ItemName.龙源剑,
+                ItemName.金钱镖,
+                ItemName.袖炮
+            }
+        },
+        {
+            BuildingType.药铺, new List<ItemName>()
+            {
+                ItemName.奉子丹,
+                ItemName.金疮药,
+                ItemName.长生不老药,
+                ItemName.十全大补丸,
+                ItemName.沸腾散,
+                ItemName.龙虎丹,
+                ItemName.洗髓丹,
+                ItemName.止血膏,
+                ItemName.阴阳玄龙丹,
+                ItemName.天机造化丹
+            }    
+        },
+        {
+            BuildingType.纺织铺, new List<ItemName>()
+            {
+                ItemName.皮甲,
+                ItemName.铁甲,
+                ItemName.黄金甲,
+                ItemName.云纹袍,
+                ItemName.朱户衣,
+                ItemName.锦绣华府
+            }
+        }
+    };
     public Sprite NullSprite;
 
 
