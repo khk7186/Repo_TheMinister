@@ -164,7 +164,7 @@ public class SOItem : ScriptableObject
                 ItemName.黄金甲,
                 ItemName.云纹袍,
                 ItemName.朱户衣,
-                ItemName.锦绣华府
+                ItemName.锦绣华服
             }
         }
     };
