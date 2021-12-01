@@ -38,6 +38,7 @@ public class Building : MonoBehaviour
     public List<QuestLineAgent> questLineList = new List<QuestLineAgent>();
     private List<HorseRank> horseList;
 
+    public List<ItemName> CraftingList = new List<ItemName>();
     private void Awake()
     {
         UpdateType();
@@ -99,7 +100,7 @@ public class Building : MonoBehaviour
         switch (buildingType)
         {
             case BuildingType.Âí¾Ç:
-                target.horseRent.GetComponent<HorseRent>().SetUp(horseList);
+                target.horseRent.GetComponent<HorseRentUI>().SetUp(horseList);
                 break;
             case BuildingType.ÔÓ»õÆÌ:
                 target.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
@@ -114,7 +115,9 @@ public class Building : MonoBehaviour
                 target.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
                 break;
             case BuildingType.Ìú½³ÆÌ:
-                target.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
+                var currentTarget = target.CraftingUI.GetComponent<CraftingUI>();
+                currentTarget.SetUp(CraftingList);
+                if (CraftingList.Count>0) target.CraftingUI.GetComponent<CraftingUI>().SetUp(CraftingList[0]);
                 break;
             case BuildingType.¾Æ¹Ý:
                 target.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
@@ -147,6 +150,7 @@ public class Building : MonoBehaviour
             case BuildingType.ÉÌÐÐ:
                 return new List<ItemType>() { ItemType.Êé¼®, ItemType.ÊÎÆ· };
             case BuildingType.Ìú½³ÆÌ:
+                CraftingList = SOItem.BuildingCraftDict[BuildingType.Ìú½³ÆÌ];
                 return new List<ItemType>() { };
             case BuildingType.·ÄÖ¯ÆÌ:
                 return new List<ItemType>() { };
@@ -191,11 +195,16 @@ public class Building : MonoBehaviour
     public void SetUpHorseRent()
     {
         var targetRef = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
-        var horserent = targetRef.horseRent.GetComponent<HorseRent>();
+        var horserent = targetRef.horseRent.GetComponent<HorseRentUI>();
         horseList = new List<HorseRank>();
         for (int i = 0; i < horserent.numberOfSpawn; i++)
         {
             horseList.Add(horserent.RandomHorse());
         }
+    }
+
+    public void AddCraftingToBuilding(ItemName item)
+    {
+        CraftingList.Add(item);
     }
 }

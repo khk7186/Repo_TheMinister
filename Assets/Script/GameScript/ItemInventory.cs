@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ItemInventory : MonoBehaviour
 {
-    private Dictionary<ItemName, int> itemDict = new Dictionary<ItemName, int>();
+    private static Dictionary<ItemName, int> itemDict = new Dictionary<ItemName, int>();
     public Dictionary<ItemName, int> ItemDict => itemDict;
     public ItemName InUseItem;
 
