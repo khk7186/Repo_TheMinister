@@ -28,6 +28,14 @@ public class ItemInventory : MonoBehaviour
         else itemDict.Add(item, 1);
     }
 
+    public void RemoveItem(ItemName item)
+    {
+        if (itemDict.ContainsKey(item))
+        {
+            itemDict[item] -= 1;
+        }
+        else Debug.LogError("RemoveNullItemError");
+    }
     public void RemoveItem()
     {
         itemDict[InUseItem] -= 1;

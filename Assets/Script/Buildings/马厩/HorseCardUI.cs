@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class HorseCardUI : MonoBehaviour,IPointerClickHandler
+public class HorseCardUI : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] private Text priceText;
     [SerializeField] private Text blocksText;
     [SerializeField] private Image horseImage;
-    [SerializeField] private Confirm ConfirmWindow;
+    [SerializeField] private ConfirmUI ConfirmWindow;
 
     public ConfirmPhase confirm = ConfirmPhase.Null;
 
@@ -23,7 +23,7 @@ public class HorseCardUI : MonoBehaviour,IPointerClickHandler
         };
     public int price;
     public int block;
-    
+
     public void SetUp(HorseRank horseRank)
     {
         string spritePath = ("Art/Horses/" + horseRank.ToString()).Replace(" ", string.Empty);
@@ -37,48 +37,21 @@ public class HorseCardUI : MonoBehaviour,IPointerClickHandler
 
     public void ChooseHorse()
     {
-        var current = Instantiate(ConfirmWindow, FindObjectOfType<BuildingUI>().transform);
-        current.SetUp("确认要花费" + price + "两白银移动" + block + "户距离吗？");
-        current.confirm.onClick.AddListener(SetConfirmTrue);
-        current.cancel.onClick.AddListener(SetConfirmFalse);
-        StartCoroutine(Confirm());
+        string currentText = "确认要花费" + price + "两白银移动" + block + "户距离吗？";
+        Confirmation.HoldingMethod holding = MovePlayer;
+        StartCoroutine(Confirmation.CreateNewComfirmation(holding, currentText).Confirm());
     }
-
-    private void SetConfirmTrue()
-    {
-        confirm = ConfirmPhase.True;
-    }
-
-    private void SetConfirmFalse()
-    {
-        confirm = ConfirmPhase.False;
-    }
-
-    private IEnumerator Confirm()
-    {
-        while (confirm == ConfirmPhase.Null)
-        {
-            yield return null;
-        }
-        if (confirm == ConfirmPhase.False)
-        {
-            confirm = ConfirmPhase.Null;
-        }
-        else if (confirm == ConfirmPhase.True)
-        {
-            MovePlayer();
-            Destroy(FindObjectOfType<BuildingUI>().gameObject);
-        }
-    }
-
     private void MovePlayer()
     {
         Map map = FindObjectOfType<Map>();
         map.MoveAStep(block);
+        Destroy(FindObjectOfType<BuildingUI>().gameObject);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         ChooseHorse();
     }
+
+
 }

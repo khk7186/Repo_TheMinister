@@ -10,8 +10,12 @@ public class CraftingUI : MonoBehaviour
     public Transform CraftingMaterialTransform;
     [SerializeField]private CraftingMenuUI CraftingMenuPref;
 
+    private List<ItemName> CraftingList;
+    private ItemName CurrentItem;
+
     public void SetUp(List<ItemName> CraftingList)
     {
+        this.CraftingList = CraftingList;
         foreach (ItemName item in CraftingList)
         {
             var target = Instantiate(CraftingMenuPref, CraftingListTransform);
@@ -22,6 +26,7 @@ public class CraftingUI : MonoBehaviour
 
     public void SetUp(ItemName item)
     {
+        CurrentItem = item;
         var target_a = CurrentCraftItemTransform.GetComponent<CraftingTargetUI>();
         target_a.SetUp(item);
 
@@ -31,8 +36,32 @@ public class CraftingUI : MonoBehaviour
         target_b.SetUp(targetList);
     }
 
-    public void SetUp()
+    public void TryCraft()
     {
-        
+        bool craftble = true;
+        foreach (MaterialUI material in CraftingMaterialTransform.GetComponentsInChildren<MaterialUI>())
+        {
+            if (material.IntHaveAmount >= material.IntNeedAmount) craftble = false;
+        }
+        if (craftble)
+        {
+            string currentText = "确认制造"+CurrentItem.ToString() + "吗？";
+            Confirmation.HoldingMethod holding = Craft;
+            StartCoroutine(Confirmation.CreateNewComfirmation(holding, currentText).Confirm());
+        }
+    }
+
+    public void Craft()
+    {
+        var PlayerItemDic =
+                GameObject
+                .FindGameObjectWithTag("PlayerItemInventory")
+                .GetComponent<ItemInventory>();
+        PlayerItemDic.AddItem(CurrentItem);
+        var CurrentCraftMaterialList = SOItem.MergeItemDict[CurrentItem];
+        foreach (ItemName item in CurrentCraftMaterialList)
+        {
+            PlayerItemDic.RemoveItem(item);
+        }
     }
 }

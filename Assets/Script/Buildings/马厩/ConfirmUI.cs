@@ -3,14 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum ConfirmPhase
-{
-    False,
-    True,
-    Null
-}
-
-public class Confirm: MonoBehaviour
+public class ConfirmUI: MonoBehaviour
 {
     public Button confirm;
     public Button cancel;
@@ -21,5 +14,9 @@ public class Confirm: MonoBehaviour
         text.text = confirmContext;
     }
 
+    public void Finish()
+    {
+        Destroy(gameObject);
+    }
 }
 
