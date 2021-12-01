@@ -173,32 +173,35 @@ public class SOItem : ScriptableObject
         }
     };
 
-    public static Dictionary<List<ItemName>, ItemName> MergeItemDict = new Dictionary<List<ItemName>, ItemName>
+    public static Dictionary<ItemName, List<ItemName>> MergeItemDict = new Dictionary<ItemName,List<ItemName>>
     {
-        {new List<ItemName>(){ItemName.铁矿,ItemName.皮革},ItemName.刀},
-        {new List<ItemName>(){ItemName.铁矿,ItemName.木头},ItemName.枪},
-        {new List<ItemName>(){ItemName.铜矿,ItemName.铁矿},ItemName.剑},
-        {new List<ItemName>(){ItemName.铁矿,ItemName.铁矿},ItemName.戟},
-        {new List<ItemName>(){ItemName.木头,ItemName.绳子},ItemName.弓},
-        {new List<ItemName>(){ItemName.弓,ItemName.祖母绿},ItemName.穿石烈风弓},
-        {new List<ItemName>(){ItemName.刀,ItemName.鸽血红},ItemName.烈火斩云刀},
-        {new List<ItemName>(){ItemName.枪,ItemName.紫水晶},ItemName.紫木雷电枪},
-        {new List<ItemName>(){ItemName.布衣,ItemName.皮革},ItemName.皮甲},
-        {new List<ItemName>(){ItemName.布衣,ItemName.铁矿},ItemName.铁甲},
-        {new List<ItemName>(){ItemName.铁甲,ItemName.有破损的黄金},ItemName.黄金甲},
-        {new List<ItemName>(){ItemName.长袖装,ItemName.绣花针},ItemName.云纹袍},
-        {new List<ItemName>(){ItemName.云纹袍,ItemName.红宝石},ItemName.朱户衣},
-        {new List<ItemName>(){ItemName.羽衣,ItemName.鹦鹉},ItemName.锦绣华服},
-        {new List<ItemName>(){ItemName.袖箭,ItemName.火炮},ItemName.袖炮},
-        {new List<ItemName>(){ItemName.袖箭,ItemName.有破损的黄金},ItemName.金钱镖},
-        {new List<ItemName>(){ItemName.黄精,ItemName.八角莲},ItemName.金疮药},
-        {new List<ItemName>(){ItemName.罗汉果,ItemName.乌桕子},ItemName.沸腾散},
-        {new List<ItemName>(){ItemName.三七,ItemName.灵芝,ItemName.何首乌},ItemName.长生不老药},
-        {new List<ItemName>(){ItemName.当归,ItemName.人参,ItemName.黄芪},ItemName.十全大补丸},
-        {new List<ItemName>(){ItemName.轻粉,ItemName.核桃},ItemName.洗髓丹},
-        {new List<ItemName>(){ItemName.当归,ItemName.核桃},ItemName.龙虎丹},
-        {new List<ItemName>(){ItemName.白花蛇舌草,ItemName.过山龙},ItemName.阴阳玄龙丹},
-        {new List<ItemName>(){ItemName.白花蛇舌草,ItemName.星辰花},ItemName.天机造化丹}
+        {ItemName.刀,new List<ItemName>(){ItemName.铁矿,ItemName.皮革}},
+        {ItemName.枪,new List<ItemName>(){ItemName.铁矿,ItemName.木头}},
+        {ItemName.剑,new List<ItemName>(){ItemName.铜矿,ItemName.铁矿}},
+        {ItemName.戟,new List<ItemName>(){ItemName.铁矿,ItemName.铁矿}},
+        {ItemName.弓,new List<ItemName>(){ItemName.木头,ItemName.绳子}},
+        {ItemName.穿石烈风弓,new List<ItemName>(){ItemName.弓,ItemName.祖母绿}},
+        {ItemName.烈火斩云刀,new List<ItemName>(){ItemName.刀,ItemName.鸽血红}},
+        {ItemName.紫木雷电枪,new List<ItemName>(){ItemName.枪,ItemName.紫水晶}},
+        {ItemName.皮甲,new List<ItemName>(){ItemName.布衣,ItemName.皮革}},
+        {ItemName.铁甲,new List<ItemName>(){ItemName.布衣,ItemName.铁矿}},
+        {ItemName.黄金甲,new List<ItemName>(){ItemName.铁甲,ItemName.有破损的黄金}},
+        {ItemName.云纹袍,new List<ItemName>(){ItemName.长袖装,ItemName.绣花针}},
+        {ItemName.朱户衣,new List<ItemName>(){ItemName.云纹袍,ItemName.红宝石}},
+        {ItemName.锦绣华服,new List<ItemName>(){ItemName.羽衣,ItemName.鹦鹉}},
+        {ItemName.袖袍,new List<ItemName>(){ItemName.袖箭,ItemName.火炮}},
+        {ItemName.金钱镖,new List<ItemName>(){ItemName.袖箭,ItemName.有破损的黄金}},
+        {ItemName.金疮药,new List<ItemName>(){ItemName.黄精,ItemName.八角莲}},
+        {ItemName.沸腾散,new List<ItemName>(){ItemName.罗汉果,ItemName.乌桕子}},
+        {ItemName.长生不老药,new List<ItemName>(){ItemName.三七,ItemName.灵芝,ItemName.何首乌}},
+        {ItemName.十全大补丸,new List<ItemName>(){ItemName.当归,ItemName.人参,ItemName.黄芪}},
+        {ItemName.洗髓丹,new List<ItemName>(){ItemName.轻粉,ItemName.核桃}},
+        {ItemName.龙虎丹,new List<ItemName>(){ItemName.当归,ItemName.核桃}},
+        {ItemName.阴阳玄龙丹,new List<ItemName>(){ItemName.白花蛇舌草,ItemName.过山龙}},
+        {ItemName.天机造化丹,new List<ItemName>(){ItemName.白花蛇舌草,ItemName.星辰花}}
+
+
+
 
 
 
