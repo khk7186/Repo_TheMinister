@@ -189,7 +189,7 @@ public class SOItem : ScriptableObject
         {ItemName.ÔÆÎÆÅÛ,new List<ItemName>(){ItemName.³¤Ğä×°,ItemName.Ğå»¨Õë}},
         {ItemName.Öì»§ÒÂ,new List<ItemName>(){ItemName.ÔÆÎÆÅÛ,ItemName.ºì±¦Ê¯}},
         {ItemName.½õĞå»ª·ş,new List<ItemName>(){ItemName.ÓğÒÂ,ItemName.ğĞğÄ}},
-        {ItemName.ĞäÅÛ,new List<ItemName>(){ItemName.Ğä¼ı,ItemName.»ğÅÚ}},
+        {ItemName.ĞäÅÚ,new List<ItemName>(){ItemName.Ğä¼ı,ItemName.»ğÅÚ}},
         {ItemName.½ğÇ®ïÚ,new List<ItemName>(){ItemName.Ğä¼ı,ItemName.ÓĞÆÆËğµÄ»Æ½ğ}},
         {ItemName.½ğ´¯Ò©,new List<ItemName>(){ItemName.»Æ¾«,ItemName.°Ë½ÇÁ«}},
         {ItemName.·ĞÌÚÉ¢,new List<ItemName>(){ItemName.ÂŞºº¹û,ItemName.ÎÚèê×Ó}},
