@@ -4,6 +4,14 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Linq;
+
+public enum CardMode
+{
+    ViewMode,
+    QuestSelectMode,
+    ItemSelectMode,
+    UpgradeSelectMode,
+}
 public class PlayerCharactersInventory : MonoBehaviour, IPointerClickHandler
 {
     public CharacterSlotForQuest currentSlot;
@@ -40,6 +48,14 @@ public class PlayerCharactersInventory : MonoBehaviour, IPointerClickHandler
             character.BelongCheck();
         }
         characterUIList = characterUIParent.GetComponentsInChildren<CharacterUI>().ToList();
+    }
+    public void SetupMode(CardMode mode)
+    {
+        foreach (CharacterUI character in characterUIList)
+        {
+            character.cardMode = mode;
+        }
+
     }
 
 

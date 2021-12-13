@@ -92,6 +92,7 @@ public class CharacterSlotForQuest : MonoBehaviour
         GetComponent<SpawnUI>().Spawn();
         CharacterSelectWindow = GameObject.FindObjectOfType<PlayerCharactersInventory>();
         CharacterSelectWindow.currentSlot = this;
+        CharacterSelectWindow.SetupMode(CardMode.QuestSelectMode);
     }
 
 

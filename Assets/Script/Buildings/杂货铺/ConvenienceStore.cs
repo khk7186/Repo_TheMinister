@@ -7,7 +7,7 @@ public class ConvenienceStore : MonoBehaviour, IShopUI
     public ItemType spawnType;
     public ItemUI itemPref;
 
-    public void SetUp(List<ItemName> shopList)
+    public void Setup(List<ItemName> shopList)
     {
         foreach (ItemName i in shopList)
         {

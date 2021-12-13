@@ -263,6 +263,7 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
     {
         PlayerCharactersInventory playerCharactersInventory = Resources.Load<PlayerCharactersInventory>("CharacterInvUI/ChraInvUI");
         PlayerCharactersInventory current = Instantiate(playerCharactersInventory, GameObject.FindGameObjectWithTag("MainUICanvas").transform);
+        current.SetupMode(CardMode.ItemSelectMode);
         GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>().InUseItem = ItemName;
         foreach (CharacterUI characterUI in current.characterUIList)
         {

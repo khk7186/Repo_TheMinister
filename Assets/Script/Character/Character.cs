@@ -232,8 +232,6 @@ public class Character : MonoBehaviour, IRound
     private CharacterUI thisCharacterCard;
     public Transform characterCardInvUI;
 
-
-
     public Dictionary<CharacterValueType, int> CharactersValueDict => charactersValueDict;
 
     private Dictionary<CharacterValueType, int> charactersValueDict =

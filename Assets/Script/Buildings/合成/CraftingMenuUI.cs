@@ -14,7 +14,7 @@ public class CraftingMenuUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerClick(PointerEventData eventData)
     {
         //TODO:Switch Parent's current crafting item.
-        parentUI.SetUp(ItemName);
+        parentUI.Setup(ItemName);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

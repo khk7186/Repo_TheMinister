@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public enum BuildingType
 {
@@ -39,6 +40,8 @@ public class Building : MonoBehaviour
     private List<HorseRank> horseList;
 
     public List<ItemName> CraftingList = new List<ItemName>();
+
+    public PlayName currentPlay;
     private void Awake()
     {
         UpdateType();
@@ -69,7 +72,7 @@ public class Building : MonoBehaviour
 
     public void CreateUI()
     {
-        BuildingUI targetUI = Instantiate(buildingUI, GameObject.FindGameObjectWithTag("MainUICanvas").transform);
+        BuildingUI targetUI = Instantiate(buildingUI, MainCanvas.FindMainCanvas());
         targetUI.UpdateUI(this);
     }
 
@@ -103,27 +106,27 @@ public class Building : MonoBehaviour
                 target.horseRent.GetComponent<HorseRentUI>().SetUp(horseList);
                 break;
             case BuildingType.ÔÓ»õÆÌ:
-                target.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
+                target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
                 break;
             case BuildingType.·ÄÖ¯ÆÌ:
-                target.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
+                target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
                 break;
             case BuildingType.ÉÌÐÐ:
-                target.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
+                target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
                 break;
             case BuildingType.Ò©ÆÌ:
-                target.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
+                target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
                 break;
             case BuildingType.Ìú½³ÆÌ:
                 var currentTarget = target.CraftingUI.GetComponent<CraftingUI>();
-                currentTarget.SetUp(CraftingList);
-                if (CraftingList.Count>0) target.CraftingUI.GetComponent<CraftingUI>().SetUp(CraftingList[0]);
+                currentTarget.Setup(CraftingList);
+                if (CraftingList.Count>0) target.CraftingUI.GetComponent<CraftingUI>().Setup(CraftingList[0]);
                 break;
             case BuildingType.¾Æ¹Ý:
-                target.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
+                target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
                 break;
             case BuildingType.Ï·¹Ý:
-                target.shopUI.GetComponent<IShopUI>().SetUp(ShopList);
+                target.CinemaUI.GetComponent<CinemaUI>().Setup(currentPlay);
                 break;
         }
     }
@@ -154,9 +157,12 @@ public class Building : MonoBehaviour
                 return new List<ItemType>() { };
             case BuildingType.·ÄÖ¯ÆÌ:
                 return new List<ItemType>() { };
+            case BuildingType.Ï·¹Ý:
+                SetupNewCinemaPlay();
+                break;
             case BuildingType.Âí¾Ç:
                 SetUpHorseRent();
-                return null;
+                break;
         }
         return new List<ItemType>() { };
     }
@@ -206,5 +212,12 @@ public class Building : MonoBehaviour
     public void AddCraftingToBuilding(ItemName item)
     {
         CraftingList.Add(item);
+    }
+
+    public void SetupNewCinemaPlay()
+    {
+        var keyList = PlayList.PlayListDict.Keys.ToList<PlayName>();
+        int i = Random.Range(0, keyList.Count);
+        currentPlay = keyList[i];
     }
 }

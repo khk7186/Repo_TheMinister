@@ -1,4 +1,4 @@
 ﻿public interface IShopUI
 {
-    public void SetUp(System.Collections.Generic.List<ItemName> shopList);
+    public void Setup(System.Collections.Generic.List<ItemName> shopList);
 }

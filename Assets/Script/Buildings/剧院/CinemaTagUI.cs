@@ -6,8 +6,10 @@ using UnityEngine.UI;
 public class CinemaTagUI : MonoBehaviour
 {
     [SerializeField] private Image tagPref;
+    public List<Tag> tagList;
     public void Setup(List<Tag> tags)
     {
+        tagList = tags;
         foreach (Tag tag in tags)
         {
             var target = Instantiate(tagPref, transform);

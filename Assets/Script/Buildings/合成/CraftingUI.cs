@@ -13,7 +13,7 @@ public class CraftingUI : MonoBehaviour
     private List<ItemName> CraftingList;
     private ItemName CurrentItem;
 
-    public void SetUp(List<ItemName> CraftingList)
+    public void Setup(List<ItemName> CraftingList)
     {
         this.CraftingList = CraftingList;
         foreach (ItemName item in CraftingList)
@@ -24,7 +24,7 @@ public class CraftingUI : MonoBehaviour
         }
     }
 
-    public void SetUp(ItemName item)
+    public void Setup(ItemName item)
     {
         CurrentItem = item;
         var target_a = CurrentCraftItemTransform.GetComponent<CraftingTargetUI>();

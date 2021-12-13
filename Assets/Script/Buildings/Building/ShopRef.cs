@@ -7,4 +7,5 @@ public class ShopRef : MonoBehaviour
     public Transform shopUI;
     public Transform horseRent;
     public Transform CraftingUI;
+    public Transform CinemaUI;
 }

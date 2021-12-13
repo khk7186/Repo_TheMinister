@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 using UnityEngine.EventSystems;
 
-public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPointerEnterHandler, IPointerExitHandler
+public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
     public Character character;
     public GameObject tagPref;
@@ -27,23 +27,16 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPo
     private CharacterInfoUI currentCharacterInfoUI;
 
     private PlayerCharactersInventory inventoryCharacters;
-    public bool selectMode
-    {
-        get => inventoryCharacters?.currentSlot != null;
-    }
-
+    public CardMode cardMode = CardMode.ViewMode;
     public Tag newTag;
-
-    public bool itemMode
-    {
-        get => newTag != Tag.Null;
-    }
-
     public CharacterSlotForQuest CurrentSlot
     {
         get => inventoryCharacters.currentSlot;
         set => inventoryCharacters.currentSlot = value;
     }
+
+    public ICharacterSelect characterSelectUI;
+    public ESlot CurrentESlot;
 
     public static Dictionary<Rarerity, Color> TagUIColorCode = new Dictionary<Rarerity, Color>()
     {
@@ -98,8 +91,8 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPo
     public void OnPointerEnter(PointerEventData eventData)
     {
         GetComponent<RectTransform>().localScale = new Vector3(1.15f, 1.15f, 0f);
-
     }
+
     public void OnPointerExit(PointerEventData eventData)
     {
         GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 0f);
@@ -110,40 +103,45 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPo
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            switch (selectMode)
+            switch (cardMode)
             {
-                case true:
+                case CardMode.ViewMode:
+                    SelectCharacterInfo();
+                    break;
+                case CardMode.QuestSelectMode:
                     SelectCharacter();
                     break;
-                case false:
-                    switch (itemMode)
+                case CardMode.ItemSelectMode:
+                    if (character.tagList.Count >= 5)
                     {
-                        case true:
-                            if (character.tagList.Count >= 5)
-                            {
-                                CreateTagSwitchUI();
-                            }
-                            else
-                            {
-                                character.tagList.Add(newTag);
-                                GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>().RemoveItem();
-                                FindObjectOfType<ItemInventoryUI>().SetUp();
-                                inventoryCharacters.RightClickSelectMode();
-                            }
-                                
-                            break;
-                        case false:
-                            SelectCharacterInfo();
-                            break;
+                        CreateTagSwitchUI();
+                    }
+                    else
+                    {
+                        character.tagList.Add(newTag);
+                        GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>().RemoveItem();
+                        FindObjectOfType<ItemInventoryUI>().SetUp();
+                        inventoryCharacters.RightClickSelectMode();
                     }
                     break;
-
-                    
+                case CardMode.UpgradeSelectMode:
+                    SelectForSlot();
+                    characterSelectUI.CloseInventory(this);
+                    break;
             }
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
-            inventoryCharacters.RightClickSelectMode();
+            if (cardMode == CardMode.UpgradeSelectMode)
+            {
+                characterSelectUI = FindObjectOfType<CinemaUI>() as ICharacterSelect;
+                characterSelectUI.CloseInventory();
+            }
+            else
+            {
+                inventoryCharacters.RightClickSelectMode();
+            }
+            
         }
     }
 
@@ -156,7 +154,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPo
 
     public void SelectCharacter()
     {
-        if (selectMode)
+        if (cardMode == CardMode.QuestSelectMode)
         {
             CurrentSlot.UndisableField();
             CurrentSlot.character = character;
@@ -185,4 +183,14 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, ISelectMode, IPo
         //Debug.Log(currentCharacterInfoUI);
     }
 
+    public void SelectForSlot()
+    {
+        characterSelectUI = FindObjectOfType<CinemaUI>() as ICharacterSelect;
+        if (characterSelectUI != null)
+        {
+            characterSelectUI.ChooseCharacter(character);
+            characterSelectUI.SetupSlotIcon();
+            characterSelectUI.CloseInventory(this);
+        }
+    }
 }
