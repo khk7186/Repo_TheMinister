@@ -5,6 +5,7 @@ using System.Linq;
 
 public class Map : MonoBehaviour, IObserver
 {
+    public float Radius = 1.5f;
     public static int Week = 0;
     public static int Day = 6;
     private List<Block> map = new List<Block>();
@@ -19,11 +20,12 @@ public class Map : MonoBehaviour, IObserver
     {
         map = GetComponentsInChildren<Block>().ToList();
         FindObjectOfType<Dice>().RegisterObserver(this);
+        Player.position = map[0].transform.position;
         SetBuildings();
     }
     private void Start()
     {
-        Player.position = map[0].transform.position;
+        
     }
     public void OnNotify(object value, NotificationType notificationType)
     {
@@ -72,7 +74,7 @@ public class Map : MonoBehaviour, IObserver
     public List<Building> InteractebleBuildingCheck()
     {
 
-        var colliders = Physics2D.OverlapCircleAll(Player.transform.position, 1.5f);
+        var colliders = Physics2D.OverlapCircleAll(Player.transform.position, Radius);
         var buildingList = new List<Building>();
         foreach (Collider2D collider2D in colliders)
         {
@@ -95,7 +97,7 @@ public class Map : MonoBehaviour, IObserver
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(Player.transform.position, 1.5f);
+        Gizmos.DrawWireSphere(Player.transform.position, Radius);
     }
     public void SetBuildings()
     {
