@@ -134,7 +134,7 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
         currentESlot = ESlot.two;
     }
     public void SetSlotThree()
-    {
+    { 
         currentESlot = ESlot.three;
     }
 }
