@@ -8,7 +8,6 @@ public class HorseCardUI : MonoBehaviour, IPointerClickHandler, ISubject
     [SerializeField] private Text priceText;
     [SerializeField] private Text blocksText;
     [SerializeField] private Image horseImage;
-    [SerializeField] private ConfirmUI ConfirmWindow;
 
     public ConfirmPhase confirm = ConfirmPhase.Null;
     private IObserver Map;
