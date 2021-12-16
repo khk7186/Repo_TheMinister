@@ -110,17 +110,18 @@ public class Building : MonoBehaviour
                 break;
             case BuildingType.·ÄÖ¯ÆÌ:
                 target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
+                SetupCraft();
                 break;
             case BuildingType.ÉÌÐÐ:
                 target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
                 break;
             case BuildingType.Ò©ÆÌ:
                 target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
+                SetupCraft();
                 break;
             case BuildingType.Ìú½³ÆÌ:
-                var currentTarget = target.CraftingUI.GetComponent<CraftingUI>();
-                currentTarget.Setup(CraftingList);
-                if (CraftingList.Count>0) target.CraftingUI.GetComponent<CraftingUI>().Setup(CraftingList[0]);
+                target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
+                SetupCraft();
                 break;
             case BuildingType.¾Æ¹Ý:
                 target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
@@ -129,6 +130,14 @@ public class Building : MonoBehaviour
                 target.CinemaUI.GetComponent<CinemaUI>().Setup(currentPlay);
                 break;
         }
+    }
+
+    public void SetupCraft()
+    {
+        var target = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
+        var currentTarget = target.CraftingUI.GetComponent<CraftingUI>();
+        currentTarget.Setup(CraftingList);
+        if (CraftingList.Count > 0) target.CraftingUI.GetComponent<CraftingUI>().Setup(CraftingList[0]);
     }
 
     public void SetPersonHere()
@@ -149,14 +158,16 @@ public class Building : MonoBehaviour
             case BuildingType.¾Æ¹Ý:
                 return new List<ItemType>() { };
             case BuildingType.Ò©ÆÌ:
-                return new List<ItemType>() { };
+                CraftingList = SOItem.BuildingCraftDict[buildingType];
+                return new List<ItemType>() { ItemType.µ¤Ò©, ItemType.Ò©²Ä };
             case BuildingType.ÉÌÐÐ:
-                return new List<ItemType>() { ItemType.Êé¼®, ItemType.ÊÎÆ· };
+                return new List<ItemType>() { ItemType.Êé¼®};
             case BuildingType.Ìú½³ÆÌ:
-                CraftingList = SOItem.BuildingCraftDict[BuildingType.Ìú½³ÆÌ];
+                CraftingList = SOItem.BuildingCraftDict[buildingType];
                 return new List<ItemType>() { };
             case BuildingType.·ÄÖ¯ÆÌ:
-                return new List<ItemType>() { };
+                CraftingList = SOItem.BuildingCraftDict[buildingType];
+                return new List<ItemType>() { ItemType.·þ×°};
             case BuildingType.Ï·¹Ý:
                 SetupNewCinemaPlay();
                 break;

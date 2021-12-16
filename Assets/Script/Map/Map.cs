@@ -2,24 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-
 public class Map : MonoBehaviour, IObserver
 {
     public float Radius = 1.5f;
     public static int Week = 0;
     public static int Day = 6;
     private List<Block> map = new List<Block>();
+    private int nextBlockToMove = 0;
     [SerializeField] private int currentBlock = 0;
     [SerializeField] private Transform Player;
     [SerializeField] private float delayPerMove = 1f;
     private List<Building> ActivatedBuildings = new List<Building>();
+
+    [SerializeField] private float duration = 10f;
+    [SerializeField] private Animator PlayerAnimator;
 
     public Transform currentTransform => (map.Count > 0) ? map[currentBlock].transform : null;
 
     private void Awake()
     {
         map = GetComponentsInChildren<Block>().ToList();
-        FindObjectOfType<Dice>().RegisterObserver(this);
+        foreach(var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
+        {
+            subject.RegisterObserver(this);
+        }
         Player.position = map[0].transform.position;
         SetBuildings();
     }
@@ -31,45 +37,62 @@ public class Map : MonoBehaviour, IObserver
     {
         if (notificationType == NotificationType.MovePlayer)
         {
+            PlayerAnimator.SetTrigger("Move");
             Week += 1;
             Day = 1;
-            StartCoroutine(MoveAndDelay((int)value));
+            StartCoroutine(MoveManyStep((int)value));
         }
     }
 
-    private void MoveAStep()
+    private IEnumerator MoveAStep()
     {
-        if (currentBlock+1 >= map.Count)
+        
+        if (nextBlockToMove + 1 >= map.Count)
         {
-            currentBlock = 0;
+            nextBlockToMove = 0;
         }
         else
         {
-            currentBlock += 1;
+            nextBlockToMove += 1;
         }
-        Player.position = map[currentBlock].transform.position;
-
+        var targetPosition = map[nextBlockToMove].transform.position;
+        var startPosition = Player.position;
+        float time = 0;
+        while (time<duration)
+        {
+            Player.position = Vector2.Lerp(startPosition, targetPosition, time/ duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        if (currentBlock == nextBlockToMove)
+        {
+            PlayerAnimator.SetTrigger("Stop");
+        }
     }
 
-    public void MoveAStep(int number)
+    public IEnumerator MoveManyStep(int number)
     {
+        currentBlock = (currentBlock+number)%(map.Count-1);
         for (int i = 0; i < number; i++)
         {
-            MoveAStep();
+            var targetPosition = map[nextBlockToMove].transform.position;
+            StartCoroutine(MoveAStep());
+            yield return new WaitForSeconds(duration);
         }
         SetBuildings();
+        
     }
 
-    private IEnumerator MoveAndDelay(int steps)
-    {
+    //private IEnumerator MoveAndDelay(int steps)
+    //{
 
-        for (int i = 0; i < steps; i++)
-        {
-            MoveAStep();
-            yield return new WaitForSeconds(delayPerMove);
-        }
-        SetBuildings();
-    }
+    //    for (int i = 0; i < steps; i++)
+    //    {
+    //        MoveAStep();
+    //        yield return new WaitForSeconds(delayPerMove);
+    //    }
+    //    SetBuildings();
+    //}
 
     public List<Building> InteractebleBuildingCheck()
     {

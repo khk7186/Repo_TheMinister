@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class HorseCardUI : MonoBehaviour, IPointerClickHandler
+public class HorseCardUI : MonoBehaviour, IPointerClickHandler, ISubject
 {
     [SerializeField] private Text priceText;
     [SerializeField] private Text blocksText;
@@ -11,6 +11,7 @@ public class HorseCardUI : MonoBehaviour, IPointerClickHandler
     [SerializeField] private ConfirmUI ConfirmWindow;
 
     public ConfirmPhase confirm = ConfirmPhase.Null;
+    private IObserver Map;
 
     public static Dictionary<HorseRank, List<int>> HorseKindDict =
         new Dictionary<HorseRank, List<int>>()
@@ -39,13 +40,12 @@ public class HorseCardUI : MonoBehaviour, IPointerClickHandler
     {
         string currentText = "确认要花费" + price + "两白银移动" + block + "户距离吗？";
         Confirmation.HoldingMethod holding = MovePlayer;
+        RegisterObserver(FindObjectOfType<Map>());
         StartCoroutine(Confirmation.CreateNewComfirmation(holding, currentText).Confirm());
     }
     private void MovePlayer()
     {
-        Map map = FindObjectOfType<Map>();
-        map.MoveAStep(block);
-        Destroy(FindObjectOfType<BuildingUI>().gameObject);
+        Notify(block, NotificationType.MovePlayer);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -53,5 +53,13 @@ public class HorseCardUI : MonoBehaviour, IPointerClickHandler
         ChooseHorse();
     }
 
+    public void RegisterObserver(IObserver observer)
+    {
+        Map = observer;
+    }
 
+    public void Notify(object value, NotificationType notificationType)
+    {
+        Map.OnNotify(value, notificationType);
+    }
 }
