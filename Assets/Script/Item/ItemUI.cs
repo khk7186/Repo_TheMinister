@@ -118,8 +118,7 @@ public enum ItemName
     欧冶子的小锤,
     伤寒杂病论,
     五香粉,
-    活拨的快马,
-    鹦鹉,
+    活泼的快马,
     老虎,
     狼,
     锤子,
@@ -235,7 +234,8 @@ public enum ItemType
     杂货,
     药材,
     丹药,
-    奇兽
+    奇兽,
+    材料
 }
 public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
 {

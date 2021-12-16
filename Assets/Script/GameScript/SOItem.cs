@@ -32,21 +32,49 @@ public class SOItem : ScriptableObject
         { 
             ItemType.兵器, new List<ItemName>()
             {
+                ItemName.青龙方戟,
+                ItemName.落日神弓,
+                ItemName.百胜刀,
+                ItemName.擎天枪,
+                ItemName.龙源剑,
+                ItemName.穿石烈风弓,
+                ItemName.烈火斩云刀,
+                ItemName.紫木雷电枪,
+                ItemName.加十二的宝剑,
+                ItemName.天霸方天戟,
+                ItemName.皇之剑,
                 ItemName.冰霜宝剑,
                 ItemName.火炮,
                 ItemName.欧冶子的大锤,
                 ItemName.欧冶子的小锤,
+                ItemName.黄金弓,
+                ItemName.白银枪,
+                ItemName.大砍刀,
                 ItemName.弓,
                 ItemName.刀,
                 ItemName.枪,
                 ItemName.剑,
-                ItemName.戟
+                ItemName.戟,
+                ItemName.有缺口的武器,
             }
         },
         {
             ItemType.丹药, new List<ItemName>()
             {
-                ItemName.奉子丹
+                ItemName.奉子丹,
+                ItemName.长生不老药,
+                ItemName.十全大补丸,
+                ItemName.天机造化丹,
+                ItemName.阴阳玄龙丹,
+                ItemName.神气丹,
+                ItemName.养气筑基散,
+                ItemName.医圣的药箱,
+                ItemName.沸腾散,
+                ItemName.龙虎丹,
+                ItemName.洗髓丹,
+                ItemName.金疮药,
+                ItemName.止血膏
+
             }
         },
         {
@@ -63,6 +91,9 @@ public class SOItem : ScriptableObject
                 ItemName.本草纲目,
                 ItemName.墨子非攻,
                 ItemName.墨子兼爱,
+                ItemName.混元功,
+                ItemName.九阳真经,
+                ItemName.九阴真经,
                 ItemName.毒经,
                 ItemName.唯物论,
                 ItemName.棋诀,
@@ -74,7 +105,9 @@ public class SOItem : ScriptableObject
                 ItemName.马经,
                 ItemName.药材大全,
                 ItemName.演员的自我修养,
-                ItemName.汤头歌诀
+                ItemName.汤头歌诀,
+                ItemName.官宸书,
+
             }
         },
         {
@@ -82,17 +115,48 @@ public class SOItem : ScriptableObject
             {
                 ItemName.雕,
                 ItemName.吵闹的鹦鹉,
+                ItemName.大汗之鹰,
+                ItemName.犬,
+                ItemName.豹子,
+                ItemName.象虎,
+                ItemName.堕云虎,
+                ItemName.弯月狼,
+                ItemName.老虎,
+                ItemName.狼,
+
             }
         },
         {
             ItemType.服装, new List<ItemName>()
             {
-                ItemName.羽衣
+                ItemName.羽衣,
+                ItemName.黄金甲,
+                ItemName.朱户衣,
+                ItemName.云纹袍,
+                ItemName.长袖装,
+                ItemName.布衣,
+                ItemName.护心镜,
+                ItemName.皮甲,
+                ItemName.铁甲,
+                ItemName.蓑衣,
+                ItemName.锦绣华服,
+                ItemName.烂衣服
             }
         },
         {
             ItemType.机关, new List<ItemName>()
             {
+                ItemName.暴雨梨花针,
+                ItemName.浪击连弩,
+                ItemName.金钱镖,
+                ItemName.袖炮,
+                ItemName.血滴子,
+                ItemName.峨眉刺,
+                ItemName.袖箭,
+                ItemName.小刀,
+                ItemName.背剑,
+                ItemName.飞蝗石,
+
             }
         },
         {
@@ -109,13 +173,145 @@ public class SOItem : ScriptableObject
                 ItemName.文官状,
                 ItemName.武官状,
                 ItemName.杂技,
-                ItemName.剪刀
+                ItemName.剪刀,
+                ItemName.锤子,
+                ItemName.刻刀,
+                ItemName.绣花针,
+                ItemName.文化沙漠,
+                ItemName.御马官印,
+                ItemName.舒服的椅子
             }
         },
         {
             ItemType.药材, new List<ItemName>()
             {
-                ItemName.麝香
+                ItemName.麝香,
+                ItemName.灵芝,
+                ItemName.人参,
+                ItemName.当归,
+                ItemName.沉香,
+                ItemName.水翁花,
+                ItemName.虎骨,
+                ItemName.守宫,
+                ItemName.何首乌,
+                ItemName.乌桕子,
+                ItemName.铁苋,
+                ItemName.八角莲,
+                ItemName.黄芪,
+                ItemName.罗汉果,
+                ItemName.血风藤,
+                ItemName.黄精,
+                ItemName.白花蛇舌草,
+                ItemName.三七,
+                ItemName.轻粉,
+                ItemName.核桃,
+                ItemName.过山龙,
+                ItemName.星辰花
+            }
+        },
+        {
+            ItemType.材料, new List<ItemName>()
+            {
+                ItemName.铁片戟,
+                ItemName.丝绸,
+                ItemName.五香粉,
+                ItemName.良姜,
+                ItemName.谷芽,
+                ItemName.陈皮,
+                ItemName.羊乳,
+                ItemName.红花,
+                ItemName.树叶,
+                ItemName.糖,
+                ItemName.铁矿,
+                ItemName.铜矿,
+                ItemName.银矿,
+                ItemName.布匹,
+                ItemName.木头,
+                ItemName.皮革,
+                ItemName.铆钉,
+                ItemName.硬木,
+                ItemName.唇纸,
+                ItemName.胭脂,
+                ItemName.油,
+                ItemName.绳子,
+                ItemName.酱油,
+                ItemName.醋,
+                ItemName.盐
+
+            }
+        },
+        {
+            ItemType.坐骑, new List<ItemName>()
+            {
+                ItemName.龙马,
+                ItemName.撕风赤兔马,
+                ItemName.亮云白龙驹,
+                ItemName.活泼的快马,
+                ItemName.大宛马,
+                ItemName.蒙古马,
+                ItemName.凉州马,
+                ItemName.长脚马,
+                ItemName.短尾马,
+                ItemName.肥马,
+
+            }
+        },
+        {
+            ItemType.饰品, new List<ItemName>()
+            {
+                ItemName.和氏璧,
+                ItemName.钻石,
+                ItemName.鸽血红,
+                ItemName.木佐绿,
+                ItemName.金绿宝石,
+                ItemName.红宝石,
+                ItemName.紫水晶,
+                ItemName.蛋白石,
+                ItemName.祖母绿,
+                ItemName.朱砂脂,
+                ItemName.零落的宝石,
+                ItemName.缺口的宝石,
+                ItemName.有破损的黄金
+            }
+        },
+        {
+            ItemType.酒品, new List<ItemName>()
+            {
+                ItemName.仙人醉,
+                ItemName.美梦酒,
+                ItemName.三味酒,
+                ItemName.竹叶青,
+                ItemName.杜康酒,
+                ItemName.女儿红,
+                ItemName.青酒,
+                ItemName.黄酒,
+                ItemName.羊酒,
+                ItemName.芦酒,
+                ItemName.杏仁酒,
+                ItemName.银条酒,
+                ItemName.水酒,
+                ItemName.毒酒,
+
+            }
+        },
+        {
+            ItemType.菜品, new List<ItemName>()
+            {
+                ItemName.高汤白菜,
+                ItemName.龙井竹荪,
+                ItemName.八宝野鸭,
+                ItemName.佛手金卷,
+                ItemName.木须柿子,
+                ItemName.酸菜粉条,
+                ItemName.红烧茄子,
+                ItemName.清炒菜心,
+                ItemName.蒜薹炒肉,
+                ItemName.木须肉,
+                ItemName.清炒豆芽,
+                ItemName.拍黄瓜,
+                ItemName.蛋炒饭,
+                ItemName.清蒸白萝卜
+
             }
         }
     };
@@ -188,7 +384,7 @@ public class SOItem : ScriptableObject
         {ItemName.黄金甲,new List<ItemName>(){ItemName.铁甲,ItemName.有破损的黄金}},
         {ItemName.云纹袍,new List<ItemName>(){ItemName.长袖装,ItemName.绣花针}},
         {ItemName.朱户衣,new List<ItemName>(){ItemName.云纹袍,ItemName.红宝石}},
-        {ItemName.锦绣华服,new List<ItemName>(){ItemName.羽衣,ItemName.鹦鹉}},
+        {ItemName.锦绣华服,new List<ItemName>(){ItemName.羽衣,ItemName.吵闹的鹦鹉}},
         {ItemName.袖炮,new List<ItemName>(){ItemName.袖箭,ItemName.火炮}},
         {ItemName.金钱镖,new List<ItemName>(){ItemName.袖箭,ItemName.有破损的黄金}},
         {ItemName.金疮药,new List<ItemName>(){ItemName.黄精,ItemName.八角莲}},
