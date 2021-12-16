@@ -22,7 +22,7 @@ public class Map : MonoBehaviour, IObserver
     private void Awake()
     {
         map = GetComponentsInChildren<Block>().ToList();
-        foreach(var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
+        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
         {
             subject.RegisterObserver(this);
         }
@@ -31,7 +31,7 @@ public class Map : MonoBehaviour, IObserver
     }
     private void Start()
     {
-        
+
     }
     public void OnNotify(object value, NotificationType notificationType)
     {
@@ -46,21 +46,19 @@ public class Map : MonoBehaviour, IObserver
 
     private IEnumerator MoveAStep()
     {
-        
+
         if (nextBlockToMove + 1 >= map.Count)
         {
-            nextBlockToMove = 0;
+            nextBlockToMove = -1;
+            currentBlock -= 1;
         }
-        else
-        {
-            nextBlockToMove += 1;
-        }
+        nextBlockToMove += 1;
         var targetPosition = map[nextBlockToMove].transform.position;
         var startPosition = Player.position;
         float time = 0;
-        while (time<duration)
+        while (time < duration)
         {
-            Player.position = Vector2.Lerp(startPosition, targetPosition, time/ duration);
+            Player.position = Vector2.Lerp(startPosition, targetPosition, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
@@ -72,15 +70,16 @@ public class Map : MonoBehaviour, IObserver
 
     public IEnumerator MoveManyStep(int number)
     {
-        currentBlock = (currentBlock+number)%(map.Count-1);
+        currentBlock = (currentBlock + number) % (map.Count - 1);
         for (int i = 0; i < number; i++)
         {
             var targetPosition = map[nextBlockToMove].transform.position;
             StartCoroutine(MoveAStep());
             yield return new WaitForSeconds(duration);
         }
+        Debug.Log((currentBlock, nextBlockToMove));
         SetBuildings();
-        
+
     }
 
     //private IEnumerator MoveAndDelay(int steps)
