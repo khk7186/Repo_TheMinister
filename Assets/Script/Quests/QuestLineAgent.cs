@@ -36,7 +36,7 @@ public class QuestLineAgent
     public bool Complete => CurrenQuestOnLine == null;
 
     private string destinationPath;
-    public Quest CurrenQuestOnLine
+    public Occurrence CurrenQuestOnLine
     {
         get
         {
@@ -57,7 +57,7 @@ public class QuestLineAgent
                 + currentQuestOrder
                 )
                 .Replace(" ", string.Empty);
-            Quest thisQuest = Resources.Load<Quest>(QuestFinalPath);
+            Occurrence thisQuest = Resources.Load<Occurrence>(QuestFinalPath);
             QuestFieldUI thisQuestField = Resources.Load<QuestFieldUI>(FieldFinalPath);
             if (thisQuest == null)
             {

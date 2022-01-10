@@ -67,7 +67,7 @@ public class Dice : MonoBehaviour, ISubject
         //Debug.Log(totalCount);
 
         // Notify Observers
-        Notify(totalCount, NotificationType.MovePlayer);
+        Notify(totalCount, NotificationType.DiceRoll);
     }
 
     public void RegisterObserver(IObserver observer)

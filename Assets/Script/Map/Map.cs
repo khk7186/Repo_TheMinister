@@ -35,7 +35,7 @@ public class Map : MonoBehaviour, IObserver
     }
     public void OnNotify(object value, NotificationType notificationType)
     {
-        if (notificationType == NotificationType.MovePlayer)
+        if (notificationType == NotificationType.DiceRoll)
         {
             PlayerAnimator.SetTrigger("Move");
             Week += 1;
@@ -79,7 +79,6 @@ public class Map : MonoBehaviour, IObserver
         }
         Debug.Log((currentBlock, nextBlockToMove));
         SetBuildings();
-
     }
 
     //private IEnumerator MoveAndDelay(int steps)

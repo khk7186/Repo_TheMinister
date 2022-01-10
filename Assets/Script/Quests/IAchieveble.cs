@@ -2,7 +2,7 @@
 
 public interface IAchieveble
 {
-    Quest quest
+    Occurrence occurrence
     {
         get;
         set;

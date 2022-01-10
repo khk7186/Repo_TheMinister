@@ -7,7 +7,7 @@ public class TagForQuest : MonoBehaviour,IAchieveble
 {
     public Tag thistag;
     private bool achieved = false;
-    private Quest targetQuest;
+    private Occurrence targetQuest;
     private BtnShineExp btnShineExpPref;
     private BtnShineExp btnShineExp;
 
@@ -16,7 +16,7 @@ public class TagForQuest : MonoBehaviour,IAchieveble
         get => achieved;
         set => achieved = value;
     }
-    public Quest quest
+    public Occurrence occurrence
     {
         get => targetQuest;
         set => targetQuest = value;

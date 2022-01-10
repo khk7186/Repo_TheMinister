@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-
-public class Quest : MonoBehaviour
+public class Occurrence : MonoBehaviour
 {
     [SerializeField] private Transform QuestUI;
     public QuestFieldUI questField;
@@ -46,7 +44,7 @@ public class Quest : MonoBehaviour
             //var nodelist = GetComponentsInChildren<IAchieveble>();
             AchievementList.AddRange(child.GetComponentsInChildren<IAchieveble>());
         }
-        foreach (IAchieveble achieveble in AchievementList) achieveble.quest = this;
+        foreach (IAchieveble achieveble in AchievementList) achieveble.occurrence = this;
     }
 
     public bool AllAchievementsComplete()

@@ -19,7 +19,7 @@ public class NodeForQuest : MonoBehaviour, IAchieveble
     public Rarerity raitity;
     public bool achieved = false;
     public Image image;
-    private Quest targetquest;
+    private Occurrence targetquest;
     private BtnShineExp btnShineExpPref;
     private BtnShineExp btnShineExp;
 
@@ -29,7 +29,7 @@ public class NodeForQuest : MonoBehaviour, IAchieveble
         get => achieved;
         set => achieved = value;
     }
-    public Quest quest 
+    public Occurrence occurrence 
     {
         get => targetquest;
         set => targetquest = value;

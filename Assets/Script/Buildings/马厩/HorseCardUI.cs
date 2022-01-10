@@ -44,7 +44,7 @@ public class HorseCardUI : MonoBehaviour, IPointerClickHandler, ISubject
     }
     private void MovePlayer()
     {
-        Notify(block, NotificationType.MovePlayer);
+        Notify(block, NotificationType.DiceRoll);
     }
 
     public void OnPointerClick(PointerEventData eventData)

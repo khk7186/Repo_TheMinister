@@ -79,7 +79,7 @@ public class CharacterSlotForQuest : MonoBehaviour
             nodeForQuest.Achieved = true;
             nodeForQuest.BtnShineExp.gameObject.SetActive(true);
 
-            if (nodeForQuest.quest.AllAchievementsComplete())
+            if (nodeForQuest.occurrence.AllAchievementsComplete())
             {
                 questField.ShowSubmit();
             }
