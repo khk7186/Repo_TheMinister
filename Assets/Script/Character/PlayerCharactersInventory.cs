@@ -11,43 +11,37 @@ public enum CardMode
     QuestSelectMode,
     ItemSelectMode,
     UpgradeSelectMode,
+    OndutySwitchMode
 }
-public class PlayerCharactersInventory : MonoBehaviour, IPointerClickHandler
+public class PlayerCharactersInventory : MonoBehaviour
 {
     public CharacterSlotForQuest currentSlot;
-
     public bool selectMode => currentSlot;
     public List<CharacterUI> characterUIList = new List<CharacterUI>();
-    public Transform characterUIParent;
+    public Transform Storage;
 
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if(eventData.button == PointerEventData.InputButton.Right)
-        {
-            switch (selectMode)
-            {
-                case true:
-                    GetComponent<RightClickToClose>().RightClickEvent();
-                    break;
-                case false:
-                    break;
-            }
-            gameObject.SetActive(false);
-        }
-    }
-
+    public Transform OndutySlot;
     public void RightClickSelectMode()
     {
         GetComponent<RightClickToClose>().RightClickEvent();
     }
     private void Awake()
     {
+        List<Character> OndutyCards = new List<Character>();
         foreach (Character character in GameObject.FindGameObjectWithTag("PlayerCharacterInventory").GetComponentsInChildren<Character>())
         {
-            character.characterCardInvUI = transform.GetComponentInChildren<Transform>().GetComponentInChildren<GridLayoutGroup>().transform;
+            if (character.OnDuty)
+            {
+                character.characterCardInvUI = OndutySlot;
+            }
+            else
+            {
+                character.characterCardInvUI = Storage;
+            }
             character.BelongCheck();
         }
-        characterUIList = characterUIParent.GetComponentsInChildren<CharacterUI>().ToList();
+        characterUIList = Storage.GetComponentsInChildren<CharacterUI>().ToList();
+        characterUIList.AddRange(OndutySlot.GetComponentsInChildren<CharacterUI>().ToList());
     }
     public void SetupMode(CardMode mode)
     {
@@ -55,7 +49,6 @@ public class PlayerCharactersInventory : MonoBehaviour, IPointerClickHandler
         {
             character.cardMode = mode;
         }
-
     }
 
 

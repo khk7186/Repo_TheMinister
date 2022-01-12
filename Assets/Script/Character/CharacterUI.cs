@@ -29,6 +29,11 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     private PlayerCharactersInventory inventoryCharacters;
     public CardMode cardMode = CardMode.ViewMode;
     public Tag newTag;
+
+    public Character TargetCharacter;
+    public Transform PannelTopTransform;
+
+    public ConfirmPhase confirm = ConfirmPhase.Null;
     public CharacterSlotForQuest CurrentSlot
     {
         get => inventoryCharacters.currentSlot;
@@ -90,13 +95,12 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        GetComponent<RectTransform>().localScale = new Vector3(1.15f, 1.15f, 0f);
+        GetComponent<RectTransform>().localScale = new Vector3(1.15f, 1.15f, 1f);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 0f);
-
+        GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -124,6 +128,11 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                         inventoryCharacters.RightClickSelectMode();
                     }
                     break;
+                case CardMode.OndutySwitchMode:
+                    string currentText = "È·ÈÏ¸ü»»"+character.name + "?";
+                    Confirmation.HoldingMethod holding = ChangeDutyState;
+                    StartCoroutine(Confirmation.CreateNewComfirmation(holding, currentText).Confirm());
+                    break;
                 case CardMode.UpgradeSelectMode:
                     SelectForSlot();
                     characterSelectUI.CloseInventory(this);
@@ -139,10 +148,25 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             }
             else
             {
-                inventoryCharacters.RightClickSelectMode();
+                if (inventoryCharacters != null)
+                {
+                    inventoryCharacters.RightClickSelectMode();
+                }
+                else if(PannelTopTransform != null)
+                {
+                    PannelTopTransform.GetComponent<RightClickToClose>().RightClickEvent();
+                }
             }
             
         }
+    }
+
+    private void ChangeDutyState()
+    {
+        
+        character.OnDuty = false;
+        TargetCharacter.OnDuty = true;
+        PannelTopTransform.GetComponent<RightClickToClose>().RightClickEvent();
     }
 
     private void CreateTagSwitchUI()

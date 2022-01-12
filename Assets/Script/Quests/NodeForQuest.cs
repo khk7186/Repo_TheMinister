@@ -1,16 +1,16 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public enum CharacterValueType
 {
-    ÖÇ,
-    ²Å,
-    Ä±,
-    Îä,
-    ´Ì,
-    ÊØ
+    æ™º,
+    æ‰,
+    è°‹,
+    æ­¦,
+    åˆº,
+    å®ˆ
 }
 
 public class NodeForQuest : MonoBehaviour, IAchieveble

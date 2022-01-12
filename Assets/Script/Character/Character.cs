@@ -270,7 +270,7 @@ public class Character : MonoBehaviour, IRound
     public int health = 10;
 
     public CharacterUI characterCard;
-    private CharacterUI thisCharacterCard;
+    public CharacterUI thisCharacterCard;
     public Transform characterCardInvUI;
 
     public Dictionary<CharacterValueType, int> CharactersValueDict => charactersValueDict;
@@ -305,6 +305,7 @@ public class Character : MonoBehaviour, IRound
 
     #region View
     public HireStage hireStage = HireStage.Never;
+    public bool OnDuty = false;
     #endregion
     private void Awake()
     {
@@ -337,8 +338,12 @@ public class Character : MonoBehaviour, IRound
     {
         if (hireStage == HireStage.Hired)
         {
-            transform.parent = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
+            transform.parent = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;                                                                                                                                               
             CreatInventoryCardUI();
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -532,12 +537,12 @@ public class Character : MonoBehaviour, IRound
             var intersectList = tagList.Intersect(suspectList).ToList();
             if (intersectList.Count == suspectList.Count)
             {
-                foreach(Tag tag in suspectList)
+                foreach (Tag tag in suspectList)
                 {
                     tagList.Remove(tag);
                 }
                 tagList.Add(Player.MergeTagDict[suspectList]);
-            } 
+            }
         }
     }
 }
