@@ -8,6 +8,11 @@ public enum BattleState
     Prepare,
     Fight
 }
+public enum BattleType
+{
+    Duel,
+    Debate
+}
 public class BattleSystem : MonoBehaviour
 {
     public BattleState CurrentBattleState;
@@ -41,4 +46,6 @@ public class BattleSystem : MonoBehaviour
     {
         
     }
+
+
 }
