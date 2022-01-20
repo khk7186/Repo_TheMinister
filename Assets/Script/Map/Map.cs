@@ -70,7 +70,7 @@ public class Map : MonoBehaviour, IObserver
 
     public IEnumerator MoveManyStep(int number)
     {
-        currentBlock = (currentBlock + number) % (map.Count - 1);
+        currentBlock = (currentBlock + number) % (map.Count );
         for (int i = 0; i < number; i++)
         {
             var targetPosition = map[nextBlockToMove].transform.position;
