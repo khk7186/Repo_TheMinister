@@ -27,7 +27,7 @@ public class HorseCardUI : MonoBehaviour, IPointerClickHandler, ISubject
     public void SetUp(HorseRank horseRank)
     {
         string spritePath = ("Art/Horses/" + horseRank.ToString()).Replace(" ", string.Empty);
-        Debug.Log(spritePath);
+        //Debug.Log(spritePath);
         horseImage.sprite = Resources.Load<Sprite>(spritePath);
         price = HorseKindDict[horseRank][0];
         block = HorseKindDict[horseRank][1];

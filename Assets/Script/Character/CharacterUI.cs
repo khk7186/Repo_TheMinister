@@ -72,7 +72,6 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         ModifyValueColor();
         ModifyTags();
     }
-
     private void ModifyValueColor()
     {
         Wisdom.color = TagUIColorCode[character.characterValueRareDict[CharacterValueType.÷«]];
@@ -82,7 +81,6 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         Sneak.color = TagUIColorCode[character.characterValueRareDict[CharacterValueType.¥Ã]];
         Defense.color = TagUIColorCode[character.characterValueRareDict[CharacterValueType. ÿ]];
     }
-
     private void ModifyTags()
     {
         foreach (Tag tag in character.tagList)

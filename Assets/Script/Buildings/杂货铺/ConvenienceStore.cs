@@ -14,7 +14,7 @@ public class ConvenienceStore : MonoBehaviour, IShopUI
             var target = Instantiate(itemPref, transform);
             target.SetUp(i, 1);
         }
-        Debug.Log(shopList.Count);
+        //Debug.Log(shopList.Count);
     }
 
 }

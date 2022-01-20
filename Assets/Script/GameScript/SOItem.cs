@@ -468,12 +468,6 @@ public class SOItem : ScriptableObject
         {ItemName.龙虎丹,new List<ItemName>(){ItemName.当归,ItemName.核桃}},
         {ItemName.阴阳玄龙丹,new List<ItemName>(){ItemName.白花蛇舌草,ItemName.过山龙}},
         {ItemName.天机造化丹,new List<ItemName>(){ItemName.白花蛇舌草,ItemName.星辰花}}
-
-
-
-
-
-
     };
     public Sprite NullSprite;
 

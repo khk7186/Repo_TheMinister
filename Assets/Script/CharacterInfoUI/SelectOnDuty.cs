@@ -14,7 +14,7 @@ public static class SelectOnDuty
         }
         else
         {
-            SwitchCurrentOnduty();
+            SwitchCurrentOndutyImage(character);
         }
     }
     public static List<Character> GetOndutyAll()
@@ -36,8 +36,10 @@ public static class SelectOnDuty
         return UnityEngine.GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
     }
 
-    private static void SwitchCurrentOnduty()
+    private static void SwitchCurrentOndutyImage(Character character)
     {
-        Resources.Load<CharacterOndutySwitchUI>("");
+        Resources.Load<CharacterOndutySwitchUI>
+            (("Art/CharacterSprites/Idle" + character.characterArtCode)
+            .Replace(" ", string.Empty));
     }
 }
