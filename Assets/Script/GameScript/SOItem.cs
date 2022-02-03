@@ -439,6 +439,17 @@ public class SOItem : ScriptableObject
                 ItemName.朱户衣,
                 ItemName.锦绣华服
             }
+        },
+        {
+            BuildingType.珠宝店, new List<ItemName>()
+            {
+                ItemName.皮甲,
+                ItemName.铁甲,
+                ItemName.黄金甲,
+                ItemName.云纹袍,
+                ItemName.朱户衣,
+                ItemName.锦绣华服
+            }
         }
     };
 

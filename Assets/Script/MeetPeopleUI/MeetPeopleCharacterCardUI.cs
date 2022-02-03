@@ -24,8 +24,6 @@ public class MeetPeopleCharacterCardUI : MonoBehaviour, IPointerClickHandler, IP
         characterInfo = Resources.Load<CharacterInfoUI>("CharacterInfo/CharacterInfo");
     }
 
-
-
     public void UpdateUI()
     {
         string idleSpritePath = ("Art/CharacterSprites/Idle/Idle_" + character.characterArtCode.ToString()).Replace(" ", string.Empty);

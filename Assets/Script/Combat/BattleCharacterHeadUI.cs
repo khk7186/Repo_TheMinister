@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
 
-public class BattleCharacterHeadUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class BattleCharacterHeadUI : MonoBehaviour
 {
     public Image Head;
     public Slider HealthBar;
@@ -23,69 +24,66 @@ public class BattleCharacterHeadUI : MonoBehaviour, IPointerEnterHandler, IPoint
 
     public bool IsPlayer = true;
 
-    public RectTransform valuePannel;
 
     public Transform parent;
-    public Transform valueResizeblePannel;
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        parent.GetComponent<BattleUI>().SelectCurrentCharacter(this);
-        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
-    }
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        valuePannel.gameObject.SetActive(true);
-        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
-    }
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        valuePannel.gameObject.SetActive(false);
-        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
-    }
+    public RectTransform valuePannel;
+    public RectTransform namePannel;
+    public float animationSpeed = 0.2f;
     public void Setup(Character character, BattleType battleType, Transform parentTransform, bool isPlayer)
     {
         IsPlayer = isPlayer;
-        GetComponent<HorizontalLayoutGroup>().reverseArrangement = (!IsPlayer);
-        valueResizeblePannel.GetComponent<HorizontalLayoutGroup>().reverseArrangement = (!IsPlayer);
         parent = parentTransform;
         this.character = character;
-        string path = ("Art/CharacterSprites/Headshot/Headshot_" + this.character.characterArtCode.ToString()).Replace(" ", string.Empty);
+        string path = ("Art/CharacterSprites/Idle/Idle_" + this.character.characterArtCode.ToString()).Replace(" ", string.Empty);
         Head.sprite = Resources.Load<Sprite>(path);
         switch (battleType)
         {
             default:
                 break;
             case BattleType.Duel:
-                HealthBar.value = character.health / 20;
+                //HealthBar.value = character.health / 20;
                 Attack.color = CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.Îä]];
                 Assinate.color = CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.´Ì]];
                 Defence.color = CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.ÊØ]];
                 break;
             case BattleType.Debate:
-                HealthBar.value = character.loyalty / 20;
+                //HealthBar.value = character.loyalty / 20;
                 Attack.color = CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.ÖÇ]];
                 Assinate.color = CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.Ä±]];
                 Defence.color = CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.²Å]];
                 break;
         }
     }
-    public void SelectThis(bool selected)
-    {
-        if (selected)
-        {
-            CardInfo.sizeDelta = new Vector2(60f, 50f);
-        }
-        else
-        {
-            CardInfo.sizeDelta = new Vector2(30f, 50f);
-        }
-    }
     public void PickSide(bool IsPlayer)
     {
         this.IsPlayer = IsPlayer;
     }
-    private void Start()
+
+    public void OnSelect()
     {
-        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
+        GetComponent<RectTransform>()
+            .DOPivotX(0.1f, animationSpeed)
+            .SetEase(Ease.Linear)
+            .SetDelay(animationSpeed);
+        valuePannel.DOAnchorPosX(-25, animationSpeed)
+            .SetEase(Ease.Linear)
+            .SetDelay(animationSpeed);
+        namePannel.DOAnchorPosX(-35, animationSpeed)
+            .SetEase(Ease.Linear)
+            .SetDelay(animationSpeed);
     }
+    public void OffSelect()
+    {
+        GetComponent<RectTransform>()
+            .DOPivotX(0.5f, animationSpeed)
+            .SetEase(Ease.Linear)
+            .SetDelay(animationSpeed);
+        valuePannel.DOAnchorPosX(0, animationSpeed)
+            .SetEase(Ease.Linear)
+            .SetDelay(animationSpeed);
+        namePannel.DOAnchorPosX(0, animationSpeed)
+            .SetEase(Ease.Linear)
+            .SetDelay(animationSpeed);
+    }
+
 }

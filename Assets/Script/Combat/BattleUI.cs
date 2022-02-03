@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class BattleUI : MonoBehaviour
+public class BattleUI : MonoBehaviour,IScrollHandler
 {
     public BattleCharacterHeadUI PlayerCh1;
     public BattleCharacterHeadUI PlayerCh2;
@@ -29,15 +30,17 @@ public class BattleUI : MonoBehaviour
     public Transform Assassinate;
     public Transform Surrender;
     public Transform Confirm;
+
+    public CombatUICharacterRotateAnimation characterRotateAnimation;
     public void Setup(List<Character> playerList, List<Character> enemyList, BattleType battleType)
     {
         //TODO: foreach character spawn new headui.
         PlayerCh1.Setup(playerList[0], battleType, transform, true);
         PlayerCh2.Setup(playerList[1], battleType, transform, true);
         PlayerCh3.Setup(playerList[2], battleType, transform, true);
-        EnemyCh1.Setup(playerList[0], battleType, transform, false);
-        EnemyCh2.Setup(playerList[1], battleType, transform, false);
-        EnemyCh3.Setup(playerList[2], battleType, transform, false);
+        EnemyCh1.Setup(enemyList[0], battleType, transform, false);
+        EnemyCh2.Setup(enemyList[1], battleType, transform, false);
+        EnemyCh3.Setup(enemyList[2], battleType, transform, false);
         this.battleType = battleType;
         if (PlayerCurrentCharacter == null)
         {
@@ -48,10 +51,6 @@ public class BattleUI : MonoBehaviour
     {
         if (target.IsPlayer)
         {
-            characterSwitch(PlayerCh1, target);
-            characterSwitch(PlayerCh2, target);
-            characterSwitch(PlayerCh3, target);
-            playerSideImage.Setup(target.character,battleType);
         }
         else
         {
@@ -63,18 +62,25 @@ public class BattleUI : MonoBehaviour
     }
     public void characterSwitch(BattleCharacterHeadUI subject, BattleCharacterHeadUI compare)
     {
-        bool result = (subject == compare);
-        subject.SelectThis(result);
-        if (result == true)
-        {
-            if (subject.IsPlayer) PlayerCurrentCharacter = subject;
-            else EnemyCurrentCharacter = subject;
-        }
+        
     }
 
 #if UNITY_EDITOR
     private void Start()
     {
+    }
+
+    public void OnScroll(PointerEventData eventData)
+    {
+        if (Input.mouseScrollDelta.y > 0)
+        {
+            characterRotateAnimation.ScrollUp();
+        }
+        else if(Input.mouseScrollDelta.y < 0)
+        {
+            characterRotateAnimation.ScrollDown();
+        }
+        PlayerCurrentCharacter = characterRotateAnimation.Front.GetComponent<BattleCharacterHeadUI>();
     }
 #endif
 }

@@ -36,10 +36,11 @@ public class BattleSystem : MonoBehaviour
     public BattleType battleType;
     public Action currentPlayerAction = Action.NoSelect;
     public Action currentEnemyAction = Action.NoSelect;
+    public BaseBattleAI battleAI;
     private void Start()
     {
         CurrentBattleState = BattleState.Start;
-        //battleUI.Setup();
+        
     }
     private void NextState()
     {
@@ -93,6 +94,7 @@ public class BattleSystem : MonoBehaviour
                 NextState();
                 break;
             case BattleState.Fight:
+                var AIReaction = battleAI.MakeDecision();
                 FightResultHandler(currentPlayerAction, currentEnemyAction);
                 CurrentBattleUI.Setup(PlayerCharacters, EnemyCharacters, battleType);
                 NextState();
@@ -165,6 +167,17 @@ public class BattleSystem : MonoBehaviour
                 PlayerCurrentCharacter.health += 2;
                 break;
         }
+    }
+
+    public void SetCurrentAction(Action buttonAction)
+    {
+        currentPlayerAction = buttonAction;
+        if (currentPlayerAction!= Action.NoSelect)
+        {
+            CurrentBattleUI.Confirm.gameObject.SetActive(true);
+        }
+        else
+            CurrentBattleUI.Confirm.gameObject.SetActive(false);
     }
 
     private void Assinate(Action enemyAction)

@@ -370,7 +370,7 @@ public class Character : MonoBehaviour, IRound
 
         foreach (CharacterValueType key in Enum.GetValues(typeof(CharacterValueType)))
         {
-
+            if (key == CharacterValueType.лс) continue;
             characterValueRareDict[key] = CheckVariablesRare(CharactersValueDict[key]);
             //Debug.Log(key.ToString() + characterValueRareDict[key].ToString());
         }

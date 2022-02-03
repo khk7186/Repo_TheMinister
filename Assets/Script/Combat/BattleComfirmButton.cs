@@ -12,12 +12,12 @@ public class BattleComfirmButton : MonoBehaviour, IPointerEnterHandler, IPointer
     }
     public void OnPointerEnter(PointerEventData eventData)
     {
-        GetComponent<Image>().color = Color.gray;
+        GetComponent<Image>().color = Color.yellow;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        GetComponent<Image>().color = Color.black;
+        GetComponent<Image>().color = Color.white;
     }
 
 }

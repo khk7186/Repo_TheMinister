@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEditor;
 
 public enum ItemName
 {
@@ -284,4 +285,6 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
         return SOItem.ItemMap[this.ItemName];
     }
 
+#if UNITY_EDITOR
+#endif
 }

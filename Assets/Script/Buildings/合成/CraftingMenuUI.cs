@@ -4,29 +4,32 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CraftingMenuUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+public class CraftingMenuUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public ItemName ItemName;
     public Image ItemIcon;
     public Text ItemNameText;
     public CraftingUI parentUI;
 
-    public void OnPointerClick(PointerEventData eventData)
+
+    private void Start()
     {
-        //TODO:Switch Parent's current crafting item.
+        ItemNameText.color = Color.white;
+        GetComponent<Button>().onClick.AddListener(SetupParent);
+    }
+    public void SetupParent()
+    {
         parentUI.Setup(ItemName);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ItemIcon.gameObject.SetActive(false);
-        ItemNameText.gameObject.SetActive(true);
+        ItemNameText.color = Color.yellow;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        ItemIcon.gameObject.SetActive(true);
-        ItemNameText.gameObject.SetActive(false);
+        ItemNameText.color = Color.white;
     }
 
     public void SetUp(ItemName item)

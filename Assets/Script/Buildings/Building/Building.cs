@@ -9,6 +9,10 @@ public enum BuildingType
     马厩,
     杂货铺,
     商行,
+    珠宝店,
+    西域珍品,
+    胭脂铺,
+    万香阁,
     铁匠铺,
     纺织铺,
     戏馆,
@@ -115,6 +119,10 @@ public class Building : MonoBehaviour
             case BuildingType.商行:
                 target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
                 break;
+            case BuildingType.西域珍品:
+                SetupCraft();
+                target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
+                break;
             case BuildingType.药铺:
                 target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
                 SetupCraft();
@@ -161,13 +169,17 @@ public class Building : MonoBehaviour
                 CraftingList = SOItem.BuildingCraftDict[buildingType];
                 return new List<ItemType>() { ItemType.丹药, ItemType.药材 };
             case BuildingType.商行:
-                return new List<ItemType>() { ItemType.书籍};
+                return new List<ItemType>() { ItemType.书籍 };
+            case BuildingType.西域珍品:
+            case BuildingType.珠宝店:
+                CraftingList = SOItem.BuildingCraftDict[BuildingType.珠宝店];
+                return new List<ItemType>() { ItemType.书籍 };
             case BuildingType.铁匠铺:
                 CraftingList = SOItem.BuildingCraftDict[buildingType];
                 return new List<ItemType>() { };
             case BuildingType.纺织铺:
                 CraftingList = SOItem.BuildingCraftDict[buildingType];
-                return new List<ItemType>() { ItemType.服装};
+                return new List<ItemType>() { ItemType.服装 };
             case BuildingType.戏馆:
                 SetupNewCinemaPlay();
                 break;

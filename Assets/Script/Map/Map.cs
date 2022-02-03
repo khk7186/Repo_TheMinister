@@ -26,7 +26,8 @@ public class Map : MonoBehaviour, IObserver
         {
             subject.RegisterObserver(this);
         }
-        Player.position = map[0].transform.position;
+        Player.position = map[currentBlock].transform.position;
+        nextBlockToMove = currentBlock;
         SetBuildings();
     }
     private void Start()
@@ -46,11 +47,9 @@ public class Map : MonoBehaviour, IObserver
 
     private IEnumerator MoveAStep()
     {
-
         if (nextBlockToMove + 1 >= map.Count)
         {
             nextBlockToMove = -1;
-            currentBlock -= 1;
         }
         nextBlockToMove += 1;
         var targetPosition = map[nextBlockToMove].transform.position;
@@ -77,7 +76,7 @@ public class Map : MonoBehaviour, IObserver
             StartCoroutine(MoveAStep());
             yield return new WaitForSeconds(duration);
         }
-        Debug.Log((currentBlock, nextBlockToMove));
+        Debug.Log((currentBlock, nextBlockToMove,map.Count));
         SetBuildings();
     }
 

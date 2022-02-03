@@ -10,7 +10,8 @@ public enum CharacterValueType
     谋,
     武,
     刺,
-    守
+    守,
+    逃
 }
 
 public class NodeForQuest : MonoBehaviour, IAchieveble
