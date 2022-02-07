@@ -12,19 +12,25 @@ public class Dice : MonoBehaviour, ISubject
     [SerializeField] private Image dice2;
     private IObserver Map;
 
+    public bool rolling = false;
+
     // Use this for initialization
     private void Awake()
     {
-        
+
     }
 
     public void Roll()
     {
-        StartCoroutine("RollTheDice");
+        if (!rolling)
+        {
+            StartCoroutine("RollTheDice");
+        }
     }
 
     private IEnumerator RollTheDice()
     {
+        rolling = true;
         // Variable to contain random dice side number.
         // It needs to be assigned. Let it be 0 initially
         int randomDiceSide1 = 0;
@@ -62,10 +68,6 @@ public class Dice : MonoBehaviour, ISubject
         int totalCount = finalSide1 + finalSide2;
 
         // Show final dice value in Console
-        //Debug.Log(finalSide1);
-        //Debug.Log(finalSide2);
-        //Debug.Log(totalCount);
-
         // Notify Observers
         Notify(totalCount, NotificationType.DiceRoll);
     }

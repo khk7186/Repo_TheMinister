@@ -64,6 +64,7 @@ public class Map : MonoBehaviour, IObserver
         if (currentBlock == nextBlockToMove)
         {
             PlayerAnimator.SetTrigger("Stop");
+            FindObjectOfType<Dice>().rolling = false;
         }
     }
 
