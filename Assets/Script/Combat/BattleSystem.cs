@@ -22,7 +22,7 @@ public enum Action
     NoSelect,
     Attack,
     Defence,
-    Assinate,
+    Assassinate,
     Surrender
 }
 public class BattleSystem : MonoBehaviour
@@ -40,7 +40,6 @@ public class BattleSystem : MonoBehaviour
     private void Start()
     {
         CurrentBattleState = BattleState.Start;
-        
     }
     private void NextState()
     {
@@ -50,7 +49,7 @@ public class BattleSystem : MonoBehaviour
                 CurrentBattleState = BattleState.Prepare;
                 break;
             case BattleState.Fight:
-                CurrentBattleState = BattleState.Fight;
+                CurrentBattleState = BattleState.Prepare;
                 break;
             case BattleState.Prepare:
                 CurrentBattleState = BattleState.Fight;
@@ -88,16 +87,27 @@ public class BattleSystem : MonoBehaviour
                 SceneManager.LoadScene(1);
                 break;
             case BattleState.Prepare:
-                var tool = GetComponent<SpawnUI>();
-                CurrentBattleUI = tool.SpawnWithReturn().GetComponent<BattleUI>();
+                if (CurrentBattleUI == null)
+                {
+                    var tool = GetComponent<SpawnUI>();
+                    CurrentBattleUI = tool.SpawnWithReturn().GetComponent<BattleUI>();
+                }
                 CurrentBattleUI.Setup(PlayerCharacters, EnemyCharacters, battleType);
+                CurrentBattleUI.informationUI.gameObject.SetActive(false);
+                CurrentBattleUI.ActionChoosePannel.gameObject.SetActive(true);
                 NextState();
                 break;
             case BattleState.Fight:
-                var AIReaction = battleAI.MakeDecision();
+                PlayerCurrentCharacter = CurrentBattleUI.PlayerCurrentCharacter.character;
+                currentEnemyAction = battleAI.MakeDecision(EnemyCharacters, this);
+                EnemyCurrentCharacter = battleAI.nextCharacter;
                 FightResultHandler(currentPlayerAction, currentEnemyAction);
+                CurrentBattleUI.informationUI.gameObject.SetActive(true);
+                CurrentBattleUI.ActionChoosePannel.gameObject.SetActive(false);
                 CurrentBattleUI.Setup(PlayerCharacters, EnemyCharacters, battleType);
+                SetCurrentAction(Action.NoSelect);
                 NextState();
+                StartCoroutine(WaitToReady());
                 break;
             case BattleState.Win:
                 NextState();
@@ -113,6 +123,7 @@ public class BattleSystem : MonoBehaviour
     }
     public void FightResultHandler(Action playerAction, Action enemyAction)
     {
+
         switch (playerAction)
         {
             default:
@@ -123,7 +134,7 @@ public class BattleSystem : MonoBehaviour
             case Action.Defence:
                 Defence(enemyAction);
                 break;
-            case Action.Assinate:
+            case Action.Assassinate:
                 Assinate(enemyAction);
                 break;
         }
@@ -140,7 +151,7 @@ public class BattleSystem : MonoBehaviour
             case Action.Defence:
                 AttackNDefence(PlayerCurrentCharacter, EnemyCurrentCharacter);
                 break;
-            case Action.Assinate:
+            case Action.Assassinate:
                 AttackNAssinate(PlayerCurrentCharacter, EnemyCurrentCharacter);
                 break;
             case Action.Surrender:
@@ -160,7 +171,7 @@ public class BattleSystem : MonoBehaviour
             case Action.Defence:
                 DefenceNDefence(EnemyCurrentCharacter, PlayerCurrentCharacter);
                 break;
-            case Action.Assinate:
+            case Action.Assassinate:
                 DefenceNAssinate(PlayerCurrentCharacter, EnemyCurrentCharacter);
                 break;
             case Action.Surrender:
@@ -172,7 +183,7 @@ public class BattleSystem : MonoBehaviour
     public void SetCurrentAction(Action buttonAction)
     {
         currentPlayerAction = buttonAction;
-        if (currentPlayerAction!= Action.NoSelect)
+        if (currentPlayerAction != Action.NoSelect)
         {
             CurrentBattleUI.Confirm.gameObject.SetActive(true);
         }
@@ -192,7 +203,7 @@ public class BattleSystem : MonoBehaviour
             case Action.Defence:
                 DefenceNAssinate(EnemyCurrentCharacter, PlayerCurrentCharacter);
                 break;
-            case Action.Assinate:
+            case Action.Assassinate:
                 AssinateNAssinate(PlayerCurrentCharacter, EnemyCurrentCharacter);
                 break;
             case Action.Surrender:
@@ -206,36 +217,57 @@ public class BattleSystem : MonoBehaviour
             defenceCharacter.CharactersValueDict[CharacterValueType. ÿ] * 2
              - attackCharacter.CharactersValueDict[CharacterValueType.Œ‰];
         defenceCharacter.FightHealthModify(resultValue);
+        CurrentBattleUI.informationUI.AttackNDefence(attackCharacter.CharacterName, defenceCharacter.CharacterName, resultValue);
     }
 
     private void AttackNAttack(Character attackOne, Character attackTwo)
     {
+
         int resultValue =
             attackOne.CharactersValueDict[CharacterValueType.Œ‰]
             - attackTwo.CharactersValueDict[CharacterValueType.Œ‰];
         if (resultValue > 0) attackTwo.FightHealthModify(-resultValue);
         else attackTwo.FightHealthModify(resultValue);
+        CurrentBattleUI.informationUI.AttackNAttack(attackOne.CharacterName, attackTwo.CharacterName, resultValue);
     }
     private void AttackNAssinate(Character attackCharacter, Character assinateCharacter)
     {
-        assinateCharacter.FightHealthModify(-attackCharacter.CharactersValueDict[CharacterValueType.Œ‰] * 2);
-        attackCharacter.FightHealthModify(-assinateCharacter.CharactersValueDict[CharacterValueType.¥Ã]);
+        int attackResult = -attackCharacter.CharactersValueDict[CharacterValueType.Œ‰] * 2;
+        assinateCharacter.FightHealthModify(attackResult);
+        int assassinResult = -assinateCharacter.CharactersValueDict[CharacterValueType.¥Ã];
+        attackCharacter.FightHealthModify(assassinResult);
+        CurrentBattleUI.informationUI.AttackNAssasinate(attackCharacter.CharacterName, assinateCharacter.CharacterName, attackResult, assassinResult);
     }
     private void DefenceNAssinate(Character defenceCharacter, Character assinateCharacter)
     {
         int resultValue =
-            assinateCharacter.CharactersValueDict[CharacterValueType.¥Ã]*2
-            - defenceCharacter.CharactersValueDict[CharacterValueType. ÿ];
+            -assinateCharacter.CharactersValueDict[CharacterValueType.¥Ã];
         defenceCharacter.FightHealthModify(resultValue);
+        CurrentBattleUI.informationUI.DefenceNAssassinate(defenceCharacter.CharacterName, assinateCharacter.CharacterName, resultValue);
     }
     private void DefenceNDefence(Character defenceOne, Character defenceTwo)
     {
         defenceOne.FightHealthModify(1);
         defenceTwo.FightHealthModify(1);
+        CurrentBattleUI.informationUI.DefenceNDefence(defenceOne.CharacterName, defenceTwo.CharacterName);
     }
     private void AssinateNAssinate(Character assinateOne, Character assinateTwo)
     {
-        assinateOne.FightHealthModify(-assinateTwo.CharactersValueDict[CharacterValueType.¥Ã]);
-        assinateTwo.FightHealthModify(-assinateOne.CharactersValueDict[CharacterValueType.¥Ã]);
+        int damageResultA = -assinateTwo.CharactersValueDict[CharacterValueType.¥Ã];
+        assinateOne.FightHealthModify(damageResultA);
+        int damageResultB = -assinateOne.CharactersValueDict[CharacterValueType.¥Ã];
+        assinateTwo.FightHealthModify(damageResultB);
+        CurrentBattleUI.informationUI.
+            AssassinateNAssassinate
+            (
+            assinateOne.CharacterName, assinateTwo.CharacterName
+            , damageResultA, damageResultB
+            );
+    }
+
+    public IEnumerator WaitToReady()
+    {
+        yield return new WaitForSeconds(5);
+        StateAction();
     }
 }

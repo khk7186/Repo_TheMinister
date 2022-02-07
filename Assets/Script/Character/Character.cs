@@ -549,6 +549,7 @@ public class Character : MonoBehaviour, IRound
 
     public void FightHealthModify(int result)
     {
+        Debug.Log(result);
         if (result > 0)
         {
             armor += result;
@@ -563,13 +564,13 @@ public class Character : MonoBehaviour, IRound
                 }
                 else
                 {
-                    health -= (result - armor);
+                    health -= Mathf.Abs(result - armor);
                     armor = 0;
                 }
             }
             else
             {
-                health -= result;
+                health -= Mathf.Abs(result);
             }
         }
     }

@@ -15,8 +15,9 @@ public class BattleUI : MonoBehaviour,IScrollHandler
     public BattleCharacterHeadUI PlayerCurrentCharacter;
     public BattleCharacterHeadUI EnemyCurrentCharacter;
 
-    public Transform InfoBoard;
     public Text ScoreBoard;
+    public BattleInformationUI informationUI;
+    public RectTransform ActionChoosePannel;
 
     public Transform AbilityList;
 
@@ -44,20 +45,7 @@ public class BattleUI : MonoBehaviour,IScrollHandler
         this.battleType = battleType;
         if (PlayerCurrentCharacter == null)
         {
-            SelectCurrentCharacter(PlayerCh1);
-        }
-    }
-    public void SelectCurrentCharacter(BattleCharacterHeadUI target)
-    {
-        if (target.IsPlayer)
-        {
-        }
-        else
-        {
-            characterSwitch(EnemyCh1, target);
-            characterSwitch(EnemyCh2, target);
-            characterSwitch(EnemyCh3, target);
-            enemySideImage.Setup(target.character,battleType);
+            PlayerCurrentCharacter = characterRotateAnimation.Front.GetComponent<BattleCharacterHeadUI>();
         }
     }
     public void characterSwitch(BattleCharacterHeadUI subject, BattleCharacterHeadUI compare)

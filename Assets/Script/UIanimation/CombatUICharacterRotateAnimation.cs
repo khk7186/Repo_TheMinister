@@ -45,7 +45,6 @@ public class CombatUICharacterRotateAnimation : MonoBehaviour
                 {
                     Animating = false;
                 });
-            yield return new WaitForEndOfFrame();
             Free = Front;
             Front = Last;
             Last = Next;
@@ -56,6 +55,7 @@ public class CombatUICharacterRotateAnimation : MonoBehaviour
             Last.GetComponent<UIGroupLayerSorting>().Setup(1);
             FindObjectOfType<BattleSystem>().SetCurrentAction(Action.NoSelect);
         }
+        yield return null;
     }
 
     public void ScrollDown()
@@ -90,7 +90,6 @@ public class CombatUICharacterRotateAnimation : MonoBehaviour
                 {
                     Animating = false;
                 });
-            yield return new WaitForEndOfFrame();
             Free = Front;
             Front = Next;
             Next = Last;
@@ -99,6 +98,7 @@ public class CombatUICharacterRotateAnimation : MonoBehaviour
             Next.GetComponent<UIGroupLayerSorting>().Setup(1);
             Last.GetComponent<UIGroupLayerSorting>().Setup(2);
             FindObjectOfType<BattleSystem>().SetCurrentAction(Action.NoSelect);
+            yield return null;
         }
     }
 
