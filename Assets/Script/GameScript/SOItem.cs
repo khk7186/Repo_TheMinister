@@ -399,9 +399,6 @@ public class SOItem : ScriptableObject
                 ItemName.剑,
                 ItemName.戟,
                 ItemName.弓,
-                ItemName.穿石烈风弓,
-                ItemName.烈火斩云刀,
-                ItemName.紫木雷电枪,
                 ItemName.百胜刀,
                 ItemName.落日神弓,
                 ItemName.擎天枪,
@@ -412,6 +409,40 @@ public class SOItem : ScriptableObject
                 ItemName.峨眉刺,
                 ItemName.浪击连弩,
                 ItemName.暴雨梨花针
+            }
+        },
+        {
+            BuildingType.武器铺, new List<ItemName>()
+            {
+                ItemName.刀,
+                ItemName.枪,
+                ItemName.剑,
+                ItemName.戟,
+                ItemName.弓,
+                ItemName.穿石烈风弓,
+                ItemName.烈火斩云刀,
+                ItemName.紫木雷电枪,
+                ItemName.皇之剑,
+                ItemName.天霸方天戟,
+            }
+        },
+        {
+            BuildingType.万兵阁, new List<ItemName>()
+            {
+                ItemName.刀,
+                ItemName.枪,
+                ItemName.剑,
+                ItemName.戟,
+                ItemName.弓,
+                ItemName.穿石烈风弓,
+                ItemName.烈火斩云刀,
+                ItemName.紫木雷电枪,
+                ItemName.皇之剑,
+                ItemName.天霸方天戟,
+                ItemName.百胜刀,
+                ItemName.落日神弓,
+                ItemName.擎天枪,
+                ItemName.龙源剑,
             }
         },
         {
