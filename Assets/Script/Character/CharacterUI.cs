@@ -26,6 +26,9 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public CharacterInfoUI characterInfoUI;
     private CharacterInfoUI currentCharacterInfoUI;
 
+    public Image FrontRarity;
+    public Image BackRarity;
+
     private PlayerCharactersInventory inventoryCharacters;
     public CardMode cardMode = CardMode.ViewMode;
     public Tag newTag;
@@ -64,13 +67,32 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         string idleSpritePath = ("Art/CharacterSprites/Idle/Idle_" + character.characterArtCode.ToString()).Replace(" ", string.Empty);
         Idle.sprite = Resources.Load<Sprite>(idleSpritePath);
-        Idle.rectTransform.sizeDelta = new Vector2(290f, 435f);
+        Idle.rectTransform.sizeDelta = new Vector2(420f, 630f);
         Name.text = character.CharacterName;
         Health.text = character.health.ToString();
         Loyalty.text = character.loyalty.ToString();
         //TODO:TagSlots
         ModifyValueColor();
         ModifyTags();
+        ModifyCardImage();
+    }
+
+    private void ModifyCardImage()
+    {
+        Rarerity topRarerity = Rarerity.N;
+        var targetDict = character.characterValueRareDict;
+        foreach (CharacterValueType type in targetDict.Keys)
+        {
+            if ((int)targetDict[type] > (int)topRarerity)
+            {
+                topRarerity = targetDict[type];
+            }
+        }
+        Debug.Log(topRarerity);
+        string backPath = ("Art/人物卡/背景贴图/"+topRarerity.ToString()).Replace(" ", string.Empty);
+        string frontPath = ("Art/人物卡/前景贴图/" + topRarerity.ToString()).Replace(" ", string.Empty);
+        BackRarity.sprite = Resources.Load<Sprite>(backPath);
+        FrontRarity.sprite = Resources.Load<Sprite>(frontPath);
     }
     private void ModifyValueColor()
     {

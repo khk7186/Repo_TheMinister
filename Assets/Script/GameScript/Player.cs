@@ -598,8 +598,6 @@ public class Player : MonoBehaviour
         {Tag.嘤嘤狂吠,Rarerity.SSR},
         {Tag.波纹行走,Rarerity.SSR},
         {Tag.象虎之力,Rarerity.SSR},
-        {Tag.窥得天机,Rarerity.SSR},
-        {Tag.百毒不侵,Rarerity.SSR},
         {Tag.大人时代变了,Rarerity.UR},
         {Tag.弈星下凡,Rarerity.UR},
         {Tag.钜子,Rarerity.UR},
@@ -783,7 +781,7 @@ public class Player : MonoBehaviour
     };
     public static Dictionary<Tag, GameObject> TagPrefabDict = new Dictionary<Tag, GameObject> { };
 
-    
+
     private static Dictionary<Rarerity, List<Tag>> FemalePoestTagPool =
         new Dictionary<Rarerity, List<Tag>>
     {

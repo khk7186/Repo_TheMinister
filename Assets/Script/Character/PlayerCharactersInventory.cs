@@ -50,9 +50,4 @@ public class PlayerCharactersInventory : MonoBehaviour
             character.cardMode = mode;
         }
     }
-
-
-
-
-
 }

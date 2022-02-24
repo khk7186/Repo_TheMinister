@@ -32,7 +32,7 @@ public class Map : MonoBehaviour, IObserver
     }
     private void Start()
     {
-
+        
     }
     public void OnNotify(object value, NotificationType notificationType)
     {
@@ -61,11 +61,11 @@ public class Map : MonoBehaviour, IObserver
             time += Time.deltaTime;
             yield return null;
         }
-        if (currentBlock == nextBlockToMove)
-        {
-            PlayerAnimator.SetTrigger("Stop");
-            FindObjectOfType<Dice>().rolling = false;
-        }
+        //if (currentBlock == nextBlockToMove)
+        //{
+        //    PlayerAnimator.SetTrigger("Stop");
+        //    FindObjectOfType<Dice>().rolling = false;
+        //}
     }
 
     public IEnumerator MoveManyStep(int number)
@@ -77,6 +77,8 @@ public class Map : MonoBehaviour, IObserver
             StartCoroutine(MoveAStep());
             yield return new WaitForSeconds(duration);
         }
+        PlayerAnimator.SetTrigger("Stop");
+        FindObjectOfType<Dice>().rolling = false;
         Debug.Log((currentBlock, nextBlockToMove,map.Count));
         SetBuildings();
     }

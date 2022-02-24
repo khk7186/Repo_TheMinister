@@ -64,6 +64,8 @@ public class Building : MonoBehaviour
 
     public List<ItemName> ShopList;
 
+    public int shopMaxSpawn = 4;
+
     [SerializeField] private BuildingUI buildingUI;
     public List<QuestLineAgent> questLineList = new List<QuestLineAgent>();
     private List<HorseRank> horseList;
@@ -217,7 +219,7 @@ public class Building : MonoBehaviour
 
     public void SpawnItemBasedOnType(List<ItemType> inputTypes)
     {
-        int outputAmount = Random.Range(5, 10);
+        int outputAmount = Random.Range(1, shopMaxSpawn);
         List<ItemName> outputItems = new List<ItemName>();
         for (int i = 0; i < outputAmount; i++)
         {
