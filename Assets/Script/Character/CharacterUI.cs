@@ -29,6 +29,8 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public Image FrontRarity;
     public Image BackRarity;
 
+    public Image OnSelectImage;
+
     private PlayerCharactersInventory inventoryCharacters;
     public CardMode cardMode = CardMode.ViewMode;
     public Tag newTag;
@@ -61,6 +63,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     private void Awake()
     {
         inventoryCharacters = FindObjectOfType<PlayerCharactersInventory>();
+        OnSelectImage.gameObject.SetActive(false);
     }
 
     public void UpdateUI()
@@ -88,20 +91,25 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 topRarerity = targetDict[type];
             }
         }
-        Debug.Log(topRarerity);
         string backPath = ("Art/ÈËÎï¿¨/±³¾°ÌùÍ¼/"+topRarerity.ToString()).Replace(" ", string.Empty);
         string frontPath = ("Art/ÈËÎï¿¨/Ç°¾°ÌùÍ¼/" + topRarerity.ToString()).Replace(" ", string.Empty);
         BackRarity.sprite = Resources.Load<Sprite>(backPath);
         FrontRarity.sprite = Resources.Load<Sprite>(frontPath);
+        if (character.OnDuty)
+        {
+            OnSelectImage.gameObject.SetActive(true);
+        }
     }
     private void ModifyValueColor()
     {
-        Wisdom.color = TagUIColorCode[character.characterValueRareDict[CharacterValueType.ÖÇ]];
-        Writing.color = TagUIColorCode[character.characterValueRareDict[CharacterValueType.²Å]];
-        Strategy.color = TagUIColorCode[character.characterValueRareDict[CharacterValueType.Ä±]];
-        Strength.color = TagUIColorCode[character.characterValueRareDict[CharacterValueType.Îä]];
-        Sneak.color = TagUIColorCode[character.characterValueRareDict[CharacterValueType.´Ì]];
-        Defense.color = TagUIColorCode[character.characterValueRareDict[CharacterValueType.ÊØ]];
+        var targetDict = character.characterValueRareDict;
+        string pathTitle = "Art/ÈËÎï¿¨/Áù´óÏî/×ÖÌå±³¾°/";
+        Wisdom.sprite = Resources.Load<Sprite>((pathTitle + targetDict[CharacterValueType.ÖÇ]).Replace(" ", string.Empty));
+        Writing.sprite = Resources.Load<Sprite>((pathTitle + targetDict[CharacterValueType.²Å]).Replace(" ", string.Empty));
+        Strategy.sprite = Resources.Load<Sprite>((pathTitle + targetDict[CharacterValueType.Ä±]).Replace(" ", string.Empty));
+        Strength.sprite = Resources.Load<Sprite>((pathTitle + targetDict[CharacterValueType.Îä]).Replace(" ", string.Empty));
+        Sneak.sprite = Resources.Load<Sprite>((pathTitle + targetDict[CharacterValueType.´Ì]).Replace(" ", string.Empty));
+        Defense.sprite = Resources.Load<Sprite>((pathTitle + targetDict[CharacterValueType.ÊØ]).Replace(" ", string.Empty));
     }
     private void ModifyTags()
     {
