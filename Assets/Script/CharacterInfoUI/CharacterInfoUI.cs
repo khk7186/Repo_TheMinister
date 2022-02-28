@@ -39,6 +39,7 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
             CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.ดฬ]],
             CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.สุ]]
             );
+        Name.text = character.CharacterName;
         SetIdle(character);
         SetValues(character.CharactersValueDict);
         SetTags(character.tagList);
