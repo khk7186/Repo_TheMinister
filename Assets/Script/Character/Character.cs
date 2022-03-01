@@ -7,7 +7,7 @@ using System.Linq;
 public enum Tag
 {
     Null,
-    大人时代变了,
+    南无加特林,
     弈星下凡,
     钜子,
     文武双全,

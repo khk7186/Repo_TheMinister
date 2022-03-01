@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
     private Map map;
     public static Dictionary<Tag, List<int>> TagInfDict = new Dictionary<Tag, List<int>>() {
         {Tag.Null, new List<int>(){0,0,0,0, 0,0}},
-        {Tag.大人时代变了,new List<int>(){0,0,0,12,0,0}},
+        {Tag.南无加特林,new List<int>(){0,0,0,12,0,0}},
         {Tag.弈星下凡,new List<int>(){0,0,12,0,0,0}},
         {Tag.钜子,new List<int>(){4,0,0,-4,12,0}},
         {Tag.文武双全,new List<int>(){6,6,6,6,6,6}},
@@ -380,7 +380,7 @@ public class Player : MonoBehaviour
     }},
         {Rarerity.UR,new List<Tag>()
        {
-        Tag.大人时代变了,
+        Tag.南无加特林,
         Tag.弈星下凡,
         Tag.钜子,
         Tag.文武双全
@@ -598,7 +598,7 @@ public class Player : MonoBehaviour
         {Tag.嘤嘤狂吠,Rarerity.SSR},
         {Tag.波纹行走,Rarerity.SSR},
         {Tag.象虎之力,Rarerity.SSR},
-        {Tag.大人时代变了,Rarerity.UR},
+        {Tag.南无加特林,Rarerity.UR},
         {Tag.弈星下凡,Rarerity.UR},
         {Tag.钜子,Rarerity.UR},
         {Tag.文武双全,Rarerity.UR},
