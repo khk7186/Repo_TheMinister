@@ -32,7 +32,7 @@ public class Map : MonoBehaviour, IObserver
     }
     private void Start()
     {
-        
+
     }
     public void OnNotify(object value, NotificationType notificationType)
     {
@@ -70,7 +70,7 @@ public class Map : MonoBehaviour, IObserver
 
     public IEnumerator MoveManyStep(int number)
     {
-        currentBlock = (currentBlock + number) % (map.Count );
+        currentBlock = (currentBlock + number) % (map.Count);
         for (int i = 0; i < number; i++)
         {
             var targetPosition = map[nextBlockToMove].transform.position;
@@ -79,7 +79,7 @@ public class Map : MonoBehaviour, IObserver
         }
         PlayerAnimator.SetTrigger("Stop");
         FindObjectOfType<Dice>().rolling = false;
-        Debug.Log((currentBlock, nextBlockToMove,map.Count));
+        //Debug.Log((currentBlock, nextBlockToMove,map.Count));
         SetBuildings();
     }
 
