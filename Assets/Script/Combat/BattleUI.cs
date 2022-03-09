@@ -52,8 +52,6 @@ public class BattleUI : MonoBehaviour,IScrollHandler
     {
         
     }
-
-#if UNITY_EDITOR
     private void Start()
     {
     }
@@ -70,5 +68,4 @@ public class BattleUI : MonoBehaviour,IScrollHandler
         }
         PlayerCurrentCharacter = characterRotateAnimation.Front.GetComponent<BattleCharacterHeadUI>();
     }
-#endif
 }

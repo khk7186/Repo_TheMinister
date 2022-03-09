@@ -14,7 +14,7 @@ public class SpawnUI : MonoBehaviour
     }
     public Transform SpawnWithReturn()
     {
-        CurrentTarget = (Transform)PrefabUtility.InstantiatePrefab(ThingToSpawn, GameObject.FindGameObjectWithTag("MainUICanvas").transform);
+        CurrentTarget = Instantiate(ThingToSpawn, GameObject.FindGameObjectWithTag("MainUICanvas").transform);
         return CurrentTarget;
     }
 
