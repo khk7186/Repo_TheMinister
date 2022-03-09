@@ -39,4 +39,5 @@ public class GoBangUI : MonoBehaviour
             output.GetComponent<Image>().sprite = Resources.Load<Sprite>(FolderPathOfTags);
         }
     }
+
 }

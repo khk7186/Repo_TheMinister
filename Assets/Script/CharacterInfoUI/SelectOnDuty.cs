@@ -10,7 +10,7 @@ public static class SelectOnDuty
         bool CheckResult = GetOndutyAll().Count < 6;
         if (CheckResult == true)
         {
-            character.OnDuty = true;
+            character.OnCombatDuty = true;
         }
         else
         {
@@ -24,7 +24,7 @@ public static class SelectOnDuty
         List<Character> targetList = new List<Character>();
         foreach (Character character in characterList)
         {
-            if (character.OnDuty == true)
+            if (character.OnCombatDuty == true)
             {
                 targetList.Add(character);
             }

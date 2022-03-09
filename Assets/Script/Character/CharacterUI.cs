@@ -29,7 +29,9 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public Image FrontRarity;
     public Image BackRarity;
 
-    public Image OnSelectImage;
+    public Image OnCombatImage;
+    public Image OnDebateImage;
+    public Image OnGobangImage;
 
     private PlayerCharactersInventory inventoryCharacters;
     public CardMode cardMode = CardMode.ViewMode;
@@ -63,7 +65,9 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     private void Awake()
     {
         inventoryCharacters = FindObjectOfType<PlayerCharactersInventory>();
-        OnSelectImage.gameObject.SetActive(false);
+        OnCombatImage.gameObject.SetActive(false);
+        OnDebateImage.gameObject.SetActive(false);
+        OnGobangImage.gameObject.SetActive(false);
     }
 
     public void UpdateUI()
@@ -74,7 +78,6 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         Name.text = character.CharacterName;
         Health.text = character.health.ToString();
         Loyalty.text = character.loyalty.ToString();
-        //TODO:TagSlots
         ModifyValueColor();
         ModifyTags();
         ModifyCardImage();
@@ -95,9 +98,17 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         string frontPath = ("Art/ÈËÎï¿¨/Ç°¾°ÌùÍ¼/" + topRarerity.ToString()).Replace(" ", string.Empty);
         BackRarity.sprite = Resources.Load<Sprite>(backPath);
         FrontRarity.sprite = Resources.Load<Sprite>(frontPath);
-        if (character.OnDuty)
+        if (character.OnCombatDuty)
         {
-            OnSelectImage.gameObject.SetActive(true);
+            OnCombatImage.gameObject.SetActive(true);
+        }
+        if (character.OnDebateDuty)
+        {
+            OnDebateImage.gameObject.SetActive(true);
+        }
+        if (character.OnGobangDuty)
+        {
+            OnGobangImage.gameObject.SetActive(true);
         }
     }
     private void ModifyValueColor()
@@ -192,8 +203,8 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     private void ChangeDutyState()
     {
         
-        character.OnDuty = false;
-        TargetCharacter.OnDuty = true;
+        character.OnCombatDuty = false;
+        TargetCharacter.OnCombatDuty = true;
         PannelTopTransform.GetComponent<RightClickToClose>().RightClickEvent();
     }
 

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class AbilityButton : MonoBehaviour
+public class AbilityButton : MonoBehaviour, IPointerClickHandler
 {
     public Tag tag = Tag.Null;
     public void AddAbilityToNextPlacement()
@@ -11,13 +12,27 @@ public class AbilityButton : MonoBehaviour
         if (GoBangMethod.TagToMethodEffect.ContainsKey(tag))
         {
             ArrayList AbilityInfo = GoBangMethod.TagToMethodEffect[tag];
-            game.PlayerMethod = (GoBangMethod)AbilityInfo[0];
-            game.playerEffect = (int)AbilityInfo[1];
+            var thisMethod = (GoBangMethod)AbilityInfo[0];
+            if (game.PlayerMethod != null && thisMethod == game.PlayerMethod)
+            {
+                CancelAbilityToNextPlacement();
+            }
+            else
+            {
+                game.PlayerMethod = thisMethod;
+                game.playerEffect = (int)AbilityInfo[1];
+            }
         }
     }
+
     public void CancelAbilityToNextPlacement()
     {
         var game = FindObjectOfType<GoBangMainLoop>();
         game.PlayerMethod = null;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        AddAbilityToNextPlacement();
     }
 }

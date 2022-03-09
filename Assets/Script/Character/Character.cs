@@ -306,7 +306,9 @@ public class Character : MonoBehaviour, IRound
 
     #region View
     public HireStage hireStage = HireStage.Never;
-    public bool OnDuty = false;
+    public bool OnCombatDuty = false;
+    public bool OnDebateDuty = false;
+    public bool OnGobangDuty = false;
     #endregion
     private void Awake()
     {

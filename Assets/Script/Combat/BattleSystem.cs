@@ -62,10 +62,6 @@ public class BattleSystem : MonoBehaviour
                 break;
         }
     }
-    private void Prepare()
-    {
-
-    }
     private IEnumerator StartBattle()
     {
         while (CurrentBattleState != BattleState.End)

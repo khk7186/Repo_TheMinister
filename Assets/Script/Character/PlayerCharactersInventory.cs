@@ -13,12 +13,27 @@ public enum CardMode
     UpgradeSelectMode,
     OndutySwitchMode
 }
+
+public enum SelectType
+{
+    Combat,
+    Debate,
+    Gobang
+}
 public class PlayerCharactersInventory : MonoBehaviour
 {
     public CharacterSlotForQuest currentSlot;
     public bool selectMode => currentSlot;
     public List<CharacterUI> characterUIList = new List<CharacterUI>();
     public Transform Storage;
+
+    public Dictionary<SelectType, List<Character>> SelectCharacters =
+        new Dictionary<SelectType, List<Character>>()
+        {
+            {SelectType.Combat,new List<Character>()},
+            {SelectType.Debate,new List<Character>()},
+            {SelectType.Gobang,new List<Character>()}
+        };
 
     public Transform OndutySlot;
     public void RightClickSelectMode()
@@ -30,9 +45,12 @@ public class PlayerCharactersInventory : MonoBehaviour
         List<Character> OndutyCards = new List<Character>();
         foreach (Character character in GameObject.FindGameObjectWithTag("PlayerCharacterInventory").GetComponentsInChildren<Character>())
         {
-            if (character.OnDuty)
+            if (character.OnCombatDuty || character.OnDebateDuty || character.OnGobangDuty)
             {
                 character.characterCardInvUI = OndutySlot;
+                if (character.OnCombatDuty) SelectCharacters[SelectType.Combat].Add(character);
+                else if (character.OnDebateDuty) SelectCharacters[SelectType.Debate].Add(character);
+                else if (character.OnGobangDuty) SelectCharacters[SelectType.Gobang].Add(character);
             }
             else
             {

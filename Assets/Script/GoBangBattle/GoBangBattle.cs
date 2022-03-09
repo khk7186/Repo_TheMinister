@@ -44,8 +44,7 @@ public class GoBangBattle : MonoBehaviour
                 break;
             case BattleState.Start:
                 DontDestroyOnLoad(gameObject); 
-                NextState();
-                SceneManager.LoadScene(3);
+                SceneManager.LoadScene(2);
                 break;
             case BattleState.Prepare:
                 if (currentGoBang == null)
