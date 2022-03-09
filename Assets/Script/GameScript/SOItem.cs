@@ -174,12 +174,11 @@ public class SOItem : ScriptableObject
                 ItemName.伤寒杂病论,
                 ItemName.官宸书,
                 ItemName.洗冤录,
-                ItemName.孝经暂,
+                ItemName.孝经,
                 ItemName.马经,
                 ItemName.药材大全,
                 ItemName.演员的自我修养,
-                ItemName.汤头歌诀,
-                ItemName.官宸书,
+                ItemName.汤头歌诀
 
             }
         },
@@ -251,7 +250,6 @@ public class SOItem : ScriptableObject
                 ItemName.刻刀,
                 ItemName.绣花针,
                 ItemName.文化沙漠,
-                ItemName.御马官印,
                 ItemName.舒服的椅子
             }
         },
@@ -829,104 +827,321 @@ public class SOItem : ScriptableObject
         {
             BuildingType.珠宝店, new List<ItemName>()
             {
-
+                ItemName.有破损的黄金,
+                ItemName.缺口的宝石,
+                ItemName.零落的宝石,
+                ItemName.祖母绿,
+                ItemName.蛋白石,
+                ItemName.紫水晶,
+                ItemName.红宝石,
+                ItemName.金绿宝石,
+                ItemName.木佐绿,
+                ItemName.鸽血红
             }
         },
         {
             BuildingType.商行, new List<ItemName>()
             {
+                ItemName.有破损的黄金,
+                ItemName.缺口的宝石,
+                ItemName.零落的宝石,
+                ItemName.祖母绿,
+                ItemName.蛋白石,
+                ItemName.紫水晶,
+                ItemName.红宝石
+                
             }
         },
         {
             BuildingType.西域珍品, new List<ItemName>()
             {
+                ItemName.有破损的黄金,
+                ItemName.缺口的宝石,
+                ItemName.零落的宝石,
+                ItemName.祖母绿,
+                ItemName.蛋白石,
+                ItemName.紫水晶,
+                ItemName.红宝石,
+                ItemName.金绿宝石,
+                ItemName.木佐绿,
+                ItemName.鸽血红,
+                ItemName.钻石
             }
         },
         {
             BuildingType.胭脂铺, new List<ItemName>()
             {
+                ItemName.唇纸,
+                ItemName.胭脂
             }
         },
         {
             BuildingType.万香阁, new List<ItemName>()
             {
+                ItemName.唇纸,
+                ItemName.胭脂
             }
         },
         {
             BuildingType.马厩, new List<ItemName>()
             {
+                ItemName.肥马,
+                ItemName.短尾马,
+                ItemName.长脚马
             }
         },
         {
             BuildingType.御马场, new List<ItemName>()
             {
+                ItemName.肥马,
+                ItemName.短尾马,
+                ItemName.长脚马,
+                ItemName.凉州马,
+                ItemName.蒙古马,
+                ItemName.大宛马,
+                ItemName.活泼的快马,
+                ItemName.亮云白龙驹,
+                ItemName.撕风赤兔马,
+
             }
         },
         {
             BuildingType.天马阁, new List<ItemName>()
             {
+                ItemName.肥马,
+                ItemName.短尾马,
+                ItemName.长脚马,
+                ItemName.凉州马,
+                ItemName.蒙古马,
+                ItemName.大宛马,
+                ItemName.活泼的快马,
+                ItemName.亮云白龙驹,
+                ItemName.撕风赤兔马,
+                ItemName.龙马
             }
         },
         {
             BuildingType.奇兽堂, new List<ItemName>()
             {
+                ItemName.雕,
+                ItemName.吵闹的鹦鹉,
+                ItemName.老虎,
+                ItemName.狼,
+                ItemName.堕云虎,
+                ItemName.弯月狼
+
             }
         },
         {
             BuildingType.百兽园, new List<ItemName>()
             {
+                ItemName.雕,
+                ItemName.吵闹的鹦鹉,
+                ItemName.老虎,
+                ItemName.狼,
+                ItemName.堕云虎,
+                ItemName.弯月狼,
+                ItemName.大汗之鹰,
+                ItemName.象虎
             }
         },
         {
             BuildingType.酒馆, new List<ItemName>()
             {
+                ItemName.清炒豆芽,
+                ItemName.拍黄瓜,
+                ItemName.蛋炒饭,
+                ItemName.清蒸白萝卜,
+                ItemName.水酒,
+                ItemName.银条酒,
+                ItemName.杏仁酒,
+                ItemName.芦酒,
+                ItemName.羊酒,
+                ItemName.黄酒,
+                ItemName.青酒,
+                ItemName.五香粉,
+                ItemName.女儿红,
+                ItemName.杜康酒,
+                ItemName.竹叶青,
+                ItemName.木须肉,
+                ItemName.蒜薹炒肉,
+                ItemName.清炒菜心,
+                ItemName.红烧茄子,
+                ItemName.酸菜粉条,
+                ItemName.木须柿子
             }
         },
         {
             BuildingType.酒店, new List<ItemName>()
             {
+                ItemName.清炒豆芽,
+                ItemName.拍黄瓜,
+                ItemName.蛋炒饭,
+                ItemName.清蒸白萝卜,
+                ItemName.水酒,
+                ItemName.银条酒,
+                ItemName.杏仁酒,
+                ItemName.芦酒,
+                ItemName.羊酒,
+                ItemName.黄酒,
+                ItemName.青酒,
+                ItemName.五香粉,
+                ItemName.女儿红,
+                ItemName.杜康酒,
+                ItemName.竹叶青,
+                ItemName.木须肉,
+                ItemName.蒜薹炒肉,
+                ItemName.清炒菜心,
+                ItemName.红烧茄子,
+                ItemName.酸菜粉条,
+                ItemName.木须柿子,
+                ItemName.八宝野鸭,
+                ItemName.龙井竹荪,
+                ItemName.高汤白菜,
+                ItemName.美梦酒,
+                ItemName.三味酒
+
+
+
             }
         },
         {
             BuildingType.酒楼, new List<ItemName>()
             {
+                ItemName.清炒豆芽,
+                ItemName.拍黄瓜,
+                ItemName.蛋炒饭,
+                ItemName.清蒸白萝卜,
+                ItemName.水酒,
+                ItemName.银条酒,
+                ItemName.杏仁酒,
+                ItemName.芦酒,
+                ItemName.羊酒,
+                ItemName.黄酒,
+                ItemName.青酒,
+                ItemName.五香粉,
+                ItemName.女儿红,
+                ItemName.杜康酒,
+                ItemName.竹叶青,
+                ItemName.木须肉,
+                ItemName.蒜薹炒肉,
+                ItemName.清炒菜心,
+                ItemName.红烧茄子,
+                ItemName.酸菜粉条,
+                ItemName.木须柿子,
+                ItemName.八宝野鸭,
+                ItemName.龙井竹荪,
+                ItemName.高汤白菜,
+                ItemName.美梦酒,
+                ItemName.三味酒,
+                ItemName.仙人醉
             }
         },
         {
             BuildingType.馆驿, new List<ItemName>()
             {
+                ItemName.清炒豆芽,
+                ItemName.拍黄瓜,
+                ItemName.蛋炒饭,
+                ItemName.清蒸白萝卜,
+                ItemName.水酒,
+                ItemName.银条酒,
+                ItemName.杏仁酒,
+                ItemName.芦酒,
+                ItemName.羊酒,
+                ItemName.黄酒,
+                ItemName.青酒,
+                ItemName.五香粉,
+                ItemName.女儿红,
+                ItemName.杜康酒,
+                ItemName.竹叶青,
+                ItemName.木须肉,
+                ItemName.蒜薹炒肉,
+                ItemName.清炒菜心,
+                ItemName.红烧茄子,
+                ItemName.酸菜粉条,
+                ItemName.木须柿子,
+                ItemName.八宝野鸭,
+                ItemName.龙井竹荪,
+                ItemName.高汤白菜,
             }
         },
         {
             BuildingType.客栈, new List<ItemName>()
             {
+                ItemName.清炒豆芽,
+                ItemName.拍黄瓜,
+                ItemName.蛋炒饭,
+                ItemName.清蒸白萝卜,
+                ItemName.水酒,
+                ItemName.银条酒,
+                ItemName.杏仁酒,
+                ItemName.芦酒,
+                ItemName.羊酒,
+                ItemName.黄酒,
+                ItemName.青酒,
+                ItemName.五香粉,
+                ItemName.女儿红,
+                ItemName.杜康酒,
+                ItemName.竹叶青,
+                ItemName.木须肉,
+                ItemName.蒜薹炒肉,
+                ItemName.清炒菜心,
+                ItemName.红烧茄子,
+                ItemName.酸菜粉条,
+                ItemName.木须柿子,
+                ItemName.八宝野鸭,
+                ItemName.龙井竹荪,
+                ItemName.高汤白菜,
             }
         },
         {
             BuildingType.丹房, new List<ItemName>()
             {
-                ItemName.奉子丹,
-                ItemName.金疮药,
-                ItemName.沸腾散,
-                ItemName.龙虎丹,
-                ItemName.洗髓丹,
-                ItemName.止血膏,
+                ItemName.过山龙,
+                ItemName.当归,
+                ItemName.人参,
+                ItemName.轻粉,
+                ItemName.三七,
+                ItemName.黄精,
+                ItemName.血风藤,
+                ItemName.罗汉果,
+                ItemName.黄芪,
+                ItemName.八角莲,
+                ItemName.乌桕子,
+                ItemName.何首乌,
+                ItemName.麝香,
+                ItemName.红花,
+                ItemName.羊乳,
+                ItemName.陈皮,
+                ItemName.谷芽,
+                ItemName.良姜,
+                ItemName.沉香
 
             }
         },
         {
             BuildingType.仙鼎台, new List<ItemName>()
             {
-                ItemName.奉子丹,
-                ItemName.金疮药,
-                ItemName.长生不老药,
-                ItemName.十全大补丸,
-                ItemName.沸腾散,
-                ItemName.龙虎丹,
-                ItemName.洗髓丹,
-                ItemName.止血膏,
-                ItemName.阴阳玄龙丹,
-                ItemName.天机造化丹
+                ItemName.过山龙,
+                ItemName.当归,
+                ItemName.人参,
+                ItemName.轻粉,
+                ItemName.三七,
+                ItemName.黄精,
+                ItemName.血风藤,
+                ItemName.罗汉果,
+                ItemName.黄芪,
+                ItemName.八角莲,
+                ItemName.乌桕子,
+                ItemName.何首乌,
+                ItemName.麝香,
+                ItemName.红花,
+                ItemName.羊乳,
+                ItemName.陈皮,
+                ItemName.谷芽,
+                ItemName.良姜,
+                ItemName.沉香
             }
         },
         {
@@ -942,26 +1157,104 @@ public class SOItem : ScriptableObject
         {
             BuildingType.杂货铺, new List<ItemName>()
             {
+                ItemName.糖,
+                ItemName.铁矿,        
+                ItemName.布匹,
+                ItemName.木头,
+                ItemName.皮革,
+                ItemName.铆钉,
+                ItemName.硬木,
+                ItemName.油,
+                ItemName.绳子,
+                ItemName.酱油,
+                ItemName.醋,
+                ItemName.盐,
+                ItemName.咖啡,
+                ItemName.毛笔,
+                ItemName.拂尘,
+                ItemName.佛珠,
+                ItemName.杂技,
+                ItemName.剪刀,
+                ItemName.锤子,
+                ItemName.刻刀,
+                ItemName.绣花针,
+                ItemName.舒服的椅子
             }
         },
         {
             BuildingType.百货店, new List<ItemName>()
             {
+                ItemName.咖啡,
+                ItemName.毛笔,
+                ItemName.拂尘,
+                ItemName.佛珠,
+                ItemName.杂技,
+                ItemName.剪刀,
+                ItemName.锤子,
+                ItemName.刻刀,
+                ItemName.绣花针,
+                ItemName.舒服的椅子,
             }
         },
         {
             BuildingType.万仙楼, new List<ItemName>()
             {
+                ItemName.阴阳八卦盘,
+                ItemName.浑天仪,
+                ItemName.咖啡,
+                ItemName.毛笔,
+                ItemName.拂尘,
+                ItemName.佛珠,
+                ItemName.毒奶瓶,
+                ItemName.杂技,
+                ItemName.剪刀,
+                ItemName.锤子,
+                ItemName.刻刀,
+                ItemName.绣花针,
+                ItemName.文化沙漠,
+                ItemName.舒服的椅子,
             }
         },
         {
             BuildingType.当铺, new List<ItemName>()
             {
+                ItemName.阴阳八卦盘,
+                ItemName.浑天仪,
+                ItemName.咖啡,
+                ItemName.毛笔,
+                ItemName.拂尘,
+                ItemName.佛珠,
+                ItemName.毒奶瓶,
+                ItemName.杂技,
+                ItemName.剪刀,
+                ItemName.锤子,
+                ItemName.刻刀,
+                ItemName.绣花针,
+                ItemName.文化沙漠,
+                ItemName.舒服的椅子
             }
         },
         {
             BuildingType.拍卖行, new List<ItemName>()
             {
+                ItemName.阴阳八卦盘,
+                ItemName.浑天仪,
+                ItemName.咖啡,
+                ItemName.毛笔,
+                ItemName.拂尘,
+                ItemName.佛珠,
+                ItemName.御马官印,
+                ItemName.毒奶瓶,
+                ItemName.文官状,
+                ItemName.武官状,
+                ItemName.杂技,
+                ItemName.剪刀,
+                ItemName.锤子,
+                ItemName.刻刀,
+                ItemName.绣花针,
+                ItemName.文化沙漠,
+                ItemName.舒服的椅子
+
             }
         },
         {
@@ -982,11 +1275,53 @@ public class SOItem : ScriptableObject
         {
             BuildingType.戏院, new List<ItemName>()
             {
+                ItemName.山海经,
+                ItemName.机关残卷,
+                ItemName.蛤蟆功秘籍,
+                ItemName.东洋词典,
+                ItemName.西洋词典,
+                ItemName.杂技,
+                ItemName.混元功,
+                ItemName.九阳真经,
+                ItemName.九阴真经,
+                ItemName.毒经,
+                ItemName.唯物论,
+                ItemName.棋诀,
+                ItemName.货殖列传,
+                ItemName.伤寒杂病论,
+                ItemName.官宸书,
+                ItemName.洗冤录,
+                ItemName.孝经,
+                ItemName.马经,
+                ItemName.药材大全,
+                ItemName.演员的自我修养,
+                ItemName.汤头歌诀,
             }
         },
         {
             BuildingType.鼓瑟楼, new List<ItemName>()
             {
+                ItemName.山海经,
+                ItemName.机关残卷,
+                ItemName.蛤蟆功秘籍,
+                ItemName.东洋词典,
+                ItemName.西洋词典,
+                ItemName.杂技,
+                ItemName.混元功,
+                ItemName.九阳真经,
+                ItemName.九阴真经,
+                ItemName.毒经,
+                ItemName.唯物论,
+                ItemName.棋诀,
+                ItemName.货殖列传,
+                ItemName.伤寒杂病论,
+                ItemName.官宸书,
+                ItemName.洗冤录,
+                ItemName.孝经,
+                ItemName.马经,
+                ItemName.药材大全,
+                ItemName.演员的自我修养,
+                ItemName.汤头歌诀,
             }
         }
     };

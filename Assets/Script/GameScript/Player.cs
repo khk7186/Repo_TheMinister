@@ -764,7 +764,7 @@ public class Player : MonoBehaviour
         {ItemName.洗冤录,Tag.讼师},
         {ItemName.咖啡,Tag.夜不能寐},
         {ItemName.剪刀,Tag.阉人},
-        {ItemName.孝经暂,Tag.不孝子},
+        {ItemName.孝经,Tag.不孝子},
         {ItemName.雕,Tag.雕},
         {ItemName.毛笔,Tag.儒生},
         {ItemName.拂尘,Tag.道士},
