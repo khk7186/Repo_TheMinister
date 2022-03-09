@@ -143,6 +143,7 @@ public class Building : MonoBehaviour
                 target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
                 break;
             case BuildingType.纺织铺:
+            case BuildingType.长安织造:
                 target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
                 SetupCraft();
                 break;
@@ -208,6 +209,7 @@ public class Building : MonoBehaviour
                 CraftingList = SOItem.BuildingCraftDict[buildingType];
                 return new List<ItemType>() { };
             case BuildingType.纺织铺:
+            case BuildingType.长安织造:
                 CraftingList = SOItem.BuildingCraftDict[buildingType];
                 return new List<ItemType>() { ItemType.服装 };
             case BuildingType.戏馆:

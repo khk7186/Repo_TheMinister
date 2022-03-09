@@ -134,12 +134,12 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        GetComponent<RectTransform>().localScale = new Vector3(1.15f, 1.15f, 1f);
+        GetComponent<RectTransform>().localScale = new Vector3(0.9f, 0.9f, 1f);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        GetComponent<RectTransform>().localScale = new Vector3(1f, 1f, 1f);
+        GetComponent<RectTransform>().localScale = new Vector3(0.8f, 0.8f, 1f);
     }
 
     public void OnPointerClick(PointerEventData eventData)

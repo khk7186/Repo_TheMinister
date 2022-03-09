@@ -72,7 +72,7 @@ public class MeetPeopleCharacterCardUI : MonoBehaviour, IPointerClickHandler, IP
     public void SelectCharacterInfo()
     {
         CharacterInfoUI currentCharacterInfoUI;
-        currentCharacterInfoUI = Instantiate(characterInfo, FindObjectOfType<Canvas>().transform);
+        currentCharacterInfoUI = Instantiate(characterInfo, MainCanvas.FindMainCanvas());
         currentCharacterInfoUI.SetUp(character);
     }
 }
