@@ -398,17 +398,8 @@ public class SOItem : ScriptableObject
                 ItemName.枪,
                 ItemName.剑,
                 ItemName.戟,
-                ItemName.弓,
-                ItemName.百胜刀,
-                ItemName.落日神弓,
-                ItemName.擎天枪,
-                ItemName.龙源剑,
-                ItemName.金钱镖,
-                ItemName.袖炮,
-                ItemName.血滴子,
-                ItemName.峨眉刺,
-                ItemName.浪击连弩,
-                ItemName.暴雨梨花针
+                ItemName.弓
+
             }
         },
         {
@@ -446,6 +437,36 @@ public class SOItem : ScriptableObject
             }
         },
         {
+            BuildingType.机关阁, new List<ItemName>()
+            {
+                ItemName.背剑,
+                ItemName.小刀,
+                ItemName.袖箭,
+                ItemName.峨眉刺,
+                ItemName.血滴子,
+                ItemName.袖炮,
+                ItemName.金钱镖,
+
+            }
+            
+        },
+        {
+            BuildingType.武侯楼, new List<ItemName>()
+            {
+                ItemName.背剑,
+                ItemName.小刀,
+                ItemName.袖箭,
+                ItemName.峨眉刺,
+                ItemName.血滴子,
+                ItemName.袖炮,
+                ItemName.金钱镖,
+                ItemName.浪击连弩,
+                ItemName.暴雨梨花针
+
+            }
+
+        },
+        {
             BuildingType.药铺, new List<ItemName>()
             {
                 ItemName.奉子丹,
@@ -458,28 +479,514 @@ public class SOItem : ScriptableObject
                 ItemName.止血膏,
                 ItemName.阴阳玄龙丹,
                 ItemName.天机造化丹
-            }    
+            }
         },
         {
             BuildingType.纺织铺, new List<ItemName>()
             {
-                ItemName.皮甲,
-                ItemName.铁甲,
+                ItemName.蓑衣,
+                ItemName.羽衣,
+                ItemName.布衣,
+                ItemName.丝绸,
+                ItemName.长袖装,
+
+            }
+        },
+        {
+            BuildingType.梭织坊, new List<ItemName>()
+            {
+                ItemName.蓑衣,
+                ItemName.羽衣,
+                ItemName.布衣,
+                ItemName.丝绸,
+                ItemName.长袖装,
+                ItemName.云纹袍,
+                ItemName.朱户衣,
+
+            }
+        },
+        {
+            BuildingType.长安织造, new List<ItemName>()
+            {
+                ItemName.蓑衣,
+                ItemName.羽衣,
+                ItemName.布衣,
+                ItemName.丝绸,
+                ItemName.长袖装,
                 ItemName.黄金甲,
                 ItemName.云纹袍,
                 ItemName.朱户衣,
+            }
+        },
+        {
+            BuildingType.服装店, new List<ItemName>()
+            {
+                ItemName.蓑衣,
+                ItemName.皮甲,
+                ItemName.铁甲,
+                ItemName.羽衣,
+                ItemName.布衣,
+                ItemName.丝绸,
+                ItemName.长袖装,
+                ItemName.锦绣华服
+            }
+        },
+        {
+            BuildingType.玉服华裳, new List<ItemName>()
+            {
+                ItemName.蓑衣,
+                ItemName.皮甲,
+                ItemName.铁甲,
+                ItemName.羽衣,
+                ItemName.布衣,
+                ItemName.丝绸,
+                ItemName.长袖装,
                 ItemName.锦绣华服
             }
         },
         {
             BuildingType.珠宝店, new List<ItemName>()
             {
+            }
+        },
+        {
+            BuildingType.商行, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.西域珍品, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.胭脂铺, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.万香阁, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.马厩, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.御马场, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.天马阁, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.奇兽堂, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.百兽园, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.酒馆, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.酒店, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.酒楼, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.馆驿, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.客栈, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.丹房, new List<ItemName>()
+            {
+                ItemName.奉子丹,
+                ItemName.金疮药,
+                ItemName.沸腾散,
+                ItemName.龙虎丹,
+                ItemName.洗髓丹,
+                ItemName.止血膏,
+
+            }
+        },
+        {
+            BuildingType.仙鼎台, new List<ItemName>()
+            {
+                ItemName.奉子丹,
+                ItemName.金疮药,
+                ItemName.长生不老药,
+                ItemName.十全大补丸,
+                ItemName.沸腾散,
+                ItemName.龙虎丹,
+                ItemName.洗髓丹,
+                ItemName.止血膏,
+                ItemName.阴阳玄龙丹,
+                ItemName.天机造化丹
+            }
+        },
+        {
+            BuildingType.医院, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.研究院, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.杂货铺, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.百货店, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.万仙楼, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.当铺, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.拍卖行, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.戏馆, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.青楼, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.红人馆, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.戏院, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.鼓瑟楼, new List<ItemName>()
+            {
+            }
+        }
+    };
+    public static Dictionary<BuildingType, List<ItemName>> BuildingVendorDict = new Dictionary<BuildingType, List<ItemName>>()
+    {
+        {
+            BuildingType.铁匠铺, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.武器铺, new List<ItemName>()
+            {
+                ItemName.刀,
+                ItemName.枪,
+                ItemName.剑,
+                ItemName.戟,
+                ItemName.弓
+
+            }
+        },
+        {
+            BuildingType.万兵阁, new List<ItemName>()
+            {
+                ItemName.刀,
+                ItemName.枪,
+                ItemName.剑,
+                ItemName.戟,
+                ItemName.弓
+
+            }
+        },
+        {
+            BuildingType.机关阁, new List<ItemName>()
+            {
+                ItemName.飞蝗石,
+                ItemName.树叶,
+
+            }
+
+        },
+        {
+            BuildingType.武侯楼, new List<ItemName>()
+            {
+                ItemName.背剑,
+                ItemName.小刀,
+                ItemName.袖箭,
+                ItemName.峨眉刺,
+
+
+            }
+
+        },
+        {
+            BuildingType.药铺, new List<ItemName>()
+            {
+                ItemName.过山龙,
+                ItemName.当归,
+                ItemName.人参,
+                ItemName.轻粉,
+                ItemName.三七,
+                ItemName.黄精,
+                ItemName.血风藤,
+                ItemName.罗汉果,
+                ItemName.黄芪,
+                ItemName.八角莲,
+                ItemName.乌桕子,
+                ItemName.何首乌,
+                ItemName.麝香,
+                ItemName.红花,
+                ItemName.羊乳,
+                ItemName.陈皮,
+                ItemName.谷芽,
+                ItemName.良姜,
+                ItemName.沉香
+
+            }
+        },
+        {
+            BuildingType.纺织铺, new List<ItemName>()
+            {
+
+
+            }
+        },
+        {
+            BuildingType.梭织坊, new List<ItemName>()
+            {
+                ItemName.蓑衣,
+                ItemName.羽衣,
+                ItemName.布衣,
+                ItemName.丝绸
+
+
+            }
+        },
+        {
+            BuildingType.长安织造, new List<ItemName>()
+            {
+                ItemName.蓑衣,
+                ItemName.羽衣,
+                ItemName.布衣,
+                ItemName.丝绸
+
+            }
+        },
+        {
+            BuildingType.服装店, new List<ItemName>()
+            {
                 ItemName.皮甲,
                 ItemName.铁甲,
-                ItemName.黄金甲,
-                ItemName.云纹袍,
-                ItemName.朱户衣,
-                ItemName.锦绣华服
+
+            }
+        },
+        {
+            BuildingType.玉服华裳, new List<ItemName>()
+            {
+                ItemName.皮甲,
+                ItemName.铁甲
+
+            }
+        },
+        {
+            BuildingType.珠宝店, new List<ItemName>()
+            {
+
+            }
+        },
+        {
+            BuildingType.商行, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.西域珍品, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.胭脂铺, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.万香阁, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.马厩, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.御马场, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.天马阁, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.奇兽堂, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.百兽园, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.酒馆, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.酒店, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.酒楼, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.馆驿, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.客栈, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.丹房, new List<ItemName>()
+            {
+                ItemName.奉子丹,
+                ItemName.金疮药,
+                ItemName.沸腾散,
+                ItemName.龙虎丹,
+                ItemName.洗髓丹,
+                ItemName.止血膏,
+
+            }
+        },
+        {
+            BuildingType.仙鼎台, new List<ItemName>()
+            {
+                ItemName.奉子丹,
+                ItemName.金疮药,
+                ItemName.长生不老药,
+                ItemName.十全大补丸,
+                ItemName.沸腾散,
+                ItemName.龙虎丹,
+                ItemName.洗髓丹,
+                ItemName.止血膏,
+                ItemName.阴阳玄龙丹,
+                ItemName.天机造化丹
+            }
+        },
+        {
+            BuildingType.医院, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.研究院, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.杂货铺, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.百货店, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.万仙楼, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.当铺, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.拍卖行, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.戏馆, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.青楼, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.红人馆, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.戏院, new List<ItemName>()
+            {
+            }
+        },
+        {
+            BuildingType.鼓瑟楼, new List<ItemName>()
+            {
             }
         }
     };
