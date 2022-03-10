@@ -29,7 +29,6 @@ public class CraftingUI : MonoBehaviour
         CurrentItem = item;
         var target_a = CurrentCraftItemTransform.GetComponent<CraftingTargetUI>();
         target_a.SetUp(item);
-
         TransformEx.Clear(CraftingMaterialTransform);
         var target_b = CraftingMaterialTransform.GetComponent<CraftingMaterialListUI>();
         var targetList = SOItem.MergeItemDict[item];

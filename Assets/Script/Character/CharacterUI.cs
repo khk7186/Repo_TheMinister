@@ -135,11 +135,15 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public void OnPointerEnter(PointerEventData eventData)
     {
         GetComponent<RectTransform>().localScale = new Vector3(0.9f, 0.9f, 1f);
+        var origin = GetComponent<RectTransform>().localPosition;
+        GetComponent<RectTransform>().localPosition = new Vector2(origin.x - 10, origin.y-15);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         GetComponent<RectTransform>().localScale = new Vector3(0.8f, 0.8f, 1f);
+        var origin = GetComponent<RectTransform>().localPosition;
+        GetComponent<RectTransform>().localPosition = new Vector2(origin.x + 10, origin.y + 15);
     }
 
     public void OnPointerClick(PointerEventData eventData)
