@@ -11,7 +11,7 @@ public class CombatEvent : MonoBehaviour
         if (!IsPointerOver.IsPointerOverUIObject())
         {
             var target = Instantiate(battleSystemPref);
-            target.PlayerCharacters = SelectOnDuty.GetOndutyAll();
+            target.PlayerCharacters = SelectOnDuty.GetOndutyAll(OndutyType.Combat);
             target.EnemyCharacters = EnemyTest();
             target.battleAI = AITest();
             target.StateAction();

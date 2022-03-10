@@ -11,29 +11,17 @@ public enum CardMode
     QuestSelectMode,
     ItemSelectMode,
     UpgradeSelectMode,
-    OndutySwitchMode
+    OnCombatSwitchMode,
+    OnDebateSwitchMode,
+    OnGobangSwitchMode,
 }
 
-public enum SelectType
-{
-    Combat,
-    Debate,
-    Gobang
-}
 public class PlayerCharactersInventory : MonoBehaviour
 {
     public CharacterSlotForQuest currentSlot;
     public bool selectMode => currentSlot;
     public List<CharacterUI> characterUIList = new List<CharacterUI>();
     public Transform Storage;
-
-    public Dictionary<SelectType, List<Character>> SelectCharacters =
-        new Dictionary<SelectType, List<Character>>()
-        {
-            {SelectType.Combat,new List<Character>()},
-            {SelectType.Debate,new List<Character>()},
-            {SelectType.Gobang,new List<Character>()}
-        };
 
     public Transform OndutySlot;
     public void RightClickSelectMode()
@@ -42,15 +30,17 @@ public class PlayerCharactersInventory : MonoBehaviour
     }
     private void Awake()
     {
+        Setup();
+    }
+
+    public void Setup()
+    {
         List<Character> OndutyCards = new List<Character>();
         foreach (Character character in GameObject.FindGameObjectWithTag("PlayerCharacterInventory").GetComponentsInChildren<Character>())
         {
-            if (character.OnCombatDuty || character.OnDebateDuty || character.OnGobangDuty)
+            if (character.OnDutyState[OndutyType.Combat] || character.OnDutyState[OndutyType.Debate] || character.OnDutyState[OndutyType.Gobang])
             {
                 character.characterCardInvUI = OndutySlot;
-                if (character.OnCombatDuty) SelectCharacters[SelectType.Combat].Add(character);
-                else if (character.OnDebateDuty) SelectCharacters[SelectType.Debate].Add(character);
-                else if (character.OnGobangDuty) SelectCharacters[SelectType.Gobang].Add(character);
             }
             else
             {
@@ -60,6 +50,16 @@ public class PlayerCharactersInventory : MonoBehaviour
         }
         characterUIList = Storage.GetComponentsInChildren<CharacterUI>().ToList();
         characterUIList.AddRange(OndutySlot.GetComponentsInChildren<CharacterUI>().ToList());
+
+        LayoutRebuilder.ForceRebuildLayoutImmediate(OndutySlot.GetComponent<RectTransform>());
+        LayoutRebuilder.ForceRebuildLayoutImmediate(Storage.GetComponent<RectTransform>());
+    }
+
+    public void Reset()
+    {
+        TransformEx.Clear(OndutySlot);
+        TransformEx.Clear(Storage);
+        Setup();
     }
     public void SetupMode(CardMode mode)
     {

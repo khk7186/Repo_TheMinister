@@ -322,9 +322,21 @@ public class Character : MonoBehaviour, IRound
     public bool OnCombatDuty = false;
     public bool OnDebateDuty = false;
     public bool OnGobangDuty = false;
+
+    public Dictionary<OndutyType, bool> OnDutyState
+        = new Dictionary<OndutyType, bool>() 
+        { 
+            { OndutyType.Combat, false }, 
+            { OndutyType.Debate, false }, 
+            { OndutyType.Gobang, false } 
+        };
     #endregion
     private void Awake()
     {
+        OnDutyState[OndutyType.Combat] = OnCombatDuty;
+        OnDutyState[OndutyType.Debate] = OnDebateDuty;
+        OnDutyState[OndutyType.Gobang] = OnGobangDuty;
+
         SpawnTagOnStart();
         UpdateVariables();
         CharacterArtCode[] cacList = (CharacterArtCode[])Enum.GetValues(typeof(CharacterArtCode));

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterOndutySwitchUI : MonoBehaviour
 {
@@ -8,13 +9,12 @@ public class CharacterOndutySwitchUI : MonoBehaviour
     public Transform ChooseCharacterSlot;
     public Transform TargetSlot;
 
-    private void Awake()
+    public void Setup(Character character, OndutyType ondutyType)
     {
-        Setup(null);
-    }
-    private void Setup(Character character)
-    {
-        CurrentOndutyList = SelectOnDuty.GetOndutyAll();
+        CurrentOndutyList = SelectOnDuty.GetOndutyAll(ondutyType);
+        CardMode cardMode = CardMode.OnCombatSwitchMode;
+        if (ondutyType == OndutyType.Debate) cardMode = CardMode.OnDebateSwitchMode;
+        else if (ondutyType == OndutyType.Gobang) cardMode = CardMode.OnGobangSwitchMode;
         if (character!= null)
         {
             character.characterCardInvUI = TargetSlot;
@@ -26,10 +26,12 @@ public class CharacterOndutySwitchUI : MonoBehaviour
             ch.characterCardInvUI = ChooseCharacterSlot;
             ch.BelongCheck();
             var targetUI = ch.thisCharacterCard;
-            targetUI.cardMode = CardMode.OndutySwitchMode;
+            targetUI.cardMode = cardMode;
             targetUI.PannelTopTransform = transform;
             targetUI.TargetCharacter = character;
         }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(ChooseCharacterSlot.GetComponent<RectTransform>());
+        LayoutRebuilder.ForceRebuildLayoutImmediate(TargetSlot.GetComponent<RectTransform>());
     }
     //private void Choose(Charact)
 }

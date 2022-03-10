@@ -44,6 +44,7 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
         SetValues(character.CharactersValueDict);
         SetTags(character.tagList);
         SetHealthAndLoyalty(character);
+        SetOnSelectButton(character);
     }
 
     public void SetValueColors(Color32 wisdom,Color32 writing, Color32 strategy, Color32 strength, Color32 sneak, Color32 defense)
@@ -54,6 +55,21 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
         Strength.color = strength;
         Sneak.color = sneak;
         Defense.color = defense;
+    }
+
+    public void SetOnSelectButton(Character character)
+    {
+        foreach (var target in FindObjectsOfType<OndutySelectButton>())
+        {
+            target.Setup(character);
+        }
+    }
+    public void SetOnSelectButton()
+    {
+        foreach (var target in FindObjectsOfType<OndutySelectButton>())
+        {
+            target.Setup();
+        }
     }
 
     public void SetIdle(Character character)
@@ -92,6 +108,7 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
+            FindObjectOfType<PlayerCharactersInventory>().Reset();
             Destroy(gameObject);
         }
     }
