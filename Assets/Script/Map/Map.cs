@@ -5,19 +5,22 @@ using System.Linq;
 public class Map : MonoBehaviour, IObserver
 {
     public float Radius = 1.5f;
-    public static int Week = 0;
-    public static int Day = 6;
-    private List<Block> map = new List<Block>();
-    private int nextBlockToMove = 0;
-    [SerializeField] private int currentBlock = 0;
+    public static int DayTime = 0;
+    public static int Day = 0;
+    public List<Block> map = new List<Block>();
+    public int mapCount => map.Count;
+    private int PlayerNextBlockToMove = 0;
+    [SerializeField] private int PlayerCurrentBlock = 0;
     [SerializeField] private Transform Player;
     [SerializeField] private float delayPerMove = 1f;
     private List<Building> ActivatedBuildings = new List<Building>();
+    private bool OnMove => PlayerNextBlockToMove != PlayerCurrentBlock;
 
-    [SerializeField] private float duration = 10f;
-    [SerializeField] private Animator PlayerAnimator;
+    public float duration = 10f;
+    [SerializeField] private Animator FrontPlayerAnimator;
+    [SerializeField] private Animator BackPlayerAnimator;
 
-    public Transform currentTransform => (map.Count > 0) ? map[currentBlock].transform : null;
+    public Transform currentTransform => (map.Count > 0) ? map[PlayerCurrentBlock].transform : null;
 
     private void Awake()
     {
@@ -26,8 +29,8 @@ public class Map : MonoBehaviour, IObserver
         {
             subject.RegisterObserver(this);
         }
-        Player.position = map[currentBlock].transform.position;
-        nextBlockToMove = currentBlock;
+        Player.position = map[PlayerCurrentBlock].transform.position;
+        PlayerNextBlockToMove = PlayerCurrentBlock;
         SetBuildings();
     }
     private void Start()
@@ -38,65 +41,59 @@ public class Map : MonoBehaviour, IObserver
     {
         if (notificationType == NotificationType.DiceRoll)
         {
-            PlayerAnimator.SetTrigger("Move");
-            Week += 1;
-            Day = 1;
-            StartCoroutine(MoveManyStep((int)value));
+            FrontPlayerAnimator.SetTrigger("Move");
+            BackPlayerAnimator.SetTrigger("Move");
+            DayTimePlus();
+            StartCoroutine(MoveManyStep((int)value, Player));
         }
     }
 
-    private IEnumerator MoveAStep()
+    private void DayTimePlus()
     {
-        if (nextBlockToMove + 1 >= map.Count)
+        if (DayTime >= 2)
         {
-            nextBlockToMove = -1;
+            Day++;
+            DayTime = 0;
         }
-        nextBlockToMove += 1;
-        var targetPosition = map[nextBlockToMove].transform.position;
-        var startPosition = Player.position;
+        else DayTime++;
+    }
+
+    private IEnumerator MoveAStep(Transform character)
+    {
+        if (PlayerNextBlockToMove + 1 >= map.Count)
+        {
+            PlayerNextBlockToMove = -1;
+        }
+        PlayerNextBlockToMove += 1;
+        var targetPosition = map[PlayerNextBlockToMove].transform.position;
+        var startPosition = character.position;
         float time = 0;
         while (time < duration)
         {
-            Player.position = Vector2.Lerp(startPosition, targetPosition, time / duration);
+            character.position = Vector2.Lerp(startPosition, targetPosition, time / duration);
             time += Time.deltaTime;
             yield return null;
         }
-        //if (currentBlock == nextBlockToMove)
-        //{
-        //    PlayerAnimator.SetTrigger("Stop");
-        //    FindObjectOfType<Dice>().rolling = false;
-        //}
     }
 
-    public IEnumerator MoveManyStep(int number)
+    public IEnumerator MoveManyStep(int number,Transform character)
     {
-        currentBlock = (currentBlock + number) % (map.Count);
+        PlayerCurrentBlock = (PlayerCurrentBlock + number) % (map.Count);
         for (int i = 0; i < number; i++)
         {
-            var targetPosition = map[nextBlockToMove].transform.position;
-            StartCoroutine(MoveAStep());
+            StartCoroutine(MoveAStep(character));
             yield return new WaitForSeconds(duration);
+            TurnCheck();
         }
-        PlayerAnimator.SetTrigger("Stop");
+        if (FrontPlayerAnimator.gameObject.activeSelf) FrontPlayerAnimator.SetTrigger("Stop");
+        if (BackPlayerAnimator.gameObject.activeSelf) BackPlayerAnimator.SetTrigger("Stop");
+
         FindObjectOfType<Dice>().rolling = false;
-        //Debug.Log((currentBlock, nextBlockToMove,map.Count));
         SetBuildings();
     }
 
-    //private IEnumerator MoveAndDelay(int steps)
-    //{
-
-    //    for (int i = 0; i < steps; i++)
-    //    {
-    //        MoveAStep();
-    //        yield return new WaitForSeconds(delayPerMove);
-    //    }
-    //    SetBuildings();
-    //}
-
     public List<Building> InteractebleBuildingCheck()
     {
-
         var colliders = Physics2D.OverlapCircleAll(Player.transform.position, Radius);
         var buildingList = new List<Building>();
         foreach (Collider2D collider2D in colliders)
@@ -131,5 +128,72 @@ public class Map : MonoBehaviour, IObserver
         ActivatedBuildings = list;
     }
 
-
+    public void TurnCheck()
+    {
+        switch (PlayerNextBlockToMove)
+        {
+            default:
+                break;
+            case 18:
+            case 30:
+            case 40:
+                FrontPlayerAnimator.SetTrigger("Stop");
+                BackPlayerAnimator.SetTrigger("Stop");
+                FrontPlayerAnimator.gameObject.SetActive(false);
+                BackPlayerAnimator.gameObject.SetActive(true);
+                BackPlayerAnimator.transform.localScale = new Vector2(-0.7f, 0.7f);
+                if (OnMove)
+                {
+                    BackPlayerAnimator.SetTrigger("Move");
+                }
+                break;
+            case 69:
+            case 62:
+                FrontPlayerAnimator.SetTrigger("Stop");
+                BackPlayerAnimator.SetTrigger("Stop");
+                FrontPlayerAnimator.gameObject.SetActive(true);
+                BackPlayerAnimator.gameObject.SetActive(false);
+                FrontPlayerAnimator.transform.localScale = new Vector2(-0.7f, 0.7f);
+                if (OnMove)
+                {
+                    FrontPlayerAnimator.SetTrigger("Move");
+                }
+                //right front
+                break;
+            case 59:
+            case 53:
+            case 57:
+            case 47:
+            case 63:
+            case 61:
+                FrontPlayerAnimator.SetTrigger("Stop");
+                BackPlayerAnimator.SetTrigger("Stop");
+                FrontPlayerAnimator.gameObject.SetActive(true);
+                BackPlayerAnimator.gameObject.SetActive(false);
+                FrontPlayerAnimator.transform.localScale = new Vector2(0.7f, 0.7f);
+                if (OnMove)
+                {
+                    FrontPlayerAnimator.SetTrigger("Move");
+                }
+                //front left
+                break;
+            case 42:
+            case 27:
+            case 49:
+            case 56:
+            case 58:
+            case 33:
+                FrontPlayerAnimator.SetTrigger("Stop");
+                BackPlayerAnimator.SetTrigger("Stop");
+                FrontPlayerAnimator.gameObject.SetActive(false);
+                BackPlayerAnimator.gameObject.SetActive(true);
+                BackPlayerAnimator.transform.localScale = new Vector2(0.7f, 0.7f);
+                if (OnMove)
+                {
+                    BackPlayerAnimator.SetTrigger("Move");
+                }
+                //back left
+                break;
+        }
+    }
 }

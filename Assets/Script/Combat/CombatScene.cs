@@ -6,6 +6,6 @@ public class CombatScene : MonoBehaviour
 {
     private void Awake()
     {
-        FindObjectOfType<BattleSystem>().StateAction();
+        //FindObjectOfType<BattleSystem>().StateAction();
     }
 }

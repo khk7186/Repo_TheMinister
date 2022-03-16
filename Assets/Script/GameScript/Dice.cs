@@ -10,7 +10,7 @@ public class Dice : MonoBehaviour, ISubject
 
     [SerializeField] private Image dice1;
     [SerializeField] private Image dice2;
-    private IObserver Map;
+    private List<IObserver> Observers = new List<IObserver>();
 
     public bool rolling = false;
 
@@ -74,11 +74,17 @@ public class Dice : MonoBehaviour, ISubject
 
     public void RegisterObserver(IObserver observer)
     {
-        Map = observer;
+        Observers.Add(observer);
     }
 
     public void Notify(object value, NotificationType notificationType)
     {
-        Map.OnNotify(value, notificationType);
+        if (notificationType == NotificationType.DiceRoll)
+        {
+            foreach (var observer in Observers)
+            {
+                observer.OnNotify(value, notificationType);
+            }
+        }
     }
 }

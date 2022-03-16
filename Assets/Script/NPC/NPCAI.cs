@@ -7,7 +7,7 @@ public class NPCAI : MonoBehaviour, IObserver
     public Character SelfCharacter;
     public Dictionary<NPCAI, float> Relationship;
     public int winPoints = 0;
-    protected IAIMovementStrategy movementStrategy = new DefaultMovementStrategy();
+    protected IAIMovementStrategy movementStrategy = new DefaultInGameAI();
     protected IConspiracyStrategy conspiracyStrategy = new DefaultConspiracyStrategy();
     //protected List<QuestLine>
     //protected List<IQuest> currentQuests = new List<IQuest>();

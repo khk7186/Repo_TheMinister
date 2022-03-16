@@ -61,7 +61,7 @@ public class Building : MonoBehaviour
 
     public int MaxBuildingQuest = 3;
 
-    public int recordWeek = -1;
+    public int recordDay = -1;
 
     public Transform BuildingCharacterSlot;
 
@@ -126,7 +126,7 @@ public class Building : MonoBehaviour
         if (RecordWeekCheck())
         {
             SpawnItems();
-            recordWeek = Map.Week;
+            recordDay = Map.Day;
         }
         shopRefSetUp();
     }
@@ -249,7 +249,7 @@ public class Building : MonoBehaviour
 
     public bool RecordWeekCheck()
     {
-        if (recordWeek < Map.Week) return true;
+        if (recordDay < Map.Day) return true;
         else return false;
     }
 
