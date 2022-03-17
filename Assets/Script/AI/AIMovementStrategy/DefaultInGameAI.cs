@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public enum AIInteractType
 {
@@ -22,14 +23,17 @@ public enum TimeInDay
 
 public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
 {
-    Map map;
+    private Map map;
     public string Name = "";
-    private List<AIInteractType> types;
+    [SerializeField] private List<AIInteractType> types;
     public int NightBlock;
     public int DayMaxBlock, DayMinBlock;
     public int CurrentLocation;
     public int NextBlockToMove;
     public int TargetLocation;
+    public Character character;
+    public NPCPopUI npcPopUI;
+    private bool pointerHere;
     [SerializeField] private bool OnNight => Map.DayTime == 2;
     public Animator FrontAnimator;
     public Animator BackAnimator;
@@ -69,7 +73,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         }
         if (TargetLocation < CurrentLocation)
         {
-            steps = (TargetLocation+map.mapCount - CurrentLocation);
+            steps = (TargetLocation + map.mapCount - CurrentLocation);
         }
         else
         {
@@ -100,7 +104,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         float time = 0;
         while (time < map.duration)
         {
-            transform.position = Vector2.Lerp(startPosition, targetPosition, time / map.duration);
+            transform.position = Vector2.Lerp(startPosition, targetPosition, time / map.duration * 3f);
             time += Time.deltaTime;
             yield return null;
         }
@@ -117,7 +121,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         float time = 0;
         while (time < map.duration)
         {
-            transform.position = Vector2.Lerp(startPosition, targetPosition, time / map.duration);
+            transform.position = Vector2.Lerp(startPosition, targetPosition, time / map.duration * 3f);
             time += Time.deltaTime;
             yield return null;
         }
@@ -131,16 +135,16 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
             for (int i = 0; i < Mathf.Abs(steps); i++)
             {
                 StartCoroutine(MoveAStepBackward());
-                yield return new WaitForSeconds(map.duration);
+                yield return new WaitForSeconds(map.duration / 3f);
             }
-            
+
         }
         else if (steps > 0)
         {
             for (int i = 0; i < steps; i++)
             {
                 StartCoroutine(MoveAStepForward());
-                yield return new WaitForSeconds(map.duration);
+                yield return new WaitForSeconds(map.duration / 3f);
             }
         }
 
@@ -150,5 +154,43 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         if (BackAnimator.gameObject.activeSelf) BackAnimator.SetTrigger("Stop");
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            string path = "NPCInteractiveUI/NPCPopUI";
+            NPCPopUI target = Instantiate(Resources.Load<NPCPopUI>(path));
+            target.Setup(character, types, transform);
+        }
+    }
 
+    private void OnMouseDown()
+    {
+        if (!IsPointerOver.IsPointerOverUIObject())
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                pointerHere = true;
+            }
+        }
+    }
+    private void OnMouseUp()
+    {
+        if (!IsPointerOver.IsPointerOverUIObject())
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (npcPopUI == null)
+                {
+                    string path = "NPCInteractiveUI/InteractiveUI/Menu";
+                    npcPopUI = Instantiate(Resources.Load<NPCPopUI>(path), MainCanvas.FindMainCanvas().transform);
+                    if (npcPopUI != null)
+                    {
+                        npcPopUI.Setup(character, types, transform);
+                    }
+                }
+            }
+        }
+        else pointerHere = false;
+    }
 }

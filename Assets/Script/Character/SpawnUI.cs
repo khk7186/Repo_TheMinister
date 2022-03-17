@@ -22,4 +22,9 @@ public class SpawnUI : MonoBehaviour
     {
         CurrentTarget = Instantiate(ThingToSpawn, transform);
     }
+
+    public void ChangePosition(Vector2 targetPos)
+    {
+        CurrentTarget.position = targetPos;
+    }
 }
