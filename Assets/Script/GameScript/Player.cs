@@ -980,6 +980,175 @@ public class Player : MonoBehaviour
             Tag.书痴,
             Tag.略有才名,
             Tag.小有谋略,
+            Tag.离经叛道,
+            Tag.外乡人,
+            Tag.疯子,
+            Tag.棋道,
+            Tag.郎中,
+            Tag.货郎
+
+    }},
+        {Rarerity.N,new List<Tag>()
+        {
+            Tag.有勇无谋,
+            Tag.自是三公,
+            Tag.敝帚自珍,
+            Tag.巨人症,
+            Tag.侏儒症,
+            Tag.儒生,
+            Tag.道士,
+            Tag.僧人,
+            Tag.冷血无情,
+            Tag.吸血鬼,
+            Tag.狼人,
+            Tag.膝盖僵硬,
+            Tag.多动症,
+            Tag.平平无奇,
+            Tag.贪污狼藉,
+            Tag.六根不净,
+
+
+    }},
+        {Rarerity.SR,new List<Tag>()
+        {
+            Tag.才华横溢,
+            Tag.工于心计
+
+    }},
+        {Rarerity.SSR,new List<Tag>()
+        {
+            Tag.状元,
+            Tag.诗仙,
+            Tag.卧龙
+
+    }},
+        {Rarerity.UR,new List<Tag>()
+        {
+}}
+        };
+    private static Dictionary<Rarerity, List<Tag>> FemaleFighterTagPool =
+    new Dictionary<Rarerity, List<Tag>>
+{
+        {Rarerity.B,new List<Tag>()
+        {
+            Tag.厄运缠身,
+            Tag.腿脚不便,
+            Tag.身世悲苦,
+            Tag.精神病,
+            Tag.嗜甜如命,
+            Tag.营养不良,
+            Tag.干饭人,
+            Tag.双目失明,
+            Tag.独臂,
+            Tag.小儿麻痹,
+            Tag.近视,
+            Tag.得寸进尺,
+            Tag.无能狂怒,
+            Tag.头疼,
+            Tag.半身不遂,
+            Tag.磕巴,
+            Tag.惹人嫌,
+            Tag.调皮鬼,
+            Tag.天生恶感,
+            Tag.干呕,
+            Tag.身体孱弱,
+            Tag.肥胖症,
+            Tag.长短腿,
+            Tag.义肢,
+    }},
+
+        {Rarerity.R,new List<Tag>()
+        {
+            Tag.武痴,
+            Tag.身形矫健,
+            Tag.老罴当道,
+            Tag.离经叛道,
+            Tag.外乡人,
+            Tag.疯子,
+            Tag.棋道,
+            Tag.郎中,
+            Tag.货郎
+
+    }},
+        {Rarerity.N,new List<Tag>()
+        {
+            Tag.有勇无谋,
+            Tag.自是三公,
+            Tag.敝帚自珍,
+            Tag.巨人症,
+            Tag.侏儒症,
+            Tag.儒生,
+            Tag.道士,
+            Tag.僧人,
+            Tag.冷血无情,
+            Tag.吸血鬼,
+            Tag.狼人,
+            Tag.膝盖僵硬,
+            Tag.多动症,
+            Tag.平平无奇,
+            Tag.习武之人,
+            Tag.弓,
+            Tag.剑,
+            Tag.枪,
+            Tag.贪污狼藉,
+            Tag.六根不净,
+            Tag.刀,
+            Tag.戟
+
+    }},
+        {Rarerity.SR,new List<Tag>()
+        {
+            Tag.力拔山兮,
+            Tag.出没无常,
+            Tag.广厦之荫,
+
+    }},
+        {Rarerity.SSR,new List<Tag>()
+        {
+            Tag.武圣,
+            Tag.无影,
+            Tag.磐石
+    }},
+        {Rarerity.UR,new List<Tag>()
+        {
+}}
+    };
+    private static Dictionary<Rarerity, List<Tag>> FemaleCivilianTagPool =
+    new Dictionary<Rarerity, List<Tag>>
+{
+        {Rarerity.B,new List<Tag>()
+        {
+            Tag.厄运缠身,
+            Tag.腿脚不便,
+            Tag.身世悲苦,
+            Tag.精神病,
+            Tag.嗜甜如命,
+            Tag.营养不良,
+            Tag.干饭人,
+            Tag.双目失明,
+            Tag.独臂,
+            Tag.小儿麻痹,
+            Tag.近视,
+            Tag.得寸进尺,
+            Tag.无能狂怒,
+            Tag.头疼,
+            Tag.半身不遂,
+            Tag.磕巴,
+            Tag.惹人嫌,
+            Tag.调皮鬼,
+            Tag.天生恶感,
+            Tag.干呕,
+            Tag.身体孱弱,
+            Tag.肥胖症,
+            Tag.长短腿,
+            Tag.义肢,
+    }},
+
+        {Rarerity.R,new List<Tag>()
+        {
+            Tag.书痴,
+            Tag.略有才名,
+            Tag.小有谋略,
             Tag.武痴,
             Tag.身形矫健,
             Tag.老罴当道,
@@ -1038,8 +1207,90 @@ public class Player : MonoBehaviour
         {Rarerity.UR,new List<Tag>()
         {
 }}
-        };
+    };
     private static Dictionary<Rarerity, List<Tag>> MaleScholarTagPool =
+       new Dictionary<Rarerity, List<Tag>>
+       {
+           {Rarerity.B,new List<Tag>()
+        {
+            Tag.厄运缠身,
+            Tag.腿脚不便,
+            Tag.身世悲苦,
+            Tag.精神病,
+            Tag.嗜甜如命,
+            Tag.营养不良,
+            Tag.干饭人,
+            Tag.双目失明,
+            Tag.独臂,
+            Tag.小儿麻痹,
+            Tag.近视,
+            Tag.得寸进尺,
+            Tag.无能狂怒,
+            Tag.头疼,
+            Tag.半身不遂,
+            Tag.磕巴,
+            Tag.惹人嫌,
+            Tag.调皮鬼,
+            Tag.天生恶感,
+            Tag.干呕,
+            Tag.身体孱弱,
+            Tag.肥胖症,
+            Tag.长短腿,
+            Tag.义肢
+    }},
+
+        {Rarerity.R,new List<Tag>()
+        {
+            Tag.书痴,
+            Tag.略有才名,
+            Tag.小有谋略,
+            Tag.离经叛道,
+            Tag.外乡人,
+            Tag.疯子,
+            Tag.棋道,
+            Tag.郎中,
+            Tag.货郎
+
+    }},
+        {Rarerity.N,new List<Tag>()
+        {
+            Tag.有勇无谋,
+            Tag.自是三公,
+            Tag.敝帚自珍,
+            Tag.巨人症,
+            Tag.侏儒症,
+            Tag.儒生,
+            Tag.道士,
+            Tag.僧人,
+            Tag.冷血无情,
+            Tag.吸血鬼,
+            Tag.狼人,
+            Tag.膝盖僵硬,
+            Tag.多动症,
+            Tag.平平无奇,
+            Tag.贪污狼藉,
+            Tag.六根不净,
+
+
+    }},
+        {Rarerity.SR,new List<Tag>()
+        {
+            Tag.才华横溢,
+            Tag.工于心计,
+
+    }},
+        {Rarerity.SSR,new List<Tag>()
+        {
+            Tag.状元,
+            Tag.诗仙,
+            Tag.卧龙,
+
+    }},
+        {Rarerity.UR,new List<Tag>()
+        {
+}}
+       };
+    private static Dictionary<Rarerity, List<Tag>> MaleCivilianTagPool =
        new Dictionary<Rarerity, List<Tag>>
        {
            {Rarerity.B,new List<Tag>()
@@ -1134,7 +1385,268 @@ public class Player : MonoBehaviour
         {
 }}
        };
+    private static Dictionary<Rarerity, List<Tag>> MaleWealthyTagPool =
+   new Dictionary<Rarerity, List<Tag>>
+   {
+           {Rarerity.B,new List<Tag>()
+        {
+            Tag.厄运缠身,
+            Tag.腿脚不便,
+            Tag.身世悲苦,
+            Tag.精神病,
+            Tag.嗜甜如命,
+            Tag.营养不良,
+            Tag.干饭人,
+            Tag.双目失明,
+            Tag.独臂,
+            Tag.小儿麻痹,
+            Tag.近视,
+            Tag.得寸进尺,
+            Tag.无能狂怒,
+            Tag.头疼,
+            Tag.半身不遂,
+            Tag.磕巴,
+            Tag.惹人嫌,
+            Tag.调皮鬼,
+            Tag.天生恶感,
+            Tag.干呕,
+            Tag.身体孱弱,
+            Tag.肥胖症,
+            Tag.长短腿,
+            Tag.义肢
+    }},
+
+        {Rarerity.R,new List<Tag>()
+        {
+            Tag.书痴,
+            Tag.略有才名,
+            Tag.小有谋略,
+            Tag.武痴,
+            Tag.身形矫健,
+            Tag.老罴当道,
+            Tag.离经叛道,
+            Tag.外乡人,
+            Tag.疯子,
+            Tag.棋道,
+            Tag.郎中,
+            Tag.货郎
+
+    }},
+        {Rarerity.N,new List<Tag>()
+        {
+            Tag.有勇无谋,
+            Tag.自是三公,
+            Tag.敝帚自珍,
+            Tag.巨人症,
+            Tag.侏儒症,
+            Tag.儒生,
+            Tag.道士,
+            Tag.僧人,
+            Tag.冷血无情,
+            Tag.吸血鬼,
+            Tag.狼人,
+            Tag.膝盖僵硬,
+            Tag.多动症,
+            Tag.平平无奇,
+            Tag.习武之人,
+            Tag.弓,
+            Tag.剑,
+            Tag.枪,
+            Tag.贪污狼藉,
+            Tag.六根不净,
+            Tag.刀,
+            Tag.戟
+
+    }},
+        {Rarerity.SR,new List<Tag>()
+        {
+            Tag.才华横溢,
+            Tag.工于心计,
+            Tag.力拔山兮,
+            Tag.出没无常,
+            Tag.广厦之荫,
+            Tag.智勇双全
+    }},
+        {Rarerity.SSR,new List<Tag>()
+        {
+            Tag.状元,
+            Tag.诗仙,
+            Tag.卧龙,
+            Tag.武圣,
+            Tag.无影,
+            Tag.磐石
+    }},
+        {Rarerity.UR,new List<Tag>()
+        {
+}}
+   };
     private static Dictionary<Rarerity, List<Tag>> MaleBladeuserTagPool =
+       new Dictionary<Rarerity, List<Tag>>
+   {
+        {Rarerity.B,new List<Tag>()
+        {
+            Tag.厄运缠身,
+            Tag.腿脚不便,
+            Tag.身世悲苦,
+            Tag.精神病,
+            Tag.嗜甜如命,
+            Tag.营养不良,
+            Tag.干饭人,
+            Tag.双目失明,
+            Tag.独臂,
+            Tag.小儿麻痹,
+            Tag.目不识丁,
+            Tag.得寸进尺,
+            Tag.无能狂怒,
+            Tag.头疼,
+            Tag.半身不遂,
+            Tag.磕巴,
+            Tag.惹人嫌,
+            Tag.调皮鬼,
+            Tag.天生恶感,
+            Tag.干呕,
+            Tag.身体孱弱,
+            Tag.肥胖症,
+            Tag.长短腿,
+            Tag.义肢
+    }},
+
+        {Rarerity.R,new List<Tag>()
+        {
+            Tag.武痴,
+            Tag.身形矫健,
+            Tag.老罴当道,
+            Tag.离经叛道,
+            Tag.外乡人,
+            Tag.疯子,
+            Tag.郎中,
+            Tag.货郎
+
+    }},
+        {Rarerity.N,new List<Tag>()
+        {
+            Tag.有勇无谋,
+            Tag.巨人症,
+            Tag.侏儒症,
+            Tag.儒生,
+            Tag.道士,
+            Tag.僧人,
+            Tag.冷血无情,
+            Tag.吸血鬼,
+            Tag.狼人,
+            Tag.膝盖僵硬,
+            Tag.多动症,
+            Tag.平平无奇,
+            Tag.习武之人,
+            Tag.弓,
+            Tag.剑,
+            Tag.枪,
+            Tag.贪污狼藉,
+            Tag.六根不净,
+            Tag.刀,
+            Tag.戟
+
+    }},
+        {Rarerity.SR,new List<Tag>()
+        {
+            Tag.力拔山兮,
+            Tag.出没无常,
+            Tag.广厦之荫,
+    }},
+        {Rarerity.SSR,new List<Tag>()
+        {
+            Tag.武圣,
+            Tag.无影,
+            Tag.磐石
+    }},
+        {Rarerity.UR,new List<Tag>()
+        {
+}}
+       };
+    private static Dictionary<Rarerity, List<Tag>> MaleFighterTagPool =
+   new Dictionary<Rarerity, List<Tag>>
+{
+        {Rarerity.B,new List<Tag>()
+        {
+            Tag.厄运缠身,
+            Tag.腿脚不便,
+            Tag.身世悲苦,
+            Tag.精神病,
+            Tag.嗜甜如命,
+            Tag.营养不良,
+            Tag.干饭人,
+            Tag.双目失明,
+            Tag.独臂,
+            Tag.小儿麻痹,
+            Tag.目不识丁,
+            Tag.得寸进尺,
+            Tag.无能狂怒,
+            Tag.头疼,
+            Tag.半身不遂,
+            Tag.磕巴,
+            Tag.惹人嫌,
+            Tag.调皮鬼,
+            Tag.天生恶感,
+            Tag.干呕,
+            Tag.身体孱弱,
+            Tag.肥胖症,
+            Tag.长短腿,
+            Tag.义肢
+    }},
+
+        {Rarerity.R,new List<Tag>()
+        {
+            Tag.武痴,
+            Tag.身形矫健,
+            Tag.老罴当道,
+            Tag.离经叛道,
+            Tag.外乡人,
+            Tag.疯子,
+            Tag.郎中,
+            Tag.货郎
+
+    }},
+        {Rarerity.N,new List<Tag>()
+        {
+            Tag.有勇无谋,
+            Tag.巨人症,
+            Tag.侏儒症,
+            Tag.儒生,
+            Tag.道士,
+            Tag.僧人,
+            Tag.冷血无情,
+            Tag.吸血鬼,
+            Tag.狼人,
+            Tag.膝盖僵硬,
+            Tag.多动症,
+            Tag.平平无奇,
+            Tag.习武之人,
+            Tag.弓,
+            Tag.剑,
+            Tag.枪,
+            Tag.贪污狼藉,
+            Tag.六根不净,
+            Tag.刀,
+            Tag.戟
+
+    }},
+        {Rarerity.SR,new List<Tag>()
+        {
+            Tag.力拔山兮,
+            Tag.出没无常,
+            Tag.广厦之荫,
+    }},
+        {Rarerity.SSR,new List<Tag>()
+        {
+            Tag.武圣,
+            Tag.无影,
+            Tag.磐石
+    }},
+        {Rarerity.UR,new List<Tag>()
+        {
+}}
+   };
+    private static Dictionary<Rarerity, List<Tag>> MaleLeatherArmorTagPool =
        new Dictionary<Rarerity, List<Tag>>
    {
         {Rarerity.B,new List<Tag>()
@@ -1214,7 +1726,6 @@ public class Player : MonoBehaviour
             Tag.力拔山兮,
             Tag.出没无常,
             Tag.广厦之荫,
-            Tag.智勇双全
     }},
         {Rarerity.SSR,new List<Tag>()
         {
@@ -1229,7 +1740,200 @@ public class Player : MonoBehaviour
         {
 }}
        };
+    private static Dictionary<Rarerity, List<Tag>> MalePoliticianTagPool =
+   new Dictionary<Rarerity, List<Tag>>
+   {
+           {Rarerity.B,new List<Tag>()
+        {
+            Tag.厄运缠身,
+            Tag.腿脚不便,
+            Tag.身世悲苦,
+            Tag.精神病,
+            Tag.嗜甜如命,
+            Tag.营养不良,
+            Tag.干饭人,
+            Tag.双目失明,
+            Tag.独臂,
+            Tag.小儿麻痹,
+            Tag.近视,
+            Tag.得寸进尺,
+            Tag.无能狂怒,
+            Tag.头疼,
+            Tag.半身不遂,
+            Tag.磕巴,
+            Tag.惹人嫌,
+            Tag.调皮鬼,
+            Tag.天生恶感,
+            Tag.干呕,
+            Tag.身体孱弱,
+            Tag.肥胖症,
+            Tag.长短腿,
+            Tag.义肢
+    }},
+
+        {Rarerity.R,new List<Tag>()
+        {
+            Tag.文贞,
+            Tag.书痴,
+            Tag.略有才名,
+            Tag.小有谋略,
+            Tag.武痴,
+            Tag.身形矫健,
+            Tag.老罴当道,
+            Tag.离经叛道,
+            Tag.外乡人,
+            Tag.疯子,
+            Tag.棋道,
+            Tag.郎中,
+            Tag.货郎
+
+    }},
+        {Rarerity.N,new List<Tag>()
+        {
+            Tag.有勇无谋,
+            Tag.自是三公,
+            Tag.敝帚自珍,
+            Tag.巨人症,
+            Tag.侏儒症,
+            Tag.儒生,
+            Tag.道士,
+            Tag.僧人,
+            Tag.冷血无情,
+            Tag.吸血鬼,
+            Tag.狼人,
+            Tag.膝盖僵硬,
+            Tag.多动症,
+            Tag.平平无奇,
+            Tag.习武之人,
+            Tag.弓,
+            Tag.剑,
+            Tag.枪,
+            Tag.贪污狼藉,
+            Tag.六根不净,
+            Tag.刀,
+            Tag.戟
+
+    }},
+        {Rarerity.SR,new List<Tag>()
+        {
+            Tag.才华横溢,
+            Tag.工于心计,
+            Tag.力拔山兮,
+            Tag.出没无常,
+            Tag.广厦之荫,
+            Tag.智勇双全
+    }},
+        {Rarerity.SSR,new List<Tag>()
+        {
+            Tag.状元,
+            Tag.诗仙,
+            Tag.卧龙,
+            Tag.武圣,
+            Tag.无影,
+            Tag.磐石
+    }},
+        {Rarerity.UR,new List<Tag>()
+        {
+}}
+   };
+
     private static Dictionary<Rarerity, List<Tag>> ElderlyTagPool =
+        new Dictionary<Rarerity, List<Tag>>
+    {
+        {Rarerity.B,new List<Tag>()
+        {
+            Tag.厄运缠身,
+            Tag.腿脚不便,
+            Tag.身世悲苦,
+            Tag.精神病,
+            Tag.嗜甜如命,
+            Tag.营养不良,
+            Tag.干饭人,
+            Tag.双目失明,
+            Tag.独臂,
+            Tag.小儿麻痹,
+            Tag.近视,
+            Tag.目不识丁,
+            Tag.年老体衰,
+            Tag.得寸进尺,
+            Tag.无能狂怒,
+            Tag.头疼,
+            Tag.半身不遂,
+            Tag.磕巴,
+            Tag.惹人嫌,
+            Tag.天生恶感,
+            Tag.干呕,
+            Tag.身体孱弱,
+            Tag.肥胖症,
+            Tag.长短腿,
+            Tag.义肢
+    }},
+
+        {Rarerity.R,new List<Tag>()
+        {
+            Tag.书痴,
+            Tag.略有才名,
+            Tag.小有谋略,
+            Tag.武痴,
+            Tag.身形矫健,
+            Tag.老罴当道,
+            Tag.离经叛道,
+            Tag.外乡人,
+            Tag.疯子,
+            Tag.棋道,
+            Tag.郎中,
+            Tag.货郎
+
+    }},
+        {Rarerity.N,new List<Tag>()
+        {
+            Tag.有勇无谋,
+            Tag.自是三公,
+            Tag.敝帚自珍,
+            Tag.巨人症,
+            Tag.侏儒症,
+            Tag.儒生,
+            Tag.道士,
+            Tag.僧人,
+            Tag.冷血无情,
+            Tag.吸血鬼,
+            Tag.狼人,
+            Tag.膝盖僵硬,
+            Tag.多动症,
+            Tag.平平无奇,
+            Tag.习武之人,
+            Tag.弓,
+            Tag.剑,
+            Tag.枪,
+            Tag.贪污狼藉,
+            Tag.六根不净,
+            Tag.刀,
+            Tag.戟
+
+    }},
+        {Rarerity.SR,new List<Tag>()
+        {
+            Tag.才华横溢,
+            Tag.工于心计,
+            Tag.力拔山兮,
+            Tag.出没无常,
+            Tag.广厦之荫,
+            Tag.智勇双全
+    }},
+        {Rarerity.SSR,new List<Tag>()
+        {
+            Tag.状元,
+            Tag.诗仙,
+            Tag.卧龙,
+            Tag.武圣,
+            Tag.无影,
+            Tag.磐石
+    }},
+        {Rarerity.UR,new List<Tag>()
+        {
+}}
+        };
+    private static Dictionary<Rarerity, List<Tag>> MaleElderlyTagPool =
         new Dictionary<Rarerity, List<Tag>>
     {
         {Rarerity.B,new List<Tag>()
@@ -1331,6 +2035,14 @@ public class Player : MonoBehaviour
             {CharacterArtCode.女诗人, FemalePoestTagPool },
             {CharacterArtCode.男书生, MaleScholarTagPool },
             {CharacterArtCode.男刀客, MaleBladeuserTagPool },
+            {CharacterArtCode.男布衣, MaleCivilianTagPool },
+            {CharacterArtCode.男皮甲, MaleLeatherArmorTagPool },
+            {CharacterArtCode.男富, MaleWealthyTagPool },
+            {CharacterArtCode.男官, MalePoliticianTagPool },
+            {CharacterArtCode.男武, MaleFighterTagPool },
+            {CharacterArtCode.男老, MaleElderlyTagPool },
+            {CharacterArtCode.女武, FemaleFighterTagPool },
+            {CharacterArtCode.女布衣, FemaleCivilianTagPool },
             {CharacterArtCode.老者, ElderlyTagPool },
         };
 }
