@@ -29,7 +29,7 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
     public Text SneakValue;
     public Text DefenseValue;
 
-    public void SetUp(Character character)
+    public void Setup(Character character)
     {
         SetValueColors(
             CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.ÖÇ]],
@@ -47,7 +47,7 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
         SetOnSelectButton(character);
     }
 
-    public void SetValueColors(Color32 wisdom,Color32 writing, Color32 strategy, Color32 strength, Color32 sneak, Color32 defense)
+    public void SetValueColors(Color32 wisdom, Color32 writing, Color32 strategy, Color32 strength, Color32 sneak, Color32 defense)
     {
         Wisdom.color = wisdom;
         Writing.color = writing;
@@ -78,7 +78,7 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
         Idle.sprite = Resources.Load<Sprite>(idleSpritePath);
     }
 
-    public void SetValues(Dictionary<CharacterValueType,int> dict)
+    public void SetValues(Dictionary<CharacterValueType, int> dict)
     {
         WisdomValue.text = dict[CharacterValueType.ÖÇ].ToString();
         StrategyValue.text = dict[CharacterValueType.Ä±].ToString();
@@ -108,7 +108,8 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            FindObjectOfType<PlayerCharactersInventory>().Reset();
+            var target = FindObjectOfType<PlayerCharactersInventory>();
+            if (target != null) target.Reset();
             Destroy(gameObject);
         }
     }
