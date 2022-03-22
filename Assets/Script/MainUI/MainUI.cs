@@ -19,17 +19,26 @@ public class MainUI : MonoBehaviour
                  '〇','一','二','三','四','五','六','七','八','九','十'
              };
     private List<int> originTime = new List<int>() { 17, 3, 5 };
+    private void OnEnable()
+    {
+        SetupTime();
+        var reference = FindObjectOfType<CurrencyInventory>();
+        SetupMoney(reference.Money);
+        SetupInfluence(reference.Influence);
+        SetupPrestige(reference.Prestige);
+    }
     public void SetupTime()
     {
-        Map map = new Map();
+        Map map = FindObjectOfType<Map>();
         var totalDay = map.Day + originTime[2];
         int day = totalDay % 30;
+        Debug.Log(day);
         int totalMonth = totalDay / 30 + originTime[1];
         int month = totalMonth % 12;
         int year = totalMonth / 12 + originTime[0];
-        Year.text = BuildDateUnit2Chinese(year);
-        Month.text = BuildDateUnit2Chinese(month);
-        Day.text = BuildDateUnit2Chinese(day);
+        Year.text = BuildDateUnit2Chinese(year)+"年";
+        Month.text = BuildDateUnit2Chinese(month) +"月";
+        Day.text = BuildDateUnit2Chinese(day) + "日";
     }
     public void SetupMoney(int Amount)
     {

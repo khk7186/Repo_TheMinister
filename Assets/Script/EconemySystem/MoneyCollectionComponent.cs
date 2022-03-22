@@ -19,7 +19,7 @@ public class MoneyCollectionComponent : MonoBehaviour
         if (collision.gameObject.GetComponent<Player>())
         {
             CurrencyInventory targetInventory = FindObjectOfType<CurrencyInventory>();
-            targetInventory.Money += MoneyAmount;
+            targetInventory.MoneyAdd(MoneyAmount);
             string path = "PopText/金钱收集效果";
             var target = Instantiate(Resources.Load<Text>(path),MainCanvas.FindMainCanvas());
             string outputText = "";
@@ -31,9 +31,9 @@ public class MoneyCollectionComponent : MonoBehaviour
                     outputText= "税收\n+" + MoneyAmount;
                     break;
                 case MoneyCollectionStationType.StartPoint:
-                    int salaryFinal = (int)(targetInventory.GovernorSupport + 1) * salaryAmount;
+                    int salaryFinal = (int)(targetInventory.Influence/1000 + 1) * salaryAmount;
                     outputText= "俸禄:\n+" + salaryFinal+"/n税收:\n+" + MoneyAmount;
-                    targetInventory.Money += salaryFinal;
+                    targetInventory.MoneyAdd(salaryFinal);
                     break;
             }
             target.text = outputText;

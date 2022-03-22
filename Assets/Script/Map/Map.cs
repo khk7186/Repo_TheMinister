@@ -54,8 +54,13 @@ public class Map : MonoBehaviour, IObserver
         {
             Day++;
             DayTime = 0;
+            FindObjectOfType<MainUI>().SetupTime();
+            Debug.Log(Day);
         }
-        else DayTime++;
+        else 
+        { 
+            DayTime++;
+        }
     }
 
     private IEnumerator MoveAStep(Transform character)
