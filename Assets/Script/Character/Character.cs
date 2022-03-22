@@ -373,9 +373,12 @@ public class Character : MonoBehaviour, IRound
     {
         if (characterType == CharacterType.General)
         {
-            string path = "InGameNPC/DefaultInGameNPC";
-            var target = Instantiate(Resources.Load<DefaultInGameAI>(path)); 
-            target.Setup(this);
+            if (hireStage != HireStage.Hired)
+            {
+                string path = "InGameNPC/DefaultInGameNPC";
+                var target = Instantiate(Resources.Load<DefaultInGameAI>(path));
+                target.Setup(this);
+            }
         }
     }
 
