@@ -44,11 +44,11 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         {
             subject.RegisterObserver(this);
         }
+        map = FindObjectOfType<Map>();
     }
     private void Start()
     {
-        map = FindObjectOfType<Map>();
-        transform.position = map.map[CurrentLocation].transform.position;
+
         //TextAsset json = Resources.Load<TextAsset>(NPCJsonPath);
         //var npcList = JsonUtility.FromJson<List<int>>(json.text);
     }
@@ -58,6 +58,26 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         {
             Move();
         }
+    }
+
+    public void Setup(Character character)
+    {
+        this.character = character;
+        NightBlock = Random.Range(0, map.mapCount);
+        int tryMax = NightBlock + (Random.Range(0, 1) == 0 ? -1 : 1) * Random.Range(4, 10) % map.mapCount;
+        if (tryMax < 0)
+        {
+            DayMaxBlock = tryMax + map.mapCount;
+        }
+        else if (tryMax > map.mapCount)
+        {
+            DayMaxBlock -= map.mapCount;
+        }
+        int tryMin = DayMinBlock - Random.Range(3, 10);
+        DayMinBlock = (tryMin < 0) ? tryMin + map.mapCount : tryMin;
+        CurrentLocation = OnNight ? NightBlock : Random.Range(DayMinBlock, DayMaxBlock);
+        Debug.Log((NightBlock, DayMinBlock,DayMaxBlock));
+        transform.position = map.map[CurrentLocation].transform.position;
     }
     public void Move()
     {

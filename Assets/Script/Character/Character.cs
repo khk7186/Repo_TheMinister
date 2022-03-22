@@ -263,6 +263,11 @@ public enum CharacterArtCode
     //女布衣,
     //传教士
 }
+public enum CharacterType
+{
+    General,
+    Main
+}
 
 public enum HireStage
 {
@@ -287,6 +292,7 @@ public class Character : MonoBehaviour, IRound
     #endregion
 
     #region Variable
+    public CharacterType characterType = CharacterType.General;
     public CharacterArtCode characterArtCode;
     public int loyalty = 10;
     public int health = 10;
@@ -342,11 +348,22 @@ public class Character : MonoBehaviour, IRound
     #endregion
     private void Awake()
     {
-        OnDutyState[OndutyType.Combat] = OnCombatDuty;
-        OnDutyState[OndutyType.Debate] = OnDebateDuty;
-        OnDutyState[OndutyType.Gobang] = OnGobangDuty;
-
-        SpawnTagOnStart();
+        if (characterType == CharacterType.General)
+        {
+            SpawnTagOnStart();
+            if (hireStage != HireStage.Hired)
+            {
+                OnDutyState[OndutyType.Combat] = false;
+                OnDutyState[OndutyType.Debate] = false;
+                OnDutyState[OndutyType.Gobang] = false;
+            }
+            else
+            {
+                OnDutyState[OndutyType.Combat] = OnCombatDuty;
+                OnDutyState[OndutyType.Debate] = OnDebateDuty;
+                OnDutyState[OndutyType.Gobang] = OnGobangDuty;
+            }
+        }
         UpdateVariables();
         CharacterArtCode[] cacList = (CharacterArtCode[])Enum.GetValues(typeof(CharacterArtCode));
         characterArtCode = cacList[UnityEngine.Random.Range(0, cacList.Length)];
@@ -354,7 +371,12 @@ public class Character : MonoBehaviour, IRound
 
     private void Start()
     {
-
+        if (characterType == CharacterType.General)
+        {
+            string path = "InGameNPC/DefaultInGameNPC";
+            var target = Instantiate(Resources.Load<DefaultInGameAI>(path)); 
+            target.Setup(this);
+        }
     }
 
     public void ChangeNextHireStage()

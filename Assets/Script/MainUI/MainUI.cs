@@ -32,7 +32,6 @@ public class MainUI : MonoBehaviour
         Map map = FindObjectOfType<Map>();
         var totalDay = map.Day + originTime[2];
         int day = totalDay % 30;
-        Debug.Log(day);
         int totalMonth = totalDay / 30 + originTime[1];
         int month = totalMonth % 12;
         int year = totalMonth / 12 + originTime[0];
