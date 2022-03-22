@@ -5,8 +5,8 @@ using System.Linq;
 public class Map : MonoBehaviour, IObserver
 {
     public float Radius = 1.5f;
-    public static int DayTime = 0;
-    public static int Day = 0;
+    public int DayTime = 0;
+    public int Day = 0;
     public List<Block> map = new List<Block>();
     public int mapCount => map.Count;
     private int PlayerNextBlockToMove = 0;

@@ -34,7 +34,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     public Character character;
     public NPCPopUI npcPopUI;
     private bool pointerHere;
-    [SerializeField] private bool OnNight => Map.DayTime == 2;
+    [SerializeField] private bool OnNight => map ? map.DayTime == 2 : false;
     public Animator FrontAnimator;
     public Animator BackAnimator;
     private string NPCJsonPath = "JSON/AIOnMapMovement";

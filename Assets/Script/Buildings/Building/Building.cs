@@ -126,7 +126,8 @@ public class Building : MonoBehaviour
         if (RecordWeekCheck())
         {
             SpawnItems();
-            recordDay = Map.Day;
+            var map = FindObjectOfType<Map>();
+            recordDay = map.Day;
         }
         shopRefSetUp();
     }
@@ -249,7 +250,8 @@ public class Building : MonoBehaviour
 
     public bool RecordWeekCheck()
     {
-        if (recordDay < Map.Day) return true;
+        var map = FindObjectOfType<Map>();
+        if (recordDay < map.Day) return true;
         else return false;
     }
 
