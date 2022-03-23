@@ -296,7 +296,6 @@ public class Character : MonoBehaviour, IRound
     public CharacterArtCode characterArtCode;
     public int loyalty = 10;
     public int health = 10;
-    public int armor = 0;
 
     public CharacterUI characterCard;
     public CharacterUI thisCharacterCard;
@@ -608,31 +607,13 @@ public class Character : MonoBehaviour, IRound
         }
     }
 
-    public void FightHealthModify(int result)
+    public void FightHealthModify(int damage)
     {
-        Debug.Log(result);
-        if (result > 0)
+        Debug.Log(damage);
+        health -= damage;
+        if (health < 0)
         {
-            armor += result;
-        }
-        else
-        {
-            if (armor > 0)
-            {
-                if (armor > result)
-                {
-                armor -= result;
-                }
-                else
-                {
-                    health -= Mathf.Abs(result - armor);
-                    armor = 0;
-                }
-            }
-            else
-            {
-                health -= Mathf.Abs(result);
-            }
+            Destroy(gameObject);
         }
     }
 }

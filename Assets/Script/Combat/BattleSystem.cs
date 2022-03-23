@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 public enum BattleState
 {
     Start,
@@ -37,6 +36,10 @@ public class BattleSystem : MonoBehaviour
     public Action currentPlayerAction = Action.NoSelect;
     public Action currentEnemyAction = Action.NoSelect;
     public BaseBattleAI battleAI;
+
+    //new combat scene
+    public CombatSceneController SceneController;
+
     private void Start()
     {
         CurrentBattleState = BattleState.Start;
@@ -77,8 +80,6 @@ public class BattleSystem : MonoBehaviour
                 break;
             case BattleState.Start:
                 DontDestroyOnLoad(gameObject);
-                foreach (Character character in PlayerCharacters) character.armor = 0;
-                foreach (Character character in EnemyCharacters) character.armor = 0;
                 NextState();
                 SceneManager.LoadScene(1);
                 break;
