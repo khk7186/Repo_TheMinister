@@ -15,6 +15,11 @@ public class RightClickToClose : MonoBehaviour, IPointerClickHandler
 
     public void RightClickEvent()
     {
+        var combatSceneController = FindObjectOfType<CombatSceneController>();
+        if (combatSceneController != null)
+        {
+            FindObjectOfType<CombatSceneController>().OnAction = false;
+        }
         Destroy(gameObject);
     }
 }

@@ -38,10 +38,10 @@ public class ArrowMesh : MonoBehaviour
     {
     }
 #endif
-
     private void Start()
     {
-        _MeshFilter = GetComponent<MeshFilter>();
+        _MeshFilter = GetComponent<MeshFilter>(); 
+        UpdatePosition(new Vector2(1.23f, 2.55f));
     }
 
     public void UpdatePosition(Vector3 _endPos)

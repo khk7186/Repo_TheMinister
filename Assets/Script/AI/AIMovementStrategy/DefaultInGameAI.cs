@@ -46,12 +46,6 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         }
         map = FindObjectOfType<Map>();
     }
-    private void Start()
-    {
-
-        //TextAsset json = Resources.Load<TextAsset>(NPCJsonPath);
-        //var npcList = JsonUtility.FromJson<List<int>>(json.text);
-    }
     public void OnNotify(object value, NotificationType notificationType)
     {
         if (notificationType == NotificationType.DiceRoll)
@@ -172,16 +166,6 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         //map.TurnCheck();
         if (FrontAnimator.gameObject.activeSelf) FrontAnimator.SetTrigger("Stop");
         if (BackAnimator.gameObject.activeSelf) BackAnimator.SetTrigger("Stop");
-    }
-
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        if (eventData.button == PointerEventData.InputButton.Left)
-        {
-            string path = "NPCInteractiveUI/NPCPopUI";
-            NPCPopUI target = Instantiate(Resources.Load<NPCPopUI>(path));
-            target.Setup(character, types, transform);
-        }
     }
 
     private void OnMouseDown()

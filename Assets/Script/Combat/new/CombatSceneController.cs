@@ -14,9 +14,11 @@ public class CombatSceneController : MonoBehaviour
     public Animator enemyCharacter3;
 
     public float duration = 0.5f;
+
+    public bool OnAction = false;
     private void Awake()
     {
-        if (gameBattleSystem != null & gameBattleSystem.CurrentBattleState == BattleState.Start)
+        if (gameBattleSystem != null && gameBattleSystem.CurrentBattleState == BattleState.Start)
         {
             gameBattleSystem.StateAction();
         }

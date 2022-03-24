@@ -19,6 +19,13 @@ public class CombatCharacterUnit : MonoBehaviour
     public CombatCharacterUnit target = null;
 
     public CombatCharacterUnit Defender = null;
+    private void Awake()
+    {
+        if (character == null)
+        {
+            character = GetComponent<Character>();
+        }
+    }
     public void ChooseTarget()
     {
         switch (currentAction)
@@ -32,11 +39,10 @@ public class CombatCharacterUnit : MonoBehaviour
             case Action.Defence:
                 break;
         }
-        
+
     }
     IEnumerator TryGetTarget()
     {
-        
         yield return null;
     }
     public void DoDefence()
