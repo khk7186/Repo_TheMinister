@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CombatSelectUI : MonoBehaviour
 {
-    public CombatCharacterUnit characterUnit;
+    public CombatCharacterUnit unit;
     public void Setup(Transform targetUnit)
     {
         SetPosition(targetUnit);
+        unit = targetUnit.GetComponent<CombatCharacterUnit>();
     }
     private void SetPosition(Transform targetTransform)
     {
@@ -40,26 +41,29 @@ public class CombatSelectUI : MonoBehaviour
     }
     public void Attack()
     {
-        CombatSystem battleSystem = FindObjectOfType<CombatSystem>();
-        if (battleSystem != null)
+        unit.currentAction = Action.Attack;
+        var interactUnit = unit.GetComponent<CombatInteractableUnit>();
+        if (interactUnit != null)
         {
-
+            interactUnit.ChangeTarget();
         }
     }
     public void Defence()
     {
-        CombatSystem battleSystem = FindObjectOfType<CombatSystem>();
-        if (battleSystem != null)
+        unit.currentAction = Action.Defence; 
+        var interactUnit = unit.GetComponent<CombatInteractableUnit>();
+        if (interactUnit != null)
         {
-
+            interactUnit.ChangeTarget();
         }
     }
     public void Assassinate()
     {
-        CombatSystem battleSystem = FindObjectOfType<CombatSystem>();
-        if (battleSystem != null)
+        unit.currentAction = Action.Assassinate;
+        var interactUnit = unit.GetComponent<CombatInteractableUnit>();
+        if (interactUnit != null)
         {
-
+            interactUnit.ChangeTarget();
         }
     }
 }

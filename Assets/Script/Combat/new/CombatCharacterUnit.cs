@@ -15,7 +15,7 @@ public class CombatCharacterUnit : MonoBehaviour
     public int armor = 0;
 
     public CharacterStat stat = CharacterStat.normal;
-    public Action currentAction = Action.NoSelect;
+    public Action currentAction = Action.Attack;
     public CombatCharacterUnit target = null;
 
     public CombatCharacterUnit Defender = null;

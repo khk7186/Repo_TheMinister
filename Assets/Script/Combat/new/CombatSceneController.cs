@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class CombatSceneController : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class CombatSceneController : MonoBehaviour
     public float duration = 0.5f;
 
     public bool OnAction = false;
+
+    public Vector3 MiddleCameraPosition = new Vector3(8, 4, -10);
+    public int CameraXShiftDistance = 6;
     private void Awake()
     {
         if (gameBattleSystem != null && gameBattleSystem.CurrentBattleState == BattleState.Start)
@@ -29,20 +33,19 @@ public class CombatSceneController : MonoBehaviour
     }
     public void CharacterAttack(Animator character)
     {
-        character.SetTrigger("Attack");
+        //character.SetTrigger("Attack");
     }
-
     public void CharacterDefence(Animator character)
     {
-        character.SetTrigger("Defence");
+        //character.SetTrigger("Defence");
     }
     public void CharacterAssasinate(Animator character)
     {
-        character.SetTrigger("Assasinate");
+        //character.SetTrigger("Assasinate");
     }
     public void CharacterDamaged(Animator character)
     {
-        character.SetTrigger("Damaged");
+        //character.SetTrigger("Damaged");
     }
     private IEnumerator MoveToTarget(Transform character, Transform target)
     {
