@@ -12,7 +12,6 @@ public class RightClickToClose : MonoBehaviour, IPointerClickHandler
             RightClickEvent();
         }
     }
-
     public void RightClickEvent()
     {
         //var combatSceneController = FindObjectOfType<CombatSceneController>();

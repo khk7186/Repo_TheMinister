@@ -13,14 +13,12 @@ public enum AIInteractType
     Debate,
     Talk
 }
-
 public enum TimeInDay
 {
     Morning,
     Noon,
     Evening,
 }
-
 public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
 {
     private Map map;

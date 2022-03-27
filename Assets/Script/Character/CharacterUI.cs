@@ -70,7 +70,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         OnGobangImage.gameObject.SetActive(false);
     }
 
-    public void UpdateUI()
+    public void Setup()
     {
         string idleSpritePath = ("Art/CharacterSprites/Idle/Idle_" + character.characterArtCode.ToString()).Replace(" ", string.Empty);
         Idle.sprite = Resources.Load<Sprite>(idleSpritePath);

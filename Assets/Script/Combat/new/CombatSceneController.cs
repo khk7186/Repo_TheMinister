@@ -20,6 +20,11 @@ public class CombatSceneController : MonoBehaviour
 
     public Vector3 MiddleCameraPosition = new Vector3(8, 4, -10);
     public int CameraXShiftDistance = 6;
+
+    public bool Animating = false;
+    public bool lining = false;
+    public int CameraAdjast = 0;
+    public CombatCharacterUnit CurrentOnActionCCU = null;
     private void Awake()
     {
         if (gameBattleSystem != null && gameBattleSystem.CurrentBattleState == BattleState.Start)
@@ -59,4 +64,67 @@ public class CombatSceneController : MonoBehaviour
             yield return null;
         }
     }
+    public static void ShowCard(CombatCharacterUnit unit)
+    {
+        var csc = FindObjectOfType<CombatSceneController>();
+        if (csc.Animating == false)
+        {
+            var targetDir = unit.IsFriend ? -1 : 1;
+            if (csc.CameraAdjast != targetDir)
+            {
+                csc.CameraAdjast = targetDir;
+                csc.MoveCamera();
+            }
+            var combatUI = FindObjectOfType<CombatUI>();
+            csc.Animating = true;
+            combatUI.ShowNewCard(unit);
+        }
+    }
+    public void MoveCamera()
+    {
+        var targetPosition = MiddleCameraPosition;
+        targetPosition.x += CameraAdjast * 6;
+        StartCoroutine(CameraMovement(targetPosition, 1f));
+    }
+    IEnumerator CameraMovement(Vector3 targetPos, float duration)
+    {
+        var cam = Camera.main.transform;
+        float time = 0;
+        int currentDir = CameraAdjast;
+        while (time < duration && currentDir == CameraAdjast)
+        {
+            var newPos = Vector3.Lerp(cam.position, targetPos, time / duration);
+            cam.position = newPos;
+            time += Time.deltaTime;
+            yield return null;
+        }
+    }
+    //private IEnumerator CameraMovement(Vector3 targetPos, float speed)
+    //{
+    //    var currentPos = transform.position;
+    //    var distance = Vector3.Distance(currentPos, targetPos);
+    //    // TODO: make sure speed is always > 0
+    //    var duration = distance / speed;
+    //    var cam = Camera.main.transform;
+
+    //    var timePassed = 0f;
+    //    while (timePassed < duration)
+    //    {
+    //        // always a factor between 0 and 1
+    //        var factor = timePassed / duration;
+
+    //        cam.position = Vector3.Lerp(currentPos, targetPos, factor);
+
+    //        // increase timePassed with Mathf.Min to avoid overshooting
+    //        timePassed += Mathf.Min(Time.deltaTime, duration - timePassed);
+
+    //        // "Pause" the routine here, render this frame and continue
+    //        // from here in the next frame
+    //        yield return null;
+    //    }
+
+    //    cam.position = targetPos;
+
+    //    // Something you want to do when moving is done
+    //}
 }

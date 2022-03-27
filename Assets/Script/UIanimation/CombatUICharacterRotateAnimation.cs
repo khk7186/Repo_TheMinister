@@ -15,7 +15,6 @@ public class CombatUICharacterRotateAnimation : MonoBehaviour
     {
         StartCoroutine(ScrollUpAnimation());
     }
-
     private IEnumerator ScrollUpAnimation()
     {
         if (!Animating)

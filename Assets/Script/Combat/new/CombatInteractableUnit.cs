@@ -50,17 +50,16 @@ public class CombatInteractableUnit : MonoBehaviour
     }
     public void OnMouseDown()
     {
-        var scs = FindObjectOfType<CombatSceneController>();
-        if (scs.OnAction == false)
+        var csc = FindObjectOfType<CombatSceneController>();
+        if (csc.OnAction == false)
         {
-            scs.OnAction = true;
             ChangeTarget();
         }
     }
     public void ChangeTarget()
     {
-        if (line == null) line = Instantiate(Resources.Load<LineRenderer>("Lines/Line"));
 
+        if (line == null) line = Instantiate(Resources.Load<LineRenderer>("Lines/Line"));
         var Unit = GetComponent<CombatCharacterUnit>();
         bool friend = Unit.currentAction == Action.Defence;
         switch (Unit.currentAction)
@@ -79,6 +78,11 @@ public class CombatInteractableUnit : MonoBehaviour
     }
     public IEnumerator EnableTargetSelection(bool friend = false)
     {
+        var csc = FindObjectOfType<CombatSceneController>();
+        csc.OnAction = true;
+        csc.CurrentOnActionCCU = GetComponent<CombatCharacterUnit>();
+        CameraShiftToEnemy();
+        csc.lining = true;
         var Unit = GetComponent<CombatCharacterUnit>();
         line.SetPosition(0, (Vector2)transform.position);
         bool NotEnd = true;
@@ -86,7 +90,7 @@ public class CombatInteractableUnit : MonoBehaviour
         while (NotEnd)
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            
+
             Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (hit.collider != null)
             {
@@ -112,6 +116,38 @@ public class CombatInteractableUnit : MonoBehaviour
             }
             yield return null;
         }
-        FindObjectOfType<CombatSceneController>().OnAction = false;
+        //Show PlayerCard
+        var thisUnit = GetComponent<CombatCharacterUnit>();
+        if (thisUnit != null)
+        {
+            CombatSceneController.ShowCard(thisUnit);
+        }
+        csc.lining = false;
+        csc.OnAction = false;
+        csc.CurrentOnActionCCU = null;
+    }
+    private void CameraShiftToEnemy()
+    {
+        var thisUnit = GetComponent<CombatCharacterUnit>();
+        if (thisUnit != null)
+        {
+            if (thisUnit.currentAction != Action.Defence)
+            {
+                var allUnit = FindObjectsOfType<CombatCharacterUnit>();
+                CombatCharacterUnit FirstEnemy = null;
+                foreach (var unit in allUnit)
+                {
+                    if (!unit.IsFriend)
+                    {
+                        FirstEnemy = unit;
+                        break;
+                    }
+                }
+                if (FirstEnemy != null)
+                {
+                    CombatSceneController.ShowCard(FirstEnemy);
+                }
+            }
+        }
     }
 }

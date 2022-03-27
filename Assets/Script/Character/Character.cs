@@ -542,7 +542,7 @@ public class Character : MonoBehaviour, IRound
     {
         thisCharacterCard = Instantiate(characterCard, characterCardInvUI);
         thisCharacterCard.character = this;
-        thisCharacterCard.UpdateUI();
+        thisCharacterCard.Setup();
     }
 
     public void RoundPass()
