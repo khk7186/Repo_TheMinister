@@ -123,8 +123,14 @@ public class CombatInteractableUnit : MonoBehaviour
             CombatSceneController.ShowCard(thisUnit);
         }
         csc.lining = false;
-        csc.OnAction = false;
         csc.CurrentOnActionCCU = null;
+        //origin the camera
+        csc.CameraAdjast = 0;
+        csc.MoveCamera();
+        CombatSceneController.CameraFocus(false);
+        CombatSceneController.MoveCamera(0);
+        yield return new WaitForSeconds(csc.duration);
+        csc.OnAction = false;
     }
     private void CameraShiftToEnemy()
     {

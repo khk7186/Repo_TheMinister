@@ -11,7 +11,7 @@ public class CombatUI : MonoBehaviour
     public CharacterUI currentEnemy;
     public CharacterUI characterUI;
     public float duration = 1;
-    public float range = 40;
+    public float range = 15;
     public Ease effect = Ease.Linear;
     
     public Character characterOnDisplay = null;
@@ -27,7 +27,7 @@ public class CombatUI : MonoBehaviour
                 RemoveEnemyCurrent();
                 var target = Instantiate(characterUI, playerInfoTransform);
                 var targetRect = target.GetComponent<RectTransform>();
-                targetRect.anchoredPosition = new Vector2(-166, 0);
+                targetRect.anchoredPosition = new Vector2(-170, 0);
                 targetRect.anchorMin = new Vector2(0, 0.5f);
                 targetRect.anchorMax = new Vector2(0, 0.5f);
                 targetRect.pivot = new Vector2(0, 0.5f);
@@ -58,7 +58,7 @@ public class CombatUI : MonoBehaviour
                 RemovePlayerCurrent();
                 var target = Instantiate(characterUI, enemyInfoTransform);
                 var targetRect = target.GetComponent<RectTransform>();
-                targetRect.anchoredPosition = new Vector2(166, 0);
+                targetRect.anchoredPosition = new Vector2(170, 0);
                 targetRect.anchorMin = new Vector2(1, 0.5f);
                 targetRect.anchorMax = new Vector2(1, 0.5f);
                 targetRect.pivot = new Vector2(1, 0.5f);

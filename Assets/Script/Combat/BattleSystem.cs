@@ -18,11 +18,11 @@ public enum BattleType
 }
 public enum Action
 {
-    NoSelect,
-    Attack,
-    Defence,
-    Assassinate,
-    Surrender
+    NoSelect = 0,
+    Attack = 1,
+    Defence = 2,
+    Assassinate = 3,
+    Surrender = 4
 }
 public class BattleSystem : MonoBehaviour
 {

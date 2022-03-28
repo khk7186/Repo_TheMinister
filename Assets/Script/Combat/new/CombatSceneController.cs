@@ -19,12 +19,18 @@ public class CombatSceneController : MonoBehaviour
     public bool OnAction = false;
 
     public Vector3 MiddleCameraPosition = new Vector3(8, 4, -10);
-    public int CameraXShiftDistance = 6;
+    public float CameraXShiftDistance = 6;
+    public float CameraYShiftDistance = 1;
 
     public bool Animating = false;
     public bool lining = false;
     public int CameraAdjast = 0;
     public CombatCharacterUnit CurrentOnActionCCU = null;
+
+    public int CameraSizeOrigin = 16;
+    public int CameraSizeFocus = 14;
+    private bool OnFocus = false;
+    private bool FocusAnimation = false;
     private void Awake()
     {
         if (gameBattleSystem != null && gameBattleSystem.CurrentBattleState == BattleState.Start)
@@ -80,13 +86,61 @@ public class CombatSceneController : MonoBehaviour
             combatUI.ShowNewCard(unit);
         }
     }
+    public static void MoveCamera(int adjast)
+    {
+        var csc = FindObjectOfType<CombatSceneController>();
+        csc.CameraAdjast = adjast;
+        csc.MoveCamera();
+    }
     public void MoveCamera()
     {
         var targetPosition = MiddleCameraPosition;
-        targetPosition.x += CameraAdjast * 6;
-        StartCoroutine(CameraMovement(targetPosition, 1f));
+        targetPosition.x += CameraAdjast * CameraXShiftDistance;
+        targetPosition.y += CameraAdjast * CameraYShiftDistance;
+        StartCoroutine(CameraMovement(targetPosition));
     }
-    IEnumerator CameraMovement(Vector3 targetPos, float duration)
+
+    public static void CameraFocus(bool focus)
+    {
+        var csc = FindObjectOfType<CombatSceneController>();
+        csc.StartFocusing(focus);
+    }
+
+    public void StartFocusing(bool focus)
+    {
+        StartCoroutine(CameraFocusRator(focus));
+    }
+    IEnumerator CameraFocusRator(bool focus)
+    {
+        var cam = Camera.main;
+        float time = 0;
+        bool SizeDiff = (OnFocus != focus);
+        var sizeNow = cam.orthographicSize;
+        if (SizeDiff)
+        {
+            FocusAnimation = !FocusAnimation;
+            var memory = FocusAnimation;
+            OnFocus = focus;
+            Debug.Log(1);
+            while (time < duration && FocusAnimation == memory)
+            {
+                //focus camera
+                float size = CameraSizeOrigin;
+                if (focus)
+                {
+                    size = Mathf.Lerp(sizeNow, CameraSizeFocus, time / duration);
+                }
+                else
+                {
+                    size = Mathf.Lerp(sizeNow, CameraSizeOrigin, time / duration);
+                }
+                cam.orthographicSize = size;
+                time += Time.deltaTime;
+                yield return null;
+            }
+        }
+    }
+    IEnumerator CameraMovement(Vector3 targetPos)
     {
         var cam = Camera.main.transform;
         float time = 0;
@@ -95,6 +149,7 @@ public class CombatSceneController : MonoBehaviour
         {
             var newPos = Vector3.Lerp(cam.position, targetPos, time / duration);
             cam.position = newPos;
+
             time += Time.deltaTime;
             yield return null;
         }
