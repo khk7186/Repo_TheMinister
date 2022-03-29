@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class CombatInteractableUnit : MonoBehaviour
 {
     public CombatSelectUI selectUI;
-    LineRenderer line;
+    public LineRenderer line;
     private void Awake()
     {
         OnMouseExit();
@@ -131,6 +131,36 @@ public class CombatInteractableUnit : MonoBehaviour
         CombatSceneController.MoveCamera(0);
         yield return new WaitForSeconds(csc.duration);
         csc.OnAction = false;
+    }
+    public static void SetActiveAllLine(bool enable = false)
+    {
+        var list = FindObjectsOfType<CombatInteractableUnit>();
+        foreach (var unit in list)
+        {
+            if (unit.line != null)
+            {
+                Debug.Log(1);
+                unit.line.enabled = enable;
+                if (enable && unit != null)
+                {
+                    var ccu = unit.GetComponent<CombatCharacterUnit>();
+                    if (ccu.target == null)
+                    {
+                        var PotentialList = FindObjectsOfType<CombatCharacterUnit>();
+                        foreach (var potential in PotentialList)
+                        {
+                            if (potential.IsFriend == ccu.target.IsFriend)
+                            {
+                                ccu.target = potential;
+                                break;
+                            }
+                        }
+                    }
+                    var targetPost = ccu.target.transform.position;
+                    unit.line.SetPosition(1, targetPost);
+                }
+            }
+        }
     }
     private void CameraShiftToEnemy()
     {

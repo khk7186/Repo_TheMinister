@@ -38,25 +38,13 @@ public class CombatSceneController : MonoBehaviour
             gameBattleSystem.StateAction();
         }
     }
+    private void Start()
+    {
+        //Combat.NewCombat();
+    }
     public void MoveTo(Animator character, Transform target)
     {
         MoveToTarget(character.transform, target);
-    }
-    public void CharacterAttack(Animator character)
-    {
-        //character.SetTrigger("Attack");
-    }
-    public void CharacterDefence(Animator character)
-    {
-        //character.SetTrigger("Defence");
-    }
-    public void CharacterAssasinate(Animator character)
-    {
-        //character.SetTrigger("Assasinate");
-    }
-    public void CharacterDamaged(Animator character)
-    {
-        //character.SetTrigger("Damaged");
     }
     private IEnumerator MoveToTarget(Transform character, Transform target)
     {
@@ -121,7 +109,6 @@ public class CombatSceneController : MonoBehaviour
             FocusAnimation = !FocusAnimation;
             var memory = FocusAnimation;
             OnFocus = focus;
-            Debug.Log(1);
             while (time < duration && FocusAnimation == memory)
             {
                 //focus camera

@@ -609,7 +609,6 @@ public class Character : MonoBehaviour, IRound
 
     public void FightHealthModify(int damage)
     {
-        Debug.Log(damage);
         health -= damage;
         if (health < 0)
         {
