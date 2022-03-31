@@ -12,7 +12,7 @@ public class CombatEnemyPredictStrategy : IAICombatStrategy
         var targetAL = CombatTool.FindHighestValueCharacter(playerCharacters, battleType);
         var characterValueType = (CharacterValueType)targetAL[0];
 
-        if (battleSystem.battleType == BattleType.Duel)
+        if (battleSystem.battleType == BattleType.Combat)
         {
             switch (characterValueType)
             {

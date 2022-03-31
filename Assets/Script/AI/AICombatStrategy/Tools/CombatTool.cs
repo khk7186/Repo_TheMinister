@@ -32,7 +32,7 @@ public class CombatTool : MonoBehaviour
 
     public static List<CharacterValueType> CombatValueType(BattleType battleType)
     {
-        if (battleType == BattleType.Duel)
+        if (battleType == BattleType.Combat)
         {
             return new List<CharacterValueType>()
             {
@@ -94,7 +94,7 @@ public class CombatTool : MonoBehaviour
                 }
             }
         }
-        else if (battleType == BattleType.Duel)
+        else if (battleType == BattleType.Combat)
         {
             foreach (Character character in characters)
             {
@@ -123,7 +123,7 @@ public class CombatTool : MonoBehaviour
                 }
             }
         }
-        else if (battleType == BattleType.Duel)
+        else if (battleType == BattleType.Combat)
         {
             foreach (Character character in characters)
             {

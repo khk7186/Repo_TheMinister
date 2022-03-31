@@ -10,7 +10,7 @@ public class NPCPopUI : MonoBehaviour
     private string parentPath = "NPCInteractiveUI/InteractiveButton/";
     public bool loaded = false;
     private CharacterInfoUI currentCharacterInfoUI;
-    public Button Info,Talk, Attack, Hire, Trade, Gobang, Debate;
+    public Button Info, Talk, Attack, Hire, Trade, Gobang, Debate;
 
     public void Setup(Character character, List<AIInteractType> types, Transform characterImage)
     {
@@ -56,5 +56,12 @@ public class NPCPopUI : MonoBehaviour
         currentCharacterInfoUI = Instantiate(target, FindObjectOfType<Canvas>().transform);
         currentCharacterInfoUI.Setup(Character);
         //Debug.Log(currentCharacterInfoUI);
+    }
+
+    public void Fight()
+    {
+        var Trigger = new GameObject().AddComponent<GeneralEventTrigger>();
+        Trigger.enemyCharacters = new List<Character>() { Character };
+        Trigger.TriggerEvent();
     }
 }

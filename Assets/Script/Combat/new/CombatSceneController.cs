@@ -2,17 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 public class CombatSceneController : MonoBehaviour
 {
-    CombatUI gameUI;
     BattleSystem gameBattleSystem;
-    public Animator playerCharacter1;
-    public Animator playerCharacter2;
-    public Animator playerCharacter3;
-    public Animator enemyCharacter1;
-    public Animator enemyCharacter2;
-    public Animator enemyCharacter3;
+
+    public List<Vector3Int> friendList = new List<Vector3Int>()
+    { new Vector3Int(-1, -2, 0), new Vector3Int(-1, -1, 0), new Vector3Int(-1, 0, 0) };
+    public List<Vector3Int> enemyList = new List<Vector3Int>()
+    { new Vector3Int(2, -2, 0), new Vector3Int(2, -1, 0), new Vector3Int(2, 0, 0) };
 
     public float duration = 0.5f;
 
@@ -31,16 +30,54 @@ public class CombatSceneController : MonoBehaviour
     public int CameraSizeFocus = 14;
     private bool OnFocus = false;
     private bool FocusAnimation = false;
-    private void Awake()
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += InitializeScene;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= InitializeScene;
+    }
+    private void InitializeScene(Scene scene, LoadSceneMode mode)
+    {
+        var trigger = FindObjectOfType<GeneralEventTrigger>();
+        InitializeCCUs(trigger.playerCharacters);
+        InitializeCCUs(trigger.enemyCharacters);
+        var ccus = FindObjectsOfType<CombatCharacterUnit>();
+        int PlayerOrder = 0;
+        int EnemyOrder = 0;
+        foreach (var ccu in ccus)
+        {
+            switch (ccu.IsFriend)
+            {
+                case true:
+                    ccu.SetGridPosition(friendList[PlayerOrder]);
+                    PlayerOrder++;
+                    break;
+                case false:
+                    ccu.SetGridPosition(enemyList[EnemyOrder]);
+                    EnemyOrder++;
+                    break;
+            }
+        }
+    }
+    private List<CombatCharacterUnit> InitializeCCUs(List<Character> characters)
+    {
+        foreach (var character in characters)
+        {
+            Debug.Log(character.characterArtCode);
+            CombatCharacterUnit.NewCombatCharacterUnit(character, character.hireStage == HireStage.Hired);
+        }
+        var output = new List<CombatCharacterUnit>();
+        return output;
+    }
+    private void Start()
     {
         if (gameBattleSystem != null && gameBattleSystem.CurrentBattleState == BattleState.Start)
         {
             gameBattleSystem.StateAction();
         }
-    }
-    private void Start()
-    {
-        //Combat.NewCombat();
     }
     public void MoveTo(Animator character, Transform target)
     {
@@ -63,15 +100,17 @@ public class CombatSceneController : MonoBehaviour
         var csc = FindObjectOfType<CombatSceneController>();
         if (csc.Animating == false)
         {
-            var targetDir = unit.IsFriend ? -1 : 1;
-            if (csc.CameraAdjast != targetDir)
-            {
-                csc.CameraAdjast = targetDir;
-                csc.MoveCamera();
-            }
-            var combatUI = FindObjectOfType<CombatUI>();
+            //var targetDir = unit.IsFriend ? -1 : 1;
+            //if (csc.CameraAdjast != targetDir)
+            //{
+            //    csc.CameraAdjast = targetDir;
+            //    csc.MoveCamera();
+            //}
             csc.Animating = true;
-            combatUI.ShowNewCard(unit);
+            var combatUI = FindObjectOfType<CombatUI>();
+
+            /*ctl k u this line for properuse*/
+            //combatUI.ShowNewCard(unit);
         }
     }
     public static void MoveCamera(int adjast)

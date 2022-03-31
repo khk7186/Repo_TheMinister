@@ -26,7 +26,7 @@ public class BattleSelectedCharacterUI : MonoBehaviour
                 case BattleType.Debate:
                     healthSlider.value = character.health / 20;
                     break;
-                case BattleType.Duel:
+                case BattleType.Combat:
                     healthSlider.value = character.loyalty / 20;
                     break;
             }

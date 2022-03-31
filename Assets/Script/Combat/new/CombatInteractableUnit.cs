@@ -8,9 +8,14 @@ public class CombatInteractableUnit : MonoBehaviour
 {
     public CombatSelectUI selectUI;
     public LineRenderer line;
+    private CombatSceneController csc;
     private void Awake()
     {
         OnMouseExit();
+        if (csc == null)
+        {
+            csc = FindObjectOfType<CombatSceneController>();
+        }
     }
     public void OnMouseEnter()
     {
@@ -26,7 +31,7 @@ public class CombatInteractableUnit : MonoBehaviour
     {
         if (!IsPointerOver.IsPointerOverUIObject())
         {
-            if (Input.GetMouseButtonUp(1))
+            if (Input.GetMouseButtonUp(1) && !csc.OnAction)
             {
                 var others = FindObjectsOfType<CombatInteractableUnit>();
                 foreach (var other in others)
@@ -139,7 +144,6 @@ public class CombatInteractableUnit : MonoBehaviour
         {
             if (unit.line != null)
             {
-                Debug.Log(1);
                 unit.line.enabled = enable;
                 if (enable && unit != null)
                 {
@@ -156,8 +160,15 @@ public class CombatInteractableUnit : MonoBehaviour
                             }
                         }
                     }
-                    var targetPost = ccu.target.transform.position;
-                    unit.line.SetPosition(1, targetPost);
+                    if (ccu.target != null)
+                    {
+                        var targetPost = ccu.target.transform.position;
+                        unit.line.SetPosition(1, targetPost);
+                    }
+                    else
+                    {
+                        Destroy(unit.line.gameObject);
+                    }
                 }
             }
         }

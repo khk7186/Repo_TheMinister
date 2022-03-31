@@ -26,6 +26,8 @@ public class CombatSelectUI : MonoBehaviour
     }
     public IEnumerator DestryoRator()
     {
+        var csc = FindObjectOfType<CombatSceneController>();
+        csc.OnAction = true;
         yield return new WaitForEndOfFrame();
         while (true)
         {
@@ -33,7 +35,8 @@ public class CombatSelectUI : MonoBehaviour
             {
                 if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
                 {
-                    GetComponent<RightClickToClose>().RightClickEvent();   
+                    csc.OnAction = false;
+                    GetComponent<RightClickToClose>().RightClickEvent();
                 }
             }
             yield return null;
@@ -50,7 +53,7 @@ public class CombatSelectUI : MonoBehaviour
     }
     public void Defence()
     {
-        unit.currentAction = Action.Defence; 
+        unit.currentAction = Action.Defence;
         var interactUnit = unit.GetComponent<CombatInteractableUnit>();
         if (interactUnit != null)
         {

@@ -25,6 +25,13 @@ public class ItemInventory : MonoBehaviour
         }
         else itemDict.Add(item, 1);
     }
+    public void AddItem(List<ItemName> items)
+    {
+        foreach (ItemName itemName in items)
+        {
+            AddItem(itemName);
+        }
+    }
 
     public void RemoveItem(ItemName item)
     {

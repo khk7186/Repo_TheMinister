@@ -19,6 +19,7 @@ public class CombatUI : MonoBehaviour
     public void ShowNewCard(CombatCharacterUnit character)
     {
         bool NotOnDisplay = characterOnDisplay != character.character;
+        
         if (character.IsFriend)
         {
             if (NotOnDisplay)

@@ -25,11 +25,9 @@ public static class SelectOnDuty
         if (CheckResult == true)
         {
             character.OnDutyState[ondutyType] = true;
-            Debug.Log(1);
         }
         else
         {
-            Debug.Log(2);
             SwitchCurrentOndutyImage(character,ondutyType);
         }
     }

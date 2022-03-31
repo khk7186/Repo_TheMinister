@@ -68,7 +68,6 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         int tryMin = DayMinBlock - Random.Range(3, 10);
         DayMinBlock = (tryMin < 0) ? tryMin + map.mapCount : tryMin;
         CurrentLocation = OnNight ? NightBlock : Random.Range(DayMinBlock, DayMaxBlock);
-        Debug.Log((NightBlock, DayMinBlock,DayMaxBlock));
         transform.position = map.map[CurrentLocation].transform.position;
     }
     public void Move()

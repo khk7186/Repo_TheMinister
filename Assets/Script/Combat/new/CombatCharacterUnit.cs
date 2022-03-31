@@ -2,7 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Rendering;
+using Spine.Unity;
 public enum CharacterStat
 {
     weak = 0,
@@ -16,19 +17,68 @@ public class CombatCharacterUnit : MonoBehaviour
     public bool IsFriend = false;
     public int armor = 0;
     public static int minimumDamage = 1;
+    static Grid grid;
 
     public CharacterStat stat = CharacterStat.normal;
     public Action currentAction = Action.Attack;
     public CombatCharacterUnit target = null;
     public bool SelfDefending = false;
-
+    private const int IsometricRangePerYUnit = 1;
     public CombatCharacterUnit Defender = null;
+    SortingGroup sg = null;
+
     private void Awake()
     {
         if (character == null)
         {
             character = GetComponent<Character>();
         }
+        if (grid == null)
+        {
+            grid = GameObject.FindGameObjectWithTag("MovementGrid").GetComponent<Grid>();
+        }
+        sg = GetComponent<SortingGroup>();
+    }
+
+    public static CombatCharacterUnit NewCombatCharacterUnit(Character character, bool isFriend)
+    {
+        var pref = Resources.Load<CombatCharacterUnit>(ReturnAssetPath.ReturnCombatCharacterUnitPrefPath());
+        var output = Instantiate(pref);
+        output.character = character;
+        output.IsFriend = isFriend;
+        output.SetupIdle();
+        output.Reset();
+        return output;
+    }
+    public void Reset()
+    {
+        armor = 0;
+        stat = CharacterStat.normal;
+        currentAction = Action.NoSelect;
+        target = null;
+        SelfDefending = false;
+        Defender = null;
+    }
+    public void SetupIdle()
+    {
+        SkeletonDataAsset asset = Resources.Load<SkeletonDataAsset>
+            (ReturnAssetPath.ReturnSpineAssetPath(character.characterArtCode, !IsFriend));
+        GetComponent<SkeletonMecanim>().skeletonDataAsset = asset;
+        RuntimeAnimatorController controller = Resources.Load<RuntimeAnimatorController>
+            (ReturnAssetPath.ReturnSpineControllerPath(character.characterArtCode, !IsFriend));
+        GetComponent<Animator>().runtimeAnimatorController = controller;
+        GetComponent<SkeletonMecanim>().Initialize(true);
+    }
+
+    public void SetGridPosition(Vector3Int cellPosition)
+    {
+        transform.position = grid.GetCellCenterWorld(cellPosition);
+    }
+
+    void Update()
+    {
+        SortingGroup sg = GetComponent<SortingGroup>();
+        sg.sortingOrder = 20 - (int)(transform.position.y * IsometricRangePerYUnit);
     }
     public void ChooseTarget()
     {
@@ -114,7 +164,7 @@ public class CombatCharacterUnit : MonoBehaviour
             switch (stat)
             {
                 case CharacterStat.weak:
-                    result = TryArmor(damage > 0 ? damage * 2 : minimumDamage);
+                    result = TryArmor(damage > 0 ? damage * 2 : minimumDamage * 2);
                     character.FightHealthModify(result);
                     break;
                 case CharacterStat.normal:

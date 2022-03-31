@@ -40,7 +40,7 @@ public class BattleCharacterHeadUI : MonoBehaviour
         {
             default:
                 break;
-            case BattleType.Duel:
+            case BattleType.Combat:
                 //HealthBar.value = character.health / 20;
                 Attack.color = CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.Œ‰]];
                 Assinate.color = CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.¥Ã]];

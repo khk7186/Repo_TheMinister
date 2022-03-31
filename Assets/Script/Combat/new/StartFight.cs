@@ -18,7 +18,7 @@ public class StartFight : MonoBehaviour
                 var PotentialList = FindObjectsOfType<CombatCharacterUnit>();
                 foreach (var potential in PotentialList)
                 {
-                    if (potential.IsFriend == target.IsFriend)
+                    if (potential.IsFriend != selfUnit.IsFriend)
                     {
                         selfUnit.target = potential;
                         target = selfUnit.target;
@@ -92,7 +92,7 @@ public class StartFight : MonoBehaviour
         //if defence
         else
         {
-
+            selfUnit.target.Defender = selfUnit;
         }
         yield return null;
     }
