@@ -197,4 +197,20 @@ public class CombatInteractableUnit : MonoBehaviour
             }
         }
     }
+    public static CombatCharacterUnit FindAttachedCCU(Character character)
+    {
+        CombatCharacterUnit output = null;
+        foreach (var unit in FindObjectsOfType<CombatCharacterUnit>())
+        {
+            if (unit != null)
+            {
+                if (output.character == character)
+                {
+                    output = unit;
+                    break ;
+                }
+            }
+        }
+        return output;
+    }
 }

@@ -57,11 +57,11 @@ public class NPCPopUI : MonoBehaviour
         currentCharacterInfoUI.Setup(Character);
         //Debug.Log(currentCharacterInfoUI);
     }
-
     public void Fight()
     {
         var Trigger = new GameObject().AddComponent<GeneralEventTrigger>();
         Trigger.enemyCharacters = new List<Character>() { Character };
         Trigger.TriggerEvent();
     }
+    
 }

@@ -96,11 +96,9 @@ public class StartFight : MonoBehaviour
         }
         yield return null;
     }
-
     public bool IfTargetHaveDefender(CombatCharacterUnit target)
     {
         if (target == null) return false;
         return target.Defender != null;
     }
-
 }

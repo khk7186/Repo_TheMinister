@@ -178,11 +178,7 @@ public class CombatCharacterUnit : MonoBehaviour
             }
             if (character.health <= 0)
             {
-                if (TryGetComponent(out CombatInteractableUnit unit))
-                {
-                    Destroy(unit.line);
-                }
-                Destroy(gameObject);
+                DeathAction();
             }
         }
         else if (target != null)
@@ -211,5 +207,35 @@ public class CombatCharacterUnit : MonoBehaviour
         Defender = null;
         currentAction = Action.NoSelect;
     }
+    public void DeathAction()
+    {
+        if (IsFriend)
+        {
+            var trigger = FindObjectOfType<GeneralEventTrigger>();
+            trigger.LostCharacters.Add(character);
+        }
+        gameObject.SetActive(false);
+        CheckGameEnd();
+    }
 
+    public void CheckGameEnd()
+    {
+        int enemy = 0, player = 0;
+        foreach (var ccu in FindObjectsOfType<CombatCharacterUnit>())
+        {
+            if (ccu.IsFriend) player++;
+            else enemy++;
+        }
+        var trigger = FindObjectOfType<GeneralEventTrigger>();
+        if (enemy == 0)
+        {
+            trigger.gameTracker.gameWin = true;
+        }
+        else if (player == 0)
+        {
+            trigger.gameTracker.gameWin = false;
+        }
+        Debug.Log(enemy);
+        trigger.TiggerEnd();
+    }
 }

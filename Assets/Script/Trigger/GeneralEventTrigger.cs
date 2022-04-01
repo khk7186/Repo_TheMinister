@@ -16,6 +16,7 @@ public class GeneralEventTrigger : MonoBehaviour
     public List<Character> enemyCharacters = new List<Character>();
     public GameTracker gameTracker = null;
     private int scene = 0;
+    public List<Character> LostCharacters = new List<Character>();
     public void TriggerEvent()
     {
         DontDestroyOnLoad(gameObject);
@@ -53,13 +54,16 @@ public class GeneralEventTrigger : MonoBehaviour
                 currencyInventory.Money += gameTracker.moneyRewards;
                 currencyInventory.Influence += gameTracker.influenceRewards;
                 currencyInventory.Prestige += gameTracker.prestigeRewards;
-                ItemInventory itemInventory = FindObjectOfType<ItemInventory>();
-                itemInventory.AddItem(itemRewards);
+                if (itemRewards.Count > 0)
+                {
+                    ItemInventory itemInventory = FindObjectOfType<ItemInventory>();
+                    itemInventory.AddItem(itemRewards);
+                }
             }
             //Lose
             else
             {
-                
+
             }
         }
     }
