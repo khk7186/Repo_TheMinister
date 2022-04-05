@@ -4,6 +4,19 @@ using UnityEngine;
 
 public class ReturnAssetPath : MonoBehaviour
 {
+    public static string ReturnMainCharacterAssetPath(bool front)
+    {
+        string output = "";
+        if (front)
+        {
+            output = "Character Spine/Prefabs/Characters/MainCharacter/Front/";
+        }
+        else
+        {
+            output = "Character Spine/Prefabs/Characters/MainCharacter/Back/";
+        }
+        return output;
+    }
     public static string ReturnSpineAssetPath(CharacterArtCode characterArtCode, bool front)
     {
         string codeName = characterArtCode.ToString();

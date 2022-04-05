@@ -19,6 +19,10 @@ public class Map : MonoBehaviour, IObserver
     public float duration = 10f;
     [SerializeField] private Animator FrontPlayerAnimator;
     [SerializeField] private Animator BackPlayerAnimator;
+    [SerializeField] private Animator PlayerAnimator;
+    
+
+    public Grid movementGrid;
 
     public Transform currentTransform => (map.Count > 0) ? map[PlayerCurrentBlock].transform : null;
 
@@ -71,6 +75,7 @@ public class Map : MonoBehaviour, IObserver
         }
         PlayerNextBlockToMove += 1;
         var targetPosition = map[PlayerNextBlockToMove].transform.position;
+        //var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetPlayerBlock(PlayerNextBlockToMove));
         var startPosition = character.position;
         float time = 0;
         while (time < duration)

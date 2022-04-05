@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
 
 public enum AIInteractType
@@ -26,16 +27,19 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     [SerializeField] private List<AIInteractType> types;
     public int NightBlock;
     public int DayMaxBlock, DayMinBlock;
+    public bool inner = true;
     public int CurrentLocation;
     public int NextBlockToMove;
     public int TargetLocation;
     public Character character;
     public NPCPopUI npcPopUI;
-    private bool pointerHere;
     [SerializeField] private bool OnNight => map ? map.DayTime == 2 : false;
     public Animator FrontAnimator;
     public Animator BackAnimator;
-    private string NPCJsonPath = "JSON/AIOnMapMovement";
+    //private string NPCJsonPath = "JSON/AIOnMapMovement";
+    public Grid movementGrid;
+    private bool pointerHere = false;
+
     private void Awake()
     {
         foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
@@ -51,7 +55,6 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
             Move();
         }
     }
-
     public void Setup(Character character)
     {
         this.character = character;
@@ -80,7 +83,6 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         else
         {
             TargetLocation = Random.Range(DayMinBlock, DayMaxBlock + 1);
-
         }
         if (TargetLocation < CurrentLocation)
         {
@@ -111,6 +113,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         }
         NextBlockToMove += 1;
         var targetPosition = map.map[NextBlockToMove].transform.position;
+        //var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, NextBlockToMove));
         var startPosition = transform.position;
         float time = 0;
         while (time < map.duration)
@@ -194,4 +197,14 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         }
         else pointerHere = false;
     }
+    //set inner as <param>inner
+    public void SetInner(bool inner)
+    {
+        this.inner = inner;
+    }
+
+
+
+
+
 }
