@@ -261,7 +261,11 @@ public enum CharacterArtCode
     //男老,
     //女武,
     //女布衣,
-    //传教士
+    传教士,
+    琴师,
+    说书人,
+    棋圣,
+    方丈
 }
 public enum CharacterType
 {
