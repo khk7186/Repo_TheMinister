@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 using System.Linq;
+using Spine.Unity;
 public class Map : MonoBehaviour, IObserver
 {
     public float Radius = 1.5f;
@@ -17,10 +19,9 @@ public class Map : MonoBehaviour, IObserver
     private bool OnMove => PlayerNextBlockToMove != PlayerCurrentBlock;
 
     public float duration = 10f;
-    [SerializeField] private Animator FrontPlayerAnimator;
-    [SerializeField] private Animator BackPlayerAnimator;
+
     [SerializeField] private Animator PlayerAnimator;
-    
+
 
     public Grid movementGrid;
 
@@ -45,8 +46,7 @@ public class Map : MonoBehaviour, IObserver
     {
         if (notificationType == NotificationType.DiceRoll)
         {
-            FrontPlayerAnimator.SetTrigger("Move");
-            BackPlayerAnimator.SetTrigger("Move");
+            PlayerAnimator.SetTrigger("Move");
             DayTimePlus();
             StartCoroutine(MoveManyStep((int)value, Player));
         }
@@ -59,16 +59,16 @@ public class Map : MonoBehaviour, IObserver
             Day++;
             DayTime = 0;
             FindObjectOfType<MainUI>().SetupTime();
-            Debug.Log(Day);
         }
-        else 
-        { 
+        else
+        {
             DayTime++;
         }
     }
 
     private IEnumerator MoveAStep(Transform character)
     {
+        yield return StartCoroutine(TurnCheck());
         if (PlayerNextBlockToMove + 1 >= map.Count)
         {
             PlayerNextBlockToMove = -1;
@@ -84,22 +84,24 @@ public class Map : MonoBehaviour, IObserver
             time += Time.deltaTime;
             yield return null;
         }
+        //if (!OnMove)
+        //{
+        //    PlayerAnimator.SetTrigger("Stop");
+        //}
     }
 
-    public IEnumerator MoveManyStep(int number,Transform character)
+    public IEnumerator MoveManyStep(int number, Transform character)
     {
         PlayerCurrentBlock = (PlayerCurrentBlock + number) % (map.Count);
         for (int i = 0; i < number; i++)
         {
-            StartCoroutine(MoveAStep(character));
-            yield return new WaitForSeconds(duration);
-            TurnCheck();
+            
+            yield return StartCoroutine(MoveAStep(character));
         }
-        if (FrontPlayerAnimator.gameObject.activeSelf) FrontPlayerAnimator.SetTrigger("Stop");
-        if (BackPlayerAnimator.gameObject.activeSelf) BackPlayerAnimator.SetTrigger("Stop");
-
         FindObjectOfType<Dice>().rolling = false;
         SetBuildings();
+        PlayerAnimator.SetTrigger("Stop");
+        Debug.Log(1);
     }
 
     public List<Building> InteractebleBuildingCheck()
@@ -138,7 +140,7 @@ public class Map : MonoBehaviour, IObserver
         ActivatedBuildings = list;
     }
 
-    public void TurnCheck()
+    public IEnumerator TurnCheck()
     {
         switch (PlayerNextBlockToMove)
         {
@@ -147,27 +149,11 @@ public class Map : MonoBehaviour, IObserver
             case 18:
             case 30:
             case 40:
-                FrontPlayerAnimator.SetTrigger("Stop");
-                BackPlayerAnimator.SetTrigger("Stop");
-                FrontPlayerAnimator.gameObject.SetActive(false);
-                BackPlayerAnimator.gameObject.SetActive(true);
-                BackPlayerAnimator.transform.localScale = new Vector2(-0.7f, 0.7f);
-                if (OnMove)
-                {
-                    BackPlayerAnimator.SetTrigger("Move");
-                }
+                ChangeSide(false, false);
                 break;
             case 69:
             case 62:
-                FrontPlayerAnimator.SetTrigger("Stop");
-                BackPlayerAnimator.SetTrigger("Stop");
-                FrontPlayerAnimator.gameObject.SetActive(true);
-                BackPlayerAnimator.gameObject.SetActive(false);
-                FrontPlayerAnimator.transform.localScale = new Vector2(-0.7f, 0.7f);
-                if (OnMove)
-                {
-                    FrontPlayerAnimator.SetTrigger("Move");
-                }
+                ChangeSide(true, false);
                 //right front
                 break;
             case 59:
@@ -176,15 +162,7 @@ public class Map : MonoBehaviour, IObserver
             case 47:
             case 63:
             case 61:
-                FrontPlayerAnimator.SetTrigger("Stop");
-                BackPlayerAnimator.SetTrigger("Stop");
-                FrontPlayerAnimator.gameObject.SetActive(true);
-                BackPlayerAnimator.gameObject.SetActive(false);
-                FrontPlayerAnimator.transform.localScale = new Vector2(0.7f, 0.7f);
-                if (OnMove)
-                {
-                    FrontPlayerAnimator.SetTrigger("Move");
-                }
+                ChangeSide(true, true);
                 //front left
                 break;
             case 42:
@@ -193,17 +171,35 @@ public class Map : MonoBehaviour, IObserver
             case 56:
             case 58:
             case 33:
-                FrontPlayerAnimator.SetTrigger("Stop");
-                BackPlayerAnimator.SetTrigger("Stop");
-                FrontPlayerAnimator.gameObject.SetActive(false);
-                BackPlayerAnimator.gameObject.SetActive(true);
-                BackPlayerAnimator.transform.localScale = new Vector2(0.7f, 0.7f);
-                if (OnMove)
-                {
-                    BackPlayerAnimator.SetTrigger("Move");
-                }
+                ChangeSide(false, true);
                 //back left
                 break;
         }
+        yield return null;
+    }
+    //@param doFront
+    //@param doLeft
+    private void ChangeSide(bool doFront, bool doLeft)
+    {
+        //bool isMoving = PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Move");
+        PlayerAnimator.SetTrigger("Stop");
+        string side = doFront ? "Front" : "Back";
+        string SDApath = $"{ReturnAssetPath.ReturnMainCharacterAssetPath(doFront)}ÀîÔ¬Ä°_{side}_SkeletonData";
+        string controllerPath = $"{ReturnAssetPath.ReturnMainCharacterAssetPath(doFront)}ÀîÔ¬Ä°_{side}_Controller";
+        PlayerAnimator.GetComponent<SkeletonMecanim>().skeletonDataAsset = Resources.Load<SkeletonDataAsset>(SDApath);
+        PlayerAnimator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(controllerPath);
+        Vector3 target = PlayerAnimator.transform.localScale;
+        target = new Vector3((doLeft ? 0.7f : -0.7f), target.y, target.z);
+        PlayerAnimator.transform.localScale = target;
+        PlayerAnimator.GetComponent<SkeletonMecanim>().Initialize(true);
+        PlayerAnimator.SetTrigger(OnMove ? "Move" : "Stop");
+        //if (OnMove)
+        //{
+        //    PlayerAnimator.SetTrigger("Move");
+        //}
+        //else
+        //{
+        //    PlayerAnimator.SetTrigger("Stop");
+        //}
     }
 }

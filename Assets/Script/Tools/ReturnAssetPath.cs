@@ -9,11 +9,11 @@ public class ReturnAssetPath : MonoBehaviour
         string output = "";
         if (front)
         {
-            output = "Character Spine/Prefabs/Characters/MainCharacter/Front/";
+            output = "Character Spine/ÀîÔ¬Ä°/Front/";
         }
         else
         {
-            output = "Character Spine/Prefabs/Characters/MainCharacter/Back/";
+            output = "Character Spine/ÀîÔ¬Ä°/Back/";
         }
         return output;
     }
