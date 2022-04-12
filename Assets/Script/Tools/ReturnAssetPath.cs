@@ -37,4 +37,9 @@ public class ReturnAssetPath : MonoBehaviour
         string output = "CombatScene/CombatCharacterUnit";
         return output;
     }
+    
+    public static string ReturnItemPath(ItemName name)
+    {
+        return $"Art/ItemIcon/{name.ToString()}";
+    }
 }

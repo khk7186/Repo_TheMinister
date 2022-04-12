@@ -440,7 +440,7 @@ public class Character : MonoBehaviour, IRound
         }
     }
 
-    private Rarerity CheckVariablesRare(int input)
+    public static Rarerity CheckVariablesRare(int input)
     {
         if (input >= (int)Rarerity.UR) return Rarerity.UR;
         else if (input >= (int)Rarerity.SSR) return Rarerity.SSR;

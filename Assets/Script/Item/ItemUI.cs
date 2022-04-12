@@ -251,15 +251,21 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            LeftClickAction();
+            //LeftClickAction();
+            SetupInUseItem();
         }
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
             //TODO: destroyed Mother Object
         } 
-
     }
-
+    protected virtual void SetupInUseItem()
+    {
+        GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>().InUseItem = ItemName;
+        FindObjectOfType<FocusImage>().Setup(ItemName);
+        FindObjectOfType<OnSwitchAssets>().replacementTag = Use();
+    }
+    
     protected virtual void LeftClickAction()
     {
         PlayerCharactersInventory playerCharactersInventory = Resources.Load<PlayerCharactersInventory>("CharacterInvUI/ChraInvUI");
@@ -285,6 +291,4 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
         return SOItem.ItemMap[this.ItemName];
     }
 
-#if UNITY_EDITOR
-#endif
 }

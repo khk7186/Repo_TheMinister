@@ -5,27 +5,32 @@ using UnityEngine.UI;
 
 public class TagSpecUI : MonoBehaviour
 {
+    public Tag originTag;
     public Image tagIcon;
     public Text Info;
 
-    public void SetUp(Tag tag)
+    public void SetUp(Tag tag, bool origin = true)
     {
-        SetTagIcon(tag);
-        SetTagInfo(tag);
+        if (origin)
+        {
+            originTag = tag;
+        }
+        SetTagIcon(tag,origin);
+        SetTagInfo(tag,origin);
     }
 
-    private void SetTagIcon(Tag tag)
+    public virtual void SetTagIcon(Tag tag, bool origin = true)
     {
         tagIcon.sprite = FindTagSprite(tag);
     }
 
     public static Sprite FindTagSprite(Tag tag)
     {
-        string FolderPathOfTags = ("Art/Tags/" + tag.ToString()).Replace(" ", string.Empty);
+        string FolderPathOfTags = $"Art/Tags/{tag.ToString()}";
         return Resources.Load<Sprite>(FolderPathOfTags);
     }
-
-    private void SetTagInfo(Tag tag)
+    
+    public virtual void SetTagInfo(Tag tag, bool origin = true)
     {
         string output = "";
         output +=
@@ -37,8 +42,6 @@ public class TagSpecUI : MonoBehaviour
             + "สุ" + PlusOrMinus(Player.TagInfDict[tag][5]);
         Info.text = output;
     }
-
-
     public static string PlusOrMinus(int input)
     {
         string output = "";

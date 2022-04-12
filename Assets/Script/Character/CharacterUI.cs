@@ -159,17 +159,18 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                     SelectCharacter();
                     break;
                 case CardMode.ItemSelectMode:
-                    if (character.tagList.Count >= 5)
-                    {
-                        CreateTagSwitchUI();
-                    }
-                    else
-                    {
-                        character.tagList.Add(newTag);
-                        GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>().RemoveItem();
-                        FindObjectOfType<ItemInventoryUI>().SetUp();
-                        inventoryCharacters.RightClickSelectMode();
-                    }
+                    //if (character.tagList.Count >= 5)
+                    //{
+                    //    CreateTagSwitchUI();
+                    //}
+                    //else
+                    //{
+                    //    character.tagList.Add(newTag);
+                    //    GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>().RemoveItem();
+                    //    FindObjectOfType<ItemInventoryUI>().SetUp();
+                    //    inventoryCharacters.RightClickSelectMode();
+                    //}
+                    ChangeCurrentCharacterAsset();
                     break;
                 case CardMode.OnCombatSwitchMode:
                     string CombatText = "确认更换"+character.CharacterName + "为在任 武侍 ?";
@@ -212,6 +213,13 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             }
             
         }
+    }
+
+    private void ChangeCurrentCharacterAsset()
+    {
+        FindObjectOfType<OnSwitchAssets>().character = character;
+        FindObjectOfType<CharacterInfoUI>().Setup(character);
+        FindObjectOfType<PlayerCharactersInventory>().GetComponent<RightClickToClose>().RightClickEvent();
     }
 
     private void ChangeDutyState()

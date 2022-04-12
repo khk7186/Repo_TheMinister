@@ -15,6 +15,13 @@ public class ItemInventory : MonoBehaviour
         AddItem(ItemName.冰霜宝剑);
         AddItem(ItemName.阴阳八卦盘);
         AddItem(ItemName.机关残卷);
+        AddItem(ItemName.三味酒);
+        AddItem(ItemName.三七);
+        AddItem(ItemName.丝绸);
+        AddItem(ItemName.红宝石);
+        AddItem(ItemName.九阳真经);
+        AddItem(ItemName.五香粉);
+        AddItem(ItemName.人参);
     }
     public void AddItem(ItemName item)
     //add item into dic, if dont have one, add new key, else add count.

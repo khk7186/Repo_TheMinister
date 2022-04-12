@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
 {
+    public bool InfoPro = true;
+
     public Image Idle;
     public Text Name;
 
@@ -29,6 +31,16 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
     public Text SneakValue;
     public Text DefenseValue;
 
+    public void Setup()
+    {
+        var target = GameObject.FindGameObjectWithTag("PlayerCharacterInventory");
+        var choices = target.GetComponentsInChildren<Character>();
+        if (choices.Length > 0)
+        {
+            Setup(choices[0]);
+            GetComponent<OnSwitchAssets>().character = choices[0];
+        }
+    }
     public void Setup(Character character)
     {
         SetValueColors(
@@ -90,6 +102,7 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
 
     public void SetTags(List<Tag> tags)
     {
+        TransformEx.Clear(tagHolder);
         foreach (Tag tag in tags)
         {
             TagSpecUI thisTag = Instantiate(tagSpecUI, tagHolder);
@@ -100,17 +113,23 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
 
     public void SetHealthAndLoyalty(Character character)
     {
+        if (health == null || loyalty == null)
+        {
+            return;
+        }
         health.value = character.health;
         loyalty.value = character.loyalty;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Right)
+        if (eventData.button == PointerEventData.InputButton.Right && InfoPro)
         {
             var target = FindObjectOfType<PlayerCharactersInventory>();
             if (target != null) target.Reset();
             Destroy(gameObject);
         }
     }
+
+    
 }
