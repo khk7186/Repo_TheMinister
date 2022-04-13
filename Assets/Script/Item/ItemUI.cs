@@ -259,11 +259,14 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
             //TODO: destroyed Mother Object
         } 
     }
-    protected virtual void SetupInUseItem()
+    public virtual void SetupInUseItem()
     {
         GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>().InUseItem = ItemName;
         FindObjectOfType<FocusImage>().Setup(ItemName);
         FindObjectOfType<OnSwitchAssets>().replacementTag = Use();
+        Debug.Log(FindObjectOfType<OnSwitchAssets>().replacementTag);
+        FindObjectOfType<OnSwitchAssets>().item = ItemName;
+        Debug.Log(ItemName);
     }
     
     protected virtual void LeftClickAction()

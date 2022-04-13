@@ -56,4 +56,21 @@ public class UISpecForSwitch : TagSpecUI
             originRect.DOScaleY(1, duration);
         });
     }
+
+    public void ConfirmChange()
+    {
+        var OSA = FindObjectOfType<OnSwitchAssets>();
+        OSA.character.tagList.Remove(OSA.selectedTag);
+        OSA.character.tagList.Add(OSA.replacementTag);
+        OSA.character.UpdateVariables();
+        var itemInv = FindObjectOfType<ItemInventory>();
+        itemInv.RemoveItem(OSA.item);
+        SetUp(OSA.replacementTag, true);
+        FlipBack();
+        if (!itemInv.ItemDict.ContainsKey(OSA.item))
+        {
+            FindObjectOfType<ItemInventoryUI>().SetUp();
+            FindObjectOfType<ItemInventoryUI>().GetComponentInChildren<ItemUI>().SetupInUseItem();
+        }
+    }
 }

@@ -45,6 +45,10 @@ public class ItemInventory : MonoBehaviour
         if (itemDict.ContainsKey(item))
         {
             itemDict[item] -= 1;
+            if (itemDict[item] <= 0)
+            {
+                itemDict.Remove(item);
+            }
         }
         else Debug.LogError("RemoveNullItemError");
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OnSwitchAssets : MonoBehaviour
 {
+    public ItemName item;
     public Character character;
     public Tag replacementTag;
     public Tag selectedTag;

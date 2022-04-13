@@ -20,26 +20,9 @@ public class FakeCharacterValues : MonoBehaviour
         List<Tag> tagList = new List<Tag>();
         Debug.Log(OSA.selectedTag);
         tagList.AddRange(character.tagList);
-        var debugList = "";
-        foreach (Tag tag in tagList)
-        {
-            debugList += tag.ToString() + ",";
-        }
-        Debug.Log(debugList);
         tagList.Remove(OSA.selectedTag);
-        debugList = "";
-        foreach (Tag tag in tagList)
-        {
-            debugList += tag.ToString() + ",";
-        }
-        Debug.Log(debugList);
         tagList.Add(OSA.replacementTag);
-        debugList = "";
-        foreach (Tag tag in tagList)
-        {
-            debugList += tag.ToString() + ",";
-        }
-        Debug.Log(debugList);
+
         foreach (Tag tag in tagList)
         {
             List<int> varlist = Player.TagInfDict[tag];

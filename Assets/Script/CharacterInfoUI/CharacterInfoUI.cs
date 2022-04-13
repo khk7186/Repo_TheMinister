@@ -33,12 +33,21 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
 
     public void Setup()
     {
-        var target = GameObject.FindGameObjectWithTag("PlayerCharacterInventory");
-        var choices = target.GetComponentsInChildren<Character>();
-        if (choices.Length > 0)
+        var character = FindObjectOfType<OnSwitchAssets>().character;
+        if (character != null)
         {
-            Setup(choices[0]);
-            GetComponent<OnSwitchAssets>().character = choices[0];
+            Setup(character);
+            return;
+        }
+        else
+        {
+            var target = GameObject.FindGameObjectWithTag("PlayerCharacterInventory");
+            var choices = target.GetComponentsInChildren<Character>();
+            if (choices.Length > 0)
+            {
+                Setup(choices[0]);
+                FindObjectOfType<OnSwitchAssets>().character = choices[0];
+            }
         }
     }
     public void Setup(Character character)
@@ -131,5 +140,5 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    
+
 }
