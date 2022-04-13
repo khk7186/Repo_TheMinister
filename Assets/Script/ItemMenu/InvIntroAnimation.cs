@@ -25,7 +25,7 @@ public class InvIntroAnimation : MonoBehaviour, IPointerClickHandler
     }
 
 
-    private void Outro()
+    public void Outro()
     {
         var targetRT = GetComponent<RectTransform>();
         targetRT.DOAnchorPosX(800f, 0.3f).OnComplete(() => Destroy(gameObject));

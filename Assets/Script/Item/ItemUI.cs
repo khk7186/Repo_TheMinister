@@ -244,6 +244,7 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
     public Image icon;
     public Text amount;
     public TagExchangeUI tagExchangeUI;
+    public Image Frame;
 
     public Image Icon => icon;
 
@@ -266,9 +267,7 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
         FindObjectOfType<OnSwitchAssets>().replacementTag = Use();
         Debug.Log(FindObjectOfType<OnSwitchAssets>().replacementTag);
         FindObjectOfType<OnSwitchAssets>().item = ItemName;
-        Debug.Log(ItemName);
     }
-    
     protected virtual void LeftClickAction()
     {
         PlayerCharactersInventory playerCharactersInventory = Resources.Load<PlayerCharactersInventory>("CharacterInvUI/ChraInvUI");
@@ -280,13 +279,14 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
             characterUI.newTag = Use();
         }
     }
-
     public void SetUp(ItemName item, int amount)
     {
         this.ItemName = item;
         string SpritePath = ("Art/ItemIcon/" + item.ToString()).Replace(" ", string.Empty);
         icon.sprite = Resources.Load<Sprite>(SpritePath);
         this.amount.text = amount.ToString();
+        string FramePath = $"Art/BuildingUI/杂货铺/初级五金铺/物品框/物品框-{Player.AllTagRareDict[Use()]}";
+        Frame.sprite = Resources.Load<Sprite>(FramePath);
     }
 
     public Tag Use()

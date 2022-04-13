@@ -34,8 +34,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     public Character character;
     public NPCPopUI npcPopUI;
     [SerializeField] private bool OnNight => map ? map.DayTime == 2 : false;
-    public Animator FrontAnimator;
-    public Animator BackAnimator;
+    public Animator animator;
     //private string NPCJsonPath = "JSON/AIOnMapMovement";
     public Grid movementGrid;
     private bool pointerHere = false;
@@ -164,8 +163,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
 
 
         //map.TurnCheck();
-        if (FrontAnimator.gameObject.activeSelf) FrontAnimator.SetTrigger("Stop");
-        if (BackAnimator.gameObject.activeSelf) BackAnimator.SetTrigger("Stop");
+        animator.SetTrigger("Stop");
     }
 
     private void OnMouseDown()
@@ -202,9 +200,4 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     {
         this.inner = inner;
     }
-
-
-
-
-
 }

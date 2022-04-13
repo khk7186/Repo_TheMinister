@@ -136,7 +136,7 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
         {
             var target = FindObjectOfType<PlayerCharactersInventory>();
             if (target != null) target.Reset();
-            Destroy(gameObject);
+            GetComponent<InvIntroAnimation>().Outro();
         }
     }
 

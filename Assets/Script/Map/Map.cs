@@ -101,7 +101,6 @@ public class Map : MonoBehaviour, IObserver
         FindObjectOfType<Dice>().rolling = false;
         SetBuildings();
         PlayerAnimator.SetTrigger("Stop");
-        Debug.Log(1);
     }
 
     public List<Building> InteractebleBuildingCheck()
