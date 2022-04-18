@@ -71,7 +71,6 @@ public class Map : MonoBehaviour, IObserver
             PlayerNextBlockToMove = -1;
         }
         PlayerNextBlockToMove += 1;
-
         //var targetPosition = map[PlayerNextBlockToMove].transform.position;
         var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetPlayerBlock(PlayerNextBlockToMove));
         var startPosition = character.position;
@@ -147,6 +146,7 @@ public class Map : MonoBehaviour, IObserver
             case 30:
             case 40:
                 ChangeSide(false, false);
+                //back right
                 break;
             case 69:
             case 62:
