@@ -258,6 +258,7 @@ public class MovementGrid : MonoBehaviour
                 //if current path available
                 else
                 {
+                    Debug.Log(blockNumber);
                     block = targetpath[blockNumber];
                     OnBlockStat[carevalue] = true;
                     EnemyStandBlockDict[blockNumber] = OnBlockStat;
