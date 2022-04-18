@@ -176,7 +176,7 @@ public class Map : MonoBehaviour, IObserver
     }
     //@param doFront
     //@param doLeft
-    private void ChangeSide(bool doFront, bool doLeft)
+    public void ChangeSide(bool doFront, bool doLeft)
     {
         //bool isMoving = PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Move");
         PlayerAnimator.SetTrigger("Stop");

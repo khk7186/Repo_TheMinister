@@ -143,71 +143,72 @@ public class MovementGrid : MonoBehaviour
         };
     public static List<Vector3Int> EnemyOutterMovementBlocks = new List<Vector3Int>()
         {
-        new Vector3Int(92,52,0),
-        new Vector3Int(92,50,0),
-        new Vector3Int(98,44,0),
-        new Vector3Int(98,40,0),
-        new Vector3Int(99,36,0),
-        new Vector3Int(98,32,0),
-        new Vector3Int(98,28,0),
-        new Vector3Int(98,23,0),
-        new Vector3Int(98,19,0),
-        new Vector3Int(98,14,0),
-        new Vector3Int(98,9,0),
-        new Vector3Int(98,4,0),
-        new Vector3Int(98,0,0),
-        new Vector3Int(98,-5,0),
-        new Vector3Int(98,-10,0),
-        new Vector3Int(98,-15,0),
-        new Vector3Int(98,-20,0),
-        new Vector3Int(98,-25,0),
-        new Vector3Int(98,-30,0),
-        new Vector3Int(98,-33,0),
-        new Vector3Int(97,-40,0),
-        new Vector3Int(103,-40,0),
-        new Vector3Int(108,-40,0),
-        new Vector3Int(113,-40,0),
-        new Vector3Int(118,-40,0),
-        new Vector3Int(123,-40,0),
-        new Vector3Int(128,-40,0),
-        new Vector3Int(133,-40,0),
-        new Vector3Int(139,-40,0),
-        new Vector3Int(148,-28,0),
-        new Vector3Int(141,-28,0),
-        new Vector3Int(141,-23,0),
-        new Vector3Int(149,-23,0),
-        new Vector3Int(154,-23,0),
-        new Vector3Int(163,-14,0),
-        new Vector3Int(163,-10,0),
-        new Vector3Int(163,-4,0),
-        new Vector3Int(163,1,0),
-        new Vector3Int(163,6,0),
-        new Vector3Int(163,11,0),
-        new Vector3Int(168,11,0),
-        new Vector3Int(173,19,0),
-        new Vector3Int(173,24,0),
-        new Vector3Int(173,30,0),
-        new Vector3Int(173,35,0),
-        new Vector3Int(173,42,0),
-        new Vector3Int(167,43,0),
-        new Vector3Int(163,43,0),
-        new Vector3Int(163,63,0),
-        new Vector3Int(163,44,0),
-        new Vector3Int(163,48,0),
-        new Vector3Int(163,53,0),
-        new Vector3Int(163,57,0),
-        new Vector3Int(153,63,0),
-        new Vector3Int(149,64,0),
-        new Vector3Int(144,69,0),
-        new Vector3Int(138,74,0),
-        new Vector3Int(132,69,0),
-        new Vector3Int(128,68,0),
-        new Vector3Int(124,64,0),
-        new Vector3Int(120,63,0),
-        new Vector3Int(115,63,0),
+        new Vector3Int(98,52,0),
+            new Vector3Int(98,50,0),
+            new Vector3Int(98,47,0),
+            new Vector3Int(91,47,0),
+            new Vector3Int(91,44,0),
+            new Vector3Int(91,40,0),
+            new Vector3Int(92,36,0),
+            new Vector3Int(91,32,0),
+            new Vector3Int(92,28,0),
+            new Vector3Int(92,23,0),
+            new Vector3Int(92,19,0),
+            new Vector3Int(92,14,0),
+            new Vector3Int(92,9,0),
+            new Vector3Int(92,4,0),
+            new Vector3Int(92,0,0),
+            new Vector3Int(92,-5,0),
+            new Vector3Int(92,-10,0),
+            new Vector3Int(92,-15,0),
+            new Vector3Int(92,-20,0),
+            new Vector3Int(92,-25,0),
+            new Vector3Int(92,-30,0),
+            new Vector3Int(92,-35,0),
+            new Vector3Int(92,-40,0),
+            new Vector3Int(103,-33,0),
+            new Vector3Int(108,-33,0),
+            new Vector3Int(113,-33,0),
+            new Vector3Int(118,-33,0),
+            new Vector3Int(123,-33,0),
+            new Vector3Int(128,-33,0),
+            new Vector3Int(133,-33,0),
+            new Vector3Int(139,-33,0),
+            new Vector3Int(148,-33,0),
+            new Vector3Int(154,-18,0),
+            new Vector3Int(156,-14,0),
+            new Vector3Int(156,-10,0),
+            new Vector3Int(156,-4,0),
+            new Vector3Int(156,1,0),
+            new Vector3Int(156,6,0),
+            new Vector3Int(156,11,0),
+            new Vector3Int(156,16,0),
+            new Vector3Int(166,19,0),
+            new Vector3Int(166,24,0),
+            new Vector3Int(166,30,0),
+            new Vector3Int(167,35,0),
+            new Vector3Int(167,36,0),
+            new Vector3Int(163,37,0),
+            new Vector3Int(157,37,0),
+            new Vector3Int(156,44,0),
+            new Vector3Int(156,48,0),
+            new Vector3Int(156,53,0),
+            new Vector3Int(156,57,0),
+            new Vector3Int(153,57,0),
+            new Vector3Int(145,60,0),
+            new Vector3Int(140,65,0),
+            new Vector3Int(137,66,0),
+            new Vector3Int(132,61,0),
+            new Vector3Int(128,60,0),
+            new Vector3Int(124,58,0),
+            new Vector3Int(120,56,0),
+            new Vector3Int(115,56,0),
         };
     public static Dictionary<int, bool[]> EnemyStandBlockDict = new Dictionary<int, bool[]>();
-
+    //private void Awake()
+    //{
+    //    Debug.Log(EnemyOutterMovementBlocks.Count == EnemyInnerMovementBlocks.Count);
+    //}
     public static Vector3Int GetPlayerBlock(int blockNumber)
     {
         Vector3Int block = Vector3Int.zero;
@@ -253,8 +254,8 @@ public class MovementGrid : MonoBehaviour
                     // if other path available
                     else
                     {
-
                         block = targetpath[blockNumber % EnemyOutterMovementBlocks.Count];
+                        //Debug.Log(OnBlockStat== null);
                         OnBlockStat[gameAI.inner ? 1 : 0] = true;
                         gameAI.SetInner(!gameAI.inner);
                         EnemyStandBlockDict[blockNumber] = OnBlockStat;
@@ -263,7 +264,7 @@ public class MovementGrid : MonoBehaviour
                 //if current path available
                 else
                 {
-                    block = targetpath[blockNumber];
+                    block = targetpath[blockNumber % EnemyOutterMovementBlocks.Count];
                     OnBlockStat[carevalue] = true;
                     EnemyStandBlockDict[blockNumber] = OnBlockStat;
                 }

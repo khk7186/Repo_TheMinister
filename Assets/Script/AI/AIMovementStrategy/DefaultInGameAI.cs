@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Spine.Unity;
 using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
 
@@ -58,6 +59,12 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     public void Setup(Character character)
     {
         this.character = character;
+        SkeletonDataAsset asset = Resources.Load<SkeletonDataAsset>
+            ($"{ReturnAssetPath.ReturnSpineAssetPath(character.characterArtCode, true)}{character.characterArtCode}_Front_SkeletonData");
+        animator.GetComponent<SkeletonMecanim>().skeletonDataAsset = asset;
+        string controllerPath = $"{ReturnAssetPath.ReturnSpineAssetPath(character.characterArtCode, true)}{character.characterArtCode}_Front_Controller";
+        animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(controllerPath);
+        animator.GetComponent<SkeletonMecanim>().Initialize(true);
         NightBlock = Random.Range(0, map.mapCount);
         int tryMax = NightBlock + (Random.Range(0, 1) == 0 ? -1 : 1) * Random.Range(4, 10) % map.mapCount;
         if (tryMax < 0)
