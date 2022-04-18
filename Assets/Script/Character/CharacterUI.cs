@@ -94,7 +94,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 topRarerity = targetDict[type];
             }
         }
-        string backPath = ("Art/人物卡/背景贴图/"+topRarerity.ToString()).Replace(" ", string.Empty);
+        string backPath = ("Art/人物卡/背景贴图/" + topRarerity.ToString()).Replace(" ", string.Empty);
         string frontPath = ("Art/人物卡/前景贴图/" + topRarerity.ToString()).Replace(" ", string.Empty);
         BackRarity.sprite = Resources.Load<Sprite>(backPath);
         FrontRarity.sprite = Resources.Load<Sprite>(frontPath);
@@ -136,7 +136,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         GetComponent<RectTransform>().localScale = new Vector3(0.9f, 0.9f, 1f);
         var origin = GetComponent<RectTransform>().localPosition;
-        GetComponent<RectTransform>().localPosition = new Vector2(origin.x - 10, origin.y-15);
+        GetComponent<RectTransform>().localPosition = new Vector2(origin.x - 10, origin.y - 15);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -173,17 +173,17 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                     ChangeCurrentCharacterAsset();
                     break;
                 case CardMode.OnCombatSwitchMode:
-                    string CombatText = "确认更换"+character.CharacterName + "为在任 武侍 ?";
+                    string CombatText = "确认更换" + character.CharacterName + "为在任 武侍 ?";
                     Confirmation.HoldingMethod Combatholding = ChangeDutyState;
                     StartCoroutine(Confirmation.CreateNewComfirmation(Combatholding, CombatText).Confirm());
                     break;
                 case CardMode.OnDebateSwitchMode:
-                    string DebatetText = "确认更换 "+character.CharacterName + " 为在任 文客 ?";
+                    string DebatetText = "确认更换 " + character.CharacterName + " 为在任 文客 ?";
                     Confirmation.HoldingMethod Debateholding = ChangeDutyState;
                     StartCoroutine(Confirmation.CreateNewComfirmation(Debateholding, DebatetText).Confirm());
                     break;
                 case CardMode.OnGobangSwitchMode:
-                    string GobangText = "确认更换"+character.CharacterName + "为在任 弈师 ?";
+                    string GobangText = "确认更换" + character.CharacterName + "为在任 弈师 ?";
                     Confirmation.HoldingMethod Gobangholding = ChangeDutyState;
                     StartCoroutine(Confirmation.CreateNewComfirmation(Gobangholding, GobangText).Confirm());
                     break;
@@ -206,18 +206,19 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 {
                     inventoryCharacters.RightClickSelectMode();
                 }
-                else if(PannelTopTransform != null)
+                else if (PannelTopTransform != null)
                 {
                     PannelTopTransform.GetComponent<RightClickToClose>().RightClickEvent();
                 }
             }
-            
+
         }
     }
 
     private void ChangeCurrentCharacterAsset()
     {
         FindObjectOfType<OnSwitchAssets>().character = character;
+        
         FindObjectOfType<CharacterInfoUI>().Setup(character);
         FindObjectOfType<PlayerCharactersInventory>().GetComponent<RightClickToClose>().RightClickEvent();
     }

@@ -349,6 +349,11 @@ public class Character : MonoBehaviour, IRound
             { OndutyType.Gobang, false } 
         };
     #endregion
+    #region wealth
+    public int Money = 250;
+    public int Influence = 200;
+    public int Prestige = 200;
+    #endregion
     private void Awake()
     {
         if (characterType == CharacterType.General)

@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 1015674177}
   m_Layer: 5
   m_Name: Confirm
-  m_TagString: Untagged
+  m_TagString: ConfirmButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -890,7 +890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.7529412}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1078,7 +1078,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2336,7 +2336,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &3802735398095110236
 GameObject:
@@ -2426,8 +2426,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a373ee9e098a9649aba99c17d349497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  item: 0
   character: {fileID: 0}
-  tag: 0
+  replacementTag: 0
+  selectedTag: 0
 --- !u!1 &3934411097232315711
 GameObject:
   m_ObjectHideFlags: 0
@@ -3400,6 +3402,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7371778744625716256}
+        m_TargetAssemblyTypeName: ItemInvBackgroundAnimation, Assembly-CSharp
+        m_MethodName: FrontDown
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &7008526350396019840
 MonoBehaviour:

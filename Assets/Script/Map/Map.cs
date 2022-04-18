@@ -9,8 +9,9 @@ public class Map : MonoBehaviour, IObserver
     public float Radius = 1.5f;
     public int DayTime = 0;
     public int Day = 0;
-    public List<Block> map = new List<Block>();
-    public int mapCount => map.Count;
+    //public List<Block> map = new List<Block>();
+    public Grid movementGrid;
+    public int mapCount => MovementGrid.EnemyInnerMovementBlocks.Count;
     private int PlayerNextBlockToMove = 0;
     [SerializeField] private int PlayerCurrentBlock = 0;
     [SerializeField] private Transform Player;
@@ -23,18 +24,14 @@ public class Map : MonoBehaviour, IObserver
     [SerializeField] private Animator PlayerAnimator;
 
 
-    public Grid movementGrid;
-
-    public Transform currentTransform => (map.Count > 0) ? map[PlayerCurrentBlock].transform : null;
 
     private void Awake()
     {
-        map = GetComponentsInChildren<Block>().ToList();
         foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
         {
             subject.RegisterObserver(this);
         }
-        Player.position = map[PlayerCurrentBlock].transform.position;
+        Player.position = movementGrid.GetCellCenterWorld(MovementGrid.PlayerMovementBlocks[PlayerCurrentBlock]);
         PlayerNextBlockToMove = PlayerCurrentBlock;
         SetBuildings();
     }
@@ -69,13 +66,14 @@ public class Map : MonoBehaviour, IObserver
     private IEnumerator MoveAStep(Transform character)
     {
         yield return StartCoroutine(TurnCheck());
-        if (PlayerNextBlockToMove + 1 >= map.Count)
+        if (PlayerNextBlockToMove + 1 >= MovementGrid.PlayerMovementBlocks.Count)
         {
             PlayerNextBlockToMove = -1;
         }
         PlayerNextBlockToMove += 1;
-        var targetPosition = map[PlayerNextBlockToMove].transform.position;
-        //var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetPlayerBlock(PlayerNextBlockToMove));
+
+        //var targetPosition = map[PlayerNextBlockToMove].transform.position;
+        var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetPlayerBlock(PlayerNextBlockToMove));
         var startPosition = character.position;
         float time = 0;
         while (time < duration)
@@ -92,10 +90,10 @@ public class Map : MonoBehaviour, IObserver
 
     public IEnumerator MoveManyStep(int number, Transform character)
     {
-        PlayerCurrentBlock = (PlayerCurrentBlock + number) % (map.Count);
+        PlayerCurrentBlock = (PlayerCurrentBlock + number) % (MovementGrid.PlayerMovementBlocks.Count);
         for (int i = 0; i < number; i++)
         {
-            
+
             yield return StartCoroutine(MoveAStep(character));
         }
         FindObjectOfType<Dice>().rolling = false;

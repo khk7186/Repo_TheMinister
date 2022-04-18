@@ -34,7 +34,6 @@ public class Combat : MonoBehaviour
     }
     public IEnumerator StartCombat()
     {
-        
         while (CombatQueue.Count > 0)
         {
             var OnActionCCU = (CombatCharacterUnit)CombatQueue.Dequeue();
@@ -49,5 +48,4 @@ public class Combat : MonoBehaviour
         CombatInteractableUnit.SetActiveAllLine(true);
         Destroy(gameObject);
     }
-
 }

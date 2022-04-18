@@ -475,13 +475,12 @@ MonoBehaviour:
   Radius: 13
   DayTime: 0
   Day: 0
-  map: []
+  movementGrid: {fileID: 0}
   PlayerCurrentBlock: 12
   Player: {fileID: 391794460}
   delayPerMove: 0.2
   duration: 0.5
   PlayerAnimator: {fileID: 1870241744}
-  movementGrid: {fileID: 0}
 --- !u!224 &22664230
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32148,6 +32147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 820263735}
   - component: {fileID: 820263734}
+  - component: {fileID: 820263736}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -32182,6 +32182,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &820263736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 820263733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7702dd3fea2fd08409b417d3a00fe5ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &826128123
 GameObject:
   m_ObjectHideFlags: 0
@@ -53755,7 +53767,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: acf6969bbd9accb44911cddec1b14b87, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f1bfbea402911c84fb8e11595ba4ee61, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.55
   m_Pitch: 1

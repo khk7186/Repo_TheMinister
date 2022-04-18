@@ -8,4 +8,10 @@ public class OnSwitchAssets : MonoBehaviour
     public Character character;
     public Tag replacementTag;
     public Tag selectedTag;
+    
+    private void Start()
+    {
+        var newItem = FindObjectOfType<ItemInventoryUI>().GetComponentInChildren<ItemUI>();
+        newItem.SetupInUseItem();
+    }
 }

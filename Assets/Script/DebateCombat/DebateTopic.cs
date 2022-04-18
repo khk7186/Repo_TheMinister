@@ -26,7 +26,8 @@ public class DebateTopic
     public List<Tag> tagRequest = new List<Tag>();
     public int PointMult = 1;
     public CharacterValueType characterValue = CharacterValueType.ÖÇ;
-    
+    public bool IsClose = false;
+
     public void Setup()
     {
 

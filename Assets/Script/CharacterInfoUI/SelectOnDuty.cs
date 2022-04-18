@@ -16,7 +16,7 @@ public static class SelectOnDuty
         new Dictionary<OndutyType, int>()
         {
             { OndutyType.Combat, 3},
-            { OndutyType.Debate, 2},
+            { OndutyType.Debate, 8},
             { OndutyType.Gobang, 1}
         };
     public static void TrySelectOnDuty(Character character, OndutyType ondutyType)

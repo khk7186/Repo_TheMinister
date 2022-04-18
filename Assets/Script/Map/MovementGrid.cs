@@ -73,7 +73,7 @@ public class MovementGrid : MonoBehaviour
             new Vector3Int(97,59,0),
             new Vector3Int(94,56,0),
         };
-    public static List<Vector3Int> EnemyInnerMovementBlocks = new List<Vector3Int>() 
+    public static List<Vector3Int> EnemyInnerMovementBlocks = new List<Vector3Int>()
         {
             new Vector3Int(98,52,0),
             new Vector3Int(98,50,0),
@@ -243,12 +243,13 @@ public class MovementGrid : MonoBehaviour
                     // if other path not available do next path index
                     if (OnBlockStat[gameAI.inner ? 1 : 0])
                     {
-                        block = CheckAIBlock(gameAI, blockNumber + 1);
+                        block = CheckAIBlock(gameAI, (blockNumber + 1) % EnemyOutterMovementBlocks.Count);
                     }
                     // if other path available
                     else
                     {
-                        block = targetpath[blockNumber];
+
+                        block = targetpath[blockNumber % EnemyOutterMovementBlocks.Count];
                         OnBlockStat[gameAI.inner ? 1 : 0] = true;
                         gameAI.SetInner(!gameAI.inner);
                         EnemyStandBlockDict[blockNumber] = OnBlockStat;
@@ -267,14 +268,17 @@ public class MovementGrid : MonoBehaviour
         {
             bool inner = Random.Range(0f, 10f) > 5f;
             gameAI.SetInner(inner);
-            block = inner ? EnemyInnerMovementBlocks[blockNumber] : EnemyOutterMovementBlocks[blockNumber];
+            //Debug.Log(blockNumber);
+            block = inner ?
+                EnemyInnerMovementBlocks[blockNumber % EnemyInnerMovementBlocks.Count]
+                : EnemyOutterMovementBlocks[blockNumber % EnemyOutterMovementBlocks.Count];
             OnBlockStat = new bool[2] { false, false };
             OnBlockStat[inner ? 0 : 1] = true;
             EnemyStandBlockDict.Add(blockNumber, OnBlockStat);
         }
         return block;
     }
-    
+
 
 
 }

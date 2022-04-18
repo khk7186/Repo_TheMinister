@@ -245,9 +245,7 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
     public Text amount;
     public TagExchangeUI tagExchangeUI;
     public Image Frame;
-
     public Image Icon => icon;
-
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left)
@@ -270,10 +268,17 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
     }
     protected virtual void LeftClickAction()
     {
-        PlayerCharactersInventory playerCharactersInventory = Resources.Load<PlayerCharactersInventory>("CharacterInvUI/ChraInvUI");
-        PlayerCharactersInventory current = Instantiate(playerCharactersInventory, GameObject.FindGameObjectWithTag("MainUICanvas").transform);
+        PlayerCharactersInventory playerCharactersInventory 
+            = Resources.Load<PlayerCharactersInventory>("CharacterInvUI/ChraInvUI");
+        
+        PlayerCharactersInventory current 
+            = Instantiate(playerCharactersInventory, 
+            GameObject.FindGameObjectWithTag("MainUICanvas").transform);
         current.SetupMode(CardMode.ItemSelectMode);
-        GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>().InUseItem = ItemName;
+        
+        GameObject.FindGameObjectWithTag("PlayerItemInventory")
+            .GetComponent<ItemInventory>().InUseItem = ItemName;
+        
         foreach (CharacterUI characterUI in current.characterUIList)
         {
             characterUI.newTag = Use();
@@ -285,10 +290,10 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
         string SpritePath = ("Art/ItemIcon/" + item.ToString()).Replace(" ", string.Empty);
         icon.sprite = Resources.Load<Sprite>(SpritePath);
         this.amount.text = amount.ToString();
-        string FramePath = $"Art/BuildingUI/杂货铺/初级五金铺/物品框/物品框-{Player.AllTagRareDict[Use()]}";
+        var framRarity = Player.AllTagRareDict[Use()] != Rarerity.B ? Player.AllTagRareDict[Use()] : Rarerity.N;
+        string FramePath = $"Art/BuildingUI/杂货铺/初级五金铺/物品框/物品框-{framRarity}";
         Frame.sprite = Resources.Load<Sprite>(FramePath);
     }
-
     public Tag Use()
     {
         return SOItem.ItemMap[this.ItemName];

@@ -41,6 +41,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
 
     private void Awake()
     {
+        movementGrid = FindObjectOfType<MovementGrid>().GetComponent<Grid>();
         foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
         {
             subject.RegisterObserver(this);
@@ -70,7 +71,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         int tryMin = DayMinBlock - Random.Range(3, 10);
         DayMinBlock = (tryMin < 0) ? tryMin + map.mapCount : tryMin;
         CurrentLocation = OnNight ? NightBlock : Random.Range(DayMinBlock, DayMaxBlock);
-        transform.position = map.map[CurrentLocation].transform.position;
+        transform.position = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this,CurrentLocation));
     }
     public void Move()
     {
@@ -111,7 +112,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
             NextBlockToMove = -1;
         }
         NextBlockToMove += 1;
-        var targetPosition = map.map[NextBlockToMove].transform.position;
+        var targetPosition =movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, NextBlockToMove));
         //var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, NextBlockToMove));
         var startPosition = transform.position;
         float time = 0;
@@ -126,10 +127,10 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     {
         if (NextBlockToMove - 1 < 0)
         {
-            NextBlockToMove = 70;
+            NextBlockToMove = MovementGrid.EnemyInnerMovementBlocks.Count-1;
         }
         NextBlockToMove -= 1;
-        var targetPosition = map.map[NextBlockToMove].transform.position;
+        var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, NextBlockToMove));
         var startPosition = transform.position;
         float time = 0;
         while (time < map.duration)
