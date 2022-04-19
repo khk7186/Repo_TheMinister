@@ -134,7 +134,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     {
         if (NextBlockToMove - 1 < 0)
         {
-            NextBlockToMove = MovementGrid.EnemyInnerMovementBlocks.Count-1;
+            NextBlockToMove = MovementGrid.EnemyInnerMovementBlocks.Count;
         }
         NextBlockToMove -= 1;
         var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, NextBlockToMove));
@@ -155,8 +155,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         {
             for (int i = 0; i < Mathf.Abs(steps); i++)
             {
-                StartCoroutine(MoveAStepBackward());
-                yield return new WaitForSeconds(map.duration / 3f);
+                yield return StartCoroutine(MoveAStepBackward());
             }
 
         }
@@ -164,8 +163,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         {
             for (int i = 0; i < steps; i++)
             {
-                StartCoroutine(MoveAStepForward());
-                yield return new WaitForSeconds(map.duration / 3f);
+                yield return StartCoroutine(MoveAStepForward());
             }
         }
 

@@ -10,7 +10,6 @@ public class SideChanger : MonoBehaviour
 
     public void changeSide(bool front, bool right)
     {
-        Debug.Log(1);
         if (TryGetComponent<DefaultInGameAI>(out var inGameAI))
         {
             CharacterArtCode CAC=  inGameAI.character.characterArtCode;

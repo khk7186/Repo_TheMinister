@@ -65,7 +65,7 @@ public class Map : MonoBehaviour, IObserver
 
     private IEnumerator MoveAStep(Transform character)
     {
-        yield return StartCoroutine(TurnCheck());
+        //yield return StartCoroutine(TurnCheck());
         if (PlayerNextBlockToMove + 1 >= MovementGrid.PlayerMovementBlocks.Count)
         {
             PlayerNextBlockToMove = -1;

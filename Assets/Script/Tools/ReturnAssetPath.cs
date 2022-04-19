@@ -22,7 +22,6 @@ public class ReturnAssetPath : MonoBehaviour
         string codeName = characterArtCode.ToString();
         string subforderName = front ? "Front" : "Back";
         var output = $"Character Spine/{codeName}/{subforderName}/{codeName}_{subforderName}_SkeletonData";
-        //Debug.Log(output);
         return output;
     }
     public static string ReturnSpineControllerPath(CharacterArtCode characterArtCode, bool front)
