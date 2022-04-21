@@ -6,10 +6,10 @@ using DG.Tweening;
 public class CombatUI : MonoBehaviour
 {
     public Transform playerInfoTransform;
-    public CharacterUI currentPlayer;
+    public FlagUI currentPlayer;
     public Transform enemyInfoTransform;
-    public CharacterUI currentEnemy;
-    public CharacterUI characterUI;
+    public FlagUI currentEnemy;
+    public FlagUI flagUI;
     public float duration = 1;
     public float range = 15;
     public Ease effect = Ease.Linear;
@@ -26,14 +26,13 @@ public class CombatUI : MonoBehaviour
             {
                 RemovePlayerCurrent();
                 RemoveEnemyCurrent();
-                var target = Instantiate(characterUI, playerInfoTransform);
+                var target = Instantiate(flagUI, playerInfoTransform);
                 var targetRect = target.GetComponent<RectTransform>();
-                targetRect.anchoredPosition = new Vector2(-170, 0);
-                targetRect.anchorMin = new Vector2(0, 0.5f);
-                targetRect.anchorMax = new Vector2(0, 0.5f);
-                targetRect.pivot = new Vector2(0, 0.5f);
-                target.character = character.character;
-                target.Setup();
+                targetRect.anchoredPosition = new Vector2(-459, 120);
+                targetRect.anchorMin = new Vector2(0.5f, 0.5f);
+                targetRect.anchorMax = new Vector2(0.5f, 0.5f);
+                targetRect.pivot = new Vector2(0.5f, 0.5f);
+                target.Setup(character.character);
                 currentPlayer = target;
                 characterOnDisplay = character.character;
                 targetRect
@@ -57,14 +56,13 @@ public class CombatUI : MonoBehaviour
             {
                 RemoveEnemyCurrent();
                 RemovePlayerCurrent();
-                var target = Instantiate(characterUI, enemyInfoTransform);
+                var target = Instantiate(flagUI, enemyInfoTransform);
                 var targetRect = target.GetComponent<RectTransform>();
-                targetRect.anchoredPosition = new Vector2(170, 0);
-                targetRect.anchorMin = new Vector2(1, 0.5f);
-                targetRect.anchorMax = new Vector2(1, 0.5f);
-                targetRect.pivot = new Vector2(1, 0.5f);
-                target.character = character.character;
-                target.Setup();
+                targetRect.anchoredPosition = new Vector2(459, 120);
+                targetRect.anchorMin = new Vector2(0.5f, 0.5f);
+                targetRect.anchorMax = new Vector2(0.5f, 0.5f);
+                targetRect.pivot = new Vector2(0.5f, 0.5f);
+                target.Setup(character.character);
                 currentEnemy = target;
                 characterOnDisplay = character.character;
                 targetRect
@@ -91,7 +89,7 @@ public class CombatUI : MonoBehaviour
         {
             var current = currentPlayer.GetComponent<RectTransform>();
             current
-            .DOAnchorPosX(-range, duration / 2)
+            .DOAnchorPosY(400, duration / 2)
             .SetEase(effect)
             .SetDelay(0.1f)
             .OnComplete(() =>
@@ -108,7 +106,7 @@ public class CombatUI : MonoBehaviour
         {
             var current = currentEnemy.GetComponent<RectTransform>();
             current
-            .DOAnchorPosX(range, duration / 2)
+            .DOAnchorPosY(400, duration / 2)
                 .SetEase(effect)
                 .SetDelay(0.1f)
                 .OnComplete(() =>

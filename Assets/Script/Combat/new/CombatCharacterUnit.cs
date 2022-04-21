@@ -68,6 +68,12 @@ public class CombatCharacterUnit : MonoBehaviour
             (ReturnAssetPath.ReturnSpineControllerPath(character.characterArtCode, !IsFriend));
         GetComponent<Animator>().runtimeAnimatorController = controller;
         GetComponent<SkeletonMecanim>().Initialize(true);
+        if (!IsFriend)
+        {
+            var newScale = transform.localScale;
+            newScale = new Vector3(-newScale.x, newScale.y, newScale.z);
+            transform.localScale = newScale;
+        }
     }
 
     public void SetGridPosition(Vector3Int cellPosition)

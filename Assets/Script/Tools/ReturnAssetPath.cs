@@ -41,4 +41,18 @@ public class ReturnAssetPath : MonoBehaviour
     {
         return $"Art/ItemIcon/{name.ToString()}";
     }
+
+    public static string ReturnCharacterSpritePath(CharacterArtCode characterArtCode, bool Idle = true)
+    {
+        string codeName = characterArtCode.ToString();
+        string subforderName = Idle ? "Idle" : "Headshot";
+        var output = $"Art/CharacterSprites/{subforderName}/{codeName}";
+        return output;
+    }
+
+    public static string ReturnCharacterStatBackground(Rarerity rarerity)
+    {
+        var output = $"Art/人物卡/六大项/字体背景/{rarerity}";
+        return output;
+    }
 }

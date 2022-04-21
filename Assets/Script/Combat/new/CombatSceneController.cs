@@ -110,7 +110,7 @@ public class CombatSceneController : MonoBehaviour
             var combatUI = FindObjectOfType<CombatUI>();
 
             /*ctl k u this line for properuse*/
-            //combatUI.ShowNewCard(unit);
+            combatUI.ShowNewCard(unit);
         }
     }
     public static void MoveCamera(int adjast)
