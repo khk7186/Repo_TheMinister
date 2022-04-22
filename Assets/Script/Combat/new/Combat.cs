@@ -34,6 +34,7 @@ public class Combat : MonoBehaviour
     }
     public IEnumerator StartCombat()
     {
+        FindObjectOfType<CombatUI>().BlackFrameAnimation(false);
         while (CombatQueue.Count > 0)
         {
             var OnActionCCU = (CombatCharacterUnit)CombatQueue.Dequeue();
@@ -46,6 +47,9 @@ public class Combat : MonoBehaviour
         }
         yield return new WaitForEndOfFrame();
         CombatInteractableUnit.SetActiveAllLine(true);
+        FindObjectOfType<CombatUI>().BlackFrameAnimation(true);
         Destroy(gameObject);
     }
+
+
 }

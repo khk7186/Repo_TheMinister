@@ -38,7 +38,6 @@ public class FlagUI : MonoBehaviour
         AssasinStat.text = character.CharactersValueDict[CharacterValueType.´Ì].ToString();
 
         Name.text = character.CharacterName;
-
-        
+        Health.text = character.health.ToString();
     }
 }

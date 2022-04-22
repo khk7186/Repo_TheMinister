@@ -299,8 +299,8 @@ public class Character : MonoBehaviour, IRound
     #region Variable
     public CharacterType characterType = CharacterType.General;
     public CharacterArtCode characterArtCode;
-    public int loyalty = 10;
-    public int health = 10;
+    public int loyalty = 20;
+    public int health = 20;
 
     public CharacterUI characterCard;
     public CharacterUI thisCharacterCard;

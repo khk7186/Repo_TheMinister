@@ -26,6 +26,7 @@ public class CombatCharacterUnit : MonoBehaviour
     private const int IsometricRangePerYUnit = 1;
     public CombatCharacterUnit Defender = null;
     SortingGroup sg = null;
+    public HealthBar healthBar;
 
     private void Awake()
     {
@@ -74,6 +75,9 @@ public class CombatCharacterUnit : MonoBehaviour
             newScale = new Vector3(-newScale.x, newScale.y, newScale.z);
             transform.localScale = newScale;
         }
+        healthBar = Instantiate(Resources.Load<HealthBar>("CombatScene/HealthBar"), MainCanvas.FindMainCanvas());
+        healthBar.followCharacter = this.transform;
+        healthBar.Setup(character.health);
     }
 
     public void SetGridPosition(Vector3Int cellPosition)
@@ -106,7 +110,7 @@ public class CombatCharacterUnit : MonoBehaviour
     }
     public void MakeTurn()
     {
-        ModifyStat();
+        
         DoDamage();
     }
     public void ModifyStat()
@@ -182,6 +186,7 @@ public class CombatCharacterUnit : MonoBehaviour
                     character.FightHealthModify(result);
                     break;
             }
+            healthBar.Setup(character.health);
             if (character.health <= 0)
             {
                 DeathAction();
@@ -220,6 +225,7 @@ public class CombatCharacterUnit : MonoBehaviour
             var trigger = FindObjectOfType<GeneralEventTrigger>();
             trigger.LostCharacters.Add(character);
         }
+        Destroy(healthBar.gameObject);
         gameObject.SetActive(false);
         CheckGameEnd();
     }
@@ -241,7 +247,9 @@ public class CombatCharacterUnit : MonoBehaviour
         {
             trigger.gameTracker.gameWin = false;
         }
-        Debug.Log(enemy);
+        //Debug.Log(enemy);
         trigger.TiggerEnd();
     }
+
+
 }

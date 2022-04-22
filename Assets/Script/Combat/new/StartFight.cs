@@ -10,6 +10,12 @@ public class StartFight : MonoBehaviour
     public IEnumerator StartNewFight()
     {
         var selfUnit = GetComponent<CombatCharacterUnit>();
+        selfUnit.ModifyStat();
+        yield return StatChangeAnimation(selfUnit);
+        if (selfUnit.currentAction == Action.NoSelect)
+        {
+            selfUnit.currentAction = Action.Attack;
+        }
         if (selfUnit.currentAction != Action.Defence)
         {
             CombatCharacterUnit target = selfUnit.target;
@@ -100,5 +106,32 @@ public class StartFight : MonoBehaviour
     {
         if (target == null) return false;
         return target.Defender != null;
+    }
+
+    public IEnumerator StatChangeAnimation(CombatCharacterUnit character)
+    {
+        CharacterStat stat = character.stat;
+        var animat = Instantiate(Resources.Load<StatChangeAnimation>("CombatScene/StatAnimation"), MainCanvas.FindMainCanvas());
+        var Position = transform.position;
+        var canvas = MainCanvas.FindMainCanvas().GetComponent<RectTransform>();
+        Vector2 AP = WorldToCanvasPosition.GetCanvasPosition(canvas, Camera.main, Position);
+        AP.y += 120;
+        animat.GetComponent<RectTransform>().anchoredPosition = AP;
+        var animationName = "";
+        switch (stat)
+        {
+            case CharacterStat.weak:
+                animationName = "Èõ";
+                break;
+            case CharacterStat.normal:
+                animationName = "Õý³£";
+                break;
+            case CharacterStat.strong:
+                animationName = "Ç¿";
+                break;
+            default:
+                break;
+        }
+        yield return StartCoroutine(animat.DestroyAfterPlay(animationName));
     }
 }

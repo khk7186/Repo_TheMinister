@@ -67,16 +67,17 @@ public class CombatInteractableUnit : MonoBehaviour
         if (line == null) line = Instantiate(Resources.Load<LineRenderer>("Lines/Line"));
         var Unit = GetComponent<CombatCharacterUnit>();
         bool friend = Unit.currentAction == Action.Defence;
+        
         switch (Unit.currentAction)
         {
             case Action.Attack:
-                line.endColor = Color.red;
+                line.SetColors(Color.red, Color.red);
                 break;
             case Action.Assassinate:
-                line.endColor = Color.yellow;
+                line.SetColors(Color.yellow, Color.yellow); 
                 break;
             case Action.Defence:
-                line.endColor = Color.blue;
+                line.SetColors(Color.blue, Color.blue);
                 break;
         }
         StartCoroutine(EnableTargetSelection(friend));
@@ -112,7 +113,7 @@ public class CombatInteractableUnit : MonoBehaviour
                     }
                 }
             }
-            line.SetPosition(1, target);
+            line.SetPosition(1, Vector2.Lerp(line.GetPosition(0), target, 0.9f));
             if (Input.GetMouseButtonDown(1))
             {
                 NotEnd = false;
@@ -145,6 +146,7 @@ public class CombatInteractableUnit : MonoBehaviour
             if (unit.line != null)
             {
                 unit.line.enabled = enable;
+                unit.line.GetComponent<CombatLine>().arrow.enabled = enable;
                 if (enable && unit != null)
                 {
                     var ccu = unit.GetComponent<CombatCharacterUnit>();
