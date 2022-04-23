@@ -66,7 +66,7 @@ public class CombatSceneController : MonoBehaviour
     {
         foreach (var character in characters)
         {
-            Debug.Log(character.characterArtCode);
+            //Debug.Log(character.characterArtCode);
             CombatCharacterUnit.NewCombatCharacterUnit(character, character.hireStage == HireStage.Hired);
         }
         var output = new List<CombatCharacterUnit>();

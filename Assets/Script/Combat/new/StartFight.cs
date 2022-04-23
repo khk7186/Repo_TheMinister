@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StartFight : MonoBehaviour
 {
-    public static float duration = 0.3f;
+    public float duration = 0.3f;
     private float distanceX = 2.5f;
     private float distanceY = 2.5f;
     public IEnumerator StartNewFight()

@@ -22,7 +22,6 @@ public class CombatUI : MonoBehaviour
     public float UItransDuration = 0.2f;
 
     public RectTransform CombatSign;
-
     public RectTransform ControlPannel;
 
     public void ShowNewCard(CombatCharacterUnit character)
@@ -89,7 +88,6 @@ public class CombatUI : MonoBehaviour
                 csc.Animating = false;
             }
         }
-
     }
 
     private void RemovePlayerCurrent()

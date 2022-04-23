@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -39,7 +40,8 @@ public class GeneralEventTrigger : MonoBehaviour
         }
         gameTracker = GameTracker.NewGameTracker
                                                             (moneyRewards, influenceRewards, prestigeRewards, itemRewards);
-        JumpToScene(scene);
+        StartCoroutine(JumpToScene(scene));
+
     }
     public void TiggerEnd()
     {
@@ -49,7 +51,7 @@ public class GeneralEventTrigger : MonoBehaviour
             if (gameTracker.gameWin)
             {
                 scene = 0;
-                JumpToScene(scene);
+                StartCoroutine(JumpToScene(scene));
                 CurrencyInventory currencyInventory = FindObjectOfType<CurrencyInventory>();
                 currencyInventory.Money += gameTracker.moneyRewards;
                 currencyInventory.Influence += gameTracker.influenceRewards;
@@ -67,8 +69,12 @@ public class GeneralEventTrigger : MonoBehaviour
             }
         }
     }
-    private void JumpToScene(int scene)
+    private IEnumerator JumpToScene(int scene)
     {
+        var path = $"CombatScene/SceneChangeAnimation";
+        var animation = Instantiate(Resources.Load<SceneTrans>(path));
+        yield return StartCoroutine(animation.StartChange((SceneType)scene));
         SceneManager.LoadScene(scene);
+        yield return StartCoroutine(animation.EndChange());
     }
 }

@@ -13,9 +13,9 @@ public enum BattleState
 }
 public enum BattleType
 {
-    Combat,
-    Debate,
-    GoBang
+    Combat = 1,
+    Debate = 2,
+    GoBang = 3
 }
 public enum Action
 {
