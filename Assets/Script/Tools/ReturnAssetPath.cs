@@ -46,7 +46,7 @@ public class ReturnAssetPath : MonoBehaviour
     {
         string codeName = characterArtCode.ToString();
         string subforderName = Idle ? "Idle" : "Headshot";
-        var output = $"Art/CharacterSprites/{subforderName}/{codeName}";
+        var output = $"Art/CharacterSprites/{subforderName}/{subforderName}_{codeName}";
         return output;
     }
 
