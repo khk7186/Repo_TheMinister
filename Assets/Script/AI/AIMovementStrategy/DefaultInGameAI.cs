@@ -82,7 +82,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     }
     public void Move()
     {
-        int steps;
+        //int steps;
         if (OnNight)
         {
             TargetLocation = NightBlock;
@@ -91,26 +91,29 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         {
             TargetLocation = Random.Range(DayMinBlock, DayMaxBlock + 1);
         }
-        if (TargetLocation < CurrentLocation)
-        {
-            steps = (TargetLocation + map.mapCount - CurrentLocation);
-        }
-        else
-        {
-            steps = (TargetLocation - CurrentLocation);
-        }
-        if (Mathf.Abs(steps) > map.mapCount / 2)
-        {
-            if (steps > map.mapCount / 2)
-            {
-                steps = -(map.mapCount - steps);
-            }
-            else if (steps <= map.mapCount / 2)
-            {
-                steps = (map.mapCount - steps);
-            }
-        }
-        StartCoroutine(MoveManyStep(steps));
+        //if (TargetLocation < CurrentLocation)
+        //{
+        //    steps = (TargetLocation + map.mapCount - CurrentLocation);
+        //}
+        //else
+        //{
+        //    steps = (TargetLocation - CurrentLocation);
+        //}
+        //if (Mathf.Abs(steps) > map.mapCount / 2)
+        //{
+        //    if (steps > map.mapCount / 2)
+        //    {
+        //        steps = -(map.mapCount - steps);
+        //    }
+        //    else if (steps <= map.mapCount / 2)
+        //    {
+        //        steps = (map.mapCount - steps);
+        //    }
+        //}
+        var movement = GetComponent<CharacterMovement>();
+        movement.finalBlock = TargetLocation;
+        StartCoroutine(movement.MoveToLocation());
+        //StartCoroutine(MoveManyStep(steps));
     }
     private IEnumerator MoveAStepForward()
     {
@@ -123,7 +126,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         //var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, NextBlockToMove));
         var startPosition = transform.position;
         float time = 0;
-        while (time < map.duration)
+        while (time < map.duration/3f)
         {
             transform.position = Vector2.Lerp(startPosition, targetPosition, time / map.duration * 3f);
             time += Time.deltaTime;
@@ -140,7 +143,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, NextBlockToMove));
         var startPosition = transform.position;
         float time = 0;
-        while (time < map.duration)
+        while (time < map.duration /3f)
         {
             transform.position = Vector2.Lerp(startPosition, targetPosition, time / map.duration * 3f);
             time += Time.deltaTime;
@@ -150,6 +153,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
 
     public IEnumerator MoveManyStep(int steps)
     {
+        animator.SetTrigger("Move");
         CurrentLocation = (CurrentLocation + steps) % (map.mapCount);
         if (steps <= 0)
         {
@@ -166,7 +170,6 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
                 yield return StartCoroutine(MoveAStepForward());
             }
         }
-
 
         //map.TurnCheck();
         animator.SetTrigger("Stop");

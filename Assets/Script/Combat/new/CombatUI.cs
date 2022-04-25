@@ -127,7 +127,6 @@ public class CombatUI : MonoBehaviour
 
     public void BlackFrameAnimation(bool open = false)
     {
-        Debug.Log(open);
         float scale = open ? 1.5f : 1f;
         blackFrame.GetComponent<RectTransform>().DOScale(scale, UItransDuration).SetEase(Ease.OutSine);
 

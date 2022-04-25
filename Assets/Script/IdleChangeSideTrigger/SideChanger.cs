@@ -12,7 +12,7 @@ public class SideChanger : MonoBehaviour
     {
         if (TryGetComponent<DefaultInGameAI>(out var inGameAI))
         {
-            CharacterArtCode CAC=  inGameAI.character.characterArtCode;
+            CharacterArtCode CAC = inGameAI.character.characterArtCode;
             string side = front ? "Front" : "Back";
             SkeletonDataAsset asset = Resources.Load<SkeletonDataAsset>
     ($"{ReturnAssetPath.ReturnSpineAssetPath(CAC, front)}{CAC}_{side}_SkeletonData");

@@ -242,6 +242,19 @@ public class MovementGrid : MonoBehaviour
     }
     public static Vector3Int CheckAIBlock(DefaultInGameAI gameAI, int blockNumber)
     {
+        if (gameAI.TargetLocation != blockNumber)
+        {
+            List<Vector3Int> targetpath = gameAI.inner ? EnemyInnerMovementBlocks : EnemyOutterMovementBlocks;
+            return targetpath[blockNumber % EnemyOutterMovementBlocks.Count];
+        }
+        else
+        {
+            return CheckAILastBlock(gameAI, blockNumber);
+        }
+    }
+
+    public static Vector3Int CheckAILastBlock(DefaultInGameAI gameAI, int blockNumber)
+    {
         Vector3Int block = Vector3Int.zero;
         bool[] OnBlockStat;
         if (EnemyStandBlockDict.TryGetValue(blockNumber, out OnBlockStat))

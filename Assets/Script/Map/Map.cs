@@ -22,7 +22,7 @@ public class Map : MonoBehaviour, IObserver
     public float duration = 10f;
 
     [SerializeField] private Animator PlayerAnimator;
-
+    [SerializeField] private CharacterMovement PlayerMovement;
 
 
     private void Awake()
@@ -31,7 +31,7 @@ public class Map : MonoBehaviour, IObserver
         {
             subject.RegisterObserver(this);
         }
-        Player.position = movementGrid.GetCellCenterWorld(MovementGrid.PlayerMovementBlocks[PlayerCurrentBlock]);
+        Player.position = movementGrid.GetCellCenterWorld(MovementGrid.PlayerMovementBlocks[PlayerMovement.currentBlock]);
         PlayerNextBlockToMove = PlayerCurrentBlock;
         SetBuildings();
     }
@@ -43,10 +43,19 @@ public class Map : MonoBehaviour, IObserver
     {
         if (notificationType == NotificationType.DiceRoll)
         {
-            PlayerAnimator.SetTrigger("Move");
+            //PlayerAnimator.SetTrigger("Move");
             DayTimePlus();
-            StartCoroutine(MoveManyStep((int)value, Player));
+            //StartCoroutine(MoveManyStep((int)value, Player));
+            PlayerMovement.finalBlock += (int)value;
+            StartCoroutine(Move());
         }
+    }
+    
+    IEnumerator Move()
+    {
+        yield return PlayerMovement.MoveToLocation();
+        FindObjectOfType<Dice>().rolling = false;
+        SetBuildings();
     }
 
     private void DayTimePlus()
@@ -189,7 +198,7 @@ public class Map : MonoBehaviour, IObserver
         target = new Vector3((doLeft ? 0.7f : -0.7f), target.y, target.z);
         PlayerAnimator.transform.localScale = target;
         PlayerAnimator.GetComponent<SkeletonMecanim>().Initialize(true);
-        PlayerAnimator.SetTrigger(OnMove ? "Move" : "Stop");
+        PlayerAnimator.SetTrigger(PlayerMovement.isMoving ? "Move" : "Stop");
         //if (OnMove)
         //{
         //    PlayerAnimator.SetTrigger("Move");
