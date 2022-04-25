@@ -329,6 +329,7 @@ MonoBehaviour:
   delayPerMove: 0.2
   duration: 0.5
   PlayerAnimator: {fileID: 1870241744}
+  PlayerMovement: {fileID: 391794465}
 --- !u!224 &22664230
 RectTransform:
   m_ObjectHideFlags: 0
@@ -607,7 +608,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 6
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -630,20 +631,20 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 4c2ac961eb009ae4b896a94c1b88dd44, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 1
     m_Data:
@@ -25718,6 +25719,7 @@ GameObject:
   - component: {fileID: 391794461}
   - component: {fileID: 391794463}
   - component: {fileID: 391794464}
+  - component: {fileID: 391794465}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -25829,6 +25831,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   skeletonMecanim: {fileID: 0}
+--- !u!114 &391794465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391794458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71a71328f846ad34ebee1474713dbe56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 391794460}
+  animator: {fileID: 1870241744}
+  AI: 0
+  speed: 12
+  grid: {fileID: 820263734}
+  currentBlock: 66
+  finalBlock: 0
 --- !u!1 &397752149
 GameObject:
   m_ObjectHideFlags: 0
