@@ -37,11 +37,11 @@ public class CharacterMovement : MonoBehaviour
     {
         finalBlock = finalBlock % blockCount;
         animator.SetTrigger("Move");
-        bool isInView = VisibleCheck.IsInView(character.transform.position);
+        bool isInView = VisibleCheck.ColliderInView(character.gameObject);
 
         while (currentBlock != finalBlock)
         {
-            isInView = VisibleCheck.IsInView(character.transform.position);
+            isInView = VisibleCheck.ColliderInView(character.gameObject);
             if (isInView)
             {
                 yield return MoveToNextBlock();

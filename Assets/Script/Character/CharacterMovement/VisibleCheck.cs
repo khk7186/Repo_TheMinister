@@ -16,5 +16,12 @@ public class VisibleCheck : MonoBehaviour
             return true;
         else
             return false;
+
+
+    }
+    public static bool ColliderInView(GameObject gameObject)
+    {
+        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
+        return GeometryUtility.TestPlanesAABB(planes, gameObject.GetComponent<Collider2D>().bounds);
     }
 }
