@@ -28,7 +28,8 @@ public class ReturnAssetPath : MonoBehaviour
     {
         string codeName = characterArtCode.ToString();
         string subforderName = front ? "Front" : "Back";
-        var output = $"Character Spine/{codeName}/{subforderName}/{codeName}{subforderName}_Controller";
+        //Assets/Resources/Character Spine/∑Ω’…/Front/∑Ω’…_Front_Controller.controller
+        var output = $"Character Spine/{codeName}/{subforderName}/{codeName}_{subforderName}_Controller";
         return output;
     }
     public static string ReturnCombatCharacterUnitPrefPath()
