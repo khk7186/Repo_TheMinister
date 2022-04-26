@@ -61,10 +61,10 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         this.character = character;
         SkeletonDataAsset asset = Resources.Load<SkeletonDataAsset>
             ($"{ReturnAssetPath.ReturnSpineAssetPath(character.characterArtCode, true)}");
-        Debug.Log($"{ReturnAssetPath.ReturnSpineAssetPath(character.characterArtCode, true)}");
         animator.GetComponent<SkeletonMecanim>().skeletonDataAsset = asset;
         string controllerPath = $"{ReturnAssetPath.ReturnSpineControllerPath(character.characterArtCode, true)}";
-        animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(controllerPath);
+        //Debug.Log($"{ReturnAssetPath.ReturnSpineControllerPath(character.characterArtCode, true)}");
+        //animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(controllerPath);
         animator.GetComponent<SkeletonMecanim>().Initialize(true);
         NightBlock = Random.Range(0, map.mapCount);
         int tryMax = NightBlock + (Random.Range(0, 1) == 0 ? -1 : 1) * Random.Range(4, 10) % map.mapCount;

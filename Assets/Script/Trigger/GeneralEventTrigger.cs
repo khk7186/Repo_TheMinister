@@ -18,6 +18,12 @@ public class GeneralEventTrigger : MonoBehaviour
     public GameTracker gameTracker = null;
     private int scene = 0;
     public List<Character> LostCharacters = new List<Character>();
+    public EndGamePannel endGamePannel;
+    private void Awake()
+    {
+        var pannelPath = "CombatScene/VictoryUI";
+        endGamePannel = Resources.Load<EndGamePannel>(pannelPath);
+    }
     public void TriggerEvent()
     {
         DontDestroyOnLoad(gameObject);
@@ -65,7 +71,6 @@ public class GeneralEventTrigger : MonoBehaviour
             //Lose
             else
             {
-
             }
         }
     }
@@ -75,6 +80,17 @@ public class GeneralEventTrigger : MonoBehaviour
         var animation = Instantiate(Resources.Load<SceneTrans>(path));
         yield return StartCoroutine(animation.StartChange((SceneType)scene));
         SceneManager.LoadScene(scene);
-        yield return StartCoroutine(animation.EndChange());
+        
+
+        StartCoroutine(animation.EndChange());
+        if (scene == 0)
+        {
+            while (SceneManager.GetActiveScene().buildIndex != 0)
+            {
+                yield return null;
+            }
+            Debug.Log("Game Over");
+            var pannel = Instantiate(endGamePannel, MainCanvas.FindMainCanvas());
+        }
     }
 }

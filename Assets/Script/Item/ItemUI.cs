@@ -293,7 +293,10 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
         var framRarity = Player.AllTagRareDict[Use()] != Rarerity.B ? Player.AllTagRareDict[Use()] : Rarerity.N;
         string FramePath = $"Art/BuildingUI/杂货铺/初级五金铺/物品框/物品框-{framRarity}";
         Frame.sprite = Resources.Load<Sprite>(FramePath);
+        var spritSize = icon.GetComponent<RectTransform>().sizeDelta;
+        Frame.GetComponent<RectTransform>().sizeDelta = new Vector2(spritSize.x *1.16f, spritSize.y *1.1f);
     }
+    
     public Tag Use()
     {
         return SOItem.ItemMap[this.ItemName];
