@@ -62,7 +62,7 @@ public class CombatSelectUI : MonoBehaviour
     }
     public void Assassinate()
     {
-        unit.currentAction = Action.Assassinate;
+        unit.currentAction = Action.Assassin;
         var interactUnit = unit.GetComponent<CombatInteractableUnit>();
         if (interactUnit != null)
         {

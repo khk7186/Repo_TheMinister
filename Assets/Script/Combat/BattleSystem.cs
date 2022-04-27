@@ -22,7 +22,7 @@ public enum Action
     NoSelect = 0,
     Attack = 1,
     Defence = 2,
-    Assassinate = 3,
+    Assassin = 3,
     Surrender = 4
 }
 public class BattleSystem : MonoBehaviour
@@ -132,7 +132,7 @@ public class BattleSystem : MonoBehaviour
             case Action.Defence:
                 Defence(enemyAction);
                 break;
-            case Action.Assassinate:
+            case Action.Assassin:
                 Assinate(enemyAction);
                 break;
         }
@@ -149,7 +149,7 @@ public class BattleSystem : MonoBehaviour
             case Action.Defence:
                 AttackNDefence(PlayerCurrentCharacter, EnemyCurrentCharacter);
                 break;
-            case Action.Assassinate:
+            case Action.Assassin:
                 AttackNAssinate(PlayerCurrentCharacter, EnemyCurrentCharacter);
                 break;
             case Action.Surrender:
@@ -169,7 +169,7 @@ public class BattleSystem : MonoBehaviour
             case Action.Defence:
                 DefenceNDefence(EnemyCurrentCharacter, PlayerCurrentCharacter);
                 break;
-            case Action.Assassinate:
+            case Action.Assassin:
                 DefenceNAssinate(PlayerCurrentCharacter, EnemyCurrentCharacter);
                 break;
             case Action.Surrender:
@@ -201,7 +201,7 @@ public class BattleSystem : MonoBehaviour
             case Action.Defence:
                 DefenceNAssinate(EnemyCurrentCharacter, PlayerCurrentCharacter);
                 break;
-            case Action.Assassinate:
+            case Action.Assassin:
                 AssinateNAssinate(PlayerCurrentCharacter, EnemyCurrentCharacter);
                 break;
             case Action.Surrender:

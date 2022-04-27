@@ -25,7 +25,7 @@ public class CombatEnemyPredictStrategy : IAICombatStrategy
                     targetDic[Action.Defence]++;
                     break;
                 case CharacterValueType.ÊØ:
-                    targetDic[Action.Assassinate]++;
+                    targetDic[Action.Assassin]++;
                     break;
             }
         }
@@ -42,7 +42,7 @@ public class CombatEnemyPredictStrategy : IAICombatStrategy
                     targetDic[Action.Defence]++;
                     break;
                 case CharacterValueType.Ä±:
-                    targetDic[Action.Assassinate]++;
+                    targetDic[Action.Assassin]++;
                     break;
             }
         }

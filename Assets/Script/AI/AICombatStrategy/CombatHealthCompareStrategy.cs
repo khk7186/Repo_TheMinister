@@ -20,7 +20,7 @@ public class CombatHealthCompareStrategy : MonoBehaviour, IAICombatStrategy
         {
             if (ch.health < 10)
             {
-                targetDic[Action.Assassinate] += 1;
+                targetDic[Action.Assassin] += 1;
             }
             if (ch.health < highestHealth)
             {
@@ -30,12 +30,12 @@ public class CombatHealthCompareStrategy : MonoBehaviour, IAICombatStrategy
         Character highestAttackCharacter = CombatTool.FindSpecific(selfCharacters, targetBattletype);
         if (highestAttackCharacter.health < 10)
         {
-            targetDic[Action.Assassinate] -= 1;
+            targetDic[Action.Assassin] -= 1;
         }
         Character enemyLowestHealthCharacter = CombatTool.FindLowestHealth(playerCharacters, battleSystem.battleType);
         if (highestAttackCharacter.CharactersValueDict[targetBattletype] > enemyLowestHealthCharacter.health)
         {
-            targetDic[Action.Assassinate] += 2;
+            targetDic[Action.Assassin] += 2;
         }
         foreach (Character ch in selfCharacters)
         {
@@ -43,7 +43,7 @@ public class CombatHealthCompareStrategy : MonoBehaviour, IAICombatStrategy
             {
                 targetDic[Action.Surrender] += 5;
                 targetDic[Action.Attack] += 1;
-                targetDic[Action.Assassinate] -= 2;
+                targetDic[Action.Assassin] -= 2;
                 targetDic[Action.Defence] += 3;
                 if (ch.health < 5)
                 {

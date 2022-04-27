@@ -97,7 +97,7 @@ public class CombatCharacterUnit : MonoBehaviour
             default:
                 break;
             case Action.Attack:
-            case Action.Assassinate:
+            case Action.Assassin:
 
                 break;
             case Action.Defence:
@@ -131,7 +131,7 @@ public class CombatCharacterUnit : MonoBehaviour
 
                 }
                 break;
-            case Action.Assassinate:
+            case Action.Assassin:
                 NextStat = (CharacterStat)((((int)stat - 1) <= 0) ? 0 : ((int)stat - 1));
                 break;
         }
@@ -160,7 +160,7 @@ public class CombatCharacterUnit : MonoBehaviour
                 case Action.Attack:
                     target.TakeDamge(character.CharactersValueDict[CharacterValueType.Îä]);
                     break;
-                case Action.Assassinate:
+                case Action.Assassin:
                     target.TakeDamge(character.CharactersValueDict[CharacterValueType.Îä]);
                     break;
             }

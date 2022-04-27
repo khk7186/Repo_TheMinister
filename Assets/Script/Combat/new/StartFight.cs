@@ -7,11 +7,14 @@ public class StartFight : MonoBehaviour
     public float duration = 0.3f;
     private float distanceX = 2.5f;
     private float distanceY = 2.5f;
+    private Animator animator;
     public IEnumerator StartNewFight()
     {
         var selfUnit = GetComponent<CombatCharacterUnit>();
+        animator = selfUnit.GetComponent<Animator>();
         selfUnit.ModifyStat();
         yield return StatChangeAnimation(selfUnit);
+        animator.SetTrigger("Move");
         if (selfUnit.currentAction == Action.NoSelect)
         {
             selfUnit.currentAction = Action.Attack;
@@ -77,7 +80,10 @@ public class StartFight : MonoBehaviour
                 time = 0;
                 // Do Damage Calculations
                 selfUnit.MakeTurn();
+                animator.SetTrigger("Stop");
+                animator.SetTrigger(selfUnit.currentAction.ToString());
                 yield return new WaitForSeconds(0.5f);
+                animator.SetTrigger("Move");
                 while (time < duration)
                 {
                     time += Time.deltaTime;
@@ -101,6 +107,7 @@ public class StartFight : MonoBehaviour
             selfUnit.target.Defender = selfUnit;
         }
         yield return null;
+        animator.SetTrigger("Stop");
     }
     public bool IfTargetHaveDefender(CombatCharacterUnit target)
     {

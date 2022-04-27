@@ -9,7 +9,7 @@ public class BaseBattleAI
                 {
                     { Action.Attack,5 },
                     { Action.Defence, 5 },
-                    { Action.Assassinate, 5 },
+                    { Action.Assassin, 5 },
                     { Action.Surrender, 0 }
                 };
     public Character nextCharacter;
@@ -38,7 +38,7 @@ public class BaseBattleAI
                 {
                     { Action.Attack,5 },
                     { Action.Defence, 5 },
-                    {Action.Assassinate, 5 },
+                    {Action.Assassin, 5 },
                     { Action.Surrender, 0 }
                 };
     }

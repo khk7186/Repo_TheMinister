@@ -13,7 +13,7 @@ public class ReturnAssetPath : MonoBehaviour
         }
         else
         {
-            output = "Character Spine/ÀîÔ¬Ä°/Back/";
+            output = "Character Spine/ÀîÔ¬Ä°/Back/"; 
         }
         return output;
     }

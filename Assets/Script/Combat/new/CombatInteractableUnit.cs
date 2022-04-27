@@ -73,7 +73,7 @@ public class CombatInteractableUnit : MonoBehaviour
             case Action.Attack:
                 line.SetColors(Color.red, Color.red);
                 break;
-            case Action.Assassinate:
+            case Action.Assassin:
                 line.SetColors(Color.yellow, Color.yellow); 
                 break;
             case Action.Defence:
