@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 935899b62f48ae5498594680ed17d133, type: 3}
-  m_Name: "\u65B9\u4E08"
+  m_Name: "\u68CB\u5723 (Auto-Backup)"
   m_EditorClassIdentifier: 
   version: 
   author: 
@@ -60,7 +60,7 @@ MonoBehaviour:
   - id: 2
     fields:
     - title: Name
-      value: "\u65B9\u4E08"
+      value: "\u68CB\u5723"
       type: 0
       typeString: 
     - title: Pictures
@@ -82,44 +82,16 @@ MonoBehaviour:
   items: []
   locations: []
   variables:
-  - id: 2
+  - id: 1
     fields:
     - title: Name
-      value: tryCombat
+      value: Alert
       type: 0
       typeString: 
     - title: Initial Value
-      value: False
-      type: 2
-      typeString: CustomFieldType_Boolean
-    - title: Description
       value: 
       type: 0
       typeString: 
-  - id: 3
-    fields:
-    - title: Name
-      value: canCombat
-      type: 0
-      typeString: 
-    - title: Initial Value
-      value: True
-      type: 2
-      typeString: CustomFieldType_Boolean
-    - title: Description
-      value: 
-      type: 0
-      typeString: 
-  - id: 4
-    fields:
-    - title: Name
-      value: startCombat
-      type: 0
-      typeString: 
-    - title: Initial Value
-      value: False
-      type: 2
-      typeString: CustomFieldType_Boolean
     - title: Description
       value: 
       type: 0
@@ -247,7 +219,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: "\u4F5B\u6CD5\u65E0\u8FB9 \u4F60\u7B49\u600E\u6562\u4FB5\u72AF "
+        value: "\u770B\u6697\u5668 \u68CB\u9E23\uFF01"
         type: 0
         typeString: 
       - title: Sequence
@@ -269,8 +241,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 353
-        y: 127
+        x: 347
+        y: 132
         width: 160
         height: 30
     - id: 2
@@ -296,7 +268,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: "\u653E\u4E0B\u5C60\u5200 \u7ACB\u5730\u6210\u4F5B  \u8D2B\u50E7\u5EA6\u4F60\u5165\u4F5B"
+        value: "\u821E\u5200\u5F04\u68D2\u867D\u543E\u64C5\u957F \u4F46\u4E5F\u53EF\u4EE5\u6740\u4EBA"
         type: 0
         typeString: 
       - title: Sequence
@@ -318,8 +290,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 170
-        y: 146
+        x: 167
+        y: 133
         width: 160
         height: 30
     - id: 3
@@ -345,7 +317,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: "\u5927\u7F57\u91D1\u521A\u4F0F\u9B54\u5492  \u5BB5\u5C0F\u5C3D\u9664"
+        value: "\u68CB\u5723\u7684\u6218\u6CD5 \u4F60\u53EF\u66FE\u542C\u95FB "
         type: 0
         typeString: 
       - title: Sequence
@@ -379,8 +351,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 185
-        y: 298
+        x: 2
+        y: 162
         width: 160
         height: 30
     - id: 4
@@ -406,7 +378,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: "\u65B9\u4E08\u5927\u5584"
+        value: "\u51FA\u624B \u597D\u751F\u5389\u5BB3"
         type: 0
         typeString: 
       - title: Sequence
@@ -422,17 +394,14 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 'Variable["startCombat"] = false;
-
-        Variable["tryCombat"]
-        = true'
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 14
-        y: 415
+        x: 1
+        y: 406
         width: 160
         height: 30
     - id: 5
@@ -458,7 +427,7 @@ MonoBehaviour:
         type: 0
         typeString: 
       - title: Dialogue Text
-        value: "\u518D\u89C1\u548C\u5C1A"
+        value: 
         type: 0
         typeString: 
       - title: Sequence
@@ -474,17 +443,14 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 'Variable["startCombat"] = false;
-
-        Variable["tryCombat"]
-        = false'
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 300
-        y: 408
+        x: 231
+        y: 334
         width: 160
         height: 30
     entryGroups: []
@@ -575,31 +541,31 @@ MonoBehaviour:
       - originConversationID: 2
         originDialogueID: 0
         destinationConversationID: 2
-        destinationDialogueID: 17
+        destinationDialogueID: 23
         isConnector: 0
         priority: 2
       - originConversationID: 2
         originDialogueID: 0
         destinationConversationID: 2
-        destinationDialogueID: 16
+        destinationDialogueID: 22
         isConnector: 0
         priority: 2
       - originConversationID: 2
         originDialogueID: 0
         destinationConversationID: 2
-        destinationDialogueID: 15
+        destinationDialogueID: 21
         isConnector: 0
         priority: 2
       - originConversationID: 2
         originDialogueID: 0
         destinationConversationID: 2
-        destinationDialogueID: 13
+        destinationDialogueID: 19
         isConnector: 0
         priority: 2
       - originConversationID: 2
         originDialogueID: 0
         destinationConversationID: 2
-        destinationDialogueID: 14
+        destinationDialogueID: 20
         isConnector: 0
         priority: 2
       conditionsString: 
@@ -609,11 +575,11 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 232
-        y: 55
+        x: 285
+        y: 92
         width: 160
         height: 30
-    - id: 13
+    - id: 19
       fields:
       - title: Title
         value: 
@@ -659,10 +625,10 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 514
-        y: 376
+        y: 429
         width: 160
         height: 30
-    - id: 14
+    - id: 20
       fields:
       - title: Title
         value: 
@@ -708,10 +674,10 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 556
-        y: 255
+        y: 308
         width: 160
         height: 30
-    - id: 15
+    - id: 21
       fields:
       - title: Title
         value: 
@@ -757,10 +723,10 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 323
-        y: 389
+        y: 442
         width: 160
         height: 30
-    - id: 16
+    - id: 22
       fields:
       - title: Title
         value: 
@@ -806,10 +772,10 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 129
-        y: 392
+        y: 445
         width: 160
         height: 30
-    - id: 17
+    - id: 23
       fields:
       - title: Title
         value: 
@@ -860,7 +826,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 0
-        y: 298
+        y: 351
         width: 160
         height: 30
     entryGroups: []
