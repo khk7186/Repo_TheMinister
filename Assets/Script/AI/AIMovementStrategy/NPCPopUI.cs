@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PixelCrushers.DialogueSystem;
 using UnityEngine.UI;
 
 public class NPCPopUI : MonoBehaviour
@@ -11,9 +12,10 @@ public class NPCPopUI : MonoBehaviour
     public bool loaded = false;
     private CharacterInfoUI currentCharacterInfoUI;
     public Button Info, Talk, Attack, Hire, Trade, Gobang, Debate;
-
-    public void Setup(Character character, List<AIInteractType> types, Transform characterImage)
+    private DefaultInGameAI AI;
+    public void Setup(Character character, List<AIInteractType> types, Transform characterImage, DefaultInGameAI ai)
     {
+        AI = ai;
         Character = character;
         interactTypes.AddRange(types);
         foreach (AIInteractType interactType in interactTypes)
@@ -57,11 +59,46 @@ public class NPCPopUI : MonoBehaviour
         currentCharacterInfoUI.Setup(Character);
         //Debug.Log(currentCharacterInfoUI);
     }
+        delegate void conversationEvent();
+    public void SelectTalk()
+    {
+        //AI.TriggerConversation();
+        conversationEvent talkEvent = Fight;
+        var targetDB = Resources.Load<DialogueDatabase>($"Conversions/{Character.characterArtCode}");
+        var targetEventGuid = targetDB.GetConversation(Character.characterArtCode.ToString())
+            .GetDialogueEntry("Yes");
+            //.sceneEventGuid =talkEvent;
+    }
     public void Fight()
     {
+        
         var Trigger = new GameObject().AddComponent<GeneralEventTrigger>();
         Trigger.enemyCharacters = new List<Character>() { Character };
+        var soTarget = Resources.Load<SOConversationEvents>($"SOConversationEvents/{Character.characterArtCode}_CE");
+        soTarget.eventTrigger = Trigger;
         Trigger.TriggerEvent();
     }
+    public void SetConversationDatabase()
+    {
+        var target = GetComponent<DialogueSystemTrigger>();
+        if (target == null)
+        {
+            Debug.LogError("No DialogueSystemTrigger found on " + gameObject.name);
+            return;
+        }
+        target.selectedDatabase = Resources.Load<DialogueDatabase>($"Conversions/{Character.characterArtCode}");
+    }
+
+    public void TriggerConversation(string conversationName)
+    {
+        var target = GetComponent<DialogueSystemTrigger>();
+        if (target == null)
+        {
+            Debug.LogError("No DialogueSystemTrigger found on " + gameObject.name);
+            return;
+        }
+        target.conversation = conversationName;
+    }
+
     
 }

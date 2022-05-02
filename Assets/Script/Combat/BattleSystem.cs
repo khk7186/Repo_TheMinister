@@ -13,6 +13,7 @@ public enum BattleState
 }
 public enum BattleType
 {
+    None = 0,
     Combat = 1,
     Debate = 2,
     GoBang = 3

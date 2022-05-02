@@ -5,6 +5,7 @@ using UnityEngine;
 using Spine.Unity;
 using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
+using PixelCrushers.DialogueSystem;
 
 public enum AIInteractType
 {
@@ -39,7 +40,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     //private string NPCJsonPath = "JSON/AIOnMapMovement";
     public Grid movementGrid;
     private bool pointerHere = false;
-
+    public NPCConversationTriggerGroup npcConversationTriggerGroup;
     private void Awake()
     {
         movementGrid = FindObjectOfType<MovementGrid>().GetComponent<Grid>();
@@ -64,7 +65,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         animator.GetComponent<SkeletonMecanim>().skeletonDataAsset = asset;
         string controllerPath = $"{ReturnAssetPath.ReturnSpineControllerPath(character.characterArtCode, true)}";
         //Debug.Log($"{ReturnAssetPath.ReturnSpineControllerPath(character.characterArtCode, true)}");
-        //animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(controllerPath);
+        animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(controllerPath);
         animator.GetComponent<SkeletonMecanim>().Initialize(true);
         NightBlock = Random.Range(0, map.mapCount);
         int tryMax = NightBlock + (Random.Range(0, 1) == 0 ? -1 : 1) * Random.Range(4, 10) % map.mapCount;
@@ -79,7 +80,10 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         int tryMin = DayMinBlock - Random.Range(3, 10);
         DayMinBlock = (tryMin < 0) ? tryMin + map.mapCount : tryMin;
         CurrentLocation = OnNight ? NightBlock : Random.Range(DayMinBlock, DayMaxBlock);
-        transform.position = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this,CurrentLocation));
+        transform.position = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, CurrentLocation));
+        //SetConversationDatabase();
+        
+        
     }
     public void Move()
     {
@@ -123,11 +127,11 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
             NextBlockToMove = -1;
         }
         NextBlockToMove += 1;
-        var targetPosition =movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, NextBlockToMove));
+        var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, NextBlockToMove));
         //var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, NextBlockToMove));
         var startPosition = transform.position;
         float time = 0;
-        while (time < map.duration/3f)
+        while (time < map.duration / 3f)
         {
             transform.position = Vector2.Lerp(startPosition, targetPosition, time / map.duration * 3f);
             time += Time.deltaTime;
@@ -144,7 +148,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, NextBlockToMove));
         var startPosition = transform.position;
         float time = 0;
-        while (time < map.duration /3f)
+        while (time < map.duration / 3f)
         {
             transform.position = Vector2.Lerp(startPosition, targetPosition, time / map.duration * 3f);
             time += Time.deltaTime;
@@ -178,36 +182,38 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
 
     private void OnMouseDown()
     {
-        if (!IsPointerOver.IsPointerOverUIObject())
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                pointerHere = true;
-            }
-        }
+        npcConversationTriggerGroup.StartGeneral();
     }
-    private void OnMouseUp()
-    {
-        if (!IsPointerOver.IsPointerOverUIObject())
-        {
-            if (Input.GetMouseButtonUp(0))
-            {
-                if (npcPopUI == null)
-                {
-                    string path = "NPCInteractiveUI/InteractiveUI/Menu";
-                    npcPopUI = Instantiate(Resources.Load<NPCPopUI>(path), MainCanvas.FindMainCanvas().transform);
-                    if (npcPopUI != null)
-                    {
-                        npcPopUI.Setup(character, types, transform);
-                    }
-                }
-            }
-        }
-        else pointerHere = false;
-    }
+    //private void OnMouseUp()
+    //{
+    //    if (!IsPointerOver.IsPointerOverUIObject())
+    //    {
+    //        if (Input.GetMouseButtonUp(0))
+    //        {
+    //            if (npcPopUI == null)
+    //            {
+    //                string path = "NPCInteractiveUI/InteractiveUI/Menu";
+    //                npcPopUI = Instantiate(Resources.Load<NPCPopUI>(path), MainCanvas.FindMainCanvas().transform);
+    //                if (npcPopUI != null)
+    //                {
+    //                    npcPopUI.Setup(character, types, transform,this);
+    //                }
+    //            }
+    //        }
+    //    }
+    //    else pointerHere = false;
+    //}
     //set inner as <param>inner
     public void SetInner(bool inner)
     {
         this.inner = inner;
+    }
+
+    public void SetConversationDatabase()
+    {
+        //npcConversationTriggerGroup.Setup(character.characterArtCode.ToString());
+        var pref = Resources.Load<NPCConversationTriggerGroup>($"{ReturnAssetPath.ReturnNPCConversationTriggerGroupPath(character.characterArtCode.ToString())}");
+        npcConversationTriggerGroup = Instantiate<NPCConversationTriggerGroup>(pref,transform);
+        GetComponentInChildren<EventAfterConversation>().charactersForCombats.Add(character);
     }
 }

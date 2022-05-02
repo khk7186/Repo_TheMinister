@@ -56,4 +56,10 @@ public class ReturnAssetPath : MonoBehaviour
         var output = $"Art/人物卡/六大项/字体背景/{rarerity}";
         return output;
     }
+
+    internal static string ReturnNPCConversationTriggerGroupPath(string code)
+    {
+        var output = $"InGameNPC/DialogueTriggersGroup/{code}";
+        return output;
+    }
 }

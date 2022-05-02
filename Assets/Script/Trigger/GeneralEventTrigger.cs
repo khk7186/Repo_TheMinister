@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GeneralEventTrigger : MonoBehaviour
 {
-    BattleType battleType = BattleType.Combat;
+    public BattleType battleType = BattleType.Combat;
     GameTracker gameResult = null;
     //rewards
     public int moneyRewards = 0;
