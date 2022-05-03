@@ -180,6 +180,9 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
 
     private void OnMouseDown()
     {
+        var DSC = FindObjectOfType<DialogueSystemController>();
+        DSC.initialDatabase = Resources.Load<DialogueDatabase>($"Conversions/{character.characterArtCode.ToString()}");
+        DSC.Awake();
         npcConversationTriggerGroup.StartGeneral();
     }
     //private void OnMouseUp()
