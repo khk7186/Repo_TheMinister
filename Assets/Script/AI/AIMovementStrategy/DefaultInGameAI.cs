@@ -81,9 +81,9 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         DayMinBlock = (tryMin < 0) ? tryMin + map.mapCount : tryMin;
         CurrentLocation = OnNight ? NightBlock : Random.Range(DayMinBlock, DayMaxBlock);
         transform.position = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, CurrentLocation));
-        //SetConversationDatabase();
-        
-        
+        SetConversationDatabase();
+
+
     }
     public void Move()
     {
