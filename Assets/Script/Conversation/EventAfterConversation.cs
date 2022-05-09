@@ -7,16 +7,16 @@ public class EventAfterConversation : MonoBehaviour
 {
     public List<Character> charactersForCombats = new List<Character>();
 
-    public void OnConversationEnd()
-    {
-        TryCombat();
-    }
+    //public void OnConversationEnd()
+    //{
+    //    TryCombat();
+    //}
 
     public void TryCombat()
     {
         //{character.characterArtCode}
         bool startCombat = DialogueLua.GetVariable("startCombat").asBool;
-        Debug.Log(startCombat);
+        //Debug.Log(startCombat);
         if (startCombat)
         {
             var Trigger = new GameObject().AddComponent<GeneralEventTrigger>();
