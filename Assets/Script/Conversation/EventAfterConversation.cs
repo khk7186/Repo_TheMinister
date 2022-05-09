@@ -22,7 +22,7 @@ public class EventAfterConversation : MonoBehaviour
             var Trigger = new GameObject().AddComponent<GeneralEventTrigger>();
             Trigger.enemyCharacters = charactersForCombats;
             Trigger.TriggerEvent();
-            Debug.Log(startCombat);
+            //Debug.Log(startCombat);
         }
     }
 }

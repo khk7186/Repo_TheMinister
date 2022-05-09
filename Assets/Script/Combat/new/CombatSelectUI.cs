@@ -16,8 +16,8 @@ public class CombatSelectUI : MonoBehaviour
         var MainCamera = Camera.main;
         var Position = targetTransform.position;
         Vector2 AP = WorldToCanvasPosition.GetCanvasPosition(CanvasRect, MainCamera, Position);
-        AP.x += 40;
-        AP.y += 35;
+        AP.x -= 40;
+        AP.y += 90;
         GetComponent<RectTransform>().anchoredPosition = AP;
     }
     private void Awake()

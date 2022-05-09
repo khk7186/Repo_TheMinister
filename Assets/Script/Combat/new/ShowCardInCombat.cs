@@ -13,7 +13,7 @@ public class ShowCardInCombat : MonoBehaviour
     }
     public void OnMouseEnter()
     {
-        CombatSceneController.CameraFocus(true);
+        //CombatSceneController.CameraFocus(true);
         bool show = false;
         if (thisUnit == null)
         {
@@ -33,7 +33,7 @@ public class ShowCardInCombat : MonoBehaviour
     }
     public void OnMouseExit()
     {
-        StartCoroutine(OriginCamera());
+        //StartCoroutine(OriginCamera());
     }
 
     IEnumerator OriginCamera()

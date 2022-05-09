@@ -29,10 +29,12 @@ public class CombatInteractableUnit : MonoBehaviour
     }
     public void OnMouseOver()
     {
-        if (!IsPointerOver.IsPointerOverUIObject())
+        //Debug.Log("Mouse over");
+        if (IsPointerOver.IsPointerOverUIObject())
         {
             if (Input.GetMouseButtonUp(1) && !csc.OnAction)
             {
+                Debug.Log("Right Click");
                 var others = FindObjectsOfType<CombatInteractableUnit>();
                 foreach (var other in others)
                 {
@@ -43,8 +45,9 @@ public class CombatInteractableUnit : MonoBehaviour
 
                 if (selectUI == null)
                 {
-                    string path = "NPCInteractiveUI/CombatMenu/Menu";
+                    string path = "NPCInteractiveUI/CombatMenu/CombatSelectMenu";
                     selectUI = Instantiate(Resources.Load<CombatSelectUI>(path), MainCanvas.FindMainCanvas().transform);
+                    Debug.Log(selectUI);
                     if (selectUI != null)
                     {
                         selectUI.Setup(transform);
@@ -67,14 +70,14 @@ public class CombatInteractableUnit : MonoBehaviour
         if (line == null) line = Instantiate(Resources.Load<LineRenderer>("Lines/Line"));
         var Unit = GetComponent<CombatCharacterUnit>();
         bool friend = Unit.currentAction == Action.Defence;
-        
+
         switch (Unit.currentAction)
         {
             case Action.Attack:
                 line.SetColors(Color.red, Color.red);
                 break;
             case Action.Assassin:
-                line.SetColors(Color.yellow, Color.yellow); 
+                line.SetColors(Color.yellow, Color.yellow);
                 break;
             case Action.Defence:
                 line.SetColors(Color.blue, Color.blue);
@@ -209,7 +212,7 @@ public class CombatInteractableUnit : MonoBehaviour
                 if (output.character == character)
                 {
                     output = unit;
-                    break ;
+                    break;
                 }
             }
         }
