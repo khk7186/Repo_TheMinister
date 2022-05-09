@@ -32,7 +32,7 @@ public class CombatCharacterUnit : MonoBehaviour
     {
         if (character == null)
         {
-            character = GetComponent<Character>();
+            Debug.Log("CombatCharacterUnit: character is null");
         }
         if (grid == null)
         {
@@ -49,6 +49,10 @@ public class CombatCharacterUnit : MonoBehaviour
         output.IsFriend = isFriend;
         output.SetupIdle();
         output.Reset();
+        if (! output.IsFriend)
+        {
+            Destroy(output.GetComponent<CombatInteractableUnit>());
+        }
         return output;
     }
     public void Reset()
@@ -110,7 +114,7 @@ public class CombatCharacterUnit : MonoBehaviour
     }
     public void MakeTurn()
     {
-        
+
         DoDamage();
     }
     public void ModifyStat()

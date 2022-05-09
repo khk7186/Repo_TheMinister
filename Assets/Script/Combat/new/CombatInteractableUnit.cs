@@ -30,6 +30,7 @@ public class CombatInteractableUnit : MonoBehaviour
     public void OnMouseOver()
     {
         //Debug.Log("Mouse over");
+        if (FindObjectOfType<CombatTrigger>() == null) return;
         if (IsPointerOver.IsPointerOverUIObject())
         {
             if (Input.GetMouseButtonUp(1) && !csc.OnAction)
@@ -40,7 +41,6 @@ public class CombatInteractableUnit : MonoBehaviour
                 {
                     if (other.selectUI != null) Destroy(other.selectUI.gameObject);
                 }
-
                 FindObjectOfType<CombatSceneController>().OnAction = true;
 
                 if (selectUI == null)
@@ -58,6 +58,7 @@ public class CombatInteractableUnit : MonoBehaviour
     }
     public void OnMouseDown()
     {
+        if (FindObjectOfType<CombatTrigger>() == null) return;
         var csc = FindObjectOfType<CombatSceneController>();
         if (csc.OnAction == false)
         {
