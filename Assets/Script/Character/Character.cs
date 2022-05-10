@@ -266,7 +266,8 @@ public enum CharacterArtCode
     说书人,
     棋圣,
     方丈,
-    官员
+    官员,
+    拾荒者
 }
 public enum CharacterType
 {
