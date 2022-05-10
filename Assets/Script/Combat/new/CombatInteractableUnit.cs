@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity.Examples;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public class CombatInteractableUnit : MonoBehaviour
 {
@@ -35,19 +36,15 @@ public class CombatInteractableUnit : MonoBehaviour
         {
             if (Input.GetMouseButtonUp(1) && !csc.OnAction)
             {
-                Debug.Log("Right Click");
                 var others = FindObjectsOfType<CombatInteractableUnit>();
                 foreach (var other in others)
                 {
                     if (other.selectUI != null) Destroy(other.selectUI.gameObject);
                 }
-                FindObjectOfType<CombatSceneController>().OnAction = true;
-
                 if (selectUI == null)
                 {
                     string path = "NPCInteractiveUI/CombatMenu/CombatSelectMenu";
                     selectUI = Instantiate(Resources.Load<CombatSelectUI>(path), MainCanvas.FindMainCanvas().transform);
-                    Debug.Log(selectUI);
                     if (selectUI != null)
                     {
                         selectUI.Setup(transform);
@@ -58,6 +55,7 @@ public class CombatInteractableUnit : MonoBehaviour
     }
     public void OnMouseDown()
     {
+        Debug.Log("Mouse down");
         if (FindObjectOfType<CombatTrigger>() == null) return;
         var csc = FindObjectOfType<CombatSceneController>();
         if (csc.OnAction == false)
@@ -100,7 +98,6 @@ public class CombatInteractableUnit : MonoBehaviour
         while (NotEnd)
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-
             Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (hit.collider != null)
             {

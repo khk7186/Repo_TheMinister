@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 9144515298582892850}
   - component: {fileID: 1716188604189515662}
   - component: {fileID: 4009866318483009152}
-  - component: {fileID: 1439070209004847154}
   - component: {fileID: -1853890329359798725}
   - component: {fileID: 8023319143142728344}
+  - component: {fileID: -1604071739128305786}
   m_Layer: 5
   m_Name: CombatSelectMenu
   m_TagString: Untagged
@@ -40,7 +40,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -304, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 62, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1716188604189515662
@@ -81,18 +81,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1439070209004847154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 697450305245109469}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b5ebfba691ad5b44846d7037e0c5a9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-1853890329359798725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,7 +101,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 697450305245109469}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
   m_Name: 
@@ -132,6 +120,53 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &-1604071739128305786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697450305245109469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 684f986fe3dc89e4e85b7aacd4844485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  X: 80
+  Xadds: 60
+  Yadds: 15
+  YSpace: 5
+  mainRT: {fileID: 9144515298582892850}
+  Buttons:
+  - {fileID: 4606154114606683785}
+  - {fileID: 2712335514610231028}
+  - {fileID: 706077166734037007}
+  speed: 0.1
+  delay: 0.04
 --- !u!1 &706077166734037006
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,9 +289,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1439070209004847154}
-        m_TargetAssemblyTypeName: RightClickToClose, Assembly-CSharp
-        m_MethodName: RightClickEvent
+      - m_Target: {fileID: -1604071739128305786}
+        m_TargetAssemblyTypeName: MenuPopLeftAnimation, Assembly-CSharp
+        m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -572,9 +607,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1439070209004847154}
-        m_TargetAssemblyTypeName: RightClickToClose, Assembly-CSharp
-        m_MethodName: RightClickEvent
+      - m_Target: {fileID: -1604071739128305786}
+        m_TargetAssemblyTypeName: MenuPopLeftAnimation, Assembly-CSharp
+        m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -732,9 +767,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1439070209004847154}
-        m_TargetAssemblyTypeName: RightClickToClose, Assembly-CSharp
-        m_MethodName: RightClickEvent
+      - m_Target: {fileID: -1604071739128305786}
+        m_TargetAssemblyTypeName: MenuPopLeftAnimation, Assembly-CSharp
+        m_MethodName: Hide
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

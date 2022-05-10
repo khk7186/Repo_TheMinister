@@ -183,6 +183,11 @@ public class CombatSceneController : MonoBehaviour
             yield return null;
         }
     }
+
+    private void Update()
+    {
+        Debug.Log(OnAction);
+    }
     //private IEnumerator CameraMovement(Vector3 targetPos, float speed)
     //{
     //    var currentPos = transform.position;

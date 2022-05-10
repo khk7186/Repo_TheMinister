@@ -30,10 +30,6 @@ public class CombatCharacterUnit : MonoBehaviour
 
     private void Awake()
     {
-        if (character == null)
-        {
-            Debug.Log("CombatCharacterUnit: character is null");
-        }
         if (grid == null)
         {
             grid = GameObject.FindGameObjectWithTag("MovementGrid").GetComponent<Grid>();

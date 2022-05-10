@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CombatSelectUI : MonoBehaviour
@@ -16,8 +17,8 @@ public class CombatSelectUI : MonoBehaviour
         var MainCamera = Camera.main;
         var Position = targetTransform.position;
         Vector2 AP = WorldToCanvasPosition.GetCanvasPosition(CanvasRect, MainCamera, Position);
-        AP.x += 60;
-        AP.y += 90;
+        //AP.x += 60;
+        //AP.y += 90;
         GetComponent<RectTransform>().anchoredPosition = AP;
     }
     private void Awake()
@@ -29,16 +30,15 @@ public class CombatSelectUI : MonoBehaviour
         var csc = FindObjectOfType<CombatSceneController>();
         csc.OnAction = true;
         yield return new WaitForEndOfFrame();
-        while (true)
+        while (csc.OnAction)
         {
-            if (!IsPointerOver.IsPointerOverUIObject())
+            if (Input.GetMouseButtonDown(1))
             {
-                if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
-                {
-                    csc.OnAction = false;
-                    GetComponent<RightClickToClose>().RightClickEvent();
-                }
+
+                csc.OnAction = false;
+                GetComponent<MenuPopLeftAnimation>().Hide();
             }
+
             yield return null;
         }
     }
