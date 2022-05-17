@@ -21,6 +21,5 @@ public class DebateTopicUI : MonoBehaviour
         string FolderPathOfType = ("Art/CharacterValue/" + debateTopic.characterValue.ToString()).Replace(" ", string.Empty);
         TypeRequestField.sprite = Resources.Load<Sprite>(FolderPathOfType);
         TopicName.text = debateTopic.DebateTopicCode.ToString();
-        Points.text = debateTopic.PointMult.ToString();
     }
 }

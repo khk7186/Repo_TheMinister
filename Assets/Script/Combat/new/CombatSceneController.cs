@@ -129,13 +129,11 @@ public class CombatSceneController : MonoBehaviour
         targetPosition.y += CameraAdjast * CameraYShiftDistance;
         StartCoroutine(CameraMovement(targetPosition));
     }
-
     public static void CameraFocus(bool focus)
     {
         var csc = FindObjectOfType<CombatSceneController>();
         csc.StartFocusing(focus);
     }
-
     public void StartFocusing(bool focus)
     {
         StartCoroutine(CameraFocusRator(focus));
@@ -182,11 +180,6 @@ public class CombatSceneController : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
-    }
-
-    private void Update()
-    {
-        Debug.Log(OnAction);
     }
     //private IEnumerator CameraMovement(Vector3 targetPos, float speed)
     //{
