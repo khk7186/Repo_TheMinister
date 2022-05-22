@@ -62,4 +62,15 @@ public class ReturnAssetPath : MonoBehaviour
         var output = $"InGameNPC/DialogueTriggersGroup/{code}";
         return output;
     }
+    public enum CardParts
+    {
+        front,
+        back,
+        fog
+    }
+    public static string ReturnDebateCardPath(Rarerity rarerity, CardParts cardParts)
+    {
+        var output = $"Art/DebateCardAssets/{rarerity}/{cardParts}";
+        return output;
+    }
 }

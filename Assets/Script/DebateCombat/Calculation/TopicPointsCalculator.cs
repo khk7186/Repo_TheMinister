@@ -2,38 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+public enum DebatePointCollector
+{
+    闺秀,
+    大家闺秀,
+    才子,
+    大才子,
+    有理有据,
+    感同身受,
+    力压众异,
+    地位超然,
+    言语粗鄙,
+    权威,
+    词不对板,
+    乱纪,
+    一枝独秀,
+    在其位,
+    披靡,
+    破绽百出,
+    破绽,
+    早有谋划,
+    内幕,
+    乱心,
+    绣花枕头,
+    子不语,
+    以众敌寡,
+    国士无双,
+    尽诚竭节,
+    不臣之心,
+    强自镇定
+}
 
 public class TopicPointsCalculator : MonoBehaviour
 {
-    public enum DebatePointCollector
-    {
-        闺秀,
-        大家闺秀,
-        才子,
-        大才子,
-        有理有据,
-        感同身受,
-        力压众异,
-        地位超然,
-        言语粗鄙,
-        权威,
-        词不对板,
-        乱纪,
-        一枝独秀,
-        在其位,
-        披靡,
-        破绽百出,
-        破绽,
-        内幕,
-        乱心,
-        绣花枕头,
-        子不语,
-        以众敌寡,
-        国士无双,
-        尽诚竭节,
-        不臣之心,
-        强自镇定
-    }
     private delegate bool TopicPointsCalculatorDelegate(DebateTopic topic, Character[] playerCharacters, object value);
     static TopicPointsCalculatorDelegate isCharacterFemale = IsCharacterFemale;
     static TopicPointsCalculatorDelegate isWisdomAboveR = IsWisdomAboveR;
@@ -65,12 +66,28 @@ public class TopicPointsCalculator : MonoBehaviour
     static TopicPointsCalculatorDelegate isLoyaltyLow = IsLoyaltyLow;
 
     private static Dictionary<DebatePointCollector, List<TopicPointsCalculatorDelegate>> debatePointCollectorToDelegate
-        = new Dictionary<DebatePointCollector, List<TopicPointsCalculatorDelegate>>()
+    = new Dictionary<DebatePointCollector, List<TopicPointsCalculatorDelegate>>()
+    {
+          { DebatePointCollector.闺秀, new List<TopicPointsCalculatorDelegate> {isCharacterFemale } },
+
+    };
+    private static Dictionary<DebatePointCollector, int[]> CollectorToPoints
+        = new Dictionary<DebatePointCollector, int[]>()
         {
-            { DebatePointCollector.闺秀, new List<TopicPointsCalculatorDelegate> {isCharacterFemale } },
-
+            { DebatePointCollector.闺秀 , new int[]{1, 10} }
         };
-
+    public static int[] CalculatPoints(DebatePointCollector collector, DebateTopic topic, Character[] playerCharacters, object value)
+    {
+        debatePointCollectorToDelegate.TryGetValue(collector, out List<TopicPointsCalculatorDelegate> delegates);
+        foreach (var delegateItem in delegates)
+        {
+            if (delegateItem(topic, playerCharacters, value))
+            {
+                return new int[] { 0, 0 };
+            }
+        }
+        return CollectorToPoints[collector];
+    }
     static bool IsCharacterFemale(DebateTopic topic, Character[] playerCharacters, object value)
     {
         bool output = false;
@@ -198,10 +215,9 @@ public class TopicPointsCalculator : MonoBehaviour
     }
     static bool IsStatHighest(DebateTopic topic, Character[] playerCharacters, object value)
     {
-        //TODO: Fix value
         var input = value as ArrayList;
         var type = (CharacterValueType)input[0];
-        var otherPlayersValue = input[1] as int[] ?? new int[1] { 0 };
+        var otherPlayersCharacters = input[1] as List<Character[]>;
         int playerHighestValue = 0;
         foreach (Character character in playerCharacters)
         {
@@ -210,8 +226,17 @@ public class TopicPointsCalculator : MonoBehaviour
                 playerHighestValue = character.CharactersValueDict[type];
             }
         }
-        bool output = otherPlayersValue.Append(playerHighestValue).Max() == playerHighestValue;
-        return output;
+        foreach (Character[] otherCharacters in otherPlayersCharacters)
+        {
+            foreach (Character character in otherCharacters)
+            {
+                if (character.CharactersValueDict[type] > playerHighestValue)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
     static bool IsStatBelowN(DebateTopic topic, Character[] playerCharacters, object value)
     {
@@ -400,7 +425,17 @@ public class TopicPointsCalculator : MonoBehaviour
 
     static bool IsFallingOnTopic(DebateTopic topic, Character[] playerCharacters, object value)
     {
-        return false;
+        foreach (Character character in playerCharacters)
+        {
+            foreach(Tag tag in topic.tagRequest)
+            {
+                if (character.tagList.Contains(tag))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
     static bool IsGotHelp(DebateTopic topic, Character[] playerCharacters, object value)
     {

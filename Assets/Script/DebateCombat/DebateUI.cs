@@ -14,4 +14,5 @@ public class DebateUI : MonoBehaviour
     {
 
     }
+
 }

@@ -33,21 +33,24 @@ public class DebateTopic
                 DebateTopicCode.以文乱法,
                 new ArrayList()
                 {
+                    Rarerity.N,
                     new List<Tag>(){Tag.讼师, Tag.文正},
-                    CharacterValueType.才,
-                    1
+                    new CharacterValueType[] { CharacterValueType.才 },
                 }
             }
         };
-    public DebateTopicCode DebateTopicCode;
-    public List<Tag> tagRequest = new List<Tag>();
+    public DebateTopicCode debateTopicCode;
     public Rarerity raririty;
-    public CharacterValueType[] characterValue = new CharacterValueType[] { CharacterValueType.智 };
+    public List<Tag> tagRequest = new List<Tag>();
+    public CharacterValueType[] characterValue = new CharacterValueType[] { };
     public bool IsClose = false;
 
-    public void Setup()
+    public void Setup(DebateTopicCode code)
     {
-
+        debateTopicCode = code;
+        raririty = (Rarerity)TopicCodeDict[debateTopicCode][0];
+        tagRequest = (List<Tag>)TopicCodeDict[debateTopicCode][1];
+        characterValue = (CharacterValueType[])TopicCodeDict[debateTopicCode][2];
     }
     //public int CalculatePoints(Character character)
     //{
