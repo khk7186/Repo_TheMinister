@@ -97,8 +97,6 @@ public class TopicPointsCalculator : MonoBehaviour
             { DebatePointCollector.尽诚竭节, new List<TopicPointsCalculatorDelegate>{isLoyaltyHigh} },
             { DebatePointCollector.不臣之心, new List<TopicPointsCalculatorDelegate>{isLoyaltyLow} },
             { DebatePointCollector.强自镇定, new List<TopicPointsCalculatorDelegate>{isOtherCarryWeapon} },
-
-
     };
     private static Dictionary<DebatePointCollector, int[]> CollectorToPoints
         = new Dictionary<DebatePointCollector, int[]>()
@@ -150,8 +148,7 @@ public class TopicPointsCalculator : MonoBehaviour
     }
     static bool IsCharacterMale(DebateTopic topic, Character[] playerCharacters, object value)
     {
-
-        return false;
+        return !IsCharacterFemale(topic, playerCharacters, value);
     }
     static bool IsWisdomAboveR(DebateTopic topic, Character[] playerCharacters, object value = null)
     {
