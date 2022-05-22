@@ -36,6 +36,7 @@ public class DebateTopic
                     Rarerity.N,
                     new List<Tag>(){Tag.讼师, Tag.文正},
                     new CharacterValueType[] { CharacterValueType.才 },
+                    new Rarerity[] { Rarerity.N}
                 }
             }
         };
