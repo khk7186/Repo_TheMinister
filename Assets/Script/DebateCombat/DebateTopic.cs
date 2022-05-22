@@ -4,8 +4,25 @@ using UnityEngine;
 
 public enum DebateTopicCode
 {
-    none,
-    墨义
+    以文乱法,
+    四书五经,
+    经史百子,
+    仁义礼智,
+    克己复礼,
+    存心养性,
+    立木为信,
+    田忌赛马,
+    萧规曹随,
+    约法三章,
+    合浦珠还,
+    指鹿为马,
+    咏史怀古,
+    山水田园,
+    羁旅行役,
+    咏物抒怀,
+    爱情闺怨,
+    边塞军旅,
+    借古讽今
 }
 public class DebateTopic
 {
@@ -13,7 +30,7 @@ public class DebateTopic
         new Dictionary<DebateTopicCode, ArrayList>
         {
             {
-                DebateTopicCode.墨义,
+                DebateTopicCode.以文乱法,
                 new ArrayList()
                 {
                     new List<Tag>(){Tag.讼师, Tag.文正},
@@ -45,4 +62,4 @@ public class DebateTopic
     //    }
     //    return total;
     //}
-}
+}   
