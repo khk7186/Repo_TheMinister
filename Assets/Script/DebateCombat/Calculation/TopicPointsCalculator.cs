@@ -64,17 +64,72 @@ public class TopicPointsCalculator : MonoBehaviour
     static TopicPointsCalculatorDelegate isRollingOnTopic = IsRollingOnTopic;
     static TopicPointsCalculatorDelegate isLoyaltyHigh = IsLoyaltyHigh;
     static TopicPointsCalculatorDelegate isLoyaltyLow = IsLoyaltyLow;
+    static TopicPointsCalculatorDelegate isCharacterMale = IsCharacterMale;
 
     private static Dictionary<DebatePointCollector, List<TopicPointsCalculatorDelegate>> debatePointCollectorToDelegate
     = new Dictionary<DebatePointCollector, List<TopicPointsCalculatorDelegate>>()
     {
-          { DebatePointCollector.闺秀, new List<TopicPointsCalculatorDelegate> {isCharacterFemale } },
+            { DebatePointCollector.闺秀, new List<TopicPointsCalculatorDelegate> {isCharacterFemale } },
+            { DebatePointCollector.闺秀, new List<TopicPointsCalculatorDelegate>{isCharacterFemale} },
+            { DebatePointCollector.大家闺秀, new List<TopicPointsCalculatorDelegate>{ isCharacterFemale, isWisdomAboveSR} },
+            { DebatePointCollector.才子, new List<TopicPointsCalculatorDelegate>{ isCharacterMale, isWisdomAboveR} },
+            { DebatePointCollector.大才子, new List<TopicPointsCalculatorDelegate>{ isCharacterMale, isWisdomAboveSSR} },
+            { DebatePointCollector.有理有据, new List<TopicPointsCalculatorDelegate>{isGetRightTag} },
+            { DebatePointCollector.感同身受, new List<TopicPointsCalculatorDelegate>{isGetAllRightTags} },
+            { DebatePointCollector.力压众异, new List<TopicPointsCalculatorDelegate>{isRollingOthers} },
+            { DebatePointCollector.地位超然, new List<TopicPointsCalculatorDelegate>{isOnlyGoverner} },
+            { DebatePointCollector.言语粗鄙, new List<TopicPointsCalculatorDelegate>{isWisdomBelowN} },
+            { DebatePointCollector.权威, new List<TopicPointsCalculatorDelegate>{isStatHighest} },
+            { DebatePointCollector.词不对板, new List<TopicPointsCalculatorDelegate>{isStatBelowN} },
+            { DebatePointCollector.乱纪, new List<TopicPointsCalculatorDelegate>{isCarryWeapon} },
+            { DebatePointCollector.一枝独秀, new List<TopicPointsCalculatorDelegate>{isSolo} },
+            { DebatePointCollector.在其位, new List<TopicPointsCalculatorDelegate>{isRarityFit} },
+            { DebatePointCollector.披靡, new List<TopicPointsCalculatorDelegate>{isAnyUR} },
+            { DebatePointCollector.破绽百出, new List<TopicPointsCalculatorDelegate>{isStrategyLowest} },
+            { DebatePointCollector.破绽, new List<TopicPointsCalculatorDelegate>{isStrategyLowerThanAny} },
+            { DebatePointCollector.早有谋划, new List<TopicPointsCalculatorDelegate>{isStrategyRequiredAndGotHighest} },
+            { DebatePointCollector.内幕, new List<TopicPointsCalculatorDelegate>{isStrategyNotRequiredAndGotHighest} },
+            { DebatePointCollector.乱心, new List<TopicPointsCalculatorDelegate>{isCharacterMale, isAnyFemaleGotHigherStrategyThanMale } },
+            { DebatePointCollector.绣花枕头, new List<TopicPointsCalculatorDelegate>{isCharacterMale, isAnyFemaleExist , isAnyRequiredStatLowest} },
+            { DebatePointCollector.子不语, new List<TopicPointsCalculatorDelegate>{isFallingOnTopic} },
+            { DebatePointCollector.以众敌寡, new List<TopicPointsCalculatorDelegate>{isGotHelp} },
+            { DebatePointCollector.国士无双, new List<TopicPointsCalculatorDelegate>{isRollingOnTopic} },
+            { DebatePointCollector.尽诚竭节, new List<TopicPointsCalculatorDelegate>{isLoyaltyHigh} },
+            { DebatePointCollector.不臣之心, new List<TopicPointsCalculatorDelegate>{isLoyaltyLow} },
+            { DebatePointCollector.强自镇定, new List<TopicPointsCalculatorDelegate>{isOtherCarryWeapon} },
+
 
     };
     private static Dictionary<DebatePointCollector, int[]> CollectorToPoints
         = new Dictionary<DebatePointCollector, int[]>()
         {
-            { DebatePointCollector.闺秀 , new int[]{1, 10} }
+            { DebatePointCollector.闺秀 , new int[]{1, 10} },
+            { DebatePointCollector.大家闺秀, new int[]{2, 10} },
+            { DebatePointCollector.才子, new int[]{1, 10} },
+            { DebatePointCollector.大才子, new int[]{2, 10} },
+            { DebatePointCollector.有理有据, new int[]{0, 50} },
+            { DebatePointCollector.感同身受, new int[]{1, 10} },
+            { DebatePointCollector.力压众异, new int[]{3, 30} },
+            { DebatePointCollector.地位超然, new int[]{1, 30} },
+            { DebatePointCollector.言语粗鄙, new int[]{0, -20} },
+            { DebatePointCollector.权威, new int[]{1, 10} },
+            { DebatePointCollector.词不对板, new int[]{-1, -10} },
+            { DebatePointCollector.乱纪, new int[]{0, -30} },
+            { DebatePointCollector.一枝独秀, new int[]{1, 10} },
+            { DebatePointCollector.在其位, new int[]{1, 40} },
+            { DebatePointCollector.披靡, new int[]{1, 10} },
+            { DebatePointCollector.破绽百出, new int[]{-1, -20} },
+            { DebatePointCollector.破绽, new int[]{0, -10} },
+            { DebatePointCollector.早有谋划, new int[]{1, 10} },
+            { DebatePointCollector.内幕, new int[]{0, 10} },
+            { DebatePointCollector.乱心, new int[]{0, -20} },
+            { DebatePointCollector.绣花枕头, new int[]{0, -10} },
+            { DebatePointCollector.子不语, new int[]{1, 0} },
+            { DebatePointCollector.以众敌寡, new int[]{0, -10} },
+            { DebatePointCollector.国士无双, new int[]{5, 10} },
+            { DebatePointCollector.尽诚竭节, new int[]{1, 0} },
+            { DebatePointCollector.不臣之心, new int[]{-1, 0} },
+            { DebatePointCollector.强自镇定, new int[]{-1, 20} }
         };
     public static int[] CalculatPoints(DebatePointCollector collector, DebateTopic topic, Character[] playerCharacters, object value)
     {
@@ -92,6 +147,11 @@ public class TopicPointsCalculator : MonoBehaviour
     {
         bool output = false;
         return output;
+    }
+    static bool IsCharacterMale(DebateTopic topic, Character[] playerCharacters, object value)
+    {
+
+        return false;
     }
     static bool IsWisdomAboveR(DebateTopic topic, Character[] playerCharacters, object value = null)
     {
