@@ -395,7 +395,11 @@ public class Player : MonoBehaviour
         Tag.南无加特林,
         Tag.弈星下凡,
         Tag.钜子,
-        Tag.文武双全
+        Tag.文武双全,
+        Tag.长生不老,
+        Tag.生死肉骨,
+        Tag.碧血丹心,
+        Tag.陆地神仙
 }}
 
 };
@@ -586,6 +590,7 @@ public class Player : MonoBehaviour
         {Tag.金钱镖,Rarerity.SR},
         {Tag.袖袍,Rarerity.SR},
         {Tag.血滴子,Rarerity.SR},
+        {Tag.主教,Rarerity.SR},
         {Tag.黯然销魂掌,Rarerity.SSR},
         {Tag.围棋十段,Rarerity.SSR},
         {Tag.状元,Rarerity.SSR},
@@ -626,7 +631,7 @@ public class Player : MonoBehaviour
         {Tag.弈星下凡,Rarerity.UR},
         {Tag.钜子,Rarerity.UR},
         {Tag.文武双全,Rarerity.UR},
-        {Tag.成道,Rarerity.UR}
+        {Tag.成道,Rarerity.UR},
    };
     public static Dictionary<List<Tag>, Tag> MergeTagDict = new Dictionary<List<Tag>, Tag>
     {
@@ -2044,5 +2049,286 @@ public class Player : MonoBehaviour
             //{CharacterArtCode.女武, FemaleFighterTagPool },
             //{CharacterArtCode.女布衣, FemaleCivilianTagPool },
             {CharacterArtCode.老者, ElderlyTagPool },
+        };
+
+    public static Dictionary<TagType, List<Tag>> TagTypes =
+        new Dictionary<TagType, List<Tag>>()
+        {
+            {TagType.全才, new List<Tag>()
+            {
+                Tag.文武双全,
+                Tag.成道,
+                Tag.长生不老,
+                Tag.生死肉骨,
+                Tag.碧血丹心,
+                Tag.陆地神仙
+            } },
+            {TagType.持械, new List<Tag>()
+            {
+                Tag.南无加特林,
+                Tag.穿日,
+                Tag.无声,
+                Tag.青龙,
+                Tag.必胜,
+                Tag.撑天,
+                Tag.龙之力,
+                Tag.火力压制,
+                Tag.百步穿杨,
+                Tag.刀王,
+                Tag.雷电法王,
+                Tag.皇家血统,
+                Tag.霸王,
+                Tag.金钱镖,
+                Tag.袖袍,
+                Tag.血滴子,
+                Tag.冰霜宝剑,
+                Tag.火炮,
+                Tag.箭无虚发,
+                Tag.根骨清奇,
+                Tag.一点寒芒,
+                Tag.弓,
+                Tag.剑,
+                Tag.枪,
+                Tag.刀,
+                Tag.戟
+            } },
+            {TagType.文才, new List<Tag>()
+            {
+                Tag.弈星下凡,
+                Tag.围棋十段,
+                Tag.状元,
+                Tag.诗仙,
+                Tag.卧龙,
+                Tag.八斗之才,
+                Tag.纸上谈兵,
+                Tag.徒有虚名,
+                Tag.投机取巧,
+                Tag.醉生梦死,
+                Tag.窥得天机,
+                Tag.书通二酉,
+                Tag.才华横溢,
+                Tag.工于心计,
+                Tag.阳明学派,
+                Tag.炼金术师,
+                Tag.纵横家,
+                Tag.戏精,
+                Tag.诗兴大发,
+                Tag.把素持斋,
+                Tag.仁人君子,
+                Tag.主教,
+                Tag.书痴,
+                Tag.略有才名,
+                Tag.小有谋略,
+                Tag.欢喜佛,
+                Tag.通晓天文,
+                Tag.兼爱,
+                Tag.非攻,
+                Tag.儒生,
+                Tag.道士,
+                Tag.僧人,
+            } },
+            {TagType.武略, new List<Tag>()
+            {
+                Tag.钜子,
+                Tag.黯然销魂掌,
+                Tag.武圣,
+                Tag.无影,
+                Tag.磐石,
+                Tag.诸武精通,
+                Tag.混世魔王,
+                Tag.心狠手辣,
+                Tag.墨守成规,
+                Tag.仙人之躯,
+                Tag.力拔山兮,
+                Tag.出没无常,
+                Tag.广厦之荫,
+                Tag.智勇双全,
+                Tag.偃师,
+                Tag.奇门遁甲,
+                Tag.天生神力,
+                Tag.巫妖领主,
+                Tag.龙骑士,
+                Tag.老当益壮,
+                Tag.近战精通,
+                Tag.古神转世,
+                Tag.气功达人,
+                Tag.如醉如狂,
+                Tag.氪金战士,
+                Tag.盛食厉兵,
+                Tag.固若金汤,
+                Tag.侵略如火,
+                Tag.忠贞之志,
+                Tag.武痴,
+                Tag.身形矫健,
+                Tag.老罴当道,
+                Tag.法外狂徒,
+                Tag.蛤蟆功,
+                Tag.武艺精湛,
+                Tag.登堂入室,
+                Tag.走火入魔,
+                Tag.习武之人
+
+            } },
+            {TagType.良工, new List<Tag>()
+            {
+                Tag.巧夺天工,
+                Tag.大锤,
+                Tag.小锤,
+                Tag.匠人
+            } },
+            {TagType.妙手, new List<Tag>()
+            {
+                Tag.悬壶济世,
+                Tag.黄帝内经,
+                Tag.本草纲目,
+                Tag.妙手丹心,
+                Tag.郎中,
+                Tag.丹童,
+                Tag.医术
+            } },
+            {TagType.商贾, new List<Tag>()
+            {
+                Tag.理财大师,
+                Tag.朝奉,
+                Tag.长袖善舞,
+                Tag.心算,
+                Tag.经济学,
+                Tag.货郎
+            } },
+            {TagType.官职, new List<Tag>()
+            {
+                Tag.文,
+                Tag.武,
+                Tag.外交官,
+                Tag.御马监,
+                Tag.文正,
+                Tag.武忠,
+                Tag.御马司,
+                Tag.文贞,
+                Tag.武勇,
+                Tag.马倌
+            } },
+            {TagType.御兽, new List<Tag>()
+            {
+                Tag.鹰之力,
+                Tag.嘤嘤狂吠,
+                Tag.波纹行走,
+                Tag.象虎之力,
+                Tag.驯兽大师,
+                Tag.宝马良驹,
+                Tag.虎猛,
+                Tag.独狼,
+                Tag.飞毛腿,
+                Tag.驯兽术,
+                Tag.雕
+            } },
+            {TagType.富贵, new List<Tag>()
+            {
+                Tag.光碎,
+                Tag.龙马精神,
+                Tag.景星庆云,
+                Tag.珠圆玉润,
+                Tag.鸿运当头,
+                Tag.丝绸,
+                Tag.辟邪安正,
+                Tag.珠光宝气
+            } },
+            {TagType.通常, new List<Tag>()
+            {
+                Tag.恶魔人,
+                Tag.东洋语,
+                Tag.能歌善舞,
+                Tag.西洋语,
+                Tag.毒师,
+                Tag.离经叛道,
+                Tag.外乡人,
+                Tag.疯子,
+                Tag.老戏骨,
+                Tag.牧民,
+                Tag.买瓜人,
+                Tag.素餐,
+                Tag.荤菜,
+                Tag.家室美满,
+                Tag.五味杂陈,
+                Tag.好酒之人,
+                Tag.故事王,
+                Tag.琴师,
+                Tag.有勇无谋,
+                Tag.花言巧语,
+                Tag.绣花枕头,
+                Tag.梧鼠五技,
+                Tag.自是三公,
+                Tag.敝帚自珍,
+                Tag.不孕不育,
+                Tag.巨人症,
+                Tag.侏儒症,
+                Tag.讼师,
+                Tag.冷血无情,
+                Tag.阉人,
+                Tag.吸血鬼,
+                Tag.狼人,
+                Tag.平平无奇,
+                Tag.贪污狼藉,
+                Tag.演员,
+                Tag.六根不净,
+                Tag.饱腹,
+                Tag.无伤大雅,
+                Tag.鸠工庀材,
+                Tag.体态端正,
+                Tag.杂七杂八,
+                Tag.毛发旺盛,
+                Tag.年老体衰,
+                Tag.醉酒,
+                Tag.近视,
+                Tag.嗜甜如命,
+                Tag.营养不良,
+                Tag.干饭人,
+                Tag.身怀六甲,
+                Tag.得寸进尺,
+                Tag.无能狂怒,
+                Tag.磕巴,
+                Tag.惹人嫌,
+                Tag.调皮鬼,
+                Tag.身体孱弱
+            } },
+            {TagType.甲胄, new List<Tag>()
+            {
+                Tag.金光闪闪,
+                Tag.护心,
+                Tag.皮甲,
+                Tag.铁甲
+            } },
+            {TagType.穷困, new List<Tag>()
+            {
+                Tag.无用之人,
+                Tag.厄运缠身,
+                Tag.身世悲苦,
+                Tag.目不识丁,
+                Tag.天生恶感,
+                Tag.衣不蔽体
+            } },
+            {TagType.沉疴, new List<Tag>()
+            {
+                Tag.膝盖僵硬,
+                Tag.多动症,
+                Tag.不孝子,
+                Tag.腿脚不便,
+                Tag.精神病,
+                Tag.糖尿病,
+                Tag.夜不能寐,
+                Tag.双目失明,
+                Tag.独臂,
+                Tag.痴呆,
+                Tag.小儿麻痹,
+                Tag.头疼,
+                Tag.半身不遂,
+                Tag.干呕,
+                Tag.肥胖症,
+                Tag.长短腿,
+                Tag.义肢,
+                Tag.药毒
+
+            } },
+
         };
 }
