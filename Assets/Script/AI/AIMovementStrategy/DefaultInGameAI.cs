@@ -216,5 +216,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         var pref = Resources.Load<NPCConversationTriggerGroup>($"{ReturnAssetPath.ReturnNPCConversationTriggerGroupPath(character.characterArtCode.ToString())}");
         npcConversationTriggerGroup = Instantiate<NPCConversationTriggerGroup>(pref,transform);
         GetComponentInChildren<EventAfterConversation>().charactersForCombats.Add(character);
+        GetComponentInChildren<EventAfterConversation>().EnemyUnitA = character;
+        GetComponentInChildren<EventAfterConversation>().EnemyUnitACardList[0] =(character);
     }
 }

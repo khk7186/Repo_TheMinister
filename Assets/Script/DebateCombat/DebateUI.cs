@@ -5,8 +5,9 @@ using UnityEngine;
 public class DebateUI : MonoBehaviour
 {
     public List<DebateUnitUI> PlayerCharacterList = new List<DebateUnitUI>();
-    public DebateUnitUI EnemyACharacterList;
-    public DebateUnitUI EnemyBCharacterList;
+    public DebateUnitUI EnemyLeftCharacterList;
+    public DebateUnitUI EnemyRightCharacterList;
+    public DebateUnitUI EnemyTopCharacterList;
     public DebateTopicUI currentDebateTopicList;
     public DebateTopicUI nextDebateTopicList;
 

@@ -70,7 +70,6 @@ public class TopicPointsCalculator : MonoBehaviour
     = new Dictionary<DebatePointCollector, List<TopicPointsCalculatorDelegate>>()
     {
             { DebatePointCollector.闺秀, new List<TopicPointsCalculatorDelegate> {isCharacterFemale } },
-            { DebatePointCollector.闺秀, new List<TopicPointsCalculatorDelegate>{isCharacterFemale} },
             { DebatePointCollector.大家闺秀, new List<TopicPointsCalculatorDelegate>{ isCharacterFemale, isWisdomAboveSR} },
             { DebatePointCollector.才子, new List<TopicPointsCalculatorDelegate>{ isCharacterMale, isWisdomAboveR} },
             { DebatePointCollector.大才子, new List<TopicPointsCalculatorDelegate>{ isCharacterMale, isWisdomAboveSSR} },
@@ -98,7 +97,7 @@ public class TopicPointsCalculator : MonoBehaviour
             { DebatePointCollector.不臣之心, new List<TopicPointsCalculatorDelegate>{isLoyaltyLow} },
             { DebatePointCollector.强自镇定, new List<TopicPointsCalculatorDelegate>{isOtherCarryWeapon} },
     };
-    private static Dictionary<DebatePointCollector, int[]> CollectorToPoints
+    public static Dictionary<DebatePointCollector, int[]> CollectorToPoints
         = new Dictionary<DebatePointCollector, int[]>()
         {
             { DebatePointCollector.闺秀 , new int[]{1, 10} },
@@ -484,7 +483,7 @@ public class TopicPointsCalculator : MonoBehaviour
     {
         foreach (Character character in playerCharacters)
         {
-            foreach(Tag tag in topic.tagRequest)
+            foreach (Tag tag in topic.tagRequest)
             {
                 if (character.tagList.Contains(tag))
                 {

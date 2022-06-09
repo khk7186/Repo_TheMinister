@@ -657,7 +657,6 @@ public class Character : MonoBehaviour, IRound
         {CharacterArtCode.∑Ω’… },
         {CharacterArtCode.πŸ‘± },
         {CharacterArtCode. ∞ªƒ’ﬂ }
-
     };
 
 }

@@ -15,6 +15,8 @@ public class GeneralEventTrigger : MonoBehaviour
     public List<ItemName> itemRewards = new List<ItemName>();
     public List<Character> playerCharacters = new List<Character>();
     public List<Character> enemyCharacters = new List<Character>();
+    // {CharacterUnit, Cards}
+    public List<Character[]> enemyCharactersCardsList = new List<Character[]>();
     public GameTracker gameTracker = null;
     private int scene = 0;
     public List<Character> LostCharacters = new List<Character>();
@@ -80,8 +82,6 @@ public class GeneralEventTrigger : MonoBehaviour
         var animation = Instantiate(Resources.Load<SceneTrans>(path));
         yield return StartCoroutine(animation.StartChange((SceneType)scene));
         SceneManager.LoadScene(scene);
-        
-
         StartCoroutine(animation.EndChange());
         if (scene == 0)
         {

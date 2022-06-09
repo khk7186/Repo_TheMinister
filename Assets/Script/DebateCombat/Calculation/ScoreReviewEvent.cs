@@ -2,36 +2,26 @@ using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class ScoreReviewEvent : MonoBehaviour
 {
     public DebateTopic topic;
     public List<Character[]> characters;
     public int[] finalScore = new int[2] { 0, 0 };
     public ScoreReviewUI scoreReviewUI;
-    public int playerIndex;
+    public int playerIndex = 0;
     public DebatePointCollector[] debatePointCollectors = new DebatePointCollector[] { };
-
-    public static void NewReview(ScoreReviewUI scoreReviewUI, List<Character[]> characters, DebateTopic topic, int playerIndex)
+    CharacterArtCode[] idleImage;
+    public float ReviewShiftDuration = 0.5f;
+    public static void NewReview(List<Character[]> characters,
+                                                    DebateTopic topic, CharacterArtCode[] idleImage)
     {
         ScoreReviewEvent review = new GameObject("ScoreReviewEvent").AddComponent<ScoreReviewEvent>();
-        review.scoreReviewUI = scoreReviewUI;
         review.characters = characters;
         review.topic = topic;
-        review.playerIndex = playerIndex;
-        review.StartReview();
-        review.StartCoroutine(review.StartUpdateUI());
-    }
-    private IEnumerator StartUpdateUI()
-    {
-        foreach (DebatePointCollector debatePointCollector in debatePointCollectors)
-        {
-            yield return StartCoroutine(scoreReviewUI.NextPointCollecter(debatePointCollector));
-            yield return new WaitForSeconds(0.1f);
-        }
-        yield return scoreReviewUI.FinishAnimation();
-        yield return WaitForMouseDown();
-        Destroy(gameObject);
+        review.playerIndex = 0;
+        review.idleImage = idleImage;
+        review.StartCoroutine(review.ShowReview());
     }
     private IEnumerator WaitForMouseDown()
     {
@@ -43,6 +33,40 @@ public class ScoreReviewEvent : MonoBehaviour
             }
             yield return null;
         }
+    }
+    public IEnumerator ShowReview()
+    {
+        StartReview();
+        for (int i = 0; i < characters.Count; i++)
+        {
+            var currentUI = Instantiate(scoreReviewUI, MainCanvas.FindMainCanvas());
+            currentUI.Setup(idleImage[playerIndex], characters[playerIndex], debatePointCollectors);
+            var currentRect = currentUI.GetComponent<RectTransform>();
+            currentRect.localPosition = new Vector2(900, 0);
+            yield return new WaitForSeconds(ReviewShiftDuration * 0.5f);
+            currentRect.DOAnchorPosX(0, ReviewShiftDuration);
+            yield return currentUI.StartReviewAnimation();
+            currentRect.DOAnchorPosX(-900, ReviewShiftDuration);
+        }
+    }
+    public static int TestReview(List<Character[]> characters, DebateTopic topic)
+    {
+        var output = 0;
+        var review = new ScoreReviewEvent();
+        review.playerIndex = 0;
+        review.characters = characters;
+        review.topic = topic;
+        review.StartReview();
+        int point = 0, multi = 0;
+        foreach (DebatePointCollector collector in review.debatePointCollectors)
+        {
+            var sample = TopicPointsCalculator.CollectorToPoints[collector];
+            point += sample[1];
+            multi += sample[0];
+        }
+        output = point * multi;
+        Destroy(review.gameObject);
+        return output;
     }
     private void StartReview()
     {

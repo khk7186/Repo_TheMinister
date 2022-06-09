@@ -22,7 +22,7 @@ public class DebateCharacterCardUI : MonoBehaviour, IPointerClickHandler
     public Image WistomField;
     public Image WritingField;
     public Image StrategyField;
-    private bool OnSelect = false;
+    public bool OnSelect = false;
     public Character character => card.character;
     public DebateUnit unit => card.unit;
     public bool Acvite => unit.isActive;
@@ -42,10 +42,21 @@ public class DebateCharacterCardUI : MonoBehaviour, IPointerClickHandler
         }
         ModifyCharacterStats();
         ModifyCardFrame();
+        ModifyTags();
     }
     public void ModifyLoyalty()
     {
         Loyalty.text = character.loyalty.ToString();
+    }
+    public void ModifyTags()
+    {
+        TransformEx.Clear(tagPannel);
+        foreach (var tag in character.tagList)
+        {
+            Image tagUI = Instantiate(Resources.Load<Image>("Tag/Tag"));
+            tagUI.transform.SetParent(tagPannel, false);
+            tagUI.sprite = Resources.Load<Sprite>($"Art/Tags/{tag.ToString()}");
+        }
     }
     public void ModifyCharacterStats()
     {
@@ -88,23 +99,28 @@ public class DebateCharacterCardUI : MonoBehaviour, IPointerClickHandler
     {
         OnSelect = true;
         StartCoroutine(SelectAnimation());
-        unit.selectCharacters.Add(character);
+
     }
     public void UnSelectCharacter()
     {
         OnSelect = false;
         StartCoroutine(UnSelectAnimation());
-        unit.selectCharacters.Remove(character);
+
     }
     public IEnumerator SelectAnimation()
     {
-        float target = mainPannelOrigin.x + selectAnimationRange;
-        mainPannel.DOMoveY(target, selectAnimationSpeed);
+        StopAllCoroutines();
+        if (mainPannelOrigin == Vector3.zero)
+            mainPannelOrigin = GetComponent<RectTransform>().anchoredPosition;
+        float target = GetComponent<RectTransform>().anchoredPosition.y + selectAnimationRange;
+        GetComponent<RectTransform>().DOAnchorPosY(target, selectAnimationSpeed);
         yield return null;
     }
     public IEnumerator UnSelectAnimation()
     {
-        mainPannel.DOMoveY(mainPannelOrigin.y, selectAnimationSpeed);
+        StopAllCoroutines();
+        float target = GetComponent<RectTransform>().anchoredPosition.y - selectAnimationRange;
+        GetComponent<RectTransform>().DOAnchorPosY(target, selectAnimationSpeed);
         yield return null;
     }
     public IEnumerator ChangeCardSide(bool toFront)
@@ -113,6 +129,11 @@ public class DebateCharacterCardUI : MonoBehaviour, IPointerClickHandler
         RectTransform end = toFront ? mainPannel : cardBack;
         start.DOScaleX(0, selectAnimationSpeed)
             .OnComplete(() => end.DOScaleX(1, selectAnimationSpeed));
+        yield return null;
+    }
+    public IEnumerator ConfirmCardAnimation(Vector2 targetPos, int total, int index)
+    {
+
         yield return null;
     }
 }

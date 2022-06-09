@@ -10,11 +10,10 @@ public class DebateCharacterCard : MonoBehaviour
     public DebateUnit unit;
     public Character character;
     public int UseCount = 0;
-
     public void Setup(Character character)
     {
         this.character = character;
-        CardUI = FindObjectOfType<DebateCharacterCardUI>();
+        CardUI = GetComponent<DebateCharacterCardUI>();
         CardUI.Setup(this);
         SpawnCardAtStart();
     }
@@ -41,5 +40,4 @@ public class DebateCharacterCard : MonoBehaviour
         CardUI.cardBack.localScale = unit.isPlayer ? Vector3.zero : Vector3.one;
         CardUI.mainPannel.localScale = unit.isPlayer ? Vector3.one : Vector3.zero;
     }
-
 }
