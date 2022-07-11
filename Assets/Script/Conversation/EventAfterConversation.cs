@@ -12,6 +12,7 @@ public class EventAfterConversation : MonoBehaviour
     public Character[] EnemyUnitBCardList = new Character[] { };
     public Character EnemyUnitC;
     public Character[] EnemyUnitCCardList = new Character[] { };
+    public DebateTopicCode[] debateTopics;
     //public void OnConversationEnd()
     //{
     //    TryCombat();
@@ -35,8 +36,16 @@ public class EventAfterConversation : MonoBehaviour
     public void TryDebate()
     {
         bool startDebate = DialogueLua.GetVariable("startDebate").asBool;
+        //bool startDebate = true;
         if (startDebate)
         {
+            DebateTopicPool topicPool = new GameObject().AddComponent<DebateTopicPool>();
+            foreach (var topic in debateTopics)
+            {
+                var newTopic = new DebateTopic();
+                newTopic.Setup(topic);
+                topicPool.topics.Add(newTopic);
+            }
             var Trigger = new GameObject().AddComponent<GeneralEventTrigger>();
             Trigger.battleType = BattleType.Debate;
             Trigger.enemyCharacters = new List<Character>() { EnemyUnitA, EnemyUnitB, EnemyUnitC };

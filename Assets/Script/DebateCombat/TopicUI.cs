@@ -14,13 +14,12 @@ public class TopicUI : MonoBehaviour
     public void StartNewTopic(DebateTopic topic)
     {
         TopicName.text = topic.debateTopicCode.ToString();
-
         wisdomBackground.gameObject.SetActive(false);
         writingBackground.gameObject.SetActive(false);
         strategyBackground.gameObject.SetActive(false);
         foreach (CharacterValueType type in topic.characterValue)
         {
-            string path = ReturnAssetPath.ReturnCharacterStatBackground(topic.raririty);
+            string path = ReturnAssetPath.ReturnCharacterStatBackground(topic.rarerity);
             switch (type)
             {
                 case CharacterValueType.ÖÇ:

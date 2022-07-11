@@ -32,12 +32,16 @@ public class DebateCharacterCard : MonoBehaviour
     }
     public void ShowCardBack()
     {
-        CardUI.cardBack.localScale = unit.isPlayer ? Vector3.zero : Vector3.one;
-        CardUI.mainPannel.localScale = unit.isPlayer ? Vector3.one : Vector3.zero;
+        CardUI.cardBack.localScale = Vector3.one;
+        CardUI.cardBack.gameObject.SetActive(true);
+        CardUI.mainPannel.localScale = Vector3.zero;
+        CardUI.mainPannel.gameObject.SetActive(false);
     }
     public void ShowCardFront()
     {
-        CardUI.cardBack.localScale = unit.isPlayer ? Vector3.zero : Vector3.one;
-        CardUI.mainPannel.localScale = unit.isPlayer ? Vector3.one : Vector3.zero;
+        CardUI.cardBack.localScale = Vector3.zero;
+        CardUI.cardBack.gameObject.SetActive(false);
+        CardUI.mainPannel.localScale = Vector3.one;
+        CardUI.mainPannel.gameObject.SetActive(true);        
     }
 }

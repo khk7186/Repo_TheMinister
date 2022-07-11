@@ -68,6 +68,7 @@ public class TotalPointsUI : MonoBehaviour
             TotalPoints.text = ((int)Mathf.Lerp(totalPoints, final, progress)).ToString();
             yield return null;
         }
+        totalPoints = final;
         TotalMulti.text = "0";
         TotalPoints.text = final.ToString();
         

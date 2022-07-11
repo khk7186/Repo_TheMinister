@@ -248,7 +248,7 @@ public class CombatCharacterUnit : MonoBehaviour
             trigger.gameTracker.gameWin = false;
         }
         //Debug.Log(enemy);
-        trigger.TiggerEnd();
+        trigger.TriggerEnd();
     }
 
 

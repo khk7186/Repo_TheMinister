@@ -10,11 +10,12 @@ public class ScoreReviewEvent : MonoBehaviour
     public int[] finalScore = new int[2] { 0, 0 };
     public ScoreReviewUI scoreReviewUI;
     public int playerIndex = 0;
-    public DebatePointCollector[] debatePointCollectors = new DebatePointCollector[] { };
-    CharacterArtCode[] idleImage;
+    public List<DebatePointCollector> debatePointCollectors = new List<DebatePointCollector>();
+    List<CharacterArtCode> idleImage;
     public float ReviewShiftDuration = 0.5f;
+    public List<DebateUnit> loseOrder = new List<DebateUnit>();
     public static void NewReview(List<Character[]> characters,
-                                                    DebateTopic topic, CharacterArtCode[] idleImage)
+                                                    DebateTopic topic, List<CharacterArtCode> idleImage)
     {
         ScoreReviewEvent review = new GameObject("ScoreReviewEvent").AddComponent<ScoreReviewEvent>();
         review.characters = characters;
@@ -36,9 +37,15 @@ public class ScoreReviewEvent : MonoBehaviour
     }
     public IEnumerator ShowReview()
     {
-        StartReview();
+        List<int> Result = new List<int>() { 0, 0, 0, 0 };
+        scoreReviewUI = Resources.Load<ScoreReviewUI>("DebateScene/ScoreReviewUI");
         for (int i = 0; i < characters.Count; i++)
         {
+            if (characters[i].Length == 0)
+            {
+                continue;
+            }
+            StartReview();
             var currentUI = Instantiate(scoreReviewUI, MainCanvas.FindMainCanvas());
             currentUI.Setup(idleImage[playerIndex], characters[playerIndex], debatePointCollectors);
             var currentRect = currentUI.GetComponent<RectTransform>();
@@ -46,7 +53,43 @@ public class ScoreReviewEvent : MonoBehaviour
             yield return new WaitForSeconds(ReviewShiftDuration * 0.5f);
             currentRect.DOAnchorPosX(0, ReviewShiftDuration);
             yield return currentUI.StartReviewAnimation();
+            Result[i] = currentUI.totalScore;
             currentRect.DOAnchorPosX(-900, ReviewShiftDuration);
+            playerIndex++;
+        }
+        yield return new WaitForSeconds(ReviewShiftDuration);
+        var effectAnimation = FindObjectOfType<DebateEffectAnimationController>();
+        var damageList = effectAnimation.Setup(Result);
+        yield return effectAnimation.StartCoroutine(effectAnimation.PlayRoutine());
+        GameEndCheck();
+    }
+    public void GameEndCheck()
+    {
+        var allUnits = FindObjectsOfType<DebateUnit>();
+        foreach (var unit in allUnits)
+        {
+            if (unit.Points <= 0)
+            {
+                if (unit.index == 0)
+                {
+                    var GET = FindObjectOfType<GeneralEventTrigger>();
+                    int result = loseOrder.Count > 0 ? 1 : -1;
+                    GET.TriggerEnd(result);
+                    return;
+                }
+                else
+                {
+                    loseOrder.Add(unit);
+                    characters[unit.index] = new Character[0] { };
+                    unit.UnitDown();
+                }
+            }
+            if (loseOrder.Count >= allUnits.Length-1)
+            {
+                var GET = FindObjectOfType<GeneralEventTrigger>();
+                int result = loseOrder.Count > 0 ? 1 : -1;
+                GET.TriggerEnd(result);
+            }
         }
     }
     public static int TestReview(List<Character[]> characters, DebateTopic topic)
@@ -65,11 +108,14 @@ public class ScoreReviewEvent : MonoBehaviour
             multi += sample[0];
         }
         output = point * multi;
-        Destroy(review.gameObject);
+        Destroy(review);
         return output;
     }
     private void StartReview()
     {
+        finalScore[0] = 0;
+        finalScore[1] = 0;
+        debatePointCollectors = new List<DebatePointCollector>() { };
         var otherPlayerCharacters = characters.FindAll(x => x != characters[playerIndex]);
         var playerCharacres = characters[playerIndex];
         TryGetPoints(DebatePointCollector.大家闺秀, TopicPointsCalculator.CalculatPoints(DebatePointCollector.大家闺秀, topic, playerCharacres, null));
@@ -83,18 +129,18 @@ public class ScoreReviewEvent : MonoBehaviour
             TryGetPoints(DebatePointCollector.有理有据, TopicPointsCalculator.CalculatPoints(DebatePointCollector.有理有据, topic, playerCharacres, tag));
         }
         if (debatePointCollectors.Contains(DebatePointCollector.有理有据))
-            TryGetPoints(DebatePointCollector.感同身受, TopicPointsCalculator.CalculatPoints(DebatePointCollector.感同身受, topic, playerCharacres, null));
+            TryGetPoints(DebatePointCollector.感同身受, TopicPointsCalculator.CalculatPoints(DebatePointCollector.感同身受, topic, playerCharacres, topic.tagRequest));
         TryGetPoints(DebatePointCollector.地位超然, TopicPointsCalculator.CalculatPoints(DebatePointCollector.地位超然, topic, playerCharacres, otherPlayerCharacters));
         TryGetPoints(DebatePointCollector.言语粗鄙, TopicPointsCalculator.CalculatPoints(DebatePointCollector.地位超然, topic, playerCharacres, null));
         foreach (CharacterValueType valueType in topic.characterValue)
         {
-            TryGetPoints(DebatePointCollector.权威, TopicPointsCalculator.CalculatPoints(DebatePointCollector.权威, topic, playerCharacres, new ArrayList() { valueType, otherPlayerCharacters }));
-            TryGetPoints(DebatePointCollector.词不对板, TopicPointsCalculator.CalculatPoints(DebatePointCollector.词不对板, topic, playerCharacres, otherPlayerCharacters));
+            TryGetPoints(DebatePointCollector.权威, TopicPointsCalculator.CalculatPoints(DebatePointCollector.权威, topic, playerCharacres, new ArrayList { valueType, otherPlayerCharacters }));
+            TryGetPoints(DebatePointCollector.词不对板, TopicPointsCalculator.CalculatPoints(DebatePointCollector.词不对板, topic, playerCharacres, valueType));
         }
         if (debatePointCollectors.Contains(DebatePointCollector.权威))
         {
             TryGetPoints(DebatePointCollector.力压众异, TopicPointsCalculator.CalculatPoints(DebatePointCollector.力压众异, topic, playerCharacres, otherPlayerCharacters));
-            TryGetPoints(DebatePointCollector.国士无双, TopicPointsCalculator.CalculatPoints(DebatePointCollector.国士无双, topic, playerCharacres, null));
+            TryGetPoints(DebatePointCollector.国士无双, TopicPointsCalculator.CalculatPoints(DebatePointCollector.国士无双, topic, playerCharacres, new ArrayList { otherPlayerCharacters, topic.tagRequest, topic.rarerity }));
         }
         TryGetPoints(DebatePointCollector.乱纪, TopicPointsCalculator.CalculatPoints(DebatePointCollector.乱纪, topic, playerCharacres, otherPlayerCharacters));
         TryGetPoints(DebatePointCollector.一枝独秀, TopicPointsCalculator.CalculatPoints(DebatePointCollector.一枝独秀, topic, playerCharacres, otherPlayerCharacters));
@@ -115,8 +161,8 @@ public class ScoreReviewEvent : MonoBehaviour
             else
                 TryGetPoints(DebatePointCollector.内幕, TopicPointsCalculator.CalculatPoints(DebatePointCollector.内幕, topic, playerCharacres, otherPlayerCharacters));
         }
-        TryGetPoints(DebatePointCollector.乱心, TopicPointsCalculator.CalculatPoints(DebatePointCollector.乱心, topic, playerCharacres, null));
-        TryGetPoints(DebatePointCollector.绣花枕头, TopicPointsCalculator.CalculatPoints(DebatePointCollector.绣花枕头, topic, playerCharacres, null));
+        TryGetPoints(DebatePointCollector.乱心, TopicPointsCalculator.CalculatPoints(DebatePointCollector.乱心, topic, playerCharacres, otherPlayerCharacters));
+        TryGetPoints(DebatePointCollector.绣花枕头, TopicPointsCalculator.CalculatPoints(DebatePointCollector.绣花枕头, topic, playerCharacres, otherPlayerCharacters));
         TryGetPoints(DebatePointCollector.子不语, TopicPointsCalculator.CalculatPoints(DebatePointCollector.子不语, topic, playerCharacres, null));
         if (!debatePointCollectors.Contains(DebatePointCollector.一枝独秀))
             TryGetPoints(DebatePointCollector.以众敌寡, TopicPointsCalculator.CalculatPoints(DebatePointCollector.以众敌寡, topic, playerCharacres, null));
@@ -133,6 +179,6 @@ public class ScoreReviewEvent : MonoBehaviour
             return;
         finalScore[0] += points[0];
         finalScore[1] += points[1];
-        debatePointCollectors.Append(collector);
+        debatePointCollectors.Add(collector);
     }
 }

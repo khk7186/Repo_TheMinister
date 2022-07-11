@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,13 +11,16 @@ public class DebateMainEventManager : MonoBehaviour
     public readonly int playerIndex = 0;
     public List<DebateTopic> topicPool = new List<DebateTopic>() { };
     public DebateTopic currentTopic;
-    public DebateUnit[] debateUnits;
+    public List<DebateUnit> InGameDebateUnits;
     private void Start()
     {
         Reset();
     }
-    public void Reset(List<DebateTopic> topicPool = null)
+    public void Reset()
     {
+        var pool = FindObjectOfType<DebateTopicPool>();
+        var topicPoolList = pool ? pool.topics : null;
+
         if (topicPool == null)
         {
             var v = Enum.GetValues(typeof(DebateTopicCode));
@@ -27,30 +31,64 @@ public class DebateMainEventManager : MonoBehaviour
                 topic.Setup((DebateTopicCode)v.GetValue(_R.Next(v.Length)));
                 this.topicPool.Add(topic);
             }
-            NextTopic();
         }
-        this.topicPool = topicPool;
+        else
+        {
+            topicPool = topicPoolList;
+        }
+        NextTopic();
+        SetGameUnits();
     }
     public void NextTopic()
     {
         currentTopic = topicPool[0];
+        Debug.Log(currentTopic);
         topicPool.RemoveAt(0);
         FindObjectOfType<TopicUI>().StartNewTopic(currentTopic);
     }
+    public void SetGameUnits()
+    {
+        var GET = FindObjectOfType<GeneralEventTrigger>();
+        InGameDebateUnits[0].Setup(GET.playerCharacters, "ÀîÔ¬Ä°", CharacterArtCode.¹ÙÔ±, true);
+        InGameDebateUnits[0].SetUnitUI(InGameDebateUnits[0].GetComponent<DebateUnitUI>());
+        for (int i = 0; i < GET.enemyCharactersCardsList.Count; i++)
+        {
+            var thisCharacterList = GET.enemyCharactersCardsList[i];
+            InGameDebateUnits[i + 1].Setup(thisCharacterList.ToList(), thisCharacterList[0].CharacterName, thisCharacterList[0].characterArtCode);
+            var thisUI = InGameDebateUnits[i + 1].GetComponent<DebateUnitUI>();
+            InGameDebateUnits[i + 1].SetUnitUI(thisUI);
+        }
+    }
     public void StartDebate()
     {
-        debateUnits = FindObjectsOfType<DebateUnit>();
         List<Character[]> characters = new List<Character[]>();
-        CharacterArtCode[] idleImages = new CharacterArtCode[playerCount];
-        for (int i = 0; i < debateUnits.Length; i++)
+        List<CharacterArtCode> idleImages = new List<CharacterArtCode>();
+        idleImages.Add(CharacterArtCode.ÄÐ¹Ù);
+        InGameDebateUnits[0].CheckSelection();
+        characters.Add(InGameDebateUnits[0].selectCharacters.ToArray());
+        for (int i = 1; i < InGameDebateUnits.Count; i++)
         {
-            var unit = debateUnits[i];
-            unit.CheckSelection();
-            idleImages[i] = unit.IconArtCode;
-            characters.Add(unit.selectCharacters.ToArray());
+            if (InGameDebateUnits[i].Points <= 0)
+            {
+                characters.Add(new Character[] { });
+                continue;
+            }
+            var unit = InGameDebateUnits[i];
+            idleImages.Add(unit.IconArtCode);
+            var selectedCharacterCards = DebateAI.MakeDecision(unit, currentTopic);
+            var selectedCharacter = new Character[selectedCharacterCards.Count];
+            int count = 0;
+            foreach (var card in selectedCharacterCards)
+            {
+                selectedCharacter[count] = card.character;
+                count++;
+            }
+            characters.Add(selectedCharacter);
         }
+        Debug.Log("total ch:" + characters.Count);
         ScoreReviewEvent.NewReview(characters, currentTopic, idleImages);
     }
+
 }
 
 

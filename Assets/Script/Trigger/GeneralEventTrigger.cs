@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class GeneralEventTrigger : MonoBehaviour
 {
     public BattleType battleType = BattleType.Combat;
-    GameTracker gameResult = null;
     //rewards
     public int moneyRewards = 0;
     public int influenceRewards = 0;
@@ -51,8 +50,12 @@ public class GeneralEventTrigger : MonoBehaviour
         StartCoroutine(JumpToScene(scene));
 
     }
-    public void TiggerEnd()
+    public void TriggerEnd(int result = 0)
     {
+        if (result != 0)
+        {
+            gameTracker.gameWin = result > 0;
+        }
         if (gameTracker != null)
         {
             //Win
@@ -73,12 +76,15 @@ public class GeneralEventTrigger : MonoBehaviour
             //Lose
             else
             {
+                scene = 0;
+                StartCoroutine(JumpToScene(scene));
             }
         }
     }
     private IEnumerator JumpToScene(int scene)
     {
-        var path = $"CombatScene/SceneChangeAnimation";
+        //Debug.Log("Start SceneChangeAnimation");
+        string path = $"CombatScene/SceneChangeAnimation";
         var animation = Instantiate(Resources.Load<SceneTrans>(path));
         yield return StartCoroutine(animation.StartChange((SceneType)scene));
         SceneManager.LoadScene(scene);

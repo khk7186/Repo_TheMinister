@@ -9,26 +9,24 @@ public class ScoreReviewUI : MonoBehaviour
     public Image Idle;
     public RectTransform SelectedCharacters;
     public TotalPointsUI totalScorePannel;
-    public RectTransform scorePannel;
-    public RectTransform multiPannel;
-    public RectTransform pointCollectmultiPannel;
     public ScoreMessageUI messageUIPref;
-    public Text currentPointCollectName;
-    public Text currentScore;
-    public Text currentMulti;
     public RectTransform stageOneTargetPoint;
     public RectTransform stageTwoTargetPoint;
     public RectTransform MessageQueue;
     public RectTransform ContinueMessage;
+    public int totalScore = 0;
     private List<RectTransform> unreadScoreMessages = new List<RectTransform>();
-    public void Setup(CharacterArtCode masterIdle, Character[] characters, DebatePointCollector[] debatePointCollectors)
+    public void Setup(CharacterArtCode masterIdle, Character[] characters, List<DebatePointCollector> debatePointCollectors)
     {
         Idle.sprite = Resources.Load<Sprite>(ReturnAssetPath.ReturnCharacterSpritePath(masterIdle));
-        var characterHeadUIs = SelectedCharacters.GetComponentsInChildren<RectTransform>();
+        var characterHeadUIs = SelectedCharacters.GetComponentsInChildren<DebateReviewHeadImageRef>(true);
+        //Debug.Log(characters.Length);
         int index = 0;
+        
         foreach (var character in characters)
         {
-            characterHeadUIs[index].GetComponentInChildren<Image>().sprite
+            characterHeadUIs[index].gameObject.SetActive(true);
+            characterHeadUIs[index].Head.sprite
                 = Resources.Load<Sprite>(ReturnAssetPath.ReturnCharacterSpritePath(character.characterArtCode, false));
             index++;
         }
@@ -41,7 +39,7 @@ public class ScoreReviewUI : MonoBehaviour
                 = new string[] { debatePointCollector.ToString(),
                 TopicPointsCalculator.CollectorToPoints[ debatePointCollector][1].ToString(),
                  TopicPointsCalculator.CollectorToPoints[ debatePointCollector][0].ToString()};
-            RectTransform pStart = characterHeadUIs[index];
+            RectTransform pStart = characterHeadUIs[index].GetComponent<RectTransform>();
             newMessage.Setup(input, pStart);
             unreadScoreMessages.Add(newMessage.GetComponent<RectTransform>());
             index++;
@@ -66,6 +64,7 @@ public class ScoreReviewUI : MonoBehaviour
             totalScorePannel = FindObjectOfType<TotalPointsUI>();
         yield return totalScorePannel.StartCoroutine(totalScorePannel.FinalCount());
         ContinueMessage.gameObject.SetActive(true);
+        totalScore = totalScorePannel.totalPoints;
         yield return WaitForClick();
     }
     public IEnumerator FinishAnimation()

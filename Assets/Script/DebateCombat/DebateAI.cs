@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class DebateAI : MonoBehaviour
 {
-    public static DebateCharacterCard MakeDecision(DebateUnit unit, DebateTopic topic)
+    public static List<DebateCharacterCard> MakeDecision(DebateUnit unit, DebateTopic topic)
     {
         List<DebateCharacterCard> output = new List<DebateCharacterCard>();
-        List<Character> characters = unit.characters;
         List<DebateCharacterCard> characterCards = unit.characterCards;
         int currentMax = 0;
         DebateCharacterCard currentCard = null;
@@ -23,6 +22,7 @@ public class DebateAI : MonoBehaviour
                 }
             }
         }
-        return currentCard;
+        output.Add(currentCard);
+        return output;
     }
 }

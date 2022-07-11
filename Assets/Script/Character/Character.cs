@@ -288,7 +288,8 @@ public enum HireStage
 {
     Never,
     InCity,
-    Hired
+    Hired,
+    NotInMap
 }
 public class Character : MonoBehaviour, IRound
 {
@@ -343,7 +344,28 @@ public class Character : MonoBehaviour, IRound
 
     public int ReturnRounds = 0;
 
+    public static List<CharacterArtCode> FemaleCharacters = new List<CharacterArtCode>()
+    {
+        {CharacterArtCode.女布衣},
+        {CharacterArtCode.女诗人}
 
+    };
+
+    public static List<CharacterArtCode> MaleCharacters = new List<CharacterArtCode>()
+    {
+        {CharacterArtCode.男刀客},
+        {CharacterArtCode.老者},
+        {CharacterArtCode.男书生},
+        {CharacterArtCode.传教士 },
+        {CharacterArtCode.男官 },
+        {CharacterArtCode.男武 },
+        {CharacterArtCode.琴师 },
+        {CharacterArtCode.说书人 },
+        {CharacterArtCode.棋圣 },
+        {CharacterArtCode.方丈 },
+        {CharacterArtCode.官员 },
+        {CharacterArtCode.拾荒者 }
+    };
     #endregion
 
     #region View
@@ -392,7 +414,7 @@ public class Character : MonoBehaviour, IRound
     {
         if (characterType == CharacterType.General)
         {
-            if (hireStage != HireStage.Hired)
+            if (hireStage != HireStage.Hired && hireStage != HireStage.NotInMap)
             {
                 string path = "InGameNPC/DefaultInGameNPC";
                 var target = Instantiate(Resources.Load<DefaultInGameAI>(path));
@@ -636,27 +658,6 @@ public class Character : MonoBehaviour, IRound
         }
     }
 
-    public List<CharacterArtCode> FemaleCharacters = new List<CharacterArtCode>()
-    { 
-        {CharacterArtCode.女布衣},
-        {CharacterArtCode.女诗人}
-
-    };
-
-    public List<CharacterArtCode> MaleCharacters = new List<CharacterArtCode>()
-    {
-        {CharacterArtCode.男刀客},
-        {CharacterArtCode.老者},
-        {CharacterArtCode.男书生},
-        {CharacterArtCode.传教士 },
-        {CharacterArtCode.男官 },
-        {CharacterArtCode.男武 },
-        {CharacterArtCode.琴师 },
-        {CharacterArtCode.说书人 },
-        {CharacterArtCode.棋圣 },
-        {CharacterArtCode.方丈 },
-        {CharacterArtCode.官员 },
-        {CharacterArtCode.拾荒者 }
-    };
+    
 
 }
