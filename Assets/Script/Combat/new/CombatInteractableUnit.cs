@@ -55,7 +55,6 @@ public class CombatInteractableUnit : MonoBehaviour
     }
     public void OnMouseDown()
     {
-        Debug.Log("Mouse down");
         if (FindObjectOfType<CombatTrigger>() == null) return;
         var csc = FindObjectOfType<CombatSceneController>();
         if (csc.OnAction == false)

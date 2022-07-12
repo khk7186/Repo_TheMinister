@@ -21,11 +21,16 @@ public class DebateUnit : MonoBehaviour
     public Vector2 cardConfirmPosition;
     public void Setup(List<Character> characters, string name, CharacterArtCode iconArtCode, bool isPlayer = false)
     {
+        if (characters == null)
+        {
+            GetComponent<DebateUnitUI>().CardPool.gameObject.SetActive(false);
+            gameObject.SetActive(false);
+            return;
+        }
         characters.ForEach(c => this.characters.Add(c));
         this.isPlayer = isPlayer;
         Name = name;
         IconArtCode = iconArtCode;
-
     }
     public void UnitDown()
     {

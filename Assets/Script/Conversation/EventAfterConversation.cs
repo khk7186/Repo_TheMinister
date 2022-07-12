@@ -5,7 +5,6 @@ using PixelCrushers.DialogueSystem;
 
 public class EventAfterConversation : MonoBehaviour
 {
-    public List<Character> charactersForCombats = new List<Character>();
     public Character EnemyUnitA;
     public Character[] EnemyUnitACardList = new Character[] { };
     public Character EnemyUnitB;
@@ -27,7 +26,8 @@ public class EventAfterConversation : MonoBehaviour
         {
             var Trigger = new GameObject().AddComponent<GeneralEventTrigger>();
             Trigger.battleType = BattleType.Combat;
-            Trigger.enemyCharacters = charactersForCombats;
+            Trigger.enemyCharacters = CharacterSpawnPool.CharacterSpawnPoolDict[EnemyUnitA.characterArtCode][Trigger.battleType];
+            Trigger.enemyCharacters.Add(EnemyUnitA);
             Trigger.TriggerEvent();
             //Debug.Log(startCombat);
         }
@@ -48,9 +48,32 @@ public class EventAfterConversation : MonoBehaviour
             }
             var Trigger = new GameObject().AddComponent<GeneralEventTrigger>();
             Trigger.battleType = BattleType.Debate;
-            Trigger.enemyCharacters = new List<Character>() { EnemyUnitA, EnemyUnitB, EnemyUnitC };
-            Trigger.enemyCharactersCardsList = new List<Character[]>() { EnemyUnitACardList, EnemyUnitBCardList, EnemyUnitCCardList };
+            var EnemyCharactersCardsList = new List<Character[]>();
+            if (EnemyUnitA != null)
+            {
+                var EnemyADebateList = new List<Character>();
+                EnemyADebateList.Add(EnemyUnitA);
+                EnemyADebateList.AddRange(CharacterSpawnPool.CharacterSpawnPoolDict[EnemyUnitA.characterArtCode][Trigger.battleType]);
+                EnemyCharactersCardsList.Add(EnemyADebateList.ToArray());
+            }
+            if (EnemyUnitB != null)
+            {
+                var EnemyBDebateList = new List<Character>();
+                EnemyBDebateList.Add(EnemyUnitB);
+                EnemyBDebateList.AddRange(CharacterSpawnPool.CharacterSpawnPoolDict[EnemyUnitB.characterArtCode][Trigger.battleType]);
+                EnemyCharactersCardsList.Add(EnemyBDebateList.ToArray());
+            }
+            if (EnemyUnitC != null)
+            {
+                var EnemyCDebateList = new List<Character>();
+                EnemyCDebateList.Add(EnemyUnitC);
+                EnemyCDebateList.AddRange(CharacterSpawnPool.CharacterSpawnPoolDict[EnemyUnitC.characterArtCode][Trigger.battleType]);
+                EnemyCharactersCardsList.Add(EnemyCDebateList.ToArray());
+            }
+            Trigger.enemyCharactersCardsList = EnemyCharactersCardsList;
             Trigger.TriggerEvent();
         }
     }
 }
+
+

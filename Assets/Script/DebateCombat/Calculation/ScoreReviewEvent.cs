@@ -66,13 +66,18 @@ public class ScoreReviewEvent : MonoBehaviour
     public void GameEndCheck()
     {
         var allUnits = FindObjectsOfType<DebateUnit>();
+        var GET = FindObjectOfType<GeneralEventTrigger>();
+        if (FindObjectOfType<DebateMainEventManager>().topicPool.Count == 0)
+        {
+            GET.TriggerEnd(1);
+        }
         foreach (var unit in allUnits)
         {
             if (unit.Points <= 0)
             {
                 if (unit.index == 0)
                 {
-                    var GET = FindObjectOfType<GeneralEventTrigger>();
+                    
                     int result = loseOrder.Count > 0 ? 1 : -1;
                     GET.TriggerEnd(result);
                     return;
@@ -86,7 +91,6 @@ public class ScoreReviewEvent : MonoBehaviour
             }
             if (loseOrder.Count >= allUnits.Length-1)
             {
-                var GET = FindObjectOfType<GeneralEventTrigger>();
                 int result = loseOrder.Count > 0 ? 1 : -1;
                 GET.TriggerEnd(result);
             }

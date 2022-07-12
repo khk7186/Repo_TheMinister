@@ -58,6 +58,10 @@ public class DebateMainEventManager : MonoBehaviour
             var thisUI = InGameDebateUnits[i + 1].GetComponent<DebateUnitUI>();
             InGameDebateUnits[i + 1].SetUnitUI(thisUI);
         }
+        for (int i = GET.enemyCharactersCardsList.Count +1; i < 4; i++)
+        {
+            InGameDebateUnits[i].Setup(null, null, CharacterArtCode.Å®Ê«ÈË, false);
+        }
     }
     public void StartDebate()
     {
@@ -68,6 +72,10 @@ public class DebateMainEventManager : MonoBehaviour
         characters.Add(InGameDebateUnits[0].selectCharacters.ToArray());
         for (int i = 1; i < InGameDebateUnits.Count; i++)
         {
+            if (InGameDebateUnits[i].gameObject.activeSelf == false)
+            {
+                break;
+            }
             if (InGameDebateUnits[i].Points <= 0)
             {
                 characters.Add(new Character[] { });
@@ -78,6 +86,7 @@ public class DebateMainEventManager : MonoBehaviour
             var selectedCharacterCards = DebateAI.MakeDecision(unit, currentTopic);
             var selectedCharacter = new Character[selectedCharacterCards.Count];
             int count = 0;
+            Debug.Log("Count: " + i);
             foreach (var card in selectedCharacterCards)
             {
                 selectedCharacter[count] = card.character;
