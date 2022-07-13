@@ -24,7 +24,8 @@ public class CharacterHiringUI : MonoBehaviour
     public Text StrengthValue;
     public Text SneakValue;
     public Text DefenseValue;
-    
+
+    public bool TryHire;
     public void Setup(Character character, Dictionary<ItemName,int> ItemsAmountDict)
     {
         var targetIdleImagePath = ReturnAssetPath.ReturnCharacterSpritePath(character.characterArtCode);
@@ -50,12 +51,14 @@ public class CharacterHiringUI : MonoBehaviour
     }
     public void SetItems(Dictionary<ItemName, int> ItemsAmountDict)
     {
-        var itemObject = Resources.Load<ItemUI>("ItemInvUI/ItemUnitUI");
+        var itemObject = Resources.Load<HiringRequestItemUI>("Hiring/HireRequestItem");
         TransformEx.Clear(Items);
         foreach (ItemName item in ItemsAmountDict.Keys)
         {
             var current = Instantiate(itemObject, Items);
-            current.Setup(item, ItemsAmountDict[item]);
+            var playerInv = FindObjectOfType<ItemInventory>();
+            var playerInvDict = playerInv.ItemDict;
+            current.Setup(item, playerInvDict[item], ItemsAmountDict[item]);
             current.InUse = false;
         }
     }
@@ -79,5 +82,10 @@ public class CharacterHiringUI : MonoBehaviour
         Strength.sprite = Resources.Load<Sprite>($"{path}{character.characterValueRareDict[CharacterValueType.Œ‰].ToString()}");
         Sneak.sprite = Resources.Load<Sprite>($"{path}{character.characterValueRareDict[CharacterValueType.¥Ã].ToString()}");
         Defense.sprite = Resources.Load<Sprite>($"{path}{character.characterValueRareDict[CharacterValueType. ÿ].ToString()}");
+    }
+
+    public void ConfirmHire()
+    {
+        TryHire = true;
     }
 }

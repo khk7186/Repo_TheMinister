@@ -287,7 +287,7 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
             characterUI.newTag = Use();
         }
     }
-    public void Setup(ItemName item, int amount)
+    public virtual void Setup(ItemName item, int amount)
     {
         this.ItemName = item;
         string SpritePath = ("Art/ItemIcon/" + item.ToString()).Replace(" ", string.Empty);
