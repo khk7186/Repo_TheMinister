@@ -246,8 +246,11 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
     public TagExchangeUI tagExchangeUI;
     public Image Frame;
     public Image Icon => icon;
+    public bool InUse = true;
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (!InUse)
+            return;
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             //LeftClickAction();
@@ -284,7 +287,7 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
             characterUI.newTag = Use();
         }
     }
-    public void SetUp(ItemName item, int amount)
+    public void Setup(ItemName item, int amount)
     {
         this.ItemName = item;
         string SpritePath = ("Art/ItemIcon/" + item.ToString()).Replace(" ", string.Empty);
