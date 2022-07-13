@@ -288,7 +288,8 @@ public enum HireStage
 {
     Never,
     InCity,
-    Hired
+    Hired,
+    NotInMap
 }
 public class Character : MonoBehaviour, IRound
 {
@@ -311,7 +312,7 @@ public class Character : MonoBehaviour, IRound
     public CharacterArtCode characterArtCode;
     public int loyalty = 20;
     public int health = 20;
-
+    public Rarerity rarerity = Rarerity.Null;
     public CharacterUI characterCard;
     public CharacterUI thisCharacterCard;
     public Transform characterCardInvUI;
@@ -343,21 +344,42 @@ public class Character : MonoBehaviour, IRound
 
     public int ReturnRounds = 0;
 
+    public static List<CharacterArtCode> FemaleCharacters = new List<CharacterArtCode>()
+    {
+        {CharacterArtCode.女布衣},
+        {CharacterArtCode.女诗人}
 
+    };
+
+    public static List<CharacterArtCode> MaleCharacters = new List<CharacterArtCode>()
+    {
+        {CharacterArtCode.男刀客},
+        {CharacterArtCode.老者},
+        {CharacterArtCode.男书生},
+        {CharacterArtCode.传教士 },
+        {CharacterArtCode.男官 },
+        {CharacterArtCode.男武 },
+        {CharacterArtCode.琴师 },
+        {CharacterArtCode.说书人 },
+        {CharacterArtCode.棋圣 },
+        {CharacterArtCode.方丈 },
+        {CharacterArtCode.官员 },
+        {CharacterArtCode.拾荒者 }
+    };
     #endregion
 
     #region View
-    public HireStage hireStage = HireStage.Never;
+    public HireStage hireStage = HireStage.NotInMap;
     public bool OnCombatDuty = false;
     public bool OnDebateDuty = false;
     public bool OnGobangDuty = false;
 
     public Dictionary<OndutyType, bool> OnDutyState
-        = new Dictionary<OndutyType, bool>() 
-        { 
-            { OndutyType.Combat, false }, 
-            { OndutyType.Debate, false }, 
-            { OndutyType.Gobang, false } 
+        = new Dictionary<OndutyType, bool>()
+        {
+            { OndutyType.Combat, false },
+            { OndutyType.Debate, false },
+            { OndutyType.Gobang, false }
         };
     #endregion
     #region wealth
@@ -369,7 +391,7 @@ public class Character : MonoBehaviour, IRound
     {
         if (characterType == CharacterType.General)
         {
-            SpawnTagOnStart();
+            SpawnTagOnStart(rarerity);
             if (hireStage != HireStage.Hired)
             {
                 OnDutyState[OndutyType.Combat] = false;
@@ -392,7 +414,7 @@ public class Character : MonoBehaviour, IRound
     {
         if (characterType == CharacterType.General)
         {
-            if (hireStage != HireStage.Hired)
+            if (hireStage != HireStage.Hired && hireStage != HireStage.NotInMap)
             {
                 string path = "InGameNPC/DefaultInGameNPC";
                 var target = Instantiate(Resources.Load<DefaultInGameAI>(path));
@@ -419,7 +441,7 @@ public class Character : MonoBehaviour, IRound
     {
         if (hireStage == HireStage.Hired)
         {
-            transform.parent = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;                                                                                                                                               
+            transform.parent = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
             CreatInventoryCardUI();
         }
         else
@@ -476,12 +498,20 @@ public class Character : MonoBehaviour, IRound
         CharactersValueDict[CharacterValueType.守] = 0;
     }
 
-    private void SpawnTagOnStart()
+    private void SpawnTagOnStart(Rarerity rarerity = Rarerity.Null)
     {
-        int tagAmount = UnityEngine.Random.Range(1, 5);
-        for (int i = 0; i < 5; i++)
+        if (rarerity == Rarerity.Null)
         {
-            tagList.Add(RandomTag());
+            int tagAmount = UnityEngine.Random.Range(1, 5);
+            for (int i = 0; i < 5; i++)
+            {
+                tagList.Add(RandomTag());
+            }
+            return;
+        }
+        else
+        {
+            tagList.Add(RandomTag(rarerity));
         }
     }
 
@@ -517,6 +547,11 @@ public class Character : MonoBehaviour, IRound
     private Tag RandomTag(Rarerity rare)
     {
         List<Tag> targetList = Player.GivenableTagRareDict[rare];
+        if (targetList.Count == 0)
+        {
+            Debug.Log("No tag in this rarerity");
+            return Tag.Null;
+        }
         int targetValue = UnityEngine.Random.Range(0, targetList.Count - 1);
         return targetList[targetValue];
     }
@@ -586,6 +621,7 @@ public class Character : MonoBehaviour, IRound
 
     public void Destroy()
     {
+        FindObjectOfType<CharacterSpawnPool>().RotateCharacters(characterArtCode);
         Destroy(thisCharacterCard);
         Destroy(gameObject);
     }
@@ -636,27 +672,6 @@ public class Character : MonoBehaviour, IRound
         }
     }
 
-    public List<CharacterArtCode> FemaleCharacters = new List<CharacterArtCode>()
-    { 
-        {CharacterArtCode.女布衣},
-        {CharacterArtCode.女诗人}
 
-    };
-
-    public List<CharacterArtCode> MaleCharacters = new List<CharacterArtCode>()
-    {
-        {CharacterArtCode.男刀客},
-        {CharacterArtCode.老者},
-        {CharacterArtCode.男书生},
-        {CharacterArtCode.传教士 },
-        {CharacterArtCode.男官 },
-        {CharacterArtCode.男武 },
-        {CharacterArtCode.琴师 },
-        {CharacterArtCode.说书人 },
-        {CharacterArtCode.棋圣 },
-        {CharacterArtCode.方丈 },
-        {CharacterArtCode.官员 },
-        {CharacterArtCode.拾荒者 }
-    };
 
 }

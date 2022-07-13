@@ -133,7 +133,7 @@ public class TopicPointsCalculator : MonoBehaviour
         debatePointCollectorToDelegate.TryGetValue(collector, out List<TopicPointsCalculatorDelegate> delegates);
         foreach (var delegateItem in delegates)
         {
-            if (delegateItem(topic, playerCharacters, value))
+            if (!delegateItem(topic, playerCharacters, value))
             {
                 return new int[] { 0, 0 };
             }
@@ -142,8 +142,14 @@ public class TopicPointsCalculator : MonoBehaviour
     }
     static bool IsCharacterFemale(DebateTopic topic, Character[] playerCharacters, object value)
     {
-        bool output = false;
-        return output;
+        foreach (Character playerCharacter in playerCharacters)
+        {
+            if (Character.FemaleCharacters.Contains(playerCharacter.characterArtCode))
+            {
+                return true;
+            }
+        }
+        return false;
     }
     static bool IsCharacterMale(DebateTopic topic, Character[] playerCharacters, object value)
     {
@@ -336,7 +342,7 @@ public class TopicPointsCalculator : MonoBehaviour
     }
     static bool IsRarityFit(DebateTopic topic, Character[] playerCharacters, object value)
     {
-        var rarity = topic.raririty;
+        var rarity = topic.rarerity;
 
         foreach (Character character in playerCharacters)
         {
@@ -431,7 +437,27 @@ public class TopicPointsCalculator : MonoBehaviour
     }
     static bool IsAnyFemaleGotHigherStrategyThanMale(DebateTopic topic, Character[] playerCharacters, object value)
     {
-        //TODO: female
+        var otherPlayers = value as List<Character[]>;
+        foreach (Character[] otherPlayer in otherPlayers)
+        {
+            foreach (Character character in otherPlayer)
+            {
+                if (Character.FemaleCharacters.Contains(character.characterArtCode))
+                {
+                    foreach (Character playerCharacter in playerCharacters)
+                    {
+                        if (Character.MaleCharacters.Contains(playerCharacter.characterArtCode))
+                        {
+                            if (character.CharactersValueDict[CharacterValueType.ı] > playerCharacter.CharactersValueDict[CharacterValueType.ı])
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         return false;
     }
     static bool IsAnyFemaleExist(DebateTopic topic, Character[] playerCharacters, object value)
@@ -441,10 +467,10 @@ public class TopicPointsCalculator : MonoBehaviour
         {
             foreach (Character character in otherPlayer)
             {
-                //if (femaleArtCode.contain( character.characterArtCode))
-                //{
-                //    return true;
-                //}
+                if (Character.FemaleCharacters.Contains(character.characterArtCode))
+                {
+                    return true;
+                }
             }
         }
         return false;
@@ -500,7 +526,7 @@ public class TopicPointsCalculator : MonoBehaviour
     }
     static bool IsRollingOnTopic(DebateTopic topic, Character[] playerCharacters, object value)
     {
-        var otherPlayers = value as List<Character[]>;
+        var otherPlayers = (value as ArrayList)[0] as List<Character[]>;
         foreach (CharacterValueType characterValueType in topic.characterValue)
         {
             if (!IsStatHighest(topic, playerCharacters, new ArrayList() { characterValueType, otherPlayers }))
@@ -508,10 +534,12 @@ public class TopicPointsCalculator : MonoBehaviour
                 return false;
             }
         }
-        if (!IsGetAllRightTags(topic, playerCharacters, value))
+        var tags = (value as ArrayList)[1] as List<Tag>;
+        if (!IsGetAllRightTags(topic, playerCharacters, tags))
         {
             return false;
         }
+        var rarerities = (value as ArrayList)[2] as List<Rarerity>;
         if (!IsRarityFit(topic, playerCharacters, value))
         {
             return false;

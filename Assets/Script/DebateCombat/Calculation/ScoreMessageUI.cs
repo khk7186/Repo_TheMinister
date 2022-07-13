@@ -56,7 +56,6 @@ public class ScoreMessageUI : MonoBehaviour
         var finalX = 100;
         var finalY = -100 - 20 * index;
         var targetPos = new Vector2(finalX, finalY);
-        Debug.Log(targetPos);
         var pointOrigin = pointPannel.anchoredPosition;
         var pointFinal = new Vector3(249, 65, 0);
         var multiOrigin = multiPannel.anchoredPosition;
@@ -71,7 +70,6 @@ public class ScoreMessageUI : MonoBehaviour
             multiPannel.anchoredPosition = Vector3.Lerp(multiOrigin, multiFinal, time / showDuration);
             yield return null;
         }
-        Debug.Log("StageTwoAnimation");
         yield return null;
     }
     public IEnumerator StartMessageAnimation()
@@ -81,7 +79,5 @@ public class ScoreMessageUI : MonoBehaviour
         var totalPannel = FindObjectOfType<TotalPointsUI>();
         totalPannel.StartCoroutine(totalPannel.StartAnimate(int.Parse(scoreText.text), int.Parse(multiText.text.Replace("¡Á", ""))));
         StartCoroutine(StageTwoAnimation());
-        Debug.Log("StartMessageAnimationFinish");
     }
-
 }

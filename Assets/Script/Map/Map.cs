@@ -37,7 +37,11 @@ public class Map : MonoBehaviour, IObserver
     }
     private void Start()
     {
-
+        FirstDayReset();
+    }
+    public void FirstDayReset()
+    {
+        FindObjectOfType<CharacterSpawnPool>().RotateAllCharacters();
     }
     public void OnNotify(object value, NotificationType notificationType)
     {
@@ -50,7 +54,7 @@ public class Map : MonoBehaviour, IObserver
             StartCoroutine(Move());
         }
     }
-    
+
     IEnumerator Move()
     {
         yield return PlayerMovement.MoveToLocation();

@@ -60,7 +60,7 @@ public class DebateTopic
 
         };
     public DebateTopicCode debateTopicCode;
-    public Rarerity raririty;
+    public Rarerity rarerity;
     public List<Tag> tagRequest = new List<Tag>();
     public CharacterValueType[] characterValue = new CharacterValueType[] { };
     public bool IsClose = false;
@@ -68,7 +68,7 @@ public class DebateTopic
     public void Setup(DebateTopicCode code)
     {
         debateTopicCode = code;
-        raririty = (Rarerity)TopicCodeDict[debateTopicCode][0];
+        rarerity = (Rarerity)TopicCodeDict[debateTopicCode][0];
         tagRequest = (List<Tag>)TopicCodeDict[debateTopicCode][1];
         characterValue = (CharacterValueType[])TopicCodeDict[debateTopicCode][2];
     }

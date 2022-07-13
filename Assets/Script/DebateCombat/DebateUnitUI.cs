@@ -4,7 +4,6 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using DG.Tweening;
-
 public class DebateUnitUI : MonoBehaviour
 {
     public DebateUnit debateUnit;
@@ -30,6 +29,7 @@ public class DebateUnitUI : MonoBehaviour
         head.sprite = Resources.Load<Sprite>(ImagePath);
         Name.text = debateUnit.Name;
         UpdatePoints();
+        StartCoroutine(SpawnCards());
     }
     public void UpdatePoints()
     {
@@ -65,20 +65,27 @@ public class DebateUnitUI : MonoBehaviour
     public IEnumerator SpawnCards()
     {
         var characters = debateUnit.characters;
+        TransformEx.Clear(CardPool);
         CardPool.GetComponent<HorizontalLayoutGroup>().enabled = false;
         float index = 0;
         float gap = CardPool.GetComponent<HorizontalLayoutGroup>().spacing;
         CardPool.GetComponent<HorizontalLayoutGroup>().enabled = false;
         foreach (var character in characters)
         {
-            var card = Instantiate(Resources.Load<DebateCharacterCard>("Prefabs/DebateCard")).GetComponent<RectTransform>();
-            card.localScale = new Vector2(0f, 1f);
-            card.GetComponent<DebateCharacterCard>().Setup(character);
-            card.DOScaleX(1f, singleCardFlipDuration);
-            float targetX = index * (card.sizeDelta.x + gap);
-            card.DOAnchorPosX(targetX, singleCardFlipDuration);
-            card.SetParent(CardPool, false);
-            yield return new WaitForSeconds(singleCardFlipDuration / 2);
+            var cardObject = Instantiate(Resources.Load<DebateCharacterCardUI>("DebateScene/CharacterCard"))
+                                                                                                                .GetComponent<DebateCharacterCard>();
+            var cardRT = cardObject.GetComponent<RectTransform>();
+            cardRT.anchoredPosition = new Vector2(0f, 19f);
+            cardRT.localScale = new Vector2(0f, 1f);
+            cardObject.unit = debateUnit;
+            cardObject.Setup(character);
+            cardRT.DOScaleX(1f, singleCardFlipDuration);
+            float targetX = index * (cardRT.sizeDelta.x + gap);
+            index++;
+            cardRT.DOAnchorPosX(targetX, singleCardFlipDuration);
+            cardRT.SetParent(CardPool, false);
+            debateUnit.characterCards.Add(cardRT.GetComponent<DebateCharacterCard>());
+            yield return new WaitForSeconds(singleCardFlipDuration);
         }
         CardPool.GetComponent<HorizontalLayoutGroup>().enabled = true;
         LayoutRebuilder.ForceRebuildLayoutImmediate(CardPool);
