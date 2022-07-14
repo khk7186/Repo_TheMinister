@@ -52,14 +52,15 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
     }
     public void Setup(Character character)
     {
-        SetValueColors(
-            CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.ÖÇ]],
-            CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.²Å]],
-            CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.Ä±]],
-            CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.Îä]],
-            CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.´Ì]],
-            CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.ÊØ]]
-            );
+        //SetValueColors(
+        //    CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.ÖÇ]],
+        //    CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.²Å]],
+        //    CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.Ä±]],
+        //    CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.Îä]],
+        //    CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.´Ì]],
+        //    CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.ÊØ]]
+        //    );
+        SetValueBG(character);
         Name.text = character.CharacterName;
         SetIdle(character);
         SetValues(character.CharactersValueDict);
@@ -138,6 +139,16 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
             if (target != null) target.Reset();
             GetComponent<InvIntroAnimation>().Outro();
         }
+    }
+    public void SetValueBG(Character character)
+    {
+        var path = "Art/ÈËÎï¿¨/Áù´óÏî/×ÖÌå±³¾°/";
+        Wisdom.sprite = Resources.Load<Sprite>($"{path}{character.characterValueRareDict[CharacterValueType.ÖÇ].ToString()}");
+        Writing.sprite = Resources.Load<Sprite>($"{path}{character.characterValueRareDict[CharacterValueType.²Å].ToString()}");
+        Strategy.sprite = Resources.Load<Sprite>($"{path}{character.characterValueRareDict[CharacterValueType.Ä±].ToString()}");
+        Strength.sprite = Resources.Load<Sprite>($"{path}{character.characterValueRareDict[CharacterValueType.Îä].ToString()}");
+        Sneak.sprite = Resources.Load<Sprite>($"{path}{character.characterValueRareDict[CharacterValueType.´Ì].ToString()}");
+        Defense.sprite = Resources.Load<Sprite>($"{path}{character.characterValueRareDict[CharacterValueType.ÊØ].ToString()}");
     }
 
 

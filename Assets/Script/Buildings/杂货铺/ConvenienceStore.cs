@@ -14,7 +14,7 @@ public class ConvenienceStore : MonoBehaviour, IShopUI
         foreach (ItemName i in shopList)
         {
             itemUIs[UIindex].gameObject.SetActive(enabled);
-            itemUIs[UIindex].SetUp(i, 1);
+            itemUIs[UIindex].Setup(i, 1);
             UIindex++;
         }
         //Debug.Log(shopList.Count);
