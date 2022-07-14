@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class VisibleCheck : MonoBehaviour
 {
@@ -19,9 +20,14 @@ public class VisibleCheck : MonoBehaviour
 
 
     }
-    public static bool ColliderInView(GameObject gameObject)
+    public static bool ColliderInView(GameObject gameObject, List<Plane> otherPlanes = null)
     {
-        Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
+        var targetPlanes = GeometryUtility.CalculateFrustumPlanes(Camera.main).ToList<Plane>();
+        if (otherPlanes != null)
+        {
+            targetPlanes.AddRange(otherPlanes);
+        }
+        Plane[] planes = targetPlanes.ToArray();
         return GeometryUtility.TestPlanesAABB(planes, gameObject.GetComponent<Collider2D>().bounds);
     }
 }

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -8125937699042450951}
   - component: {fileID: -3344197725720601372}
   - component: {fileID: 1753942160932100043}
+  - component: {fileID: 8220571031272079801}
   m_Layer: 0
   m_Name: DefaultInGameNPC
   m_TagString: Untagged
@@ -74,7 +75,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.2, y: 2}
@@ -149,10 +150,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 0}
-  requestItems:
-    keys: 
-    values: 
   FailedMessage: 
+--- !u!50 &8220571031272079801
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3560967378551280729}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3560967378554594058
 GameObject:
   m_ObjectHideFlags: 0

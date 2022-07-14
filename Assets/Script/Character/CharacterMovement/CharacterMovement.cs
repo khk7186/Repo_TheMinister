@@ -18,6 +18,7 @@ public class CharacterMovement : MonoBehaviour
     private int blockCount => AI ? MovementGrid.EnemyInnerMovementBlocks.Count : MovementGrid.PlayerMovementBlocks.Count;
     public delegate Vector3Int GetGridBlock(int block);
     public GetGridBlock getGrid;
+    private CapsuleCollider2D EndPlaceVisibleChecker;
     private void Awake()
     {
         if (grid == null)
@@ -32,22 +33,46 @@ public class CharacterMovement : MonoBehaviour
         {
             getGrid = ((block) => MovementGrid.GetPlayerBlock(block));
         }
+        if (AI)
+        {
+            EndPlaceVisibleChecker = new GameObject().AddComponent<CapsuleCollider2D>();
+            EndPlaceVisibleChecker.isTrigger = true;
+            EndPlaceVisibleChecker.size = character.GetComponent<CapsuleCollider2D>().size;
+            EndPlaceVisibleChecker.offset = character.GetComponent<CapsuleCollider2D>().offset;
+            EndPlaceVisibleChecker.gameObject.SetActive(false);
+        }
     }
     public IEnumerator MoveToLocation()
     {
         finalBlock = finalBlock % blockCount;
         animator.SetTrigger("Move");
-        bool isInView = VisibleCheck.ColliderInView(character.gameObject);
-
+        int awayTime = 0;
+        if (AI)
+        {
+            EndPlaceVisibleChecker.gameObject.SetActive(true);
+            EndPlaceVisibleChecker.transform.position = grid.GetCellCenterWorld(getGrid(finalBlock));
+        }
         while (currentBlock != finalBlock)
         {
-            isInView = VisibleCheck.ColliderInView(character.gameObject);
+            bool isInView = VisibleCheck.ColliderInView(character.gameObject);
+            bool EndPlaceInView = true;
+            if (EndPlaceVisibleChecker != null)
+            {
+                EndPlaceInView = VisibleCheck.ColliderInView(EndPlaceVisibleChecker.gameObject);
+            }
             if (isInView)
             {
+                awayTime = 0;
                 yield return MoveToNextBlock();
             }
             else
             {
+                awayTime += 1;
+                if (awayTime < 2)
+                {
+                    yield return MoveToNextBlock();
+                    continue;
+                }
                 if (!VisibleCheck.IsInView(grid.GetCellCenterWorld(getGrid(finalBlock))))
                 {
                     character.position = grid.GetCellCenterWorld(getGrid(finalBlock));
@@ -60,6 +85,10 @@ public class CharacterMovement : MonoBehaviour
                     currentBlock = currentBlock % blockCount;
                 }
             }
+        }
+        if (AI)
+        {
+            EndPlaceVisibleChecker.gameObject.SetActive(false);
         }
         animator.SetTrigger("Stop");
     }

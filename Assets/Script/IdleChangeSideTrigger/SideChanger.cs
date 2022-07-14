@@ -12,6 +12,7 @@ public class SideChanger : MonoBehaviour
     {
         if (TryGetComponent<DefaultInGameAI>(out var inGameAI))
         {
+            animator.SetTrigger("Stop");
             CharacterArtCode CAC = inGameAI.character.characterArtCode;
             string side = front ? "Front" : "Back";
             SkeletonDataAsset asset = Resources.Load<SkeletonDataAsset>
@@ -20,9 +21,10 @@ public class SideChanger : MonoBehaviour
             string controllerPath = $"{ReturnAssetPath.ReturnSpineAssetPath(CAC, true)}{CAC}_{side}_Controller";
             animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(controllerPath);
             Vector3 target = animator.transform.localScale;
-            target = new Vector3((right ? -0.7f : 0.7f), target.y, target.z);
+            target = new Vector3((right ? 0.7f : -0.7f), target.y, target.z);
             animator.transform.localScale = target;
             animator.GetComponent<SkeletonMecanim>().Initialize(true);
+            animator.SetTrigger("Move");
         }
         else
         {
