@@ -14,10 +14,18 @@ public class NPCConversationTriggerGroup : MonoBehaviour
         {
             dst.selectedDatabase = Resources.Load<DialogueDatabase>($"Conversions/{DBID}");
         }
-        
+
     }
     public void StartGeneral()
     {
         General.OnUse();
     }
+
+    public void OnConversationEnd(Transform actor)
+    {
+        var EAC = GetComponent<EventAfterConversation>();
+        EAC.TryCombat();
+        EAC.TryDebate();
+    }
+
 }

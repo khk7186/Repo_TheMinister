@@ -82,6 +82,10 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         CurrentLocation = OnNight ? NightBlock : Random.Range(DayMinBlock, DayMaxBlock);
         transform.position = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, CurrentLocation));
         SetConversationDatabase();
+        if (npcConversationTriggerGroup == null)
+        {
+            Debug.Log(character.characterArtCode);
+        }
     }
     public void Move()
     {

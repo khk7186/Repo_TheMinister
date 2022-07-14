@@ -31,6 +31,10 @@ public class EventAfterConversation : MonoBehaviour
             Trigger.TriggerEvent();
             //Debug.Log(startCombat);
         }
+        else
+        {
+            DialogueLua.SetVariable("tryCombat", false) ;
+        }
     }
 
     public void TryDebate()
@@ -72,6 +76,10 @@ public class EventAfterConversation : MonoBehaviour
             }
             Trigger.enemyCharactersCardsList = EnemyCharactersCardsList;
             Trigger.TriggerEvent();
+        }
+        else
+        {
+            DialogueLua.SetVariable("tryDebate", false);
         }
     }
 }
