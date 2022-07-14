@@ -1456,6 +1456,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 125852, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
   m_PrefabInstance: {fileID: 98416812}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &66901854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66901853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 365ba7f0e56a50345bb5d6858645c4de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &66901858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1471,11 +1483,35 @@ MonoBehaviour:
   conversationEvents:
     onConversationStart:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 66901854}
+          m_TargetAssemblyTypeName: HideAndShowMainUI, Assembly-CSharp
+          m_MethodName: HideMain
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     onConversationEnd:
       m_PersistentCalls:
-        m_Calls: []
-    runOnConversationEndEventsAtEndOfFrame: 0
+        m_Calls:
+        - m_Target: {fileID: 66901854}
+          m_TargetAssemblyTypeName: HideAndShowMainUI, Assembly-CSharp
+          m_MethodName: ShowMain
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    runOnConversationEndEventsAtEndOfFrame: 1
     onConversationCancelled:
       m_PersistentCalls:
         m_Calls: []
@@ -1490,7 +1526,19 @@ MonoBehaviour:
         m_Calls: []
     onConversationResponseMenu:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 66901854}
+          m_TargetAssemblyTypeName: HideAndShowMainUI, Assembly-CSharp
+          m_MethodName: HideMain
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     onConversationResponseMenuTimeout:
       m_PersistentCalls:
         m_Calls: []

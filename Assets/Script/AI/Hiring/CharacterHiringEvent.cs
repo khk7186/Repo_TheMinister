@@ -35,17 +35,38 @@ public class CharacterHiringEvent : MonoBehaviour
             {CharacterArtCode.Å®Ê«ÈË, FemalePoestRarityItemRequestDict }
         };
     public Character character;
-    public SerializableDictionary<ItemName, int> requestItems;
+    public Dictionary<ItemName, int> requestItems;
     public string FailedMessage;
     private void Awake()
     {
         character = GetComponent<DefaultInGameAI>().character;
+    }
 
+    public void StartHiring()
+    {
+        if (character == null)
+        {
+            return;
+        }
+        StartCoroutine(HiringRator());
+    }
+    public void SetRequest()
+    {
+        Rarerity rarerity = Rarerity.N;
+        foreach (Tag tag in character.tag)
+        {
+            if ((int)Player.AllTagRareDict[tag] > (int)rarerity)
+            {
+                rarerity = (Rarerity)Player.AllTagRareDict[tag];
+            }
+        }
+        requestItems = CharacterArtCodeToRarityItemRequestDict[character.characterArtCode][rarerity];
     }
     public IEnumerator HiringRator()
     {
         var UIobject = Resources.Load<CharacterHiringUI>("Hiring/HireUI");
         var currentUI = Instantiate(UIobject, MainCanvas.FindMainCanvas());
+        SetRequest();
         currentUI.Setup(character, requestItems);
         bool NeverFalse = true;
         while (NeverFalse)
@@ -64,7 +85,6 @@ public class CharacterHiringEvent : MonoBehaviour
             yield return null;
         }
     }
-
     public bool TryHiring()
     {
         var itemInventory = FindObjectOfType<ItemInventory>();
