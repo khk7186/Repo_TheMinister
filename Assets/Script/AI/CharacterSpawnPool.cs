@@ -177,7 +177,6 @@ public class CharacterSpawnPool : MonoBehaviour
             {CharacterArtCode.∑Ω’…, MonkDict },
             {CharacterArtCode.πŸ‘±, GovernorDict },
             {CharacterArtCode. ∞ªƒ’ﬂ, ScavengerDict}
-
         };
     public void RotateAllCharacters()
     {

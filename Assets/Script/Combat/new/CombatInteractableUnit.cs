@@ -17,6 +17,8 @@ public class CombatInteractableUnit : MonoBehaviour
         {
             csc = FindObjectOfType<CombatSceneController>();
         }
+        //var outline = GetComponentInChildren<RenderExistingMesh>(true);
+        //outline.Set();
     }
     public void OnMouseEnter()
     {

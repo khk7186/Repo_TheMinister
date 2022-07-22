@@ -34,118 +34,143 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Spine.Unity.Examples {
+namespace Spine.Unity.Examples
+{
 
 #if NEW_PREFAB_SYSTEM
-	[ExecuteAlways]
+    [ExecuteAlways]
 #else
 	[ExecuteInEditMode]
 #endif
-	[RequireComponent(typeof(MeshRenderer)), RequireComponent(typeof(MeshFilter))]
-	public class RenderExistingMesh : MonoBehaviour {
-		public MeshRenderer referenceRenderer;
+    [RequireComponent(typeof(MeshRenderer)), RequireComponent(typeof(MeshFilter))]
+    public class RenderExistingMesh : MonoBehaviour
+    {
+        public MeshRenderer referenceRenderer;
 
-		bool updateViaSkeletonCallback = false;
-		MeshFilter referenceMeshFilter;
-		MeshRenderer ownRenderer;
-		MeshFilter ownMeshFilter;
+        bool updateViaSkeletonCallback = false;
+        MeshFilter referenceMeshFilter;
+        MeshRenderer ownRenderer;
+        MeshFilter ownMeshFilter;
 
-		[System.Serializable]
-		public struct MaterialReplacement {
-			public Material originalMaterial;
-			public Material replacementMaterial;
-		}
-		public MaterialReplacement[] replacementMaterials = new MaterialReplacement[0];
+        [System.Serializable]
+        public struct MaterialReplacement
+        {
+            public Material originalMaterial;
+            public Material replacementMaterial;
+        }
+        public MaterialReplacement[] replacementMaterials = new MaterialReplacement[0];
 
-		private Dictionary<Material, Material> replacementMaterialDict = new Dictionary<Material, Material>();
-		private Material[] sharedMaterials = new Material[0];
-
-#if UNITY_EDITOR
-		private void Reset () {
-			if (referenceRenderer == null) {
-				referenceRenderer = this.transform.parent.GetComponentInParent<MeshRenderer>();
-				if (!referenceRenderer)
-					return;
-			}
-
-			var parentMaterials = referenceRenderer.sharedMaterials;
-			if (replacementMaterials.Length != parentMaterials.Length) {
-				replacementMaterials = new MaterialReplacement[parentMaterials.Length];
-			}
-			for (int i = 0; i < parentMaterials.Length; ++i) {
-				replacementMaterials[i].originalMaterial = parentMaterials[i];
-				replacementMaterials[i].replacementMaterial = parentMaterials[i];
-			}
-			Awake();
-			LateUpdate();
-		}
-#endif
-
-		void Awake () {
-			if (referenceRenderer == null) {
-				referenceRenderer = this.transform.parent.GetComponentInParent<MeshRenderer>();
-			}
-
-			// subscribe to OnMeshAndMaterialsUpdated
-			var skeletonRenderer = referenceRenderer.GetComponent<SkeletonAnimation>();
-			if (skeletonRenderer) {
-				skeletonRenderer.OnMeshAndMaterialsUpdated -= UpdateOnCallback;
-				skeletonRenderer.OnMeshAndMaterialsUpdated += UpdateOnCallback;
-				updateViaSkeletonCallback = true;
-			}
-			referenceMeshFilter = referenceRenderer.GetComponent<MeshFilter>();
-			ownRenderer = this.GetComponent<MeshRenderer>();
-			ownMeshFilter = this.GetComponent<MeshFilter>();
-
-			InitializeDict();
-		}
+        private Dictionary<Material, Material> replacementMaterialDict = new Dictionary<Material, Material>();
+        private Material[] sharedMaterials = new Material[0];
 
 #if UNITY_EDITOR
-		private void Update () {
-			if (!Application.isPlaying) {
-				InitializeDict();
-			}
-		}
-#endif
+        private void Reset()
+        {
+            if (referenceRenderer == null)
+            {
+                referenceRenderer = this.transform.parent.GetComponentInParent<MeshRenderer>();
+                if (!referenceRenderer)
+                    return;
+            }
 
-		void LateUpdate () {
+            var parentMaterials = referenceRenderer.sharedMaterials;
+            if (replacementMaterials.Length != parentMaterials.Length)
+            {
+                replacementMaterials = new MaterialReplacement[parentMaterials.Length];
+            }
+            for (int i = 0; i < parentMaterials.Length; ++i)
+            {
+                replacementMaterials[i].originalMaterial = parentMaterials[i];
+                replacementMaterials[i].replacementMaterial = parentMaterials[i];
+            }
+            Set();
+            LateUpdate();
+        }
+#endif
+        public void Set()
+        {
+            if (referenceRenderer == null)
+            {
+                referenceRenderer = this.transform.parent.GetComponentInParent<MeshRenderer>();
+                Debug.Log("Set");
+            }
+
+            // subscribe to OnMeshAndMaterialsUpdated
+            var skeletonRenderer = referenceRenderer.GetComponent<SkeletonAnimation>();
+            if (skeletonRenderer)
+            {
+                skeletonRenderer.OnMeshAndMaterialsUpdated -= UpdateOnCallback;
+                skeletonRenderer.OnMeshAndMaterialsUpdated += UpdateOnCallback;
+                updateViaSkeletonCallback = true;
+            }
+            referenceMeshFilter = referenceRenderer.GetComponent<MeshFilter>();
+            ownRenderer = this.GetComponent<MeshRenderer>();
+            ownMeshFilter = this.GetComponent<MeshFilter>();
+
+            InitializeDict();
+        }
+        void Awake()
+        {
+            Set();
+        }
+
 #if UNITY_EDITOR
-			if (!Application.isPlaying) {
-				UpdateMaterials();
-				return;
-			}
+        private void Update()
+        {
+            if (!Application.isPlaying)
+            {
+                InitializeDict();
+            }
+        }
 #endif
 
-			if (updateViaSkeletonCallback)
-				return;
-			UpdateMaterials();
-		}
+        void LateUpdate()
+        {
+#if UNITY_EDITOR
+            if (!Application.isPlaying)
+            {
+                UpdateMaterials();
+                return;
+            }
+#endif
 
-		void UpdateOnCallback (SkeletonRenderer r) {
-			UpdateMaterials();
-		}
+            if (updateViaSkeletonCallback)
+                return;
+            UpdateMaterials();
+        }
 
-		void UpdateMaterials () {
-			ownMeshFilter.sharedMesh = referenceMeshFilter.sharedMesh;
+        void UpdateOnCallback(SkeletonRenderer r)
+        {
+            UpdateMaterials();
+        }
 
-			var parentMaterials = referenceRenderer.sharedMaterials;
-			if (sharedMaterials.Length != parentMaterials.Length) {
-				sharedMaterials = new Material[parentMaterials.Length];
-			}
-			for (int i = 0; i < parentMaterials.Length; ++i) {
-				var parentMaterial = parentMaterials[i];
-				if (replacementMaterialDict.ContainsKey(parentMaterial)) {
-					sharedMaterials[i] = replacementMaterialDict[parentMaterial];
-				}
-			}
-			ownRenderer.sharedMaterials = sharedMaterials;
-		}
+        void UpdateMaterials()
+        {
+            ownMeshFilter.sharedMesh = referenceMeshFilter.sharedMesh;
 
-		void InitializeDict () {
-			for (int i = 0; i < replacementMaterials.Length; ++i) {
-				var entry = replacementMaterials[i];
-				replacementMaterialDict[entry.originalMaterial] = entry.replacementMaterial;
-			}
-		}
-	}
+            var parentMaterials = referenceRenderer.sharedMaterials;
+            if (sharedMaterials.Length != parentMaterials.Length)
+            {
+                sharedMaterials = new Material[parentMaterials.Length];
+            }
+            for (int i = 0; i < parentMaterials.Length; ++i)
+            {
+                var parentMaterial = parentMaterials[i];
+                if (replacementMaterialDict.ContainsKey(parentMaterial))
+                {
+                    sharedMaterials[i] = replacementMaterialDict[parentMaterial];
+                }
+            }
+            ownRenderer.sharedMaterials = sharedMaterials;
+        }
+
+        void InitializeDict()
+        {
+            for (int i = 0; i < replacementMaterials.Length; ++i)
+            {
+                var entry = replacementMaterials[i];
+                replacementMaterialDict[entry.originalMaterial] = entry.replacementMaterial;
+            }
+        }
+    }
 }

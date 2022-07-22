@@ -14,13 +14,14 @@ public class StartFight : MonoBehaviour
         animator = selfUnit.GetComponent<Animator>();
         selfUnit.ModifyStat();
         yield return StatChangeAnimation(selfUnit);
-        animator.SetTrigger("Move");
+        
         if (selfUnit.currentAction == Action.NoSelect)
         {
             selfUnit.currentAction = Action.Attack;
         }
         if (selfUnit.currentAction != Action.Defence)
         {
+            animator.SetTrigger("Move");
             CombatCharacterUnit target = selfUnit.target;
             if (target == null)
             {
@@ -80,7 +81,7 @@ public class StartFight : MonoBehaviour
                 time = 0;
                 // Do Damage Calculations
                 selfUnit.MakeTurn();
-                animator.SetTrigger("Stop");
+                animator.SetTrigger("Stop"); 
                 animator.SetTrigger(selfUnit.currentAction.ToString());
                 yield return new WaitForSeconds(0.5f);
                 animator.SetTrigger("Move");
@@ -94,6 +95,7 @@ public class StartFight : MonoBehaviour
                     }
                     yield return null;
                 }
+                animator.SetTrigger("Stop");
             }
             //TODO: if no other attackable target, return game result
             else
@@ -107,7 +109,7 @@ public class StartFight : MonoBehaviour
             selfUnit.target.Defender = selfUnit;
         }
         yield return null;
-        animator.SetTrigger("Stop");
+        
     }
     public bool IfTargetHaveDefender(CombatCharacterUnit target)
     {
