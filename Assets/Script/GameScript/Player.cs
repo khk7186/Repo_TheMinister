@@ -2043,11 +2043,11 @@ public class Player : MonoBehaviour
             //{CharacterArtCode.男布衣, MaleCivilianTagPool },
             //{CharacterArtCode.男皮甲, MaleLeatherArmorTagPool },
             //{CharacterArtCode.男富, MaleWealthyTagPool },
-            //{CharacterArtCode.男官, MalePoliticianTagPool },
-            //{CharacterArtCode.男武, MaleFighterTagPool },
+            {CharacterArtCode.男官, MalePoliticianTagPool },
+            {CharacterArtCode.男武, MaleFighterTagPool },
             //{CharacterArtCode.男老, MaleElderlyTagPool },
             //{CharacterArtCode.女武, FemaleFighterTagPool },
-            //{CharacterArtCode.女布衣, FemaleCivilianTagPool },
+            {CharacterArtCode.女布衣, FemaleCivilianTagPool },
             {CharacterArtCode.老者, ElderlyTagPool },
         };
 

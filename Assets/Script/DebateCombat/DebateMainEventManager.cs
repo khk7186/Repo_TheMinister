@@ -67,7 +67,7 @@ public class DebateMainEventManager : MonoBehaviour
     {
         List<Character[]> characters = new List<Character[]>();
         List<CharacterArtCode> idleImages = new List<CharacterArtCode>();
-        idleImages.Add(CharacterArtCode.ÄÐ¹Ù);
+        idleImages.Add(CharacterArtCode.ÀîÔ¬Ä°);
         InGameDebateUnits[0].CheckSelection();
         characters.Add(InGameDebateUnits[0].selectCharacters.ToArray());
         for (int i = 1; i < InGameDebateUnits.Count; i++)

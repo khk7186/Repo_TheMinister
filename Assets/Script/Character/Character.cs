@@ -258,6 +258,7 @@ public enum Rarerity
 
 public enum CharacterArtCode
 {
+    李袁陌,
     女诗人,
     男刀客,
     老者,
@@ -391,6 +392,9 @@ public class Character : MonoBehaviour, IRound
     {
         if (characterType == CharacterType.General)
         {
+            CharacterArtCode[] cacList = (CharacterArtCode[])Enum.GetValues(typeof(CharacterArtCode));
+            cacList = cacList.Where(x => x != CharacterArtCode.李袁陌).ToArray();
+            characterArtCode = cacList[UnityEngine.Random.Range(0, cacList.Length)];
             SpawnTagOnStart(rarerity);
             if (hireStage != HireStage.Hired)
             {
@@ -404,10 +408,10 @@ public class Character : MonoBehaviour, IRound
                 OnDutyState[OndutyType.Debate] = OnDebateDuty;
                 OnDutyState[OndutyType.Gobang] = OnGobangDuty;
             }
+            UpdateVariables();
+
         }
-        UpdateVariables();
-        CharacterArtCode[] cacList = (CharacterArtCode[])Enum.GetValues(typeof(CharacterArtCode));
-        characterArtCode = cacList[UnityEngine.Random.Range(0, cacList.Length)];
+        
     }
 
     private void Start()
