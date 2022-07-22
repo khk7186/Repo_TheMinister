@@ -71,7 +71,7 @@ public class CombatCharacterUnit : MonoBehaviour
         GetComponent<SkeletonMecanim>().Initialize(true);
         if (!IsFriend)
         {
-            var newScale = transform.localScale;
+            var newScale = transform.localScale; 
             newScale = new Vector3(-newScale.x, newScale.y, newScale.z);
             transform.localScale = newScale;
         }
@@ -226,8 +226,8 @@ public class CombatCharacterUnit : MonoBehaviour
             trigger.LostCharacters.Add(character);
         }
         Destroy(healthBar.gameObject);
-        gameObject.SetActive(false);
         CheckGameEnd();
+        gameObject.SetActive(false);
     }
 
     public void CheckGameEnd()
