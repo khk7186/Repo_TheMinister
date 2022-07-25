@@ -182,6 +182,7 @@ public class CharacterSpawnPool : MonoBehaviour
     {
         foreach (CharacterArtCode characterArtCode in Enum.GetValues(typeof(CharacterArtCode)))
         {
+            if (characterArtCode == CharacterArtCode.ÀîÔ¬Ä°) continue;
             RotateCharacters(characterArtCode);
         }
     }
@@ -198,7 +199,14 @@ public class CharacterSpawnPool : MonoBehaviour
             newCharacter.transform.parent = this.transform;
             newCombatList.Add(newCharacter);
         }
-        CharacterSpawnPoolDict[characterArtCode][BattleType.Combat] = newCombatList;
+        try
+        {
+            CharacterSpawnPoolDict[characterArtCode][BattleType.Combat] = newCombatList;
+        }
+        catch (KeyNotFoundException)
+        {
+            Debug.LogError($"{characterArtCode} not found in CharacterSpawnPoolDict");
+        }
         int numberOfDebate = UnityEngine.Random.Range(3, 8);
         var newDebateList = new List<Character>();
         for (int i = 0; i < numberOfDebate; i++)

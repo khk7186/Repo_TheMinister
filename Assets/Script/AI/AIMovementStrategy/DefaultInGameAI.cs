@@ -35,6 +35,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     public int TargetLocation;
     public Character character;
     public NPCPopUI npcPopUI;
+    private Vector2 oldPosition;
     [SerializeField] private bool OnNight => map ? map.DayTime == 2 : false;
     public Animator animator;
     //private string NPCJsonPath = "JSON/AIOnMapMovement";
@@ -49,6 +50,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
             subject.RegisterObserver(this);
         }
         map = FindObjectOfType<Map>();
+        oldPosition = transform.position;
     }
     public void OnNotify(object value, NotificationType notificationType)
     {
@@ -64,7 +66,6 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
             ($"{ReturnAssetPath.ReturnSpineAssetPath(character.characterArtCode, true)}");
         animator.GetComponent<SkeletonMecanim>().skeletonDataAsset = asset;
         string controllerPath = $"{ReturnAssetPath.ReturnSpineControllerPath(character.characterArtCode, true)}";
-        //Debug.Log($"{ReturnAssetPath.ReturnSpineControllerPath(character.characterArtCode, true)}");
         animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(controllerPath);
         animator.GetComponent<SkeletonMecanim>().Initialize(true);
         NightBlock = Random.Range(0, map.mapCount);
@@ -103,66 +104,12 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         StartCoroutine(movement.MoveToLocation());
         //StartCoroutine(MoveManyStep(steps));
     }
-    //private IEnumerator MoveAStepForward()
-    //{
-    //    if (NextBlockToMove + 1 >= map.mapCount)
-    //    {
-    //        NextBlockToMove = -1;
-    //    }
-    //    NextBlockToMove += 1;
-    //    var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, NextBlockToMove));
-    //    //var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, NextBlockToMove));
-    //    var startPosition = transform.position;
-    //    float time = 0;
-    //    while (time < map.duration / 3f)
-    //    {
-    //        transform.position = Vector2.Lerp(startPosition, targetPosition, time / map.duration * 3f);
-    //        time += Time.deltaTime;
-    //        yield return null;
-    //    }
-    //}
-    //private IEnumerator MoveAStepBackward()
-    //{
-    //    if (NextBlockToMove - 1 < 0)
-    //    {
-    //        NextBlockToMove = MovementGrid.EnemyInnerMovementBlocks.Count;
-    //    }
-    //    NextBlockToMove -= 1;
-    //    var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, NextBlockToMove));
-    //    var startPosition = transform.position;
-    //    float time = 0;
-    //    while (time < map.duration / 3f)
-    //    {
-    //        transform.position = Vector2.Lerp(startPosition, targetPosition, time / map.duration * 3f);
-    //        time += Time.deltaTime;
-    //        yield return null;
-    //    }
-    //}
-
-    //public IEnumerator MoveManyStep(int steps)
-    //{
-    //    animator.SetTrigger("Move");
-    //    CurrentLocation = (CurrentLocation + steps) % (map.mapCount);
-    //    if (steps <= 0)
-    //    {
-    //        for (int i = 0; i < Mathf.Abs(steps); i++)
-    //        {
-    //            yield return StartCoroutine(MoveAStepBackward());
-    //        }
-
-    //    }
-    //    else if (steps > 0)
-    //    {
-    //        for (int i = 0; i < steps; i++)
-    //        {
-    //            yield return StartCoroutine(MoveAStepForward());
-    //        }
-    //    }
-
-    //    //map.TurnCheck();
-    //    animator.SetTrigger("Stop");
-    //}
-
+    void FixedUpdate()
+    {
+        float speed = Vector3.Distance(oldPosition, transform.position);
+        animator.SetFloat("Speed 0", speed);
+        oldPosition = transform.position;
+    }
     private void OnMouseDown()
     {
         var DSC = FindObjectOfType<DialogueSystemController>();

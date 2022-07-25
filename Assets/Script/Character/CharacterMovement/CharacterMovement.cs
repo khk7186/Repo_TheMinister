@@ -8,7 +8,7 @@ public class CharacterMovement : MonoBehaviour
     public Animator animator;
     public bool AI = true;
     public float speed = 6f;
-    public float speedPro => AI ? speed * 2 : speed;
+    public float speedPro => AI ? speed * 1.2f : speed;
     public Grid grid;
 
     public int currentBlock;
@@ -76,6 +76,7 @@ public class CharacterMovement : MonoBehaviour
                 if (!VisibleCheck.IsInView(grid.GetCellCenterWorld(getGrid(finalBlock))))
                 {
                     character.position = grid.GetCellCenterWorld(getGrid(finalBlock));
+                    currentBlock = finalBlock;
                     break;
                 }
                 if (currentBlock != finalBlock)
