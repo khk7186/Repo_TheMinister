@@ -1,8 +1,8 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class ItemInventory : MonoBehaviour
 {
     private static Dictionary<ItemName, int> itemDict = new Dictionary<ItemName, int>();
@@ -11,17 +11,17 @@ public class ItemInventory : MonoBehaviour
 
     private void Awake()
     {
-        AddItem(ItemName.山海经);
-        AddItem(ItemName.冰霜宝剑);
-        AddItem(ItemName.阴阳八卦盘);
-        AddItem(ItemName.机关残卷);
-        AddItem(ItemName.三味酒);
-        AddItem(ItemName.三七);
-        AddItem(ItemName.丝绸);
-        AddItem(ItemName.红宝石);
-        AddItem(ItemName.九阳真经);
-        AddItem(ItemName.五香粉);
-        AddItem(ItemName.人参);
+        foreach (ItemName item in Enum.GetValues(typeof(ItemName)))
+        {
+            if (item == ItemName.Null)
+                continue;
+            AddItem(item);
+            AddItem(item);
+            AddItem(item);
+            AddItem(item);
+            AddItem(item);
+        }
+        Debug.Log(itemDict.Count);
     }
     public void AddItem(ItemName item)
     //add item into dic, if dont have one, add new key, else add count.
@@ -55,7 +55,7 @@ public class ItemInventory : MonoBehaviour
     public void RemoveItem()
     {
         itemDict[InUseItem] -= 1;
-        if (itemDict[InUseItem] <=0)
+        if (itemDict[InUseItem] <= 0)
         {
             itemDict.Remove(InUseItem);
         }

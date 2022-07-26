@@ -15,7 +15,6 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
         ItemInventory itemInventory = GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>();
         SetUp(itemInventory);
     }
-
     private void SetUp(ItemInventory itemInventory)
     {
         this.itemInventory = itemInventory;
@@ -27,12 +26,15 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
         {
             Destroy(child.gameObject);
         }
+        if (itemInventory == null)
+        {
+            itemInventory = FindObjectOfType<ItemInventory>();
+        }
         foreach (ItemName key in itemInventory.ItemDict.Keys)
         {
             Image target = Instantiate(ItemPrefab, transform);
-            //Debug.Log(itemInventory.ItemDict[key]);
+            Debug.Log(key);
             target.GetComponent<ItemUI>().Setup(key, itemInventory.ItemDict[key]);
-
         }
     }
 

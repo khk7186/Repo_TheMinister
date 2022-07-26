@@ -8,9 +8,9 @@ public class SOItem : ScriptableObject
     
     public static Dictionary<ItemName, Tag> ItemMap = new Dictionary<ItemName, Tag>() 
     {
-        //{ItemName.长生不老药,Tag.长生不老},
-        //{ItemName.十全大补丸,Tag.生死肉骨},
-        //{ItemName.和氏璧,Tag.碧血丹心},
+        {ItemName.长生不老药,Tag.长生不老},
+        {ItemName.十全大补丸,Tag.生死肉骨},
+        {ItemName.和氏璧,Tag.碧血丹心},
         {ItemName.落日神弓,Tag.穿日},
         {ItemName.暴雨梨花针,Tag.无声},
         {ItemName.青龙方戟,Tag.青龙},
@@ -66,7 +66,7 @@ public class SOItem : ScriptableObject
         {ItemName.血滴子,Tag.血滴子},
         {ItemName.灵芝,Tag.妙手丹心},
         {ItemName.锦绣华服,Tag.理财大师},
-        //{ItemName.玉手镯,Tag.珠圆玉润},
+        {ItemName.玉手镯,Tag.珠圆玉润},
         {ItemName.木须柿子,Tag.素餐},
         {ItemName.酸菜粉条,Tag.素餐},
         {ItemName.红烧茄子,Tag.素餐},
@@ -200,7 +200,7 @@ public class SOItem : ScriptableObject
         {ItemName.酱油,Tag.杂七杂八},
         {ItemName.醋,Tag.杂七杂八},
         {ItemName.盐,Tag.杂七杂八},
-        //{ItemName.棍子,Tag.无用之人},
+        {ItemName.棍子,Tag.无用之人},
         {ItemName.乌桕子,Tag.药毒},
         {ItemName.铁苋,Tag.药毒},
         {ItemName.八角莲,Tag.药毒},

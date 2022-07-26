@@ -302,7 +302,7 @@ public class Character : MonoBehaviour, IRound
 
     #region Max
     [SerializeField] private int loyaltyMax = 10;
-    [SerializeField] private int healthMax = 10;
+    [SerializeField] private int healthMax = 20;
     [SerializeField] private int tagMax = 5;
 
     [SerializeField] private List<int> TagSpawnRareRate = new List<int>(5) { 600, 460, 330, 10, 1, 0 };
@@ -504,10 +504,11 @@ public class Character : MonoBehaviour, IRound
 
     private void SpawnTagOnStart(Rarerity rarerity = Rarerity.Null)
     {
+        int maxTag = 5;
         if (rarerity == Rarerity.Null)
         {
-            int tagAmount = UnityEngine.Random.Range(1, 5);
-            for (int i = 0; i < 5; i++)
+            rarerity = Rarerity.N;
+            for (int i = 0; i < maxTag; i++)
             {
                 tagList.Add(RandomTag());
             }
@@ -542,6 +543,10 @@ public class Character : MonoBehaviour, IRound
     private Tag RandomTag()
     {
         Rarerity rare = RandomRare();
+        if (rare > rarerity)
+        {
+            rarerity = rare;
+        }
         Dictionary<Rarerity, List<Tag>> dict = Player.CharacterFinalTagPool[characterArtCode];
         dict.TryGetValue(rare, out List<Tag> targetList);
         int targetValue = UnityEngine.Random.Range(0, targetList.Count - 1);
