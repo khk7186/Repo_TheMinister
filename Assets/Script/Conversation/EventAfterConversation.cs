@@ -82,6 +82,22 @@ public class EventAfterConversation : MonoBehaviour
             DialogueLua.SetVariable("tryDebate", false);
         }
     }
+
+    public void TryHire()
+    {
+        bool startHire = DialogueLua.GetVariable("startHire").asBool;
+        //bool startHire = true;
+        if (startHire)
+        {
+            CharacterHiringEvent hireEvent = new GameObject().AddComponent<CharacterHiringEvent>();
+            hireEvent.character = EnemyUnitA;
+            hireEvent.StartHiring();
+        }
+        else
+        {
+            DialogueLua.SetVariable("tryHire", false);
+        }
+    }
 }
 
 

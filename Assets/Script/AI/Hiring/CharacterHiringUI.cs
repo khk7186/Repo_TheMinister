@@ -41,9 +41,10 @@ public class CharacterHiringUI : MonoBehaviour
     {
         Image tagObject = Resources.Load<Image>("Tag/Tag");
         TransformEx.Clear(Tags);
-        foreach (Tag tag in character.tag)
+        Debug.Log(character.tagList);
+        foreach (Tag tag in character.tagList)
         {
-            var tagImagePath = $"Tags/{tag.ToString()}";
+            var tagImagePath = $"Art/Tags/{tag.ToString()}";
             var current = Instantiate(tagObject, Tags);
             current.sprite = Resources.Load<Sprite>(tagImagePath);
             current.GetComponent<RectTransform>().sizeDelta = SizeDelta;
@@ -58,7 +59,8 @@ public class CharacterHiringUI : MonoBehaviour
             var current = Instantiate(itemObject, Items);
             var playerInv = FindObjectOfType<ItemInventory>();
             var playerInvDict = playerInv.ItemDict;
-            current.Setup(item, playerInvDict[item], ItemsAmountDict[item]);
+            int playerCount = playerInvDict ==null? playerInvDict[item]:0;
+            current.Setup(item, playerCount, ItemsAmountDict[item]);
             current.InUse = false;
         }
     }

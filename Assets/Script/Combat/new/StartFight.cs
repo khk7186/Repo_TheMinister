@@ -21,7 +21,6 @@ public class StartFight : MonoBehaviour
         }
         if (selfUnit.currentAction != Action.Defence)
         {
-            animator.SetTrigger("Move");
             CombatCharacterUnit target = selfUnit.target;
             if (target == null)
             {
@@ -81,10 +80,8 @@ public class StartFight : MonoBehaviour
                 time = 0;
                 // Do Damage Calculations
                 selfUnit.MakeTurn();
-                animator.SetTrigger("Stop"); 
                 animator.SetTrigger(selfUnit.currentAction.ToString());
                 yield return new WaitForSeconds(0.5f);
-                animator.SetTrigger("Move");
                 while (time < duration)
                 {
                     time += Time.deltaTime;
@@ -95,7 +92,6 @@ public class StartFight : MonoBehaviour
                     }
                     yield return null;
                 }
-                animator.SetTrigger("Stop");
             }
             //TODO: if no other attackable target, return game result
             else

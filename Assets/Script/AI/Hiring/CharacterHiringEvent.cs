@@ -787,7 +787,7 @@ public class CharacterHiringEvent : MonoBehaviour
     public string FailedMessage;
     private void Awake()
     {
-        character = GetComponent<DefaultInGameAI>().character;
+
     }
 
     public void StartHiring()
@@ -819,6 +819,11 @@ public class CharacterHiringEvent : MonoBehaviour
         bool NeverFalse = true;
         while (NeverFalse)
         {
+            if (currentUI == null)
+            {
+                NeverFalse = false;
+                break;
+            }
             if (currentUI.TryHire == true)
             {
                 if (TryHiring() == true)
@@ -832,6 +837,11 @@ public class CharacterHiringEvent : MonoBehaviour
             }
             yield return null;
         }
+        if (currentUI != null)
+        {
+            Destroy(currentUI.gameObject);
+        }
+        Destroy(gameObject);
     }
     public bool TryHiring()
     {

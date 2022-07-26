@@ -35,7 +35,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     public int TargetLocation;
     public Character character;
     public NPCPopUI npcPopUI;
-    private Vector2 oldPosition;
+
     [SerializeField] private bool OnNight => map ? map.DayTime == 2 : false;
     public Animator animator;
     //private string NPCJsonPath = "JSON/AIOnMapMovement";
@@ -50,7 +50,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
             subject.RegisterObserver(this);
         }
         map = FindObjectOfType<Map>();
-        oldPosition = transform.position;
+
     }
     public void OnNotify(object value, NotificationType notificationType)
     {
@@ -104,12 +104,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         StartCoroutine(movement.MoveToLocation());
         //StartCoroutine(MoveManyStep(steps));
     }
-    void FixedUpdate()
-    {
-        float speed = Vector3.Distance(oldPosition, transform.position);
-        animator.SetFloat("Speed 0", speed);
-        oldPosition = transform.position;
-    }
+
     private void OnMouseDown()
     {
         var DSC = FindObjectOfType<DialogueSystemController>();

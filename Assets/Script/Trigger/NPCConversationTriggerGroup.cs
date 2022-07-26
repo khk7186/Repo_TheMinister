@@ -26,6 +26,7 @@ public class NPCConversationTriggerGroup : MonoBehaviour
         var EAC = GetComponent<EventAfterConversation>();
         EAC.TryCombat();
         EAC.TryDebate();
+        EAC.TryHire();
     }
 
 }

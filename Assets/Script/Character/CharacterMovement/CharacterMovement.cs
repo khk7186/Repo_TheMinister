@@ -19,8 +19,23 @@ public class CharacterMovement : MonoBehaviour
     public delegate Vector3Int GetGridBlock(int block);
     public GetGridBlock getGrid;
     private CapsuleCollider2D EndPlaceVisibleChecker;
+    private Vector2 oldPosition;
+    public void FixedUpdate()
+    {
+        if (oldPosition != null)
+        {
+            float speed = Vector2.Distance(oldPosition, transform.position)*100;
+            animator.SetFloat("Speed 0", speed);
+            oldPosition = transform.position;
+        }
+    }
+    private void Start()
+    {
+        animator.SetFloat("Speed 0", 0f);
+    }
     private void Awake()
     {
+
         if (grid == null)
         {
             grid = FindObjectOfType<MovementGrid>().GetComponent<Grid>();
@@ -45,7 +60,6 @@ public class CharacterMovement : MonoBehaviour
     public IEnumerator MoveToLocation()
     {
         finalBlock = finalBlock % blockCount;
-        animator.SetTrigger("Move");
         int awayTime = 0;
         if (AI)
         {
@@ -91,7 +105,6 @@ public class CharacterMovement : MonoBehaviour
         {
             EndPlaceVisibleChecker.gameObject.SetActive(false);
         }
-        animator.SetTrigger("Stop");
     }
 
     public IEnumerator MoveToNextBlock()
