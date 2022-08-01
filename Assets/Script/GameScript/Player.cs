@@ -233,7 +233,18 @@ public class Player : MonoBehaviour
         {Tag.毛发旺盛,new List<int>(){0,0,0,0,-1,1}},
         {Tag.药毒,new List<int>(){0,0,0,-2,-2,-2}},
         {Tag.衣不蔽体,new List<int>(){-1,-1,-1,-1,-1,-1}},
-        {Tag.无伤大雅,new List<int>(){0,0,0,0,0,0}}
+        {Tag.无伤大雅,new List<int>(){0,0,0,0,0,0}},
+        {Tag.潜光隐耀,new List<int>(){0,0,0,0,0,10}},
+        {Tag.深仁厚泽,new List<int>(){8,2,0,0,0,0}},
+        {Tag.平步青云,new List<int>(){0,3,7,0,0,0}},
+        {Tag.主教,new List<int>(){5,2,0,0,0,0}},
+        {Tag.珠圆玉润,new List<int>(){0,7,0,0,0,0}},
+        {Tag.故事王,new List<int>(){1,1,0,0,0,0}},
+        {Tag.琴师,new List<int>(){0,2,0,0,1,0}},
+        {Tag.醉拳,new List<int>(){0,0,0,3,0,0}},
+        {Tag.无用之人,new List<int>(){0,0,0,1,-1,0}},
+        {Tag.文化沙漠,new List<int>(){-1,-1,-1,3,3,3}},
+        {Tag.武功小成,new List<int>(){0,0,0,5,0,2}}
 
 
     };
@@ -480,6 +491,7 @@ public class Player : MonoBehaviour
         {Tag.体态端正,Rarerity.N},
         {Tag.杂七杂八,Rarerity.N},
         {Tag.毛发旺盛,Rarerity.N},
+        {Tag.无用之人,Rarerity.N},
         {Tag.文正,Rarerity.R},
         {Tag.武忠,Rarerity.R},
         {Tag.书痴,Rarerity.R},
@@ -535,6 +547,9 @@ public class Player : MonoBehaviour
         {Tag.辟邪安正,Rarerity.R},
         {Tag.珠光宝气,Rarerity.R},
         {Tag.家室美满,Rarerity.R},
+        {Tag.醉拳,Rarerity.R},
+        {Tag.琴师,Rarerity.R},
+        {Tag.故事王,Rarerity.R},
         {Tag.文,Rarerity.SR},
         {Tag.武,Rarerity.SR},
         {Tag.书通二酉,Rarerity.SR},
@@ -581,6 +596,10 @@ public class Player : MonoBehaviour
         {Tag.侵略如火,Rarerity.SR},
         {Tag.仁人君子,Rarerity.SR},
         {Tag.宝马良驹,Rarerity.SR},
+        {Tag.珠圆玉润,Rarerity.SR},
+        {Tag.主教,Rarerity.SR},
+        {Tag.文化沙漠,Rarerity.SR},
+        {Tag.武功小成,Rarerity.SR},
         {Tag.仙人之躯,Rarerity.SSR},
         {Tag.虎猛,Rarerity.SR},
         {Tag.独狼,Rarerity.SR},
@@ -627,6 +646,9 @@ public class Player : MonoBehaviour
         {Tag.嘤嘤狂吠,Rarerity.SSR},
         {Tag.波纹行走,Rarerity.SSR},
         {Tag.象虎之力,Rarerity.SSR},
+        {Tag.潜光隐耀,Rarerity.SSR},
+        {Tag.深仁厚泽,Rarerity.SSR},
+        {Tag.平步青云,Rarerity.SSR},
         {Tag.南无加特林,Rarerity.UR},
         {Tag.弈星下凡,Rarerity.UR},
         {Tag.钜子,Rarerity.UR},
@@ -945,6 +967,17 @@ public class Player : MonoBehaviour
         {ItemName.三七,Tag.药毒},
         {ItemName.轻粉,Tag.药毒},
         {ItemName.核桃,Tag.杂七杂八},
+        {ItemName.祈天玄衣,Tag.潜光隐耀},
+        {ItemName.步辇袍衫,Tag.深仁厚泽},
+        {ItemName.青织飞鱼袍,Tag.平步青云},
+        {ItemName.玉手镯,Tag.珠圆玉润},
+        {ItemName.酒葫芦,Tag.醉拳},
+        {ItemName.木佛像,Tag.僧人},
+        {ItemName.蚕丝,Tag.鸠工庀材},
+        {ItemName.皮毛,Tag.鸠工庀材},
+        {ItemName.麻布,Tag.鸠工庀材},
+        {ItemName.棍子,Tag.无用之人},
+
     };
     public static Dictionary<Tag, GameObject> TagPrefabDict = new Dictionary<Tag, GameObject> { };
 
@@ -2328,6 +2361,7 @@ public class Player : MonoBehaviour
                 Tag.儒生,
                 Tag.道士,
                 Tag.僧人,
+                Tag.深仁厚泽,
             } },
             {TagType.武略, new List<Tag>()
             {
@@ -2368,7 +2402,11 @@ public class Player : MonoBehaviour
                 Tag.武艺精湛,
                 Tag.登堂入室,
                 Tag.走火入魔,
-                Tag.习武之人
+                Tag.习武之人,
+                Tag.潜光隐耀,
+                Tag.武功小成,
+                Tag.文化沙漠,
+                Tag.醉拳,
 
             } },
             {TagType.良工, new List<Tag>()
@@ -2433,7 +2471,8 @@ public class Player : MonoBehaviour
                 Tag.鸿运当头,
                 Tag.丝绸,
                 Tag.辟邪安正,
-                Tag.珠光宝气
+                Tag.珠光宝气,
+
             } },
             {TagType.通常, new List<Tag>()
             {
