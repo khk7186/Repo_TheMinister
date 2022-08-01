@@ -227,30 +227,28 @@ public class MovementGrid : MonoBehaviour
     }
     public static Vector3Int GetAIBlock(DefaultInGameAI gameAI, int blockNumber)
     {
-        if (EnemyStandBlockDict.TryGetValue(gameAI.CurrentLocation, out bool[] value))
-        {
-            int careValue = gameAI.inner ? 0 : 1;
-            value[careValue] = false;
-            careValue = gameAI.inner ? 1 : 0;
-            if (value[careValue] == false)
-            {
-                EnemyStandBlockDict.Remove(gameAI.CurrentLocation);
-            }
-        }
+        //if (EnemyStandBlockDict.TryGetValue(gameAI.CurrentLocation, out bool[] value))
+        //{
+        //    int careValue = gameAI.inner ? 0 : 1;
+        //    value[careValue] = false;
+        //    careValue = gameAI.inner ? 1 : 0;
+        //    if (value[careValue] == false)
+        //    {
+        //        EnemyStandBlockDict.Remove(gameAI.CurrentLocation);
+        //    }
+        //}
         Vector3Int result = CheckAIBlock(gameAI, blockNumber);
         return result;
     }
     public static Vector3Int CheckAIBlock(DefaultInGameAI gameAI, int blockNumber)
     {
-        if (gameAI.TargetLocation != blockNumber)
-        {
-            List<Vector3Int> targetpath = gameAI.inner ? EnemyInnerMovementBlocks : EnemyOutterMovementBlocks;
-            return targetpath[blockNumber % EnemyOutterMovementBlocks.Count];
-        }
-        else
-        {
-            return CheckAILastBlock(gameAI, blockNumber);
-        }
+        //if (gameAI.TargetLocation == blockNumber)
+        //{
+        //    return CheckAILastBlock(gameAI, blockNumber);
+            
+        //}
+        List<Vector3Int> targetpath = gameAI.inner ? EnemyInnerMovementBlocks : EnemyOutterMovementBlocks;
+        return targetpath[blockNumber % EnemyOutterMovementBlocks.Count];
     }
 
     public static Vector3Int CheckAILastBlock(DefaultInGameAI gameAI, int blockNumber)

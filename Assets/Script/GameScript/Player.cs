@@ -597,7 +597,6 @@ public class Player : MonoBehaviour
         {Tag.仁人君子,Rarerity.SR},
         {Tag.宝马良驹,Rarerity.SR},
         {Tag.珠圆玉润,Rarerity.SR},
-        {Tag.主教,Rarerity.SR},
         {Tag.文化沙漠,Rarerity.SR},
         {Tag.武功小成,Rarerity.SR},
         {Tag.仙人之躯,Rarerity.SSR},

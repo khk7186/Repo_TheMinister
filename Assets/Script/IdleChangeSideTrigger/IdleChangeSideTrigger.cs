@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class IdleChangeSideTrigger : MonoBehaviour, IObserver
+public class IdleChangeSideTrigger : MonoBehaviour,IObserver
 {
     [SerializeField] private bool front;
     [SerializeField] private bool right;
-
-    private bool adjusted = true;
+    private List<SideChanger> sideChangers = new List<SideChanger>();
 
     private void Awake()
     {
@@ -21,26 +20,29 @@ public class IdleChangeSideTrigger : MonoBehaviour, IObserver
     {
         if (notificationType == NotificationType.DiceRoll)
         {
-            adjusted = false;
+            foreach (var sideChanger in sideChangers)
+            {
+                sideChanger.changeSide(front, right);
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent<SideChanger>(out var changer))
-        {
-            changer.changeSide(front, right);
-            adjusted = true;
-        }
+        var changer = collision.gameObject.GetComponent<SideChanger>();
+        ChangeSide(changer);
+        sideChangers.Add(changer);
+        //Debug.Log($"front={front};right = {right}");
     }
-
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (adjusted == true) return;
-        if (collision.gameObject.TryGetComponent<SideChanger>(out var changer))
+        sideChangers.Remove(collision.gameObject.GetComponent<SideChanger>());
+    }
+    private void ChangeSide(SideChanger sideChanger)
+    {
+        if (sideChanger != null)
         {
-            changer.changeSide(front, right);
-            adjusted = true;
+            sideChanger.changeSide(front, right);
         }
     }
 }

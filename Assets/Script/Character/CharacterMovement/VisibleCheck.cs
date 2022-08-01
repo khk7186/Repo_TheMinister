@@ -30,4 +30,13 @@ public class VisibleCheck : MonoBehaviour
         Plane[] planes = targetPlanes.ToArray();
         return GeometryUtility.TestPlanesAABB(planes, gameObject.GetComponent<Collider2D>().bounds);
     }
+
+    public static bool WorldPosToPlayer(GameObject gameObject)
+    {
+        Vector2 player = FindObjectOfType<Player>().transform.position;
+        Vector2 target = gameObject.transform.position;
+        bool xInRange = target.x < player.x + 34 && target.x > player.x - 34;
+        bool yInRange = target.y < player.y + 20 && target.y > player.y - 20;
+        return xInRange && yInRange;
+    }
 }

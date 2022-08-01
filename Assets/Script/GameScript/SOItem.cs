@@ -220,15 +220,12 @@ public class SOItem : ScriptableObject
         {ItemName.祈天玄衣,Tag.潜光隐耀},
         {ItemName.步辇袍衫,Tag.深仁厚泽},
         {ItemName.青织飞鱼袍,Tag.平步青云},
-        {ItemName.玉手镯,Tag.珠圆玉润},
         {ItemName.酒葫芦,Tag.醉拳},
         {ItemName.木佛像,Tag.僧人},
         {ItemName.蚕丝,Tag.鸠工庀材},
         {ItemName.皮毛,Tag.鸠工庀材},
         {ItemName.麻布,Tag.鸠工庀材},
-        {ItemName.棍子,Tag.无用之人},
-
-    };
+            };
     public static Dictionary<ItemType, List<ItemName>> ItemTypeDict = new Dictionary<ItemType, List<ItemName>>()
     {
         { 

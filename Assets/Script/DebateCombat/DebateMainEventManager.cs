@@ -42,7 +42,7 @@ public class DebateMainEventManager : MonoBehaviour
     public void NextTopic()
     {
         currentTopic = topicPool[0];
-        Debug.Log(currentTopic);
+        //Debug.Log(currentTopic);
         topicPool.RemoveAt(0);
         FindObjectOfType<TopicUI>().StartNewTopic(currentTopic);
     }
@@ -94,7 +94,7 @@ public class DebateMainEventManager : MonoBehaviour
             }
             characters.Add(selectedCharacter);
         }
-        Debug.Log("total ch:" + characters.Count);
+        //Debug.Log("total ch:" + characters.Count);
         ScoreReviewEvent.NewReview(characters, currentTopic, idleImages);
     }
 

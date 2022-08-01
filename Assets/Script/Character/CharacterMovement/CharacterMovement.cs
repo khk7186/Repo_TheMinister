@@ -24,7 +24,7 @@ public class CharacterMovement : MonoBehaviour
     {
         if (oldPosition != null)
         {
-            float speed = Vector2.Distance(oldPosition, transform.position)*100;
+            float speed = Vector2.Distance(oldPosition, transform.position) * 100000000 + 0.08f;
             animator.SetFloat("Speed 0", speed);
             oldPosition = transform.position;
         }
@@ -68,11 +68,11 @@ public class CharacterMovement : MonoBehaviour
         }
         while (currentBlock != finalBlock)
         {
-            bool isInView = VisibleCheck.ColliderInView(character.gameObject);
+            bool isInView = VisibleCheck.WorldPosToPlayer(character.gameObject);
             bool EndPlaceInView = true;
             if (EndPlaceVisibleChecker != null)
             {
-                EndPlaceInView = VisibleCheck.ColliderInView(EndPlaceVisibleChecker.gameObject);
+                EndPlaceInView = VisibleCheck.WorldPosToPlayer(EndPlaceVisibleChecker.gameObject);
             }
             if (isInView)
             {

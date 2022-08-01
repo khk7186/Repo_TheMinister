@@ -62,7 +62,7 @@ public class DebateUnit : MonoBehaviour
             if (card.CardUI.OnSelect == true)
             {
                 SelectedCards.Add(card);
-                Debug.Log("selected");
+                //Debug.Log("selected");
             }
         }
         foreach (DebateCharacterCard card in SelectedCards)

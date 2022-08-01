@@ -21,7 +21,7 @@ public class ItemInventory : MonoBehaviour
             AddItem(item);
             AddItem(item);
         }
-        Debug.Log(itemDict.Count);
+        //Debug.Log(itemDict.Count);
     }
     public void AddItem(ItemName item)
     //add item into dic, if dont have one, add new key, else add count.
@@ -39,7 +39,6 @@ public class ItemInventory : MonoBehaviour
             AddItem(itemName);
         }
     }
-
     public void RemoveItem(ItemName item)
     {
         if (itemDict.ContainsKey(item))

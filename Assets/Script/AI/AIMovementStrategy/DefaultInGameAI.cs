@@ -45,6 +45,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     private void Awake()
     {
         movementGrid = FindObjectOfType<MovementGrid>().GetComponent<Grid>();
+        inner = Random.Range(0, 2) == 0 ? false : true;
         foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
         {
             subject.RegisterObserver(this);
@@ -141,8 +142,8 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     {
         //npcConversationTriggerGroup.Setup(character.characterArtCode.ToString());
         var pref = Resources.Load<NPCConversationTriggerGroup>($"{ReturnAssetPath.ReturnNPCConversationTriggerGroupPath(character.characterArtCode.ToString())}");
-        npcConversationTriggerGroup = Instantiate<NPCConversationTriggerGroup>(pref,transform);
-        GetComponentInChildren<EventAfterConversation>().EnemyUnitA= character;
+        npcConversationTriggerGroup = Instantiate<NPCConversationTriggerGroup>(pref, transform);
+        GetComponentInChildren<EventAfterConversation>().EnemyUnitA = character;
         //GetComponentInChildren<EventAfterConversation>().EnemyUnitA = character;
         //GetComponentInChildren<EventAfterConversation>().EnemyUnitACardList[0] =(character);
     }

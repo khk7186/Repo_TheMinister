@@ -7,13 +7,34 @@ public class SideChanger : MonoBehaviour
 {
     public Animator animator;
     public SkeletonMecanim skeletonMecanim;
-
+    public Vector2 oldPosition;
+    public Vector2 PosDif;
+    public bool isRight;
+    public bool isFront;
+    private void Awake()
+    {
+        oldPosition = (Vector2)transform.position;
+    }
+    public void FixedUpdate()
+    {
+        if ((Vector2)transform.position != oldPosition)
+        {
+            PosDif = (Vector2)transform.position - oldPosition;
+            bool right = transform.position.x - oldPosition.x > 0;
+            bool front = transform.position.y - oldPosition.y < 0;
+            if (right != isRight || front != isFront)
+            {
+                isRight = right;
+                isFront = front;
+                changeSide(isFront, isRight);
+            }
+        }
+        oldPosition = transform.position;
+    }
     public void changeSide(bool front, bool right)
     {
         if (TryGetComponent<DefaultInGameAI>(out var inGameAI))
         {
-            bool isMoving = animator.GetBool("Move") == true;
-            animator.SetTrigger("Stop");
             CharacterArtCode CAC = inGameAI.character.characterArtCode;
             string side = front ? "Front" : "Back";
             SkeletonDataAsset asset = Resources.Load<SkeletonDataAsset>
@@ -26,8 +47,6 @@ public class SideChanger : MonoBehaviour
             target = new Vector3((right ? -0.7f : 0.7f), target.y, target.z);
             animator.transform.localScale = target;
             animator.GetComponent<SkeletonMecanim>().Initialize(true);
-            if (isMoving)
-                animator.SetTrigger("Move");
         }
         else
         {
