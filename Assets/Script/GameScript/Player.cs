@@ -13,6 +13,9 @@ public class Player : MonoBehaviour
         {Tag.钜子,new List<int>(){4,0,0,-4,12,0}},
         {Tag.文武双全,new List<int>(){6,6,6,6,6,6}},
         {Tag.成道,new List<int>(){10,10,10,10,10,10}},
+        {Tag.长生不老,new List<int>(){12,0,0,0,0,0}},
+        {Tag.生死肉骨,new List<int>(){0,0,0,0,0,12}},
+        {Tag.碧血丹心,new List<int>(){0,12,0,0,0,0}},
         {Tag.黯然销魂掌,new List<int>(){-6,-5,-6,9,9,9}},
         {Tag.围棋十段,new List<int>(){0,0,10,0,0,0}},
         {Tag.状元,new List<int>(){8,0,0,0,0,0}},
@@ -653,6 +656,9 @@ public class Player : MonoBehaviour
         {Tag.钜子,Rarerity.UR},
         {Tag.文武双全,Rarerity.UR},
         {Tag.成道,Rarerity.UR},
+        {Tag.长生不老,Rarerity.UR},
+        {Tag.生死肉骨,Rarerity.UR},
+        {Tag.碧血丹心,Rarerity.UR},
    };
     public static Dictionary<List<Tag>, Tag> MergeTagDict = new Dictionary<List<Tag>, Tag>
     {
