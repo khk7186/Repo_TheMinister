@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "GameItemFile")]
 public class SOItem : ScriptableObject
 {
-
-    public static Dictionary<ItemName, Tag> ItemMap = new Dictionary<ItemName, Tag>()
+    
+    public static Dictionary<ItemName, Tag> ItemMap = new Dictionary<ItemName, Tag>() 
     {
         {ItemName.长生不老药,Tag.长生不老},
         {ItemName.十全大补丸,Tag.生死肉骨},
@@ -216,7 +216,9 @@ public class SOItem : ScriptableObject
         {ItemName.肥马,Tag.肥胖症},
         {ItemName.三七,Tag.药毒},
         {ItemName.轻粉,Tag.药毒},
-        {ItemName.核桃,Tag.杂七杂八},
+        {ItemName.核桃粉,Tag.杂七杂八},
+        {ItemName.过山龙,Tag.药毒},
+        {ItemName.星辰花,Tag.药毒},
         {ItemName.祈天玄衣,Tag.潜光隐耀},
         {ItemName.步辇袍衫,Tag.深仁厚泽},
         {ItemName.青织飞鱼袍,Tag.平步青云},
@@ -228,7 +230,7 @@ public class SOItem : ScriptableObject
             };
     public static Dictionary<ItemType, List<ItemName>> ItemTypeDict = new Dictionary<ItemType, List<ItemName>>()
     {
-        {
+        { 
             ItemType.兵器, new List<ItemName>()
             {
                 ItemName.青龙方戟,
@@ -402,7 +404,7 @@ public class SOItem : ScriptableObject
                 ItemName.白花蛇舌草,
                 ItemName.三七,
                 ItemName.轻粉,
-                ItemName.核桃,
+                ItemName.核桃粉,
                 ItemName.过山龙,
                 ItemName.星辰花
             }
@@ -568,7 +570,7 @@ public class SOItem : ScriptableObject
                 ItemName.金钱镖
 
             }
-
+            
         },
         {
             BuildingType.武侯楼, new List<ItemName>()
@@ -954,7 +956,7 @@ public class SOItem : ScriptableObject
                 ItemName.蛋白石,
                 ItemName.紫水晶,
                 ItemName.红宝石
-
+                
             }
         },
         {
@@ -1263,7 +1265,7 @@ public class SOItem : ScriptableObject
             BuildingType.杂货铺, new List<ItemName>()
             {
                 ItemName.糖,
-                ItemName.铁矿,
+                ItemName.铁矿,        
                 ItemName.布匹,
                 ItemName.木头,
                 ItemName.皮革,
@@ -1431,7 +1433,7 @@ public class SOItem : ScriptableObject
         }
     };
 
-    public static Dictionary<ItemName, List<ItemName>> MergeItemDict = new Dictionary<ItemName, List<ItemName>>
+    public static Dictionary<ItemName, List<ItemName>> MergeItemDict = new Dictionary<ItemName,List<ItemName>>
     {
         {ItemName.刀,new List<ItemName>(){ItemName.铁矿,ItemName.皮革}},
         {ItemName.枪,new List<ItemName>(){ItemName.铁矿,ItemName.木头}},
@@ -1453,8 +1455,8 @@ public class SOItem : ScriptableObject
         {ItemName.沸腾散,new List<ItemName>(){ItemName.罗汉果,ItemName.乌桕子}},
         {ItemName.长生不老药,new List<ItemName>(){ItemName.三七,ItemName.灵芝,ItemName.何首乌}},
         {ItemName.十全大补丸,new List<ItemName>(){ItemName.当归,ItemName.人参,ItemName.黄芪}},
-        {ItemName.洗髓丹,new List<ItemName>(){ItemName.轻粉,ItemName.核桃}},
-        {ItemName.龙虎丹,new List<ItemName>(){ItemName.当归,ItemName.核桃}},
+        {ItemName.洗髓丹,new List<ItemName>(){ItemName.轻粉,ItemName.核桃粉}},
+        {ItemName.龙虎丹,new List<ItemName>(){ItemName.当归,ItemName.核桃粉}},
         {ItemName.阴阳玄龙丹,new List<ItemName>(){ItemName.白花蛇舌草,ItemName.过山龙}},
         {ItemName.落日神弓,new List<ItemName>(){ItemName.穿石烈风弓, ItemName.紫木雷电枪}},
         {ItemName.白银枪,new List<ItemName>(){ItemName.银矿, ItemName.枪}},
