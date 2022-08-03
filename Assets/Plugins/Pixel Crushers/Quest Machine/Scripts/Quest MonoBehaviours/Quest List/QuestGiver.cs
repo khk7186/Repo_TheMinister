@@ -149,16 +149,16 @@ namespace PixelCrushers.QuestMachine
         protected bool allowBackButton { get; set; }
 
         private QuestListContainer m_playerQuestListContainer = null;
-        protected QuestListContainer playerQuestListContainer 
-        { 
-            get 
+        protected QuestListContainer playerQuestListContainer
+        {
+            get
             {
                 if (m_playerQuestListContainer == null && player != null) m_playerQuestListContainer = player.GetComponent<QuestListContainer>();
                 return m_playerQuestListContainer;
             }
-            set 
-            { 
-                m_playerQuestListContainer = value; 
+            set
+            {
+                m_playerQuestListContainer = value;
             }
         }
 
@@ -167,7 +167,7 @@ namespace PixelCrushers.QuestMachine
         {
             get
             {
-                if (m_myQuestGiverTextinfo == null)  m_myQuestGiverTextinfo = new QuestParticipantTextInfo(id, displayName, image, textTable);
+                if (m_myQuestGiverTextinfo == null) m_myQuestGiverTextinfo = new QuestParticipantTextInfo(id, displayName, image, textTable);
                 return m_myQuestGiverTextinfo;
             }
         }
@@ -541,6 +541,7 @@ namespace PixelCrushers.QuestMachine
         /// </summary>
         public virtual void StartDialogueWithPlayer()
         {
+            Debug.Log("StartDialogue");
             StartDialogue(null);
         }
 
@@ -649,7 +650,7 @@ namespace PixelCrushers.QuestMachine
             if (QuestMachine.debug) Debug.Log("Quest Machine: " + name + ".StartDialogue: #offerable=" + offerableQuests.Count + " #active=" + activeQuests.Count + " #completed=" + completedQuests.Count, this);
             if (activeQuests.Count + offerableQuests.Count >= 2)
             {
-                ShowQuestList();                
+                ShowQuestList();
             }
             else if (activeQuests.Count == 1)
             {
@@ -661,7 +662,7 @@ namespace PixelCrushers.QuestMachine
             }
             else if (nonOfferableQuests.Count >= 1)
             {
-                ShowOfferConditionsUnmet();                
+                ShowOfferConditionsUnmet();
             }
             else
             {
@@ -688,7 +689,7 @@ namespace PixelCrushers.QuestMachine
 
         protected virtual void ShowNoQuestsToDiscuss()
         {
-            questDialogueUI.ShowContents(myQuestGiverTextInfo, noQuestsUIContents.contentList); 
+            questDialogueUI.ShowContents(myQuestGiverTextInfo, noQuestsUIContents.contentList);
         }
 
         protected virtual void ShowQuestList()
@@ -698,7 +699,7 @@ namespace PixelCrushers.QuestMachine
 
         protected virtual void ShowOfferConditionsUnmet()
         {
-            questDialogueUI.ShowOfferConditionsUnmet(myQuestGiverTextInfo, noQuestsUIContents.contentList, nonOfferableQuests); 
+            questDialogueUI.ShowOfferConditionsUnmet(myQuestGiverTextInfo, noQuestsUIContents.contentList, nonOfferableQuests);
         }
 
         protected virtual void ShowOfferConditionsUnmet(Quest quest)
@@ -768,7 +769,7 @@ namespace PixelCrushers.QuestMachine
 
         protected virtual void ShowCompletedQuest(Quest quest)
         {
-            questDialogueUI.ShowCompletedQuest(myQuestGiverTextInfo, new List<Quest>() { quest }); 
+            questDialogueUI.ShowCompletedQuest(myQuestGiverTextInfo, new List<Quest>() { quest });
         }
 
         protected virtual void OnSelectQuest(Quest quest)

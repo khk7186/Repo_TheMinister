@@ -227,10 +227,6 @@ public enum ItemName
     青织飞鱼袍,
     祈天玄衣,
     步辇袍衫,
-
-
-
-
 }
 
 public enum ItemType
@@ -270,7 +266,7 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
             //TODO: destroyed Mother Object
-        } 
+        }
     }
     public virtual void SetupInUseItem()
     {
@@ -282,17 +278,17 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
     }
     protected virtual void LeftClickAction()
     {
-        PlayerCharactersInventory playerCharactersInventory 
+        PlayerCharactersInventory playerCharactersInventory
             = Resources.Load<PlayerCharactersInventory>("CharacterInvUI/ChraInvUI");
-        
-        PlayerCharactersInventory current 
-            = Instantiate(playerCharactersInventory, 
+
+        PlayerCharactersInventory current
+            = Instantiate(playerCharactersInventory,
             GameObject.FindGameObjectWithTag("MainUICanvas").transform);
         current.SetupMode(CardMode.ItemSelectMode);
-        
+
         GameObject.FindGameObjectWithTag("PlayerItemInventory")
             .GetComponent<ItemInventory>().InUseItem = ItemName;
-        
+
         foreach (CharacterUI characterUI in current.characterUIList)
         {
             characterUI.newTag = Use();
@@ -308,12 +304,24 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
         string FramePath = $"Art/BuildingUI/杂货铺/初级五金铺/物品框/物品框-{framRarity}";
         Frame.sprite = Resources.Load<Sprite>(FramePath);
         var spritSize = icon.GetComponent<RectTransform>().sizeDelta;
-        Frame.GetComponent<RectTransform>().sizeDelta = new Vector2(spritSize.x *1.16f, spritSize.y *1.1f);
+        Frame.GetComponent<RectTransform>().sizeDelta = new Vector2(spritSize.x * 1.16f, spritSize.y * 1.1f);
     }
-    
+
     public Tag Use()
     {
-        return SOItem.ItemMap[this.ItemName];
+        Tag output = Tag.Null;
+        if (SOItem.ItemMap.ContainsKey(ItemName))
+        {
+            output = SOItem.ItemMap[ItemName];
+            return output;
+        }
+        else
+        {
+            Debug.LogError(ItemName);
+            return output;
+        }
+
+
     }
 
 }
