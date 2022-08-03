@@ -867,6 +867,8 @@ public class CharacterHiringEvent : MonoBehaviour
                 itemInventory.RemoveItem(item);
             }
         }
+        character.hireStage = HireStage.Hired;
+        character.transform.parent = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
         return true;
     }
 }

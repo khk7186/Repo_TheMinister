@@ -26,12 +26,12 @@ public class CharacterHiringUI : MonoBehaviour
     public Text DefenseValue;
 
     public bool TryHire;
-    public void Setup(Character character, Dictionary<ItemName,int> ItemsAmountDict)
+    public void Setup(Character character, Dictionary<ItemName, int> ItemsAmountDict)
     {
         var targetIdleImagePath = ReturnAssetPath.ReturnCharacterSpritePath(character.characterArtCode);
         Idle.sprite = Resources.Load<Sprite>(targetIdleImagePath);
         CharacterName.text = character.CharacterName;
-        
+
         SetItems(ItemsAmountDict);
         SetTags(character);
         SetValueBG(character);
@@ -59,7 +59,7 @@ public class CharacterHiringUI : MonoBehaviour
             var current = Instantiate(itemObject, Items);
             var playerInv = FindObjectOfType<ItemInventory>();
             var playerInvDict = playerInv.ItemDict;
-            int playerCount = playerInvDict ==null? playerInvDict[item]:0;
+            int playerCount = playerInvDict.ContainsKey(item) ? playerInvDict[item] : 0;
             current.Setup(item, playerCount, ItemsAmountDict[item]);
             current.InUse = false;
         }
