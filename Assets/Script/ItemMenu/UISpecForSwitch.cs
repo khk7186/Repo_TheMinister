@@ -14,7 +14,7 @@ public class UISpecForSwitch : TagSpecUI
 
     public override void SetTagIcon(Tag tag, bool origin = true)
     {
-        
+
         var target = origin ? tagIcon : switchImage;
         target.sprite = FindTagSprite(tag);
     }
@@ -22,7 +22,7 @@ public class UISpecForSwitch : TagSpecUI
     {
         var targetText = origin ? Info : switchText;
         string output = "";
-        output +=
+        output =
             "ÖÇ" + PlusOrMinus(Player.TagInfDict[tag][0]) + " "
             + "²Å" + PlusOrMinus(Player.TagInfDict[tag][1]) + " "
             + "Ä±" + PlusOrMinus(Player.TagInfDict[tag][2]) + " "

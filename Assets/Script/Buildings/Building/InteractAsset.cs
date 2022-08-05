@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InteractAsset : MonoBehaviour
+public class InteractAsset : MonoBehaviour, IPointerClickHandler
 {
     private Building building;
     public bool Active = false;
@@ -16,10 +16,16 @@ public class InteractAsset : MonoBehaviour
     private void OnMouseDown()
     {
         if (Active == false) return;
-        if (!IsPointerOver.IsPointerOverUIObject())
+        if (IsPointerOver.IsPointerOverUIObject())
         {
-            building.OpenMenu();
+            return;
         }
+        building.OpenMenu();
+
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        throw new System.NotImplementedException();
+    }
 }

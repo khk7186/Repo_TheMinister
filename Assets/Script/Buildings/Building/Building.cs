@@ -106,6 +106,7 @@ public class Building : MonoBehaviour
 
     public void CreateUI()
     {
+        Debug.Log(buildingUI == null);
         BuildingUI targetUI = Instantiate(buildingUI, MainCanvas.FindMainCanvas());
         targetUI.UpdateUI(this);
     }
@@ -117,10 +118,10 @@ public class Building : MonoBehaviour
 
     public void OpenMenu()
     {
-        if (charactersHere.Count <= 0)
-        {
-            SetPersonHere();
-        }
+        //if (charactersHere.Count <= 0)
+        //{
+        //    SetPersonHere();
+        //}
         UpdateType();
         CreateUI();
         if (RecordWeekCheck())
