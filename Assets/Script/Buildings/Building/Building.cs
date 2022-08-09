@@ -58,50 +58,37 @@ public class Building : MonoBehaviour
 {
     public BuildingType buildingType;
     public List<Character> charactersHere;
-
-    public int MaxBuildingQuest = 3;
+    public int MaxPersonHere = 5;
 
     public int recordDay = -1;
+    public int currentDay = 0;
 
     public Transform BuildingCharacterSlot;
 
-    public List<ItemName> ShopList;
-
-    public int shopMaxSpawn = 4;
+    public List<List<ItemName>> ShopList = new List<List<ItemName>>()
+    {  new List<ItemName> (), new List<ItemName> (), new List<ItemName>()};
+    public List<int> shopMaxSpawn = new List<int>(4);
 
     [SerializeField] private BuildingUI buildingUI;
-    public List<QuestLineAgent> questLineList = new List<QuestLineAgent>();
     private List<HorseRank> horseList;
 
     public List<ItemName> CraftingList = new List<ItemName>();
 
     public PlayName currentPlay;
+
     private void Awake()
     {
         UpdateType();
     }
     public void UpdateType()
     {
-        string FolderPath = ("BuildingUI/" + buildingType.ToString()).Replace(" ", string.Empty);
+        string FolderPath = ("FinalBuildingUI/" + buildingType.ToString()).Replace(" ", string.Empty);
         buildingUI = Resources.Load<BuildingUI>(FolderPath);
     }
     public void UpdateType(BuildingType buildingType)
     {
         this.buildingType = buildingType;
         UpdateType();
-    }
-
-    public void UpdateQuests()
-    {
-        QuestMapAgent questMapAgent =
-        GameObject
-        .FindGameObjectWithTag("GameFiles")
-        .GetComponentInChildren<QuestMapAgent>();
-
-        questLineList = new List<QuestLineAgent>();
-        var targetLine = questMapAgent.LoadShopQuest(buildingType);
-        targetLine.InUse = true;
-        questLineList.Add(targetLine);
     }
 
     public void CreateUI()
@@ -124,13 +111,8 @@ public class Building : MonoBehaviour
         //}
         UpdateType();
         CreateUI();
-        if (RecordWeekCheck())
-        {
-            SpawnItems();
-            var map = FindObjectOfType<Map>();
-            recordDay = map.Day;
-        }
         shopRefSetUp();
+        recordDay = FindObjectOfType<Map>().Day;
     }
 
     public void shopRefSetUp()
@@ -142,30 +124,34 @@ public class Building : MonoBehaviour
                 target.horseRent.GetComponent<HorseRentUI>().SetUp(horseList);
                 break;
             case BuildingType.‘”ªı∆Ã:
-                target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
+                SpawnItemBasedOnType(BuildingType.‘”ªı∆Ã, 0);
+                target.shopUI.GetComponent<IShopUI>().Setup(ShopList[0]);
                 break;
             case BuildingType.∑ƒ÷Ø∆Ã:
             case BuildingType.≥§∞≤÷Ø‘Ï:
-                target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList);
+                target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 SetupCraft();
                 break;
             case BuildingType.…Ã––:
-                target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
+                target.shopUI.GetComponent<IShopUI>().Setup(ShopList[0]);
                 break;
             case BuildingType.Œ˜”Ú’‰∆∑:
                 SetupCraft();
-                target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
+                target.shopUI.GetComponent<IShopUI>().Setup(ShopList[2]);
                 break;
             case BuildingType.“©∆Ã:
-                target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
+                target.shopUI.GetComponent<IShopUI>().Setup(ShopList[0]);
                 SetupCraft();
                 break;
             case BuildingType.Ã˙Ω≥∆Ã:
-                target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
+                target.shopUI.GetComponent<IShopUI>().Setup(ShopList[1]);
                 SetupCraft();
                 break;
             case BuildingType.æ∆π›:
-                target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
+                if (RecordDayCheck())
+                    SetPersonHere();
+                target.DatingUI.GetComponent<DatingInterfaceUI>().Setup(charactersHere);
+                target.shopUI.GetComponent<IShopUI>().Setup(ShopList[0]);
                 break;
             case BuildingType.œ∑π›:
                 target.CinemaUI.GetComponent<CinemaUI>().Setup(currentPlay);
@@ -183,76 +169,30 @@ public class Building : MonoBehaviour
 
     public void SetPersonHere()
     {
+        Debug.Log("SetPersonHere");
         InGameCharacterStorage inGameCharacterStorage =
             GameObject.FindGameObjectWithTag("InGameCharacterInventory")
             .GetComponent<InGameCharacterStorage>();
-
-        charactersHere.AddRange(inGameCharacterStorage.SelectCharacterForBuilding(5));
+        charactersHere.AddRange(inGameCharacterStorage.SelectCharacterForBuilding(MaxPersonHere));
     }
-
-    public List<ItemType> ShopType()
+    public List<ItemName> SpawnItemBasedOnType(BuildingType type, int shopIndex = -1)
     {
-        switch (buildingType)
-        {
-            case BuildingType.‘”ªı∆Ã:
-                return new List<ItemType>() { ItemType.‘”ªı, ItemType.“©≤ƒ };
-            case BuildingType.æ∆π›:
-                return new List<ItemType>() { };
-            case BuildingType.“©∆Ã:
-                CraftingList = SOItem.BuildingCraftDict[buildingType];
-                return new List<ItemType>() { ItemType.µ§“©, ItemType.“©≤ƒ };
-            case BuildingType.…Ã––:
-                return new List<ItemType>() { ItemType. ÈºÆ };
-            case BuildingType.Œ˜”Ú’‰∆∑:
-            case BuildingType.÷È±¶µÍ:
-                CraftingList = SOItem.BuildingCraftDict[BuildingType.÷È±¶µÍ];
-                return new List<ItemType>() { ItemType. ÈºÆ };
-            case BuildingType.Ã˙Ω≥∆Ã:
-                CraftingList = SOItem.BuildingCraftDict[buildingType];
-                return new List<ItemType>() { };
-            case BuildingType.∑ƒ÷Ø∆Ã:
-            case BuildingType.≥§∞≤÷Ø‘Ï:
-                CraftingList = SOItem.BuildingCraftDict[buildingType];
-                return new List<ItemType>() { ItemType.∑˛◊∞ };
-            case BuildingType.œ∑π›:
-                SetupNewCinemaPlay();
-                break;
-            case BuildingType.¬Ìæ«:
-                SetUpHorseRent();
-                break;
-        }
-        return new List<ItemType>() { };
-    }
-
-    public void SpawnItemBasedOnType(List<ItemType> inputTypes)
-    {
-        int outputAmount = Random.Range(1, shopMaxSpawn);
+        int outputAmount = Random.Range(1, shopMaxSpawn[shopIndex]);
         List<ItemName> outputItems = new List<ItemName>();
         for (int i = 0; i < outputAmount; i++)
         {
-            if (inputTypes.Count < 1) return;
-            int randomTypeIndex = Random.Range(0, inputTypes.Count);
-            var targetList = SOItem.ItemTypeDict[inputTypes[randomTypeIndex]];
-            int randomItemIndex = Random.Range(0, targetList.Count);
-            ItemName currentItem = targetList[randomItemIndex];
-            outputItems.Add(currentItem);
+            if (shopIndex == -1) return null;
+            var targetList = SOItem.BuildingVendorDict[type];
+            int randomTypeIndex = Random.Range(0, targetList.Count);
+            var targetItem = targetList[randomTypeIndex];
+            outputItems.Add(targetItem);
         }
-        ShopList = outputItems;
+        return outputItems;
     }
-
-    public void SpawnItems()
-    {
-        var result = ShopType();
-        if (result != null)
-        {
-            SpawnItemBasedOnType(result);
-        }
-    }
-
-    public bool RecordWeekCheck()
+    public bool RecordDayCheck()
     {
         var map = FindObjectOfType<Map>();
-        if (recordDay < map.Day) return true;
+        if (recordDay != map.Day) return true;
         else return false;
     }
 

@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "GameItemFile")]
 public class SOItem : ScriptableObject
 {
-    
-    public static Dictionary<ItemName, Tag> ItemMap = new Dictionary<ItemName, Tag>() 
+
+    public static Dictionary<ItemName, Tag> ItemMap = new Dictionary<ItemName, Tag>()
     {
         {ItemName.长生不老药,Tag.长生不老},
         {ItemName.十全大补丸,Tag.生死肉骨},
@@ -230,7 +230,7 @@ public class SOItem : ScriptableObject
             };
     public static Dictionary<ItemType, List<ItemName>> ItemTypeDict = new Dictionary<ItemType, List<ItemName>>()
     {
-        { 
+        {
             ItemType.兵器, new List<ItemName>()
             {
                 ItemName.青龙方戟,
@@ -570,7 +570,7 @@ public class SOItem : ScriptableObject
                 ItemName.金钱镖
 
             }
-            
+
         },
         {
             BuildingType.武侯楼, new List<ItemName>()
@@ -821,7 +821,6 @@ public class SOItem : ScriptableObject
                 ItemName.剑,
                 ItemName.戟,
                 ItemName.弓
-
             }
         },
         {
@@ -832,7 +831,6 @@ public class SOItem : ScriptableObject
                 ItemName.剑,
                 ItemName.戟,
                 ItemName.弓
-
             }
         },
         {
@@ -844,7 +842,6 @@ public class SOItem : ScriptableObject
                 ItemName.小刀,
                 ItemName.袖箭,
                 ItemName.峨眉刺,
-
             }
 
         },
@@ -857,10 +854,7 @@ public class SOItem : ScriptableObject
                 ItemName.小刀,
                 ItemName.袖箭,
                 ItemName.峨眉刺
-
-
             }
-
         },
         {
             BuildingType.药铺, new List<ItemName>()
@@ -932,6 +926,18 @@ public class SOItem : ScriptableObject
             }
         },
         {
+            BuildingType.商行, new List<ItemName>()
+            {
+                ItemName.有破损的黄金,
+                ItemName.缺口的宝石,
+                ItemName.零落的宝石,
+                ItemName.祖母绿,
+                ItemName.蛋白石,
+                ItemName.紫水晶,
+                ItemName.红宝石
+            }
+        },
+        {
             BuildingType.珠宝店, new List<ItemName>()
             {
                 ItemName.有破损的黄金,
@@ -944,19 +950,6 @@ public class SOItem : ScriptableObject
                 ItemName.金绿宝石,
                 ItemName.木佐绿,
                 ItemName.鸽血红
-            }
-        },
-        {
-            BuildingType.商行, new List<ItemName>()
-            {
-                ItemName.有破损的黄金,
-                ItemName.缺口的宝石,
-                ItemName.零落的宝石,
-                ItemName.祖母绿,
-                ItemName.蛋白石,
-                ItemName.紫水晶,
-                ItemName.红宝石
-                
             }
         },
         {
@@ -1265,7 +1258,7 @@ public class SOItem : ScriptableObject
             BuildingType.杂货铺, new List<ItemName>()
             {
                 ItemName.糖,
-                ItemName.铁矿,        
+                ItemName.铁矿,
                 ItemName.布匹,
                 ItemName.木头,
                 ItemName.皮革,
@@ -1433,7 +1426,7 @@ public class SOItem : ScriptableObject
         }
     };
 
-    public static Dictionary<ItemName, List<ItemName>> MergeItemDict = new Dictionary<ItemName,List<ItemName>>
+    public static Dictionary<ItemName, List<ItemName>> MergeItemDict = new Dictionary<ItemName, List<ItemName>>
     {
         {ItemName.刀,new List<ItemName>(){ItemName.铁矿,ItemName.皮革}},
         {ItemName.枪,new List<ItemName>(){ItemName.铁矿,ItemName.木头}},

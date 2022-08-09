@@ -9,4 +9,6 @@ public class ShopRef : MonoBehaviour
     public Transform horseRent;
     public Transform CraftingUI;
     public Transform CinemaUI;
+    public Transform HotelUI;
+    public Transform DatingUI;
 }
