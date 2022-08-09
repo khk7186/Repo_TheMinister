@@ -17,7 +17,7 @@ public class BuildingUI : MonoBehaviour
 
     public void UpdateUI()
     {
-        SetMeetCharacterUI();
+        //SetMeetCharacterUI();
         SetQuestSelectUI();
     }
 

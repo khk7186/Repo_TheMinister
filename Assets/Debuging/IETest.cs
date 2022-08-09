@@ -5,13 +5,16 @@ using UnityEngine.Animations;
 
 public class IETest : MonoBehaviour
 {
-    private void Start()
+    public List<GameObject> offObjects;
+    public GameObject currentOn;
+    //public List<AnimatorScript> allAnimators
+    public void ManagerAction(GameObject go)
     {
-        Action();
-    }
-    public void Action()
-    {
-        StartCoroutine(Actionrator());
+
+        //1=> currentOn = go
+        //2=> forloop (offObjects) 
+        //        if not currentOn&&gameobject.active == true => Action()
+        //        if true => go.setactive
     }
 
     public IEnumerator Actionrator()
@@ -19,6 +22,16 @@ public class IETest : MonoBehaviour
         //ANIMATION ON
         float duration = 3f;
         yield return new WaitForSeconds(duration);
-        gameObject.SetActive(false);
+        foreach (GameObject go in offObjects)
+        {
+            if (go == currentOn)
+            {
+                go.SetActive(true);
+            }
+            else
+            {
+                go.SetActive(false);
+            }
+        }
     }
 }

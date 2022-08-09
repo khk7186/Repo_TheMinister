@@ -146,7 +146,7 @@ public class Building : MonoBehaviour
                 break;
             case BuildingType.纺织铺:
             case BuildingType.长安织造:
-                target.shopUI.GetComponent<IShopUI>().Setup(ShopList);
+                target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList);
                 SetupCraft();
                 break;
             case BuildingType.商行:

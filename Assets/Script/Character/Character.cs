@@ -417,7 +417,7 @@ public class Character : MonoBehaviour, IRound
             UpdateVariables();
 
         }
-        
+
     }
 
     private void Start()
@@ -447,17 +447,18 @@ public class Character : MonoBehaviour, IRound
         }
     }
 
-    public void BelongCheck()
+    public CharacterUI BelongCheck()
     {
         if (hireStage == HireStage.Hired)
         {
             transform.parent = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
-            CreatInventoryCardUI();
+            return CreatInventoryCardUI();
         }
         else
         {
             Destroy(gameObject);
         }
+        return null;
     }
 
     private bool CheckForAway()
@@ -497,7 +498,17 @@ public class Character : MonoBehaviour, IRound
         else if (input >= (int)Rarerity.N) return Rarerity.N;
         else return Rarerity.Null;
     }
-
+    public Rarerity CheckTopRare()
+    {
+        Rarerity output = Rarerity.N;
+        foreach (CharacterValueType key in Enum.GetValues(typeof(CharacterValueType)))
+        {
+            if (key == CharacterValueType.ÌÓ) continue;
+            if (characterValueRareDict[key] > output)
+                output = characterValueRareDict[key];
+        }
+        return output;
+    }
     private void ResetVariables()
     {
         CharactersValueDict[CharacterValueType.ÖÇ] = 0;
@@ -513,7 +524,7 @@ public class Character : MonoBehaviour, IRound
         int maxTag = 5;
         if (rarerity == Rarerity.Null)
         {
-            rarerity = Rarerity.N;
+            this.rarerity = Rarerity.N;
             for (int i = 0; i < maxTag; i++)
             {
                 tagList.Add(RandomTag());
@@ -608,11 +619,12 @@ public class Character : MonoBehaviour, IRound
         else return Rarerity.Null;
     }
 
-    private void CreatInventoryCardUI()
+    public CharacterUI CreatInventoryCardUI()
     {
         thisCharacterCard = Instantiate(characterCard, characterCardInvUI);
         thisCharacterCard.character = this;
         thisCharacterCard.Setup();
+        return thisCharacterCard;
     }
 
     public void RoundPass()

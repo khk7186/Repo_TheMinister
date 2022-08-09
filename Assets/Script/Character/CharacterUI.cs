@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -47,7 +48,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         set => inventoryCharacters.currentSlot = value;
     }
 
-    public ICharacterSelect characterSelectUI;
+    public GameObject characterSelectUI;
     public ESlot CurrentESlot;
 
     public static Dictionary<Rarerity, Color> TagUIColorCode = new Dictionary<Rarerity, Color>()
@@ -65,9 +66,9 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     private void Awake()
     {
         inventoryCharacters = FindObjectOfType<PlayerCharactersInventory>();
-        OnCombatImage.gameObject.SetActive(false);
-        OnDebateImage.gameObject.SetActive(false);
-        OnGobangImage.gameObject.SetActive(false);
+        //OnCombatImage.gameObject.SetActive(false);
+        //OnDebateImage.gameObject.SetActive(false);
+        //OnGobangImage.gameObject.SetActive(false);
     }
 
     public void Setup()
@@ -102,14 +103,17 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             OnCombatImage.gameObject.SetActive(true);
         }
+        else OnCombatImage.gameObject.SetActive(false);
         if (character.OnDutyState[OndutyType.Debate])
         {
             OnDebateImage.gameObject.SetActive(true);
         }
+        else OnDebateImage.gameObject.SetActive(false);
         if (character.OnDutyState[OndutyType.Gobang])
         {
             OnGobangImage.gameObject.SetActive(true);
         }
+        else OnGobangImage.gameObject.SetActive(false);
     }
     private void ModifyValueColor()
     {
@@ -189,7 +193,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                     break;
                 case CardMode.UpgradeSelectMode:
                     SelectForSlot();
-                    characterSelectUI.CloseInventory(this);
+                    characterSelectUI.GetComponent<ICharacterSelect>().CloseInventory(this);
                     break;
             }
         }
@@ -197,8 +201,8 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             if (cardMode == CardMode.UpgradeSelectMode)
             {
-                characterSelectUI = FindObjectOfType<CinemaUI>() as ICharacterSelect;
-                characterSelectUI.CloseInventory();
+                if (characterSelectUI != null)
+                    characterSelectUI.GetComponent<ICharacterSelect>().CloseInventory();
             }
             else
             {
@@ -218,7 +222,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     private void ChangeCurrentCharacterAsset()
     {
         FindObjectOfType<OnSwitchAssets>().character = character;
-        
+
         FindObjectOfType<CharacterInfoUI>().Setup(character);
         FindObjectOfType<PlayerCharactersInventory>().GetComponent<RightClickToClose>().RightClickEvent();
     }
@@ -284,12 +288,12 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void SelectForSlot()
     {
-        characterSelectUI = FindObjectOfType<CinemaUI>() as ICharacterSelect;
         if (characterSelectUI != null)
         {
-            characterSelectUI.ChooseCharacter(character);
-            characterSelectUI.SetupSlotIcon();
-            characterSelectUI.CloseInventory(this);
+            var target = characterSelectUI.GetComponent<ICharacterSelect>();
+            target.ChooseCharacter(character);
+            target.SetupSlotIcon();
+            target.CloseInventory(this);
         }
     }
 }

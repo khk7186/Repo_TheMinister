@@ -54,7 +54,21 @@ public class PlayerCharactersInventory : MonoBehaviour
         LayoutRebuilder.ForceRebuildLayoutImmediate(OndutySlot.GetComponent<RectTransform>());
         LayoutRebuilder.ForceRebuildLayoutImmediate(Storage.GetComponent<RectTransform>());
     }
-
+    public CharacterUI SetupNewCharacter(Character character)
+    {
+        if (character.OnDutyState[OndutyType.Combat] || character.OnDutyState[OndutyType.Debate] || character.OnDutyState[OndutyType.Gobang])
+        {
+            character.characterCardInvUI = OndutySlot;
+        }
+        else
+        {
+            character.characterCardInvUI = Storage;
+        }
+        var output = character.CreatInventoryCardUI();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(OndutySlot.GetComponent<RectTransform>());
+        LayoutRebuilder.ForceRebuildLayoutImmediate(Storage.GetComponent<RectTransform>());
+        return output;
+    }
     public void Reset()
     {
         TransformEx.Clear(OndutySlot);
@@ -66,6 +80,13 @@ public class PlayerCharactersInventory : MonoBehaviour
         foreach (CharacterUI character in characterUIList)
         {
             character.cardMode = mode;
+        }
+    }
+    public void SetupSelection(GameObject gameObject)
+    {
+        foreach (CharacterUI character in characterUIList)
+        {
+            character.characterSelectUI = gameObject;
         }
     }
 }
