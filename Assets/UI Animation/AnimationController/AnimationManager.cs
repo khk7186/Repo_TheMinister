@@ -4,34 +4,41 @@ using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
 {
+    public List<GameObject> offObject;
+    public GameObject OnCurrent;
+    AnimationController Leave;
 
-    public Animator transition;
 
-    private void OnEnable()
+    private void FixedUpdate()
     {
-        //Debug.Log("Enable");
-        Intro();
+        Leave = OnCurrent.GetComponent<AnimationController>();
     }
 
-    private void Update()
+    public void ManagerAction(GameObject OnNext)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        foreach (GameObject obj in offObject)
         {
-            Outro();
+            if (OnNext == obj && obj.activeSelf == false && OnNext.activeSelf == false)
+            {
+                Action(obj);
+            }
         }
     }
 
-
-    public void Intro()
+    public void Action(GameObject OnNext)
     {
-        transition.SetTrigger("Open");
+        StartCoroutine(Actionrator(OnNext));
     }
 
-    public void Outro()
+    public IEnumerator Actionrator(GameObject OnNext)
     {
-        transition.SetTrigger("Close");
+        Leave.Outro();
+        float duration = 0.55f;
+        yield return new WaitForSeconds(duration);
+        OnCurrent.SetActive(false);
+
+
+        OnNext.SetActive(true);
+        OnCurrent = OnNext;
     }
-
-    
-
 }
