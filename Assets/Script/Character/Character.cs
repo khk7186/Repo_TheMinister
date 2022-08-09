@@ -296,7 +296,8 @@ public enum HireStage
     Never,
     InCity,
     Hired,
-    NotInMap
+    NotInMap,
+    Away
 }
 public class Character : MonoBehaviour, IRound
 {
@@ -415,9 +416,7 @@ public class Character : MonoBehaviour, IRound
                 OnDutyState[OndutyType.Gobang] = OnGobangDuty;
             }
             UpdateVariables();
-
         }
-
     }
 
     private void Start()
@@ -454,7 +453,7 @@ public class Character : MonoBehaviour, IRound
             transform.parent = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
             return CreatInventoryCardUI();
         }
-        else
+        else if (hireStage != HireStage.Away)
         {
             Destroy(gameObject);
         }
@@ -635,10 +634,18 @@ public class Character : MonoBehaviour, IRound
             ReturnToHand();
         }
     }
-
-    public void Away()
+    public void Away(int rounds)
     {
-        Destroy(thisCharacterCard);
+        StartCoroutine(AwayCoroutine(rounds));
+    }
+    public IEnumerator AwayCoroutine(int rounds)
+    {
+        hireStage = HireStage.Away;
+        var map = FindObjectOfType<Map>();
+        int targetTime = map.DayTime;
+        int targetDay = map.Day + rounds;
+        yield return new WaitUntil(() => (map.Day == targetDay) && (map.DayTime == targetTime));
+        hireStage = HireStage.Hired;
     }
 
     public void ReturnToHand()
