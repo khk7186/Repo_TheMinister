@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System.Linq;
+using System;
 
 public enum BuildingType
 {
@@ -75,11 +76,12 @@ public class Building : MonoBehaviour
 
     public List<ItemName> CraftingList = new List<ItemName>();
 
-    public PlayName currentPlay;
+    public List<PlayName> currentPlay;
 
     private void Awake()
     {
         UpdateType();
+        currentPlay = new List<PlayName>() { PlayName.大王别姬吧, PlayName.大王别姬吧 };        
     }
     public void UpdateType()
     {
@@ -94,7 +96,6 @@ public class Building : MonoBehaviour
 
     public void CreateUI()
     {
-        Debug.Log(buildingUI == null);
         currentUI = Instantiate(buildingUI, MainCanvas.FindMainCanvas());
         currentUI.UpdateUI(this);
     }
@@ -110,7 +111,7 @@ public class Building : MonoBehaviour
         //{
         //    SetPersonHere();
         //}
-        if (currentUI != null&& !NewDay())
+        if (currentUI != null && !NewDay())
         {
             currentUI.gameObject.SetActive(true);
             return;
@@ -124,6 +125,7 @@ public class Building : MonoBehaviour
     public void shopRefSetUp()
     {
         var target = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
+        Array values = Enum.GetValues(typeof(PlayName));
         switch (buildingType)
         {
             case BuildingType.马厩:
@@ -169,7 +171,14 @@ public class Building : MonoBehaviour
                 target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 break;
             case BuildingType.戏馆:
-                target.CinemaUI.GetComponent<CinemaUI>().Setup(currentPlay);
+                currentPlay[0] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
+                target.AllCinema[0].GetComponent<CinemaUI>().Setup(currentPlay[0]);
+                break;
+            case BuildingType.戏院:
+                currentPlay[0] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
+                currentPlay[1] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
+                target.AllCinema[0].GetComponent<CinemaUI>().Setup(currentPlay[0]);
+                target.AllCinema[1].GetComponent<CinemaUI>().Setup(currentPlay[1]);
                 break;
         }
     }
@@ -190,13 +199,13 @@ public class Building : MonoBehaviour
     }
     public List<ItemName> SpawnItemBasedOnType(BuildingType type, int shopIndex = -1)
     {
-        int outputAmount = Random.Range(1, shopMaxSpawn[shopIndex]);
+        int outputAmount = UnityEngine.Random.Range(1, shopMaxSpawn[shopIndex]);
         List<ItemName> outputItems = new List<ItemName>();
         for (int i = 0; i < outputAmount; i++)
         {
             if (shopIndex == -1) return null;
             var targetList = SOItem.BuildingVendorDict[type];
-            int randomTypeIndex = Random.Range(0, targetList.Count);
+            int randomTypeIndex = UnityEngine.Random.Range(0, targetList.Count);
             var targetItem = targetList[randomTypeIndex];
             outputItems.Add(targetItem);
         }
@@ -221,12 +230,5 @@ public class Building : MonoBehaviour
     public void AddCraftingToBuilding(ItemName item)
     {
         CraftingList.Add(item);
-    }
-
-    public void SetupNewCinemaPlay()
-    {
-        var keyList = PlayList.PlayListDict.Keys.ToList<PlayName>();
-        int i = Random.Range(0, keyList.Count);
-        currentPlay = keyList[i];
     }
 }

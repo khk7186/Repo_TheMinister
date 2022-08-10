@@ -46,10 +46,7 @@ public class Confirmation
 
     public IEnumerator Confirm()
     {
-        while (confirm == ConfirmPhase.Null)
-        {
-            yield return null;
-        }
+        yield return new WaitUntil(() => confirm != ConfirmPhase.Null);
         if (confirm == ConfirmPhase.False)
         {
             confirm = ConfirmPhase.Null;

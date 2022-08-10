@@ -8,8 +8,12 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
     public PlayName currentPlayName;
     public Text PlayTitle;
     public Text PlayInfo;
+    public Button ConfirmButton;
     public CinemaTagUI tagUI;
     [SerializeField] private PlayerCharactersInventory charactersInventory;
+    public Text Total;
+    public int Price;
+    private int count;
 
     public HotelCharacterFrame[] CharacterIconList;
 
@@ -18,6 +22,7 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
     public ESlot currentESlot;
     private void Awake()
     {
+        Total.text = "0";
         foreach (HotelCharacterFrame frame in CharacterIconList)
         {
             frame.SetupEmpty();
@@ -32,11 +37,6 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
         tagUI.Setup(targetAL[2] as List<Tag>);
     }
 
-    private void OnDisable()
-    {
-        var target = GetComponent<SpawnUI>();
-        Destroy(target.CurrentTarget.gameObject);
-    }
     public void StartCheck()
     {
         var UpgradeList = new List<Character>();
@@ -44,37 +44,53 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
         {
             if (NullCheck(character)) UpgradeList.Add(character);
         }
+
+        string message = string.Empty;
         if (UpgradeList.Count > 0)
         {
-            //TODO: remove money from inventory, make effect on character in list and start animation
+            Finish();
             foreach (Character character in UpgradeList)
             {
-                Debug.Log(character);
+                if (message != string.Empty)
+                    message += "和";
+                message += character.CharacterName;
                 UpgradeCharacter(character);
-                Debug.Log(character.loyalty);
+                character.Away(1);
             }
+            var alert = Instantiate<Text>(Resources.Load<Text>("Hiring/Message"), MainCanvas.FindMainCanvas());
+            alert.text = message + "将在一天后回归并提升忠诚度";
             CharacterList = new Character[3];
             var target = GetComponent<SpawnUI>();
             Destroy(target.CurrentTarget.gameObject);
+            ConfirmButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            var alert = Instantiate<Text>(Resources.Load<Text>("Hiring/Message"), MainCanvas.FindMainCanvas());
+            alert.text = "请选择角色入座";
         }
     }
 
     private void UpgradeCharacter(Character character)
     {
-        if (TagPair(character))
+        character.loyalty += 1;
+        int extra = TagPair(character);
+        if (extra > 0)
         {
             character.loyalty += 1;
         }
     }
 
-    private bool TagPair(Character character)
+    private int TagPair(Character character)
     {
+        int output = 0;
         var characterTagList = character.tagList;
         foreach (Tag tag in tagUI.tagList)
         {
-            if (characterTagList.Contains(tag)) return true;
+            if (characterTagList.Contains(tag))
+                output += 1;
         }
-        return false;
+        return output;
     }
 
     public bool NullCheck(object target)
@@ -93,6 +109,7 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
 
     public void SetupSlotIcon()
     {
+
         var target = CharacterIconList[(int)currentESlot - 1];
         var character = CharacterList[(int)currentESlot - 1];
         //var path = ("Art/CharacterSprites/Headshot/Headshot_" + character.characterArtCode.ToString()).Replace(" ", string.Empty);
@@ -108,13 +125,22 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
             target.SpawnHere();
             var invUI = target.CurrentTarget.GetComponent<PlayerCharactersInventory>();
             invUI.SetupMode(CardMode.UpgradeSelectMode);
-            invUI.SetupSelection(gameObject) ;
-
+            invUI.SetupSelection(gameObject);
+        }
+        if (CharacterList[(int)currentESlot - 1] == null)
+        {
+            count += 1;
+            Total.text = (count * Price).ToString();
         }
         target.CurrentTarget.gameObject.SetActive(true);
     }
     public void CloseInventory()
     {
+        if (CharacterList[(int)currentESlot - 1] == null)
+        {
+            count -= 1;
+            Total.text = (count * Price).ToString();
+        }
         var target = GetComponent<SpawnUI>();
         target.CurrentTarget.gameObject.SetActive(false);
     }
@@ -132,19 +158,39 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
         currentESlot = ESlot.two;
     }
     public void SetSlotThree()
-    { 
+    {
         currentESlot = ESlot.three;
     }
     public void Remove(int index)
     {
         var target = GetComponent<SpawnUI>().CurrentTarget.GetComponent<PlayerCharactersInventory>();
         target.SetupNewCharacter(CharacterList[index]);
+        count -= 1;
+        Total.text = (count * Price).ToString();
         CharacterList[index] = null;
         CharacterIconList[index].SetupEmpty();
     }
     public void Confirm()
     {
-        CharacterList[0].loyalty += 1;
-        CharacterList[1].loyalty += 1;
+        var currencyInv = FindObjectOfType<CurrencyInventory>();
+        if (currencyInv.Money >= Price * count)
+        {
+            currencyInv.Money -= Price * count;
+            StartCheck();
+        }
+        else
+        {
+            var message = Instantiate<Text>(Resources.Load<Text>("Hiring/Message"), MainCanvas.FindMainCanvas());
+            message.text = "你需要更多金钱";
+            return;
+        }
+
+    }
+    public void Finish()
+    {
+        CharacterIconList[0].RoomRegistered();
+        CharacterIconList[1].RoomRegistered();
+        CharacterIconList[0].GetComponent<Button>().interactable = false;
+        CharacterIconList[1].GetComponent<Button>().interactable = false;
     }
 }

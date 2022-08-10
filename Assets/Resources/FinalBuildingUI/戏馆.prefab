@@ -505,7 +505,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3147971484975186545}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7596473717337416110}
+        m_TargetAssemblyTypeName: CinemaUI, Assembly-CSharp
+        m_MethodName: Confirm
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3147971484975186547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,6 +547,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3147971485036348061}
+  - component: {fileID: 3723164872555646360}
+  - component: {fileID: 7790953774809195245}
+  - component: {fileID: 4850965582600403561}
   m_Layer: 5
   m_Name: "\u620F\u9986"
   m_TagString: Untagged
@@ -562,6 +577,53 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3723164872555646360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3147971485036348060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c41d9927175b15e449eff4378bcc157f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7790953774809195245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3147971485036348060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f187f53367a4db4abaa8b50783714d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  building: {fileID: 0}
+  buildingCharacterUI: {fileID: 0}
+--- !u!114 &4850965582600403561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3147971485036348060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ffd0005be5efb44e816509c52cdb64e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AllShops: []
+  AllCinema:
+  - {fileID: 2559843632928705141}
+  horseRent: {fileID: 0}
+  CraftingUI: {fileID: 0}
+  HotelUI: {fileID: 0}
+  DatingUI: {fileID: 0}
+  BanquetUI: {fileID: 0}
+  BigBanquatUI: {fileID: 0}
 --- !u!1 &3147971485144180492
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,7 +683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1097,7 +1159,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4a2157610c1e1b843a5141ad5dd29e99, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 398dde37c824b8f4daf30ebc55c01dc2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3360,7 +3422,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4a2157610c1e1b843a5141ad5dd29e99, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 398dde37c824b8f4daf30ebc55c01dc2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3580,7 +3642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3803,8 +3865,11 @@ MonoBehaviour:
   currentPlayName: 0
   PlayTitle: {fileID: 3147971485241017456}
   PlayInfo: {fileID: 3147971484874149829}
-  tagUI: {fileID: 0}
+  ConfirmButton: {fileID: 3147971484975186544}
+  tagUI: {fileID: 3147971486086561287}
   charactersInventory: {fileID: 0}
+  Total: {fileID: 3147971485196584823}
+  Price: 100
   CharacterIconList:
   - {fileID: 3147971486091993533}
   - {fileID: 3147971486100086722}

@@ -1463,8 +1463,4 @@ public class SOItem : ScriptableObject
         {ItemName.长袖装,new List<ItemName>(){ItemName.布衣, ItemName.丝绸}}
     };
     public Sprite NullSprite;
-
-
-
-
 }

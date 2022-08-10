@@ -9,6 +9,7 @@ public class BanquetCharacterUI : MonoBehaviour
     public Image Head;
     public Text Message;
     public Button Button;
+    public GameObject RegisteredSign;
 
     public void Setup(Character character)
     {
@@ -28,5 +29,6 @@ public class BanquetCharacterUI : MonoBehaviour
         yield return new WaitUntil(() => character.hireStage == HireStage.Hired);
         Button.gameObject.SetActive(false);
         Message.text = $"{character.CharacterName} ¿ªÊ¼×·ËæÄúÁË";
+        RegisteredSign.SetActive(true);
     }
 }

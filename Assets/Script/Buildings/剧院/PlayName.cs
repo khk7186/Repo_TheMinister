@@ -28,14 +28,8 @@ public static class PlayList
                     new List<Tag>()
                     {
                         Tag.习武之人,
-                        Tag.半身不遂,
-                        Tag.头疼,
-                        Tag.戏精,
-                        Tag.欢喜佛,
                         Tag.略有才名,
                         Tag.醉生梦死,
-                        Tag.醉酒,
-                        Tag.鹰之力
                     }
                 }
             } ,
@@ -47,14 +41,8 @@ public static class PlayList
                     "只见那唐僧用金箍棒哼哼哈嘿，三下五除二得制服了白骨精。",
                     new List<Tag>()
                     {
-                        Tag.驯兽大师,
-                        Tag.黄帝内经,
-                        Tag.身形矫健,
-                        Tag.调皮鬼,
-                        Tag.象虎之力,
                         Tag.营养不良,
                         Tag.百毒不侵,
-                        Tag.略有才名,
                         Tag.鹰之力
                     }
                 }
@@ -134,7 +122,5 @@ public static class PlayList
                 }
                 
             }
-
-
     };
 }
