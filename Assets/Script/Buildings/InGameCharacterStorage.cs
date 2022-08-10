@@ -7,7 +7,7 @@ public class InGameCharacterStorage : MonoBehaviour
 {
     public List<Character> CurrentCharacters = new List<Character>();
     public List<Character> UnshowedCharacters = new List<Character>();
-    public int MinimumCharacterNumber = 10;
+    public int MinimumCharacterNumber = 20;
     private Character characterPref;
 
 
@@ -46,11 +46,28 @@ public class InGameCharacterStorage : MonoBehaviour
     public List<Character> SelectCharacterForBuilding(int numberToSelect)
     {
         List<Character> selectList = new List<Character>();
-        for (int i = 0; i<numberToSelect; i++)
+        List<Character> pool = UnshowedCharacters;
+        if (pool.Count <= numberToSelect)
+            return pool;
+        for (int i = 0; i < numberToSelect; i++)
         {
             int randomInt = Random.Range(0, UnshowedCharacters.Count);
             selectList.Add(UnshowedCharacters[randomInt]);
-            UnshowedCharacters.RemoveAt(randomInt);
+            pool.RemoveAt(randomInt);
+        }
+        return selectList;
+    }
+    public List<Character> SelectOtherCharacters(int numberToSelect, List<Character> Existed)
+    {
+        List<Character> selectList = new List<Character>();
+        List<Character> pool = UnshowedCharacters.Where(x => !Existed.Contains(x)).ToList();
+        if (pool.Count <= numberToSelect)
+            return pool;
+        for (int i = 0; i < numberToSelect; i++)
+        {
+            int randomInt = Random.Range(0, UnshowedCharacters.Count);
+            selectList.Add(UnshowedCharacters[randomInt]);
+            pool.Remove(UnshowedCharacters[randomInt]);
         }
         return selectList;
     }

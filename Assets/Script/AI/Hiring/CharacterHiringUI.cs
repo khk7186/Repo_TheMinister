@@ -41,7 +41,6 @@ public class CharacterHiringUI : MonoBehaviour
     {
         Image tagObject = Resources.Load<Image>("Tag/Tag");
         TransformEx.Clear(Tags);
-        Debug.Log(character.tagList);
         foreach (Tag tag in character.tagList)
         {
             var tagImagePath = $"Art/Tags/{tag.ToString()}";

@@ -10,13 +10,19 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
     public Text PlayInfo;
     public CinemaTagUI tagUI;
     [SerializeField] private PlayerCharactersInventory charactersInventory;
-    [SerializeField] private Sprite defaultCharacterIcon;
 
-    public Image[] CharacterIconList = new Image[3];
+    public HotelCharacterFrame[] CharacterIconList;
 
     public Character[] CharacterList = new Character[3];
 
     public ESlot currentESlot;
+    private void Awake()
+    {
+        foreach (HotelCharacterFrame frame in CharacterIconList)
+        {
+            frame.SetupEmpty();
+        }
+    }
     public void Setup(PlayName playName)
     {
         currentPlayName = playName;
@@ -48,19 +54,9 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
                 Debug.Log(character.loyalty);
             }
             CharacterList = new Character[3];
-            ResetImages();
             var target = GetComponent<SpawnUI>();
             Destroy(target.CurrentTarget.gameObject);
         }
-    }
-
-    public void ResetImages()
-    {
-        foreach (Image image in CharacterIconList)
-        {
-            image.sprite = defaultCharacterIcon;
-        }
-        
     }
 
     private void UpgradeCharacter(Character character)
@@ -99,8 +95,9 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
     {
         var target = CharacterIconList[(int)currentESlot - 1];
         var character = CharacterList[(int)currentESlot - 1];
-        var path = ("Art/CharacterSprites/Headshot/Headshot_" + character.characterArtCode.ToString()).Replace(" ", string.Empty);
-        target.sprite = Resources.Load<Sprite>(path);
+        //var path = ("Art/CharacterSprites/Headshot/Headshot_" + character.characterArtCode.ToString()).Replace(" ", string.Empty);
+        //target.sprite = Resources.Load<Sprite>(path);
+        target.GetComponent<HotelCharacterFrame>().Setup(character);
     }
 
     public void OpenInventory()
@@ -109,11 +106,13 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
         if (target.CurrentTarget == null)
         {
             target.SpawnHere();
-            target.CurrentTarget.GetComponent<PlayerCharactersInventory>().SetupMode(CardMode.UpgradeSelectMode);
+            var invUI = target.CurrentTarget.GetComponent<PlayerCharactersInventory>();
+            invUI.SetupMode(CardMode.UpgradeSelectMode);
+            invUI.SetupSelection(gameObject) ;
+
         }
         target.CurrentTarget.gameObject.SetActive(true);
     }
-
     public void CloseInventory()
     {
         var target = GetComponent<SpawnUI>();
@@ -124,7 +123,6 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
         Destroy(current.gameObject);
         CloseInventory();
     }
-
     public void SetSlotOne()
     {
         currentESlot = ESlot.one;
@@ -136,5 +134,17 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
     public void SetSlotThree()
     { 
         currentESlot = ESlot.three;
+    }
+    public void Remove(int index)
+    {
+        var target = GetComponent<SpawnUI>().CurrentTarget.GetComponent<PlayerCharactersInventory>();
+        target.SetupNewCharacter(CharacterList[index]);
+        CharacterList[index] = null;
+        CharacterIconList[index].SetupEmpty();
+    }
+    public void Confirm()
+    {
+        CharacterList[0].loyalty += 1;
+        CharacterList[1].loyalty += 1;
     }
 }
