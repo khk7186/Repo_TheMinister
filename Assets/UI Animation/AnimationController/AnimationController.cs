@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
-
+    //cc Ð¡³Â
     public Animator transition;
 
     private void OnEnable()
@@ -22,6 +22,5 @@ public class AnimationController : MonoBehaviour
         transition.SetTrigger("Close");
     }
 
-    
 
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
 {
+    //cc Ð¡³Â
     public List<GameObject> offObject;
     public GameObject OnCurrent;
     AnimationController Leave;

@@ -14,12 +14,19 @@ public class SceneTransController : MonoBehaviour
 
     public void Open()
     {
-        transition.SetTrigger("Open");
+        transition.Play("Open");
+        StartCoroutine(DestroyAfterPlay());
+    }
+
+    public IEnumerator DestroyAfterPlay()
+    {
+        yield return new WaitForSeconds(0.4f);
+        Destroy(gameObject);
     }
 
     public void Close()
     {
-        transition.SetTrigger("Close");
+        transition.Play("Close");
     }
 
 }
