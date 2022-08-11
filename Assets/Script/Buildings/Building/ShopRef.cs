@@ -12,4 +12,5 @@ public class ShopRef : MonoBehaviour
     public Transform DatingUI;
     public Transform BanquetUI;
     public Transform BigBanquatUI;
+    public Transform CharacterShopUI;
 }

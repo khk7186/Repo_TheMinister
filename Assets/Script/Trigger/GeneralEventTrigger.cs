@@ -33,15 +33,15 @@ public class GeneralEventTrigger : MonoBehaviour
         {
             case BattleType.Combat:
                 playerCharacters = SelectOnDuty.GetOndutyAll(OndutyType.Combat);
-                scene = 1;
+                scene = 2;
                 break;
             case BattleType.Debate:
                 playerCharacters = SelectOnDuty.GetOndutyAll(OndutyType.Debate);
-                scene = 2;
+                scene = 3;
                 break;
             case BattleType.GoBang:
                 playerCharacters = SelectOnDuty.GetOndutyAll(OndutyType.Gobang);
-                scene = 3;
+                scene = 4;
                 break;
             default:
                 break;
@@ -99,5 +99,10 @@ public class GeneralEventTrigger : MonoBehaviour
             Debug.Log("Game Over");
             var pannel = Instantiate(endGamePannel, MainCanvas.FindMainCanvas());
         }
+    }
+
+    public void JumpToSceneTest(int scene)
+    {
+        StartCoroutine(JumpToScene(scene));
     }
 }

@@ -6,15 +6,16 @@ using UnityEngine.SceneManagement;
 
 public enum SceneType
 {
-    MainGame = 0,
-    Combat = 1,
-    Debate = 2
+    MainGame = 1,
+    Combat = 2,
+    Debate = 3
 }
 public class SceneTrans : MonoBehaviour
 {
     public string clip = "";
     public VideoPlayer videoPlayer;
     public SceneType sceneType;
+    bool sceneLoaded => (SceneManager.GetActiveScene().buildIndex == (int)sceneType);
     private void Awake()
     {
         videoPlayer = GetComponent<VideoPlayer>();
@@ -28,16 +29,17 @@ public class SceneTrans : MonoBehaviour
         videoPlayer.Play();
         yield return WaitUntilClipEnd();
     }
-
     public IEnumerator EndChange()
     {
-        while (SceneManager.GetActiveScene().buildIndex != (int)sceneType)
-        {
-            yield return null;
-        }
+        //while (!sceneLoaded)
+        //{
+        //    yield return null;
+        //}
         videoPlayer.clip = Resources.Load<VideoClip>($"{clip}_end");
+        Debug.Log(sceneLoaded);
         videoPlayer.Play();
-        yield return WaitUntilClipEnd();
+        yield return new WaitUntil(() => videoPlayer.isPlaying == false);
+        Debug.Log(videoPlayer.isPlaying);
         Destroy(gameObject);
         yield return null;
     }

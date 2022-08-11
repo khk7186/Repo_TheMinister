@@ -75,7 +75,6 @@ public class Building : MonoBehaviour
     private List<HorseRank> horseList;
 
     public List<ItemName> CraftingList = new List<ItemName>();
-
     public List<PlayName> currentPlay;
 
     private void Awake()
@@ -179,6 +178,16 @@ public class Building : MonoBehaviour
                 currentPlay[1] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
                 target.AllCinema[0].GetComponent<CinemaUI>().Setup(currentPlay[0]);
                 target.AllCinema[1].GetComponent<CinemaUI>().Setup(currentPlay[1]);
+                break;
+            case BuildingType.ÇàÂ¥:
+                currentPlay[0] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
+                target.AllCinema[0].GetComponent<CinemaUI>().Setup(currentPlay[0]);
+                if( charactersHere!= null)
+                {
+                    CharacterShopPriceAndList.ReturnSomeGirls(charactersHere);
+                }
+                charactersHere = CharacterShopPriceAndList.GetSomeGirls(MaxPersonHere);
+                target.CharacterShopUI.GetComponent<CharacterShopUI>().Setup(charactersHere);
                 break;
         }
     }
