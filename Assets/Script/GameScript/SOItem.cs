@@ -1271,19 +1271,26 @@ public class SOItem : ScriptableObject
                 ItemName.盐,
                 ItemName.咖啡,
                 ItemName.毛笔,
-                ItemName.拂尘,
-                ItemName.佛珠,
-                ItemName.杂技,
-                ItemName.剪刀,
-                ItemName.锤子,
-                ItemName.刻刀,
-                ItemName.绣花针,
-                ItemName.舒服的椅子
+
             }
         },
         {
             BuildingType.百货店, new List<ItemName>()
             {
+                ItemName.糖,
+                ItemName.铁矿,
+                ItemName.布匹,
+                ItemName.木头,
+                ItemName.皮革,
+                ItemName.铆钉,
+                ItemName.硬木,
+                ItemName.油,
+                ItemName.绳子,
+                ItemName.酱油,
+                ItemName.醋,
+                ItemName.盐,
+                ItemName.咖啡,
+                ItemName.毛笔,
                 ItemName.咖啡,
                 ItemName.毛笔,
                 ItemName.拂尘,
@@ -1299,6 +1306,20 @@ public class SOItem : ScriptableObject
         {
             BuildingType.万仙楼, new List<ItemName>()
             {
+                ItemName.糖,
+                ItemName.铁矿,
+                ItemName.布匹,
+                ItemName.木头,
+                ItemName.皮革,
+                ItemName.铆钉,
+                ItemName.硬木,
+                ItemName.油,
+                ItemName.绳子,
+                ItemName.酱油,
+                ItemName.醋,
+                ItemName.盐,
+                ItemName.咖啡,
+                ItemName.毛笔,
                 ItemName.阴阳八卦盘,
                 ItemName.浑天仪,
                 ItemName.咖啡,
@@ -1318,42 +1339,40 @@ public class SOItem : ScriptableObject
         {
             BuildingType.当铺, new List<ItemName>()
             {
-                ItemName.阴阳八卦盘,
-                ItemName.浑天仪,
-                ItemName.咖啡,
-                ItemName.毛笔,
-                ItemName.拂尘,
-                ItemName.佛珠,
-                ItemName.毒奶瓶,
-                ItemName.杂技,
-                ItemName.剪刀,
-                ItemName.锤子,
-                ItemName.刻刀,
-                ItemName.绣花针,
-                ItemName.文化沙漠,
-                ItemName.舒服的椅子
+
             }
         },
         {
             BuildingType.拍卖行, new List<ItemName>()
             {
+                ItemName.糖,
+                ItemName.铁矿,
+                ItemName.布匹,
+                ItemName.木头,
+                ItemName.皮革,
+                ItemName.铆钉,
+                ItemName.硬木,
+                ItemName.油,
+                ItemName.绳子,
+                ItemName.酱油,
+                ItemName.醋,
+                ItemName.盐,
+                ItemName.咖啡,
+                ItemName.毛笔,
                 ItemName.阴阳八卦盘,
                 ItemName.浑天仪,
                 ItemName.咖啡,
                 ItemName.毛笔,
                 ItemName.拂尘,
                 ItemName.佛珠,
-                ItemName.御马官印,
                 ItemName.毒奶瓶,
-                ItemName.文官状,
-                ItemName.武官状,
                 ItemName.杂技,
                 ItemName.剪刀,
                 ItemName.锤子,
                 ItemName.刻刀,
                 ItemName.绣花针,
                 ItemName.文化沙漠,
-                ItemName.舒服的椅子
+                ItemName.舒服的椅子,
 
             }
         },
@@ -1463,4 +1482,51 @@ public class SOItem : ScriptableObject
         {ItemName.长袖装,new List<ItemName>(){ItemName.布衣, ItemName.丝绸}}
     };
     public Sprite NullSprite;
+
+    public static Dictionary<BuildingType, Dictionary<ItemType, List<int>>> ItempriceTag = new Dictionary<BuildingType, Dictionary<ItemType, List<int>>>
+    {
+        {BuildingType.商行,new Dictionary<ItemType, List<int>>(){{ItemType.饰品,new List<int>(){ 18, 43, 0, 0, 0, 0 } }}},
+        {BuildingType.珠宝店,new Dictionary<ItemType, List<int>>(){{ItemType.饰品,new List<int>(){ 20, 49, 157, 716, 0, 0 } }}},
+        {BuildingType.西域珍品,new Dictionary<ItemType, List<int>>(){{ItemType.饰品,new List<int>(){ 22, 56, 187, 898, 3886, 0 } }}},
+        {BuildingType.胭脂铺,new Dictionary<ItemType, List<int>>(){{ItemType.材料,new List<int>(){ 22, 56, 187, 898, 0, 0 } }}},
+        {BuildingType.万香阁,new Dictionary<ItemType, List<int>>(){{ItemType.材料,new List<int>(){ 24, 62, 214, 1070, 5145, 0 } }}},
+        {BuildingType.马厩,new Dictionary<ItemType, List<int>>(){{ItemType.坐骑,new List<int>(){ 22, 56, 0, 0, 0, 0 } }}},
+        {BuildingType.御马场,new Dictionary<ItemType, List<int>>(){{ItemType.坐骑, new List<int>(){ 24, 62, 214, 1070, 0, 0 } }}},
+        {BuildingType.天马阁,new Dictionary<ItemType, List<int>>(){{ItemType.坐骑, new List<int>(){ 26, 69, 246, 1283, 6907, 0 } }}},
+        {BuildingType.奇兽堂,new Dictionary<ItemType, List<int>>(){{ItemType.奇兽,new List<int>() { 24, 62, 214, 1070, 0, 0 } } }},
+        {BuildingType.百兽园,new Dictionary<ItemType, List<int>>(){{ItemType.奇兽, new List<int>(){ 26, 69, 246, 1283, 6907, 0 } } }},
+        {BuildingType.酒馆,new Dictionary<ItemType, List<int>>(){{ItemType.菜品,new List<int>(){ 15, 34, 0, 0, 0, 0 } },
+                                                                {ItemType.酒品,new List<int>(){ 15, 34, 0, 0, 0, 0 } },
+                                                                {ItemType.材料,new List<int>(){ 24, 62, 214, 1070, 5145, 0 } }} },
+        {BuildingType.酒店,new Dictionary<ItemType, List<int>>(){{ItemType.菜品, new List<int>(){ 17, 40, 121, 510, 0, 0 } },
+                                                                {ItemType.酒品,new List<int>(){ 17, 40, 121, 510, 0, 0 } },
+                                                                {ItemType.材料,new List<int>(){ 22, 56, 187, 898, 0, 0 } }} },
+        {BuildingType.酒楼,new Dictionary<ItemType, List<int>>(){{ItemType.菜品, new List<int>(){ 19, 46, 145, 656, 2320, 0 } },
+                                                                {ItemType.酒品,new List<int>(){ 19, 46, 145, 656, 2320, 0 } },
+                                                                {ItemType.材料,new List<int>(){ 24, 62, 214, 1070, 5145, 0 } }}},
+        {BuildingType.馆驿,new Dictionary<ItemType, List<int>>(){{ItemType.菜品, new List<int>() { 17, 40, 121, 510, 0, 0 } },
+                                                                {ItemType.酒品,new List<int>(){ 17, 40, 121, 510, 0, 0 } },
+                                                                {ItemType.材料,new List<int>(){ 22, 56, 187, 898, 0, 0 } }}},
+        {BuildingType.客栈,new Dictionary<ItemType, List<int>>(){{ItemType.菜品, new List<int>(){ 19, 46, 145, 656, 2320, 0 } },
+                                                                {ItemType.酒品,new List<int>(){ 19, 46, 145, 656, 2320, 0 } },
+                                                                {ItemType.材料,new List<int>(){ 24, 62, 214, 1070, 5145, 0 } }}},
+        {BuildingType.药铺,new Dictionary<ItemType, List<int>>(){{ItemType.药材,new List<int>(){ 15, 34, 0, 0, 0, 0 } } }},
+        {BuildingType.丹房,new Dictionary<ItemType, List<int>>(){{ItemType.药材, new List<int>(){ 17, 40, 121, 510, 0, 0 } }}},
+        {BuildingType.仙鼎台,new Dictionary<ItemType, List<int>>(){{ItemType.药材, new List<int>(){ 19, 46, 145, 656, 2320, 0 } }}},
+        {BuildingType.医院,new Dictionary<ItemType, List<int>>(){{ItemType.药材, new List<int>() { 17, 40, 121, 510, 0, 0 } } }},
+        {BuildingType.研究院,new Dictionary<ItemType, List<int>>(){{ItemType.药材, new List<int>(){ 19, 46, 145, 656, 2320, 0 } } }},
+        {BuildingType.杂货铺,new Dictionary<ItemType, List<int>>(){{ItemType.杂货,new List<int>(){ 21, 52, 0, 0, 0, 0 } },
+                                                                {ItemType.材料,new List<int>(){ 20, 49, 0, 0, 0, 0 } }}},
+        {BuildingType.百货店,new Dictionary<ItemType, List<int>>(){{ItemType.杂货, new List<int>(){ 23, 59, 200, 980, 0, 0 } },
+                                                                {ItemType.材料,new List<int>(){ 22, 56, 187, 898, 0, 0 } }}},
+        {BuildingType.万仙楼,new Dictionary<ItemType, List<int>>(){{ItemType.杂货, new List<int>(){ 25, 66, 232, 1189, 9948, 0 } },
+                                                                {ItemType.材料,new List<int>(){ 24, 62, 214, 1070, 5145, 0 } }}},
+        {BuildingType.拍卖行,new Dictionary<ItemType, List<int>>(){{ItemType.杂货, new List<int>(){ 25, 66, 232, 1189, 9948, 0 } },
+                                                                {ItemType.材料,new List<int>(){ 24, 62, 214, 1070, 5145, 0 } }}},
+
+
+    };
+
+
+
 }
