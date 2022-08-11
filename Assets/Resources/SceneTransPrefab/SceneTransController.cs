@@ -2,26 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationController : MonoBehaviour
+public class SceneTransController : MonoBehaviour
 {
-
     public Animator transition;
 
     private void OnEnable()
     {
-        Intro();
+        Close();
     }
 
-    public void Intro()
+    public void Open()
     {
         transition.SetTrigger("Open");
     }
 
-    public void Outro()
+    public void Close()
     {
         transition.SetTrigger("Close");
     }
-
-    
 
 }
