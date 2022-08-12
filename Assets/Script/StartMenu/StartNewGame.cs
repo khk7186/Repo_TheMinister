@@ -8,15 +8,20 @@ public class StartNewGame : MonoBehaviour
 {
     public void StartAGame()
     {
-        StartCoroutine(JumpToScene());
+        string path = $"SceneTransPrefab/{SceneType.MainGame}/{SceneType.MainGame}Animation";
+        var canvas = Instantiate(Resources.Load<Canvas>("SceneTransPrefab/Canvas"));
+        DontDestroyOnLoad(canvas);
+        var animation = Instantiate(Resources.Load<SceneTransController>(path), canvas.transform);
+        animation.transDelegate = NextStep;
+        animation.Close();
     }
-    private IEnumerator JumpToScene()
+    IEnumerator NextStep()
     {
-        //Debug.Log("Start SceneChangeAnimation");
-        string path = $"CombatScene/SceneChangeAnimation";
-        var animation = Instantiate(Resources.Load<SceneTrans>(path));
-        yield return StartCoroutine(animation.StartChange(SceneType.MainGame));
+        var animation = FindObjectOfType<SceneTransController>();
+        yield return new WaitUntil(() => animation.transition.GetCurrentAnimatorStateInfo(0).IsName("Wait"));
         SceneManager.LoadScene(1);
-        yield return StartCoroutine(animation.EndChange());
+        yield return WaitUntilSceneLoad.WaitUntilScene(1);
+        yield return new WaitForSeconds(0.5f);
+        animation.Open();
     }
 }

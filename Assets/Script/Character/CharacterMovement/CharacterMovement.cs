@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -35,7 +36,10 @@ public class CharacterMovement : MonoBehaviour
     }
     private void Awake()
     {
-
+        if (SceneManager.GetActiveScene().buildIndex != 1)
+        {
+            return;
+        }
         if (grid == null)
         {
             grid = FindObjectOfType<MovementGrid>().GetComponent<Grid>();

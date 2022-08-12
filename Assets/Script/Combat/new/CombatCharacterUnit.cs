@@ -36,6 +36,10 @@ public class CombatCharacterUnit : MonoBehaviour
         }
         sg = GetComponent<SortingGroup>();
     }
+    private void Start()
+    {
+        GetComponent<CharacterMovement>().enabled = true;
+    }
 
     public static CombatCharacterUnit NewCombatCharacterUnit(Character character, bool isFriend)
     {

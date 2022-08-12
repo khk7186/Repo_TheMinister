@@ -1,3 +1,4 @@
+using PixelCrushers.QuestMachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class RightClickToHide : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
+            FindObjectOfType<UnityUIQuestHUD>(true).Show();
             gameObject.SetActive(false);
         }
     }

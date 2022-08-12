@@ -27,11 +27,7 @@ public class HotelUI : MonoBehaviour, ICharacterSelect
             new List<Character>(){ null,null,null,null,null}
         };
     }
-    private void Start()
-    {
-        Reset();
-    }
-    public void Reset()
+    public void Setup()
     {
         CharacterFrameTemp.gameObject.SetActive(false);
         for (int i = 0; i < Rooms.Count; i++)

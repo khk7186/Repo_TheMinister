@@ -46,6 +46,19 @@ public class CharacterShopPriceAndList : MonoBehaviour
 
         return character;
     }
+    public static Character OuputTopCharacter(string key)
+    {
+        var value = TopCharacterPool[key];
+        var character = Instantiate(Resources.Load<Character>("CharacterPrefab/Character"));
+        character.hireStage = HireStage.NotInMap;
+        DontDestroyOnLoad(character);
+        TopCharacterPool[key][0] = true;
+        character.CharacterName = key;
+        character.characterArtCode = (CharacterArtCode)value[1];
+        character.tagList = value[2] as List<Tag>;
+        character.UpdateVariables();
+        return character;
+    }
     public static List<int> ReturnPrice(string name)
     {
         return CharacterPool[name][3] as List<int>;

@@ -45,6 +45,7 @@ public class CombatInteractableUnit : MonoBehaviour
                 }
                 if (selectUI == null)
                 {
+
                     string path = "NPCInteractiveUI/CombatMenu/CombatSelectMenu";
                     selectUI = Instantiate(Resources.Load<CombatSelectUI>(path), MainCanvas.FindMainCanvas().transform);
                     if (selectUI != null)

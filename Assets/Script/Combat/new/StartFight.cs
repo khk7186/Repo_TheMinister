@@ -80,7 +80,7 @@ public class StartFight : MonoBehaviour
                 time = 0;
                 // Do Damage Calculations
                 selfUnit.MakeTurn();
-                animator.SetTrigger(selfUnit.currentAction.ToString());
+                animator.Play(selfUnit.currentAction.ToString());
                 yield return new WaitForSeconds(0.5f);
                 while (time < duration)
                 {

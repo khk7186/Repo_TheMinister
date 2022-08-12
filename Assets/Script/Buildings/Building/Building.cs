@@ -59,6 +59,8 @@ public class Building : MonoBehaviour
 {
     public BuildingType buildingType;
     public List<Character> charactersHere;
+    public List<string> charactersAlwaysHere;
+    
     public int MaxPersonHere = 5;
 
     public int recordDay = -1;
@@ -80,7 +82,7 @@ public class Building : MonoBehaviour
     private void Awake()
     {
         UpdateType();
-        currentPlay = new List<PlayName>() { PlayName.大王别姬吧, PlayName.大王别姬吧 };        
+        currentPlay = new List<PlayName>() { PlayName.大王别姬吧, PlayName.大王别姬吧 };
     }
     public void UpdateType()
     {
@@ -160,6 +162,16 @@ public class Building : MonoBehaviour
                 target.DatingUI.GetComponent<DatingInterfaceUI>().Setup(charactersHere);
                 target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 break;
+            case BuildingType.馆驿:
+                SpawnItemBasedOnType(BuildingType.酒馆, 0);
+                target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
+                target.HotelUI.GetComponent<HotelUI>().Setup();
+                break;
+            case BuildingType.客栈:
+                SpawnItemBasedOnType(BuildingType.酒馆, 0);
+                target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
+                target.HotelUI.GetComponent<HotelUI>().Setup();
+                break;
             case BuildingType.酒楼:
                 if (NewDay())
                     SetPersonHere();
@@ -182,11 +194,25 @@ public class Building : MonoBehaviour
             case BuildingType.青楼:
                 currentPlay[0] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
                 target.AllCinema[0].GetComponent<CinemaUI>().Setup(currentPlay[0]);
-                if( charactersHere!= null)
+                if (charactersHere != null)
                 {
                     CharacterShopPriceAndList.ReturnSomeGirls(charactersHere);
                 }
                 charactersHere = CharacterShopPriceAndList.GetSomeGirls(MaxPersonHere);
+                target.CharacterShopUI.GetComponent<CharacterShopUI>().Setup(charactersHere);
+                break;
+            case BuildingType.红人馆:
+                currentPlay[0] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
+                target.AllCinema[0].GetComponent<CinemaUI>().Setup(currentPlay[0]);
+                if (charactersHere != null)
+                {
+                    CharacterShopPriceAndList.ReturnSomeGirls(charactersHere);
+                }
+                charactersHere = CharacterShopPriceAndList.GetSomeGirls(MaxPersonHere);
+                if (charactersAlwaysHere != null)
+                {
+                    charactersHere.Add(CharacterShopPriceAndList.OuputTopCharacter(charactersAlwaysHere[0]));
+                }
                 target.CharacterShopUI.GetComponent<CharacterShopUI>().Setup(charactersHere);
                 break;
         }

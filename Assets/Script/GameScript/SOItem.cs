@@ -514,7 +514,6 @@ public class SOItem : ScriptableObject
             }
         }
     };
-
     public static Dictionary<BuildingType, List<ItemName>> BuildingCraftDict = new Dictionary<BuildingType, List<ItemName>>()
     {
         {
@@ -1526,7 +1525,16 @@ public class SOItem : ScriptableObject
 
 
     };
-
-
+    public static ItemType FindType(ItemName item)
+    {
+        foreach (ItemType key in ItemTypeDict.Keys)
+        {
+            if (ItemTypeDict[key].Contains(item))
+            {
+                return key;
+            }
+        }
+        return ItemType.服装;
+    }
 
 }
