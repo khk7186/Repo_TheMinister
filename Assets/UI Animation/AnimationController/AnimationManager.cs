@@ -12,6 +12,7 @@ public class AnimationManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //OnCurrent = this.gameObject;
         Leave = OnCurrent.GetComponent<AnimationController>();
     }
 
