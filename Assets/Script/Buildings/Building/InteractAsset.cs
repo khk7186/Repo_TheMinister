@@ -17,7 +17,7 @@ public class InteractAsset : MonoBehaviour
     {
         building = GetComponent<Building>();
         GetComponent<Renderer>().material = defaultMaterial;
-        BuildingName = GetComponentInChildren<TextMeshPro>();
+        BuildingName = GetComponentInChildren<TextMeshPro>(true);
         BuildingName.text = building.buildingType.ToString();
         BuildingName.renderer.sortingOrder = GetComponent<Renderer>().sortingOrder + 1;
         BuildingName.gameObject.SetActive(false);
