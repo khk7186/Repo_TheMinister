@@ -60,7 +60,7 @@ public class Building : MonoBehaviour
     public BuildingType buildingType;
     public List<Character> charactersHere;
     public List<string> charactersAlwaysHere;
-    
+
     public int MaxPersonHere = 5;
 
     public int recordDay = -1;
@@ -73,7 +73,7 @@ public class Building : MonoBehaviour
     public List<int> shopMaxSpawn = new List<int>(4);
 
     [SerializeField] private BuildingUI buildingUI;
-    private BuildingUI currentUI;
+    public BuildingUI currentUI;
     private List<HorseRank> horseList;
 
     public List<ItemName> CraftingList = new List<ItemName>();
@@ -112,15 +112,22 @@ public class Building : MonoBehaviour
         //{
         //    SetPersonHere();
         //}
-        if (currentUI != null && !NewDay())
+        if (NewDay())
+        {
+            if (currentUI != null)
+            {
+                Destroy(currentUI.gameObject);
+            }
+        }
+        if (currentUI != null)
         {
             currentUI.gameObject.SetActive(true);
             return;
         }
+        recordDay = FindObjectOfType<Map>().Day;
         CreateUI();
         UpdateType();
         shopRefSetUp();
-        recordDay = FindObjectOfType<Map>().Day;
     }
 
     public void shopRefSetUp()

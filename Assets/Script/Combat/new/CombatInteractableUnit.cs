@@ -10,25 +10,38 @@ public class CombatInteractableUnit : MonoBehaviour
     public CombatSelectUI selectUI;
     public LineRenderer line;
     private CombatSceneController csc;
-    private void Awake()
+    public RenderExistingMesh renderExistingMesh;
+    private void Start()
     {
-        OnMouseExit();
+        
         if (csc == null)
         {
             csc = FindObjectOfType<CombatSceneController>();
         }
-        //var outline = GetComponentInChildren<RenderExistingMesh>(true);
+        renderExistingMesh = GetComponentInChildren<RenderExistingMesh>(true);
+        renderExistingMesh.Set();
+        Character character = GetComponent<CombatCharacterUnit>().character;
+        CharacterArtCode artCode = character.characterArtCode;
+        string FrontOrBack = character.hireStage == HireStage.Hired ? "Front" : "Back";
+        string path = $"Character Spine/{artCode}/{FrontOrBack}/{renderExistingMesh.replacementMaterials[0].originalMaterial.name}";
+        renderExistingMesh.GetComponent<MeshRenderer>().materials[0] = (Material)Resources.Load(path, typeof(Material));
+        path = $"{path}_Outline";
+        Debug.Log(path);
+        renderExistingMesh.replacementMaterials[0].replacementMaterial = (Material)Resources.Load(path, typeof(Material));
+        renderExistingMesh.Set();
+        OnMouseExit();
+        //RenderExistingMesh outline = new GameObject("outLine").AddComponent<RenderExistingMesh>();
+        //outline.gameObject.transform.parent = transform;
+        //outline.referenceRenderer.material = (Material)Resources.Load($"{outline.referenceRenderer.material.name}_outline", typeof(Material));
         //outline.Set();
     }
     public void OnMouseEnter()
     {
-        var outline = GetComponentInChildren<RenderExistingMesh>(true);
-        if (outline != null) outline.gameObject.SetActive(true);
+        if (renderExistingMesh != null) renderExistingMesh.gameObject.SetActive(true);
     }
     private void OnMouseExit()
     {
-        var outline = GetComponentInChildren<RenderExistingMesh>();
-        if (outline != null) outline.gameObject.SetActive(false);
+        if (renderExistingMesh != null) renderExistingMesh.gameObject.SetActive(false);
     }
     public void OnMouseOver()
     {
@@ -45,7 +58,7 @@ public class CombatInteractableUnit : MonoBehaviour
                 }
                 if (selectUI == null)
                 {
-
+                    Debug.Log("Creating select UI");
                     string path = "NPCInteractiveUI/CombatMenu/CombatSelectMenu";
                     selectUI = Instantiate(Resources.Load<CombatSelectUI>(path), MainCanvas.FindMainCanvas().transform);
                     if (selectUI != null)

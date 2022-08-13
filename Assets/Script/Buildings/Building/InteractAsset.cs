@@ -13,21 +13,21 @@ public class InteractAsset : MonoBehaviour
     public Material defaultMaterial;
     public Material highlightMaterial;
     public TextMeshPro BuildingName;
-
     private void Awake()
     {
         building = GetComponent<Building>();
         GetComponent<Renderer>().material = defaultMaterial;
         BuildingName = GetComponentInChildren<TextMeshPro>();
         BuildingName.text = building.buildingType.ToString();
+        BuildingName.renderer.sortingOrder = GetComponent<Renderer>().sortingOrder + 1;
+        BuildingName.gameObject.SetActive(false);
     }
-
     private void OnMouseDown()
     {
         if (Active == false) return;
         if (IsPointerOver.IsPointerOverUIObject())
         {
-            Debug.Log("Clicked on UI");
+            //Debug.Log("Clicked on UI");
             return;
         }
         building.OpenMenu();
@@ -35,6 +35,7 @@ public class InteractAsset : MonoBehaviour
     }
     private void OnMouseEnter()
     {
+        if (Active == false) return;
         if (IsPointerOver.IsPointerOverUIObject())
         {
             return;
@@ -42,14 +43,21 @@ public class InteractAsset : MonoBehaviour
         GetComponent<Renderer>().material = highlightMaterial;
         BuildingName.gameObject.SetActive(true);
     }
-
     private void OnMouseExit()
     {
+        if (Active == false) return;
         if (IsPointerOver.IsPointerOverUIObject())
         {
             return;
         }
         GetComponent<Renderer>().material = defaultMaterial;
         BuildingName.gameObject.SetActive(false);
+    }
+    IEnumerator HideUIUntilClose()
+    {
+        var hud =FindObjectOfType<UnityUIQuestHUD>();
+        hud.Hide();
+        yield return new WaitUntil(() => building.currentUI.gameObject.activeSelf == false);
+        hud.Show();
     }
 }
