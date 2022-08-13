@@ -22,7 +22,7 @@ public class InteractAsset : MonoBehaviour
         BuildingName.font = fontAsset;
         BuildingName.text = building.buildingType.ToString();
         BuildingName.fontSize = 40f;
-        BuildingName.renderer.sortingOrder = GetComponent<Renderer>().sortingOrder + 1;
+        BuildingName.renderer.sortingOrder = 100;
         BuildingName.gameObject.SetActive(false);
     }
     private void OnMouseDown()
