@@ -13,12 +13,15 @@ public class InteractAsset : MonoBehaviour
     public Material defaultMaterial;
     public Material highlightMaterial;
     public TextMeshPro BuildingName;
+    public TMP_FontAsset fontAsset;
     private void Awake()
     {
         building = GetComponent<Building>();
         GetComponent<Renderer>().material = defaultMaterial;
         BuildingName = GetComponentInChildren<TextMeshPro>(true);
+        BuildingName.font = fontAsset;
         BuildingName.text = building.buildingType.ToString();
+        BuildingName.fontSize = 40f;
         BuildingName.renderer.sortingOrder = GetComponent<Renderer>().sortingOrder + 1;
         BuildingName.gameObject.SetActive(false);
     }
