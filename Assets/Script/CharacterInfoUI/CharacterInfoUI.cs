@@ -31,6 +31,11 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
     public Text SneakValue;
     public Text DefenseValue;
 
+    public Image backGround;
+    public List<Image> ShadedImages;
+
+    private Rarerity rarerity;
+
     public void Setup()
     {
         var character = FindObjectOfType<OnSwitchAssets>().character;
@@ -60,6 +65,8 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
         //    CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.´Ì]],
         //    CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.ÊØ]]
         //    );
+        rarerity = character.CheckTopRare();
+        backGround.sprite = Resources.Load<Sprite>($"Art/ÈËÎï±³°ü/±³¾°/{rarerity}");
         SetValueBG(character);
         Name.text = character.CharacterName;
         SetIdle(character);
@@ -67,6 +74,14 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
         SetTags(character.tagList);
         SetHealthAndLoyalty(character);
         SetOnSelectButton(character);
+        SetShadedImages();
+    }
+    public void SetShadedImages()
+    {
+        foreach (var image in ShadedImages)
+        {
+            image.material = Resources.Load<Material>($"Mat/BackInkEffect/{rarerity}");
+        }
     }
 
     public void SetValueColors(Color32 wisdom, Color32 writing, Color32 strategy, Color32 strength, Color32 sneak, Color32 defense)

@@ -49,10 +49,12 @@ public class Confirmation
         yield return new WaitUntil(() => confirm != ConfirmPhase.Null);
         if (confirm == ConfirmPhase.False)
         {
+            //Debug.Log("Confirm False");
             confirm = ConfirmPhase.Null;
         }
         else if (confirm == ConfirmPhase.True)
         {
+            //Debug.Log("Confirmed");
             holdingMethod();
         }
     }

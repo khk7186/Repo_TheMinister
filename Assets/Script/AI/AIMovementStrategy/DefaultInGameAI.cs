@@ -40,7 +40,6 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     public Animator animator;
     //private string NPCJsonPath = "JSON/AIOnMapMovement";
     public Grid movementGrid;
-    private bool pointerHere = false;
     public NPCConversationTriggerGroup npcConversationTriggerGroup;
     private void Awake()
     {
@@ -106,39 +105,24 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         //StartCoroutine(MoveManyStep(steps));
     }
 
-    private void OnMouseDown()
+    protected void OnMouseDown()
+    {
+        StartConmunicate();
+    }
+    protected virtual void StartConmunicate()
     {
         var DSC = FindObjectOfType<DialogueSystemController>();
         DSC.initialDatabase = Resources.Load<DialogueDatabase>($"Conversions/{character.characterArtCode.ToString()}");
         DSC.Awake();
         npcConversationTriggerGroup.StartGeneral();
     }
-    //private void OnMouseUp()
-    //{
-    //    if (!IsPointerOver.IsPointerOverUIObject())
-    //    {
-    //        if (Input.GetMouseButtonUp(0))
-    //        {
-    //            if (npcPopUI == null)
-    //            {
-    //                string path = "NPCInteractiveUI/InteractiveUI/Menu";
-    //                npcPopUI = Instantiate(Resources.Load<NPCPopUI>(path), MainCanvas.FindMainCanvas().transform);
-    //                if (npcPopUI != null)
-    //                {
-    //                    npcPopUI.Setup(character, types, transform,this);
-    //                }
-    //            }
-    //        }
-    //    }
-    //    else pointerHere = false;
-    //}
-    //set inner as <param>inner
+
     public void SetInner(bool inner)
     {
         this.inner = inner;
     }
 
-    public void SetConversationDatabase()
+    public virtual void SetConversationDatabase()
     {
         //npcConversationTriggerGroup.Setup(character.characterArtCode.ToString());
         var pref = Resources.Load<NPCConversationTriggerGroup>($"{ReturnAssetPath.ReturnNPCConversationTriggerGroupPath(character.characterArtCode.ToString())}");

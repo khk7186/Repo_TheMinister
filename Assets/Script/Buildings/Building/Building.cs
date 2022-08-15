@@ -12,7 +12,7 @@ public enum BuildingType
     天马阁,
     奇兽堂,
     百兽园,
-    杂货铺,
+    五金店,
     百货店,
     万仙楼,
     当铺,
@@ -67,14 +67,13 @@ public class Building : MonoBehaviour
     public int currentDay = 0;
 
     public Transform BuildingCharacterSlot;
-
     public List<List<ItemName>> ShopList = new List<List<ItemName>>()
     {  new List<ItemName> (), new List<ItemName> (), new List<ItemName>()};
     public List<int> shopMaxSpawn = new List<int>(4);
 
     [SerializeField] private BuildingUI buildingUI;
     public BuildingUI currentUI;
-    private List<HorseRank> horseList;
+    private List<ItemName> horseList;
 
     public List<ItemName> CraftingList = new List<ItemName>();
     public List<PlayName> currentPlay;
@@ -137,68 +136,98 @@ public class Building : MonoBehaviour
         switch (buildingType)
         {
             case BuildingType.马厩:
-                target.horseRent.GetComponent<HorseRentUI>().SetUp(horseList);
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.马厩, 0);
+                //Debug.Log(ShopList[0].Count);
+                target.horseRent.GetComponent<HorseRentUI>().Setup(ShopList[0], buildingType);
                 break;
-            case BuildingType.杂货铺:
-                SpawnItemBasedOnType(BuildingType.杂货铺, 0);
+            case BuildingType.御马场:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.御马场, 0);
+                target.horseRent.GetComponent<HorseRentUI>().Setup(ShopList[0], buildingType);
+                break;
+            case BuildingType.天马阁:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.天马阁, 0);
+                target.horseRent.GetComponent<HorseRentUI>().Setup(ShopList[0], buildingType);
+                break;
+            case BuildingType.五金店:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.五金店, 0);
                 target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 break;
+            case BuildingType.百货店:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.百货店, 0);
+                target.AllShops[1].GetComponent<IShopUI>().Setup(ShopList[1]);
+                break;
+            case BuildingType.万仙楼:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.万仙楼, 0);
+                target.AllShops[2].GetComponent<IShopUI>().Setup(ShopList[2]);
+                break;
             case BuildingType.纺织铺:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.纺织铺, 0);
+                target.AllShops[1].GetComponent<IShopUI>().Setup(ShopList[1]);
+                break;
             case BuildingType.长安织造:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.长安织造, 0);
                 target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 SetupCraft();
                 break;
             case BuildingType.商行:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.商行, 0);
                 target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 break;
             case BuildingType.西域珍品:
                 SetupCraft();
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.西域珍品, 0);
                 target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[2]);
                 break;
             case BuildingType.药铺:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.药铺, 0);
                 target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 SetupCraft();
                 break;
             case BuildingType.铁匠铺:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.铁匠铺, 0);
                 target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[1]);
                 SetupCraft();
                 break;
             case BuildingType.酒馆:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.酒馆, 0);
                 if (NewDay())
                     SetPersonHere();
                 target.DatingUI.GetComponent<DatingInterfaceUI>().Setup(charactersHere);
                 target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 break;
             case BuildingType.馆驿:
-                SpawnItemBasedOnType(BuildingType.酒馆, 0);
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.酒馆, 0);
                 target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 target.HotelUI.GetComponent<HotelUI>().Setup();
                 break;
             case BuildingType.客栈:
-                SpawnItemBasedOnType(BuildingType.酒馆, 0);
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.酒馆, 0);
                 target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 target.HotelUI.GetComponent<HotelUI>().Setup();
                 break;
             case BuildingType.酒楼:
                 if (NewDay())
                     SetPersonHere();
-                SpawnItemBasedOnType(BuildingType.酒楼, 0);
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.酒楼, 0);
                 target.BanquetUI.GetComponent<BanquetUI>().Setup(this);
                 target.BigBanquatUI.GetComponent<BanquetUI>().Setup(this);
                 target.DatingUI.GetComponent<DatingInterfaceUI>().Setup(charactersHere);
                 target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 break;
             case BuildingType.戏馆:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.戏馆, 0);
                 currentPlay[0] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
                 target.AllCinema[0].GetComponent<CinemaUI>().Setup(currentPlay[0]);
                 break;
             case BuildingType.戏院:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.戏院, 0);
                 currentPlay[0] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
                 currentPlay[1] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
                 target.AllCinema[0].GetComponent<CinemaUI>().Setup(currentPlay[0]);
                 target.AllCinema[1].GetComponent<CinemaUI>().Setup(currentPlay[1]);
                 break;
             case BuildingType.青楼:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.青楼, 0);
                 currentPlay[0] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
                 target.AllCinema[0].GetComponent<CinemaUI>().Setup(currentPlay[0]);
                 if (charactersHere != null)
@@ -209,6 +238,7 @@ public class Building : MonoBehaviour
                 target.CharacterShopUI.GetComponent<CharacterShopUI>().Setup(charactersHere);
                 break;
             case BuildingType.红人馆:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.红人馆, 0);
                 currentPlay[0] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
                 target.AllCinema[0].GetComponent<CinemaUI>().Setup(currentPlay[0]);
                 if (charactersHere != null)
@@ -263,11 +293,7 @@ public class Building : MonoBehaviour
     {
         var targetRef = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
         var horserent = targetRef.horseRent.GetComponent<HorseRentUI>();
-        horseList = new List<HorseRank>();
-        for (int i = 0; i < horserent.numberOfSpawn; i++)
-        {
-            horseList.Add(horserent.RandomHorse());
-        }
+        
     }
     public void AddCraftingToBuilding(ItemName item)
     {

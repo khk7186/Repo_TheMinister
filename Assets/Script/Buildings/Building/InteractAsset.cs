@@ -12,15 +12,20 @@ public class InteractAsset : MonoBehaviour
     public bool Active = false;
     public Material defaultMaterial;
     public Material highlightMaterial;
+    public Material unreachMaterial;
     public TextMeshPro BuildingName;
     public TMP_FontAsset fontAsset;
+    public string buildingNameText = "";
+    public Color ReachableColor;
+    public Color UnreachableColor;
     private void Awake()
     {
         building = GetComponent<Building>();
         GetComponent<Renderer>().material = defaultMaterial;
         BuildingName = GetComponentInChildren<TextMeshPro>(true);
         BuildingName.font = fontAsset;
-        BuildingName.text = building.buildingType.ToString();
+        buildingNameText = building.buildingType.ToString();
+        BuildingName.text = buildingNameText;
         BuildingName.fontSize = 40f;
         BuildingName.renderer.sortingOrder = 100;
         BuildingName.gameObject.SetActive(false);
@@ -38,27 +43,39 @@ public class InteractAsset : MonoBehaviour
     }
     private void OnMouseEnter()
     {
-        if (Active == false) return;
+        BuildingName.renderer.sortingOrder = 100;
+        if (Active == false)
+        {
+            GetComponent<Renderer>().material = unreachMaterial;
+            BuildingName.fontSize = 20f;
+            BuildingName.color = UnreachableColor;
+            BuildingName.text = $"{buildingNameText}\n (Ì«Ô¶ÁË)";
+            BuildingName.gameObject.SetActive(true);
+            return;
+        }
         if (IsPointerOver.IsPointerOverUIObject())
         {
             return;
         }
         GetComponent<Renderer>().material = highlightMaterial;
+        BuildingName.fontSize = 40f;
+        BuildingName.color = ReachableColor;
+        BuildingName.text = buildingNameText;
         BuildingName.gameObject.SetActive(true);
     }
     private void OnMouseExit()
     {
+        BuildingName.gameObject.SetActive(false);
+        GetComponent<Renderer>().material = defaultMaterial;
         if (Active == false) return;
         if (IsPointerOver.IsPointerOverUIObject())
         {
             return;
         }
-        GetComponent<Renderer>().material = defaultMaterial;
-        BuildingName.gameObject.SetActive(false);
     }
     IEnumerator HideUIUntilClose()
     {
-        var hud =FindObjectOfType<UnityUIQuestHUD>();
+        var hud = FindObjectOfType<UnityUIQuestHUD>();
         hud.Hide();
         yield return new WaitUntil(() => building.currentUI.gameObject.activeSelf == false);
         hud.Show();

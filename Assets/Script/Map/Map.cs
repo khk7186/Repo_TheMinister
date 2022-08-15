@@ -20,6 +20,7 @@ public class Map : MonoBehaviour, IObserver
     private bool OnMove => PlayerNextBlockToMove != PlayerCurrentBlock;
 
     public float duration = 10f;
+    public int HorseMovementBuff = 1;
 
     [SerializeField] private Animator PlayerAnimator;
     [SerializeField] private CharacterMovement PlayerMovement;
@@ -50,7 +51,7 @@ public class Map : MonoBehaviour, IObserver
             //PlayerAnimator.SetTrigger("Move");
             DayTimePlus();
             //StartCoroutine(MoveManyStep((int)value, Player));
-            PlayerMovement.finalBlock += (int)value;
+            PlayerMovement.finalBlock += (int)value * HorseMovementBuff;
             StartCoroutine(Move());
         }
     }
@@ -60,6 +61,7 @@ public class Map : MonoBehaviour, IObserver
         yield return PlayerMovement.MoveToLocation();
         FindObjectOfType<Dice>().rolling = false;
         SetBuildings();
+        HorseMovementBuff = 1;
     }
 
     private void DayTimePlus()
@@ -112,7 +114,6 @@ public class Map : MonoBehaviour, IObserver
         SetBuildings();
         PlayerAnimator.SetTrigger("Stop");
     }
-
     public List<Building> InteractebleBuildingCheck()
     {
         var colliders = Physics2D.OverlapCircleAll(Player.transform.position, Radius);

@@ -1,64 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public enum HorseRank
-{
-    N = 1,
-    R = 2,
-    SR = 3,
-    SSR = 4,
-    UR = 5
-}
+
 public class HorseRentUI : MonoBehaviour
 {
-    private List<int> rates = new List<int>()
-    {
-        50,
-        40,
-        10,
-        1,
-        0
-    };
+    public Transform content;
+    public HorseItemUI shopItemUI;
     public int numberOfSpawn = 5;
-    private void OnEnable()
+    public void Setup(List<ItemName> horseList, BuildingType buildingType)
     {
-    }
-
-
-    public void SetUp(List<HorseRank> horseList)
-    {
-        var target = Resources.Load<HorseCardUI>("BuildingUI/HorseCard");
-        foreach (HorseRank hr in horseList)
+        shopItemUI.gameObject.SetActive(false);
+        foreach (ItemName hr in horseList)
         {
-            var current = Instantiate(target, transform);
-            current.SetUp(hr);
-        }
-            
-    }
-
-    public HorseRank RandomHorse()
-    {
-        int MaxValue = rates[0] + rates[1] + rates[2] + rates[3] + rates[4];
-        int DrawValue = Random.Range(0, MaxValue);
-        if (DrawValue < rates[0])
-        {
-            return HorseRank.N;
-        }
-        else if (DrawValue < (rates[0]+ rates[1]))
-        {
-            return HorseRank.R;
-        }
-        else if (DrawValue < (rates[0] + rates[1]+rates[2]))
-        {
-            return HorseRank.SR;
-        }
-        else if (DrawValue < (rates[0] + rates[1] + rates[2]+rates[3]))
-        {
-            return HorseRank.SSR;
-        }
-        else
-        {
-            return HorseRank.UR;
+            var current = Instantiate(shopItemUI, content);
+            current.SetupHorseItem(hr, buildingType);
+            current.gameObject.SetActive(true);
         }
     }
 

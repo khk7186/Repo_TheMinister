@@ -28,7 +28,7 @@ public class ShopItemUI : ItemUI
             return;
         }
         string message = "是否花费" + Price.text + "银两购买" + ItemName + "?";
-        Confirmation.CreateNewComfirmation(BuyItem, message);
+        StartCoroutine(Confirmation.CreateNewComfirmation(BuyItem, message).Confirm());
     }
     public void BuyItem()
     {
@@ -41,6 +41,7 @@ public class ShopItemUI : ItemUI
     }
     public void SetupShopItem(ItemName item, int price = 0)
     {
+        Setup(item,0);
         Price.text = price.ToString();
         amount.gameObject.SetActive(false);
     }

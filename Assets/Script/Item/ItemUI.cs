@@ -252,6 +252,7 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
     public Text amount;
     public TagExchangeUI tagExchangeUI;
     public Image Frame;
+    public Rarerity framRarity;
     public Image Icon => icon;
     public bool InUse = true;
     public void OnPointerClick(PointerEventData eventData)
@@ -300,7 +301,7 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
         string SpritePath = ("Art/ItemIcon/" + item.ToString()).Replace(" ", string.Empty);
         icon.sprite = Resources.Load<Sprite>(SpritePath);
         this.amount.text = amount.ToString();
-        var framRarity = Player.AllTagRareDict[Use()] != Rarerity.B ? Player.AllTagRareDict[Use()] : Rarerity.N;
+        framRarity = Player.AllTagRareDict[Use()] != Rarerity.B ? Player.AllTagRareDict[Use()] : Rarerity.N;
         string FramePath = $"Art/BuildingUI/杂货铺/初级五金铺/物品框/物品框-{framRarity}";
         Frame.sprite = Resources.Load<Sprite>(FramePath);
         var spritSize = icon.GetComponent<RectTransform>().sizeDelta;

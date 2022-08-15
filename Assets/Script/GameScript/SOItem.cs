@@ -452,7 +452,6 @@ public class SOItem : ScriptableObject
                 ItemName.长脚马,
                 ItemName.短尾马,
                 ItemName.肥马,
-
             }
         },
         {
@@ -755,7 +754,7 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.杂货铺, new List<ItemName>()
+            BuildingType.五金店, new List<ItemName>()
             {
             }
         },
@@ -1254,7 +1253,7 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.杂货铺, new List<ItemName>()
+            BuildingType.五金店, new List<ItemName>()
             {
                 ItemName.糖,
                 ItemName.铁矿,
@@ -1514,7 +1513,7 @@ public class SOItem : ScriptableObject
         {BuildingType.仙鼎台,new Dictionary<ItemType, List<int>>(){{ItemType.药材, new List<int>(){ 19, 46, 145, 656, 2320, 0 } }}},
         {BuildingType.医院,new Dictionary<ItemType, List<int>>(){{ItemType.药材, new List<int>() { 17, 40, 121, 510, 0, 0 } } }},
         {BuildingType.研究院,new Dictionary<ItemType, List<int>>(){{ItemType.药材, new List<int>(){ 19, 46, 145, 656, 2320, 0 } } }},
-        {BuildingType.杂货铺,new Dictionary<ItemType, List<int>>(){{ItemType.杂货,new List<int>(){ 21, 52, 0, 0, 0, 0 } },
+        {BuildingType.五金店,new Dictionary<ItemType, List<int>>(){{ItemType.杂货,new List<int>(){ 21, 52, 0, 0, 0, 0 } },
                                                                 {ItemType.材料,new List<int>(){ 20, 49, 0, 0, 0, 0 } }}},
         {BuildingType.百货店,new Dictionary<ItemType, List<int>>(){{ItemType.杂货, new List<int>(){ 23, 59, 200, 980, 0, 0 } },
                                                                 {ItemType.材料,new List<int>(){ 22, 56, 187, 898, 0, 0 } }}},
