@@ -1524,7 +1524,10 @@ public class SOItem : ScriptableObject
                                                                 {ItemType.材料,new List<int>(){ 24, 62, 214, 1070, 5145, 0 } }}},
 
 
+
     };
+    public static List<int> ItemRentPrice = new List<int>()
+    {9,27,81,243,729,2187};
     public static ItemType FindType(ItemName item)
     {
         foreach (ItemType key in ItemTypeDict.Keys)
