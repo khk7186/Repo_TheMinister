@@ -41,7 +41,8 @@ public class PawnShopItemUI : ItemUI
                 }
             }
         }
-        pawnshopUI.SellDict[item] = int.Parse(amount.text);
+        pawnshopUI.SellDict[item] = int.Parse(sellAmount.text);
+        pawnshopUI.UpdatePrice();
     }
     public void SetupPawnItem(ItemName itemName, int amount)
     {

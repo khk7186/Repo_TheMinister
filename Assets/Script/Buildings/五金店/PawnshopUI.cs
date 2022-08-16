@@ -12,7 +12,7 @@ public class PawnshopUI : MonoBehaviour
     private void Awake()
     {
         itemTemp.gameObject.SetActive(false);
-        
+
     }
     private void Start()
     {
@@ -20,6 +20,7 @@ public class PawnshopUI : MonoBehaviour
     }
     public void Setup()
     {
+        TransformEx.Clear(content);
         var playerInv = FindObjectOfType<ItemInventory>().ItemDict;
         SellDict = new Dictionary<ItemName, int>();
         foreach (var item in playerInv)
@@ -37,7 +38,10 @@ public class PawnshopUI : MonoBehaviour
         int price = 0;
         foreach (var item in SellDict)
         {
-            //price += item.Value * SOItem.
+            ItemType itemType = SOItem.FindType(item.Key);
+            Rarerity Rarity = Player.AllTagRareDict[SOItem.ItemMap[item.Key]] != Rarerity.B
+                ? Player.AllTagRareDict[SOItem.ItemMap[item.Key]] : Rarerity.N;
+            price += item.Value * SOItem.PawnshopPrice[itemType][(int)Rarity / 2 - 1];
         }
         Money.text = price.ToString();
     }
