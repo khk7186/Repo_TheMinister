@@ -1541,9 +1541,62 @@ public class SOItem : ScriptableObject
                                                                 {ItemType.材料,new List<int>(){ 24, 62, 214, 1070, 5145, 0 } }}},
         {BuildingType.长安织造,new Dictionary<ItemType, List<int>>(){{ItemType.服装, new List<int>(){ 26, 69, 246, 1283, 6907, 0 } },
                                                                 {ItemType.材料,new List<int>(){ 24, 62, 214, 1070, 5145, 0 } }}},
+    };
 
-
-
+    public static Dictionary<ItemType, List<int>> PawnshopPrice = new Dictionary<ItemType, List<int>>()
+    {
+        { ItemType.丹药,new List<int>()
+        {
+            10,20,30,40,50,60,70
+        } },
+        { ItemType.书籍,new List<int>()
+        {
+            10,20,30,40,50,60,70
+        } },
+        { ItemType.兵器,new List<int>()
+        {
+            10,20,30,40,50,60,70
+        } },
+        { ItemType.坐骑,new List<int>()
+        {
+            10,20,30,40,50,60,70
+        } },
+        {ItemType.奇兽,new List<int>()
+        {
+            10,20,30,40,50,60,70
+        }},
+        { ItemType.服装,new List<int>()
+        {
+            10,20,30,40,50,60,70
+        } },
+        { ItemType.机关,new List<int>()
+        {
+            10,20,30,40,50,60,70
+        } },
+        { ItemType.杂货,new List<int>()
+        {
+            10,20,30,40,50,60,70
+        } },
+        { ItemType.材料,new List<int>()
+        {
+            10,20,30,40,50,60,70
+        } },
+        { ItemType.药材,new List<int>()
+        {
+            10,20,30,40,50,60,70
+        } },
+        { ItemType.菜品,new List<int>()
+        {
+            10,20,30,40,50,60,70
+        } },
+        { ItemType.酒品,new List<int>()
+        {
+            10,20,30,40,50,60,70
+        } },
+        { ItemType.饰品,new List<int>()
+        {
+            10,20,30,40,50,60,70
+        } },
     };
     public static List<int> ItemRentPrice = new List<int>()
     {9,27,81,243,729,2187};
