@@ -255,7 +255,7 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
     public Rarerity framRarity;
     public Image Icon => icon;
     public bool InUse = true;
-    public void OnPointerClick(PointerEventData eventData)
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
         if (!InUse)
             return;
@@ -307,7 +307,6 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
         var spritSize = icon.GetComponent<RectTransform>().sizeDelta;
         Frame.GetComponent<RectTransform>().sizeDelta = new Vector2(spritSize.x * 1.16f, spritSize.y * 1.1f);
     }
-
     public Tag Use()
     {
         Tag output = Tag.Null;
@@ -321,8 +320,6 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
             Debug.LogError(ItemName);
             return output;
         }
-
-
     }
 
 }
