@@ -5,17 +5,31 @@ using PixelCrushers.QuestMachine;
 using PixelCrushers.DialogueSystem;
 
 
-public class QuestGiverAI : DefaultInGameAI
+public class QuestGiverAI : MonoBehaviour
 {
     public string QuestID;
-    protected override void StartConmunicate()
+    public Character character;
+    public NPCConversationTriggerGroup npcConversationTriggerGroup;
+    public Grid movementGrid;
+    public int blockStay;
+    public bool inner = true;
+    private void Awake()
+    {
+        movementGrid = FindObjectOfType<MovementGrid>().GetComponent<Grid>();
+        inner = Random.Range(0, 2) == 0 ? false : true;
+        //foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
+        //{
+        //    subject.RegisterObserver(this);
+        //}
+    }
+    protected void StartConmunicate()
     {
         var DSC = FindObjectOfType<DialogueSystemController>();
         DSC.initialDatabase = Resources.Load<DialogueDatabase>($"Conversions/ÈÎÎñ");
         DSC.Awake();
         npcConversationTriggerGroup.StartGeneral();
     }
-    public override void SetConversationDatabase()
+    public void SetConversationDatabase()
     {
         var pref = Resources.Load<NPCConversationTriggerGroup>
             ($"{ReturnAssetPath.ReturnNPCConversationTriggerGroupPath(character.characterArtCode.ToString())}");
@@ -28,5 +42,9 @@ public class QuestGiverAI : DefaultInGameAI
         {
             QuestID = QuestID.Remove(QuestID.Length - 1);
         }
+    }
+    protected void OnMouseDown()
+    {
+        GetComponentInChildren<QuestGiver>().StartDialogueWithPlayer();
     }
 }

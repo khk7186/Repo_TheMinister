@@ -541,7 +541,7 @@ namespace PixelCrushers.QuestMachine
         /// </summary>
         public virtual void StartDialogueWithPlayer()
         {
-            Debug.Log("StartDialogue");
+            //Debug.Log("StartDialogue");
             StartDialogue(null);
         }
 

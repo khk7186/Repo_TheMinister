@@ -190,17 +190,18 @@ public class Building : MonoBehaviour
                 break;
             case BuildingType.아반:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.아반, 0);
-                if (NewDay())
-                    SetPersonHere();
+                SetPersonHere();
                 target.DatingUI.GetComponent<DatingInterfaceUI>().Setup(charactersHere);
                 target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 break;
             case BuildingType.반輦:
+                SetPersonHere();
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.아반, 0);
                 target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 target.HotelUI.GetComponent<HotelUI>().Setup();
                 break;
             case BuildingType.와攬:
+                SetPersonHere();
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.아반, 0);
                 target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 target.HotelUI.GetComponent<HotelUI>().Setup();
@@ -293,7 +294,7 @@ public class Building : MonoBehaviour
     {
         var targetRef = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
         var horserent = targetRef.horseRent.GetComponent<HorseRentUI>();
-        
+
     }
     public void AddCraftingToBuilding(ItemName item)
     {
