@@ -150,70 +150,57 @@ public class Building : MonoBehaviour
                 break;
             case BuildingType.五金店:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.五金店, 0);
-                target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 break;
             case BuildingType.百货店:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.百货店, 0);
-                target.AllShops[1].GetComponent<IShopUI>().Setup(ShopList[1]);
                 break;
             case BuildingType.万仙楼:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.万仙楼, 0);
-                target.AllShops[2].GetComponent<IShopUI>().Setup(ShopList[2]);
                 break;
             case BuildingType.纺织铺:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.纺织铺, 0);
-                target.AllShops[1].GetComponent<IShopUI>().Setup(ShopList[1]);
                 break;
             case BuildingType.长安织造:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.长安织造, 0);
-                target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 SetupCraft();
                 break;
             case BuildingType.商行:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.商行, 0);
-                target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 break;
             case BuildingType.西域珍品:
                 SetupCraft();
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.西域珍品, 0);
-                target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[2]);
                 break;
             case BuildingType.药铺:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.药铺, 0);
-                target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 SetupCraft();
                 break;
             case BuildingType.铁匠铺:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.铁匠铺, 0);
-                target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[1]);
                 SetupCraft();
                 break;
             case BuildingType.酒馆:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.酒馆, 0);
                 SetPersonHere();
                 target.DatingUI.GetComponent<DatingInterfaceUI>().Setup(charactersHere);
-                target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
+                //target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 break;
             case BuildingType.馆驿:
                 SetPersonHere();
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.酒馆, 0);
-                target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 target.HotelUI.GetComponent<HotelUI>().Setup();
                 break;
             case BuildingType.客栈:
                 SetPersonHere();
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.酒馆, 0);
-                target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 target.HotelUI.GetComponent<HotelUI>().Setup();
                 break;
             case BuildingType.酒楼:
-                if (NewDay())
                     SetPersonHere();
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.酒楼, 0);
                 target.BanquetUI.GetComponent<BanquetUI>().Setup(this);
                 target.BigBanquatUI.GetComponent<BanquetUI>().Setup(this);
                 target.DatingUI.GetComponent<DatingInterfaceUI>().Setup(charactersHere);
-                target.AllShops[0].GetComponent<IShopUI>().Setup(ShopList[0]);
                 break;
             case BuildingType.戏馆:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.戏馆, 0);
@@ -282,6 +269,15 @@ public class Building : MonoBehaviour
             var targetItem = targetList[randomTypeIndex];
             outputItems.Add(targetItem);
         }
+        if (buildingType == BuildingType.马厩|| buildingType == BuildingType.御马场|| buildingType == BuildingType.天马阁)
+        {
+            return outputItems;
+        }
+        var target = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
+        var shop = target.AllShops[shopIndex].GetComponent<IShopUI>() as ConvenienceStore;
+        shop.buildingType = buildingType;
+        shop.Setup(outputItems);
+        //Debug.Log("Shop " + shopIndex + " has " + outputItems.Count + " items");
         return outputItems;
     }
     public bool NewDay()

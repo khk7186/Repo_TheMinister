@@ -16,6 +16,10 @@ public class ShopItemUI : ItemUI
     }
     protected override void LeftClickAction()
     {
+        
+    }
+    public override void SetupInUseItem()
+    {
         if (bought)
         {
             return;
@@ -42,6 +46,8 @@ public class ShopItemUI : ItemUI
     public void SetupShopItem(ItemName item, int price = 0)
     {
         Setup(item,0);
+        Frame.GetComponent<RectTransform>().offsetMin = new Vector2(0,0);
+        Frame.GetComponent<RectTransform>().offsetMax = new Vector2(0,0);
         Price.text = price.ToString();
         amount.gameObject.SetActive(false);
     }

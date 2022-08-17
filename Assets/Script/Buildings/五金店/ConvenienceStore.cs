@@ -5,22 +5,29 @@ using UnityEngine;
 public class ConvenienceStore : MonoBehaviour, IShopUI
 {
     public ItemType spawnType;
-    public List<ItemUI> itemUIs = new List<ItemUI>();
-    BuildingType buildingType;
+    public List<ShopItemUI> itemUIs = new List<ShopItemUI>();
+    public BuildingType buildingType;
+    private void Awake()
+    {
+        foreach (ItemUI i in itemUIs)
+        {
+            i.gameObject.SetActive(false);
+        }
+    }
     public void Setup(List<ItemName> shopList)
     {
         int UIindex = 0;
         foreach (ItemName i in shopList)
         {
             itemUIs[UIindex].gameObject.SetActive(enabled);
-            var shopUI = GetComponent<ShopItemUI>();
+            var shopUI = itemUIs[UIindex].GetComponent<ShopItemUI>();
             ItemType itemType = SOItem.FindType(i);
+            //Debug.Log(i);
             Rarerity rarerity = Player.AllTagRareDict[SOItem.ItemMap[i]];
-            int price = SOItem.ItempriceTag[buildingType][itemType][(int)rarerity / 2 - 1];
-            shopUI.SetupShopItem(i, 1);
+            var priceList = SOItem.ItempriceTag[buildingType][itemType];
+            int price = priceList[rarerity >= Rarerity.N ? (int)rarerity / 2 - 1 : 0];
+            shopUI.SetupShopItem(i, price);
             UIindex++;
         }
     }
-
-
 }
