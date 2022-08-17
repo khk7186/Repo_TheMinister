@@ -66,7 +66,10 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
         //    CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.守]]
         //    );
         rarerity = character.CheckTopRare();
-        backGround.sprite = Resources.Load<Sprite>($"Art/人物背包/背景/{rarerity}");
+        if (backGround != null)
+        {
+            backGround.sprite = Resources.Load<Sprite>($"Art/人物背包/背景/{rarerity}");
+        }
         SetValueBG(character);
         Name.text = character.CharacterName;
         SetIdle(character);
