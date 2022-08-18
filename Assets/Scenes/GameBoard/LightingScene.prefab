@@ -1,5 +1,40 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4396590915350687137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 7658411863876123109}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2142364491073670835}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2142364491073670835
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 8643269859949573974, guid: 45000fc387f2d7a459203c99d9e67e58, type: 3}
+  m_PrefabInstance: {fileID: 7658411863876123109}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4396590915350687137}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3367581688508880023}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6869824795753888685
 GameObject:
   m_ObjectHideFlags: 0
@@ -31453,6 +31488,84 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoneyAmount: 10
   stationType: 0
+--- !u!114 &7658411863544361880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7658411863441569738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a5473918a168c44fa0294bd4d1399f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  conversationEvents:
+    onConversationStart:
+      m_PersistentCalls:
+        m_Calls: []
+    onConversationEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    runOnConversationEndEventsAtEndOfFrame: 0
+    onConversationCancelled:
+      m_PersistentCalls:
+        m_Calls: []
+    onConversationLine:
+      m_PersistentCalls:
+        m_Calls: []
+    onConversationLineEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    onConversationLineCancelled:
+      m_PersistentCalls:
+        m_Calls: []
+    onConversationResponseMenu:
+      m_PersistentCalls:
+        m_Calls: []
+    onConversationResponseMenuTimeout:
+      m_PersistentCalls:
+        m_Calls: []
+    onLinkedConversationStart:
+      m_PersistentCalls:
+        m_Calls: []
+  barkEvents:
+    onBarkStart:
+      m_PersistentCalls:
+        m_Calls: []
+    onBarkEnd:
+      m_PersistentCalls:
+        m_Calls: []
+    onBarkLine:
+      m_PersistentCalls:
+        m_Calls: []
+  sequenceEvents:
+    onSequenceStart:
+      m_PersistentCalls:
+        m_Calls: []
+    onSequenceEnd:
+      m_PersistentCalls:
+        m_Calls: []
+  questEvents:
+    onQuestStateChange:
+      m_PersistentCalls:
+        m_Calls: []
+    onQuestTrackingEnabled:
+      m_PersistentCalls:
+        m_Calls: []
+    onQuestTrackingDisabled:
+      m_PersistentCalls:
+        m_Calls: []
+    onUpdateQuestTracker:
+      m_PersistentCalls:
+        m_Calls: []
+  pauseEvents:
+    onDialogueSystemPause:
+      m_PersistentCalls:
+        m_Calls: []
+    onDialogueSystemUnpause:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!1 &7658411863443083398
 GameObject:
   m_ObjectHideFlags: 0
@@ -31469,7 +31582,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7658411863443083399
 Transform:
   m_ObjectHideFlags: 0
@@ -34003,8 +34116,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411863513430673
 GameObject:
   m_ObjectHideFlags: 0
@@ -34280,6 +34397,7 @@ MonoBehaviour:
   Player: {fileID: 7658411863752076262}
   delayPerMove: 0.2
   duration: 0.5
+  HorseMovementBuff: 1
   PlayerAnimator: {fileID: 7658411864962349866}
   PlayerMovement: {fileID: 7658411863752076251}
 --- !u!1 &7658411863523976321
@@ -35080,8 +35198,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411863543068340
 GameObject:
   m_ObjectHideFlags: 0
@@ -35174,84 +35296,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7658411863544361880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7658411863441569738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a5473918a168c44fa0294bd4d1399f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  conversationEvents:
-    onConversationStart:
-      m_PersistentCalls:
-        m_Calls: []
-    onConversationEnd:
-      m_PersistentCalls:
-        m_Calls: []
-    runOnConversationEndEventsAtEndOfFrame: 0
-    onConversationCancelled:
-      m_PersistentCalls:
-        m_Calls: []
-    onConversationLine:
-      m_PersistentCalls:
-        m_Calls: []
-    onConversationLineEnd:
-      m_PersistentCalls:
-        m_Calls: []
-    onConversationLineCancelled:
-      m_PersistentCalls:
-        m_Calls: []
-    onConversationResponseMenu:
-      m_PersistentCalls:
-        m_Calls: []
-    onConversationResponseMenuTimeout:
-      m_PersistentCalls:
-        m_Calls: []
-    onLinkedConversationStart:
-      m_PersistentCalls:
-        m_Calls: []
-  barkEvents:
-    onBarkStart:
-      m_PersistentCalls:
-        m_Calls: []
-    onBarkEnd:
-      m_PersistentCalls:
-        m_Calls: []
-    onBarkLine:
-      m_PersistentCalls:
-        m_Calls: []
-  sequenceEvents:
-    onSequenceStart:
-      m_PersistentCalls:
-        m_Calls: []
-    onSequenceEnd:
-      m_PersistentCalls:
-        m_Calls: []
-  questEvents:
-    onQuestStateChange:
-      m_PersistentCalls:
-        m_Calls: []
-    onQuestTrackingEnabled:
-      m_PersistentCalls:
-        m_Calls: []
-    onQuestTrackingDisabled:
-      m_PersistentCalls:
-        m_Calls: []
-    onUpdateQuestTracker:
-      m_PersistentCalls:
-        m_Calls: []
-  pauseEvents:
-    onDialogueSystemPause:
-      m_PersistentCalls:
-        m_Calls: []
-    onDialogueSystemUnpause:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!1 &7658411863551167730
 GameObject:
   m_ObjectHideFlags: 0
@@ -41930,8 +41974,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411863739029373
 GameObject:
   m_ObjectHideFlags: 0
@@ -46374,8 +46422,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411863842736363
 GameObject:
   m_ObjectHideFlags: 0
@@ -47087,8 +47139,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411863854678675
 GameObject:
   m_ObjectHideFlags: 0
@@ -47512,7 +47568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7658411863866995313
 Transform:
   m_ObjectHideFlags: 0
@@ -47832,8 +47888,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411863873998393
 GameObject:
   m_ObjectHideFlags: 0
@@ -49165,8 +49225,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411863904172330
 GameObject:
   m_ObjectHideFlags: 0
@@ -50172,8 +50236,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411863932470641
 GameObject:
   m_ObjectHideFlags: 0
@@ -51107,8 +51175,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411863957986555
 GameObject:
   m_ObjectHideFlags: 0
@@ -51961,8 +52033,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411863971493035
 GameObject:
   m_ObjectHideFlags: 0
@@ -53116,8 +53192,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864004827638
 GameObject:
   m_ObjectHideFlags: 0
@@ -53838,8 +53918,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864029347416
 GameObject:
   m_ObjectHideFlags: 0
@@ -56439,8 +56523,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864113987172
 GameObject:
   m_ObjectHideFlags: 0
@@ -58780,8 +58868,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864200981816
 GameObject:
   m_ObjectHideFlags: 0
@@ -59513,8 +59605,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864221592807
 GameObject:
   m_ObjectHideFlags: 0
@@ -60941,8 +61037,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864242955675
 GameObject:
   m_ObjectHideFlags: 0
@@ -66538,8 +66638,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864343671080
 GameObject:
   m_ObjectHideFlags: 0
@@ -67011,8 +67115,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864350199324
 GameObject:
   m_ObjectHideFlags: 0
@@ -67295,8 +67403,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864355411899
 GameObject:
   m_ObjectHideFlags: 0
@@ -67695,8 +67807,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864362275631
 GameObject:
   m_ObjectHideFlags: 0
@@ -69237,8 +69353,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864413049972
 GameObject:
   m_ObjectHideFlags: 0
@@ -69772,8 +69892,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864417727243
 GameObject:
   m_ObjectHideFlags: 0
@@ -70350,7 +70474,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7658411864436134423
 Transform:
   m_ObjectHideFlags: 0
@@ -71872,8 +71996,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864474074710
 GameObject:
   m_ObjectHideFlags: 0
@@ -73692,8 +73820,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864550212667
 GameObject:
   m_ObjectHideFlags: 0
@@ -75108,8 +75240,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864566489327
 GameObject:
   m_ObjectHideFlags: 0
@@ -77211,8 +77347,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!19719996 &7658411864608156994
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -78280,8 +78420,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864648777934
 GameObject:
   m_ObjectHideFlags: 0
@@ -78656,8 +78800,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864660466907
 GameObject:
   m_ObjectHideFlags: 0
@@ -87843,8 +87991,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864820050800
 GameObject:
   m_ObjectHideFlags: 0
@@ -88239,8 +88391,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864837275780
 GameObject:
   m_ObjectHideFlags: 0
@@ -92167,8 +92323,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411864947083900
 GameObject:
   m_ObjectHideFlags: 0
@@ -93443,7 +93603,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2142364491073670835}
+  - {fileID: 3367581688508880023}
   m_Father: {fileID: 7658411865178490246}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -95492,8 +95652,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411865002538768
 GameObject:
   m_ObjectHideFlags: 0
@@ -99724,8 +99888,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411865132332378
 GameObject:
   m_ObjectHideFlags: 0
@@ -102010,8 +102178,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411865196595134
 GameObject:
   m_ObjectHideFlags: 0
@@ -102947,8 +103119,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411865219098173
 GameObject:
   m_ObjectHideFlags: 0
@@ -108330,8 +108506,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411865373249069
 GameObject:
   m_ObjectHideFlags: 0
@@ -109385,8 +109565,12 @@ MonoBehaviour:
   Active: 0
   defaultMaterial: {fileID: 0}
   highlightMaterial: {fileID: 0}
+  unreachMaterial: {fileID: 0}
   BuildingName: {fileID: 0}
   fontAsset: {fileID: 0}
+  buildingNameText: 
+  ReachableColor: {r: 0, g: 0, b: 0, a: 0}
+  UnreachableColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &7658411865388654035
 GameObject:
   m_ObjectHideFlags: 0
@@ -112362,6 +112546,37 @@ MonoBehaviour:
   - {x: -3.932129, y: -0.6813507, z: 0}
   - {x: -4.4935913, y: -0.16307831, z: 0}
   - {x: -2.3773117, y: 1.5213013, z: 0}
+--- !u!1 &8389042286875929534
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 7658411863876123109}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3367581688508880023}
+  m_Layer: 0
+  m_Name: "Q\u592A\u4ED3\u6E56_1 (Missing Prefab)"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3367581688508880023
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 7658411863876123109}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8389042286875929534}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2142364491073670835}
+  m_Father: {fileID: 7658411864961557531}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6632093534344519864
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112744,11 +112959,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45000fc387f2d7a459203c99d9e67e58, type: 3}
---- !u!224 &2142364491073670835 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8643269859949573974, guid: 45000fc387f2d7a459203c99d9e67e58, type: 3}
-  m_PrefabInstance: {fileID: 7658411863876123109}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7658411864040517702
 PrefabInstance:
   m_ObjectHideFlags: 0
