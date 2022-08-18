@@ -6,8 +6,11 @@ public class OnSwitchAssets : MonoBehaviour
 {
     public ItemName item;
     public Character character;
+    public Tag replacementTagOrigin;
     public Tag replacementTag;
+    public Tag MergTag = Tag.Null;
     public Tag selectedTag;
+    public GameObject OnChange;
     
     private void Start()
     {

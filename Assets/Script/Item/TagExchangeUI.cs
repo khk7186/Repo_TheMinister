@@ -11,8 +11,6 @@ public class TagExchangeUI : MonoBehaviour
 
     public Transform tagCardGroup;
     public TagInfoCardOnExchangeUI tagCardPrf;
-
-
     public void SetUp(Tag newtag, Character character)
     {
         this.newTag = newtag;
@@ -24,7 +22,6 @@ public class TagExchangeUI : MonoBehaviour
         }
         tagSpecUI.SetUp(newTag);
     }
-
     public void FinishTheState()
     {
         GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>().RemoveItem();
@@ -32,7 +29,4 @@ public class TagExchangeUI : MonoBehaviour
         Destroy(FindObjectOfType<PlayerCharactersInventory>().gameObject);
         Destroy(gameObject);
     }
-
-
-
 }

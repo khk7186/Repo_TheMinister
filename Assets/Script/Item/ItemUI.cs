@@ -273,8 +273,10 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
     {
         GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>().InUseItem = ItemName;
         FindObjectOfType<FocusImage>().Setup(ItemName);
-        FindObjectOfType<OnSwitchAssets>().replacementTag = Use();
-        Debug.Log(FindObjectOfType<OnSwitchAssets>().replacementTag);
+        var OSA = FindObjectOfType<OnSwitchAssets>();
+        OSA.replacementTag = Use();
+        OSA.replacementTagOrigin = Use();
+        //Debug.Log(FindObjectOfType<OnSwitchAssets>().replacementTag);
         FindObjectOfType<OnSwitchAssets>().item = ItemName;
     }
     protected virtual void LeftClickAction()

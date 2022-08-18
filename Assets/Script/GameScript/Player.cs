@@ -660,50 +660,50 @@ public class Player : MonoBehaviour
         {Tag.生死肉骨,Rarerity.UR},
         {Tag.碧血丹心,Rarerity.UR},
    };
-    public static Dictionary<List<Tag>, Tag> MergeTagDict = new Dictionary<List<Tag>, Tag>
+    public readonly static Dictionary<Tag, List<Tag>> MergeTagDict = new Dictionary<Tag, List<Tag>>
     {
-        {new List<Tag>(){Tag.文贞,Tag.文贞},Tag.文正},
-        {new List<Tag>(){Tag.武勇,Tag.武勇},Tag.武忠},
-        {new List<Tag>(){Tag.文正,Tag.文正},Tag.文},
-        {new List<Tag>(){Tag.武忠,Tag.武忠},Tag.武},
-        {new List<Tag>(){Tag.武忠,Tag.武忠},Tag.武},
-        {new List<Tag>(){Tag.围棋十段,Tag.纵横家},Tag.弈星下凡},
-        {new List<Tag>(){Tag.独臂,Tag.雕,Tag.平平无奇},Tag.黯然销魂掌},
-        {new List<Tag>(){Tag.书通二酉,Tag.才华横溢,Tag.工于心计},Tag.八斗之才},
-        {new List<Tag>(){Tag.刀,Tag.枪,Tag.剑,Tag.戟,Tag.弓},Tag.诸武精通},
-        {new List<Tag>(){Tag.文,Tag.武},Tag.文武双全},
-        {new List<Tag>(){Tag.工于心计,Tag.书痴,Tag.自是三公},Tag.纸上谈兵},
-        {new List<Tag>(){Tag.才华横溢,Tag.略有才名,Tag.绣花枕头},Tag.徒有虚名},
-        {new List<Tag>(){Tag.工于心计,Tag.小有谋略,Tag.花言巧语}, Tag.投机取巧},                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               {new List<Tag>(){Tag.力拔山兮,Tag.武痴,Tag.法外狂徒},Tag.混世魔王},
-        {new List<Tag>(){Tag.冷血无情,Tag.出没无常},Tag.心狠手辣},
-        {new List<Tag>(){Tag.老罴当道,Tag.广厦之荫,Tag.火炮},Tag.墨守成规},
-        {new List<Tag>(){Tag.略有才名,Tag.儒生},Tag.才华横溢},
-        {new List<Tag>(){Tag.经济学,Tag.棋道},Tag.工于心计},
-        {new List<Tag>(){Tag.武痴,Tag.巨人症},Tag.力拔山兮},
-        {new List<Tag>(){Tag.老罴当道,Tag.火炮},Tag.广厦之荫},
-        {new List<Tag>(){Tag.小有谋略,Tag.武痴},Tag.智勇双全},
-        {new List<Tag>(){Tag.巨人症,Tag.侏儒症},Tag.天生神力},
-        {new List<Tag>(){Tag.儒生,Tag.道士,Tag.僧人},Tag.阳明学派},
-        {new List<Tag>(){Tag.蛤蟆功,Tag.年老体衰},Tag.吸星大法},
-        {new List<Tag>(){Tag.冰霜宝剑,Tag.不孝子},Tag.巫妖领主},
-        {new List<Tag>(){Tag.火炮,Tag.飞毛腿},Tag.龙骑士},
-        {new List<Tag>(){Tag.东洋语,Tag.西洋语},Tag.外交官},
-        {new List<Tag>(){Tag.习武之人,Tag.年老体衰},Tag.老当益壮},
-        {new List<Tag>(){Tag.丹童,Tag.毒师,Tag.离经叛道},Tag.炼金术师},
-        {new List<Tag>(){Tag.弓,Tag.剑},Tag.近战精通},
-        {new List<Tag>(){Tag.膝盖僵硬,Tag.外乡人,Tag.疯子},Tag.古神转世},
-        {new List<Tag>(){Tag.经济学,Tag.心算},Tag.理财大师},
-        {new List<Tag>(){Tag.演员,Tag.精神病},Tag.戏精},
-        {new List<Tag>(){Tag.经济学,Tag.棋道},Tag.工于心计},
-        {new List<Tag>(){Tag.御马司,Tag.马倌},Tag.御马监},
-        {new List<Tag>(){Tag.牧民,Tag.驯兽术},Tag.驯兽大师},
-        {new List<Tag>(){Tag.演员,Tag.年老体衰},Tag.老戏骨},
-        {new List<Tag>(){Tag.马倌,Tag.驯兽术},Tag.牧民},
-        {new List<Tag>(){Tag.营养不良,Tag.嗜甜如命},Tag.糖尿病},
-        {new List<Tag>(){Tag.墨者,Tag.兼爱},Tag.钜子},
-        {new List<Tag>(){Tag.大锤,Tag.小锤},Tag.巧夺天工},
-        {new List<Tag>(){Tag.医术,Tag.郎中,Tag.本草纲目,Tag.黄帝内经},Tag.悬壶济世},
-        {new List<Tag>(){Tag.偃师,Tag.非攻},Tag.墨者}
+        {Tag.文正,new List<Tag>(){Tag.文贞,Tag.文贞}},
+        {Tag.武忠,new List<Tag>(){Tag.武勇,Tag.武勇,Tag.武勇}},
+        {Tag.文,new List<Tag>(){Tag.文正,Tag.文正}},
+        {Tag.武,new List<Tag>(){Tag.武忠,Tag.武忠}},
+        {Tag.弈星下凡,new List<Tag>(){Tag.围棋十段,Tag.纵横家}},
+        {Tag.黯然销魂掌,new List<Tag>(){Tag.独臂,Tag.雕,Tag.平平无奇}},
+        {Tag.八斗之才,new List<Tag>(){Tag.书通二酉,Tag.才华横溢,Tag.工于心计} },
+        {Tag.诸武精通,new List<Tag>(){Tag.刀,Tag.枪,Tag.剑,Tag.戟,Tag.弓}},
+        {Tag.文武双全,new List<Tag>(){Tag.文,Tag.武}},
+        {Tag.纸上谈兵,new List<Tag>(){Tag.工于心计,Tag.书痴,Tag.自是三公}},
+        {Tag.徒有虚名,new List<Tag>(){Tag.才华横溢,Tag.略有才名,Tag.绣花枕头}},
+        { Tag.投机取巧,new List<Tag>(){Tag.工于心计,Tag.小有谋略,Tag.花言巧语}},
+        {Tag.混世魔王, new List<Tag>(){Tag.力拔山兮,Tag.武痴,Tag.法外狂徒}},
+        {Tag.心狠手辣,new List<Tag>(){Tag.冷血无情,Tag.出没无常}},
+        {Tag.墨守成规,new List<Tag>(){Tag.老罴当道,Tag.广厦之荫,Tag.火炮}},
+        {Tag.才华横溢,new List<Tag>(){Tag.略有才名,Tag.儒生}},
+        {Tag.工于心计,new List<Tag>(){Tag.经济学,Tag.棋道}},
+        {Tag.力拔山兮,new List<Tag>(){Tag.武痴,Tag.巨人症}},
+        {Tag.广厦之荫,new List<Tag>(){Tag.老罴当道,Tag.火炮}},
+        {Tag.智勇双全,new List<Tag>(){Tag.小有谋略,Tag.武痴}},
+        {Tag.天生神力,new List<Tag>(){Tag.巨人症,Tag.侏儒症}},
+        {Tag.阳明学派,new List<Tag>(){Tag.儒生,Tag.道士,Tag.僧人}},
+        {Tag.吸星大法,new List<Tag>(){Tag.蛤蟆功,Tag.年老体衰}},
+        //{Tag.巫妖领主,new List<Tag>(){Tag.冰霜宝剑,Tag.不孝子}},
+        //{new List<Tag>(){Tag.火炮,Tag.飞毛腿},Tag.龙骑士},
+        //{new List<Tag>(){Tag.东洋语,Tag.西洋语},Tag.外交官},
+        //{new List<Tag>(){Tag.习武之人,Tag.年老体衰},Tag.老当益壮},
+        //{new List<Tag>(){Tag.丹童,Tag.毒师,Tag.离经叛道},Tag.炼金术师},
+        //{new List<Tag>(){Tag.弓,Tag.剑},Tag.近战精通},
+        //{new List<Tag>(){Tag.膝盖僵硬,Tag.外乡人,Tag.疯子},Tag.古神转世},
+        //{new List<Tag>(){Tag.经济学,Tag.心算},Tag.理财大师},
+        //{new List<Tag>(){Tag.演员,Tag.精神病},Tag.戏精},
+        //{new List<Tag>(){Tag.经济学,Tag.棋道},Tag.工于心计},
+        //{new List<Tag>(){Tag.御马司,Tag.马倌},Tag.御马监},
+        //{new List<Tag>(){Tag.牧民,Tag.驯兽术},Tag.驯兽大师},
+        //{new List<Tag>(){Tag.演员,Tag.年老体衰},Tag.老戏骨},
+        //{new List<Tag>(){Tag.马倌,Tag.驯兽术},Tag.牧民},
+        //{new List<Tag>(){Tag.营养不良,Tag.嗜甜如命},Tag.糖尿病},
+        //{new List<Tag>(){Tag.墨者,Tag.兼爱},Tag.钜子},
+        //{new List<Tag>(){Tag.大锤,Tag.小锤},Tag.巧夺天工},
+        //{new List<Tag>(){Tag.医术,Tag.郎中,Tag.本草纲目,Tag.黄帝内经},Tag.悬壶济世},
+        //{new List<Tag>(){Tag.偃师,Tag.非攻},Tag.墨者}
 
     };
     public static Dictionary<Rarerity, List<Tag>> ItemgiveTagRareDict = new Dictionary<Rarerity, List<Tag>>()
@@ -1331,9 +1331,9 @@ public class Player : MonoBehaviour
         {
 }}
        };
- private static Dictionary<Rarerity, List<Tag>> MaleFighterTagPool =
-   new Dictionary<Rarerity, List<Tag>>
-{
+    private static Dictionary<Rarerity, List<Tag>> MaleFighterTagPool =
+      new Dictionary<Rarerity, List<Tag>>
+   {
         {Rarerity.B,new List<Tag>()
         {
             Tag.厄运缠身,
@@ -1407,7 +1407,7 @@ public class Player : MonoBehaviour
         {Rarerity.UR,new List<Tag>()
         {
 }}
-   };
+      };
     private static Dictionary<Rarerity, List<Tag>> MusicianTagPool =
        new Dictionary<Rarerity, List<Tag>>
        {

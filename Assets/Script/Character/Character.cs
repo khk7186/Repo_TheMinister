@@ -680,20 +680,50 @@ public class Character : MonoBehaviour, IRound
             transform.parent = GameObject.FindGameObjectWithTag("InGameCharacterInventory").transform;
         }
     }
-
     public void TryMergeTags()
     {
-        foreach (var suspectList in Player.MergeTagDict.Keys)
+        foreach (var suspect in Player.MergeTagDict)
         {
-            var intersectList = tagList.Intersect(suspectList).ToList();
-            if (intersectList.Count == suspectList.Count)
+            var suspectList = suspect.Value.ToList();
+            List<Tag> CurrentList = suspectList;
+            foreach (var item in tagList)
             {
-                foreach (Tag tag in suspectList)
+                if (CurrentList.Contains(item))
                 {
-                    tagList.Remove(tag);
+                    CurrentList.Remove(item);
                 }
-                tagList.Add(Player.MergeTagDict[suspectList]);
             }
+            if (CurrentList.Count != 0) continue;
+            Debug.Log(string.Join(",", suspect.Value));
+            Debug.Log(string.Join(",", Player.MergeTagDict[Tag.Œ‰÷“]));
+            for (int i = 0; i < Player.MergeTagDict[Tag.Œ‰÷“].Count; i++)
+            {
+                Debug.Log($"removed: {Player.MergeTagDict[Tag.Œ‰÷“][i]}");
+                tagList.Remove(Player.MergeTagDict[Tag.Œ‰÷“][i]);
+            }
+            tagList.Add(suspect.Key);
+            var OSA = FindObjectOfType<OnSwitchAssets>();
+            if (OSA != null)
+            {
+                OSA.MergTag = suspect.Key;
+                var UIspec = FindObjectsOfType<UISpecForSwitch>();
+                var removeList = suspect.Value.ToList();
+                foreach (var tagExchangeUI in UIspec)
+                {
+                    if (tagExchangeUI.gameObject == OSA.OnChange)
+                    {
+                        removeList.Remove(tagExchangeUI.originTag);
+                        continue;
+                    }
+                    if (removeList.Contains(tagExchangeUI.originTag))
+                    {
+                        tagList.Add(Tag.Œﬁ…À¥Û—≈);
+                        removeList.Remove(tagExchangeUI.originTag);
+                        tagExchangeUI.FlipZero(Tag.Œﬁ…À¥Û—≈);
+                    }
+                }
+            }
+            return;
         }
     }
 

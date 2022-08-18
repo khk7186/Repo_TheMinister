@@ -14,7 +14,6 @@ public class UISpecForSwitch : TagSpecUI
 
     public override void SetTagIcon(Tag tag, bool origin = true)
     {
-
         var target = origin ? tagIcon : switchImage;
         target.sprite = FindTagSprite(tag);
     }
@@ -41,7 +40,11 @@ public class UISpecForSwitch : TagSpecUI
                 item.FlipBack();
             }
         }
-        SetUp(FindObjectOfType<OnSwitchAssets>().replacementTag, false);
+        var OSA = FindObjectOfType<OnSwitchAssets>();
+        OSA.MergTag = Tag.Null;
+        OSA.OnChange = gameObject;
+        OSA.replacementTag = OSA.replacementTagOrigin;
+        SetUp(OSA.replacementTag, false);
         originRect.DOScaleY(0, duration).SetDelay(0.1f).OnComplete(() =>
         {
             FindObjectOfType<OnSwitchAssets>().selectedTag = originTag;
@@ -56,16 +59,24 @@ public class UISpecForSwitch : TagSpecUI
             originRect.DOScaleY(1, duration);
         });
     }
-
+    public void FlipZero(Tag tag)
+    {
+        originRect.DOScaleY(0, duration).SetDelay(0.1f).OnComplete(() =>
+        {
+            originTag = tag;
+            SetUp(tag);
+            originRect.DOScaleY(1, duration);
+        });
+    }
     public void ConfirmChange()
     {
         var OSA = FindObjectOfType<OnSwitchAssets>();
-        OSA.character.tagList.Remove(OSA.selectedTag);
-        OSA.character.tagList.Add(OSA.replacementTag);
+        //Debug.Log("ConfirmChange: " + OSA.replacementTag);
+        OSA.character.ExchangeTag(OSA.replacementTag, originTag);
         OSA.character.UpdateVariables();
         var itemInv = FindObjectOfType<ItemInventory>();
         itemInv.RemoveItem(OSA.item);
-        SetUp(OSA.replacementTag, true);
+        SetUp(OSA.MergTag == Tag.Null ? OSA.replacementTag : OSA.MergTag, true);
         FlipBack();
         if (!itemInv.ItemDict.ContainsKey(OSA.item))
         {

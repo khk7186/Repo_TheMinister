@@ -18,7 +18,7 @@ public class FakeCharacterValues : MonoBehaviour
         OnSwitchAssets OSA = FindObjectOfType<OnSwitchAssets>();
         Character character = OSA.character;
         List<Tag> tagList = new List<Tag>();
-        Debug.Log(OSA.selectedTag);
+        //Debug.Log(OSA.selectedTag);
         tagList.AddRange(character.tagList);
         tagList.Remove(OSA.selectedTag);
         tagList.Add(OSA.replacementTag);
