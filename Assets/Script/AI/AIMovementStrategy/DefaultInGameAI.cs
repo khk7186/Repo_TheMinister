@@ -107,6 +107,10 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
 
     protected void OnMouseDown()
     {
+        if (IsPointerOver.IsPointerOverUIObject())
+        {
+            return;
+        }
         StartConmunicate();
     }
     protected virtual void StartConmunicate()

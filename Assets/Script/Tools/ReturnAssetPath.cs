@@ -73,4 +73,9 @@ public class ReturnAssetPath : MonoBehaviour
         var output = $"Art/DebateCardAssets/{rarerity}/{cardParts}";
         return output;
     }
+    public static string ReturnTagPath(Tag tag)
+    {
+        var output = $"Art/Tags/{tag}";
+        return output;
+    }
 }

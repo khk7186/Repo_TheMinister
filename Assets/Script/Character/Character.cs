@@ -554,7 +554,7 @@ public class Character : MonoBehaviour, IRound
     {
         tagList.Remove(oldTag);
         tagList.Add(newTag);
-        TryMergeTags();
+        StartCoroutine(TryMergeTags());
     }
     private Tag RandomTag()
     {
@@ -680,8 +680,9 @@ public class Character : MonoBehaviour, IRound
             transform.parent = GameObject.FindGameObjectWithTag("InGameCharacterInventory").transform;
         }
     }
-    public void TryMergeTags()
+    public IEnumerator TryMergeTags(bool Changed = true)
     {
+        bool firstTimeChange = true;
         foreach (var suspect in Player.MergeTagDict)
         {
             var suspectList = suspect.Value.ToList();
@@ -693,15 +694,15 @@ public class Character : MonoBehaviour, IRound
                     CurrentList.Remove(item);
                 }
             }
-            if (CurrentList.Count != 0) continue;
-            Debug.Log(string.Join(",", suspect.Value));
-            Debug.Log(string.Join(",", Player.MergeTagDict[Tag.Œ‰÷“]));
-            for (int i = 0; i < Player.MergeTagDict[Tag.Œ‰÷“].Count; i++)
+            if (CurrentList.Count != 0)
             {
-                Debug.Log($"removed: {Player.MergeTagDict[Tag.Œ‰÷“][i]}");
-                tagList.Remove(Player.MergeTagDict[Tag.Œ‰÷“][i]);
+                continue;
             }
             tagList.Add(suspect.Key);
+            for (int i = 0; i < Player.MergeTagDict[suspect.Key].Count; i++)
+            {
+                tagList.Remove(Player.MergeTagDict[suspect.Key].ToList()[i]);
+            }
             var OSA = FindObjectOfType<OnSwitchAssets>();
             if (OSA != null)
             {
@@ -712,7 +713,12 @@ public class Character : MonoBehaviour, IRound
                 {
                     if (tagExchangeUI.gameObject == OSA.OnChange)
                     {
+                        if (!Changed)
+                        {
+                            tagExchangeUI.FlipZero(suspect.Key);
+                        }
                         removeList.Remove(tagExchangeUI.originTag);
+                        firstTimeChange = false;
                         continue;
                     }
                     if (removeList.Contains(tagExchangeUI.originTag))
@@ -722,9 +728,12 @@ public class Character : MonoBehaviour, IRound
                         tagExchangeUI.FlipZero(Tag.Œﬁ…À¥Û—≈);
                     }
                 }
+                yield return new WaitForSeconds(FindObjectOfType<UISpecForSwitch>().duration * 2);
             }
-            return;
+            break;
         }
+        //Debug.Log($"tryAgain:{firstTimeChange}");
+        if (firstTimeChange == false) StartCoroutine(TryMergeTags(false));
     }
 
     public void FightHealthModify(int damage)

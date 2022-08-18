@@ -14,7 +14,10 @@ public class OnSwitchAssets : MonoBehaviour
     
     private void Start()
     {
-        var newItem = FindObjectOfType<ItemInventoryUI>().GetComponentInChildren<ItemUI>();
-        newItem.SetupInUseItem();
+        var newItem = FindObjectOfType<ItemInventoryUI>()?.GetComponentInChildren<ItemUI>();
+        if (newItem != null)
+        {
+            newItem.SetupInUseItem();
+        }
     }
 }

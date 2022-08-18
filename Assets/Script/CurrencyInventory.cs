@@ -15,17 +15,17 @@ public class CurrencyInventory : MonoBehaviour
     public void MoneyAdd(int add)
     {
         Money += add;
-        FindObjectOfType<MainUI>().SetupMoney(Money);
+        FindObjectOfType<MainUI>()?.SetupMoney(Money);
     }
     public void InfluenceAdd(int add)
     {
         Influence += add;
-        FindObjectOfType<MainUI>().SetupInfluence(Influence);
+        FindObjectOfType<MainUI>()?.SetupInfluence(Influence);
     }
     public void PrestigeAdd(int add)
     {
         Prestige += add;
-        FindObjectOfType<MainUI>().SetupPrestige(Prestige);
+        FindObjectOfType<MainUI>(true)?.SetupPrestige(Prestige);
     }
     public void MoneySpend(int spend)
     {

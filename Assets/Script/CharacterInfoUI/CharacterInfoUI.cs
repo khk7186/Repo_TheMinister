@@ -57,14 +57,6 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
     }
     public void Setup(Character character)
     {
-        //SetValueColors(
-        //    CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.ÖÇ]],
-        //    CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.²Å]],
-        //    CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.Ä±]],
-        //    CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.Îä]],
-        //    CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.´Ì]],
-        //    CharacterUI.TagUIColorCode[character.characterValueRareDict[CharacterValueType.ÊØ]]
-        //    );
         rarerity = character.CheckTopRare();
         if (backGround != null)
         {

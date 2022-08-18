@@ -222,8 +222,8 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     private void ChangeCurrentCharacterAsset()
     {
         FindObjectOfType<OnSwitchAssets>().character = character;
-
-        FindObjectOfType<CharacterInfoUI>().Setup(character);
+        FindObjectOfType<MedicationUI>()?.Setup(character);
+        FindObjectOfType<CharacterInfoUI>()?.Setup(character);
         FindObjectOfType<PlayerCharactersInventory>().GetComponent<RightClickToClose>().RightClickEvent();
     }
 
