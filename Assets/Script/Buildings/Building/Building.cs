@@ -167,6 +167,9 @@ public class Building : MonoBehaviour
             case BuildingType.商行:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.商行, 0);
                 break;
+            case BuildingType.珠宝店:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.商行, 0);
+                break;
             case BuildingType.西域珍品:
                 SetupCraft();
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.西域珍品, 0);

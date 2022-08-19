@@ -9,6 +9,7 @@ public class CharacterMovement : MonoBehaviour
     public Animator animator;
     public bool AI = true;
     public float speed = 6f;
+    public bool CutScene = false;
     public float speedPro => AI ? speed * 1.2f : speed;
     public Grid grid;
 
@@ -36,7 +37,7 @@ public class CharacterMovement : MonoBehaviour
     }
     private void Awake()
     {
-        if (SceneManager.GetActiveScene().buildIndex != 1)
+        if (SceneManager.GetActiveScene().buildIndex != 1|| CutScene)
         {
             return;
         }

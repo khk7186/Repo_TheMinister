@@ -9,8 +9,10 @@ public class SideChanger : MonoBehaviour
     public SkeletonMecanim skeletonMecanim;
     public Vector2 oldPosition;
     public Vector2 PosDif;
+    private float duration = 0.1f;
     public bool isRight;
     public bool isFront;
+    
     private void Awake()
     {
         oldPosition = (Vector2)transform.position;
@@ -33,6 +35,23 @@ public class SideChanger : MonoBehaviour
     }
     public void changeSide(bool front, bool right)
     {
+        StartCoroutine
+        (
+            changeSideAnimation(front, right)
+        );
+    }
+    IEnumerator changeSideAnimation(bool front, bool right)
+    {
+        float time = 0;
+        Vector3 start = animator.gameObject.transform.localScale;
+        Vector3 target = animator.gameObject.transform.localScale;
+        target = new Vector3((right ? -0.7f : 0.7f), target.y, target.z);
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            animator.gameObject.transform.localScale = Vector3.Lerp(start, new Vector3(0, start.y), time / duration);
+            yield return null;
+        }
         if (TryGetComponent<DefaultInGameAI>(out var inGameAI))
         {
             CharacterArtCode CAC = inGameAI.character.characterArtCode;
@@ -43,14 +62,20 @@ public class SideChanger : MonoBehaviour
             string controllerPath = $"{ReturnAssetPath.ReturnSpineControllerPath(CAC, true)}";
             animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(controllerPath);
             animator.GetComponent<SkeletonMecanim>().Initialize(true);
-            Vector3 target = animator.transform.localScale;
-            target = new Vector3((right ? -0.7f : 0.7f), target.y, target.z);
+
             animator.transform.localScale = target;
             animator.GetComponent<SkeletonMecanim>().Initialize(true);
         }
         else
         {
             FindObjectOfType<Map>().ChangeSide(front, !right);
+        }
+        time = 0;
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            animator.gameObject.transform.localScale = Vector3.Lerp(new Vector3(0, start.y), target, time / duration);
+            yield return null;
         }
     }
 
