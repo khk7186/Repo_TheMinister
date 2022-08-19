@@ -248,7 +248,7 @@ public class MovementGrid : MonoBehaviour
             
         //}
         List<Vector3Int> targetpath = gameAI.inner ? EnemyInnerMovementBlocks : EnemyOutterMovementBlocks;
-        return targetpath[blockNumber % EnemyOutterMovementBlocks.Count];
+        return targetpath[blockNumber % targetpath.Count];
     }
 
     public static Vector3Int CheckAILastBlock(DefaultInGameAI gameAI, int blockNumber)
