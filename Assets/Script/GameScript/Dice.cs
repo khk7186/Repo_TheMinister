@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,11 +16,10 @@ public class Dice : MonoBehaviour, ISubject
     public bool rolling = false;
 
     // Use this for initialization
-    private void Awake()
+    private void OnEnable()
     {
-
+        rolling = false;
     }
-
     public void Roll()
     {
         if (!rolling)
@@ -81,10 +81,15 @@ public class Dice : MonoBehaviour, ISubject
     {
         if (notificationType == NotificationType.DiceRoll)
         {
-            foreach (var observer in Observers)
+            foreach (var observer in Observers.ToList())
             {
                 observer.OnNotify(value, notificationType);
             }
         }
+    }
+
+    public void CancelObserver(IObserver observer)
+    {
+        Observers.Remove(observer);
     }
 }

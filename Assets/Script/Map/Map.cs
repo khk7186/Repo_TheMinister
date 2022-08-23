@@ -50,6 +50,7 @@ public class Map : MonoBehaviour, IObserver
         {
             //PlayerAnimator.SetTrigger("Move");
             DayTimePlus();
+            Debug.Log("OnNotify");
             //StartCoroutine(MoveManyStep((int)value, Player));
             PlayerMovement.finalBlock += (int)value * HorseMovementBuff;
             StartCoroutine(Move());

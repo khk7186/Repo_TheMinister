@@ -6,11 +6,13 @@ using UnityEngine.UI;
 
 public class MainUI : MonoBehaviour
 {
+    public GameObject Time;
     public Text Year;
     public Text Month;
     public Text Day;
     public Text Hour;
 
+    public GameObject Currency;
     public Text Money;
     public Text Influence;
     public Text Prestige;
@@ -21,15 +23,21 @@ public class MainUI : MonoBehaviour
     private List<int> originTime = new List<int>() { 17, 3, 5 };
     private void OnEnable()
     {
-        SetupTime();
         var reference = FindObjectOfType<CurrencyInventory>();
         SetupMoney(reference.Money);
         SetupInfluence(reference.Influence);
         SetupPrestige(reference.Prestige);
+        SetupTime();
     }
     public void SetupTime()
     {
         Map map = FindObjectOfType<Map>();
+        if (map == null)
+        {
+            Time.gameObject.SetActive(false);
+            return;
+        }
+        Time.gameObject.SetActive(true);
         var totalDay = map.Day + originTime[2];
         int day = totalDay % 30;
         int totalMonth = totalDay / 30 + originTime[1];
