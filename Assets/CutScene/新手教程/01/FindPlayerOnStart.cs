@@ -19,6 +19,10 @@ public class FindPlayerOnStart : MonoBehaviour
         timeline = director.playableAsset as TimelineAsset;
         foreach (var track in timeline.GetOutputTracks())
         {
+            if (director.GetGenericBinding(track) != null)
+            {
+                continue;
+            }
             switch (track.name)
             {
                 case "ÉãÏñ»ú":
@@ -32,9 +36,6 @@ public class FindPlayerOnStart : MonoBehaviour
                     break;
                 case "Self":
                     director.SetGenericBinding(track, gameObject);
-                    break;
-                default:
-                    director.SetGenericBinding(track, Host.Find(track.name));
                     break;
             }
         }

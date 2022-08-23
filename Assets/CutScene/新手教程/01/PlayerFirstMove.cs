@@ -11,7 +11,6 @@ public class PlayerFirstMove : MonoBehaviour, IObserver
     {
         foreach (var obj in _objectsToActive)
         {
-            Debug.Log("OnNotify");
             obj.SetActive(true);
         }
         foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
@@ -25,7 +24,6 @@ public class PlayerFirstMove : MonoBehaviour, IObserver
     {
         foreach (var subject in FindObjectsOfType<MonoBehaviour>(true).OfType<ISubject>())
         {
-            Debug.Log("RegisterObserver");
             subject.RegisterObserver(this);
         }
     }

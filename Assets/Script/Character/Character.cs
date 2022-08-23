@@ -283,7 +283,8 @@ public enum CharacterArtCode
     ÆåÊ¥,
     ·½ÕÉ,
     ¹ÙÔ±,
-    Ê°»ÄÕß
+    Ê°»ÄÕß,
+    Ì«¼à
 }
 public enum CharacterType
 {

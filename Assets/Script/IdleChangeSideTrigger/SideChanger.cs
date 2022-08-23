@@ -12,7 +12,8 @@ public class SideChanger : MonoBehaviour
     private float duration = 0.1f;
     public bool isRight;
     public bool isFront;
-    
+    public bool CutScene = false;
+    public CharacterArtCode characterArtCode;
     private void Awake()
     {
         oldPosition = (Vector2)transform.position;
@@ -60,6 +61,19 @@ public class SideChanger : MonoBehaviour
     ($"{ReturnAssetPath.ReturnSpineAssetPath(CAC, front)}");
             animator.GetComponent<SkeletonMecanim>().skeletonDataAsset = asset;
             string controllerPath = $"{ReturnAssetPath.ReturnSpineControllerPath(CAC, true)}";
+            animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(controllerPath);
+            animator.GetComponent<SkeletonMecanim>().Initialize(true);
+
+            animator.transform.localScale = target;
+            animator.GetComponent<SkeletonMecanim>().Initialize(true);
+        }
+        else if (CutScene)
+        {
+            string side = front ? "Front" : "Back";
+            SkeletonDataAsset asset = Resources.Load<SkeletonDataAsset>
+            ($"{ReturnAssetPath.ReturnSpineAssetPath(characterArtCode, front)}");
+            animator.GetComponent<SkeletonMecanim>().skeletonDataAsset = asset;
+            string controllerPath = $"{ReturnAssetPath.ReturnSpineControllerPath(characterArtCode, true)}";
             animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(controllerPath);
             animator.GetComponent<SkeletonMecanim>().Initialize(true);
 

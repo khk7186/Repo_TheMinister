@@ -17,6 +17,7 @@ public class Map : MonoBehaviour, IObserver
     [SerializeField] private Transform Player;
     [SerializeField] private float delayPerMove = 1f;
     private List<Building> ActivatedBuildings = new List<Building>();
+    bool GameStart = false;
     private bool OnMove => PlayerNextBlockToMove != PlayerCurrentBlock;
 
     public float duration = 10f;
@@ -24,10 +25,13 @@ public class Map : MonoBehaviour, IObserver
 
     [SerializeField] private Animator PlayerAnimator;
     [SerializeField] private CharacterMovement PlayerMovement;
-
-
     private void Awake()
     {
+        if (!GameStart)
+        {
+            GameStart = true;
+            return;
+        }
         foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
         {
             subject.RegisterObserver(this);
