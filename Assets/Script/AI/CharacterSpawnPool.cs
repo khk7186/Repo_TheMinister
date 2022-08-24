@@ -160,6 +160,17 @@ public class CharacterSpawnPool : MonoBehaviour
                         new List<Character>() { }
                     }
         };
+    public static Dictionary<BattleType, List<Character>> EunuchDict
+        = new Dictionary<BattleType, List<Character>>()
+        {
+                    { BattleType.Combat,
+                        new List<Character>(){ }
+                    }
+                    ,
+                    {BattleType.Debate,
+                        new List<Character>(){ }
+                    }
+        };
     public static Dictionary<CharacterArtCode, Dictionary<BattleType, List<Character>>> CharacterSpawnPoolDict
         = new Dictionary<CharacterArtCode, Dictionary<BattleType, List<Character>>>()
         {
@@ -176,7 +187,8 @@ public class CharacterSpawnPool : MonoBehaviour
             {CharacterArtCode.ÆåÊ¥, ChessplayerDict },
             {CharacterArtCode.·½ÕÉ, MonkDict },
             {CharacterArtCode.¹ÙÔ±, GovernorDict },
-            {CharacterArtCode.Ê°»ÄÕß, ScavengerDict}
+            {CharacterArtCode.Ê°»ÄÕß, ScavengerDict },
+            {CharacterArtCode.Ì«¼à, EunuchDict }
         };
     public void RotateAllCharacters()
     {
