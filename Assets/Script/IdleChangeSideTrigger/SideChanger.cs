@@ -82,7 +82,7 @@ public class SideChanger : MonoBehaviour
         }
         else
         {
-            FindObjectOfType<Map>().ChangeSide(front, !right);
+            FindObjectOfType<Map>(true).ChangeSide(front, !right);
         }
         time = 0;
         while (time < duration)

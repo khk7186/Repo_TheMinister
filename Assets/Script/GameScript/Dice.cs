@@ -27,8 +27,18 @@ public class Dice : MonoBehaviour, ISubject
             StartCoroutine("RollTheDice");
         }
     }
-
-    private IEnumerator RollTheDice()
+    public void FakeRoll33()
+    {
+        FakeRoll(new Vector2(3, 3));
+    }
+    public void FakeRoll(Vector2 final)
+    {
+        if (!rolling)
+        {
+            StartCoroutine(RollTheDice(final));
+        }
+    }
+    private IEnumerator RollTheDice(object final = null)
     {
         rolling = true;
         // Variable to contain random dice side number.
@@ -60,16 +70,29 @@ public class Dice : MonoBehaviour, ISubject
             yield return new WaitForSeconds(0.05f);
         }
 
+        if (final != null)
+        {
+            var finalVecter = (Vector2)final;
+            finalSide1 = (int)finalVecter.x;
+            finalSide2 = (int)finalVecter.y;
+            dice1.sprite = diceSides[finalSide1 - 1];
+            dice2.sprite = diceSides[finalSide2 - 1];
+        }
+        else
+        {
+            finalSide1 = randomDiceSide1 + 1;
+            finalSide2 = randomDiceSide2 + 1;
+
+        }
+        int totalCount = finalSide1 + finalSide2;
         // Assigning final side so you can use this value later in your game
         // for player movement for example
-        finalSide1 = randomDiceSide1 + 1;
-        finalSide2 = randomDiceSide2 + 1;
 
-        int totalCount = finalSide1 + finalSide2;
 
         // Show final dice value in Console
         // Notify Observers
         Notify(totalCount, NotificationType.DiceRoll);
+        if (final != null) transform.parent.gameObject.SetActive(false);
     }
 
     public void RegisterObserver(IObserver observer)

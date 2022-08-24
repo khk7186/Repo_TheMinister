@@ -17,7 +17,7 @@ public class Map : MonoBehaviour, IObserver
     [SerializeField] private Transform Player;
     [SerializeField] private float delayPerMove = 1f;
     private List<Building> ActivatedBuildings = new List<Building>();
-    bool GameStart = false;
+    public bool GameStart = false;
     private bool OnMove => PlayerNextBlockToMove != PlayerCurrentBlock;
 
     public float duration = 10f;
@@ -29,7 +29,7 @@ public class Map : MonoBehaviour, IObserver
     {
         if (!GameStart)
         {
-            GameStart = true;
+            Debug.Log(GameStart);
             return;
         }
         foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())

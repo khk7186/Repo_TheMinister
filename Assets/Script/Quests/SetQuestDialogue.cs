@@ -9,6 +9,5 @@ public class SetQuestDialogue : MonoBehaviour
         var DSC = FindObjectOfType<DialogueSystemController>();
         DSC.initialDatabase = Resources.Load<DialogueDatabase>($"Conversions/хннЯ");
         DSC.Awake();
-        Debug.Log("SetQuestDialogue");
     }
 }

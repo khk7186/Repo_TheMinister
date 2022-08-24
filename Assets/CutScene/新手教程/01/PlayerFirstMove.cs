@@ -6,18 +6,24 @@ using System.Linq;
 public class PlayerFirstMove : MonoBehaviour, IObserver
 {
     public List<GameObject> _objectsToActive; 
-    
+    public List<GameObject> _objectsToInactive;
     public void OnNotify(object value, NotificationType notificationType)
     {
         foreach (var obj in _objectsToActive)
         {
             obj.SetActive(true);
         }
+        foreach (var obj in _objectsToInactive)
+        {
+            obj.SetActive(false);
+        }
         foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
         {
             subject.CancelObserver(this);
         }
-        FindObjectOfType<Map>(true)?.gameObject.SetActive(true);
+        //var map = FindObjectOfType<Map>(true);
+        //map.GameStart = true;
+        //map?.gameObject.SetActive(true);
     }
 
     private void OnEnable()
