@@ -49,6 +49,7 @@ public class Map : MonoBehaviour, IObserver
         }
         PlayerAnimator = Player.GetComponentInChildren<SkeletonMecanim>().GetComponent<Animator>();
         PlayerMovement = Player.GetComponent<CharacterMovement>();
+        PlayerMovement.currentBlock = PlayerCurrentBlock;
     }
     public void FirstDayReset()
     {
