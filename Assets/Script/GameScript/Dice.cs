@@ -24,7 +24,7 @@ public class Dice : MonoBehaviour, ISubject
     {
         if (!rolling)
         {
-            StartCoroutine("RollTheDice");
+            StartCoroutine(RollTheDice());
         }
     }
     public void FakeRoll33()

@@ -27,11 +27,7 @@ public class Map : MonoBehaviour, IObserver
     [SerializeField] private CharacterMovement PlayerMovement;
     private void Awake()
     {
-        if (!GameStart)
-        {
-            Debug.Log(GameStart);
-            return;
-        }
+        FindPlayer();
         foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
         {
             subject.RegisterObserver(this);
@@ -43,6 +39,16 @@ public class Map : MonoBehaviour, IObserver
     private void Start()
     {
         FirstDayReset();
+    }
+    private void FindPlayer()
+    {
+        Player = FindObjectOfType<Player>()?.transform;
+        if (Player == null)
+        {
+            Player = Instantiate(Resources.Load<GameObject>("MainGame/ÀîÔ¬Ä°")).transform;
+        }
+        PlayerAnimator = Player.GetComponentInChildren<SkeletonMecanim>().GetComponent<Animator>();
+        PlayerMovement = Player.GetComponent<CharacterMovement>();
     }
     public void FirstDayReset()
     {

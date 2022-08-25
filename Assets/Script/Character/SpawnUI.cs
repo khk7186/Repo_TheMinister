@@ -7,10 +7,18 @@ public class SpawnUI : MonoBehaviour
 {
     public Transform ThingToSpawn;
     public Transform CurrentTarget;
+    public Canvas specificCanvas;
 
     public void Spawn()
     {
-        CurrentTarget = Instantiate(ThingToSpawn, GameObject.FindGameObjectWithTag("MainUICanvas").transform);
+        if (specificCanvas != null)
+        {
+            CurrentTarget = Instantiate(ThingToSpawn, specificCanvas.transform);
+        }
+        else
+        {
+            CurrentTarget = Instantiate(ThingToSpawn, GameObject.FindGameObjectWithTag("MainUICanvas").transform);
+        }
     }
     public Transform SpawnWithReturn()
     {

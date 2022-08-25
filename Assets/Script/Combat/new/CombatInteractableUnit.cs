@@ -26,7 +26,6 @@ public class CombatInteractableUnit : MonoBehaviour
         string path = $"Character Spine/{artCode}/{FrontOrBack}/{renderExistingMesh.replacementMaterials[0].originalMaterial.name}";
         renderExistingMesh.GetComponent<MeshRenderer>().materials[0] = (Material)Resources.Load(path, typeof(Material));
         path = $"{path}_Outline";
-        Debug.Log(path);
         renderExistingMesh.replacementMaterials[0].replacementMaterial = (Material)Resources.Load(path, typeof(Material));
         renderExistingMesh.Set();
         OnMouseExit();

@@ -10,6 +10,7 @@ public class ReciveCharacter : MonoBehaviour
     public int health;
     public int loyalty;
     public Canvas canvas;
+    public List<GameObject> _objectToActive;
     private void Start()
     {
         TakeCharacter();
@@ -28,5 +29,12 @@ public class ReciveCharacter : MonoBehaviour
         character.UpdateVariables();
         var congrat = Instantiate(Resources.Load<CharacterReciveNotice>("MainUI/CharacterReciveConfirmWindow"),canvas.transform);
         congrat.Setup(character);
+        foreach (var item in _objectToActive)
+        {
+            congrat.Confirm.onClick.AddListener(() =>
+            {
+                item.SetActive(true);
+            });
+        }
     }
 }

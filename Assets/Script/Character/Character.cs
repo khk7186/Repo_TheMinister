@@ -403,7 +403,10 @@ public class Character : MonoBehaviour, IRound
             CharacterArtCode[] cacList = (CharacterArtCode[])Enum.GetValues(typeof(CharacterArtCode));
             cacList = cacList.Where(x => x != CharacterArtCode.ÀîÔ¬Ä°).ToArray();
             characterArtCode = cacList[UnityEngine.Random.Range(0, cacList.Length)];
-            SpawnTagOnStart(rarerity);
+            if (tagList.Count == 0)
+            {
+                SpawnTagOnStart(rarerity);
+            }
             if (hireStage != HireStage.Hired)
             {
                 OnDutyState[OndutyType.Combat] = false;

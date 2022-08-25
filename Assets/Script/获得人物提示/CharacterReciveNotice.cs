@@ -25,6 +25,7 @@ public class CharacterReciveNotice : MonoBehaviour
         new Color(248,212,95),
         new Color(217,50,35)
     };
+    public Button Confirm;
     public void Setup(Character character)
     {
         Rarerity rarerity = character.CheckTopRare();

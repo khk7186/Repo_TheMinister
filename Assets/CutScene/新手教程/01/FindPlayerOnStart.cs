@@ -12,7 +12,6 @@ public class FindPlayerOnStart : MonoBehaviour
     public PlayableDirector director;
     public TimelineAsset timeline;
     public GameObject _dialogue;
-
     private void Start()
     {
         director = GetComponent<PlayableDirector>();
