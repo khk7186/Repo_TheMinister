@@ -50,6 +50,7 @@ public class Map : MonoBehaviour, IObserver
         PlayerAnimator = Player.GetComponentInChildren<SkeletonMecanim>().GetComponent<Animator>();
         PlayerMovement = Player.GetComponent<CharacterMovement>();
         PlayerMovement.currentBlock = PlayerCurrentBlock;
+        PlayerMovement.finalBlock = PlayerCurrentBlock;
     }
     public void FirstDayReset()
     {
@@ -64,6 +65,7 @@ public class Map : MonoBehaviour, IObserver
             Debug.Log("OnNotify");
             //StartCoroutine(MoveManyStep((int)value, Player));
             PlayerMovement.finalBlock += (int)value * HorseMovementBuff;
+            Debug.Log(PlayerMovement.finalBlock);
             StartCoroutine(Move());
         }
     }
