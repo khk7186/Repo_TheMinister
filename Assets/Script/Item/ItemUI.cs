@@ -253,6 +253,7 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
     public TagExchangeUI tagExchangeUI;
     public Image Frame;
     public Rarerity framRarity;
+    public bool CanClick = true;
     public Image Icon => icon;
     public bool InUse = true;
     public virtual void OnPointerClick(PointerEventData eventData)

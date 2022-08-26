@@ -298,6 +298,7 @@ public enum HireStage
     InCity,
     Hired,
     NotInMap,
+    Defeated,
     Away
 }
 public class Character : MonoBehaviour, IRound
@@ -745,7 +746,9 @@ public class Character : MonoBehaviour, IRound
         health -= damage;
         if (health < 0)
         {
-            Destroy(gameObject);
+            hireStage = HireStage.Defeated;
+            health = 5;
+            loyalty = 5;
         }
     }
 

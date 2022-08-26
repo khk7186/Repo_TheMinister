@@ -49,7 +49,7 @@ public class CombatCharacterUnit : MonoBehaviour
         output.IsFriend = isFriend;
         output.SetupIdle();
         output.Reset();
-        if (! output.IsFriend)
+        if (!output.IsFriend)
         {
             Destroy(output.GetComponent<CombatInteractableUnit>());
         }
@@ -75,7 +75,7 @@ public class CombatCharacterUnit : MonoBehaviour
         GetComponent<SkeletonMecanim>().Initialize(true);
         if (!IsFriend)
         {
-            var newScale = transform.localScale; 
+            var newScale = transform.localScale;
             newScale = new Vector3(-newScale.x, newScale.y, newScale.z);
             transform.localScale = newScale;
         }
@@ -237,23 +237,22 @@ public class CombatCharacterUnit : MonoBehaviour
     public void CheckGameEnd()
     {
         int enemy = 0, player = 0;
+        int result = 0;
         foreach (var ccu in FindObjectsOfType<CombatCharacterUnit>())
         {
+            if (ccu == this) continue;
             if (ccu.IsFriend) player++;
             else enemy++;
         }
         var trigger = FindObjectOfType<GeneralEventTrigger>();
         if (enemy == 0)
         {
-            trigger.gameTracker.gameWin = true;
+            result = 1;
         }
         else if (player == 0)
         {
-            trigger.gameTracker.gameWin = false;
+            result = -1;
         }
-        //Debug.Log(enemy);
-        trigger.TriggerEnd();
+        trigger.TriggerEnd(result);
     }
-
-
 }

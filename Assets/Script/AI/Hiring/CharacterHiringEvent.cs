@@ -785,11 +785,10 @@ public class CharacterHiringEvent : MonoBehaviour
     public Character character;
     public Dictionary<ItemName, int> requestItems;
     public string FailedMessage;
+    public Canvas targetCanvas;
     private void Awake()
     {
-
     }
-
     public void StartHiring()
     {
         if (character == null)
@@ -800,6 +799,11 @@ public class CharacterHiringEvent : MonoBehaviour
     }
     public void SetRequest()
     {
+        if (character.hireStage == HireStage.Defeated)
+        {
+            requestItems = new Dictionary<ItemName, int>() { };
+            return;
+        }
         Rarerity rarerity = Rarerity.N;
         foreach (Tag tag in character.tag)
         {
@@ -813,7 +817,8 @@ public class CharacterHiringEvent : MonoBehaviour
     public IEnumerator HiringRator()
     {
         var UIobject = Resources.Load<CharacterHiringUI>("Hiring/HireUI");
-        var currentUI = Instantiate(UIobject, MainCanvas.FindMainCanvas());
+        Transform canvas = targetCanvas != null ? targetCanvas.transform : MainCanvas.FindMainCanvas();
+        var currentUI = Instantiate(UIobject, canvas);
         SetRequest();
         currentUI.Setup(character, requestItems);
         bool NeverFalse = true;
@@ -841,7 +846,10 @@ public class CharacterHiringEvent : MonoBehaviour
         {
             Destroy(currentUI.gameObject);
         }
-        Destroy(gameObject);
+        if (targetCanvas == null)
+        {
+            Destroy(gameObject);
+        }
     }
     public bool TryHiring()
     {

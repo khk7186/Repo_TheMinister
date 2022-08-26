@@ -45,7 +45,7 @@ public static class SelectOnDuty
         }
         return targetList;
     }
-    private static Transform FindInventory()
+    public static Transform FindInventory()
     {
         return UnityEngine.GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
     }

@@ -53,12 +53,10 @@ public class GeneralEventTrigger : MonoBehaviour
         StartCoroutine(JumpToScene(scene));
 
     }
-    public void TriggerEnd(int result = 0)
+    public void TriggerEnd(int result)
     {
-        if (result != 0)
-        {
-            gameTracker.gameWin = result > 0;
-        }
+        Debug.Log(result);
+        gameTracker.gameWin = result > 0;
         if (gameTracker != null)
         {
             //Win
@@ -114,7 +112,11 @@ public class GeneralEventTrigger : MonoBehaviour
                 yield return null;
             }
             Debug.Log("Game Over");
-            var pannel = Instantiate(endGamePannel, MainCanvas.FindMainCanvas());
+            Transform canvas = MainCanvas.FindMainCanvas();
+            if (canvas != null)
+            {
+                var pannel = Instantiate(endGamePannel, canvas);
+            }
             FindObjectOfType<StandardDialogueUI>().gameObject.SetActive(false);
         }
     }
