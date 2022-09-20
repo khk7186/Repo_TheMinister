@@ -53,17 +53,17 @@ public class CharacterMovement : MonoBehaviour
     }
     private void Start()
     {
-        animator.SetFloat("Speed 0", 0f);
+        animator.SetFloat("Speed 0", 0f); 
+        if (grid == null)
+        {
+            grid = FindObjectOfType<MovementGrid>().GetComponent<Grid>();
+        }
     }
     private void Awake()
     {
         if (SceneManager.GetActiveScene().buildIndex != 1 || CutScene)
         {
             return;
-        }
-        if (grid == null)
-        {
-            grid = FindObjectOfType<MovementGrid>().GetComponent<Grid>();
         }
         if (AI)
         {
