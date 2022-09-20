@@ -64,6 +64,7 @@ public class SideChanger : MonoBehaviour
             animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(controllerPath);
             animator.GetComponent<SkeletonMecanim>().Initialize(true);
 
+
             animator.transform.localScale = target;
             animator.GetComponent<SkeletonMecanim>().Initialize(true);
         }
@@ -84,6 +85,7 @@ public class SideChanger : MonoBehaviour
         {
             FindObjectOfType<Map>(true).ChangeSide(front, !right);
         }
+        animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(ReturnAssetPath.ReturnSpineControllerPath(characterArtCode, front));
         time = 0;
         while (time < duration)
         {

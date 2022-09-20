@@ -33,6 +33,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public Image OnCombatImage;
     public Image OnDebateImage;
     public Image OnGobangImage;
+    public Image OnAwayImage;
 
     private PlayerCharactersInventory inventoryCharacters;
     public CardMode cardMode = CardMode.ViewMode;
@@ -82,6 +83,14 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         ModifyValueColor();
         ModifyTags();
         ModifyCardImage();
+        if (character.hireStage == HireStage.Away)
+        {
+            OnAwayImage.gameObject.SetActive(true);
+        }
+        else
+        {
+            OnAwayImage.gameObject.SetActive(false);
+        }
     }
 
     private void ModifyCardImage()
@@ -152,6 +161,13 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (OnAwayImage.gameObject.activeSelf)
+        {
+            var sampleText = Resources.Load<Text>("Hiring/Message");
+            var message = Instantiate<Text>(sampleText, MainCanvas.FindMainCanvas());
+            message.text = "角色正在处理其他事物";
+            return;
+        }
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             switch (cardMode)

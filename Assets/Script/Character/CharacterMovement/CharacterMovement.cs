@@ -22,13 +22,33 @@ public class CharacterMovement : MonoBehaviour
     public GetGridBlock getGrid;
     private CapsuleCollider2D EndPlaceVisibleChecker;
     private Vector2 oldPosition;
-    public void FixedUpdate()
+    //public void FixedUpdate()
+    //{
+    //    if (oldPosition != null)
+    //    {
+    //        float speed = Vector2.Distance(oldPosition, transform.position) * 100000000 + 0.08f;
+    //        animator.SetFloat("Speed 0", speed);
+    //        oldPosition = transform.position;
+    //    }
+    //}
+    public void OnEnable()
     {
-        if (oldPosition != null)
+        StartCoroutine(MoveRator());
+    }
+    public void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+    public IEnumerator MoveRator()
+    {
+        while (true)
         {
-            float speed = Vector2.Distance(oldPosition, transform.position) * 100000000 + 0.08f;
-            animator.SetFloat("Speed 0", speed);
+            if (oldPosition != (Vector2)transform.position)
+                animator.SetFloat("Speed 0", 1);
+            else
+                animator.SetFloat("Speed 0", 0);
             oldPosition = transform.position;
+            yield return new WaitForEndOfFrame();
         }
     }
     private void Start()
@@ -37,7 +57,7 @@ public class CharacterMovement : MonoBehaviour
     }
     private void Awake()
     {
-        if (SceneManager.GetActiveScene().buildIndex != 1|| CutScene)
+        if (SceneManager.GetActiveScene().buildIndex != 1 || CutScene)
         {
             return;
         }

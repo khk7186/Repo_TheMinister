@@ -6,7 +6,7 @@ public class GiveQuestOnActive : MonoBehaviour
 {
     public Quest questAsset;
     public QuestJournal questJournal;
-    void Start()
+    public void Start()
     {
         questJournal = FindObjectOfType<QuestJournal>();
         // Make a copy of the quest for the quester:

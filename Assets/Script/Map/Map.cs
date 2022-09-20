@@ -62,14 +62,12 @@ public class Map : MonoBehaviour, IObserver
         {
             //PlayerAnimator.SetTrigger("Move");
             DayTimePlus();
-            Debug.Log("OnNotify");
             //StartCoroutine(MoveManyStep((int)value, Player));
             PlayerMovement.finalBlock += (int)value * HorseMovementBuff;
-            Debug.Log(PlayerMovement.finalBlock);
+            //Debug.Log(PlayerMovement.finalBlock);
             StartCoroutine(Move());
         }
     }
-
     IEnumerator Move()
     {
         yield return PlayerMovement.MoveToLocation();
@@ -77,7 +75,6 @@ public class Map : MonoBehaviour, IObserver
         SetBuildings();
         HorseMovementBuff = 1;
     }
-
     private void DayTimePlus()
     {
         if (DayTime >= 2)

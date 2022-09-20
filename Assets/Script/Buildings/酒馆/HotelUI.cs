@@ -110,7 +110,6 @@ public class HotelUI : MonoBehaviour, ICharacterSelect
         var target = GetComponent<SpawnUI>();
         target.CurrentTarget.gameObject.SetActive(false);
     }
-
     public void CloseInventory(CharacterUI current)
     {
         StartCoroutine(CloseInventoryRator(current));

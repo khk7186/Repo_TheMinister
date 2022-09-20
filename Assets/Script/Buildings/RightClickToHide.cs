@@ -11,8 +11,15 @@ public class RightClickToHide : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            FindObjectOfType<UnityUIQuestHUD>(true).Show();
-            gameObject.SetActive(false);
+            if (TryGetComponent(out UnityUIQuestJournalUI questUI))
+            {
+                questUI.Hide();
+            }
+            else
+            {
+                FindObjectOfType<UnityUIQuestHUD>(true).Show();
+                gameObject.SetActive(false);
+            }
         }
     }
 }

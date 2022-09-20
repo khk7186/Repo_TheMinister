@@ -402,8 +402,9 @@ public class Character : MonoBehaviour, IRound
         if (characterType == CharacterType.General)
         {
             CharacterArtCode[] cacList = (CharacterArtCode[])Enum.GetValues(typeof(CharacterArtCode));
-            cacList = cacList.Where(x => x != CharacterArtCode.ÀîÔ¬Ä°).ToArray();
-            characterArtCode = cacList[UnityEngine.Random.Range(0, cacList.Length)];
+            cacList = cacList.Where(x => x != CharacterArtCode.ÀîÔ¬Ä° && x != CharacterArtCode.ÄÐµ¶¿Í).ToArray();
+            if (characterArtCode == CharacterArtCode.ÀîÔ¬Ä° && characterType != CharacterType.Main)
+                characterArtCode = cacList[UnityEngine.Random.Range(0, cacList.Length)];
             if (tagList.Count == 0)
             {
                 SpawnTagOnStart(rarerity);
@@ -453,7 +454,7 @@ public class Character : MonoBehaviour, IRound
 
     public CharacterUI BelongCheck()
     {
-        if (hireStage == HireStage.Hired)
+        if (hireStage == HireStage.Hired || hireStage == HireStage.Away)
         {
             transform.parent = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
             return CreatInventoryCardUI();
@@ -639,17 +640,21 @@ public class Character : MonoBehaviour, IRound
             ReturnToHand();
         }
     }
-    public void Away(int rounds)
+    public void Away(int rounds, GameObject spawnAfterAway = null)
     {
-        StartCoroutine(AwayCoroutine(rounds));
+        StartCoroutine(AwayCoroutine(rounds, spawnAfterAway));
     }
-    public IEnumerator AwayCoroutine(int rounds)
+    public IEnumerator AwayCoroutine(int rounds, GameObject spawnAfterAway = null)
     {
         hireStage = HireStage.Away;
+        OnCombatDuty = false;
+        OnDebateDuty = false;
+        OnGobangDuty = false;
         var map = FindObjectOfType<Map>();
         int targetTime = map.DayTime;
         int targetDay = map.Day + rounds;
         yield return new WaitUntil(() => (map.Day == targetDay) && (map.DayTime == targetTime));
+        if(spawnAfterAway!=null) Instantiate(spawnAfterAway);
         hireStage = HireStage.Hired;
     }
 

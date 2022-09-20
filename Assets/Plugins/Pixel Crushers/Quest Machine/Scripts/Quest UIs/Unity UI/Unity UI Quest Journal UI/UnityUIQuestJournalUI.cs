@@ -351,6 +351,7 @@ namespace PixelCrushers.QuestMachine
 
         public override void Hide()
         {
+            Debug.Log("Hide");
             base.Hide();
             if (m_mustSendCloseMessage) MessageSystem.SendMessage(this, m_closeMessage, string.Empty);
             m_mustSendCloseMessage = false;

@@ -41,7 +41,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     //private string NPCJsonPath = "JSON/AIOnMapMovement";
     public Grid movementGrid;
     public NPCConversationTriggerGroup npcConversationTriggerGroup;
-    private void Awake()
+    protected void Awake()
     {
         movementGrid = FindObjectOfType<MovementGrid>().GetComponent<Grid>();
         inner = Random.Range(0, 2) == 0 ? false : true;
@@ -50,24 +50,27 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
             subject.RegisterObserver(this);
         }
         map = FindObjectOfType<Map>();
-
     }
-    public void OnNotify(object value, NotificationType notificationType)
+    public virtual void OnNotify(object value, NotificationType notificationType)
     {
         if (notificationType == NotificationType.DiceRoll)
         {
             Move();
         }
     }
-    public void Setup(Character character)
+    public void SetSpine()
     {
-        this.character = character;
         SkeletonDataAsset asset = Resources.Load<SkeletonDataAsset>
             ($"{ReturnAssetPath.ReturnSpineAssetPath(character.characterArtCode, true)}");
         animator.GetComponent<SkeletonMecanim>().skeletonDataAsset = asset;
         string controllerPath = $"{ReturnAssetPath.ReturnSpineControllerPath(character.characterArtCode, true)}";
         animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(controllerPath);
         animator.GetComponent<SkeletonMecanim>().Initialize(true);
+    }
+    public virtual void Setup(Character character)
+    {
+        this.character = character;
+        SetSpine();
         NightBlock = Random.Range(0, map.mapCount);
         int tryMax = NightBlock + (Random.Range(0, 1) == 0 ? -1 : 1) * Random.Range(4, 10) % map.mapCount;
         if (tryMax < 0)
@@ -104,8 +107,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
         StartCoroutine(movement.MoveToLocation());
         //StartCoroutine(MoveManyStep(steps));
     }
-
-    protected void OnMouseDown()
+    protected virtual void OnMouseDown()
     {
         if (IsPointerOver.IsPointerOverUIObject())
         {
@@ -125,7 +127,6 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     {
         this.inner = inner;
     }
-
     public virtual void SetConversationDatabase()
     {
         //npcConversationTriggerGroup.Setup(character.characterArtCode.ToString());
