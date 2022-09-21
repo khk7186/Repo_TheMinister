@@ -9,17 +9,31 @@ public class ChangeQuestStageOnEnable : MonoBehaviour
     public struct ChangeQuestStruct
     {
         public string QuestID;
-        public string QuestNode;
+        public string questNode;
         public QuestNodeState questNodeState;
     }
     public List<ChangeQuestStruct> changeQuestStructs;
 
     public void Awake()
     {
+        ChangeStage();
+        Destroy(gameObject);
+    }
+    public void ChangeStage()
+    {
         foreach (ChangeQuestStruct changeQuestStruct in changeQuestStructs)
         {
-            QuestMachine.SetQuestNodeState(changeQuestStruct.QuestID, changeQuestStruct.QuestNode, changeQuestStruct.questNodeState);
+            QuestMachine.SetQuestNodeState(changeQuestStruct.QuestID, changeQuestStruct.questNode, changeQuestStruct.questNodeState);
+            if (changeQuestStruct.questNode == "Ê§°Ü"|| changeQuestStruct.questNode == "³É¹¦")
+            {
+                var asset = QuestMachine.GetQuestInstance(changeQuestStruct.QuestID);
+                Debug.Log(asset.id);
+                QuestStateNotice.ShowQuestStage
+                    (asset.id.ToString()
+                    , asset.title.ToString()
+                    , asset.GetState() == QuestState.Successful);
+            }
         }
-        Destroy(gameObject);
+        
     }
 }

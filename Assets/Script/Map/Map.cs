@@ -32,7 +32,8 @@ public class Map : MonoBehaviour, IObserver
         {
             subject.RegisterObserver(this);
         }
-        Player.position = movementGrid.GetCellCenterWorld(MovementGrid.PlayerMovementBlocks[PlayerMovement.currentBlock]);
+        int block = PlayerMovement.currentBlock % MovementGrid.PlayerMovementBlocks.Count;
+        Player.position = movementGrid.GetCellCenterWorld(MovementGrid.PlayerMovementBlocks[block]);
         PlayerNextBlockToMove = PlayerCurrentBlock;
         SetBuildings();
     }
@@ -45,12 +46,12 @@ public class Map : MonoBehaviour, IObserver
         Player = FindObjectOfType<Player>()?.transform;
         if (Player == null)
         {
-            Player = Instantiate(Resources.Load<GameObject>("MainGame/ÀîÔ¬Ä°")).transform;
+            Player = Instantiate(Resources.Load<GameObject>("MainGame/ÀîÔ¬Ä°")).transform; PlayerAnimator = Player.GetComponentInChildren<SkeletonMecanim>().GetComponent<Animator>();
+            PlayerMovement = Player.GetComponent<CharacterMovement>();
+            PlayerMovement.currentBlock = PlayerCurrentBlock;
+            PlayerMovement.finalBlock = PlayerCurrentBlock;
         }
-        PlayerAnimator = Player.GetComponentInChildren<SkeletonMecanim>().GetComponent<Animator>();
-        PlayerMovement = Player.GetComponent<CharacterMovement>();
-        PlayerMovement.currentBlock = PlayerCurrentBlock;
-        PlayerMovement.finalBlock = PlayerCurrentBlock;
+        
     }
     public void FirstDayReset()
     {

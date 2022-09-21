@@ -61,12 +61,10 @@ public class CharacterMovement : MonoBehaviour
         if (AI)
         {
             getGrid = ((block) => MovementGrid.GetAIBlock(GetComponent<DefaultInGameAI>(), block));
-            Debug.Log(getGrid == null);
         }
         else
         {
             getGrid = ((block) => MovementGrid.GetPlayerBlock(block));
-            Debug.Log(getGrid == null);
         }
         if (SceneManager.GetActiveScene().buildIndex != 1 || CutScene)
         {

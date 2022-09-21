@@ -11,7 +11,7 @@ public class QuestNotice : MonoBehaviour
         QuestNotice target = FindObjectOfType<QuestNotice>(true);
         target.gameObject.SetActive(true);
         string type = QuestID[0] == 'M'? "主线":"支线";
-        target.text.text =$"{type}任务：<color=#<color=#FF0000>{QuestName}</color>" ;
+        target.text.text =$"{type}任务：<color=#FF0000>{QuestName}</color>" ;
         Debug.Log("ShowQuestConfirm");
     }
 }

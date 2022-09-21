@@ -221,7 +221,7 @@ public class MovementGrid : MonoBehaviour
         Vector3Int block = Vector3Int.zero;
         if (blockNumber >= 0)
         {
-            block = PlayerMovementBlocks[blockNumber];
+            block = PlayerMovementBlocks[blockNumber%PlayerMovementBlocks.Count];
         }
         return block;
     }

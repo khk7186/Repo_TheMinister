@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using PixelCrushers.DialogueSystem;
 
-public class ForceCombatInGameAI : DefaultInGameAI
+public class ForceCombatInGameAI : DefaultInGameAI,IStopPlayer
 {
     public int stayblock;
     public int stayRounds = 3;
-    private Collider2D trigger;
+    private Collider2D trigger; 
+    public int CurrentBlock => stayblock;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -64,4 +65,6 @@ public class ForceCombatInGameAI : DefaultInGameAI
         DSC.Awake();
         npcConversationTriggerGroup.StartGeneral();
     }
+
+
 }
