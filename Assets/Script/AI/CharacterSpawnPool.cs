@@ -171,6 +171,39 @@ public class CharacterSpawnPool : MonoBehaviour
                         new List<Character>(){ }
                     }
         };
+    public static Dictionary<BattleType, List<Character>> DancerDict
+        = new Dictionary<BattleType, List<Character>>()
+        {
+                    { BattleType.Combat,
+                        new List<Character>(){ }
+                    }
+                    ,
+                    {BattleType.Debate,
+                        new List<Character>(){ }
+                    }
+        };
+    public static Dictionary<BattleType, List<Character>> CharmerDict
+        = new Dictionary<BattleType, List<Character>>()
+        {
+                    { BattleType.Combat,
+                        new List<Character>(){ }
+                    }
+                    ,
+                    {BattleType.Debate,
+                        new List<Character>(){ }
+                    }
+        };
+    public static Dictionary<BattleType, List<Character>> SouthernFemaleDict
+        = new Dictionary<BattleType, List<Character>>()
+        {
+                    { BattleType.Combat,
+                        new List<Character>(){ }
+                    }
+                    ,
+                    {BattleType.Debate,
+                        new List<Character>(){ }
+                    }
+        };
     public static Dictionary<CharacterArtCode, Dictionary<BattleType, List<Character>>> CharacterSpawnPoolDict
         = new Dictionary<CharacterArtCode, Dictionary<BattleType, List<Character>>>()
         {
@@ -188,7 +221,11 @@ public class CharacterSpawnPool : MonoBehaviour
             {CharacterArtCode.方丈, MonkDict },
             {CharacterArtCode.官员, GovernorDict },
             {CharacterArtCode.拾荒者, ScavengerDict },
-            {CharacterArtCode.太监, EunuchDict }
+            {CharacterArtCode.太监, EunuchDict },
+            {CharacterArtCode.舞女, DancerDict },
+            {CharacterArtCode.花魁, CharmerDict },
+            {CharacterArtCode.南疆女, SouthernFemaleDict }
+
         };
     public void RotateAllCharacters()
     {

@@ -284,7 +284,10 @@ public enum CharacterArtCode
     方丈,
     官员,
     拾荒者,
-    太监
+    太监,
+    舞女,
+    花魁,
+    南疆女
 }
 public enum CharacterType
 {
