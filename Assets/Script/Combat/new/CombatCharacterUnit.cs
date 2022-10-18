@@ -178,15 +178,15 @@ public class CombatCharacterUnit : MonoBehaviour
             switch (stat)
             {
                 case CharacterStat.weak:
-                    result = TryArmor(damage > 0 ? damage * 2 : minimumDamage * 2);
+                    result = damage > 0 ? damage * 2 : minimumDamage * 2;
                     character.FightHealthModify(result);
                     break;
                 case CharacterStat.normal:
-                    result = TryArmor(damage > 0 ? damage : minimumDamage);
+                    result = damage > 0 ? damage : minimumDamage;
                     character.FightHealthModify(result);
                     break;
                 case CharacterStat.strong:
-                    result = TryArmor(damage > 0 ? damage / 2 : minimumDamage);
+                    result = damage > 0 ? damage / 2 : minimumDamage;
                     character.FightHealthModify(result);
                     break;
             }

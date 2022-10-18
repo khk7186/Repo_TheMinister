@@ -25,6 +25,7 @@ public class Map : MonoBehaviour, IObserver
 
     [SerializeField] private Animator PlayerAnimator;
     [SerializeField] private CharacterMovement PlayerMovement;
+    public bool OnStory = false;
     private void Awake()
     {
         FindPlayer();
@@ -51,7 +52,7 @@ public class Map : MonoBehaviour, IObserver
             PlayerMovement.currentBlock = PlayerCurrentBlock;
             PlayerMovement.finalBlock = PlayerCurrentBlock;
         }
-        
+
     }
     public void FirstDayReset()
     {
@@ -59,15 +60,27 @@ public class Map : MonoBehaviour, IObserver
     }
     public void OnNotify(object value, NotificationType notificationType)
     {
+
         if (notificationType == NotificationType.DiceRoll)
         {
             //PlayerAnimator.SetTrigger("Move");
             DayTimePlus();
-            //StartCoroutine(MoveManyStep((int)value, Player));
-            PlayerMovement.finalBlock += (int)value * HorseMovementBuff;
+            if (OnStory)
+            {
+                if (PlayerMovement.currentBlock>= PlayerMovement.finalBlock)
+                {
+                    OnStory = false;
+                }
+            }
+            if (!OnStory)
+            {
+                //StartCoroutine(MoveManyStep((int)value, Player));
+                PlayerMovement.finalBlock += (int)value * HorseMovementBuff;
+            }
             //Debug.Log(PlayerMovement.finalBlock);
             StartCoroutine(Move());
         }
+
     }
     IEnumerator Move()
     {

@@ -12,7 +12,7 @@ public class SpawnPrefabOnEnable : MonoBehaviour
     {
         foreach (GameObject go in gameObjectsToSpawn)
         {
-            Instantiate(go, spawnPosition, Quaternion.identity);
+            Instantiate(go, spawnPosition, Quaternion.identity).gameObject.SetActive(true);
         }
     }
     public void OnEnable()

@@ -5,6 +5,23 @@ using PixelCrushers.QuestMachine;
 
 public class HideAndShowMainUI : MonoBehaviour
 {
+    public bool Show = false;
+    public bool ActionOnEnable = false;
+    private void OnEnable()
+    {
+        if (ActionOnEnable)
+        {
+            if (Show)
+            {
+                ShowMain();
+            }
+            else
+            {
+                HideMain();
+            }
+            gameObject.SetActive(false);
+        }
+    }
     public void HideMain()
     {
         FindObjectOfType<MainUI>(true).gameObject.SetActive(false);

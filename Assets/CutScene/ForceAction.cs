@@ -18,7 +18,7 @@ public class ForceAction : MonoBehaviour,IStopPlayer
             }
         }
     }
-    private void Awake()
+    private void OnEnable()
     {
         var movementGrid = FindObjectOfType<MovementGrid>();
         var gridVector = MovementGrid.GetPlayerBlock(stayblock);

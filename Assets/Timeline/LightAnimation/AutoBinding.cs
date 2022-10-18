@@ -10,7 +10,8 @@ public class AutoBinding : MonoBehaviour
     public PlayableDirector director;
     public TimelineAsset timeline;
     public RuntimeAnimatorController controller;
-    private void Awake()
+    public FindLinkToSearch findLinkToSearch;
+    private void OnEnable()
     {
         director = GetComponent<PlayableDirector>();
         timeline = director.playableAsset as TimelineAsset;
@@ -32,7 +33,8 @@ public class AutoBinding : MonoBehaviour
             }
             if (target == null)
             {
-                Debug.Log(track.name);
+                if (findLinkToSearch != null)
+                    target = findLinkToSearch.GetLinkToSearch(track.name).gameObject.transform;
                 continue;
             }
             if (target.TryGetComponent(out Animator targetAnimator))
