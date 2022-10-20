@@ -258,6 +258,7 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
     public bool InUse = true;
     public virtual void OnPointerClick(PointerEventData eventData)
     {
+        GetComponent<AudioTrigger>().PlayAudio();
         if (!InUse)
             return;
         if (eventData.button == PointerEventData.InputButton.Left)

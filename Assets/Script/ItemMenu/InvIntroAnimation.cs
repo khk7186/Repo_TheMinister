@@ -20,9 +20,9 @@ public class InvIntroAnimation : MonoBehaviour, IPointerClickHandler
     }
     private void Intro()
     {
-        audioSource = new GameObject().AddComponent<AudioSource>();
-        audioSource.clip = Resources.Load<AudioClip>("UISFX/004-1");
-        audioSource.Play();
+        //audioSource = new GameObject().AddComponent<AudioSource>();
+        //audioSource.clip = Resources.Load<AudioClip>("UISFX/004-1");
+        //audioSource.Play();
         var targetRT = GetComponent<RectTransform>();
         targetRT.anchoredPosition = new Vector2(800f, 0f);
         targetRT.DOAnchorPosX(0f, 0.3f).SetEase(Ease.InOutSine).Delay();
@@ -31,8 +31,8 @@ public class InvIntroAnimation : MonoBehaviour, IPointerClickHandler
     public void Outro()
     {
         var targetRT = GetComponent<RectTransform>();
-        audioSource.Play();
-        targetRT.DOAnchorPosX(800f, 0.3f).OnComplete(() => { Destroy(audioSource.gameObject); Destroy(gameObject); });
+        //audioSource.Play();
+        targetRT.DOAnchorPosX(800f, 0.3f).OnComplete(() => {/* Destroy(audioSource.gameObject); */Destroy(gameObject); });
     }
 
     public void SetDiableDelegate(diableEvent disableEvent)

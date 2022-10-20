@@ -84,7 +84,9 @@ public class Map : MonoBehaviour, IObserver
     }
     IEnumerator Move()
     {
+        AudioManager.Play("走路", true);
         yield return PlayerMovement.MoveToLocation();
+        AudioManager.Stop("走路");
         FindObjectOfType<Dice>().rolling = false;
         SetBuildings();
         HorseMovementBuff = 1;

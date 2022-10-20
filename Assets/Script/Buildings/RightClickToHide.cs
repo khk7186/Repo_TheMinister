@@ -11,6 +11,7 @@ public class RightClickToHide : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
+            AudioManager.Play("·­Ò³");
             if (TryGetComponent(out UnityUIQuestJournalUI questUI))
             {
                 questUI.Hide();

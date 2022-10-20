@@ -32,6 +32,7 @@ public class InteractAsset : MonoBehaviour
     }
     private void OnMouseDown()
     {
+        AudioManager.Play("°´Å¥");
         if (Active == false) return;
         if (IsPointerOver.IsPointerOverUIObject())
         {
