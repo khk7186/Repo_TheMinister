@@ -21,7 +21,6 @@ public class AudioManager : MonoBehaviour
         audioSource.clip = clip;
         audioSource.loop = loop;
         audioSource.Play();
-        Debug.Log("play");
         if (loop == false)
         {
             StartCoroutine(DestroyAfterPlay(audioSource));

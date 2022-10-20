@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class StartFight : MonoBehaviour
 {
@@ -11,101 +12,96 @@ public class StartFight : MonoBehaviour
     public IEnumerator StartNewFight()
     {
         var selfUnit = GetComponent<CombatCharacterUnit>();
-        animator = selfUnit.GetComponent<Animator>();
-        selfUnit.ModifyStat();
-        yield return StatChangeAnimation(selfUnit);
-        
-        if (selfUnit.currentAction == Action.NoSelect)
+        if (selfUnit.gameObject.activeSelf != false)
         {
-            selfUnit.currentAction = Action.Attack;
-        }
-        if (selfUnit.currentAction != Action.Defence)
-        {
-            CombatCharacterUnit target = selfUnit.target;
-            if (target == null)
+            animator = selfUnit.GetComponent<Animator>();
+            selfUnit.ModifyStat();
+            yield return StatChangeAnimation(selfUnit);
+
+            if (selfUnit.currentAction == Action.NoSelect)
             {
-                var PotentialList = FindObjectsOfType<CombatCharacterUnit>();
-                foreach (var potential in PotentialList)
-                {
-                    if (potential.IsFriend != selfUnit.IsFriend)
-                    {
-                        selfUnit.target = potential;
-                        target = selfUnit.target;
-                        break;
-                    }
-                }
+                selfUnit.currentAction = Action.Attack;
             }
-            if (target != null)
+            if (selfUnit.currentAction != Action.Defence)
             {
-                var targetPosition = target.transform.position;
-                var originPosition = transform.position;
-                bool targetHaveDefender = IfTargetHaveDefender(target);
-                Vector2 defenderFinalPosition = new Vector2(0, 0);
-                Vector2 defenderOriginPosition = new Vector2(0, 0);
-                if (target.IsFriend)
+                if (selfUnit.target == null || selfUnit.target.gameObject.activeSelf == false)
                 {
-                    targetPosition.y += distanceY;
-                    targetPosition.x += distanceX;
-                    if (targetHaveDefender)
+                    var Potential = FindObjectsOfType<CombatCharacterUnit>().First(x => x.IsFriend != selfUnit.IsFriend);
+                    selfUnit.target = Potential;
+                    Debug.Log("changeTarget");
+                }
+                CombatCharacterUnit target = selfUnit.target;
+                if (target != null)
+                {
+                    var targetPosition = target.transform.position;
+                    var originPosition = transform.position;
+                    bool targetHaveDefender = IfTargetHaveDefender(target);
+                    Vector2 defenderFinalPosition = new Vector2(0, 0);
+                    Vector2 defenderOriginPosition = new Vector2(0, 0);
+                    if (target.IsFriend)
                     {
-                        defenderFinalPosition = targetPosition;
-                        defenderOriginPosition = target.Defender.transform.position;
                         targetPosition.y += distanceY;
                         targetPosition.x += distanceX;
+                        if (targetHaveDefender)
+                        {
+                            defenderFinalPosition = targetPosition;
+                            defenderOriginPosition = target.Defender.transform.position;
+                            targetPosition.y += distanceY;
+                            targetPosition.x += distanceX;
+                        }
                     }
-                }
-                else
-                {
-                    targetPosition.y -= distanceY;
-                    targetPosition.x -= distanceX;
-                    if (targetHaveDefender)
+                    else
                     {
-                        defenderFinalPosition = targetPosition;
-                        defenderOriginPosition = target.Defender.transform.position;
                         targetPosition.y -= distanceY;
                         targetPosition.x -= distanceX;
+                        if (targetHaveDefender)
+                        {
+                            defenderFinalPosition = targetPosition;
+                            defenderOriginPosition = target.Defender.transform.position;
+                            targetPosition.y -= distanceY;
+                            targetPosition.x -= distanceX;
+                        }
+                    }
+                    float time = 0;
+                    while (time < duration)
+                    {
+                        time += Time.deltaTime;
+                        transform.position = Vector2.Lerp(originPosition, targetPosition, time / duration);
+                        if (targetHaveDefender)
+                        {
+                            target.Defender.transform.position = Vector2.Lerp(defenderOriginPosition, defenderFinalPosition, time / duration);
+                        }
+                        yield return null;
+                    }
+                    time = 0;
+                    // Do Damage Calculations
+                    selfUnit.MakeTurn();
+                    animator.Play(selfUnit.currentAction.ToString());
+                    yield return new WaitForSeconds(0.5f);
+                    while (time < duration)
+                    {
+                        time += Time.deltaTime;
+                        transform.position = Vector2.Lerp(targetPosition, originPosition, time / duration);
+                        if (targetHaveDefender)
+                        {
+                            target.Defender.transform.position = Vector2.Lerp(defenderFinalPosition, defenderOriginPosition, time / duration);
+                        }
+                        yield return null;
                     }
                 }
-                float time = 0;
-                while (time < duration)
+                //TODO: if no other attackable target, return game result
+                else
                 {
-                    time += Time.deltaTime;
-                    transform.position = Vector2.Lerp(originPosition, targetPosition, time / duration);
-                    if (targetHaveDefender)
-                    {
-                        target.Defender.transform.position = Vector2.Lerp(defenderOriginPosition, defenderFinalPosition, time / duration);
-                    }
-                    yield return null;
-                }
-                time = 0;
-                // Do Damage Calculations
-                selfUnit.MakeTurn();
-                animator.Play(selfUnit.currentAction.ToString());
-                yield return new WaitForSeconds(0.5f);
-                while (time < duration)
-                {
-                    time += Time.deltaTime;
-                    transform.position = Vector2.Lerp(targetPosition, originPosition, time / duration);
-                    if (targetHaveDefender)
-                    {
-                        target.Defender.transform.position = Vector2.Lerp(defenderFinalPosition, defenderOriginPosition, time / duration);
-                    }
-                    yield return null;
+
                 }
             }
-            //TODO: if no other attackable target, return game result
+            //if defence
             else
             {
-
+                selfUnit.target.Defender = selfUnit;
             }
+            yield return null;
         }
-        //if defence
-        else
-        {
-            selfUnit.target.Defender = selfUnit;
-        }
-        yield return null;
-        
     }
     public bool IfTargetHaveDefender(CombatCharacterUnit target)
     {
@@ -115,28 +111,31 @@ public class StartFight : MonoBehaviour
 
     public IEnumerator StatChangeAnimation(CombatCharacterUnit character)
     {
-        CharacterStat stat = character.stat;
-        var animat = Instantiate(Resources.Load<StatChangeAnimation>("CombatScene/StatAnimation"), MainCanvas.FindMainCanvas());
-        var Position = transform.position;
-        var canvas = MainCanvas.FindMainCanvas().GetComponent<RectTransform>();
-        Vector2 AP = WorldToCanvasPosition.GetCanvasPosition(canvas, Camera.main, Position);
-        AP.y += 120;
-        animat.GetComponent<RectTransform>().anchoredPosition = AP;
-        var animationName = "";
-        switch (stat)
+        if (character.gameObject.activeSelf != false)
         {
-            case CharacterStat.weak:
-                animationName = "弱";
-                break;
-            case CharacterStat.normal:
-                animationName = "正常";
-                break;
-            case CharacterStat.strong:
-                animationName = "强";
-                break;
-            default:
-                break;
+            CharacterStat stat = character.stat;
+            var animat = Instantiate(Resources.Load<StatChangeAnimation>("CombatScene/StatAnimation"), MainCanvas.FindMainCanvas());
+            var Position = transform.position;
+            var canvas = MainCanvas.FindMainCanvas().GetComponent<RectTransform>();
+            Vector2 AP = WorldToCanvasPosition.GetCanvasPosition(canvas, Camera.main, Position);
+            AP.y += 120;
+            animat.GetComponent<RectTransform>().anchoredPosition = AP;
+            var animationName = "";
+            switch (stat)
+            {
+                case CharacterStat.weak:
+                    animationName = "弱";
+                    break;
+                case CharacterStat.normal:
+                    animationName = "正常";
+                    break;
+                case CharacterStat.strong:
+                    animationName = "强";
+                    break;
+                default:
+                    break;
+            }
+            yield return StartCoroutine(animat.DestroyAfterPlay(animationName));
         }
-        yield return StartCoroutine(animat.DestroyAfterPlay(animationName));
     }
 }

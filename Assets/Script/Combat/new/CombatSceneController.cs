@@ -39,6 +39,11 @@ public class CombatSceneController : MonoBehaviour
     {
         SceneManager.sceneLoaded -= InitializeScene;
     }
+    private void SetLevel()
+    {
+        var map = GameObject.FindObjectOfType<Map>();
+        
+    }
     private void InitializeScene(Scene scene, LoadSceneMode mode)
     {
         var trigger = FindObjectOfType<GeneralEventTrigger>();

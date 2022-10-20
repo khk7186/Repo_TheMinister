@@ -13,7 +13,7 @@ public class CombatInteractableUnit : MonoBehaviour
     public RenderExistingMesh renderExistingMesh;
     private void Start()
     {
-        
+
         if (csc == null)
         {
             csc = FindObjectOfType<CombatSceneController>();
@@ -44,9 +44,8 @@ public class CombatInteractableUnit : MonoBehaviour
     }
     public void OnMouseOver()
     {
-        //Debug.Log("Mouse over");
         if (FindObjectOfType<CombatTrigger>() == null) return;
-        if (IsPointerOver.IsPointerOverUIObject())
+        if (!IsPointerOver.IsPointerOverUIObject())
         {
             if (Input.GetMouseButtonUp(1) && !csc.OnAction)
             {
@@ -83,7 +82,12 @@ public class CombatInteractableUnit : MonoBehaviour
         if (line == null) line = Instantiate(Resources.Load<LineRenderer>("Lines/Line"));
         var Unit = GetComponent<CombatCharacterUnit>();
         bool friend = Unit.currentAction == Action.Defence;
-
+        SetLineColor();
+        StartCoroutine(EnableTargetSelection(friend));
+    }
+    public void SetLineColor()
+    {
+        var Unit = GetComponent<CombatCharacterUnit>();
         switch (Unit.currentAction)
         {
             case Action.Attack:
@@ -96,7 +100,6 @@ public class CombatInteractableUnit : MonoBehaviour
                 line.SetColors(Color.blue, Color.blue);
                 break;
         }
-        StartCoroutine(EnableTargetSelection(friend));
     }
     public IEnumerator EnableTargetSelection(bool friend = false)
     {
@@ -158,10 +161,26 @@ public class CombatInteractableUnit : MonoBehaviour
         var list = FindObjectsOfType<CombatInteractableUnit>();
         foreach (var unit in list)
         {
+            if (unit.line == null && enable == true)
+            {
+                unit.line = Instantiate(Resources.Load<LineRenderer>("Lines/Line"));
+                unit.line.SetPosition(0, (Vector2)unit.transform.position);
+                unit.SetLineColor();
+            }
+
             if (unit.line != null)
             {
-                unit.line.enabled = enable;
-                unit.line.GetComponent<CombatLine>().arrow.enabled = enable;
+                
+                if (unit.GetComponent<CombatCharacterUnit>().target.gameObject.activeSelf == false && enable)
+                {
+                    unit.line.enabled = false;
+                    unit.line.GetComponent<CombatLine>().arrow.enabled = false;
+                }
+                else
+                {
+                    unit.line.enabled = enable; 
+                    unit.line.GetComponent<CombatLine>().arrow.enabled = enable;
+                }
                 if (enable && unit != null)
                 {
                     var ccu = unit.GetComponent<CombatCharacterUnit>();

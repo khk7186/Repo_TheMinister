@@ -180,19 +180,24 @@ public class CombatCharacterUnit : MonoBehaviour
                 case CharacterStat.weak:
                     result = damage > 0 ? damage * 2 : minimumDamage * 2;
                     character.FightHealthModify(result);
+                    AudioManager.Play("ÊÜÉË");
                     break;
                 case CharacterStat.normal:
                     result = damage > 0 ? damage : minimumDamage;
                     character.FightHealthModify(result);
+                    AudioManager.Play("ÊÜÉË");
                     break;
                 case CharacterStat.strong:
-                    result = damage > 0 ? damage / 2 : minimumDamage;
+                    var tempDmg = damage - character.CharactersValueDict[CharacterValueType.ÊØ];
+                    result = tempDmg > 0 ? damage : 0;
                     character.FightHealthModify(result);
+                    AudioManager.Play("µÖ¿¹");
                     break;
             }
             healthBar.Setup(character.health);
             if (character.health <= 0)
             {
+                AudioManager.Play("ËÀÍö");
                 DeathAction();
             }
         }
@@ -231,6 +236,12 @@ public class CombatCharacterUnit : MonoBehaviour
         }
         Destroy(healthBar.gameObject);
         CheckGameEnd();
+        if (character.hireStage != HireStage.Hired)
+        {
+            character.hireStage = HireStage.Defeated;
+            character.health = 5;
+            character.loyalty = 5;
+        }
         gameObject.SetActive(false);
     }
 
@@ -253,6 +264,9 @@ public class CombatCharacterUnit : MonoBehaviour
         {
             result = -1;
         }
-        trigger.TriggerEnd(result);
+        if (result != 0)
+        {
+            trigger.TriggerEnd(result);
+        }
     }
 }

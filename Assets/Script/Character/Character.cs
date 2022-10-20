@@ -754,9 +754,7 @@ public class Character : MonoBehaviour, IRound
         health -= damage;
         if (health < 0)
         {
-            hireStage = HireStage.Defeated;
-            health = 5;
-            loyalty = 5;
+            
         }
     }
 
