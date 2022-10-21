@@ -19,6 +19,7 @@ public class RightClickToClose : MonoBehaviour, IPointerClickHandler
         //{
         //    FindObjectOfType<CombatSceneController>().OnAction = false;
         //}
+        AudioManager.Play("·­Ò³");
         var iib = FindObjectOfType<ItemInvBackgroundAnimation>();
         if (iib != null)
         {

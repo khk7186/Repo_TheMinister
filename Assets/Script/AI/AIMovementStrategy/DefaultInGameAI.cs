@@ -35,6 +35,8 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     public int TargetLocation;
     public Character character;
     public NPCPopUI npcPopUI;
+    public int TryMax = 10;
+    public int TryChance = 3;
 
     [SerializeField] private bool OnNight => map ? map.DayTime == 2 : false;
     public Animator animator;
@@ -55,7 +57,8 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     {
         if (notificationType == NotificationType.DiceRoll)
         {
-            Move();
+            if (Random.Range(0, TryMax) < TryChance)
+                Move();
         }
     }
     public void SetSpine()

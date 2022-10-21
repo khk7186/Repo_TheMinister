@@ -163,6 +163,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         if (OnAwayImage.gameObject.activeSelf)
         {
+            AudioManager.Play("错误");
             var sampleText = Resources.Load<Text>("Hiring/Message");
             var message = Instantiate<Text>(sampleText, MainCanvas.FindMainCanvas());
             message.text = "角色正在处理其他事物";
@@ -170,6 +171,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         }
         if (eventData.button == PointerEventData.InputButton.Left)
         {
+            AudioManager.Play("按钮");
             switch (cardMode)
             {
                 case CardMode.ViewMode:

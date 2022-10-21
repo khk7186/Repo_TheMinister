@@ -43,6 +43,7 @@ public class InvIntroAnimation : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
+            AudioManager.Play("·­Ò³");
             if (!disable)
             {
                 Outro();

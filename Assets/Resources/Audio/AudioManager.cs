@@ -50,7 +50,6 @@ public class AudioManager : MonoBehaviour
         var target = CurrentPlay.First(x => x.name == Name);
         target.Stop();
         Destroy(target.gameObject);
-        Debug.Log("stop");
     }
 
 }

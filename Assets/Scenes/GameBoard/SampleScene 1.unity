@@ -325,7 +325,7 @@ MonoBehaviour:
   DayTime: 1
   Day: 0
   movementGrid: {fileID: 820263734}
-  PlayerCurrentBlock: 69
+  PlayerCurrentBlock: 15
   Player: {fileID: 0}
   delayPerMove: 0.2
   GameStart: 0
@@ -9052,6 +9052,8 @@ GameObject:
   - component: {fileID: 310927464}
   - component: {fileID: 310927463}
   - component: {fileID: 310927466}
+  - component: {fileID: 310927467}
+  - component: {fileID: 310927468}
   m_Layer: 5
   m_Name: Roll
   m_TagString: Untagged
@@ -9136,6 +9138,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 310927467}
+        m_TargetAssemblyTypeName: AudioTrigger, Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 310927468}
+        m_TargetAssemblyTypeName: AudioTrigger, Assembly-CSharp
+        m_MethodName: PlayAudio
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &310927464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9195,7 +9221,38 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 502dae8e6ef48434997f7556a7fb2a29, type: 3}
   dice1: {fileID: 1860044032}
   dice2: {fileID: 1183743488}
+  RollTime: 5
   rolling: 0
+--- !u!114 &310927467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310927461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56c0826aa8610e479a070e9b8ddb283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerOnEnable: 0
+  AudioName: "\u6309\u94AE"
+  Loop: 0
+--- !u!114 &310927468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 310927461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d56c0826aa8610e479a070e9b8ddb283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerOnEnable: 0
+  AudioName: "\u6447\u9AB0\u5B50"
+  Loop: 0
 --- !u!1 &312721014
 GameObject:
   m_ObjectHideFlags: 0
@@ -43136,6 +43193,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 502dae8e6ef48434997f7556a7fb2a29, type: 3}
   dice1: {fileID: 0}
   dice2: {fileID: 0}
+  RollTime: 5
   rolling: 0
 --- !u!114 &1183743488
 MonoBehaviour:
@@ -68735,6 +68793,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 502dae8e6ef48434997f7556a7fb2a29, type: 3}
   dice1: {fileID: 0}
   dice2: {fileID: 0}
+  RollTime: 5
   rolling: 0
 --- !u!114 &1860044032
 MonoBehaviour:

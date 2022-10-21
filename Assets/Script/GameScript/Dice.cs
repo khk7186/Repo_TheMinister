@@ -12,6 +12,7 @@ public class Dice : MonoBehaviour, ISubject
     [SerializeField] private Image dice1;
     [SerializeField] private Image dice2;
     private List<IObserver> Observers = new List<IObserver>();
+    [SerializeField] private int RollTime = 5;
 
     public bool rolling = false;
 
@@ -52,7 +53,7 @@ public class Dice : MonoBehaviour, ISubject
 
         // Loop to switch dice sides ramdomly
         // before final side appears. 20 itterations here.
-        for (int i = 0; i <= 20; i++)
+        for (int i = 0; i <= RollTime; i++)
         {
             // Pick up random value from 0 to 5 (All inclusive)
             randomDiceSide1 = Random.Range(0, 5);

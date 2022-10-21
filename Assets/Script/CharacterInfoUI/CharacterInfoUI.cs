@@ -145,6 +145,7 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
     {
         if (eventData.button == PointerEventData.InputButton.Right && InfoPro)
         {
+            AudioManager.Play("·­Ò³");
             var target = FindObjectOfType<PlayerCharactersInventory>();
             if (target != null) target.Reset();
             GetComponent<InvIntroAnimation>().Outro();
