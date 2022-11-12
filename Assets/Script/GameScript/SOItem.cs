@@ -809,6 +809,15 @@ public class SOItem : ScriptableObject
         {
             BuildingType.铁匠铺, new List<ItemName>()
             {
+                ItemName.铁矿,
+                ItemName.布匹,
+                ItemName.铜矿,
+                ItemName.银矿,
+                ItemName.木头,
+                ItemName.皮革,
+                ItemName.绳子,
+                ItemName.铆钉,
+                ItemName.硬木
             }
         },
         {
@@ -1098,9 +1107,6 @@ public class SOItem : ScriptableObject
                 ItemName.高汤白菜,
                 ItemName.美梦酒,
                 ItemName.三味酒
-
-
-
             }
         },
         {
@@ -1377,6 +1383,11 @@ public class SOItem : ScriptableObject
         {
             BuildingType.戏馆, new List<ItemName>()
             {
+                ItemName.毛笔,
+                ItemName.拂尘,
+                ItemName.舒服的椅子,
+                ItemName.云纹袍,
+                ItemName.羽衣
             }
         },
         {

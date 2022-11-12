@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingUI : MonoBehaviour
 {
@@ -34,5 +35,8 @@ public class BuildingUI : MonoBehaviour
             thisLayout.UpdateUI(character);
         }
     }
-
+    private void FixedUpdate()
+    {
+        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
+    }
 }

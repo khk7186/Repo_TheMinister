@@ -157,17 +157,18 @@ public class Map : MonoBehaviour, IObserver
 
     public void SetActivateBuildingsInteracteble(List<Building> buildings, bool activate)
     {
+        
         foreach (Building b in buildings)
         {
             b.GetComponent<InteractAsset>().Active = activate;
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(Player.transform.position, Radius);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawWireSphere(Player.transform.position, Radius);
+    //}
     public void SetBuildings()
     {
         SetActivateBuildingsInteracteble(ActivatedBuildings, false);

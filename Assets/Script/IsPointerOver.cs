@@ -21,4 +21,13 @@ public class IsPointerOver : MonoBehaviour
         //if (results.Count > 0) Debug.Log(results[0]);
         return results.Count > 0;
     }
+    public void DebugPointer()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        Debug.Log(results[0]);
+    }
 }

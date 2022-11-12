@@ -7,6 +7,7 @@ public class CraftingMaterialListUI : MonoBehaviour
     [SerializeField] private MaterialUI material;
     public void SetUp(List<ItemName> items)
     {
+        TransformEx.Clear(transform);
         foreach (ItemName i in items)
         {
             var target = Instantiate(material, transform);

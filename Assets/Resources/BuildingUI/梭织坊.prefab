@@ -1205,7 +1205,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 4094023484472002115}
   m_HandleRect: {fileID: 4094023484472002112}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2212,7 +2212,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   building: {fileID: 0}
   buildingCharacterUI: {fileID: 7204043058612933364}
-  questUIParent: {fileID: 0}
 --- !u!114 &8976946166394782592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2225,10 +2224,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ffd0005be5efb44e816509c52cdb64e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopUI: {fileID: 1120093727933158810}
+  AllShops: []
+  AllCinema: []
   horseRent: {fileID: 0}
   CraftingUI: {fileID: 3087452624516302226}
-  CinemaUI: {fileID: 0}
+  HotelUI: {fileID: 0}
+  DatingUI: {fileID: 0}
+  BanquetUI: {fileID: 0}
+  BigBanquatUI: {fileID: 0}
+  CharacterShopUI: {fileID: 0}
 --- !u!1 &4094023486070908743
 GameObject:
   m_ObjectHideFlags: 0
@@ -3356,7 +3360,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnType: 0
-  itemPref: {fileID: 4997322782715175712, guid: df54e1c4ccc3ea247b89f6a5b5ead7bc, type: 3}
   itemUIs:
   - {fileID: 4639451285446494681}
   - {fileID: 1879323993963545206}
@@ -3374,6 +3377,7 @@ MonoBehaviour:
   - {fileID: 1637747788823034748}
   - {fileID: 2151896381929820718}
   - {fileID: 1729241688088325121}
+  buildingType: 0
 --- !u!1 &6072570765213487568
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,12 +35,11 @@ public class AnimationManager : MonoBehaviour
     public IEnumerator Actionrator(GameObject OnNext)
     {
         Leave.Outro();
-        float duration = 0.55f;
+        float duration = 0.55f; 
+        OnNext.SetActive(true);
         yield return new WaitForSeconds(duration);
         OnCurrent.SetActive(false);
 
-
-        OnNext.SetActive(true);
         OnCurrent = OnNext;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Linq;
 using System;
@@ -148,6 +149,9 @@ public class Building : MonoBehaviour
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.ÌìÂí¸ó, 0);
                 target.horseRent.GetComponent<HorseRentUI>().Setup(ShopList[0], buildingType);
                 break;
+            case BuildingType.ÆæÊÞÌÃ:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.ÆæÊÞÌÃ, 0);
+                break;
             case BuildingType.Îå½ðµê:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.Îå½ðµê, 0);
                 break;
@@ -178,8 +182,16 @@ public class Building : MonoBehaviour
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.Ò©ÆÌ, 0);
                 SetupCraft();
                 break;
+            case BuildingType.Ò½Ôº:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.Ò©ÆÌ, 0);
+                ShopList[1] = SpawnItemBasedOnType(BuildingType.Ò½Ôº, 1);
+                break;
             case BuildingType.Ìú½³ÆÌ:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.Ìú½³ÆÌ, 0);
+                SetupCraft();
+                break;
+            case BuildingType.ÎäÆ÷ÆÌ:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.ÎäÆ÷ÆÌ, 0);
                 SetupCraft();
                 break;
             case BuildingType.¾Æ¹Ý:
@@ -190,7 +202,7 @@ public class Building : MonoBehaviour
                 break;
             case BuildingType.¹Ýæä:
                 SetPersonHere();
-                ShopList[0] = SpawnItemBasedOnType(BuildingType.¾Æ¹Ý, 0);
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.¹Ýæä, 0);
                 target.HotelUI.GetComponent<HotelUI>().Setup();
                 break;
             case BuildingType.¿ÍÕ»:
@@ -211,7 +223,7 @@ public class Building : MonoBehaviour
                 target.AllCinema[0].GetComponent<CinemaUI>().Setup(currentPlay[0]);
                 break;
             case BuildingType.Ï·Ôº:
-                ShopList[0] = SpawnItemBasedOnType(BuildingType.Ï·Ôº, 0);
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.Ï·¹Ý, 0);
                 currentPlay[0] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
                 currentPlay[1] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
                 target.AllCinema[0].GetComponent<CinemaUI>().Setup(currentPlay[0]);
@@ -244,12 +256,13 @@ public class Building : MonoBehaviour
                 target.CharacterShopUI.GetComponent<CharacterShopUI>().Setup(charactersHere);
                 break;
         }
+        
     }
     public void SetupCraft()
     {
         var target = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
         var currentTarget = target.CraftingUI.GetComponent<CraftingUI>();
-        currentTarget.Setup(CraftingList);
+        currentTarget.Setup(SOItem.BuildingCraftDict[buildingType]);
         if (CraftingList.Count > 0) target.CraftingUI.GetComponent<CraftingUI>().Setup(CraftingList[0]);
     }
     public void SetPersonHere()

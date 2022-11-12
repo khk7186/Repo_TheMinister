@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class MaterialUI : MonoBehaviour, IPointerClickHandler
 {
-    public Text ItemName;
+    public Image ItemImage;
+    public Image Frame;
     public Text NeedAmount;
     public Text HaveAmount;
 
@@ -21,8 +22,12 @@ public class MaterialUI : MonoBehaviour, IPointerClickHandler
     public void SetUp(ItemName item, int haveAmount)
     {
         IntHaveAmount = haveAmount;
-        ItemName.text = item.ToString();
-        NeedAmount.text = "/"+1.ToString();
+        ItemImage.sprite = Resources.Load<Sprite>(ReturnAssetPath.ReturnItemPath(item)); 
+        var framRarity = Player.AllTagRareDict[SOItem.ItemMap[item]] != Rarerity.B ? Player.AllTagRareDict[SOItem.ItemMap[item]] : Rarerity.N;
+        string FramePath = $"Art/BuildingUI/杂货铺/初级五金铺/物品框/物品框-{framRarity}";
+        Frame.sprite = Resources.Load<Sprite>(FramePath);
+        NeedAmount.text = 1.ToString();
         HaveAmount.text = haveAmount.ToString();
+        Debug.Log(IntHaveAmount + "/" + IntNeedAmount);
     }
 }

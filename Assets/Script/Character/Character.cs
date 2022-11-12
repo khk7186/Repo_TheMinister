@@ -261,7 +261,6 @@ public enum Rarerity
     SSR = 8,
     UR = 10
 }
-
 public enum CharacterArtCode
 {
     ÀîÔ¬Ä°,
@@ -294,7 +293,6 @@ public enum CharacterType
     General,
     Main
 }
-
 public enum HireStage
 {
     Never,
@@ -440,7 +438,7 @@ public class Character : MonoBehaviour, IRound
             }
         }
     }
-
+    
     public void ChangeNextHireStage()
     {
         switch (hireStage)
@@ -634,7 +632,6 @@ public class Character : MonoBehaviour, IRound
         thisCharacterCard.Setup();
         return thisCharacterCard;
     }
-
     public void RoundPass()
     {
         ReturnRounds -= 1;

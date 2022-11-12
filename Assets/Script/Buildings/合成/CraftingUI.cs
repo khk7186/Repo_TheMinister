@@ -8,7 +8,7 @@ public class CraftingUI : MonoBehaviour
     public Transform CraftingListTransform;
     public Transform CurrentCraftItemTransform;
     public Transform CraftingMaterialTransform;
-    [SerializeField]private CraftingMenuUI CraftingMenuPref;
+    [SerializeField] private CraftingMenuUI CraftingMenuPref;
 
     private List<ItemName> CraftingList;
     private ItemName CurrentItem;
@@ -16,12 +16,15 @@ public class CraftingUI : MonoBehaviour
     public void Setup(List<ItemName> CraftingList)
     {
         this.CraftingList = CraftingList;
+        ItemName first = ItemName.Null;
         foreach (ItemName item in CraftingList)
         {
+            if (first == ItemName.Null) first = item;
             var target = Instantiate(CraftingMenuPref, CraftingListTransform);
             target.parentUI = this;
             target.SetUp(item);
         }
+        Setup(first);
     }
 
     public void Setup(ItemName item)
@@ -40,11 +43,18 @@ public class CraftingUI : MonoBehaviour
         bool craftble = true;
         foreach (MaterialUI material in CraftingMaterialTransform.GetComponentsInChildren<MaterialUI>())
         {
-            if (material.IntHaveAmount >= material.IntNeedAmount) craftble = false;
+            if (material.IntHaveAmount <= material.IntNeedAmount)
+            {
+                Debug.Log("你需要更多" + $"{material.IntHaveAmount}/{material.IntNeedAmount}");
+                craftble = false;
+                var message = "你的材料不足";
+                var alert = Instantiate(Resources.Load<RiseUpTextAnimation>("Hiring/Message"), MainCanvas.FindMainCanvas());
+                alert.GetComponent<Text>().text = message;
+            }
         }
         if (craftble)
         {
-            string currentText = "确认制造"+CurrentItem.ToString() + "吗？";
+            string currentText = "确认制造" + CurrentItem.ToString() + "吗？";
             Confirmation.HoldingMethod holding = Craft;
             StartCoroutine(Confirmation.CreateNewComfirmation(holding, currentText).Confirm());
         }
