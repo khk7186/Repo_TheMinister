@@ -15,6 +15,7 @@ public class ClickToHire : MonoBehaviour
     }
     private void OnMouseDown()
     {
+        Debug.Log("click");
         if (active)
         {
             Debug.Log("ClickToHire");

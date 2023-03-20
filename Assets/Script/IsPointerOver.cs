@@ -18,7 +18,7 @@ public class IsPointerOver : MonoBehaviour
 
         List<RaycastResult> results = new List<RaycastResult>();
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        //if (results.Count > 0) Debug.Log(results[0]);
+        if (results.Count > 0) Debug.Log(results[0]);
         return results.Count > 0;
     }
     public void DebugPointer()

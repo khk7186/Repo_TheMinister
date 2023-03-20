@@ -14,7 +14,7 @@ public class ChangeQuestStageOnEnable : MonoBehaviour
     }
     public List<ChangeQuestStruct> changeQuestStructs;
 
-    public void Awake()
+    public void OnEnable()
     {
         ChangeStage();
         Destroy(gameObject);

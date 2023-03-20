@@ -8,7 +8,7 @@ public class StartActionAfterHire : MonoBehaviour
     private IEnumerator Start()
     {
         var inv = SelectOnDuty.FindInventory();
-        yield return new WaitUntil(() => inv.childCount == 2);
+        yield return new WaitUntil(() => inv.childCount >= 2);
         foreach (var obj in _objectsToActive)
         {
             obj.SetActive(true);
