@@ -6,13 +6,19 @@ public class SpawnPrefabOnEnable : MonoBehaviour
 {
     public List<GameObject> gameObjectsToSpawn = new List<GameObject>();
     public Vector3 spawnPosition = Vector3.zero;
-
+    public bool isUI = false;
+    public Transform holder;
     public bool spawnOnEnable = false;
     public void spawn()
     {
         foreach (GameObject go in gameObjectsToSpawn)
         {
-            Instantiate(go, spawnPosition, Quaternion.identity).gameObject.SetActive(true);
+            if (isUI)
+            {
+                Instantiate(go, holder).gameObject.SetActive(true);
+            }
+            else
+                Instantiate(go, spawnPosition, Quaternion.identity).gameObject.SetActive(true);
         }
     }
     public void OnEnable()
@@ -21,5 +27,6 @@ public class SpawnPrefabOnEnable : MonoBehaviour
         {
             spawn();
         }
+        gameObject.gameObject.SetActive(false);
     }
 }

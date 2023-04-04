@@ -1,3 +1,4 @@
+using Language.Lua;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,17 @@ public class CurrencyInventory : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+    }
+    public static void SetCurrencyUI()
+    {
+       var only =  FindObjectOfType<CurrencyInventory>();
+        var mainUI = FindObjectOfType<MainUI>();
+       if (mainUI != null)
+        {
+            mainUI.SetupMoney(only.Money);
+            mainUI.SetupInfluence(only.Influence);
+            mainUI.SetupPrestige(only.Prestige);
+        }
     }
     public void MoneyAdd(int add)
     {

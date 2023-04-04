@@ -5,6 +5,7 @@ using UnityEngine;
 public class FlipCharacter : MonoBehaviour
 {
     public bool flipOnEnable = false;
+    public bool disableAfterFlip = false;
     public bool flipMain = false;
     public SideChanger sideChanger;
     public bool front = false;
@@ -15,6 +16,10 @@ public class FlipCharacter : MonoBehaviour
         if (flipOnEnable)
         {
             Flip();
+            if (disableAfterFlip)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
     public void Flip()
