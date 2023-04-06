@@ -9,7 +9,6 @@ public class Map : MonoBehaviour, IDiceRollEvent
     public float Radius = 1.5f;
     public int DayTime = 0;
     public int Day = 0;
-    //public List<Block> map = new List<Block>();
     public Grid movementGrid;
     public int mapCount => MovementGrid.EnemyInnerMovementBlocks.Count;
     private int PlayerNextBlockToMove = 0;
@@ -52,7 +51,6 @@ public class Map : MonoBehaviour, IDiceRollEvent
             PlayerMovement.currentBlock = PlayerCurrentBlock;
             PlayerMovement.finalBlock = PlayerCurrentBlock;
         }
-
     }
     public void FirstDayReset()
     {
@@ -74,13 +72,10 @@ public class Map : MonoBehaviour, IDiceRollEvent
             }
             if (!OnStory)
             {
-                //StartCoroutine(MoveManyStep((int)value, Player));
                 PlayerMovement.finalBlock += (int)value * HorseMovementBuff;
             }
-            //Debug.Log(PlayerMovement.finalBlock);
             StartCoroutine(Move());
         }
-
     }
     IEnumerator Move()
     {
@@ -107,13 +102,11 @@ public class Map : MonoBehaviour, IDiceRollEvent
 
     private IEnumerator MoveAStep(Transform character)
     {
-        //yield return StartCoroutine(TurnCheck());
         if (PlayerNextBlockToMove + 1 >= MovementGrid.PlayerMovementBlocks.Count)
         {
             PlayerNextBlockToMove = -1;
         }
         PlayerNextBlockToMove += 1;
-        //var targetPosition = map[PlayerNextBlockToMove].transform.position;
         var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetPlayerBlock(PlayerNextBlockToMove));
         var startPosition = character.position;
         float time = 0;
@@ -123,10 +116,6 @@ public class Map : MonoBehaviour, IDiceRollEvent
             time += Time.deltaTime;
             yield return null;
         }
-        //if (!OnMove)
-        //{
-        //    PlayerAnimator.SetTrigger("Stop");
-        //}
     }
 
     public IEnumerator MoveManyStep(int number, Transform character)
@@ -163,12 +152,6 @@ public class Map : MonoBehaviour, IDiceRollEvent
             b.GetComponent<InteractAsset>().Active = activate;
         }
     }
-
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.yellow;
-    //    Gizmos.DrawWireSphere(Player.transform.position, Radius);
-    //}
     public void SetBuildings()
     {
         SetActivateBuildingsInteracteble(ActivatedBuildings, false);
@@ -178,49 +161,10 @@ public class Map : MonoBehaviour, IDiceRollEvent
         ActivatedBuildings = list;
     }
 
-    public IEnumerator TurnCheck()
-    {
-        switch (PlayerNextBlockToMove)
-        {
-            default:
-                break;
-            case 18:
-            case 30:
-            case 40:
-                ChangeSide(false, false);
-                //back right
-                break;
-            case 69:
-            case 62:
-                ChangeSide(true, false);
-                //right front
-                break;
-            case 59:
-            case 53:
-            case 57:
-            case 47:
-            case 63:
-            case 61:
-                ChangeSide(true, true);
-                //front left
-                break;
-            case 42:
-            case 27:
-            case 49:
-            case 56:
-            case 58:
-            case 33:
-                ChangeSide(false, true);
-                //back left
-                break;
-        }
-        yield return null;
-    }
     //@param doFront
     //@param doLeft
     public void ChangeSide(bool doFront, bool doLeft)
     {
-        //bool isMoving = PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Move");
         PlayerAnimator.SetTrigger("Stop");
         string side = doFront ? "Front" : "Back";
         string SDApath = $"{ReturnAssetPath.ReturnMainCharacterAssetPath(doFront)}ÀîÔ¬Ä°_{side}_SkeletonData";
@@ -232,13 +176,6 @@ public class Map : MonoBehaviour, IDiceRollEvent
         PlayerAnimator.transform.localScale = target;
         PlayerAnimator.GetComponent<SkeletonMecanim>().Initialize(true);
         PlayerAnimator.SetTrigger(PlayerMovement.isMoving ? "Move" : "Stop");
-        //if (OnMove)
-        //{
-        //    PlayerAnimator.SetTrigger("Move");
-        //}
-        //else
-        //{
-        //    PlayerAnimator.SetTrigger("Stop");
-        //}
+
     }
 }

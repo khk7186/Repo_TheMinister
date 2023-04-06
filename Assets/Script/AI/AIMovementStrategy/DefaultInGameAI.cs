@@ -53,13 +53,10 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
             subject.RegisterObserver(this);
         }
         map = FindObjectOfType<Map>();
-        transform.position = currentPathPoint.transform.position;
-        
     }
-    private void Start()
+    private void OnEnable()
     {
-        Debug.Log(PathManager.Instance == null);
-        PathManager.Instance.takenPoints.Add(currentPathPoint);
+        SetLocation();
     }
     public virtual void OnNotify(object value, NotificationType notificationType)
     {
@@ -81,25 +78,36 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     {
         this.character = character;
         SetSpine();
-        NightBlock = Random.Range(0, map.mapCount);
-        int tryMax = NightBlock + (Random.Range(0, 1) == 0 ? -1 : 1) * Random.Range(4, 10) % map.mapCount;
-        if (tryMax < 0)
-        {
-            DayMaxBlock = tryMax + map.mapCount;
-        }
-        else if (tryMax > map.mapCount)
-        {
-            DayMaxBlock -= map.mapCount;
-        }
-        int tryMin = DayMinBlock - Random.Range(3, 10);
-        DayMinBlock = (tryMin < 0) ? tryMin + map.mapCount : tryMin;
-        CurrentLocation = OnNight ? NightBlock : Random.Range(DayMinBlock, DayMaxBlock);
-        transform.position = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, CurrentLocation));
         SetConversationDatabase();
-        if (npcConversationTriggerGroup == null)
+        //NightBlock = Random.Range(0, map.mapCount);
+        //int tryMax = NightBlock + (Random.Range(0, 1) == 0 ? -1 : 1) * Random.Range(4, 10) % map.mapCount;
+        //if (tryMax < 0)
+        //{
+        //    DayMaxBlock = tryMax + map.mapCount;
+        //}
+        //else if (tryMax > map.mapCount)
+        //{
+        //    DayMaxBlock -= map.mapCount;
+        //}
+        //int tryMin = DayMinBlock - Random.Range(3, 10);
+        //DayMinBlock = (tryMin < 0) ? tryMin + map.mapCount : tryMin;
+        //CurrentLocation = OnNight ? NightBlock : Random.Range(DayMinBlock, DayMaxBlock);
+        //transform.position = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, CurrentLocation));
+        //if (npcConversationTriggerGroup == null)
+        //{
+        //    Debug.Log(character.characterArtCode);
+        //}
+    }
+
+    public void SetLocation()
+    {
+        if (currentPathPoint == null)
         {
-            Debug.Log(character.characterArtCode);
+            var PM = PathManager.Instance;
+            currentPathPoint = PathManager.OfferValidPoint();
+            PM.takenPoints.Add(currentPathPoint);
         }
+        transform.position = currentPathPoint.transform.position;
     }
     //public void Move()
     //{

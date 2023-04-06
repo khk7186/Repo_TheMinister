@@ -359,9 +359,7 @@ public class Character : MonoBehaviour, IRound
     {
         {CharacterArtCode.女布衣},
         {CharacterArtCode.女诗人}
-
     };
-
     public static List<CharacterArtCode> MaleCharacters = new List<CharacterArtCode>()
     {
         {CharacterArtCode.男刀客},

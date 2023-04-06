@@ -25,7 +25,11 @@ public class PathPointHandler
                 if (ready)
                 {
                     request = null;
-                    PM.takenPoints.Add(targetPoint);
+                    if (targetPoint != currentPoint)
+                    {
+                        PM.takenPoints.Add(targetPoint);
+                        RemoveCurrentPointOnTakenList();
+                    }
                     PathManager.Instance.UnregistHandler(this);
                 }
             }
@@ -62,13 +66,12 @@ public class PathPointHandler
     public void PlanPath()
     {
         RandomNextPoint();
-        if (targetPoint == currentPoint) 
+        if (targetPoint == currentPoint)
         {
             ready = true;
         }
         else
         {
-            RemoveCurrentPointOnTakenList();
             RequestDestinationValidation();
         }
     }

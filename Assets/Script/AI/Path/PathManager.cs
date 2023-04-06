@@ -14,6 +14,7 @@ public class PathManager : MonoBehaviour, IDiceRollEvent
     public delegate void PointValidRequest();
     public Queue<PointValidRequest> RequestQueue = new Queue<PointValidRequest>();
     public List<IStopAllCoroutine> RegistedCoroutines = new List<IStopAllCoroutine>();
+    public float SightDistanceExpected = 100f;
     private bool PlayerMoving
     {
         get
@@ -22,7 +23,6 @@ public class PathManager : MonoBehaviour, IDiceRollEvent
             return player.isMoving;
         }
     }
-
     public int NumbersOfRequest = 0;
 
     public void OnEnable()
@@ -77,7 +77,6 @@ public class PathManager : MonoBehaviour, IDiceRollEvent
             }
             else
             {
-                Debug.Log("NumbersOfRequest : " + NumbersOfRequest + " |  handlers:" + handlers.Count);
                 break;
             }
         }
@@ -134,7 +133,28 @@ public class PathManager : MonoBehaviour, IDiceRollEvent
     {
         //Reset();
         timeRemaining = CharacterMovement.playerSpeed * (int)value / 2;
-        Debug.Log("timeRemaining : "+timeRemaining);
         StartCoroutine(ProcessRuntimeRator());
+    }
+    public static PathPoint OfferValidPoint()
+    {
+        List<PathPoint> range = new List<PathPoint>();
+        foreach (PathPoint p in Instance.points.Where(x => !Instance.takenPoints.Contains(x)))
+        {
+            if (SightCheck(p))
+            {
+                range.Add(p);
+            }
+        }
+        var index = UnityEngine.Random.Range(0, range.Count);
+        var output = range[index];
+        return output;
+    }
+    private static bool SightCheck(PathPoint pathPoint)
+    {
+        var point = pathPoint.transform.position;
+        var player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) return false;
+        var distance = Vector2.Distance(point, player.transform.position);
+        return distance > Instance.SightDistanceExpected;
     }
 }
