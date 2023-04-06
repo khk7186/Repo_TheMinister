@@ -22,10 +22,11 @@ public enum TimeInDay
     Noon,
     Evening,
 }
-public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
+public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEvent
 {
     private Map map;
     public string Name = "";
+    public PathPoint currentPathPoint;
     [SerializeField] private List<AIInteractType> types;
     public int NightBlock;
     public int DayMaxBlock, DayMinBlock;
@@ -47,18 +48,24 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
     {
         movementGrid = FindObjectOfType<MovementGrid>().GetComponent<Grid>();
         inner = Random.Range(0, 2) == 0 ? false : true;
-        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
+        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<IDiceSubject>())
         {
             subject.RegisterObserver(this);
         }
         map = FindObjectOfType<Map>();
+        transform.position = currentPathPoint.transform.position;
+        
+    }
+    private void Start()
+    {
+        Debug.Log(PathManager.Instance == null);
+        PathManager.Instance.takenPoints.Add(currentPathPoint);
     }
     public virtual void OnNotify(object value, NotificationType notificationType)
     {
         if (notificationType == NotificationType.DiceRoll)
         {
-            if (Random.Range(0, TryMax) < TryChance)
-                Move();
+            Move();
         }
     }
     public void SetSpine()
@@ -94,21 +101,35 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IObserver
             Debug.Log(character.characterArtCode);
         }
     }
+    //public void Move()
+    //{
+    //    //int steps;
+    //    if (OnNight)
+    //    {
+    //        TargetLocation = NightBlock;
+    //    }
+    //    else
+    //    {
+    //        TargetLocation = Random.Range(DayMinBlock, DayMaxBlock + 1);
+    //    }
+    //    var movement = GetComponent<CharacterMovement>();
+    //    movement.finalBlock = TargetLocation;
+    //    StartCoroutine(movement.MoveToLocation());
+    //    //StartCoroutine(MoveManyStep(steps));
+    //}
     public void Move()
     {
-        //int steps;
-        if (OnNight)
-        {
-            TargetLocation = NightBlock;
-        }
-        else
-        {
-            TargetLocation = Random.Range(DayMinBlock, DayMaxBlock + 1);
-        }
+        PathPointHandler pathPointHandler = new PathPointHandler(currentPathPoint, gameObject);
+        pathPointHandler.PlanPath();
+        StartCoroutine(WaitUntilRespond(pathPointHandler));
+    }
+    public IEnumerator WaitUntilRespond(PathPointHandler handler)
+    {
+        yield return new WaitUntil(() => handler.Ready == true);
+        currentPathPoint = handler.targetPoint;
         var movement = GetComponent<CharacterMovement>();
-        movement.finalBlock = TargetLocation;
-        StartCoroutine(movement.MoveToLocation());
-        //StartCoroutine(MoveManyStep(steps));
+        movement.RegisterStoper();
+        StartCoroutine(movement.MoveToLocation(currentPathPoint.transform.position));
     }
     protected virtual void OnMouseDown()
     {

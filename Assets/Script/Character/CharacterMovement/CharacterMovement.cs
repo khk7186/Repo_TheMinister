@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CharacterMovement : MonoBehaviour
+public class CharacterMovement : MonoBehaviour,IStopAllCoroutine
 {
+    public static float playerSpeed;
     public Transform character;
     public Animator animator;
     public bool AI = true;
@@ -33,6 +34,7 @@ public class CharacterMovement : MonoBehaviour
     //}
     public void OnEnable()
     {
+        if (AI == false) playerSpeed = speed;
         StartCoroutine(MoveRator());
     }
     public void OnDisable()
@@ -79,7 +81,7 @@ public class CharacterMovement : MonoBehaviour
             EndPlaceVisibleChecker.gameObject.SetActive(false);
         }
     }
-    public IEnumerator MoveToLocation()
+    public IEnumerator MoveToLocationOld()
     {
         finalBlock = finalBlock % blockCount;
         int awayTime = 0;
@@ -145,4 +147,28 @@ public class CharacterMovement : MonoBehaviour
         yield return null;
     }
 
+    public IEnumerator MoveToLocation(Vector2 endPosition, float speed = 3)
+    {
+        Vector2 startPosition = transform.position;
+        float time = 0f;
+        while ((Vector2)character.position != endPosition)
+        {
+            time += Time.deltaTime;
+            character.position = Vector2.MoveTowards(startPosition, endPosition, speed * time);
+            yield return null;
+        }
+    }
+
+    public void StopAllCoroutine()
+    {
+        StopAllCoroutines();
+    }
+
+    public void RegisterStoper()
+    {
+        if (PathManager.Instance == null)
+        {
+            PathManager.Instance.RegistedCoroutines.Add(this);
+        }
+    }
 }

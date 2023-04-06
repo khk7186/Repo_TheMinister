@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCAI : MonoBehaviour, IObserver
+public class NPCAI : MonoBehaviour, IDiceRollEvent
 {
     public Character SelfCharacter;
     public Dictionary<NPCAI, float> Relationship;

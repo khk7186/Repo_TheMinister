@@ -56,7 +56,7 @@ public class InteractAsset : MonoBehaviour
         }
         if (IsPointerOver.IsPointerOverUIObject())
         {
-            Debug.Log("OverUI");
+            //Debug.Log("OverUI");
             return;
         }
         GetComponent<Renderer>().material = highlightMaterial;

@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.Playables;
 
-public class LightController : MonoBehaviour, IObserver
+public class LightController : MonoBehaviour, IDiceRollEvent
 {
     public GameObject Day;
     public GameObject Evening;
@@ -19,7 +19,7 @@ public class LightController : MonoBehaviour, IObserver
     public Map map;
     private void Awake()
     {
-        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
+        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<IDiceSubject>())
         {
             subject.RegisterObserver(this);
         }

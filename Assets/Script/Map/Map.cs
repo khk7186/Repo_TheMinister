@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using System.Linq;
 using Spine.Unity;
-public class Map : MonoBehaviour, IObserver
+public class Map : MonoBehaviour, IDiceRollEvent
 {
     public float Radius = 1.5f;
     public int DayTime = 0;
@@ -29,7 +29,7 @@ public class Map : MonoBehaviour, IObserver
     private void Awake()
     {
         FindPlayer();
-        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
+        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<IDiceSubject>())
         {
             subject.RegisterObserver(this);
         }
@@ -85,7 +85,7 @@ public class Map : MonoBehaviour, IObserver
     IEnumerator Move()
     {
         AudioManager.Play("走路", true);
-        yield return PlayerMovement.MoveToLocation();
+        yield return PlayerMovement.MoveToLocationOld();
         AudioManager.Stop("走路");
         FindObjectOfType<Dice>().rolling = false;
         SetBuildings();

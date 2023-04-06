@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class InGameCharacterStorage : MonoBehaviour, IObserver, IAreaChangeHandler
+public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChangeHandler
 {
     public List<Character> CurrentCharacters = new List<Character>();
     public List<Character> UnshowedCharacters = new List<Character>();
@@ -14,7 +14,7 @@ public class InGameCharacterStorage : MonoBehaviour, IObserver, IAreaChangeHandl
     private readonly int spawnTotal = 1000;
     public void Awake()
     {
-        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
+        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<IDiceSubject>())
         {
             subject.RegisterObserver(this);
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class IdleChangeSideTrigger : MonoBehaviour,IObserver
+public class IdleChangeSideTrigger : MonoBehaviour,IDiceRollEvent
 {
     [SerializeField] private bool front;
     [SerializeField] private bool right;
@@ -11,7 +11,7 @@ public class IdleChangeSideTrigger : MonoBehaviour,IObserver
 
     private void Awake()
     {
-        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
+        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<IDiceSubject>())
         {
             subject.RegisterObserver(this);
         }

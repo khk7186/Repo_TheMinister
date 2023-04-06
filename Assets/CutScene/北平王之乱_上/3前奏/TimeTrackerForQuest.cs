@@ -4,7 +4,7 @@ using UnityEngine;
 using PixelCrushers.QuestMachine;
 using System.Linq;
 
-public class TimeTrackerForQuest : MonoBehaviour, IObserver
+public class TimeTrackerForQuest : MonoBehaviour, IDiceRollEvent
 {
     public string QuestID;
     public string CounterName;
@@ -39,7 +39,7 @@ public class TimeTrackerForQuest : MonoBehaviour, IObserver
     {
         ExtraToActive.SetActive(false);
         DontDestroyOnLoad(gameObject);
-        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
+        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<IDiceSubject>())
         {
             subject.RegisterObserver(this);
         }

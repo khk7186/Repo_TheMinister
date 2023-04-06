@@ -6,7 +6,7 @@ public enum NotificationType
     DiceRoll
 }
 
-public interface IObserver
+public interface IDiceRollEvent
 {
     public abstract void OnNotify(object value, NotificationType notificationType);
 }

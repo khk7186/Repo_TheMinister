@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class PlayerFirstMove : MonoBehaviour, IObserver
+public class PlayerFirstMove : MonoBehaviour, IDiceRollEvent
 {
     public List<GameObject> _objectsToActive; 
     public List<GameObject> _objectsToInactive;
@@ -17,7 +17,7 @@ public class PlayerFirstMove : MonoBehaviour, IObserver
         {
             obj.SetActive(false);
         }
-        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
+        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<IDiceSubject>())
         {
             subject.CancelObserver(this);
         }
@@ -28,7 +28,7 @@ public class PlayerFirstMove : MonoBehaviour, IObserver
 
     private void OnEnable()
     {
-        foreach (var subject in FindObjectsOfType<MonoBehaviour>(true).OfType<ISubject>())
+        foreach (var subject in FindObjectsOfType<MonoBehaviour>(true).OfType<IDiceSubject>())
         {
             subject.RegisterObserver(this);
         }

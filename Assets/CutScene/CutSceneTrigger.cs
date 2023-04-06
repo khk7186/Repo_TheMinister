@@ -14,7 +14,7 @@ public class CutSceneTrigger : MonoBehaviour
     {
         var player = FindObjectOfType<Player>();
         var playerCM = player.GetComponent<CharacterMovement>();
-        playerCM.StopCoroutine(playerCM.MoveToLocation());
+        playerCM.StopCoroutine(playerCM.MoveToLocationOld());
         playerCM.finalBlock = playerCM.currentBlock;
         player.GetComponent<Animator>().enabled = true;
     }

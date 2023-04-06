@@ -4,14 +4,14 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dice : MonoBehaviour, ISubject
+public class Dice : MonoBehaviour, IDiceSubject
 {
     // Array of dice sides sprites to load from Resources folder
     [SerializeField] private Sprite[] diceSides;
 
     [SerializeField] private Image dice1;
     [SerializeField] private Image dice2;
-    private List<IObserver> Observers = new List<IObserver>();
+    private List<IDiceRollEvent> Observers = new List<IDiceRollEvent>();
     [SerializeField] private int RollTime = 5;
 
     public bool rolling = false;
@@ -96,7 +96,7 @@ public class Dice : MonoBehaviour, ISubject
         if (final != null) transform.parent.gameObject.SetActive(false);
     }
 
-    public void RegisterObserver(IObserver observer)
+    public void RegisterObserver(IDiceRollEvent observer)
     {
         Observers.Add(observer);
     }
@@ -105,6 +105,7 @@ public class Dice : MonoBehaviour, ISubject
     {
         if (notificationType == NotificationType.DiceRoll)
         {
+            //PathManager.Instance?.Reset();
             foreach (var observer in Observers.ToList())
             {
                 observer.OnNotify(value, notificationType);
@@ -112,7 +113,7 @@ public class Dice : MonoBehaviour, ISubject
         }
     }
 
-    public void CancelObserver(IObserver observer)
+    public void CancelObserver(IDiceRollEvent observer)
     {
         Observers.Remove(observer);
     }
