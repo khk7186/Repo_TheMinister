@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Spine.Unity;
 using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
 using PixelCrushers.DialogueSystem;
+using UnityEditor.SearchService;
 
 public enum AIInteractType
 {
@@ -18,9 +20,9 @@ public enum AIInteractType
 }
 public enum TimeInDay
 {
-    Morning,
-    Noon,
-    Evening,
+    Morning = 0,
+    Noon = 1,
+    Evening = 2,
 }
 public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEvent
 {
@@ -48,22 +50,45 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     {
         movementGrid = FindObjectOfType<MovementGrid>().GetComponent<Grid>();
         inner = Random.Range(0, 2) == 0 ? false : true;
-        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<IDiceSubject>())
-        {
-            subject.RegisterObserver(this);
-        }
+
         map = FindObjectOfType<Map>();
+    }
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            Register();
+            DontDestroyOnLoad(gameObject);
+            SetLocation();
+        }
+    }
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
+    {
+            Register();
+    }
+    private void Register()
+    {
+        if (Dice.Instance != null)
+        {
+            Dice.Instance.RegisterObserver(this);
+        }
     }
     private void OnEnable()
     {
-        SetLocation();
+        Debug.Log($"Register");
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            Register();
+        }
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
     public virtual void OnNotify(object value, NotificationType notificationType)
     {
-        if (notificationType == NotificationType.DiceRoll)
-        {
-            Move();
-        }
+        Move();
     }
     public void SetSpine()
     {
@@ -79,24 +104,6 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
         this.character = character;
         SetSpine();
         SetConversationDatabase();
-        //NightBlock = Random.Range(0, map.mapCount);
-        //int tryMax = NightBlock + (Random.Range(0, 1) == 0 ? -1 : 1) * Random.Range(4, 10) % map.mapCount;
-        //if (tryMax < 0)
-        //{
-        //    DayMaxBlock = tryMax + map.mapCount;
-        //}
-        //else if (tryMax > map.mapCount)
-        //{
-        //    DayMaxBlock -= map.mapCount;
-        //}
-        //int tryMin = DayMinBlock - Random.Range(3, 10);
-        //DayMinBlock = (tryMin < 0) ? tryMin + map.mapCount : tryMin;
-        //CurrentLocation = OnNight ? NightBlock : Random.Range(DayMinBlock, DayMaxBlock);
-        //transform.position = movementGrid.GetCellCenterWorld(MovementGrid.GetAIBlock(this, CurrentLocation));
-        //if (npcConversationTriggerGroup == null)
-        //{
-        //    Debug.Log(character.characterArtCode);
-        //}
     }
 
     public void SetLocation()

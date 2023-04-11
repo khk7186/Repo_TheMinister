@@ -14,7 +14,7 @@ public class PathManager : MonoBehaviour, IDiceRollEvent
     public delegate void PointValidRequest();
     public Queue<PointValidRequest> RequestQueue = new Queue<PointValidRequest>();
     public List<IStopAllCoroutine> RegistedCoroutines = new List<IStopAllCoroutine>();
-    public float SightDistanceExpected = 100f;
+    public static float SightDistanceExpected = 27f;
     private bool PlayerMoving
     {
         get
@@ -25,14 +25,6 @@ public class PathManager : MonoBehaviour, IDiceRollEvent
     }
     public int NumbersOfRequest = 0;
 
-    public void OnEnable()
-    {
-        Instance = this;
-    }
-    public void Awake()
-    {
-        Instance = this;
-    }
     public void Reset()
     {
         handlers.Clear();
@@ -40,11 +32,12 @@ public class PathManager : MonoBehaviour, IDiceRollEvent
     }
     public void Start()
     {
+        if (Instance != this && Instance != null) { Destroy(gameObject); }
+        else { Instance = this; }
         points = FindObjectsOfType<PathPoint>();
-        foreach (var subject in GameObject.FindObjectsOfType<MonoBehaviour>().OfType<IDiceSubject>())
-        {
-            subject.RegisterObserver(this);
-        }
+        if (Dice.Instance != null)
+            Dice.Instance.RegisterObserver(Instance);
+        DontDestroyOnLoad(gameObject);
     }
 
     public void RegistHandler(PathPointHandler handler)
@@ -132,6 +125,11 @@ public class PathManager : MonoBehaviour, IDiceRollEvent
     public void OnNotify(object value, NotificationType notificationType)
     {
         //Reset();
+        Debug.Log("PathManagerOnNotify");
+        foreach (PathPoint pathPoint in points)
+        {
+            pathPoint.OnNotify(value, notificationType);
+        }
         timeRemaining = CharacterMovement.playerSpeed * (int)value / 2;
         StartCoroutine(ProcessRuntimeRator());
     }
@@ -146,15 +144,28 @@ public class PathManager : MonoBehaviour, IDiceRollEvent
             }
         }
         var index = UnityEngine.Random.Range(0, range.Count);
+        if (range.Count == 0)
+        {
+            Debug.Log($"there is no spots");
+        }
         var output = range[index];
         return output;
     }
-    private static bool SightCheck(PathPoint pathPoint)
+    private static bool SightCheck(PathPoint pathPoint, float range = -1)
     {
+        if (range == -1) range = (float)SightDistanceExpected;
+        if (GameInitialization.instance.InProgress == true) return true;
         var point = pathPoint.transform.position;
         var player = GameObject.FindGameObjectWithTag("Player");
         if (player == null) return false;
         var distance = Vector2.Distance(point, player.transform.position);
-        return distance > Instance.SightDistanceExpected;
+        return distance > range;
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.black;
+        var player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) return;
+        Gizmos.DrawWireSphere(player.transform.position, (float)SightDistanceExpected);
     }
 }

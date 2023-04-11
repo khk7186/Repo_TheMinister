@@ -7,14 +7,15 @@ public class SetArea : MonoBehaviour
 {
     public List<IAreaChangeHandler> Observers = new List<IAreaChangeHandler>();
     public char AreaCode;
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out Player player))
+        if (collision.gameObject.tag == "Player")
         {
             foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<IAreaChangeHandler>())
             {
                 subject.OnAreaChange(AreaCode);
             }
+            Debug.Log("Area Changed");
         }
     }
 }

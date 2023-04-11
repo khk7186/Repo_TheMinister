@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: AAAA
+  currentPathPoint: {fileID: 0}
   types: 
   NightBlock: 1
   DayMaxBlock: 69
@@ -63,6 +64,8 @@ MonoBehaviour:
   TargetLocation: 0
   character: {fileID: 0}
   npcPopUI: {fileID: 0}
+  TryMax: 10
+  TryChance: 3
   animator: {fileID: 3560967378554594063}
   movementGrid: {fileID: 0}
   npcConversationTriggerGroup: {fileID: 0}
@@ -100,6 +103,8 @@ MonoBehaviour:
   PosDif: {x: 0, y: 0}
   isRight: 0
   isFront: 0
+  CutScene: 0
+  characterArtCode: 0
 --- !u!114 &7630984185361624170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,6 +121,7 @@ MonoBehaviour:
   animator: {fileID: 3560967378554594063}
   AI: 1
   speed: 18
+  CutScene: 0
   grid: {fileID: 0}
   currentBlock: 0
   finalBlock: 0
@@ -156,6 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 0}
   FailedMessage: 
+  targetCanvas: {fileID: 0}
 --- !u!50 &8220571031272079801
 Rigidbody2D:
   serializedVersion: 4

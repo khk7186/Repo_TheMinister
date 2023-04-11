@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class CharacterMovement : MonoBehaviour,IStopAllCoroutine
 {
-    public static float playerSpeed;
+    public static float playerSpeed => GameObject.FindGameObjectWithTag("Player")
+                                                            .GetComponent<CharacterMovement>().speed;
     public Transform character;
     public Animator animator;
     public bool AI = true;
@@ -34,7 +35,6 @@ public class CharacterMovement : MonoBehaviour,IStopAllCoroutine
     //}
     public void OnEnable()
     {
-        if (AI == false) playerSpeed = speed;
         StartCoroutine(MoveRator());
     }
     public void OnDisable()
@@ -60,11 +60,7 @@ public class CharacterMovement : MonoBehaviour,IStopAllCoroutine
         {
             grid = FindObjectOfType<MovementGrid>().GetComponent<Grid>();
         }
-        if (AI)
-        {
-            getGrid = ((block) => MovementGrid.GetAIBlock(GetComponent<DefaultInGameAI>(), block));
-        }
-        else
+        if(!AI)
         {
             getGrid = ((block) => MovementGrid.GetPlayerBlock(block));
         }
@@ -150,11 +146,12 @@ public class CharacterMovement : MonoBehaviour,IStopAllCoroutine
     public IEnumerator MoveToLocation(Vector2 endPosition, float speed = 3)
     {
         Vector2 startPosition = transform.position;
+        float speedRD = Random.Range(playerSpeed / 2, playerSpeed);
         float time = 0f;
         while ((Vector2)character.position != endPosition)
         {
             time += Time.deltaTime;
-            character.position = Vector2.MoveTowards(startPosition, endPosition, speed * time);
+            character.position = Vector2.MoveTowards(startPosition, endPosition, speedRD * time);
             yield return null;
         }
     }

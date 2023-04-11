@@ -5,6 +5,7 @@ using System.Linq;
 
 public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChangeHandler
 {
+    public static InGameCharacterStorage Instance;
     public List<Character> CurrentCharacters = new List<Character>();
     public List<Character> UnshowedCharacters = new List<Character>();
     public int MinimumCharacterNumber = 20;
@@ -14,12 +15,9 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
     private readonly int spawnTotal = 1000;
     public void Awake()
     {
-        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<IDiceSubject>())
-        {
-            subject.RegisterObserver(this);
-        }
         characterPref = Resources.Load<Character>("CharacterPrefab/Character");
         UpdateCurrentCharacters();
+        DontDestroyOnLoad(gameObject);
     }
 
     public void UpdateCurrentCharacters()
@@ -30,22 +28,50 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
 
     public void Start()
     {
-        AdjustCharacterStorage();
+        if (Instance == null)
+        {
+            Instance = this;
+            Dice.Instance.RegisterObserver(this);
+        }
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
+    
 
     public void AdjustCharacterStorage()
     {
         if (MinimumCharacterNumber > CurrentCharacters.Count)
         {
             int difference = MinimumCharacterNumber - CurrentCharacters.Count;
-            for (int i = 0; i < difference; i++) AddNewCharacter();
+
+            if (difference < 5)
+            {
+                SpawnNewCharacter(1);
+            }
+            else if (difference > 1 / 2 * MinimumCharacterNumber)
+            {
+                int spawnNumber = Random.Range(0, difference / 2);
+                SpawnNewCharacter(spawnNumber);
+            }
+            else
+            {
+                int spawnNumber = Random.Range(0, difference);
+                SpawnNewCharacter(spawnNumber);
+            }
+
         }
         UpdateCurrentCharacters();
     }
 
-    public void AddNewCharacter()
+    public void SpawnNewCharacter(int count = 1)
     {
-        Instantiate(characterPref, transform);
+        for (int i = 0; i < count; i++)
+        {
+            Instantiate(characterPref, transform);
+        }
+        UpdateCurrentCharacters();
     }
 
     public List<Character> SelectCharacterForBuilding(int numberToSelect)
@@ -95,7 +121,7 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
         int multi = map.DayTime == 2 ? 2 : 1;
         int result = Random.Range(0, spawnTotal) * multi;
         bool spawn = result < spawnRate;
-        if (spawn&&EnemyOn)
+        if (spawn && EnemyOn)
         {
             GenerateCombatCharacters();
         }
@@ -118,5 +144,7 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
                 spawnRate = 50;
                 break;
         }
+        
     }
+
 }

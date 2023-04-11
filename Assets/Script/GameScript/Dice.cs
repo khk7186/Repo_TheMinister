@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Dice : MonoBehaviour, IDiceSubject
@@ -11,16 +12,45 @@ public class Dice : MonoBehaviour, IDiceSubject
 
     [SerializeField] private Image dice1;
     [SerializeField] private Image dice2;
-    private List<IDiceRollEvent> Observers = new List<IDiceRollEvent>();
+    public List<IDiceRollEvent> Observers;
     [SerializeField] private int RollTime = 5;
 
     public bool rolling = false;
+    public static Dice Instance;
 
     // Use this for initialization
+    private void Awake()
+    {
+        if (Observers == null)
+            Observers = new List<IDiceRollEvent>();
+    }
     private void OnEnable()
     {
         rolling = false;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        SceneManager.sceneLoaded += OnSceneChange;
+        DontDestroyOnLoad(gameObject);
     }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneChange;
+    }
+
+    private void OnSceneChange(Scene arg0, LoadSceneMode arg1)
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            var allObservers = FindObjectsOfType<MonoBehaviour>().OfType<IDiceRollEvent>();
+            foreach (var observer in allObservers)
+            {
+                RegisterObserver(observer);
+            }
+        }
+    }
+
     public void Roll()
     {
         if (!rolling)
@@ -28,6 +58,7 @@ public class Dice : MonoBehaviour, IDiceSubject
             StartCoroutine(RollTheDice());
         }
     }
+
     public void FakeRoll33()
     {
         FakeRoll(new Vector2(3, 3));
@@ -98,23 +129,38 @@ public class Dice : MonoBehaviour, IDiceSubject
 
     public void RegisterObserver(IDiceRollEvent observer)
     {
-        Observers.Add(observer);
+        if (!Observers.Contains(observer))
+            Observers.Add(observer);
     }
 
     public void Notify(object value, NotificationType notificationType)
     {
-        if (notificationType == NotificationType.DiceRoll)
+        Observers.RemoveAll(item => (MonoBehaviour)item == null);
+        string AllgoName = "";
+        int index = 0;
+        foreach (var observer in Observers.ToList())
         {
-            //PathManager.Instance?.Reset();
-            foreach (var observer in Observers.ToList())
+            index++;
+            MonoBehaviour go = observer as MonoBehaviour;
+            if (go != null)
+                AllgoName += $"{index}. {go.name}\n";
+        }
+        Debug.Log(AllgoName);
+
+        //PathManager.Instance?.Reset();
+        foreach (var observer in Observers.ToList())
+        {
+            if (observer != null)
             {
                 observer.OnNotify(value, notificationType);
             }
         }
     }
 
+
     public void CancelObserver(IDiceRollEvent observer)
     {
-        Observers.Remove(observer);
+        if (Observers.Contains(observer))
+            Observers.Remove(observer);
     }
 }

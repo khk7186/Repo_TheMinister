@@ -4,8 +4,12 @@ using UnityEngine;
 using UnityEngine.Animations;
 using System.Linq;
 using Spine.Unity;
+using UnityEngine.SceneManagement;
+using System;
+
 public class Map : MonoBehaviour, IDiceRollEvent
 {
+    public static Map Instance;
     public float Radius = 1.5f;
     public int DayTime = 0;
     public int Day = 0;
@@ -15,6 +19,7 @@ public class Map : MonoBehaviour, IDiceRollEvent
     [SerializeField] private int PlayerCurrentBlock = 0;
     [SerializeField] private Transform Player;
     [SerializeField] private float delayPerMove = 1f;
+    [SerializeField]
     private List<Building> ActivatedBuildings = new List<Building>();
     public bool GameStart = false;
     private bool OnMove => PlayerNextBlockToMove != PlayerCurrentBlock;
@@ -23,14 +28,16 @@ public class Map : MonoBehaviour, IDiceRollEvent
     public int HorseMovementBuff = 1;
 
     [SerializeField] private Animator PlayerAnimator;
-    [SerializeField] private CharacterMovement PlayerMovement;
+    [SerializeField] private static CharacterMovement PlayerMovement;
     public bool OnStory = false;
     private void Awake()
     {
         FindPlayer();
-        foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<IDiceSubject>())
+        if (Instance != null && Instance != this)
         {
-            subject.RegisterObserver(this);
+            Dice.Instance.CancelObserver(this);
+            Destroy(gameObject);
+            return;
         }
         int block = PlayerMovement.currentBlock % MovementGrid.PlayerMovementBlocks.Count;
         Player.position = movementGrid.GetCellCenterWorld(MovementGrid.PlayerMovementBlocks[block]);
@@ -40,6 +47,30 @@ public class Map : MonoBehaviour, IDiceRollEvent
     private void Start()
     {
         FirstDayReset();
+        Dice.Instance.RegisterObserver(Instance);
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            SetBuildings();
+        }
+    }
+
+    private void OnEnable()
+    {
+        if (Instance!= this) { Instance = this; }
+        else { Destroy(gameObject); }
+        DontDestroyOnLoad(gameObject);
+    }
+    private void OnDestroy()
+    {
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
     private void FindPlayer()
     {
@@ -51,6 +82,10 @@ public class Map : MonoBehaviour, IDiceRollEvent
             PlayerMovement.currentBlock = PlayerCurrentBlock;
             PlayerMovement.finalBlock = PlayerCurrentBlock;
         }
+        if (PlayerMovement == null)
+        {
+            PlayerMovement = Player.GetComponent<CharacterMovement>();
+        }
     }
     public void FirstDayReset()
     {
@@ -58,7 +93,6 @@ public class Map : MonoBehaviour, IDiceRollEvent
     }
     public void OnNotify(object value, NotificationType notificationType)
     {
-
         if (notificationType == NotificationType.DiceRoll)
         {
             //PlayerAnimator.SetTrigger("Move");
@@ -149,6 +183,7 @@ public class Map : MonoBehaviour, IDiceRollEvent
         
         foreach (Building b in buildings)
         {
+            if (b == null) { continue; }
             b.GetComponent<InteractAsset>().Active = activate;
         }
     }

@@ -5,8 +5,10 @@ using UnityEditor.PackageManager.UI;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.GraphView;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 [System.Serializable]
-public class PathPoint : MonoBehaviour, IDiceRollEvent
+public class PathPoint : MonoBehaviour
 {
     public PathPoint[] ApproachablePoints
     {
@@ -21,13 +23,7 @@ public class PathPoint : MonoBehaviour, IDiceRollEvent
         radius = 1;
         colliderRadius = 1;
     }
-    private void Start()
-    {
-        foreach (var subject in GameObject.FindObjectsOfType<MonoBehaviour>().OfType<IDiceSubject>())
-        {
-            subject.RegisterObserver(this);
-        }
-    }
+
     private void OnEnable()
     {
         if (!TryGetComponent(out circleCollider))
@@ -35,7 +31,9 @@ public class PathPoint : MonoBehaviour, IDiceRollEvent
             circleCollider = gameObject.AddComponent<CircleCollider2D>();
         }
         circleCollider.radius = colliderRadius;
+
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
@@ -71,6 +69,10 @@ public class PathPoint : MonoBehaviour, IDiceRollEvent
                     approachablePoints.Add(pp);
                 }
             }
+        }
+        if (approachablePoints.Count <= 0)
+        {
+            //Debug.Log(0);
         }
         return approachablePoints.ToArray();
     }

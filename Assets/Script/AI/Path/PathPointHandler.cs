@@ -76,9 +76,4 @@ public class PathPointHandler
         }
     }
 
-    private ushort CalculateTargetPointRadius()
-    {
-        ushort radius = (ushort)(MaxSpeed * TimeRemaining);
-        return radius;
-    }
 }

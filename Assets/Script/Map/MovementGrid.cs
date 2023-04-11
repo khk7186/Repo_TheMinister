@@ -216,6 +216,19 @@ public class MovementGrid : MonoBehaviour
     //{
     //    Debug.Log(EnemyOutterMovementBlocks.Count == EnemyInnerMovementBlocks.Count);
     //}
+    public static MovementGrid Instance;
+    private void OnEnable()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        DontDestroyOnLoad(gameObject);
+    }
     public static Vector3Int GetPlayerBlock(int blockNumber)
     {
         Vector3Int block = Vector3Int.zero;

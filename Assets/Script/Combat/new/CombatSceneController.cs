@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Linq;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
 
@@ -42,10 +44,11 @@ public class CombatSceneController : MonoBehaviour
     private void SetLevel()
     {
         var map = GameObject.FindObjectOfType<Map>();
-        
+
     }
     private void InitializeScene(Scene scene, LoadSceneMode mode)
     {
+        InitializeEnvirment();
         var trigger = FindObjectOfType<GeneralEventTrigger>();
         InitializeCCUs(trigger.playerCharacters);
         InitializeCCUs(trigger.enemyCharacters);
@@ -54,7 +57,7 @@ public class CombatSceneController : MonoBehaviour
         int EnemyOrder = 0;
         foreach (var ccu in ccus)
         {
-            switch (ccu.IsFriend)
+            switch (ccu.IsFriend)   
             {
                 case true:
                     ccu.SetGridPosition(friendList[PlayerOrder]);
@@ -66,6 +69,15 @@ public class CombatSceneController : MonoBehaviour
                     break;
             }
         }
+    }
+    private void InitializeEnvirment()
+    {
+        var area = AreaControl.instant.CurrentArea;
+        SOAssetDB sOAssetDB = Resources.Load<SOAssetDB>("Data/AssetDatabase");
+        AreaControl areaControl = AreaControl.instant;
+        Map map = Map.Instance;
+        var asset = sOAssetDB.LoadCombatEnv(areaControl.CurrentArea, (TimeInDay)map.DayTime);
+        Instantiate(asset);
     }
     private List<CombatCharacterUnit> InitializeCCUs(List<Character> characters)
     {
