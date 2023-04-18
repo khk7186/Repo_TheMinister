@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
+using DG.Tweening.Plugins.Options;
 
 public class StartFight : MonoBehaviour
 {
@@ -16,84 +18,23 @@ public class StartFight : MonoBehaviour
         {
             animator = selfUnit.GetComponent<Animator>();
             selfUnit.ModifyStat();
-            yield return StatChangeAnimation(selfUnit);
-
+            if (!selfUnit.IsFriend)
+            {
+                selfUnit.currentAction = AIStrategy(selfUnit);
+            }
             if (selfUnit.currentAction == Action.NoSelect)
             {
                 selfUnit.currentAction = Action.Attack;
             }
-            if (selfUnit.currentAction != Action.Defence)
+            if (selfUnit.currentAction != Action.Surrender)
+                yield return StatChangeAnimation(selfUnit);
+            if (selfUnit.currentAction == Action.Surrender)
             {
-                if (selfUnit.target == null || selfUnit.target.gameObject.activeSelf == false)
-                {
-                    var Potential = FindObjectsOfType<CombatCharacterUnit>().First(x => x.IsFriend != selfUnit.IsFriend);
-                    selfUnit.target = Potential;
-                    Debug.Log("changeTarget");
-                }
-                CombatCharacterUnit target = selfUnit.target;
-                if (target != null)
-                {
-                    var targetPosition = target.transform.position;
-                    var originPosition = transform.position;
-                    bool targetHaveDefender = IfTargetHaveDefender(target);
-                    Vector2 defenderFinalPosition = new Vector2(0, 0);
-                    Vector2 defenderOriginPosition = new Vector2(0, 0);
-                    if (target.IsFriend)
-                    {
-                        targetPosition.y += distanceY;
-                        targetPosition.x += distanceX;
-                        if (targetHaveDefender)
-                        {
-                            defenderFinalPosition = targetPosition;
-                            defenderOriginPosition = target.Defender.transform.position;
-                            targetPosition.y += distanceY;
-                            targetPosition.x += distanceX;
-                        }
-                    }
-                    else
-                    {
-                        targetPosition.y -= distanceY;
-                        targetPosition.x -= distanceX;
-                        if (targetHaveDefender)
-                        {
-                            defenderFinalPosition = targetPosition;
-                            defenderOriginPosition = target.Defender.transform.position;
-                            targetPosition.y -= distanceY;
-                            targetPosition.x -= distanceX;
-                        }
-                    }
-                    float time = 0;
-                    while (time < duration)
-                    {
-                        time += Time.deltaTime;
-                        transform.position = Vector2.Lerp(originPosition, targetPosition, time / duration);
-                        if (targetHaveDefender)
-                        {
-                            target.Defender.transform.position = Vector2.Lerp(defenderOriginPosition, defenderFinalPosition, time / duration);
-                        }
-                        yield return null;
-                    }
-                    time = 0;
-                    // Do Damage Calculations
-                    selfUnit.MakeTurn();
-                    animator.Play(selfUnit.currentAction.ToString());
-                    yield return new WaitForSeconds(0.5f);
-                    while (time < duration)
-                    {
-                        time += Time.deltaTime;
-                        transform.position = Vector2.Lerp(targetPosition, originPosition, time / duration);
-                        if (targetHaveDefender)
-                        {
-                            target.Defender.transform.position = Vector2.Lerp(defenderFinalPosition, defenderOriginPosition, time / duration);
-                        }
-                        yield return null;
-                    }
-                }
-                //TODO: if no other attackable target, return game result
-                else
-                {
-
-                }
+                yield return Surrender(selfUnit);
+            }
+            else if (selfUnit.currentAction != Action.Defence)
+            {
+                yield return Attack(selfUnit);
             }
             //if defence
             else
@@ -103,7 +44,134 @@ public class StartFight : MonoBehaviour
             yield return null;
         }
     }
-    public bool IfTargetHaveDefender(CombatCharacterUnit target)
+    public IEnumerator Surrender(CombatCharacterUnit unit)
+    {
+        if (!unit.IsFriend)
+        {
+            unit.DestroyHealthBar();
+            Vector3Int targetCell = new Vector3Int(unit.cellPosition.x + 10, unit.cellPosition.y, unit.cellPosition.z);
+            Vector2 originPosition = transform.position;
+            Vector3 targetPosition = CombatCharacterUnit.grid.GetCellCenterWorld(targetCell);
+            float time = 0;
+            while (time < duration)
+            {
+                time += Time.deltaTime;
+                transform.position = Vector2.Lerp(originPosition, targetPosition, time / duration);
+                yield return null;
+            }
+            unit.SurrenderAction();
+        }
+    }
+    public IEnumerator Attack(CombatCharacterUnit selfUnit)
+    {
+        if (selfUnit.target == null || selfUnit.target.gameObject.activeSelf == false)
+        {
+            var PotentialList = FindObjectsOfType<CombatCharacterUnit>().Where(x => x.IsFriend != selfUnit.IsFriend);
+            var Potential = PotentialList.ToList()[UnityEngine.Random.Range(0, PotentialList.ToList().Count)];
+
+            selfUnit.target = Potential;
+            Debug.Log("changeTarget");
+        }
+        CombatCharacterUnit target = selfUnit.target;
+        if (target != null)
+        {
+            var targetPosition = target.transform.position;
+            var originPosition = transform.position;
+            bool targetHaveDefender = TargetHaveDefender(target);
+            Vector2 defenderFinalPosition = new Vector2(0, 0);
+            Vector2 defenderOriginPosition = new Vector2(0, 0);
+            if (target.IsFriend)
+            {
+                targetPosition.y += distanceY;
+                targetPosition.x += distanceX;
+                if (targetHaveDefender)
+                {
+                    defenderFinalPosition = targetPosition;
+                    defenderOriginPosition = target.Defender.transform.position;
+                    targetPosition.y += distanceY;
+                    targetPosition.x += distanceX;
+                }
+            }
+            else
+            {
+                targetPosition.y -= distanceY;
+                targetPosition.x -= distanceX;
+                if (targetHaveDefender)
+                {
+                    defenderFinalPosition = targetPosition;
+                    defenderOriginPosition = target.Defender.transform.position;
+                    targetPosition.y -= distanceY;
+                    targetPosition.x -= distanceX;
+                }
+            }
+            float time = 0;
+            while (time < duration)
+            {
+                time += Time.deltaTime;
+                transform.position = Vector2.Lerp(originPosition, targetPosition, time / duration);
+                if (targetHaveDefender)
+                {
+                    target.Defender.transform.position = Vector2.Lerp(defenderOriginPosition, defenderFinalPosition, time / duration);
+                }
+                yield return null;
+            }
+            time = 0;
+            // Do Damage Calculations
+            selfUnit.MakeTurn();
+            animator.Play(selfUnit.currentAction.ToString());
+            yield return new WaitForSeconds(0.5f);
+            while (time < duration)
+            {
+                time += Time.deltaTime;
+                transform.position = Vector2.Lerp(targetPosition, originPosition, time / duration);
+                if (targetHaveDefender)
+                {
+                    target.Defender.transform.position = Vector2.Lerp(defenderFinalPosition, defenderOriginPosition, time / duration);
+                }
+                yield return null;
+            }
+        }
+        //TODO: if no other attackable target, return game result
+        else
+        {
+
+        }
+    }
+    public Action AIStrategy(CombatCharacterUnit unit)
+    {
+        int health = (int)unit.healthBar.slider.value;
+        bool reachMaxHealth = 18 <= health;
+        bool reachMidHealth = 10 <= health;
+        bool reachLowHealth = 8 >= health;
+        Action[] actionArray = Enum.GetValues(typeof(Action)) as Action[];
+        List<Action> actionChoices = actionArray.Where(x => x != Action.NoSelect).ToList();
+
+        if (reachMaxHealth)
+        {
+            actionChoices.Remove(Action.Surrender);
+            actionChoices.Remove(Action.Defence);
+            actionChoices.Add(Action.Attack);
+            actionChoices.Add(Action.Attack);
+            actionChoices.Add(Action.Assassin);
+            actionChoices.Add(Action.Assassin);
+        }
+        if (reachLowHealth)
+        {
+            actionChoices.RemoveAll(x => x == Action.Attack);
+            actionChoices.Add(Action.Assassin);
+            actionChoices.Add(Action.Assassin);
+            actionChoices.Add(Action.Surrender);
+            actionChoices.Add(Action.Surrender);
+        }
+        if (reachMidHealth)
+        {
+            actionChoices.Remove(Action.Assassin);
+            actionChoices.Remove(Action.Defence);
+        }
+        Action output = actionChoices[UnityEngine.Random.Range(0, actionChoices.Count)];
+        return output;
+    }
+    public bool TargetHaveDefender(CombatCharacterUnit target)
     {
         if (target == null) return false;
         return target.Defender != null;

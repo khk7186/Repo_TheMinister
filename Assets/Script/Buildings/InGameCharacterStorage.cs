@@ -10,7 +10,6 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
     public List<Character> UnshowedCharacters = new List<Character>();
     public int MinimumCharacterNumber = 20;
     private Character characterPref;
-    public bool EnemyOn = true;
     private int spawnRate = 500;
     private readonly int spawnTotal = 1000;
     public void Awake()
@@ -102,15 +101,7 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
         }
         return selectList;
     }
-    public void GenerateCombatCharacters()
-    {
-        var AIpref = Resources.Load<ForceCombatInGameAI>("InGameNPC/ForceCombatNPC");
-        var newAI = Instantiate(AIpref);
-        var newCharacter = Instantiate(characterPref, newAI.transform);
-        newCharacter.characterArtCode = CharacterArtCode.ÄÐµ¶¿Í;
-        newCharacter.hireStage = HireStage.NotInMap;
-        newAI.Setup(newCharacter);
-    }
+
     public void OnNotify(object value, NotificationType notificationType)
     {
         var map = FindObjectOfType<Map>();
@@ -121,12 +112,7 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
         int multi = map.DayTime == 2 ? 2 : 1;
         int result = Random.Range(0, spawnTotal) * multi;
         bool spawn = result < spawnRate;
-        if (spawn && EnemyOn)
-        {
-            GenerateCombatCharacters();
-        }
     }
-
     public void OnAreaChange(char areaCode)
     {
         switch (areaCode)
@@ -144,7 +130,8 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
                 spawnRate = 50;
                 break;
         }
-        
+
+
     }
 
 }

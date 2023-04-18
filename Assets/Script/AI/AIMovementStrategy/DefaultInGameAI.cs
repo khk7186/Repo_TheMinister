@@ -64,7 +64,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     }
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
     {
-            Register();
+        Register();
     }
     private void Register()
     {
@@ -75,7 +75,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     }
     private void OnEnable()
     {
-        Debug.Log($"Register");
+        //Debug.Log($"Register");
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             Register();
@@ -132,7 +132,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     //    StartCoroutine(movement.MoveToLocation());
     //    //StartCoroutine(MoveManyStep(steps));
     //}
-    public void Move()
+    public virtual void Move()
     {
         PathPointHandler pathPointHandler = new PathPointHandler(currentPathPoint, gameObject);
         pathPointHandler.PlanPath();

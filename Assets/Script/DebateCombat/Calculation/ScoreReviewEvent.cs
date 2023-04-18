@@ -77,23 +77,37 @@ public class ScoreReviewEvent : MonoBehaviour
             {
                 if (unit.index == 0)
                 {
-                    
                     int result = loseOrder.Count > 0 ? 1 : -1;
                     GET.TriggerEnd(result);
                     return;
                 }
                 else
                 {
+                    SetLoseCharacterOnCommitted(unit);
                     loseOrder.Add(unit);
                     characters[unit.index] = new Character[0] { };
                     unit.UnitDown();
                 }
             }
-            if (loseOrder.Count >= allUnits.Length-1)
+            if (loseOrder.Count >= allUnits.Length - 1)
             {
                 int result = loseOrder.Count > 0 ? 1 : -1;
                 GET.TriggerEnd(result);
             }
+        }
+    }
+    public void SetLoseCharacterOnCommitted(DebateUnit unit)
+    {
+        if (unit.isPlayer) return;
+        foreach (Character character in unit.characters)
+        {
+            if (character.InGameAI == null)
+            {
+                Destroy(character.gameObject);
+                continue;
+            }
+            character.hireStage = HireStage.Committed;
+            character.loyalty = 20;
         }
     }
     public static int TestReview(List<Character[]> characters, DebateTopic topic)

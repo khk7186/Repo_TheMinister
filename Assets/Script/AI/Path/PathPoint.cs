@@ -46,7 +46,7 @@ public class PathPoint : MonoBehaviour
             Gizmos.DrawLine(transform.position, point.transform.position);
         }
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, 1);
+        Gizmos.DrawWireSphere(transform.position, 0.5f);
     }
 
     public void OnNotify(object value, NotificationType notificationType)

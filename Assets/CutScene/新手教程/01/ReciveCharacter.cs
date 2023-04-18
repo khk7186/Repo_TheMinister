@@ -27,7 +27,7 @@ public class ReciveCharacter : MonoBehaviour
         character.health = health;
         character.loyalty = loyalty;
         character.UpdateVariables();
-        var congrat = Instantiate(Resources.Load<CharacterReciveNotice>("MainUI/CharacterReciveConfirmWindow"),canvas.transform);
+        var congrat = Instantiate(Resources.Load<CharacterReciveNotice>("MainUI/CharacterReciveConfirmWindow"), canvas.transform);
         congrat.Setup(character);
         foreach (var item in _objectToActive)
         {
@@ -36,5 +36,26 @@ public class ReciveCharacter : MonoBehaviour
                 item.SetActive(true);
             });
         }
+    }
+    public static void TakeCharacter(Character character)
+    {
+        var target = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
+        character.transform.SetParent(target);
+        character.hireStage = HireStage.Hired;
+        var shrink = character.InGameAI.gameObject.AddComponent<ObjectShrinkHandler>();
+        shrink.Shrink(0, 0.5f, character.InGameAI.gameObject, new List<ObjectShrinkHandler.AfterShrink>()
+                                                            {   () => SetupCongrat(character) ,
+                                                                () => DestroyInGameAvantor(character) });
+        //character
+    }
+
+    public static void SetupCongrat(Character character)
+    {
+        var congrat = Instantiate(Resources.Load<CharacterReciveNotice>("MainUI/CharacterReciveConfirmWindow"), MainCanvas.FindMainCanvas());
+        congrat.Setup(character);
+    }
+    public static void DestroyInGameAvantor(Character character)
+    {
+        Destroy(character.InGameAI.gameObject);
     }
 }

@@ -291,7 +291,8 @@ public enum CharacterArtCode
 public enum CharacterType
 {
     General,
-    Main
+    Main,
+    Roit
 }
 public enum HireStage
 {
@@ -300,6 +301,7 @@ public enum HireStage
     Hired,
     NotInMap,
     Defeated,
+    Committed,
     Away
 }
 public class Character : MonoBehaviour, IRound
@@ -327,6 +329,7 @@ public class Character : MonoBehaviour, IRound
     public CharacterUI characterCard;
     public CharacterUI thisCharacterCard;
     public Transform characterCardInvUI;
+    public DefaultInGameAI InGameAI;
 
     public Dictionary<CharacterValueType, int> CharactersValueDict => charactersValueDict;
 
@@ -398,6 +401,10 @@ public class Character : MonoBehaviour, IRound
     #endregion
     private void Awake()
     {
+        AwakeAction();
+    }
+    public virtual void AwakeAction()
+    {
         if (characterType == CharacterType.General)
         {
             CharacterArtCode[] cacList = (CharacterArtCode[])Enum.GetValues(typeof(CharacterArtCode));
@@ -426,17 +433,21 @@ public class Character : MonoBehaviour, IRound
 
     private void Start()
     {
+        StartAction();
+    }
+    public virtual void StartAction()
+    {
         if (characterType == CharacterType.General)
         {
             if (hireStage != HireStage.Hired && hireStage != HireStage.NotInMap)
             {
                 string path = "InGameNPC/DefaultInGameNPC";
-                var target = Instantiate(Resources.Load<DefaultInGameAI>(path));
-                target.Setup(this);
+                InGameAI = Instantiate(Resources.Load<DefaultInGameAI>(path));
+                InGameAI.Setup(this);
             }
         }
     }
-    
+
     public void ChangeNextHireStage()
     {
         switch (hireStage)
@@ -523,7 +534,7 @@ public class Character : MonoBehaviour, IRound
         CharactersValueDict[CharacterValueType.สุ] = 0;
     }
 
-    private void SpawnTagOnStart(Rarerity rarerity = Rarerity.Null)
+    protected virtual void SpawnTagOnStart(Rarerity rarerity = Rarerity.Null)
     {
         int maxTag = 5;
         if (rarerity == Rarerity.Null)
@@ -561,7 +572,7 @@ public class Character : MonoBehaviour, IRound
         tagList.Add(newTag);
         StartCoroutine(TryMergeTags());
     }
-    private Tag RandomTag()
+    protected virtual Tag RandomTag()
     {
         Rarerity rare = RandomRare();
         if (rare > rarerity)
@@ -574,7 +585,7 @@ public class Character : MonoBehaviour, IRound
         return targetList[targetValue];
     }
 
-    private Tag RandomTag(Rarerity rare)
+    protected Tag RandomTag(Rarerity rare)
     {
         List<Tag> targetList = Player.GivenableTagRareDict[rare];
         if (targetList.Count == 0)
@@ -586,7 +597,7 @@ public class Character : MonoBehaviour, IRound
         return targetList[targetValue];
     }
 
-    private Rarerity RandomRare()
+    protected Rarerity RandomRare()
     {
         int max =
             TagSpawnRareRate[0]
@@ -652,7 +663,7 @@ public class Character : MonoBehaviour, IRound
         int targetTime = map.DayTime;
         int targetDay = map.Day + rounds;
         yield return new WaitUntil(() => (map.Day == targetDay) && (map.DayTime == targetTime));
-        if(spawnAfterAway!=null) Instantiate(spawnAfterAway);
+        if (spawnAfterAway != null) Instantiate(spawnAfterAway);
         hireStage = HireStage.Hired;
     }
 
@@ -746,10 +757,11 @@ public class Character : MonoBehaviour, IRound
 
     public void FightHealthModify(int damage)
     {
+        if (damage <= 0) damage = 0;
         health -= damage;
         if (health < 0)
         {
-            
+
         }
     }
 

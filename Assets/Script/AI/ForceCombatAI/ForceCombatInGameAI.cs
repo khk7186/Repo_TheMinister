@@ -10,6 +10,8 @@ public class ForceCombatInGameAI : DefaultInGameAI,IStopPlayer
     public int stayRounds = 3;
     private Collider2D trigger; 
     public int CurrentBlock => stayblock;
+    public PathPoint[] RoitPoints;
+    public List<PathPoint> TakenPoints = new List<PathPoint>();
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -65,6 +67,4 @@ public class ForceCombatInGameAI : DefaultInGameAI,IStopPlayer
         DSC.Awake();
         npcConversationTriggerGroup.StartGeneral();
     }
-
-
 }

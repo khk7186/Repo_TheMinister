@@ -17,7 +17,7 @@ public class CombatCharacterUnit : MonoBehaviour
     public bool IsFriend = false;
     public int armor = 0;
     public static int minimumDamage = 1;
-    static Grid grid;
+    public static Grid grid;
 
     public CharacterStat stat = CharacterStat.normal;
     public Action currentAction = Action.Attack;
@@ -27,6 +27,7 @@ public class CombatCharacterUnit : MonoBehaviour
     public CombatCharacterUnit Defender = null;
     SortingGroup sg = null;
     public HealthBar healthBar;
+    public Vector3Int cellPosition;
 
     private void Awake()
     {
@@ -86,6 +87,7 @@ public class CombatCharacterUnit : MonoBehaviour
 
     public void SetGridPosition(Vector3Int cellPosition)
     {
+        this.cellPosition = cellPosition;
         transform.position = grid.GetCellCenterWorld(cellPosition);
     }
 
@@ -234,15 +236,50 @@ public class CombatCharacterUnit : MonoBehaviour
             var trigger = FindObjectOfType<GeneralEventTrigger>();
             trigger.LostCharacters.Add(character);
         }
-        Destroy(healthBar.gameObject);
-        CheckGameEnd();
+        DestroyHealthBar();
         if (character.hireStage != HireStage.Hired)
         {
-            character.hireStage = HireStage.Defeated;
-            character.health = 5;
-            character.loyalty = 5;
+            if (character.hireStage == HireStage.NotInMap)
+            {
+                Destroy(character.gameObject);
+            }
+            else
+            {
+                character.hireStage = HireStage.Defeated;
+                character.health = 1;
+                character.loyalty = 5;
+            }
         }
+        CheckGameEnd();
         gameObject.SetActive(false);
+    }
+    public void SurrenderAction()
+    {
+        if (!IsFriend)
+        {
+            if (character.hireStage != HireStage.Hired)
+            {
+                if (character.hireStage == HireStage.NotInMap)
+                {
+                    Destroy(character.gameObject);
+                }
+                else
+                {
+                    character.hireStage = HireStage.Defeated;
+                    character.loyalty = 5;
+                }
+            }
+        }
+        else
+        {
+            character.loyalty -= 5;
+        }
+        CheckGameEnd();
+        gameObject.SetActive(false);
+    }
+    public void DestroyHealthBar()
+    {
+        Destroy(healthBar.gameObject);
     }
 
     public void CheckGameEnd()

@@ -120,16 +120,8 @@ public class CombatSceneController : MonoBehaviour
         var csc = FindObjectOfType<CombatSceneController>();
         if (csc.Animating == false)
         {
-            //var targetDir = unit.IsFriend ? -1 : 1;
-            //if (csc.CameraAdjast != targetDir)
-            //{
-            //    csc.CameraAdjast = targetDir;
-            //    csc.MoveCamera();
-            //}
             csc.Animating = true;
             var combatUI = FindObjectOfType<CombatUI>();
-
-            /*ctl k u this line for properuse*/
             combatUI.ShowNewCard(unit);
         }
     }

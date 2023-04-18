@@ -799,11 +799,7 @@ public class CharacterHiringEvent : MonoBehaviour
     }
     public void SetRequest()
     {
-        if (character.hireStage == HireStage.Defeated)
-        {
-            requestItems = new Dictionary<ItemName, int>() { };
-            return;
-        }
+
         Rarerity rarerity = Rarerity.N;
         foreach (Tag tag in character.tag)
         {
@@ -821,6 +817,14 @@ public class CharacterHiringEvent : MonoBehaviour
         var currentUI = Instantiate(UIobject, canvas);
         SetRequest();
         currentUI.Setup(character, requestItems);
+        if (character.hireStage == HireStage.Defeated)
+        {
+            currentUI.OnDefeated();
+        }
+        else if (character.hireStage == HireStage.Committed)
+        {
+            currentUI.OnCommitted();
+        }
         bool NeverFalse = true;
         while (NeverFalse)
         {
@@ -833,6 +837,7 @@ public class CharacterHiringEvent : MonoBehaviour
             {
                 if (TryHiring() == true)
                 {
+                    ReciveCharacter.TakeCharacter(character);
                     break;
                 }
                 currentUI.TryHire = false;
@@ -855,28 +860,33 @@ public class CharacterHiringEvent : MonoBehaviour
     {
         var itemInventory = FindObjectOfType<ItemInventory>();
         var itemDict = itemInventory.ItemDict;
-        foreach (ItemName item in requestItems.Keys)
+        if (character.hireStage == HireStage.Defeated || character.hireStage == HireStage.Committed)
         {
-            if (itemDict.ContainsKey(item) == false)
-            {
-                FailedMessage = "缺少招募道具";
-                return false;
-            }
-            if (itemDict[item] < requestItems[item])
-            {
-                FailedMessage = "道具数量不足";
-                return false;
-            }
+            return true;
         }
-        foreach (ItemName item in requestItems.Keys)
+        else
         {
-            for (int i = 0; i < requestItems[item]; i++)
+            foreach (ItemName item in requestItems.Keys)
             {
-                itemInventory.RemoveItem(item);
+                if (itemDict.ContainsKey(item) == false)
+                {
+                    FailedMessage = "缺少招募道具";
+                    return false;
+                }
+                if (itemDict[item] < requestItems[item])
+                {
+                    FailedMessage = "道具数量不足";
+                    return false;
+                }
             }
+            foreach (ItemName item in requestItems.Keys)
+            {
+                for (int i = 0; i < requestItems[item]; i++)
+                {
+                    itemInventory.RemoveItem(item);
+                }
+            }
+            return true;
         }
-        character.hireStage = HireStage.Hired;
-        character.transform.parent = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
-        return true;
     }
 }

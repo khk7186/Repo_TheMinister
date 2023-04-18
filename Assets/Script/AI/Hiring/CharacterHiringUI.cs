@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,9 @@ public class CharacterHiringUI : MonoBehaviour
     public Transform Tags;
     public Vector2 SizeDelta = new Vector2(70f, 20f);
     public Transform Items;
+
+    public GameObject Defeated;
+    public GameObject Committed;
 
     public Image Wisdom;
     public Image Writing;
@@ -88,5 +92,14 @@ public class CharacterHiringUI : MonoBehaviour
     public void ConfirmHire()
     {
         TryHire = true;
+    }
+    public void OnDefeated()
+    {
+        Defeated.gameObject.SetActive(true);
+    }
+
+    public void OnCommitted()
+    {
+        Committed.gameObject.SetActive(true);
     }
 }
