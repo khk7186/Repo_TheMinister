@@ -48,12 +48,13 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     public NPCConversationTriggerGroup npcConversationTriggerGroup;
     protected void Awake()
     {
-        movementGrid = FindObjectOfType<MovementGrid>().GetComponent<Grid>();
-        inner = Random.Range(0, 2) == 0 ? false : true;
-
         map = FindObjectOfType<Map>();
     }
     private void Start()
+    {
+        StartAction();
+    }
+    public virtual void StartAction()
     {
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
@@ -106,7 +107,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
         SetConversationDatabase();
     }
 
-    public void SetLocation()
+    public virtual void SetLocation()
     {
         if (currentPathPoint == null)
         {

@@ -20,20 +20,23 @@ public class RoitCharacter : Character
     public static CharacterArtCode characterArtCodeC = CharacterArtCode.Ê°»ÄÕß;
     public static CharacterArtCode characterArtCodeD = CharacterArtCode.ÄÐ¹Ù;
     public CharacterArtCode RoitCharacterArtCode => Area == 'A' ? characterArtCodeA : Area == 'B' ? characterArtCodeB : Area == 'C' ? characterArtCodeC : characterArtCodeD;
+    public RoitInGameAI RoitAITemp;
+    public RoitSpawnRange spawnRange;
     public override void AwakeAction()
     {
         characterType = CharacterType.Roit;
-        
     }
     public override void StartAction()
     {
     }
-    public void Setup(char Area)
+    public void Setup(RoitSpawnRange spawnRange)
     {
-        this.Area = Area;
+        this.Area = spawnRange.Area;
+        this.spawnRange = spawnRange;
         characterArtCode = RoitCharacterArtCode;
         SpawnTagOnStart();
-        
+        RoitInGameAI inGameAi = Instantiate(RoitAITemp);
+        inGameAi.SetupRoitAI(this, this.spawnRange);
     }
     protected override void SpawnTagOnStart(Rarerity rarerity = Rarerity.Null)
     {
