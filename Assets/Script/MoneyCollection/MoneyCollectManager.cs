@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MoneyCollectManager : MonoBehaviour, IDiceRollEvent
@@ -22,6 +23,14 @@ public class MoneyCollectManager : MonoBehaviour, IDiceRollEvent
         else if (Instance != this) Destroy(gameObject);
         Dice.Instance.RegisterObserver(this);
         Reset();
+    }
+    public void LinkCamera()
+    {
+        var WScanvas = FindObjectsOfType<Canvas>().Where(x=>x.renderMode == RenderMode.WorldSpace);
+        foreach (var x in WScanvas)
+        {
+            x.worldCamera = Camera.main;
+        }
     }
     private void Reset()
     {

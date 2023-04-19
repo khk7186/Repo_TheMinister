@@ -22,7 +22,8 @@ public class MoneyCollectPoint : MonoBehaviour
     }
     public void OnContact()
     {
-        State = RoitSpawnRange.onRoit ? "糟糕" : "良好";
+        if (RoitSpawnRange != null) 
+            State = RoitSpawnRange.onRoit ? "糟糕" : "良好";
         text.text = $"{Name}今日营业状态{State}\r\n缴纳税银<color=green>{Value}</color>两";
         Wrapper.SetActive(true);
         var handler = new MoneyCollectAnimationHandler(Wrapper.GetComponent<RectTransform>(), manager.YChange, manager.duration, manager.delay);
