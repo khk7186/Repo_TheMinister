@@ -18,12 +18,15 @@ public class NPCConversationTriggerGroup : MonoBehaviour
     }
     public void StartGeneral()
     {
+        var EAC = GetComponent<EventAfterConversation>();
+        EAC.ChangeConversation();
         General.OnUse();
     }
 
     public void OnConversationEnd(Transform actor)
     {
         var EAC = GetComponent<EventAfterConversation>();
+        EAC.ChangeConversation();
         EAC.TryCombat();
         EAC.TryDebate();
         EAC.TryHire();

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class RoitCharacter : Character
 {
-    public static List<Tag> RoitTagsA = new List<Tag>();
-    public static List<Tag> badTagsA = new List<Tag>();
+    public static List<Tag> RoitTagsA = new List<Tag>() { Tag.习武之人 };
+    public static List<Tag> badTagsA = new List<Tag>() { Tag.平平无奇 };
     public static List<Tag> RoitTagsB = new List<Tag>();
     public static List<Tag> badTagsB = new List<Tag>();
     public static List<Tag> RoitTagsC = new List<Tag>();
@@ -25,6 +25,7 @@ public class RoitCharacter : Character
     public override void AwakeAction()
     {
         characterType = CharacterType.Roit;
+        hireStage = HireStage.InCity;
     }
     public override void StartAction()
     {
@@ -35,8 +36,11 @@ public class RoitCharacter : Character
         this.spawnRange = spawnRange;
         characterArtCode = RoitCharacterArtCode;
         SpawnTagOnStart();
-        RoitInGameAI inGameAi = Instantiate(RoitAITemp);
+        RoitInGameAI inGameAi = Instantiate(Resources.Load<RoitInGameAI>("InGameNPC/RoitInGameAI"),spawnRange.transform);
+        InGameAI = inGameAi;
+        characterCard = Resources.Load<Character>("CharacterPrefab/Character").characterCard;
         inGameAi.SetupRoitAI(this, this.spawnRange);
+        CharacterName = "无名";
     }
     protected override void SpawnTagOnStart(Rarerity rarerity = Rarerity.Null)
     {

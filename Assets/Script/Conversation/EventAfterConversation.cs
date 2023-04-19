@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PixelCrushers.DialogueSystem;
+using System;
+using System.Linq;
+using PixelCrushers.DialogueSystem.Wrappers;
 
 public class EventAfterConversation : MonoBehaviour
 {
@@ -12,28 +15,33 @@ public class EventAfterConversation : MonoBehaviour
     public Character EnemyUnitC;
     public Character[] EnemyUnitCCardList = new Character[] { };
     public DebateTopicCode[] debateTopics;
-    //public void OnConversationEnd()
-    //{
-    //    TryCombat();
-    //}
 
+    public GeneralEventTrigger Trigger;
+    public PixelCrushers.DialogueSystem.DialogueSystemTrigger roitHire;
     public void TryCombat()
     {
         //{character.characterArtCode}
-        bool startCombat = DialogueLua.GetVariable("startCombat").asBool;
+        bool startCombat = EnemyUnitA.characterType == CharacterType.Roit || DialogueLua.GetVariable("startCombat").asBool;
         //Debug.Log(startCombat);
         if (startCombat)
         {
-            var Trigger = new GameObject().AddComponent<GeneralEventTrigger>();
+            Trigger = new GameObject().AddComponent<GeneralEventTrigger>();
             Trigger.battleType = BattleType.Combat;
-            Trigger.enemyCharacters = CharacterSpawnPool.CharacterSpawnPoolDict[EnemyUnitA.characterArtCode][Trigger.battleType];
             Trigger.enemyCharacters.Add(EnemyUnitA);
+            if (EnemyUnitB != null)
+            {
+                Trigger.enemyCharacters.Add(EnemyUnitB);
+            }
+            if (EnemyUnitC != null)
+            {
+                Trigger.enemyCharacters.Add(EnemyUnitC);
+            }
             Trigger.TriggerEvent();
             //Debug.Log(startCombat);
         }
         else
         {
-            DialogueLua.SetVariable("tryCombat", false) ;
+            DialogueLua.SetVariable("tryCombat", false);
         }
     }
 
@@ -50,7 +58,7 @@ public class EventAfterConversation : MonoBehaviour
                 newTopic.Setup(topic);
                 topicPool.topics.Add(newTopic);
             }
-            var Trigger = new GameObject().AddComponent<GeneralEventTrigger>();
+            Trigger = new GameObject().AddComponent<GeneralEventTrigger>();
             Trigger.battleType = BattleType.Debate;
             var EnemyCharactersCardsList = new List<Character[]>();
             if (EnemyUnitA != null)
@@ -96,6 +104,20 @@ public class EventAfterConversation : MonoBehaviour
         else
         {
             DialogueLua.SetVariable("tryHire", false);
+        }
+    }
+
+    internal void ChangeConversation()
+    {
+        Debug.Log(EnemyUnitA.hireStage);
+        bool result = EnemyUnitA.hireStage == HireStage.Defeated;
+        if (EnemyUnitA.characterType == CharacterType.Roit)
+        {
+            if (result)
+            {
+                var target = GetComponent<NPCConversationTriggerGroup>();
+                target.General = roitHire;
+            }
         }
     }
 }

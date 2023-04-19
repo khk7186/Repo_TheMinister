@@ -55,7 +55,6 @@ public class GeneralEventTrigger : MonoBehaviour
     }
     public void TriggerEnd(int result)
     {
-        Debug.Log(result);
         gameTracker.gameWin = result > 0;
         if (gameTracker != null)
         {

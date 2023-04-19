@@ -42,6 +42,7 @@ public class ReciveCharacter : MonoBehaviour
         var target = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
         character.transform.SetParent(target);
         character.hireStage = HireStage.Hired;
+        character.characterType = CharacterType.General;
         var shrink = character.InGameAI.gameObject.AddComponent<ObjectShrinkHandler>();
         shrink.Shrink(0, 0.5f, character.InGameAI.gameObject, new List<ObjectShrinkHandler.AfterShrink>()
                                                             {   () => SetupCongrat(character) ,
