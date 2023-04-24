@@ -6,28 +6,39 @@ using UnityEngine.UI;
 
 public class MoneyCollectPoint : MonoBehaviour
 {
-    public int Value = 100;
+    public static MoneyCollectManager manager => MoneyCollectManager.Instance;
+    public int value = 100;
+    public int Value
+    {
+        get
+        {
+            if (OnRoit) return (int)(1f - manager.MoneyDecreaseOnRoit) * value;
+            return value;
+        }
+    }
     public string Name = "商行";
     public string State = "良好";
-    public bool OnRoit = false;
     public Collider2D Trigger;
     public GameObject Wrapper;
     public RoitSpawnRange RoitSpawnRange;
-    public static MoneyCollectManager manager => MoneyCollectManager.Instance;
+    public MCPStateCheckHandler StateChecker;
+    public bool OnRoit => StateChecker.onRoit;
 
     public Text text;
     public void Start()
     {
         Wrapper.SetActive(false);
+        StateChecker = new MCPStateCheckHandler(this);
     }
     public void OnContact()
     {
-        if (RoitSpawnRange != null) 
-            State = RoitSpawnRange.onRoit ? "糟糕" : "良好";
+        State = OnRoit ? "糟糕" : "良好";
         text.text = $"{Name}今日营业状态{State}\r\n缴纳税银<color=green>{Value}</color>两";
         Wrapper.SetActive(true);
         var handler = new MoneyCollectAnimationHandler(Wrapper.GetComponent<RectTransform>(), manager.YChange, manager.duration, manager.delay);
         handler.Play();
+        if (Value > 0)
+            CurrencyInvAnimationManager.Instance.MoneyChange(Value);
     }
     public void OnDrawGizmos()
     {

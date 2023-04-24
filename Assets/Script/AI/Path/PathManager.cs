@@ -87,7 +87,9 @@ public class PathManager : MonoBehaviour, IDiceRollEvent
     }
     public static bool CheckIfPointTaken(PathPoint targetPoint)
     {
-        var final = PathManager.Instance.takenPoints.Contains(targetPoint);
+        bool first = PathManager.Instance.takenPoints.Contains(targetPoint);
+        bool second = ! RoitManager.Instance.OnRoitPoints.Contains(targetPoint);
+        bool final = first && second;
         return final;
     }
 

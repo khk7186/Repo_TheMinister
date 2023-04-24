@@ -6,28 +6,56 @@ using UnityEngine;
 public class RoitManager : MonoBehaviour, IDiceRollEvent
 {
     public static RoitManager Instance;
-    public List<MoneyCollectPoint> OnRoitPoints;
-    private int spawnRate = 500;
-    private int spawnTotal = 1000;
+    public List<RoitSpawnRange> spawnRanges;
+    public List<RoitSpawnRange> OnRoitSpawnRanges
+    {
+        get
+        {
+            return spawnRanges.Where(x => x.onRoit == true).ToList();
+        }
+    }
+    public List<PathPoint> OnRoitPoints
+    {
+        get
+        {
+            List<PathPoint[]> targets = OnRoitSpawnRanges.Select(x => x.pathPoints).ToList();
+            List<PathPoint> output = new List<PathPoint>();
+            foreach (var target in targets)
+            {
+                if (target == null) continue;
+                foreach (var pp in target)
+                {
+                    if (output.Contains(pp)) continue;
+                    output.Add(pp);
+                }
+            }
+            return output;
+        }
+    }
+    public int spawnRate = 300;
+    public int spawnTotal = 1000;
     private Character characterPref;
     private void Start()
     {
         if (Instance == null)
         {
             Instance = this;
-            OnRoitPoints = new List<MoneyCollectPoint>();
+            spawnRanges = FindObjectsOfType<RoitSpawnRange>().ToList();
         }
         else if (Instance != this)
             Destroy(gameObject);
     }
     public void OnEnable()
     {
-        OnRoitPoints = FindObjectsOfType<MoneyCollectPoint>().Where(x => x.OnRoit).ToList<MoneyCollectPoint>();
+        spawnRanges = FindObjectsOfType<RoitSpawnRange>().ToList();
     }
 
     public void SpawnRoit()
     {
-        
+        var range = spawnRanges.Where(x => x.Full == false).ToList();
+        var choice = range[Random.Range(0, range.Count)];
+        choice.SpawnRoit();
+        //TODO: effect on money collect point.
     }
 
     public void OnNotify(object value, NotificationType notificationType)

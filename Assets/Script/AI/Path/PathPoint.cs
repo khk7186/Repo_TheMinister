@@ -18,6 +18,7 @@ public class PathPoint : MonoBehaviour
     public CircleCollider2D circleCollider;
     public short radius = 1;
     public float colliderRadius = 1;
+
     private void Reset()
     {
         radius = 1;

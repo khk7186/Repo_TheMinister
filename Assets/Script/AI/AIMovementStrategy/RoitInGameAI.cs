@@ -55,6 +55,7 @@ public class RoitInGameAI : DefaultInGameAI
         var path = spawnRange.RequestPath();
         startPoint = path.Item1;
         endPoint = path.Item2;
+        GetComponentInChildren<IndicatorController>().ChangeSelected("attack");
         SetLocation();
         SetConversationDatabase();
         StartCoroutine(OnStreetRator());
@@ -86,5 +87,16 @@ public class RoitInGameAI : DefaultInGameAI
         }
         npcConversationTriggerGroup = Instantiate(pref, transform);
         GetComponentInChildren<EventAfterConversation>().EnemyUnitA = character;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        var ai = collision.gameObject.GetComponent<DefaultInGameAI>();
+        if (ai == null) return;
+        bool canBeKilled = ai.character.characterType == CharacterType.General;
+        if (canBeKilled )
+        {
+            //TODO: death animation and character elim.
+        }
     }
 }

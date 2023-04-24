@@ -10,14 +10,30 @@ public class RoitSpawnRange : MonoBehaviour
     public List<PathPoint> takenStartPoint = new List<PathPoint>();
     public List<Character> roitCharacters = new List<Character>();
     public int MaxRoit => 3;
-    public int CurrentRoit => roitCharacters.Count;
+    public bool Full
+    {
+        get
+        {
+            CleanUpCharacters();
+            return roitCharacters.Count >= MaxRoit;
+        }
+    }
+    public int CurrentRoit
+    {
+        get
+        {
+            CleanUpCharacters();
+            return roitCharacters.Count;
+        }
+    }
     public float PathPointRadius = 1f;
     public float EffectMoneyCollectPointsRadius = 1f;
     public char Area = 'B';
-    internal bool onRoit;
-    public void Start()
+    internal bool onRoit => CurrentRoit <= 0;
+    public void CleanUpCharacters()
     {
-
+        roitCharacters.RemoveAll(x => x == null);
+        roitCharacters.RemoveAll(x => x.hireStage == HireStage.Defeated);
     }
     public void OnEnable()
     {
@@ -30,6 +46,10 @@ public class RoitSpawnRange : MonoBehaviour
                                                             .Select(x => x.GetComponent<MoneyCollectPoint>()).ToArray();
         pathPoints = list.Where(p => p.tag == "PathPoint").ToArray()
                                     .Select(x => x.GetComponent<PathPoint>()).ToArray();
+        foreach (var mcp in EffectMoneyCollectPoints)
+        {
+            mcp.StateChecker.ranges.Add(this);
+        }
     }
 
     private void OnDrawGizmos()
@@ -60,7 +80,7 @@ public class RoitSpawnRange : MonoBehaviour
         }
         RoitCharacter roitCharacter = Instantiate(new GameObject().AddComponent<RoitCharacter>(), this.transform);
         roitCharacter.Setup(this);
-        foreach(RoitCharacter otherCharacter in roitCharacters)
+        foreach (RoitCharacter otherCharacter in roitCharacters)
         {
             var targetEAC = otherCharacter.InGameAI.npcConversationTriggerGroup.GetComponent<EventAfterConversation>();
             if (targetEAC.EnemyUnitB == null)
@@ -68,7 +88,7 @@ public class RoitSpawnRange : MonoBehaviour
             else if (targetEAC.EnemyUnitC == null)
                 targetEAC.EnemyUnitC = roitCharacter;
 
-            var currentEAC =  roitCharacter.InGameAI.npcConversationTriggerGroup.GetComponent<EventAfterConversation>();
+            var currentEAC = roitCharacter.InGameAI.npcConversationTriggerGroup.GetComponent<EventAfterConversation>();
             if (currentEAC.EnemyUnitB == null)
                 currentEAC.EnemyUnitB = otherCharacter;
             else if (currentEAC.EnemyUnitC == null)

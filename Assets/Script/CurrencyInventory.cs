@@ -15,9 +15,9 @@ public class CurrencyInventory : MonoBehaviour
     }
     public static void SetCurrencyUI()
     {
-       var only =  FindObjectOfType<CurrencyInventory>();
+        var only = FindObjectOfType<CurrencyInventory>();
         var mainUI = FindObjectOfType<MainUI>();
-       if (mainUI != null)
+        if (mainUI != null)
         {
             mainUI.SetupMoney(only.Money);
             mainUI.SetupInfluence(only.Influence);
