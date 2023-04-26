@@ -115,7 +115,6 @@ public class EventAfterConversation : MonoBehaviour
         {
             if (result)
             {
-                EnemyUnitA.InGameAI.GetComponent<IndicatorController>().ChangeSelected("hire");
                 var target = GetComponent<NPCConversationTriggerGroup>();
                 target.General = roitHire;
             }

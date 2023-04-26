@@ -248,6 +248,10 @@ public class CombatCharacterUnit : MonoBehaviour
                 character.hireStage = HireStage.Defeated;
                 character.health = 1;
                 character.loyalty = 5;
+                if (character.characterType == CharacterType.Roit)
+                {
+                    character.InGameAI.GetComponentInChildren<IndicatorController>().ChangeSelected("hire");
+                }
             }
         }
         CheckGameEnd();

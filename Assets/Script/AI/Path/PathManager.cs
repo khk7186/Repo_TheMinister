@@ -127,7 +127,6 @@ public class PathManager : MonoBehaviour, IDiceRollEvent
     public void OnNotify(object value, NotificationType notificationType)
     {
         //Reset();
-        Debug.Log("PathManagerOnNotify");
         foreach (PathPoint pathPoint in points)
         {
             pathPoint.OnNotify(value, notificationType);

@@ -80,7 +80,6 @@ public class IndicatorController : MonoBehaviour
         }
         if (Selected != null)
         {
-            Debug.Log(Selected.gameObject.name);
             Selected.gameObject.SetActive(true);
             StartCoroutine(SequenceRator(Selected));
         }

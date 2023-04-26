@@ -25,15 +25,17 @@ public class MoneyCollectPoint : MonoBehaviour
     public bool OnRoit => StateChecker.onRoit;
 
     public Text text;
-    public void Start()
+    public void Awake()
     {
         Wrapper.SetActive(false);
         StateChecker = new MCPStateCheckHandler(this);
     }
     public void OnContact()
     {
+        Debug.Log(OnRoit);
+        string color = OnRoit? "red" : "green";
         State = OnRoit ? "糟糕" : "良好";
-        text.text = $"{Name}今日营业状态{State}\r\n缴纳税银<color=green>{Value}</color>两";
+        text.text = $"{Name}今日营业状态<color={color}>{State}</color>\r\n缴纳税银<color={color}>{Value}</color>两";
         Wrapper.SetActive(true);
         var handler = new MoneyCollectAnimationHandler(Wrapper.GetComponent<RectTransform>(), manager.YChange, manager.duration, manager.delay);
         handler.Play();
