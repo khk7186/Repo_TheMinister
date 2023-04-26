@@ -1299,7 +1299,6 @@ public class SOItem : ScriptableObject
                 ItemName.毛笔,
                 ItemName.拂尘,
                 ItemName.佛珠,
-                ItemName.杂技,
                 ItemName.剪刀,
                 ItemName.锤子,
                 ItemName.刻刀,
@@ -1331,7 +1330,6 @@ public class SOItem : ScriptableObject
                 ItemName.拂尘,
                 ItemName.佛珠,
                 ItemName.毒奶瓶,
-                ItemName.杂技,
                 ItemName.剪刀,
                 ItemName.锤子,
                 ItemName.刻刀,
@@ -1370,7 +1368,6 @@ public class SOItem : ScriptableObject
                 ItemName.拂尘,
                 ItemName.佛珠,
                 ItemName.毒奶瓶,
-                ItemName.杂技,
                 ItemName.剪刀,
                 ItemName.锤子,
                 ItemName.刻刀,
@@ -1383,11 +1380,11 @@ public class SOItem : ScriptableObject
         {
             BuildingType.戏馆, new List<ItemName>()
             {
-                ItemName.毛笔,
-                ItemName.拂尘,
-                ItemName.舒服的椅子,
-                ItemName.云纹袍,
-                ItemName.羽衣
+                ItemName.杂技,
+                ItemName.官宸书,
+                ItemName.洗冤录,
+                ItemName.演员的自我修养,
+                ItemName.孝经,
             }
         },
         {
@@ -1552,6 +1549,9 @@ public class SOItem : ScriptableObject
                                                                 {ItemType.材料,new List<int>(){ 24, 62, 214, 1070, 5145, 0 } }}},
         {BuildingType.长安织造,new Dictionary<ItemType, List<int>>(){{ItemType.服装, new List<int>(){ 26, 69, 246, 1283, 6907, 0 } },
                                                                 {ItemType.材料,new List<int>(){ 24, 62, 214, 1070, 5145, 0 } }}},
+        {BuildingType.戏馆,new Dictionary<ItemType, List<int>>(){{ItemType.书籍,new List<int>(){ 23, 59, 0, 0, 0, 0 } } }},
+        {BuildingType.戏院,new Dictionary<ItemType, List<int>>(){{ItemType.书籍, new List<int>(){ 25, 66, 232, 1189, 0, 0 } }}},
+        {BuildingType.鼓瑟楼,new Dictionary<ItemType, List<int>>(){{ItemType.书籍, new List<int>(){ 27, 73, 264, 1406, 7737, 0 } }}},
     };
 
     public static Dictionary<ItemType, List<int>> PawnshopPrice = new Dictionary<ItemType, List<int>>()
