@@ -947,14 +947,13 @@ public class SOItem : ScriptableObject
         {
             BuildingType.珠宝店, new List<ItemName>()
             {
-                {ItemName.有破损的黄金,
+                ItemName.有破损的黄金,
                 ItemName.缺口的宝石,
                 ItemName.零落的宝石,
                 ItemName.祖母绿,
                 ItemName.金绿宝石,
-                ItemName.蛋白石
-                ItemName.木佐绿,,
-                }
+                ItemName.蛋白石,
+                ItemName.木佐绿
             }
         },
         {
@@ -966,24 +965,24 @@ public class SOItem : ScriptableObject
                 ItemName.木佐绿,
                 ItemName.鸽血红,
                 ItemName.钻石
-            }
+}
         },
         {
-            BuildingType.胭脂铺, new List<ItemName>()
+    BuildingType.胭脂铺, new List<ItemName>()
             {
                 ItemName.唇纸,
                 ItemName.胭脂
             }
         },
         {
-            BuildingType.万香阁, new List<ItemName>()
+    BuildingType.万香阁, new List<ItemName>()
             {
                 ItemName.唇纸,
                 ItemName.胭脂
             }
         },
         {
-            BuildingType.马厩, new List<ItemName>()
+    BuildingType.马厩, new List<ItemName>()
             {
                 ItemName.肥马,
                 ItemName.短尾马,
@@ -991,7 +990,7 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.御马场, new List<ItemName>()
+    BuildingType.御马场, new List<ItemName>()
             {
                 ItemName.肥马,
                 ItemName.短尾马,
@@ -1006,7 +1005,7 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.天马阁, new List<ItemName>()
+    BuildingType.天马阁, new List<ItemName>()
             {
                 ItemName.肥马,
                 ItemName.短尾马,
@@ -1021,7 +1020,7 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.奇兽堂, new List<ItemName>()
+    BuildingType.奇兽堂, new List<ItemName>()
             {
                 ItemName.雕,
                 ItemName.吵闹的鹦鹉,
@@ -1033,7 +1032,7 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.百兽园, new List<ItemName>()
+    BuildingType.百兽园, new List<ItemName>()
             {
                 ItemName.雕,
                 ItemName.吵闹的鹦鹉,
@@ -1046,7 +1045,7 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.酒馆, new List<ItemName>()
+    BuildingType.酒馆, new List<ItemName>()
             {
                 ItemName.清炒豆芽,
                 ItemName.拍黄瓜,
@@ -1072,7 +1071,7 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.酒店, new List<ItemName>()
+    BuildingType.酒店, new List<ItemName>()
             {
                 ItemName.清炒豆芽,
                 ItemName.拍黄瓜,
@@ -1103,7 +1102,7 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.酒楼, new List<ItemName>()
+    BuildingType.酒楼, new List<ItemName>()
             {
                 ItemName.清炒豆芽,
                 ItemName.拍黄瓜,
@@ -1135,7 +1134,7 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.馆驿, new List<ItemName>()
+    BuildingType.馆驿, new List<ItemName>()
             {
                 ItemName.清炒豆芽,
                 ItemName.拍黄瓜,
@@ -1164,7 +1163,7 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.客栈, new List<ItemName>()
+    BuildingType.客栈, new List<ItemName>()
             {
                 ItemName.清炒豆芽,
                 ItemName.拍黄瓜,
@@ -1193,7 +1192,7 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.丹房, new List<ItemName>()
+    BuildingType.丹房, new List<ItemName>()
             {
                 ItemName.过山龙,
                 ItemName.当归,
@@ -1218,7 +1217,7 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.仙鼎台, new List<ItemName>()
+    BuildingType.仙鼎台, new List<ItemName>()
             {
                 ItemName.过山龙,
                 ItemName.当归,
@@ -1242,17 +1241,17 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.医院, new List<ItemName>()
-            {
-            }
+    BuildingType.医院, new List<ItemName>()
+    {
+    }
         },
         {
-            BuildingType.研究院, new List<ItemName>()
-            {
-            }
+    BuildingType.研究院, new List<ItemName>()
+    {
+    }
         },
         {
-            BuildingType.五金店, new List<ItemName>()
+    BuildingType.五金店, new List<ItemName>()
             {
                 ItemName.糖,
                 ItemName.铁矿,
@@ -1272,7 +1271,7 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.百货店, new List<ItemName>()
+    BuildingType.百货店, new List<ItemName>()
             {
                 ItemName.糖,
                 ItemName.铁矿,
@@ -1300,7 +1299,7 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.万仙楼, new List<ItemName>()
+    BuildingType.万仙楼, new List<ItemName>()
             {
                 ItemName.糖,
                 ItemName.铁矿,
@@ -1332,13 +1331,13 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.当铺, new List<ItemName>()
-            {
+    BuildingType.当铺, new List<ItemName>()
+    {
 
-            }
+    }
         },
         {
-            BuildingType.拍卖行, new List<ItemName>()
+    BuildingType.拍卖行, new List<ItemName>()
             {
                 ItemName.糖,
                 ItemName.铁矿,
@@ -1371,7 +1370,7 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.戏馆, new List<ItemName>()
+    BuildingType.戏馆, new List<ItemName>()
             {
                 ItemName.杂技,
                 ItemName.官宸书,
@@ -1381,17 +1380,17 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.青楼, new List<ItemName>()
-            {
-            }
+    BuildingType.青楼, new List<ItemName>()
+    {
+    }
         },
         {
-            BuildingType.红人馆, new List<ItemName>()
-            {
-            }
+    BuildingType.红人馆, new List<ItemName>()
+    {
+    }
         },
         {
-            BuildingType.戏院, new List<ItemName>()
+    BuildingType.戏院, new List<ItemName>()
             {
                 ItemName.山海经,
                 ItemName.机关残卷,
@@ -1417,7 +1416,7 @@ public class SOItem : ScriptableObject
             }
         },
         {
-            BuildingType.鼓瑟楼, new List<ItemName>()
+    BuildingType.鼓瑟楼, new List<ItemName>()
             {
                 ItemName.山海经,
                 ItemName.机关残卷,
@@ -1843,6 +1842,6 @@ public class SOItem : ScriptableObject
         return ItemType.服装;
     }
 
-    
+
 
 }

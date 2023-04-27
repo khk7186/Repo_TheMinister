@@ -441,7 +441,7 @@ public class Character : MonoBehaviour, IRound
         {
             if (hireStage != HireStage.Hired && hireStage != HireStage.NotInMap)
             {
-                string path = "InGameNPC/DefaultInGameNPC";
+                string path = $"InGameNPC/InGameNPC/{characterArtCode.ToString()}";
                 InGameAI = Instantiate(Resources.Load<DefaultInGameAI>(path));
                 InGameAI.Setup(this);
             }

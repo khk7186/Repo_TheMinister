@@ -103,7 +103,8 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     public virtual void Setup(Character character)
     {
         this.character = character;
-        SetSpine();
+        if (GetComponent<CharacterModelController>() == null)
+            SetSpine();
         SetConversationDatabase();
     }
 
