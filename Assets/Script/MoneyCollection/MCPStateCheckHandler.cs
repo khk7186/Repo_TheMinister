@@ -5,7 +5,7 @@ using UnityEngine;
 public class MCPStateCheckHandler
 {
     public MoneyCollectPoint MCP;
-    public List<RoitSpawnRange> ranges;
+    public List<RoitSpawnRange> ranges = new List<RoitSpawnRange>();
     public bool onRoit
     {
         get
@@ -21,6 +21,5 @@ public class MCPStateCheckHandler
     public MCPStateCheckHandler(MoneyCollectPoint MCP)
     {
         this.MCP = MCP;
-        ranges = new List<RoitSpawnRange>();
     }
 }

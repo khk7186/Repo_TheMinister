@@ -662,9 +662,11 @@ public class Character : MonoBehaviour, IRound
         var map = FindObjectOfType<Map>();
         int targetTime = map.DayTime;
         int targetDay = map.Day + rounds;
+        CurrencyInvAnimationManager.Instance.PrestigeChange(-1);
         yield return new WaitUntil(() => (map.Day == targetDay) && (map.DayTime == targetTime));
         if (spawnAfterAway != null) Instantiate(spawnAfterAway);
         hireStage = HireStage.Hired;
+        CurrencyInvAnimationManager.Instance.PrestigeChange(1);
     }
 
     public void ReturnToHand()

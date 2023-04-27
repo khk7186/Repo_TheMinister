@@ -66,6 +66,7 @@ public class SideChanger : MonoBehaviour
         {
             model.SetBack();
         }
+        time = 0;
         while (time < duration)
         {
             time += Time.deltaTime;
@@ -95,8 +96,6 @@ public class SideChanger : MonoBehaviour
             string controllerPath = $"{ReturnAssetPath.ReturnSpineControllerPath(CAC, true)}";
             animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(controllerPath);
             animator.GetComponent<SkeletonMecanim>().Initialize(true);
-
-
             animator.transform.localScale = target;
             animator.GetComponent<SkeletonMecanim>().Initialize(true);
         }

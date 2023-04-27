@@ -6,27 +6,21 @@ public class CharacterModelController : MonoBehaviour
 {
     public SkeletonMecanim front;
     public SkeletonMecanim back;
-    public SkeletonMecanim current
-    {
-        get
-        {
-            return front.gameObject.activeSelf ? front : back;
-        }
-    }
+    public SkeletonMecanim current;
 
     private void Awake()
     {
-        back.gameObject.SetActive(false);
+        current = front;
+        front.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
+        back.transform.localScale = new Vector3(0.7f, 0.7f, 0.7f);
     }
 
     public void SetFront()
     {
-        front.gameObject.SetActive(true);
-        back.gameObject.SetActive(false);
+        current = front;
     }
     public void SetBack()
     {
-        front.gameObject.SetActive(false);
-        back.gameObject.SetActive(true);
+        current = back;
     }
 }

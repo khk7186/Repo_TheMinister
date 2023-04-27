@@ -7,7 +7,7 @@ public class CurrencyInventory : MonoBehaviour
 {
     public int Money = 250;
     public int Influence = 200;
-    public int Prestige = 200;
+    public int Prestige = 0;
 
     private void Awake()
     {
@@ -20,7 +20,6 @@ public class CurrencyInventory : MonoBehaviour
         if (mainUI != null)
         {
             mainUI.SetupMoney(only.Money);
-            mainUI.SetupInfluence(only.Influence);
             mainUI.SetupPrestige(only.Prestige);
         }
     }

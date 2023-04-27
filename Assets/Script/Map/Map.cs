@@ -134,36 +134,37 @@ public class Map : MonoBehaviour, IDiceRollEvent
         }
     }
 
-    private IEnumerator MoveAStep(Transform character)
-    {
-        if (PlayerNextBlockToMove + 1 >= MovementGrid.PlayerMovementBlocks.Count)
-        {
-            PlayerNextBlockToMove = -1;
-        }
-        PlayerNextBlockToMove += 1;
-        var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetPlayerBlock(PlayerNextBlockToMove));
-        var startPosition = character.position;
-        float time = 0;
-        while (time < duration)
-        {
-            character.position = Vector2.Lerp(startPosition, targetPosition, time / duration);
-            time += Time.deltaTime;
-            yield return null;
-        }
-    }
+    //private IEnumerator MoveAStep(Transform character)
+    //{
+    //    if (PlayerNextBlockToMove + 1 >= MovementGrid.PlayerMovementBlocks.Count)
+    //    {
+    //        PlayerNextBlockToMove = -1;
+    //    }
+    //    PlayerNextBlockToMove += 1;
+    //    var targetPosition = movementGrid.GetCellCenterWorld(MovementGrid.GetPlayerBlock(PlayerNextBlockToMove));
+    //    var startPosition = character.position;
+    //    float time = 0;
+    //    while (time < duration)
+    //    {
+    //        character.position = Vector2.Lerp(startPosition, targetPosition, time / duration);
+    //        time += Time.deltaTime;
+    //    }
+    //    yield return null;
+    //}
 
-    public IEnumerator MoveManyStep(int number, Transform character)
-    {
-        PlayerCurrentBlock = (PlayerCurrentBlock + number) % (MovementGrid.PlayerMovementBlocks.Count);
-        for (int i = 0; i < number; i++)
-        {
-
-            yield return StartCoroutine(MoveAStep(character));
-        }
-        FindObjectOfType<Dice>().rolling = false;
-        SetBuildings();
-        PlayerAnimator.SetTrigger("Stop");
-    }
+    //public IEnumerator MoveManyStep(int number, Transform character)
+    //{
+    //    PlayerCurrentBlock = (PlayerCurrentBlock + number) % (MovementGrid.PlayerMovementBlocks.Count);
+    //    DiceMove = true;
+    //    for (int i = 0; i < number; i++)
+    //    {
+    //        yield return StartCoroutine(MoveAStep(character));
+    //    }
+    //    DiceMove = false;
+    //    FindObjectOfType<Dice>().rolling = false;
+    //    SetBuildings();
+    //    PlayerAnimator.SetTrigger("Stop");
+    //}
     public List<Building> InteractebleBuildingCheck()
     {
         var colliders = Physics2D.OverlapCircleAll(Player.transform.position, Radius);

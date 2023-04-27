@@ -46,7 +46,7 @@ public class CurrencyInvAnimationHandler
     {
         this.rect = GameObject.Instantiate(rect,rect.parent);
         var manager = CurrencyInvAnimationManager.Instance;
-        this.origin = manager.origin;
+        this.origin = manager.MoneyAnimationTextOrigin;
         this.duration = manager.duration;
         this.YChange = manager.YChange;
         this.delay = manager.delay;

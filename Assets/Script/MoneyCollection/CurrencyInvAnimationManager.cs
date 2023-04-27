@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.UI;
@@ -8,11 +9,13 @@ public class CurrencyInvAnimationManager : MonoBehaviour
 {
     public static CurrencyInvAnimationManager Instance;
     public Text MoneyAnimationText;
+    public Text PrestigeAnimationText;
     public AnimationCurve animationCurve;
     public float YChange = 20f;
     public float duration = 0.5f;
     public float delay = 1f;
-    public Vector3 origin;
+    public Vector3 MoneyAnimationTextOrigin;
+    public Vector3 PrestigeAnimationTextOrigin;
 
     public void Awake()
     {
@@ -24,7 +27,8 @@ public class CurrencyInvAnimationManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        origin = MoneyAnimationText.rectTransform.anchoredPosition;
+        MoneyAnimationTextOrigin = MoneyAnimationText.rectTransform.anchoredPosition;
+        PrestigeAnimationTextOrigin = PrestigeAnimationText.rectTransform.anchoredPosition;
     }
     private void OnEnable()
     {
@@ -32,15 +36,33 @@ public class CurrencyInvAnimationManager : MonoBehaviour
     }
     public void MoneyChange(int diff)
     {
-        var diffsign = diff >= 0 ? "+" : "-";
+        var diffsign = diff >= 0 ? "+" : "";
         MoneyAnimationText.text = $"{diffsign} {diff.ToString()}";
         var animation = new CurrencyInvAnimationHandler(MoneyAnimationText.GetComponent<RectTransform>());
+        CurrencyInventory currencyInventory = FindObjectOfType<CurrencyInventory>();
+        currencyInventory.Money += diff;
         CurrencyInvAnimationHandler.AfterAnimation afterAnimation = () =>
         {
-            MoneyAnimationText.rectTransform.anchoredPosition = origin;
+            MoneyAnimationText.rectTransform.anchoredPosition = MoneyAnimationTextOrigin;
             MoneyAnimationText.gameObject.SetActive(false);
-            CurrencyInventory currencyInventory = FindObjectOfType<CurrencyInventory>();
-            currencyInventory.Money += diff;
+            CurrencyInventory.SetCurrencyUI();
+        };
+        animation.afterAnimation = afterAnimation;
+        animation.Play();
+    }
+    public void PrestigeChange(int diff)
+    {
+        var diffsign = diff >= 0 ? "+" : "";
+        PrestigeAnimationText.text = $"{diffsign} {diff.ToString()}";
+        var animation = new CurrencyInvAnimationHandler(PrestigeAnimationText.GetComponent<RectTransform>());
+        CurrencyInventory currencyInventory = FindObjectOfType<CurrencyInventory>();
+        currencyInventory.Prestige = GameObject.FindGameObjectWithTag("PlayerCharacterInventory")
+                                                                            .transform.GetComponentsInChildren<Character>()
+                                                                            .Where(x => x.hireStage != HireStage.Away).ToArray().Length;
+        CurrencyInvAnimationHandler.AfterAnimation afterAnimation = () =>
+        {
+            PrestigeAnimationText.rectTransform.anchoredPosition = PrestigeAnimationTextOrigin;
+            PrestigeAnimationText.gameObject.SetActive(false);
             CurrencyInventory.SetCurrencyUI();
         };
         animation.afterAnimation = afterAnimation;

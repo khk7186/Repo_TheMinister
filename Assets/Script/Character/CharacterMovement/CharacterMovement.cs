@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CharacterMovement : MonoBehaviour,IStopAllCoroutine
+public class CharacterMovement : MonoBehaviour, IStopAllCoroutine
 {
     public static float playerSpeed => GameObject.FindGameObjectWithTag("Player")
                                                             .GetComponent<CharacterMovement>().speed;
     public Transform character;
+    public CharacterModelController modelController;
     public Animator animator;
     public bool AI = true;
     public float speed = 6f;
@@ -35,32 +36,78 @@ public class CharacterMovement : MonoBehaviour,IStopAllCoroutine
     //}
     public void OnEnable()
     {
-        StartCoroutine(MoveRator());
+        if (modelController != null)
+        {
+            StartCoroutine(ModelMoveRator());
+        }
+        else
+            StartCoroutine(MoveRator());
     }
     public void OnDisable()
     {
         StopAllCoroutines();
+    }
+    public IEnumerator ModelMoveRator()
+    {
+        while (true)
+        {
+            if (AI == false)
+            {
+                if (isMoving)
+                {
+                    modelController.front.GetComponent<Animator>().SetFloat("Speed 0", 1f);
+                    modelController.back.GetComponent<Animator>().SetFloat("Speed 0", 1f);
+                    oldPosition = transform.position;
+                    yield return new WaitForEndOfFrame();
+                    continue;
+                }
+            }
+            if (oldPosition != (Vector2)transform.position)
+            {
+                modelController.front.GetComponent<Animator>().SetFloat("Speed 0", 1f);
+                modelController.back.GetComponent<Animator>().SetFloat("Speed 0", 1f);
+            }
+            else
+            {
+                modelController.front.GetComponent<Animator>().SetFloat("Speed 0", 0f);
+                modelController.back.GetComponent<Animator>().SetFloat("Speed 0", 0f);
+            }
+            oldPosition = transform.position;
+            yield return new WaitForEndOfFrame();
+        }
     }
     public IEnumerator MoveRator()
     {
         while (true)
         {
             if (oldPosition != (Vector2)transform.position)
-                animator.SetFloat("Speed 0", 1);
+                animator.SetFloat("Speed 0", 1f);
             else
-                animator.SetFloat("Speed 0", 0);
+            {
+                animator.SetFloat("Speed 0", 0f);
+            }
             oldPosition = transform.position;
             yield return new WaitForEndOfFrame();
         }
     }
+    private void Awake()
+    {
+        modelController = GetComponent<CharacterModelController>();
+    }
     private void Start()
     {
-        animator.SetFloat("Speed 0", 0f);
+        if (modelController == null)
+            animator.SetFloat("Speed 0", 0f);
+        else
+        {
+            modelController.front.GetComponent<Animator>().SetFloat("Speed 0", 0f);
+            modelController.back.GetComponent<Animator>().SetFloat("Speed 0", 0f);
+        }
         if (grid == null)
         {
             grid = FindObjectOfType<MovementGrid>().GetComponent<Grid>();
         }
-        if(!AI)
+        if (!AI)
         {
             getGrid = ((block) => MovementGrid.GetPlayerBlock(block));
         }

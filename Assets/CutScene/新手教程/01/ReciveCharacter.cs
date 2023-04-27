@@ -46,7 +46,8 @@ public class ReciveCharacter : MonoBehaviour
         var shrink = character.InGameAI.gameObject.AddComponent<ObjectShrinkHandler>();
         shrink.Shrink(0, 0.5f, character.InGameAI.gameObject, new List<ObjectShrinkHandler.AfterShrink>()
                                                             {   () => SetupCongrat(character) ,
-                                                                () => DestroyInGameAvantor(character) });
+                                                                    ()=> CurrencyInvAnimationManager.Instance.PrestigeChange(1),
+                                                                    () => DestroyInGameAvantor(character) });
         //character
     }
 
