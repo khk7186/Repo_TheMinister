@@ -947,26 +947,19 @@ public class SOItem : ScriptableObject
         {
             BuildingType.珠宝店, new List<ItemName>()
             {
-                ItemName.有破损的黄金,
+                {ItemName.有破损的黄金,
                 ItemName.缺口的宝石,
                 ItemName.零落的宝石,
                 ItemName.祖母绿,
-                ItemName.蛋白石,
-                ItemName.紫水晶,
-                ItemName.红宝石,
                 ItemName.金绿宝石,
-                ItemName.木佐绿,
-                ItemName.鸽血红
+                ItemName.蛋白石
+                ItemName.木佐绿,,
+                }
             }
         },
         {
             BuildingType.西域珍品, new List<ItemName>()
             {
-                ItemName.有破损的黄金,
-                ItemName.缺口的宝石,
-                ItemName.零落的宝石,
-                ItemName.祖母绿,
-                ItemName.蛋白石,
                 ItemName.紫水晶,
                 ItemName.红宝石,
                 ItemName.金绿宝石,
