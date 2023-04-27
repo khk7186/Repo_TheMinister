@@ -302,6 +302,8 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
     public virtual void Setup(ItemName item, int amount)
     {
         this.ItemName = item;
+        Frame.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
+        Frame.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
         string SpritePath = ("Art/ItemIcon/" + item.ToString()).Replace(" ", string.Empty);
         icon.sprite = Resources.Load<Sprite>(SpritePath);
         this.amount.text = amount.ToString();
@@ -309,7 +311,10 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
         string FramePath = $"Art/BuildingUI/杂货铺/初级五金铺/物品框/物品框-{framRarity}";
         Frame.sprite = Resources.Load<Sprite>(FramePath);
         var spritSize = icon.GetComponent<RectTransform>().sizeDelta;
-        Frame.GetComponent<RectTransform>().sizeDelta = new Vector2(spritSize.x * 1.16f, spritSize.y * 1.1f);
+        Frame.rectTransform.anchorMin = new Vector2(0, 0);
+        Frame.rectTransform.anchorMax = new Vector2(1, 1);
+        Frame.rectTransform.pivot = new Vector2(0.5f, 0.5f);
+        Frame.GetComponent<RectTransform>().localScale = new Vector2(1.16f, 1.1f);
     }
     public Tag Use()
     {

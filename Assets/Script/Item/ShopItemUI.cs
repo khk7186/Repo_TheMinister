@@ -10,13 +10,22 @@ public class ShopItemUI : ItemUI
     public Text Price;
     public GameObject BoughtSign;
     private bool bought = false;
+    private bool setdone = false;
+    private void Awake()
+    {
+        if (!setdone)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+    }
     private void Start()
     {
         BoughtSign.SetActive(false);
     }
     protected override void LeftClickAction()
     {
-        
+
     }
     public override void SetupInUseItem()
     {
@@ -38,17 +47,16 @@ public class ShopItemUI : ItemUI
     {
         var alert = Instantiate<Text>(Resources.Load<Text>("Hiring/Message"), MainCanvas.FindMainCanvas());
         alert.text = "ªÒµ√¡À " + ItemName;
-        var currencyInv = FindObjectOfType<CurrencyInventory>();
-        currencyInv.Money -= int.Parse(Price.text);
+        CurrencyInvAnimationManager.Instance.MoneyChange(-int.Parse(Price.text));
         BoughtSign.SetActive(true);
         FindObjectOfType<ItemInventory>().AddItem(ItemName);
     }
     public void SetupShopItem(ItemName item, int price = 0)
     {
-        Setup(item,0);
-        Frame.GetComponent<RectTransform>().offsetMin = new Vector2(0,0);
-        Frame.GetComponent<RectTransform>().offsetMax = new Vector2(0,0);
+        Setup(item, 0);
         Price.text = price.ToString();
+        setdone = true;
+        gameObject.SetActive(true);
         amount.gameObject.SetActive(false);
     }
 }

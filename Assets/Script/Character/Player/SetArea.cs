@@ -15,7 +15,7 @@ public class SetArea : MonoBehaviour
             {
                 subject.OnAreaChange(AreaCode);
             }
-            Debug.Log("Area Changed");
+            //Debug.Log("Area Changed");
         }
     }
 }

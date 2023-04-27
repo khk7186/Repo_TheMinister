@@ -13,4 +13,5 @@ public class ShopRef : MonoBehaviour
     public Transform BanquetUI;
     public Transform BigBanquatUI;
     public Transform CharacterShopUI;
+    public Transform PawnShopUI;
 }

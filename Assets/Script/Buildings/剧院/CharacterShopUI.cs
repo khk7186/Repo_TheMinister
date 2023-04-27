@@ -14,6 +14,7 @@ public class CharacterShopUI : MonoBehaviour
         TransformEx.Clear(CharacterShop);
         foreach (var character in CharacterPool)
         {
+            Debug.Log(character);
             var card = Instantiate(cardTemp, CharacterShop);
             card.Setup(character);
         }

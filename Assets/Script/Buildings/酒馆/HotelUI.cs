@@ -43,6 +43,7 @@ public class HotelUI : MonoBehaviour, ICharacterSelect
                 SetButtons(i, target);
             }
         }
+        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
     }
     public void SetButtons(int roomNumber, HotelCharacterFrame hotelCharacter)
     {

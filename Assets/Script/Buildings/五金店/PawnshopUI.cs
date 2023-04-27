@@ -1,6 +1,8 @@
+using PixelCrushers.DialogueSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking.Types;
 using UnityEngine.UI;
 
 public class PawnshopUI : MonoBehaviour
@@ -9,12 +11,7 @@ public class PawnshopUI : MonoBehaviour
     public PawnShopItemUI itemTemp;
     public Dictionary<ItemName, int> SellDict;
     public Text Money;
-    private void Awake()
-    {
-        itemTemp.gameObject.SetActive(false);
-
-    }
-    private void Start()
+    private void OnEnable()
     {
         Setup();
     }
@@ -38,10 +35,8 @@ public class PawnshopUI : MonoBehaviour
         int price = 0;
         foreach (var item in SellDict)
         {
-            ItemType itemType = SOItem.FindType(item.Key);
-            Rarerity Rarity = Player.AllTagRareDict[SOItem.ItemMap[item.Key]] != Rarerity.B
-                ? Player.AllTagRareDict[SOItem.ItemMap[item.Key]] : Rarerity.N;
-            price += item.Value * SOItem.PawnshopPrice[itemType][(int)Rarity / 2 - 1];
+            Rarerity rarity = Player.AllTagRareDict[Use(item.Key)];
+            price += SOItem.PawnshopPrice[SOItem.FindType(item.Key)][RarityInOrder(rarity)] * item.Value;
         }
         Money.text = price.ToString();
     }
@@ -55,6 +50,41 @@ public class PawnshopUI : MonoBehaviour
                 playerInv.RemoveItem(item.Key);
             }
         }
+        CurrencyInvAnimationManager.Instance.MoneyChange(int.Parse(Money.text));
         Setup();
+    }
+
+    public Tag Use(ItemName ItemName)
+    {
+        Tag output = Tag.Null;
+        if (SOItem.ItemMap.ContainsKey(ItemName))
+        {
+            output = SOItem.ItemMap[ItemName];
+            return output;
+        }
+        else
+        {
+            Debug.LogError(ItemName);
+            return output;
+        }
+    }
+    private int RarityInOrder(Rarerity rarerity)
+    {
+        switch (rarerity)
+        {
+            case Rarerity.B:
+                return 0;
+            case Rarerity.N:
+                return 1;
+            case Rarerity.R:
+                return 2;
+            case Rarerity.SR:
+                return 3;
+            case Rarerity.SSR:
+                return 4;
+            case Rarerity.UR:
+                return 5;
+        }
+        return -1;
     }
 }

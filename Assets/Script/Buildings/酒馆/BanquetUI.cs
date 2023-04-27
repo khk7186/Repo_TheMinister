@@ -20,12 +20,13 @@ public class BanquetUI : MonoBehaviour
     {
         Confirm.onClick.AddListener(AddPersonHere);
         Temp.gameObject.SetActive(false);
-        MoveableWindow.anchoredPosition = new Vector2(MoveableWindow.anchoredPosition.x, 0);
     }
     public void Setup(Building building)
     {
         this.building = building;
         CostMessage.text = Cost.ToString();
+        //GetComponent<Animator>().enabled = false;
+        MoveableWindow.anchoredPosition = new Vector2(MoveableWindow.anchoredPosition.x, 0);
     }
     public void AddPersonHere()
     {
@@ -36,7 +37,9 @@ public class BanquetUI : MonoBehaviour
             message.GetComponent<Text>().text = "你需要更多的银两";
             return;
         }
-        inventory.MoneyAdd(-Cost);
+        Sequence sequence = DOTween.Sequence().Append(MoveableWindow.DOAnchorPosY(400f, 0.3f).OnComplete(() => Debug.Log("moved")));
+        sequence.Play();
+        CurrencyInvAnimationManager.Instance.MoneyChange(-Cost);
         InGameCharacterStorage inGameCharacterStorage =
             GameObject.FindObjectOfType<InGameCharacterStorage>();
         characters.AddRange(inGameCharacterStorage.SelectOtherCharacters(MaxPersonHere, building.charactersHere));
@@ -47,6 +50,5 @@ public class BanquetUI : MonoBehaviour
             item.gameObject.SetActive(true);
             item.Setup(character);
         }
-        MoveableWindow.DOAnchorPosY(400f, 0.3f);
     }
 }

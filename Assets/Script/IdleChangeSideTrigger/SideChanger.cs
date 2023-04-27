@@ -14,6 +14,7 @@ public class SideChanger : MonoBehaviour
     public bool isFront;
     public bool CutScene = false;
     public CharacterArtCode characterArtCode;
+    public CharacterModelController model;
     private void Awake()
     {
         oldPosition = (Vector2)transform.position;
@@ -36,10 +37,41 @@ public class SideChanger : MonoBehaviour
     }
     public void changeSide(bool front, bool right)
     {
-        StartCoroutine
-        (
-            changeSideAnimation(front, right)
-        );
+        if (model == null)
+        {
+            StartCoroutine(changeSideAnimation(front, right));
+        }
+        else
+        {
+            StartCoroutine(changeModelSideAnimation(front, right));
+        }
+    }
+    IEnumerator changeModelSideAnimation(bool front, bool right)
+    {
+        float time = 0;
+        Vector3 start = model.front.gameObject.transform.localScale;
+        Vector3 target = new Vector3((right ? -0.7f : 0.7f), start.y, start.z);
+        SkeletonMecanim targetSkeleton = front ? model.front : model.back;
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            model.current.gameObject.transform.localScale = Vector3.Lerp(start, new Vector3(0, start.y), time / duration);
+            yield return null;
+        }
+        if (front)
+        {
+            model.SetFront();
+        }
+        else
+        {
+            model.SetBack();
+        }
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            targetSkeleton.gameObject.transform.localScale = Vector3.Lerp(new Vector3(0, start.y), target, time / duration);
+            yield return null;
+        }
     }
     IEnumerator changeSideAnimation(bool front, bool right)
     {

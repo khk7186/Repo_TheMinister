@@ -132,6 +132,7 @@ public class Building : MonoBehaviour
 
     public void shopRefSetUp()
     {
+        Debug.Log(buildingType);
         var target = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
         Array values = Enum.GetValues(typeof(PlayName));
         switch (buildingType)
@@ -155,6 +156,10 @@ public class Building : MonoBehaviour
             case BuildingType.五金店:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.五金店, 0);
                 break;
+            case BuildingType.拍卖行:
+                Debug.Log("五金");
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.拍卖行, 0);
+                break;
             case BuildingType.百货店:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.百货店, 0);
                 break;
@@ -164,6 +169,11 @@ public class Building : MonoBehaviour
             case BuildingType.纺织铺:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.纺织铺, 0);
                 break;
+            case BuildingType.梭织坊:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.梭织坊, 0);
+                ShopList[1] = SpawnItemBasedOnType(BuildingType.梭织坊, 1);
+                SetupCraft();
+                break;
             case BuildingType.长安织造:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.长安织造, 0);
                 SetupCraft();
@@ -171,20 +181,30 @@ public class Building : MonoBehaviour
             case BuildingType.商行:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.商行, 0);
                 break;
+            case BuildingType.胭脂铺:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.胭脂铺, 0);
+                break;
+            case BuildingType.万香阁:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.万香阁, 0);
+                break;
             case BuildingType.珠宝店:
-                ShopList[0] = SpawnItemBasedOnType(BuildingType.商行, 0);
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.珠宝店, 0);
                 break;
             case BuildingType.西域珍品:
                 SetupCraft();
-                ShopList[0] = SpawnItemBasedOnType(BuildingType.西域珍品, 0);
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.珠宝店, 0);
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.西域珍品, 1);
                 break;
             case BuildingType.药铺:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.药铺, 0);
                 SetupCraft();
                 break;
             case BuildingType.医院:
-                ShopList[0] = SpawnItemBasedOnType(BuildingType.药铺, 0);
-                ShopList[1] = SpawnItemBasedOnType(BuildingType.医院, 1);
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.医院, 0);
+                break;
+            case BuildingType.仙鼎台:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.仙鼎台, 0);
+                SetupCraft();
                 break;
             case BuildingType.铁匠铺:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.铁匠铺, 0);
@@ -192,6 +212,11 @@ public class Building : MonoBehaviour
                 break;
             case BuildingType.武器铺:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.武器铺, 0);
+                SetupCraft();
+                break;
+            case BuildingType.机关阁:
+                //ShopList[0] = SpawnItemBasedOnType(BuildingType.机关阁, 0);
+                //ShopList[1] = SpawnItemBasedOnType(BuildingType.机关阁, 1);
                 SetupCraft();
                 break;
             case BuildingType.酒馆:
@@ -211,7 +236,7 @@ public class Building : MonoBehaviour
                 target.HotelUI.GetComponent<HotelUI>().Setup();
                 break;
             case BuildingType.酒楼:
-                    SetPersonHere();
+                SetPersonHere();
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.酒楼, 0);
                 target.BanquetUI.GetComponent<BanquetUI>().Setup(this);
                 target.BigBanquatUI.GetComponent<BanquetUI>().Setup(this);
@@ -241,7 +266,6 @@ public class Building : MonoBehaviour
                 target.CharacterShopUI.GetComponent<CharacterShopUI>().Setup(charactersHere);
                 break;
             case BuildingType.红人馆:
-                ShopList[0] = SpawnItemBasedOnType(BuildingType.红人馆, 0);
                 currentPlay[0] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
                 target.AllCinema[0].GetComponent<CinemaUI>().Setup(currentPlay[0]);
                 if (charactersHere != null)
@@ -249,14 +273,14 @@ public class Building : MonoBehaviour
                     CharacterShopPriceAndList.ReturnSomeGirls(charactersHere);
                 }
                 charactersHere = CharacterShopPriceAndList.GetSomeGirls(MaxPersonHere);
-                if (charactersAlwaysHere != null)
-                {
-                    charactersHere.Add(CharacterShopPriceAndList.OuputTopCharacter(charactersAlwaysHere[0]));
-                }
+                Debug.Log(charactersHere.Count);
+                //if (charactersAlwaysHere != null)
+                //{
+                //    charactersHere.Add(CharacterShopPriceAndList.OuputTopCharacter(charactersAlwaysHere[0]));
+                //}
                 target.CharacterShopUI.GetComponent<CharacterShopUI>().Setup(charactersHere);
                 break;
         }
-        
     }
     public void SetupCraft()
     {
@@ -275,7 +299,17 @@ public class Building : MonoBehaviour
     }
     public List<ItemName> SpawnItemBasedOnType(BuildingType type, int shopIndex = -1)
     {
-        int outputAmount = UnityEngine.Random.Range(1, shopMaxSpawn[shopIndex]);
+        var target = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
+        var shop = target.AllShops[shopIndex].GetComponent<IShopUI>() as ConvenienceStore;
+        int outputAmount;
+        if (shop != null)
+        {
+            outputAmount = UnityEngine.Random.Range(1, shop.itemUIs.Count);
+        }
+        else
+        {
+            outputAmount = UnityEngine.Random.Range(1, 5);
+        }
         List<ItemName> outputItems = new List<ItemName>();
         for (int i = 0; i < outputAmount; i++)
         {
@@ -285,13 +319,17 @@ public class Building : MonoBehaviour
             var targetItem = targetList[randomTypeIndex];
             outputItems.Add(targetItem);
         }
-        if (buildingType == BuildingType.马厩|| buildingType == BuildingType.御马场|| buildingType == BuildingType.天马阁)
+        if (buildingType == BuildingType.马厩 || buildingType == BuildingType.御马场 || buildingType == BuildingType.天马阁)
         {
             return outputItems;
         }
-        var target = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
-        var shop = target.AllShops[shopIndex].GetComponent<IShopUI>() as ConvenienceStore;
         shop.buildingType = buildingType;
+        string debugString = "outputItems:\n";
+        foreach (var item in outputItems)
+        {
+            debugString += item.ToString() + "\n";
+        }
+        Debug.Log(debugString);
         shop.Setup(outputItems);
         //Debug.Log("Shop " + shopIndex + " has " + outputItems.Count + " items");
         return outputItems;
