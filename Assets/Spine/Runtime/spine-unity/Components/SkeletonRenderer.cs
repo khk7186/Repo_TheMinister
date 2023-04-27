@@ -159,10 +159,10 @@ namespace Spine.Unity {
 #endif
 
 		/// <summary>If true, the mesh generator adds normals to the output mesh. For better performance and reduced memory requirements, use a shader that assumes the desired normal.</summary>
-		[UnityEngine.Serialization.FormerlySerializedAs("calculateNormals")] public bool addNormals = false;
+		[UnityEngine.Serialization.FormerlySerializedAs("calculateNormals")] public bool addNormals = true;
 
 		/// <summary>If true, tangents are calculated every frame and added to the Mesh. Enable this when using a shader that uses lighting that requires tangents.</summary>
-		public bool calculateTangents = false;
+		public bool calculateTangents = true;
 
 #if BUILT_IN_SPRITE_MASK_COMPONENT
 		/// <summary>This enum controls the mode under which the sprite will interact with the masking system.</summary>
