@@ -25,7 +25,7 @@ public class MainUI : MonoBehaviour
     {
         var reference = FindObjectOfType<CurrencyInventory>();
         SetupMoney(reference.Money);
-        SetupInfluence(reference.Influence);
+        //SetupInfluence(reference.Influence);
         SetupPrestige(reference.Prestige);
         SetupTime();
     }

@@ -21,6 +21,17 @@ public class RoitInGameAI : DefaultInGameAI
     {
 
     }
+    //private void OnEnable()
+    //{
+    //    if (character != null)
+    //    {
+    //        if (character.hireStage == HireStage.Defeated)
+    //        {
+    //            StopAllCoroutines();
+    //            GetComponent<CharacterMovement>().ModelDieAnimation();
+    //        }
+    //    }
+    //}
     public override void SetLocation()
     {
         transform.position = startPoint.transform.position;

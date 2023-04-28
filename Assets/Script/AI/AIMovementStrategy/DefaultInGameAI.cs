@@ -81,6 +81,13 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
         {
             Register();
         }
+        //if (character != null)
+        //{
+        //    if (character.hireStage == HireStage.Defeated)
+        //    {
+        //        GetComponent<CharacterMovement>().ModelDieAnimation();
+        //    }
+        //}
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
     private void OnDisable()

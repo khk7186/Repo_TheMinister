@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,15 +26,6 @@ public class CharacterMovement : MonoBehaviour, IStopAllCoroutine
     public GetGridBlock getGrid;
     private CapsuleCollider2D EndPlaceVisibleChecker;
     private Vector2 oldPosition;
-    //public void FixedUpdate()
-    //{
-    //    if (oldPosition != null)
-    //    {
-    //        float speed = Vector2.Distance(oldPosition, transform.position) * 100000000 + 0.08f;
-    //        animator.SetFloat("Speed 0", speed);
-    //        oldPosition = transform.position;
-    //    }
-    //}
     public void OnEnable()
     {
         if (modelController != null)
@@ -46,6 +38,11 @@ public class CharacterMovement : MonoBehaviour, IStopAllCoroutine
     public void OnDisable()
     {
         StopAllCoroutines();
+    }
+    public void ModelDieAnimation()
+    {
+        modelController.front.GetComponent<Animator>().SetTrigger("Death");
+        modelController.back.GetComponent<Animator>().SetTrigger("Death");
     }
     public IEnumerator ModelMoveRator()
     {

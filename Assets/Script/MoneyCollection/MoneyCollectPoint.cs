@@ -8,11 +8,17 @@ public class MoneyCollectPoint : MonoBehaviour
 {
     public static MoneyCollectManager manager => MoneyCollectManager.Instance;
     public int value = 100;
+    public MCPStateCheckHandler StateChecker;
+    public bool OnRoit => StateChecker.onRoit;
     public int Value
     {
         get
         {
-            if (OnRoit) return (int)(1f - manager.MoneyDecreaseOnRoit) * value;
+            if (OnRoit)
+            {
+                Debug.Log(OnRoit);
+                return (int)(1f - manager.MoneyDecreaseOnRoit) * value;
+            }
             return value;
         }
     }
@@ -21,8 +27,8 @@ public class MoneyCollectPoint : MonoBehaviour
     public Collider2D Trigger;
     public GameObject Wrapper;
     public RoitSpawnRange RoitSpawnRange;
-    public MCPStateCheckHandler StateChecker;
-    public bool OnRoit => StateChecker.onRoit;
+    public RoitSpawnRange[] EffectedRanges;
+    public float EffectRoitSpawnRangeRadius = 7f;
 
     public Text text;
     public void Awake()
@@ -30,10 +36,13 @@ public class MoneyCollectPoint : MonoBehaviour
         Wrapper.SetActive(false);
         StateChecker = new MCPStateCheckHandler(this);
     }
+    private void Start()
+    {
+        DetectRoit();
+    }
     public void OnContact()
     {
-        Debug.Log(OnRoit);
-        string color = OnRoit? "red" : "green";
+        string color = OnRoit ? "red" : "green";
         State = OnRoit ? "糟糕" : "良好";
         text.text = $"{Name}今日营业状态<color={color}>{State}</color>\r\n缴纳税银<color={color}>{Value}</color>两";
         Wrapper.SetActive(true);
@@ -45,8 +54,13 @@ public class MoneyCollectPoint : MonoBehaviour
     public void OnDrawGizmos()
     {
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, 1);
+        Gizmos.DrawWireSphere(transform.position, EffectRoitSpawnRangeRadius);
     }
-
-
+    public void DetectRoit()
+    {
+        var list = Physics2D.OverlapCircleAll(transform.position, EffectRoitSpawnRangeRadius);
+        EffectedRanges = list.Where(p => p.GetComponent<RoitSpawnRange>() != null).ToArray()
+                                                            .Select(x => x.GetComponent<RoitSpawnRange>()).ToArray();
+        StateChecker.ranges = EffectedRanges.ToList();
+    }
 }

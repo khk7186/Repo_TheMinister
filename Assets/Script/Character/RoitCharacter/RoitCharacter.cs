@@ -6,12 +6,12 @@ public class RoitCharacter : Character
 {
     public static List<Tag> RoitTagsA = new List<Tag>() { Tag.习武之人 };
     public static List<Tag> badTagsA = new List<Tag>() { Tag.平平无奇 };
-    public static List<Tag> RoitTagsB = new List<Tag>();
-    public static List<Tag> badTagsB = new List<Tag>();
-    public static List<Tag> RoitTagsC = new List<Tag>();
-    public static List<Tag> badTagsC = new List<Tag>();
-    public static List<Tag> RoitTagsD = new List<Tag>();
-    public static List<Tag> badTagsD = new List<Tag>();
+    public static List<Tag> RoitTagsB = new List<Tag>() { Tag.习武之人 };
+    public static List<Tag> badTagsB = new List<Tag>() { Tag.平平无奇 };
+    public static List<Tag> RoitTagsC = new List<Tag>() { Tag.习武之人 };
+    public static List<Tag> badTagsC = new List<Tag>() { Tag.平平无奇 };
+    public static List<Tag> RoitTagsD = new List<Tag>() { Tag.习武之人 };
+    public static List<Tag> badTagsD = new List<Tag>() { Tag.平平无奇 };
     public char Area = 'A';
     public List<Tag> RoitTags => Area == 'A' ? RoitTagsA : Area == 'B' ? RoitTagsB : Area == 'C' ? RoitTagsC : RoitTagsD;
     public List<Tag> badTags => Area == 'A' ? badTagsA : Area == 'B' ? badTagsB : Area == 'C' ? badTagsC : badTagsD;
@@ -36,7 +36,7 @@ public class RoitCharacter : Character
         this.spawnRange = spawnRange;
         characterArtCode = RoitCharacterArtCode;
         SpawnTagOnStart();
-        RoitInGameAI inGameAi = Instantiate(Resources.Load<RoitInGameAI>("InGameNPC/RoitInGameAI"),spawnRange.transform);
+        RoitInGameAI inGameAi = Instantiate(Resources.Load<RoitInGameAI>("InGameNPC/RoitInGameAI"), spawnRange.transform);
         InGameAI = inGameAi;
         characterCard = Resources.Load<Character>("CharacterPrefab/Character").characterCard;
         inGameAi.SetupRoitAI(this, this.spawnRange);
@@ -61,6 +61,8 @@ public class RoitCharacter : Character
                 break;
             case Rarerity.UR:
                 level = 5;
+                break;
+            default:
                 break;
 
         }
