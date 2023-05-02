@@ -66,6 +66,7 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
 
     public void SpawnNewCharacter(int count = 1)
     {
+        if (characterPref == null) return;
         for (int i = 0; i < count; i++)
         {
             Instantiate(characterPref, transform);

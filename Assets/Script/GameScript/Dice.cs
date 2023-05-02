@@ -14,6 +14,7 @@ public class Dice : MonoBehaviour, IDiceSubject
     [SerializeField] private Image dice2;
     public List<IDiceRollEvent> Observers;
     [SerializeField] private int RollTime = 5;
+    public bool isFake = false;
 
     public bool rolling = false;
     public static Dice Instance;
@@ -26,6 +27,7 @@ public class Dice : MonoBehaviour, IDiceSubject
     }
     private void OnEnable()
     {
+        if (isFake) return;
         rolling = false;
         if (Instance == null)
         {
@@ -36,6 +38,7 @@ public class Dice : MonoBehaviour, IDiceSubject
     }
     private void OnDisable()
     {
+        if (isFake) return;
         SceneManager.sceneLoaded -= OnSceneChange;
     }
 
@@ -61,6 +64,7 @@ public class Dice : MonoBehaviour, IDiceSubject
 
     public void FakeRoll33()
     {
+        rolling = false;
         FakeRoll(new Vector2(3, 3));
     }
     public void FakeRoll(Vector2 final)
@@ -129,6 +133,8 @@ public class Dice : MonoBehaviour, IDiceSubject
 
     public void RegisterObserver(IDiceRollEvent observer)
     {
+        if (Observers == null)
+            Observers = new List<IDiceRollEvent>();
         if (!Observers.Contains(observer))
             Observers.Add(observer);
     }

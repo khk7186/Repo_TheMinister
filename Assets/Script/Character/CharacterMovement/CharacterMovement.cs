@@ -173,7 +173,7 @@ public class CharacterMovement : MonoBehaviour, IStopAllCoroutine
 
     public IEnumerator MoveToNextBlock()
     {
-        Vector2 startPt = grid.GetCellCenterWorld(getGrid(currentBlock));
+        Vector2 startPt = transform.position;
         Vector2 endPt = grid.GetCellCenterWorld(getGrid(targetBlock));
         float time = 0f;
         while ((Vector2)character.position != endPt)

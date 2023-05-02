@@ -37,7 +37,8 @@ public class GameInitialization : MonoBehaviour
 
     private void InitialInGameAI(int startNPC)
     {
-        characterStorage.SpawnNewCharacter(startNPC);
+        if (characterStorage != null)
+            characterStorage.SpawnNewCharacter(startNPC);
     }
 
     public IEnumerator StartProgress()

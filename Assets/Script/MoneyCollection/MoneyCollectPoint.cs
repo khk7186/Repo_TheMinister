@@ -16,7 +16,6 @@ public class MoneyCollectPoint : MonoBehaviour
         {
             if (OnRoit)
             {
-                Debug.Log(OnRoit);
                 return (int)(1f - manager.MoneyDecreaseOnRoit) * value;
             }
             return value;
@@ -51,7 +50,7 @@ public class MoneyCollectPoint : MonoBehaviour
         if (Value > 0)
             CurrencyInvAnimationManager.Instance.MoneyChange(Value);
     }
-    public void OnDrawGizmos()
+    public void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, EffectRoitSpawnRangeRadius);

@@ -5,10 +5,12 @@ using System.Linq;
 
 public class PlayerFirstMove : MonoBehaviour, IDiceRollEvent
 {
-    public List<GameObject> _objectsToActive; 
+    public List<GameObject> _objectsToActive;
     public List<GameObject> _objectsToInactive;
+    public Dice dice;
     public void OnNotify(object value, NotificationType notificationType)
     {
+        Debug.Log("Notify");
         foreach (var obj in _objectsToActive)
         {
             obj.SetActive(true);
@@ -21,16 +23,13 @@ public class PlayerFirstMove : MonoBehaviour, IDiceRollEvent
         {
             subject.CancelObserver(this);
         }
-        //var map = FindObjectOfType<Map>(true);
-        //map.GameStart = true;
-        //map?.gameObject.SetActive(true);
+        var map = FindObjectOfType<Map>(true);
+        map.GameStart = true;
+        map?.gameObject.SetActive(true);
     }
 
     private void OnEnable()
     {
-        foreach (var subject in FindObjectsOfType<MonoBehaviour>(true).OfType<IDiceSubject>())
-        {
-            subject.RegisterObserver(this);
-        }
+        dice.RegisterObserver(this);
     }
 }

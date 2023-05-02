@@ -15,6 +15,8 @@ public class SideChanger : MonoBehaviour
     public bool CutScene = false;
     public CharacterArtCode characterArtCode;
     public CharacterModelController model;
+    private IEnumerator current = null;
+
     private void Awake()
     {
         oldPosition = (Vector2)transform.position;
@@ -48,16 +50,18 @@ public class SideChanger : MonoBehaviour
     }
     IEnumerator changeModelSideAnimation(bool front, bool right)
     {
+        current = changeModelSideAnimation(front, right);
         float time = 0;
-        Vector3 start = model.front.gameObject.transform.localScale;
-        Vector3 target = new Vector3((right ? -0.7f : 0.7f), start.y, start.z);
+        Vector2 start = model.front.gameObject.transform.localScale;
+        Vector2 target = new Vector2((right ? -0.7f : 0.7f), 0.7f);
         SkeletonMecanim targetSkeleton = front ? model.front : model.back;
         while (time < duration)
         {
+            model.current.gameObject.transform.localScale = Vector2.Lerp(start, new Vector2(0, start.y), time / duration);
             time += Time.deltaTime;
-            model.current.gameObject.transform.localScale = Vector3.Lerp(start, new Vector3(0, start.y), time / duration);
             yield return null;
         }
+        model.current.gameObject.transform.localScale = new Vector2(0, start.y);
         if (front)
         {
             model.SetFront();
@@ -69,10 +73,12 @@ public class SideChanger : MonoBehaviour
         time = 0;
         while (time < duration)
         {
+            model.current.gameObject.transform.localScale = Vector2.Lerp(new Vector2(0, start.y), target, time / duration);
             time += Time.deltaTime;
-            targetSkeleton.gameObject.transform.localScale = Vector3.Lerp(new Vector3(0, start.y), target, time / duration);
             yield return null;
         }
+        model.current.gameObject.transform.localScale = target;
+        current = null;
     }
     IEnumerator changeSideAnimation(bool front, bool right)
     {

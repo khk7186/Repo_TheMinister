@@ -16,17 +16,15 @@ public class CurrencyInvAnimationManager : MonoBehaviour
     public float delay = 1f;
     public Vector3 MoneyAnimationTextOrigin;
     public Vector3 PrestigeAnimationTextOrigin;
+    public bool forTutorial = false;
 
     public void Awake()
     {
-        if (Instance == null)
+        if (Instance != this)
         {
-            Instance = this;
+            Destroy(Instance);
         }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
         MoneyAnimationTextOrigin = MoneyAnimationText.rectTransform.anchoredPosition;
         PrestigeAnimationTextOrigin = PrestigeAnimationText.rectTransform.anchoredPosition;
     }

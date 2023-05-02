@@ -44,8 +44,11 @@ public class IndicatorController : MonoBehaviour
 
     public void OnEnable()
     {
+        OnEnableActions();
+    }
+    public virtual void OnEnableActions()
+    {
         if (Selected != null) StartCoroutine(SequenceRator(Selected));
-
     }
     public void OnDisable()
     {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ClickToHire : MonoBehaviour
 {
     bool active = false;
+    public CharacterHiringEvent characterHiringEvent;
     private void OnEnable()
     {
         active = true;
@@ -15,11 +16,10 @@ public class ClickToHire : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        Debug.Log("click");
         if (active)
         {
-            Debug.Log("ClickToHire");
-            GetComponent<CharacterHiringEvent>().StartHiring();
+            if (characterHiringEvent != null)
+                characterHiringEvent.StartHiring();
         }
     }
 }

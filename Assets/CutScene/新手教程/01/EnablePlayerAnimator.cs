@@ -8,7 +8,7 @@ public class EnablePlayerAnimator : MonoBehaviour
     public bool _enablePlayer = true;
     private void Start()
     {
-        FindObjectOfType<Player>().GetComponent<Animator>().enabled = _enablePlayer;
+        FindObjectOfType<Player>(true).GetComponent<Animator>().enabled = _enablePlayer;
         if (_enablePlayer == false) return;
         foreach (var obj in _objectsToActive)
         {

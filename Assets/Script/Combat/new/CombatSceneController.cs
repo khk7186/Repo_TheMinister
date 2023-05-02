@@ -57,7 +57,7 @@ public class CombatSceneController : MonoBehaviour
         int EnemyOrder = 0;
         foreach (var ccu in ccus)
         {
-            switch (ccu.IsFriend)   
+            switch (ccu.IsFriend)
             {
                 case true:
                     ccu.SetGridPosition(friendList[PlayerOrder]);
@@ -76,8 +76,16 @@ public class CombatSceneController : MonoBehaviour
         SOAssetDB sOAssetDB = Resources.Load<SOAssetDB>("Data/AssetDatabase");
         AreaControl areaControl = AreaControl.instant;
         Map map = Map.Instance;
-        var asset = sOAssetDB.LoadCombatEnv(areaControl.CurrentArea, (TimeInDay)map.DayTime);
-        Instantiate(asset);
+        if (map != null)
+        {
+            var asset = sOAssetDB.LoadCombatEnv(areaControl.CurrentArea, (TimeInDay)map.DayTime);
+            Instantiate(asset);
+        }
+        else
+        {
+            var asset = sOAssetDB.LoadCombatEnv(areaControl.CurrentArea, TimeInDay.Morning);
+            Instantiate(asset);
+        }
     }
     private List<CombatCharacterUnit> InitializeCCUs(List<Character> characters)
     {

@@ -43,11 +43,14 @@ public class ReciveCharacter : MonoBehaviour
         character.transform.SetParent(target);
         character.hireStage = HireStage.Hired;
         character.characterType = CharacterType.General;
-        var shrink = character.InGameAI.gameObject.AddComponent<ObjectShrinkHandler>();
-        shrink.Shrink(0, 0.5f, character.InGameAI.gameObject, new List<ObjectShrinkHandler.AfterShrink>()
+        var shrink = character.InGameAI?.gameObject.AddComponent<ObjectShrinkHandler>();
+        if (shrink != null)
+        {
+            shrink.Shrink(0, 0.5f, character.InGameAI.gameObject, new List<ObjectShrinkHandler.AfterShrink>()
                                                             {   () => SetupCongrat(character) ,
                                                                     ()=> CurrencyInvAnimationManager.Instance.PrestigeChange(1),
                                                                     () => DestroyInGameAvantor(character) });
+        }
         //character
     }
 

@@ -17,7 +17,8 @@ public class Map : MonoBehaviour, IDiceRollEvent
     public int mapCount => MovementGrid.EnemyInnerMovementBlocks.Count;
     private int PlayerNextBlockToMove = 0;
     [SerializeField] private int PlayerCurrentBlock = 0;
-    [SerializeField] private Transform Player;
+    [SerializeField] private Transform player;
+    public Transform Player => player;
     [SerializeField] private float delayPerMove = 1f;
     [SerializeField]
     private List<Building> ActivatedBuildings = new List<Building>();
@@ -33,14 +34,16 @@ public class Map : MonoBehaviour, IDiceRollEvent
     private void Awake()
     {
         FindPlayer();
-        if (Instance != null && Instance != this)
+        if (Instance == null)
         {
-            Dice.Instance.CancelObserver(this);
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
             Destroy(gameObject);
-            return;
         }
         int block = PlayerMovement.currentBlock % MovementGrid.PlayerMovementBlocks.Count;
-        Player.position = movementGrid.GetCellCenterWorld(MovementGrid.PlayerMovementBlocks[block]);
+        player.position = movementGrid.GetCellCenterWorld(MovementGrid.PlayerMovementBlocks[block]);
         PlayerNextBlockToMove = PlayerCurrentBlock;
         SetBuildings();
     }
@@ -59,12 +62,6 @@ public class Map : MonoBehaviour, IDiceRollEvent
         }
     }
 
-    private void OnEnable()
-    {
-        if (Instance!= this) { Instance = this; }
-        else { Destroy(gameObject); }
-        DontDestroyOnLoad(gameObject);
-    }
     private void OnDestroy()
     {
         if (Instance == this)
@@ -74,18 +71,26 @@ public class Map : MonoBehaviour, IDiceRollEvent
     }
     private void FindPlayer()
     {
-        Player = FindObjectOfType<Player>()?.transform;
-        if (Player == null)
+        player = FindObjectOfType<Player>()?.transform;
+        if (player == null)
         {
-            Player = Instantiate(Resources.Load<GameObject>("MainGame/ÀîÔ¬Ä°")).transform; PlayerAnimator = Player.GetComponentInChildren<SkeletonMecanim>().GetComponent<Animator>();
-            PlayerMovement = Player.GetComponent<CharacterMovement>();
+            player = Instantiate(Resources.Load<GameObject>("MainGame/ÀîÔ¬Ä°")).transform; PlayerAnimator = player.GetComponentInChildren<SkeletonMecanim>().GetComponent<Animator>();
+            PlayerMovement = player.GetComponent<CharacterMovement>();
             PlayerMovement.currentBlock = PlayerCurrentBlock;
             PlayerMovement.finalBlock = PlayerCurrentBlock;
+            if (GameStart == false)
+            {
+                player.gameObject.SetActive(false);
+            }
         }
         if (PlayerMovement == null)
         {
-            PlayerMovement = Player.GetComponent<CharacterMovement>();
+            PlayerMovement = player.GetComponent<CharacterMovement>();
         }
+    }
+    public void EnablePlayer()
+    {
+        player.gameObject.SetActive(true);
     }
     public void FirstDayReset()
     {
@@ -99,7 +104,7 @@ public class Map : MonoBehaviour, IDiceRollEvent
             DayTimePlus();
             if (OnStory)
             {
-                if (PlayerMovement.currentBlock>= PlayerMovement.finalBlock)
+                if (PlayerMovement.currentBlock >= PlayerMovement.finalBlock)
                 {
                     OnStory = false;
                 }
@@ -167,7 +172,7 @@ public class Map : MonoBehaviour, IDiceRollEvent
     //}
     public List<Building> InteractebleBuildingCheck()
     {
-        var colliders = Physics2D.OverlapCircleAll(Player.transform.position, Radius);
+        var colliders = Physics2D.OverlapCircleAll(player.transform.position, Radius);
         var buildingList = new List<Building>();
         foreach (Collider2D collider2D in colliders)
         {
@@ -181,7 +186,7 @@ public class Map : MonoBehaviour, IDiceRollEvent
 
     public void SetActivateBuildingsInteracteble(List<Building> buildings, bool activate)
     {
-        
+
         foreach (Building b in buildings)
         {
             if (b == null) { continue; }

@@ -35,7 +35,7 @@ public class RoitCharacter : Character
         this.Area = spawnRange.Area;
         this.spawnRange = spawnRange;
         characterArtCode = RoitCharacterArtCode;
-        SpawnTagOnStart();
+        SpawnTagOnStart(RoitManager.Instance.Difficulty);
         RoitInGameAI inGameAi = Instantiate(Resources.Load<RoitInGameAI>("InGameNPC/RoitInGameAI"), spawnRange.transform);
         InGameAI = inGameAi;
         characterCard = Resources.Load<Character>("CharacterPrefab/Character").characterCard;

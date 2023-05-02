@@ -812,7 +812,6 @@ public class CharacterHiringEvent : MonoBehaviour
     }
     public IEnumerator HiringRator()
     {
-        Debug.Log("startHire");
         var UIobject = Resources.Load<CharacterHiringUI>("Hiring/HireUI");
         Transform canvas = targetCanvas != null ? targetCanvas.transform : MainCanvas.FindMainCanvas();
         var currentUI = Instantiate(UIobject, canvas);

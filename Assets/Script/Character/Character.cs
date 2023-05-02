@@ -302,7 +302,8 @@ public enum HireStage
     NotInMap,
     Defeated,
     Committed,
-    Away
+    Away,
+    Quest
 }
 public class Character : MonoBehaviour, IRound
 {
@@ -439,7 +440,7 @@ public class Character : MonoBehaviour, IRound
     {
         if (characterType == CharacterType.General)
         {
-            if (hireStage != HireStage.Hired && hireStage != HireStage.NotInMap)
+            if (hireStage == HireStage.Never)
             {
                 string path = $"InGameNPC/InGameNPC/{characterArtCode.ToString()}";
                 DefaultInGameAI prefab = null;

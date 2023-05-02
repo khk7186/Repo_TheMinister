@@ -13,7 +13,6 @@ public class StartActionAfterCombat : MonoBehaviour
         yield return new WaitUntil(() => GETrigger.gameTracker.gameWin == true);
         yield return new WaitUntil(()=> SceneManager.GetActiveScene().buildIndex == 1);
         MainCanvas.FindMainCanvas().gameObject.SetActive(false);
-        Debug.Log(GETrigger.gameTracker.gameWin);
         foreach (var obj in _objectsToActive)
         {
             obj.SetActive(true);
