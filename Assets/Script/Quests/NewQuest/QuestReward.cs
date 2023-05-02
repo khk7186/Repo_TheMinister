@@ -15,6 +15,7 @@ public class QuestReward : MonoBehaviour
         currencyInv.InfluenceAdd(Influence);
         currencyInv.PrestigeAdd(Prestige);
         var itemInv = FindObjectOfType<ItemInventory>();
+        //ReciveItemNotify
         itemInv.AddItem(Items);
     }
 }

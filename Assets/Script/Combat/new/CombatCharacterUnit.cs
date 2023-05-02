@@ -74,11 +74,20 @@ public class CombatCharacterUnit : MonoBehaviour
             (ReturnAssetPath.ReturnSpineControllerPath(character.characterArtCode, !IsFriend));
         GetComponent<Animator>().runtimeAnimatorController = controller;
         GetComponent<SkeletonMecanim>().Initialize(true);
+        var sc = GetComponent<SideChanger>();
         if (!IsFriend)
         {
-            var newScale = transform.localScale;
-            newScale = new Vector3(-newScale.x, newScale.y, newScale.z);
-            transform.localScale = newScale;
+            if (sc != null)
+            {
+                sc.changeSide(true, false);
+            }
+        }
+        else
+        {
+            if (sc != null)
+            {
+                sc.changeSide(false, true);
+            }
         }
         healthBar = Instantiate(Resources.Load<HealthBar>("CombatScene/HealthBar"), MainCanvas.FindMainCanvas());
         healthBar.followCharacter = this.transform;

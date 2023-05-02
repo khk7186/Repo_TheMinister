@@ -440,7 +440,7 @@ public class Character : MonoBehaviour, IRound
     {
         if (characterType == CharacterType.General)
         {
-            if (hireStage == HireStage.Never)
+            if (hireStage == HireStage.InCity)
             {
                 string path = $"InGameNPC/InGameNPC/{characterArtCode.ToString()}";
                 DefaultInGameAI prefab = null;

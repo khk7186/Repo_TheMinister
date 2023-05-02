@@ -107,7 +107,7 @@ public class RoitInGameAI : DefaultInGameAI
         bool canBeKilled = ai.character.characterType == CharacterType.General;
         if (canBeKilled )
         {
-            //TODO: death animation and character elim.
+            ai.PlayDeathAnimation();
         }
     }
 }

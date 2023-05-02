@@ -11,6 +11,10 @@ public class ShowCardInCombat : MonoBehaviour
         csc = FindObjectOfType<CombatSceneController>();
         thisUnit = GetComponent<CombatCharacterUnit>();
     }
+    private void OnEnable()
+    {
+        
+    }
     public void OnMouseEnter()
     {
         //CombatSceneController.CameraFocus(true);

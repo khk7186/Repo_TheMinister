@@ -65,6 +65,7 @@ public class RoitManager : MonoBehaviour, IDiceRollEvent
         if (spawn)
         {
             SpawnRoit();
+            Debug.Log("spawn");
         }
     }
     public void GenerateCombatCharacters()

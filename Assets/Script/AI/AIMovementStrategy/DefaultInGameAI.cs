@@ -56,7 +56,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     }
     public virtual void StartAction()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 1)
+        if (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().name == "SampleScene 1")
         {
             Register();
             DontDestroyOnLoad(gameObject);
@@ -183,5 +183,18 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
         GetComponentInChildren<EventAfterConversation>().EnemyUnitA = character;
         //GetComponentInChildren<EventAfterConversation>().EnemyUnitA = character;
         //GetComponentInChildren<EventAfterConversation>().EnemyUnitACardList[0] =(character);
+    }
+    public virtual void PlayDeathAnimation()
+    {
+        var characterMovement = GetComponent<CharacterMovement>();
+        var model = characterMovement.modelController;
+        model.SetTrigger("Death");
+        Destroy(character.gameObject.gameObject);
+        StartCoroutine(Clean());
+    }
+   IEnumerator Clean()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(gameObject);
     }
 }

@@ -28,19 +28,10 @@ public class CombatInteractableUnit : MonoBehaviour
         path = $"{path}_Outline";
         renderExistingMesh.replacementMaterials[0].replacementMaterial = (Material)Resources.Load(path, typeof(Material));
         renderExistingMesh.Set();
-        OnMouseExit();
         //RenderExistingMesh outline = new GameObject("outLine").AddComponent<RenderExistingMesh>();
         //outline.gameObject.transform.parent = transform;
         //outline.referenceRenderer.material = (Material)Resources.Load($"{outline.referenceRenderer.material.name}_outline", typeof(Material));
         //outline.Set();
-    }
-    public void OnMouseEnter()
-    {
-        if (renderExistingMesh != null) renderExistingMesh.gameObject.SetActive(true);
-    }
-    private void OnMouseExit()
-    {
-        if (renderExistingMesh != null) renderExistingMesh.gameObject.SetActive(false);
     }
     public void OnMouseOver()
     {

@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
+using Spine.Unity.Examples;
+
 public class CharacterModelController : MonoBehaviour
 {
     public SkeletonMecanim front;
+    public GameObject frontOutline;
     public SkeletonMecanim back;
+    public GameObject backOutline;
     public SkeletonMecanim current;
     public string SkinName = "face-normal expression";
 
@@ -14,14 +18,32 @@ public class CharacterModelController : MonoBehaviour
     {
         SkinName = "face-normal expression";
         current = front;
+        frontOutline = front.GetComponentInChildren<RenderExistingMesh>(true)?.gameObject;
+        backOutline = back.GetComponentInChildren<RenderExistingMesh>(true)?.gameObject;
     }
     private void OnEnable()
     {
+        if (frontOutline != null && backOutline != null)
+        {
+            UndrawOutline();
+        }
         SetCurrent();
+    }
+
+    public void DrawOutline()
+    {
+        if (frontOutline == null) return;
+        frontOutline.SetActive(true);
+        backOutline.SetActive(true);
+    }
+    public void UndrawOutline()
+    {
+        if (frontOutline == null) return;
+        frontOutline.SetActive(false);
+        backOutline.SetActive(false);
     }
     public void SetCurrent()
     {
-        Debug.Log($"SetCurrent:{current.name}");
         if (current == front)
         {
             back.transform.localScale = new Vector3(0f, 0.7f, 0.7f);
@@ -56,5 +78,10 @@ public class CharacterModelController : MonoBehaviour
         current.Skeleton.SetSkin(SkinName);
         current.Skeleton.SetSlotsToSetupPose();
         current.LateUpdate();
+    }
+    public void SetTrigger(string trigger)
+    {
+        front.GetComponent<Animator>().SetTrigger(trigger);
+        back.GetComponent<Animator>().SetTrigger(trigger);
     }
 }
