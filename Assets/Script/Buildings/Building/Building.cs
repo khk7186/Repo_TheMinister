@@ -189,6 +189,7 @@ public class Building : MonoBehaviour
                 break;
             case BuildingType.珠宝店:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.珠宝店, 0);
+                SetupCraft();
                 break;
             case BuildingType.西域珍品:
                 SetupCraft();
@@ -201,6 +202,10 @@ public class Building : MonoBehaviour
                 break;
             case BuildingType.医院:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.医院, 0);
+                break;
+            case BuildingType.丹房:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.丹房, 0);
+                SetupCraft();
                 break;
             case BuildingType.仙鼎台:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.仙鼎台, 0);
@@ -217,6 +222,10 @@ public class Building : MonoBehaviour
             case BuildingType.机关阁:
                 //ShopList[0] = SpawnItemBasedOnType(BuildingType.机关阁, 0);
                 //ShopList[1] = SpawnItemBasedOnType(BuildingType.机关阁, 1);
+                SetupCraft();
+                break;
+            case BuildingType.武侯楼:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.武侯楼, 0);
                 SetupCraft();
                 break;
             case BuildingType.酒馆:
@@ -286,6 +295,7 @@ public class Building : MonoBehaviour
     {
         var target = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
         var currentTarget = target.CraftingUI.GetComponent<CraftingUI>();
+        Debug.Log(currentTarget == null);
         currentTarget.Setup(SOItem.BuildingCraftDict[buildingType]);
         if (CraftingList.Count > 0) target.CraftingUI.GetComponent<CraftingUI>().Setup(CraftingList[0]);
     }
@@ -318,6 +328,7 @@ public class Building : MonoBehaviour
             int randomTypeIndex = UnityEngine.Random.Range(0, targetList.Count);
             var targetItem = targetList[randomTypeIndex];
             outputItems.Add(targetItem);
+            Debug.Log(targetItem);
         }
         if (buildingType == BuildingType.马厩 || buildingType == BuildingType.御马场 || buildingType == BuildingType.天马阁)
         {
@@ -329,7 +340,6 @@ public class Building : MonoBehaviour
         {
             debugString += item.ToString() + "\n";
         }
-        Debug.Log(debugString);
         shop.Setup(outputItems);
         //Debug.Log("Shop " + shopIndex + " has " + outputItems.Count + " items");
         return outputItems;

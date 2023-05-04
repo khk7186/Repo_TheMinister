@@ -12,7 +12,9 @@ public class CraftingTargetUI : MonoBehaviour
     {
         string path = ("Art/ItemIcon/" + item.ToString()).Replace(" ", string.Empty);
         itemIcon.sprite = Resources.Load<Sprite>(path);
-        string FramePath = $"Art/BuildingUI/杂货铺/初级五金铺/物品框/物品框-{Player.AllTagRareDict[SOItem.ItemMap[item]]}";
+        var rare = Player.AllTagRareDict[SOItem.ItemMap[item]];
+        if (rare < Rarerity.N) rare = Rarerity.N;
+        string FramePath = $"Art/BuildingUI/杂货铺/初级五金铺/物品框/物品框-{rare}";
         itemFrame.sprite = Resources.Load<Sprite>(FramePath);
     }
 }
