@@ -32,9 +32,9 @@ public class ReturnAssetPath : MonoBehaviour
         var output = $"Character Spine/{codeName}/{subforderName}/{codeName}_{subforderName}_Controller";
         return output;
     }
-    public static string ReturnCombatCharacterUnitPrefPath()
+    public static string ReturnCombatCharacterUnitPrefPath(string CharacterArtCode)
     {
-        string output = "CombatScene/CombatCharacterUnit";
+        string output = $"CombatScene/CCUs/{CharacterArtCode}";
         return output;
     }
     

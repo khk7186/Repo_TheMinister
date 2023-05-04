@@ -93,7 +93,6 @@ public class CombatSceneController : MonoBehaviour
         {
             if (character != null)
             {
-                //Debug.Log(character.characterArtCode);
                 CombatCharacterUnit.NewCombatCharacterUnit(character, character.hireStage == HireStage.Hired);
             }
         }

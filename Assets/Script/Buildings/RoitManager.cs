@@ -49,6 +49,7 @@ public class RoitManager : MonoBehaviour, IDiceRollEvent
     public void OnEnable()
     {
         spawnRanges = FindObjectsOfType<RoitSpawnRange>().ToList();
+        Dice.Instance.RegisterObserver(this);
     }
 
     public void SpawnRoit()

@@ -14,7 +14,7 @@ public class HintUI : MonoBehaviour
     private RectTransform rectTransform=> GetComponent<RectTransform>();
     private void Start()
     {
-        ShowHint();
+        HideHint();
     }
 
     public void ButtonAction()

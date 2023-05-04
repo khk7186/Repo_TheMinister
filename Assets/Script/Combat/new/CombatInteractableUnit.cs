@@ -10,7 +10,6 @@ public class CombatInteractableUnit : MonoBehaviour
     public CombatSelectUI selectUI;
     public LineRenderer line;
     private CombatSceneController csc;
-    public RenderExistingMesh renderExistingMesh;
     private void Start()
     {
 
@@ -18,16 +17,8 @@ public class CombatInteractableUnit : MonoBehaviour
         {
             csc = FindObjectOfType<CombatSceneController>();
         }
-        renderExistingMesh = GetComponentInChildren<RenderExistingMesh>(true);
-        renderExistingMesh.Set();
         Character character = GetComponent<CombatCharacterUnit>().character;
         CharacterArtCode artCode = character.characterArtCode;
-        string FrontOrBack = character.hireStage == HireStage.Hired ? "Front" : "Back";
-        string path = $"Character Spine/{artCode}/{FrontOrBack}/{renderExistingMesh.replacementMaterials[0].originalMaterial.name}";
-        renderExistingMesh.GetComponent<MeshRenderer>().materials[0] = (Material)Resources.Load(path, typeof(Material));
-        path = $"{path}_Outline";
-        renderExistingMesh.replacementMaterials[0].replacementMaterial = (Material)Resources.Load(path, typeof(Material));
-        renderExistingMesh.Set();
         //RenderExistingMesh outline = new GameObject("outLine").AddComponent<RenderExistingMesh>();
         //outline.gameObject.transform.parent = transform;
         //outline.referenceRenderer.material = (Material)Resources.Load($"{outline.referenceRenderer.material.name}_outline", typeof(Material));

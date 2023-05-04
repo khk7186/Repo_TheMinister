@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Spine.Unity;
+using UnityEngine.Events;
+
 public enum CharacterStat
 {
     weak = 0,
@@ -44,7 +46,7 @@ public class CombatCharacterUnit : MonoBehaviour
 
     public static CombatCharacterUnit NewCombatCharacterUnit(Character character, bool isFriend)
     {
-        var pref = Resources.Load<CombatCharacterUnit>(ReturnAssetPath.ReturnCombatCharacterUnitPrefPath());
+        var pref = Resources.Load<CombatCharacterUnit>(ReturnAssetPath.ReturnCombatCharacterUnitPrefPath(character.characterArtCode.ToString()));
         var output = Instantiate(pref);
         output.character = character;
         output.IsFriend = isFriend;
@@ -67,18 +69,12 @@ public class CombatCharacterUnit : MonoBehaviour
     }
     public void SetupIdle()
     {
-        SkeletonDataAsset asset = Resources.Load<SkeletonDataAsset>
-            (ReturnAssetPath.ReturnSpineAssetPath(character.characterArtCode, !IsFriend));
-        GetComponent<SkeletonMecanim>().skeletonDataAsset = asset;
-        RuntimeAnimatorController controller = Resources.Load<RuntimeAnimatorController>
-            (ReturnAssetPath.ReturnSpineControllerPath(character.characterArtCode, !IsFriend));
-        GetComponent<Animator>().runtimeAnimatorController = controller;
-        GetComponent<SkeletonMecanim>().Initialize(true);
         var sc = GetComponent<SideChanger>();
         if (!IsFriend)
         {
             if (sc != null)
             {
+                Debug.Log("enemy");
                 sc.changeSide(true, false);
             }
         }
@@ -86,6 +82,7 @@ public class CombatCharacterUnit : MonoBehaviour
         {
             if (sc != null)
             {
+                Debug.Log("player");
                 sc.changeSide(false, true);
             }
         }
@@ -143,7 +140,6 @@ public class CombatCharacterUnit : MonoBehaviour
                 else
                 {
                     NextStat = (CharacterStat)((((int)stat + 1) >= 2) ? 2 : ((int)stat + 1));
-
                 }
                 break;
             case Action.Assassin:
@@ -183,6 +179,7 @@ public class CombatCharacterUnit : MonoBehaviour
     }
     public void TakeDamge(int damage, bool asDefender = false)
     {
+        
         if (Defender == null || asDefender == true)
         {
             int result;
@@ -211,6 +208,10 @@ public class CombatCharacterUnit : MonoBehaviour
                 AudioManager.Play("À¿Õˆ");
                 DeathAction();
             }
+            else
+            {
+                DefenceAction();
+            }
         }
         else if (target != null)
         {
@@ -238,6 +239,10 @@ public class CombatCharacterUnit : MonoBehaviour
         Defender = null;
         currentAction = Action.NoSelect;
     }
+    public void DefenceAction()
+    {
+        GetComponent<CharacterModelController>().SetTrigger("Defence");
+    }
     public void DeathAction()
     {
         if (IsFriend)
@@ -263,6 +268,7 @@ public class CombatCharacterUnit : MonoBehaviour
                 }
             }
         }
+        GetComponent<CharacterModelController>().SetTrigger("Death");
         CheckGameEnd();
         gameObject.SetActive(false);
     }
@@ -316,7 +322,16 @@ public class CombatCharacterUnit : MonoBehaviour
         }
         if (result != 0)
         {
-            trigger.TriggerEnd(result);
+            var endCtrl =FindObjectOfType<CombatEndingAnimationController>();
+            if (result == 1)
+            {
+                endCtrl.Win();
+            }
+            else
+            {
+                endCtrl.Lose();
+            }
         }
     }
+
 }

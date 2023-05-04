@@ -17,7 +17,10 @@ public class CharacterModelController : MonoBehaviour
     private void Awake()
     {
         SkinName = "face-normal expression";
-        current = front;
+        if (current == null)
+        {
+            current = front;
+        }
         frontOutline = front.GetComponentInChildren<RenderExistingMesh>(true)?.gameObject;
         backOutline = back.GetComponentInChildren<RenderExistingMesh>(true)?.gameObject;
     }

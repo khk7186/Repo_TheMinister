@@ -10,13 +10,13 @@ public class StartFight : MonoBehaviour
     public float duration = 0.3f;
     private float distanceX = 2.5f;
     private float distanceY = 2.5f;
-    private Animator animator;
+    private CharacterModelController model;
     public IEnumerator StartNewFight()
     {
         var selfUnit = GetComponent<CombatCharacterUnit>();
         if (selfUnit.gameObject.activeSelf != false)
         {
-            animator = selfUnit.GetComponent<Animator>();
+            model = selfUnit.GetComponent<CharacterModelController>();
             selfUnit.ModifyStat();
             if (!selfUnit.IsFriend)
             {
@@ -73,11 +73,12 @@ public class StartFight : MonoBehaviour
             Debug.Log("changeTarget");
         }
         CombatCharacterUnit target = selfUnit.target;
+        bool targetHaveDefender = false;
         if (target != null)
         {
             var targetPosition = target.transform.position;
             var originPosition = transform.position;
-            bool targetHaveDefender = TargetHaveDefender(target);
+            targetHaveDefender = TargetHaveDefender(target);
             Vector2 defenderFinalPosition = new Vector2(0, 0);
             Vector2 defenderOriginPosition = new Vector2(0, 0);
             if (target.IsFriend)
@@ -116,9 +117,8 @@ public class StartFight : MonoBehaviour
                 yield return null;
             }
             time = 0;
-            // Do Damage Calculations
             selfUnit.MakeTurn();
-            animator.Play(selfUnit.currentAction.ToString());
+            model.SetTrigger(selfUnit.currentAction.ToString());
             yield return new WaitForSeconds(0.5f);
             while (time < duration)
             {
@@ -131,10 +131,22 @@ public class StartFight : MonoBehaviour
                 yield return null;
             }
         }
-        //TODO: if no other attackable target, return game result
+        var sideChanger = selfUnit.GetComponent<SideChanger>();
+        if (selfUnit.IsFriend)
+        {
+            if (sideChanger != null) sideChanger.changeSide(false, true);
+            if (targetHaveDefender)
+            {
+                target.Defender.GetComponent<SideChanger>().changeSide(true, false);
+            }
+        }
         else
         {
-
+            if (sideChanger != null) sideChanger.changeSide(true, false);
+            if (targetHaveDefender)
+            {
+                target.Defender.GetComponent<SideChanger>().changeSide(false, true);
+            }
         }
     }
     public Action AIStrategy(CombatCharacterUnit unit)
