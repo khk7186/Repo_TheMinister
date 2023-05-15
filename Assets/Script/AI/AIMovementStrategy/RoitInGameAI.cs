@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using PixelCrushers.DialogueSystem;
 using UnityEngine.Experimental.GlobalIllumination;
+using System;
+using System.Linq;
 
 public class RoitInGameAI : DefaultInGameAI
 {
@@ -16,6 +18,7 @@ public class RoitInGameAI : DefaultInGameAI
     public override void StartAction()
     {
         DontDestroyOnLoad(gameObject);
+        GetComponent<CharacterMovement>().modelController.SetSkin("face-angry expression");
     }
     public override void Move()
     {
@@ -34,7 +37,17 @@ public class RoitInGameAI : DefaultInGameAI
     //}
     public override void SetLocation()
     {
-        transform.position = startPoint.transform.position;
+        try
+        {
+
+            transform.position = startPoint.transform.position;
+        }
+        catch (NullReferenceException)
+        {
+            Debug.Log(transform == null);
+            Debug.Log(startPoint.transform.position);
+
+        }
     }
     public IEnumerator OnStreetRator()
     {
@@ -62,14 +75,17 @@ public class RoitInGameAI : DefaultInGameAI
     public void SetupRoitAI(Character character, RoitSpawnRange spawnRange)
     {
         this.character = character;
-        this.spawnRange = spawnRange;
-        var path = spawnRange.RequestPath();
-        startPoint = path.Item1;
-        endPoint = path.Item2;
+        if (spawnRange != null)
+        {
+            this.spawnRange = spawnRange;
+            var path = spawnRange.RequestPath();
+            startPoint = path.Item1;
+            endPoint = path.Item2;
+            SetLocation();
+            SetConversationDatabase();
+            StartCoroutine(OnStreetRator());
+        }
         GetComponentInChildren<IndicatorController>().ChangeSelected("attack");
-        SetLocation();
-        SetConversationDatabase();
-        StartCoroutine(OnStreetRator());
     }
     protected override void StartConmunicate()
     {
@@ -100,14 +116,73 @@ public class RoitInGameAI : DefaultInGameAI
         GetComponentInChildren<EventAfterConversation>().EnemyUnitA = character;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    var ai = collision.gameObject.GetComponent<DefaultInGameAI>();
+    //    if (ai == null) return;
+    //    bool canBeKilled = ai.character.characterType == CharacterType.General;
+    //    if (canBeKilled)
+    //    {
+    //        ai.PlayDeathAnimation();
+    //    }
+    //}
+    public DefaultInGameAI DefaultAIAround()
     {
-        var ai = collision.gameObject.GetComponent<DefaultInGameAI>();
-        if (ai == null) return;
-        bool canBeKilled = ai.character.characterType == CharacterType.General;
-        if (canBeKilled )
+        var list = Physics2D.OverlapCircleAll(transform.position, 10);
+        var target = list.FirstOrDefault(x =>
+                                                            (x.gameObject.GetComponent<DefaultInGameAI>() != null)
+                                                                && (x.GetComponent<RoitInGameAI>() == null));
+        if (target == null) return null;
+        return target.GetComponent<DefaultInGameAI>();
+    }
+    public IEnumerator LookingForTarget()
+    {
+        while (true)
         {
-            ai.PlayDeathAnimation();
+            var target = DefaultAIAround();
+            Debug.Log($"looking:{target}");
+            if (target == null)
+            {
+                yield return new WaitForSeconds(0.1f);
+                continue;
+            }
+            else
+            {
+                yield return AttackRator(target.transform);
+                break;
+            }
         }
+    }
+    public IEnumerator AttackRator(Transform target)
+    {
+        var distance = Vector2.Distance(transform.position, target.position) - 2f;
+        Vector3 dir = (target.transform.position - this.transform.position).normalized;
+        float moveDuration = distance / moveSpeed;
+        float time = 0;
+        while (time < moveDuration)
+        {
+            time += Time.deltaTime;
+            transform.Translate(dir * Time.deltaTime * moveSpeed);
+            yield return null;
+        }
+        var roitModel = GetComponent<CharacterMovement>()?.modelController;
+        var targetModel = target.GetComponent<CharacterMovement>()?.modelController;
+        var roitModelSideChanger = GetComponent<SideChanger>();
+        target.GetComponent<SideChanger>().changeSide(!roitModelSideChanger.isFront, !roitModelSideChanger.isRight);
+        while (true)
+        {
+            roitModel?.SetTrigger("Attack");
+            targetModel?.SetTrigger("Defence");
+            yield return new WaitForSeconds(1f);
+            //GetComponent<CharacterMovement>()?.modelController.SetTrigger("Stop");
+            //target.GetComponent<CharacterMovement>()?.modelController.SetTrigger("Stop");
+        }
+    }
+    public void DeathAction()
+    {
+        StopAllCoroutines();
+        GetComponentInChildren<IndicatorController>().ChangeSelected("hire");
+        GetComponent<CharacterMovement>().modelController.SetSkin("face-crying expression");
+        RegularQuestEventHandler.ElimMessage();
     }
 }

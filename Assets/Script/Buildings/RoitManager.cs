@@ -7,6 +7,20 @@ public class RoitManager : MonoBehaviour, IDiceRollEvent
 {
     public static RoitManager Instance;
     public List<RoitSpawnRange> spawnRanges;
+    public int RoitMax = 20;
+    public int RoitTotal
+    {
+        get
+        {
+            int output = 0;
+            foreach (var roitSpawnRange in spawnRanges)
+            {
+                output += roitSpawnRange.CurrentRoit;
+            }
+            return output;
+        }
+    }
+    public bool EnoughRoit => RoitTotal >= RoitMax;
     public List<RoitSpawnRange> OnRoitSpawnRanges
     {
         get
@@ -57,7 +71,6 @@ public class RoitManager : MonoBehaviour, IDiceRollEvent
         var range = spawnRanges.Where(x => x.Full == false).ToList();
         var choice = range[Random.Range(0, range.Count)];
         choice.SpawnRoit();
-        //TODO: effect on money collect point.
     }
 
     public void OnNotify(object value, NotificationType notificationType)
@@ -65,18 +78,10 @@ public class RoitManager : MonoBehaviour, IDiceRollEvent
         bool spawn = Random.Range(spawnRate, spawnTotal) <= spawnRate;
         if (spawn)
         {
-            SpawnRoit();
-            Debug.Log("spawn");
+            if (!EnoughRoit)
+                SpawnRoit();
+            //Debug.Log("spawn");
         }
-    }
-    public void GenerateCombatCharacters()
-    {
-        var AIpref = Resources.Load<ForceCombatInGameAI>("InGameNPC/ForceCombatNPC");
-        var newAI = Instantiate(AIpref);
-        var newCharacter = Instantiate(characterPref, newAI.transform);
-        newCharacter.characterArtCode = CharacterArtCode.ÄÐµ¶¿Í;
-        newCharacter.hireStage = HireStage.NotInMap;
-        newAI.Setup(newCharacter);
     }
     //public (PathPoint, PathPoint) GetRoitPath()
     //{

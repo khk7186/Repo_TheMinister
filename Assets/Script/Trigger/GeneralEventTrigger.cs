@@ -98,10 +98,6 @@ public class GeneralEventTrigger : MonoBehaviour
         var animation = FindObjectOfType<SceneTransController>();
         yield return new WaitUntil(() => animation.transition.GetCurrentAnimatorStateInfo(0).IsName("Wait"));
         SceneManager.LoadScene(scene);
-        if (scene == 1)
-            FindObjectOfType<UnityUIQuestHUD>(true).Show();
-        else
-            FindObjectOfType<UnityUIQuestHUD>(true).Hide();
         yield return WaitUntilSceneLoad.WaitUntilScene(scene);
         animation.Open();
         if (scene == 0)

@@ -42,7 +42,7 @@ public class LightController : MonoBehaviour, IDiceRollEvent
     private void OnEnable()
     {
         if (map != null)
-            ChangeLight(map.DayTime);
+            ChangeLight(Map.Instance.DayTime);
         if (Instance != this) { Instance = this; }
         else { Destroy(gameObject); }
         DontDestroyOnLoad(gameObject);
@@ -66,7 +66,7 @@ public class LightController : MonoBehaviour, IDiceRollEvent
 
     public void OnNotify(object value, NotificationType notificationType)
     {
-        ChangeLight(map.DayTime);
+        ChangeLight(Map.Instance.DayTime);
     }
     public void ChangeLight(int DayTime)
     {

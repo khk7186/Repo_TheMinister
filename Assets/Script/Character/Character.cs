@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
 using System.Linq;
+using UnityEngine.Events;
+
 public enum Tag
 {
     Null,
@@ -658,7 +660,19 @@ public class Character : MonoBehaviour, IRound
     }
     public void Away(int rounds, GameObject spawnAfterAway = null)
     {
-        StartCoroutine(AwayCoroutine(rounds, spawnAfterAway));
+        hireStage = HireStage.Away;
+        OnCombatDuty = false;
+        OnDebateDuty = false;
+        OnGobangDuty = false;
+        var e = new UnityEvent();
+        e.AddListener(() => Instantiate(spawnAfterAway));
+        e.AddListener(() => Back());
+        CharacterAwaitTributeManager.Instance.AddTribute(this, rounds * 3, e);
+    }
+    public void Back()
+    {
+        hireStage = HireStage.Hired;
+        CurrencyInvAnimationManager.Instance.PrestigeChange(1);
     }
     public IEnumerator AwayCoroutine(int rounds, GameObject spawnAfterAway = null)
     {

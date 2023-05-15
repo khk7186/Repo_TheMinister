@@ -36,7 +36,24 @@ public class RoitCharacter : Character
         this.spawnRange = spawnRange;
         characterArtCode = RoitCharacterArtCode;
         SpawnTagOnStart(RoitManager.Instance.Difficulty);
-        RoitInGameAI inGameAi = Instantiate(Resources.Load<RoitInGameAI>("InGameNPC/RoitInGameAI"), spawnRange.transform);
+        string inGameAiString = "";
+        switch (Area)
+        {
+            case 'A':
+                inGameAiString = "½Ö°Ô";
+                break;
+            case 'B':
+                inGameAiString = "Ç¿µÁ";
+                break;
+            case 'C':
+                inGameAiString = "ÌÓÄÑÕß";
+                break;
+            case 'D':
+                inGameAiString = "×íºº";
+                break;
+        }
+        var cloneTarget = Resources.Load<RoitInGameAI>($"InGameNPC/RoitCharacter/{inGameAiString}");
+        RoitInGameAI inGameAi = Instantiate(cloneTarget, spawnRange.transform);
         InGameAI = inGameAi;
         characterCard = Resources.Load<Character>("CharacterPrefab/Character").characterCard;
         inGameAi.SetupRoitAI(this, this.spawnRange);

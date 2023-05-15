@@ -8,6 +8,8 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
 {
     public Image ItemPrefab;
     public ItemInventory itemInventory;
+    public GameObject EmptyWarn;
+    public GameObject[] OffForEmptyWarn;
 
     private void Awake()
     {
@@ -18,7 +20,23 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
     private void SetUp(ItemInventory itemInventory)
     {
         this.itemInventory = itemInventory;
+        if (itemInventory != null)
+        {
+            if (itemInventory.ItemDict.Count <=0)
+            {
+                EmptyInvView();
+                return;
+            }
+        }
         SetUp();
+    }
+    public void EmptyInvView()
+    {
+        EmptyWarn.gameObject.SetActive(true);
+        foreach (GameObject go in OffForEmptyWarn)
+        {
+            go.SetActive(false);
+        }
     }
     public void SetUp()
     {

@@ -30,22 +30,16 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     public string Name = "";
     public PathPoint currentPathPoint;
     [SerializeField] private List<AIInteractType> types;
-    public int NightBlock;
-    public int DayMaxBlock, DayMinBlock;
-    public bool inner = true;
     public int CurrentLocation;
     public int NextBlockToMove;
     public int TargetLocation;
     public Character character;
     public NPCPopUI npcPopUI;
-    public int TryMax = 10;
-    public int TryChance = 3;
-
-    [SerializeField] private bool OnNight => map ? map.DayTime == 2 : false;
-    public Animator animator;
     //private string NPCJsonPath = "JSON/AIOnMapMovement";
     public Grid movementGrid;
     public NPCConversationTriggerGroup npcConversationTriggerGroup;
+    protected bool NotClickable = false;
+
     protected void Awake()
     {
         map = FindObjectOfType<Map>();
@@ -62,6 +56,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
             DontDestroyOnLoad(gameObject);
             SetLocation();
         }
+
     }
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
     {
@@ -98,20 +93,9 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     {
         Move();
     }
-    public void SetSpine()
-    {
-        SkeletonDataAsset asset = Resources.Load<SkeletonDataAsset>
-            ($"{ReturnAssetPath.ReturnSpineAssetPath(character.characterArtCode, true)}");
-        animator.GetComponent<SkeletonMecanim>().skeletonDataAsset = asset;
-        string controllerPath = $"{ReturnAssetPath.ReturnSpineControllerPath(character.characterArtCode, true)}";
-        animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(controllerPath);
-        animator.GetComponent<SkeletonMecanim>().Initialize(true);
-    }
     public virtual void Setup(Character character)
     {
         this.character = character;
-        if (GetComponent<CharacterModelController>() == null)
-            SetSpine();
         SetConversationDatabase();
     }
 
@@ -149,15 +133,17 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     }
     public IEnumerator WaitUntilRespond(PathPointHandler handler)
     {
+        NotClickable = true;
         yield return new WaitUntil(() => handler.Ready == true);
         currentPathPoint = handler.targetPoint;
         var movement = GetComponent<CharacterMovement>();
         movement.RegisterStoper();
-        StartCoroutine(movement.MoveToLocation(currentPathPoint.transform.position));
+        yield return StartCoroutine(movement.MoveToLocation(currentPathPoint.transform.position));
+        NotClickable = false;
     }
     protected virtual void OnMouseDown()
     {
-        if (IsPointerOver.IsPointerOverUIObject())
+        if (IsPointerOver.IsPointerOverUIObject() || NotClickable)
         {
             return;
         }
@@ -171,10 +157,6 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
         npcConversationTriggerGroup.StartGeneral();
     }
 
-    public void SetInner(bool inner)
-    {
-        this.inner = inner;
-    }
     public virtual void SetConversationDatabase()
     {
         //npcConversationTriggerGroup.Setup(character.characterArtCode.ToString());
@@ -192,7 +174,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
         Destroy(character.gameObject.gameObject);
         StartCoroutine(Clean());
     }
-   IEnumerator Clean()
+    IEnumerator Clean()
     {
         yield return new WaitForSeconds(2);
         Destroy(gameObject);

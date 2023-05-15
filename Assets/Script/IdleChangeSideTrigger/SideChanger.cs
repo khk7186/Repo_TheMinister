@@ -101,7 +101,6 @@ public class SideChanger : MonoBehaviour
             animator.GetComponent<SkeletonMecanim>().skeletonDataAsset = asset;
             string controllerPath = $"{ReturnAssetPath.ReturnSpineControllerPath(CAC, true)}";
             animator.runtimeAnimatorController = Resources.Load<RuntimeAnimatorController>(controllerPath);
-            animator.GetComponent<SkeletonMecanim>().Initialize(true);
             animator.transform.localScale = target;
             animator.GetComponent<SkeletonMecanim>().Initialize(true);
         }

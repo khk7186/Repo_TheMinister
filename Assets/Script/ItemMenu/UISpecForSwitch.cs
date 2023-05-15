@@ -11,11 +11,17 @@ public class UISpecForSwitch : TagSpecUI
     public Image switchImage;
     public Text switchText;
     public float duration = 0.2f;
+    public GameObject HideIfBad;
 
     public override void SetTagIcon(Tag tag, bool origin = true)
     {
         var target = origin ? tagIcon : switchImage;
         target.sprite = FindTagSprite(tag);
+        Rarerity rarerity = Player.AllTagRareDict[tag];
+        if (rarerity <= Rarerity.B)
+        {
+            HideIfBad.SetActive(false);
+        }
     }
     public override void SetTagInfo(Tag tag, bool origin = true)
     {
@@ -46,12 +52,6 @@ public class UISpecForSwitch : TagSpecUI
                     break;
             }
         }
-        //"ÖÇ" + PlusOrMinus(Player.TagInfDict[tag][0]) + " "
-        //+ "²Å" + PlusOrMinus(Player.TagInfDict[tag][1]) + " "
-        //+ "Ä±" + PlusOrMinus(Player.TagInfDict[tag][2]) + " "
-        //+ "Îä" + PlusOrMinus(Player.TagInfDict[tag][3]) + " "
-        //+ "´Ì" + PlusOrMinus(Player.TagInfDict[tag][4]) + " "
-        //+ "ÊØ" + PlusOrMinus(Player.TagInfDict[tag][5]);
         targetText.text = output;
     }
     public void FlipTag()

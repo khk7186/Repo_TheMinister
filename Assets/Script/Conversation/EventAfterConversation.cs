@@ -95,6 +95,7 @@ public class EventAfterConversation : MonoBehaviour
     {
         bool startHire = DialogueLua.GetVariable("startHire").asBool;
         //bool startHire = true;
+        Debug.Log($"startHire:{startHire}");
         if (startHire)
         {
             CharacterHiringEvent hireEvent = new GameObject().AddComponent<CharacterHiringEvent>();
@@ -117,6 +118,7 @@ public class EventAfterConversation : MonoBehaviour
             {
                 var target = GetComponent<NPCConversationTriggerGroup>();
                 target.General = roitHire;
+                DialogueLua.SetVariable("startHire", true);
             }
         }
     }

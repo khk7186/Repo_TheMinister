@@ -14,7 +14,6 @@ public class NPCConversationTriggerGroup : MonoBehaviour
         {
             dst.selectedDatabase = Resources.Load<DialogueDatabase>($"Conversions/{DBID}");
         }
-
     }
     public void StartGeneral()
     {
@@ -31,5 +30,4 @@ public class NPCConversationTriggerGroup : MonoBehaviour
         EAC.TryDebate();
         EAC.TryHire();
     }
-
 }

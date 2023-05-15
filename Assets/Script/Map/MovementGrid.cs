@@ -238,84 +238,8 @@ public class MovementGrid : MonoBehaviour
         }
         return block;
     }
-    public static Vector3Int GetAIBlock(DefaultInGameAI gameAI, int blockNumber)
-    {
-        //if (EnemyStandBlockDict.TryGetValue(gameAI.CurrentLocation, out bool[] value))
-        //{
-        //    int careValue = gameAI.inner ? 0 : 1;
-        //    value[careValue] = false;
-        //    careValue = gameAI.inner ? 1 : 0;
-        //    if (value[careValue] == false)
-        //    {
-        //        EnemyStandBlockDict.Remove(gameAI.CurrentLocation);
-        //    }
-        //}
-        Vector3Int result = CheckAIBlock(gameAI, blockNumber);
-        return result;
-    }
-    public static Vector3Int CheckAIBlock(DefaultInGameAI gameAI, int blockNumber)
-    {
-        //if (gameAI.TargetLocation == blockNumber)
-        //{
-        //    return CheckAILastBlock(gameAI, blockNumber);
-            
-        //}
-        List<Vector3Int> targetpath = gameAI.inner ? EnemyInnerMovementBlocks : EnemyOutterMovementBlocks;
-        return targetpath[blockNumber % targetpath.Count];
-    }
 
-    public static Vector3Int CheckAILastBlock(DefaultInGameAI gameAI, int blockNumber)
-    {
-        Vector3Int block = Vector3Int.zero;
-        bool[] OnBlockStat;
-        if (EnemyStandBlockDict.TryGetValue(blockNumber, out OnBlockStat))
-        {
-            if (gameAI != null)
-            {
-                List<Vector3Int> targetpath = gameAI.inner ? EnemyInnerMovementBlocks : EnemyOutterMovementBlocks;
-                int carevalue = gameAI.inner ? 0 : 1;
-                //if current path not available
-                if (OnBlockStat[carevalue])
-                {
-                    // if other path not available do next path index
-                    if (OnBlockStat[gameAI.inner ? 1 : 0])
-                    {
-                        block = CheckAIBlock(gameAI, (blockNumber + 1) % EnemyOutterMovementBlocks.Count);
-                    }
-                    // if other path available
-                    else
-                    {
-                        block = targetpath[blockNumber % EnemyOutterMovementBlocks.Count];
-                        //Debug.Log(OnBlockStat== null);
-                        OnBlockStat[gameAI.inner ? 1 : 0] = true;
-                        gameAI.SetInner(!gameAI.inner);
-                        EnemyStandBlockDict[blockNumber] = OnBlockStat;
-                    }
-                }
-                //if current path available
-                else
-                {
-                    block = targetpath[blockNumber % EnemyOutterMovementBlocks.Count];
-                    OnBlockStat[carevalue] = true;
-                    EnemyStandBlockDict[blockNumber] = OnBlockStat;
-                }
-            }
-        }
-        else
-        {
-            bool inner = Random.Range(0f, 10f) > 5f;
-            gameAI.SetInner(inner);
-            //Debug.Log(blockNumber);
-            block = inner ?
-                EnemyInnerMovementBlocks[blockNumber % EnemyInnerMovementBlocks.Count]
-                : EnemyOutterMovementBlocks[blockNumber % EnemyOutterMovementBlocks.Count];
-            OnBlockStat = new bool[2] { false, false };
-            OnBlockStat[inner ? 0 : 1] = true;
-            EnemyStandBlockDict.Add(blockNumber, OnBlockStat);
-        }
-        return block;
-    }
-
+   
 
 
 }

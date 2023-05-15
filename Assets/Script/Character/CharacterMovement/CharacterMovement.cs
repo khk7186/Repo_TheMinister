@@ -102,7 +102,7 @@ public class CharacterMovement : MonoBehaviour, IStopAllCoroutine
         }
         if (grid == null)
         {
-            grid = FindObjectOfType<MovementGrid>().GetComponent<Grid>();
+            grid = FindObjectOfType<MovementGrid>()?.GetComponent<Grid>();
         }
         if (!AI)
         {
@@ -124,50 +124,9 @@ public class CharacterMovement : MonoBehaviour, IStopAllCoroutine
     public IEnumerator MoveToLocationOld()
     {
         finalBlock = finalBlock % blockCount;
-        int awayTime = 0;
-        if (AI)
-        {
-            EndPlaceVisibleChecker.gameObject.SetActive(true);
-            EndPlaceVisibleChecker.transform.position = grid.GetCellCenterWorld(getGrid(finalBlock));
-        }
         while (currentBlock != finalBlock)
         {
-            bool isInView = VisibleCheck.WorldPosToPlayer(character.gameObject);
-            bool EndPlaceInView = true;
-            if (EndPlaceVisibleChecker != null)
-            {
-                EndPlaceInView = VisibleCheck.WorldPosToPlayer(EndPlaceVisibleChecker.gameObject);
-            }
-            if (isInView)
-            {
-                awayTime = 0;
-                yield return MoveToNextBlock();
-            }
-            else
-            {
-                awayTime += 1;
-                if (awayTime < 2)
-                {
-                    yield return MoveToNextBlock();
-                    continue;
-                }
-                if (!VisibleCheck.IsInView(grid.GetCellCenterWorld(getGrid(finalBlock))))
-                {
-                    character.position = grid.GetCellCenterWorld(getGrid(finalBlock));
-                    currentBlock = finalBlock;
-                    break;
-                }
-                if (currentBlock != finalBlock)
-                {
-                    character.position = grid.GetCellCenterWorld(getGrid(targetBlock));
-                    currentBlock++;
-                    currentBlock = currentBlock % blockCount;
-                }
-            }
-        }
-        if (AI)
-        {
-            EndPlaceVisibleChecker.gameObject.SetActive(false);
+            yield return MoveToNextBlock();
         }
     }
 
@@ -199,12 +158,10 @@ public class CharacterMovement : MonoBehaviour, IStopAllCoroutine
             yield return null;
         }
     }
-
     public void StopAllCoroutine()
     {
         StopAllCoroutines();
     }
-
     public void RegisterStoper()
     {
         if (PathManager.Instance == null)

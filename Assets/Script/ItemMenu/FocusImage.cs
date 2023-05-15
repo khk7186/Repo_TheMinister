@@ -13,6 +13,6 @@ public class FocusImage : MonoBehaviour
     {
         Image.sprite = Resources.Load<Sprite>(ReturnAssetPath.ReturnItemPath(itemName));
         Name.text = itemName.ToString();
-        //TODO: INFO
+        Info.text = SOItem.ItemDescription[itemName];
     }
 }

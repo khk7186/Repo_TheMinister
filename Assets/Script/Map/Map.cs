@@ -127,16 +127,20 @@ public class Map : MonoBehaviour, IDiceRollEvent
     }
     private void DayTimePlus()
     {
+        var mainUI = FindObjectOfType<MainUI>();
+        mainUI.DayTimeIconAnimController.GoNext();
         if (DayTime >= 2)
         {
             Day++;
             DayTime = 0;
-            FindObjectOfType<MainUI>().SetupTime();
+            mainUI.SetupTime();
+            PressureEventHandler.OnDayEndPressureChange();
         }
         else
         {
             DayTime++;
         }
+       
     }
 
     //private IEnumerator MoveAStep(Transform character)

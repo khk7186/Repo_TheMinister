@@ -17,6 +17,8 @@ public class MainUI : MonoBehaviour
     public Text Influence;
     public Text Prestige;
 
+    public DayTimeIconAnimController DayTimeIconAnimController;
+
     private char[] strChinese = new char[] {
                  '〇','一','二','三','四','五','六','七','八','九','十'
              };

@@ -264,11 +264,11 @@ public class CombatCharacterUnit : MonoBehaviour
                 character.loyalty = 5;
                 if (character.characterType == CharacterType.Roit)
                 {
-                    character.InGameAI.GetComponentInChildren<IndicatorController>().ChangeSelected("hire");
+                    RoitInGameAI rc = character.InGameAI as RoitInGameAI;
+                    rc.DeathAction();
                 }
             }
         }
-        GetComponent<CharacterModelController>().SetTrigger("Death");
         CheckGameEnd();
         gameObject.SetActive(false);
     }

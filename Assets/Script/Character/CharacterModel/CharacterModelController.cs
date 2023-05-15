@@ -13,7 +13,6 @@ public class CharacterModelController : MonoBehaviour
     public SkeletonMecanim current;
     public string SkinName = "face-normal expression";
 
-
     private void Awake()
     {
         SkinName = "face-normal expression";
@@ -78,9 +77,9 @@ public class CharacterModelController : MonoBehaviour
     public void SetSkin(string skinName = null)
     {
         if (!string.IsNullOrEmpty(skinName)) this.SkinName = skinName;
-        current.Skeleton.SetSkin(SkinName);
-        current.Skeleton.SetSlotsToSetupPose();
-        current.LateUpdate();
+        front.Skeleton.SetSkin(SkinName);
+        front.Skeleton.SetSlotsToSetupPose();
+        front.LateUpdate();
     }
     public void SetTrigger(string trigger)
     {

@@ -40,7 +40,6 @@ public class InteractAsset : MonoBehaviour
             return;
         }
         building.OpenMenu();
-        FindObjectOfType<UnityUIQuestHUD>(true).Hide();
     }
     private void OnMouseEnter()
     {
