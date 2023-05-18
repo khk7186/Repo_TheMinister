@@ -28,6 +28,5 @@ public class MaterialUI : MonoBehaviour, IPointerClickHandler
         Frame.sprite = Resources.Load<Sprite>(FramePath);
         NeedAmount.text = 1.ToString();
         HaveAmount.text = haveAmount.ToString();
-        Debug.Log(IntHaveAmount + "/" + IntNeedAmount);
     }
 }

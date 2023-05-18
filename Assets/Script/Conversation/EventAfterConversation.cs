@@ -94,8 +94,6 @@ public class EventAfterConversation : MonoBehaviour
     public void TryHire()
     {
         bool startHire = DialogueLua.GetVariable("startHire").asBool;
-        //bool startHire = true;
-        Debug.Log($"startHire:{startHire}");
         if (startHire)
         {
             CharacterHiringEvent hireEvent = new GameObject().AddComponent<CharacterHiringEvent>();

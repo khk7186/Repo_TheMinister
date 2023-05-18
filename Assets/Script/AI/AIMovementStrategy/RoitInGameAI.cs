@@ -54,8 +54,16 @@ public class RoitInGameAI : DefaultInGameAI
         bool lost = character.hireStage == HireStage.Defeated;
         while (!lost)
         {
-            yield return MakeAMoveRator();
-            yield return new WaitForSeconds(stayDuration);
+            bool getTarget = LookingForTarget();
+            if (!getTarget)
+            {
+                yield return MakeAMoveRator();
+                yield return new WaitForSeconds(stayDuration);
+            }
+            else
+            {
+                break;
+            }
         }
     }
     public IEnumerator MakeAMoveRator()
@@ -135,28 +143,24 @@ public class RoitInGameAI : DefaultInGameAI
         if (target == null) return null;
         return target.GetComponent<DefaultInGameAI>();
     }
-    public IEnumerator LookingForTarget()
+    public bool LookingForTarget()
     {
-        while (true)
+        var target = DefaultAIAround();
+        if (target != null)
         {
-            var target = DefaultAIAround();
-            Debug.Log($"looking:{target}");
-            if (target == null)
-            {
-                yield return new WaitForSeconds(0.1f);
-                continue;
-            }
-            else
-            {
-                yield return AttackRator(target.transform);
-                break;
-            }
+            StartCoroutine(AttackRator(target.transform));
+            return true;
         }
+        return false;
     }
     public IEnumerator AttackRator(Transform target)
     {
         var distance = Vector2.Distance(transform.position, target.position) - 2f;
         Vector3 dir = (target.transform.position - this.transform.position).normalized;
+        if (distance <= 0)
+        {
+            distance = 2;
+        }
         float moveDuration = distance / moveSpeed;
         float time = 0;
         while (time < moveDuration)
@@ -174,8 +178,6 @@ public class RoitInGameAI : DefaultInGameAI
             roitModel?.SetTrigger("Attack");
             targetModel?.SetTrigger("Defence");
             yield return new WaitForSeconds(1f);
-            //GetComponent<CharacterMovement>()?.modelController.SetTrigger("Stop");
-            //target.GetComponent<CharacterMovement>()?.modelController.SetTrigger("Stop");
         }
     }
     public void DeathAction()

@@ -49,7 +49,7 @@ public class RoitCharacter : Character
                 inGameAiString = "ÌÓÄÑÕß";
                 break;
             case 'D':
-                inGameAiString = "×íºº";
+                inGameAiString = "×í¹í";
                 break;
         }
         var cloneTarget = Resources.Load<RoitInGameAI>($"InGameNPC/RoitCharacter/{inGameAiString}");
