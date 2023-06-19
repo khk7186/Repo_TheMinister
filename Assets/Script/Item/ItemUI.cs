@@ -299,14 +299,19 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
             characterUI.newTag = Use();
         }
     }
-    public virtual void Setup(ItemName item, int amount)
+    public virtual void Setup(ItemName item, int amount = 0)
     {
         this.ItemName = item;
         Frame.GetComponent<RectTransform>().offsetMin = new Vector2(0, 0);
         Frame.GetComponent<RectTransform>().offsetMax = new Vector2(0, 0);
         string SpritePath = ("Art/ItemIcon/" + item.ToString()).Replace(" ", string.Empty);
         icon.sprite = Resources.Load<Sprite>(SpritePath);
-        this.amount.text = amount.ToString();
+        if (amount == 0)
+            this.amount.transform.parent.gameObject.SetActive(false);
+        else
+        {
+            this.amount.text = amount.ToString();
+        }
         framRarity = Player.AllTagRareDict[Use()] != Rarerity.B ? Player.AllTagRareDict[Use()] : Rarerity.N;
         string FramePath = $"Art/BuildingUI/杂货铺/初级五金铺/物品框/物品框-{framRarity}";
         Frame.sprite = Resources.Load<Sprite>(FramePath);

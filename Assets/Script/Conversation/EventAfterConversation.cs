@@ -18,6 +18,13 @@ public class EventAfterConversation : MonoBehaviour
 
     public GeneralEventTrigger Trigger;
     public PixelCrushers.DialogueSystem.DialogueSystemTrigger roitHire;
+
+    public int moneyRewards = 10;
+    public int pressureRewards = 0;
+
+    public int moneyPunishment = -100;
+    public int pressurePunishment = 10;
+    public List<ItemName> itemRewards = new List<ItemName>();
     public void TryCombat()
     {
         //{character.characterArtCode}
@@ -36,8 +43,11 @@ public class EventAfterConversation : MonoBehaviour
             {
                 Trigger.enemyCharacters.Add(EnemyUnitC);
             }
+            Trigger.pressurePunishment = pressurePunishment;
+            Trigger.pressureRewards = pressureRewards;
+            Trigger.moneyPunishment = moneyPunishment;
+            Trigger.moneyRewards = moneyRewards;
             Trigger.TriggerEvent();
-            //Debug.Log(startCombat);
         }
         else
         {

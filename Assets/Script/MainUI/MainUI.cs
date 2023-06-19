@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,6 +19,15 @@ public class MainUI : MonoBehaviour
     public Text Prestige;
 
     public DayTimeIconAnimController DayTimeIconAnimController;
+
+    public int CharacterCount
+    {
+        get
+        {
+            var characterInv = GameObject.FindGameObjectWithTag("PlayerCharacterInventory");
+            return characterInv.GetComponentsInChildren<Character>().Where(x=>x.hireStage == HireStage.Hired).Count();
+        }
+    }
 
     private char[] strChinese = new char[] {
                  '〇','一','二','三','四','五','六','七','八','九','十'
@@ -53,13 +63,9 @@ public class MainUI : MonoBehaviour
     {
         Money.text = Amount.ToString();
     }
-    public void SetupInfluence(int Amount)
-    {
-        Influence.text = Amount.ToString();
-    }
     public void SetupPrestige(int Amount)
     {
-        Prestige.text = Amount.ToString();
+        Prestige.text = CharacterCount.ToString();
     }
     public string BuildDateUnit2Chinese(int Count)
     {

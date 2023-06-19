@@ -31,39 +31,55 @@ public class CurrencyInvAnimationManager : MonoBehaviour
     private void OnEnable()
     {
         MoneyAnimationText.gameObject.SetActive(false);
+        MoneyChange(0);
+        PrestigeChange(0);
     }
     public void MoneyChange(int diff)
     {
-        var diffsign = diff >= 0 ? "+" : "";
-        MoneyAnimationText.text = $"{diffsign} {diff.ToString()}";
-        var animation = new CurrencyInvAnimationHandler(MoneyAnimationText.GetComponent<RectTransform>());
-        CurrencyInventory currencyInventory = FindObjectOfType<CurrencyInventory>();
-        currencyInventory.Money += diff;
-        CurrencyInvAnimationHandler.AfterAnimation afterAnimation = () =>
+        if (diff != 0)
         {
-            MoneyAnimationText.rectTransform.anchoredPosition = MoneyAnimationTextOrigin;
-            MoneyAnimationText.gameObject.SetActive(false);
+            var diffsign = diff >= 0 ? "+" : "";
+            MoneyAnimationText.text = $"{diffsign} {diff.ToString()}";
+            var animation = new CurrencyInvAnimationHandler(MoneyAnimationText.GetComponent<RectTransform>());
+            CurrencyInventory currencyInventory = FindObjectOfType<CurrencyInventory>();
+            currencyInventory.Money += diff;
+            CurrencyInvAnimationHandler.AfterAnimation afterAnimation = () =>
+            {
+                MoneyAnimationText.rectTransform.anchoredPosition = MoneyAnimationTextOrigin;
+                MoneyAnimationText.gameObject.SetActive(false);
+                CurrencyInventory.SetCurrencyUI();
+            };
+            animation.afterAnimation = afterAnimation;
+            animation.Play();
+        }
+        else
+        {
             CurrencyInventory.SetCurrencyUI();
-        };
-        animation.afterAnimation = afterAnimation;
-        animation.Play();
+        }
     }
     public void PrestigeChange(int diff)
     {
-        var diffsign = diff >= 0 ? "+" : "";
-        PrestigeAnimationText.text = $"{diffsign} {diff.ToString()}";
-        var animation = new CurrencyInvAnimationHandler(PrestigeAnimationText.GetComponent<RectTransform>());
-        CurrencyInventory currencyInventory = FindObjectOfType<CurrencyInventory>();
-        currencyInventory.Prestige = GameObject.FindGameObjectWithTag("PlayerCharacterInventory")
-                                                                            .transform.GetComponentsInChildren<Character>()
-                                                                            .Where(x => x.hireStage != HireStage.Away).ToArray().Length;
-        CurrencyInvAnimationHandler.AfterAnimation afterAnimation = () =>
+        if (diff != 0)
         {
-            PrestigeAnimationText.rectTransform.anchoredPosition = PrestigeAnimationTextOrigin;
-            PrestigeAnimationText.gameObject.SetActive(false);
+            var diffsign = diff >= 0 ? "+" : "";
+            PrestigeAnimationText.text = $"{diffsign} {diff.ToString()}";
+            var animation = new CurrencyInvAnimationHandler(PrestigeAnimationText.GetComponent<RectTransform>());
+            CurrencyInventory currencyInventory = FindObjectOfType<CurrencyInventory>();
+            currencyInventory.Prestige = GameObject.FindGameObjectWithTag("PlayerCharacterInventory")
+                                                                                .transform.GetComponentsInChildren<Character>()
+                                                                                .Where(x => x.hireStage != HireStage.Away).ToArray().Length;
+            CurrencyInvAnimationHandler.AfterAnimation afterAnimation = () =>
+            {
+                PrestigeAnimationText.rectTransform.anchoredPosition = PrestigeAnimationTextOrigin;
+                PrestigeAnimationText.gameObject.SetActive(false);
+                CurrencyInventory.SetCurrencyUI();
+            };
+            animation.afterAnimation = afterAnimation;
+            animation.Play();
+        }
+        else
+        {
             CurrencyInventory.SetCurrencyUI();
-        };
-        animation.afterAnimation = afterAnimation;
-        animation.Play();
+        }
     }
 }

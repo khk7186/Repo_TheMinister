@@ -28,11 +28,6 @@ public class CurrencyInventory : MonoBehaviour
         Money += add;
         FindObjectOfType<MainUI>()?.SetupMoney(Money);
     }
-    public void InfluenceAdd(int add)
-    {
-        Influence += add;
-        FindObjectOfType<MainUI>()?.SetupInfluence(Influence);
-    }
     public void PrestigeAdd(int add)
     {
         Prestige += add;

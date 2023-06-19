@@ -104,23 +104,23 @@ public class RoitInGameAI : DefaultInGameAI
     }
     public override void SetConversationDatabase()
     {
-        NPCConversationTriggerGroup pref = null;
-        switch (spawnRange.Area)
-        {
-            case 'A':
-                pref = Resources.Load<NPCConversationTriggerGroup>("InGameNPC/DialogueTriggersGroup/½Ö°Ô");
-                break;
-            case 'B':
-                pref = Resources.Load<NPCConversationTriggerGroup>("InGameNPC/DialogueTriggersGroup/·ËÍ½");
-                break;
-            case 'C':
-                pref = Resources.Load<NPCConversationTriggerGroup>("InGameNPC/DialogueTriggersGroup/ÌÓÄÑÕß");
-                break;
-            case 'D':
-                pref = Resources.Load<NPCConversationTriggerGroup>("InGameNPC/DialogueTriggersGroup/×íºº");
-                break;
-        }
-        npcConversationTriggerGroup = Instantiate(pref, transform);
+        //NPCConversationTriggerGroup pref = null;
+        //switch (spawnRange.Area)
+        //{
+        //    case 'A':
+        //        pref = Resources.Load<NPCConversationTriggerGroup>("InGameNPC/DialogueTriggersGroup/½Ö°Ô");
+        //        break;
+        //    case 'B':
+        //        pref = Resources.Load<NPCConversationTriggerGroup>("InGameNPC/DialogueTriggersGroup/Ç¿µÁ");
+        //        break;
+        //    case 'C':
+        //        pref = Resources.Load<NPCConversationTriggerGroup>("InGameNPC/DialogueTriggersGroup/ÌÓÄÑÕß");
+        //        break;
+        //    case 'D':
+        //        pref = Resources.Load<NPCConversationTriggerGroup>("InGameNPC/DialogueTriggersGroup/×íºº");
+        //        break;
+        //}
+        //npcConversationTriggerGroup = Instantiate(pref, transform);
         GetComponentInChildren<EventAfterConversation>().EnemyUnitA = character;
     }
 

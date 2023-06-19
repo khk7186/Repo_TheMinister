@@ -8,13 +8,13 @@ public class NPCConversationTriggerGroup : MonoBehaviour
     public DialogueSystemTrigger[] dialogueSystemTriggers;
     public DialogueSystemTrigger General;
 
-    public void Setup(string DBID)
-    {
-        foreach (DialogueSystemTrigger dst in dialogueSystemTriggers)
-        {
-            dst.selectedDatabase = Resources.Load<DialogueDatabase>($"Conversions/{DBID}");
-        }
-    }
+    //public void Setup(string DBID)
+    //{
+    //    foreach (DialogueSystemTrigger dst in dialogueSystemTriggers)
+    //    {
+    //        dst.selectedDatabase = Resources.Load<DialogueDatabase>($"Conversions/{DBID}");
+    //    }
+    //}
     public void StartGeneral()
     {
         var EAC = GetComponent<EventAfterConversation>();
@@ -25,7 +25,6 @@ public class NPCConversationTriggerGroup : MonoBehaviour
     public void OnConversationEnd(Transform actor)
     {
         var EAC = GetComponent<EventAfterConversation>();
-        EAC.ChangeConversation();
         EAC.TryCombat();
         EAC.TryDebate();
         EAC.TryHire();

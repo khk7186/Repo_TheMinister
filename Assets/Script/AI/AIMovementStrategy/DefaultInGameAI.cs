@@ -8,6 +8,7 @@ using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
 using PixelCrushers.DialogueSystem;
 using UnityEditor.SearchService;
+using PixelCrushers.DialogueSystem.UnityGUI;
 
 public enum AIInteractType
 {
@@ -133,17 +134,17 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     }
     public IEnumerator WaitUntilRespond(PathPointHandler handler)
     {
-        NotClickable = true;
+        //NotClickable = true;
         yield return new WaitUntil(() => handler.Ready == true);
         currentPathPoint = handler.targetPoint;
         var movement = GetComponent<CharacterMovement>();
         movement.RegisterStoper();
         yield return StartCoroutine(movement.MoveToLocation(currentPathPoint.transform.position));
-        NotClickable = false;
+        //NotClickable = false;
     }
     protected virtual void OnMouseDown()
     {
-        if (IsPointerOver.IsPointerOverUIObject() || NotClickable)
+        if (IsPointerOver.IsPointerOverUIObject())
         {
             return;
         }

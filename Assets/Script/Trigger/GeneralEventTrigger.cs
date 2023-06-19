@@ -12,8 +12,10 @@ public class GeneralEventTrigger : MonoBehaviour
     public BattleType battleType = BattleType.Combat;
     //rewards
     public int moneyRewards = 0;
-    public int influenceRewards = 0;
-    public int prestigeRewards = 0;
+    public int pressureRewards = 0;
+
+    public int moneyPunishment = -100;
+    public int pressurePunishment = 10;
     public List<ItemName> itemRewards = new List<ItemName>();
     public List<Character> playerCharacters = new List<Character>();
     public List<Character> enemyCharacters = new List<Character>();
@@ -49,12 +51,13 @@ public class GeneralEventTrigger : MonoBehaviour
                 break;
         }
         gameTracker = GameTracker.NewGameTracker
-                                                            (moneyRewards, influenceRewards, prestigeRewards, itemRewards);
+                                                            (moneyRewards, pressureRewards, itemRewards);
         StartCoroutine(JumpToScene(scene));
 
     }
     public void TriggerEnd(int result)
     {
+        CurrencyInventory currencyInventory = FindObjectOfType<CurrencyInventory>();
         gameTracker.gameWin = result > 0;
         if (gameTracker != null)
         {
@@ -63,10 +66,8 @@ public class GeneralEventTrigger : MonoBehaviour
             {
                 scene = 1;
                 StartCoroutine(JumpToScene(scene));
-                CurrencyInventory currencyInventory = FindObjectOfType<CurrencyInventory>();
-                currencyInventory.Money += gameTracker.moneyRewards;
-                currencyInventory.Influence += gameTracker.influenceRewards;
-                currencyInventory.Prestige += gameTracker.prestigeRewards;
+                currencyInventory.MoneyAdd(gameTracker.moneyRewards);
+                PressureEventHandler.OnPressureChange(gameTracker.moneyRewards);
                 if (itemRewards.Count > 0)
                 {
                     ItemInventory itemInventory = FindObjectOfType<ItemInventory>();
@@ -78,6 +79,8 @@ public class GeneralEventTrigger : MonoBehaviour
             {
                 scene = 1;
                 StartCoroutine(JumpToScene(scene));
+                currencyInventory.MoneyAdd(moneyPunishment);
+                PressureEventHandler.OnPressureChange(pressurePunishment);
             }
         }
     }
@@ -100,9 +103,9 @@ public class GeneralEventTrigger : MonoBehaviour
         SceneManager.LoadScene(scene);
         yield return WaitUntilSceneLoad.WaitUntilScene(scene);
         animation.Open();
-        if (scene == 0)
+        if (scene == 1)
         {
-            while (SceneManager.GetActiveScene().buildIndex != 0)
+            while (SceneManager.GetActiveScene().buildIndex != 1)
             {
                 yield return null;
             }
@@ -111,8 +114,8 @@ public class GeneralEventTrigger : MonoBehaviour
             if (canvas != null)
             {
                 var pannel = Instantiate(endGamePannel, canvas);
+                pannel.Setup(this);
             }
-            FindObjectOfType<StandardDialogueUI>().gameObject.SetActive(false);
         }
     }
     public void JumpToSceneTest(int scene)
