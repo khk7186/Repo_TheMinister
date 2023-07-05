@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class RoitSpawnRange : MonoBehaviour
+public class RoitSpawnRange : MonoBehaviour, IDiceRollEvent
 {
     public PathPoint[] pathPoints;
     public List<PathPoint> takenStartPoint = new List<PathPoint>();
@@ -31,11 +31,15 @@ public class RoitSpawnRange : MonoBehaviour
     public void CleanUpCharacters()
     {
         roitCharacters.RemoveAll(x => x == null);
-        roitCharacters.RemoveAll(x => x.hireStage == HireStage.Defeated);
+        roitCharacters.RemoveAll(x => x.hireStage == HireStage.Hired);
     }
     public void OnEnable()
     {
         DetectRangeVariable();
+    }
+    public void Start()
+    {
+        Dice.Instance.RegisterObserver(this);
     }
     public void DetectRangeVariable()
     {
@@ -86,6 +90,12 @@ public class RoitSpawnRange : MonoBehaviour
                 currentEAC.EnemyUnitC = otherCharacter;
         }
         roitCharacters.Add(roitCharacter);
+    }
+
+    public void OnNotify(object value, NotificationType notificationType)
+    {
+        CleanUpCharacters();
+        //Debug.Log("roitClean");
     }
 }
 
