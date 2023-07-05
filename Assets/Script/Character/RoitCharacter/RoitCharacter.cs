@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -110,6 +111,7 @@ public class RoitCharacter : Character
     }
     public override void StartAction()
     {
+        StartCoroutine(RemoveFromGame());
     }
     public void Setup(RoitSpawnRange spawnRange)
     {
@@ -140,6 +142,19 @@ public class RoitCharacter : Character
         inGameAi.SetupRoitAI(this, this.spawnRange);
         CharacterName = "ÎÞÃû";
     }
+    protected IEnumerator RemoveFromGame()
+    {
+        Func<bool> defeated = () => hireStage == HireStage.Defeated;
+        yield return new WaitUntil(defeated);
+        int day = Map.Instance.Day;
+        Func<bool> after2Days = () => (Map.Instance.Day - day >= 2);
+        yield return new WaitUntil(after2Days);
+        if (hireStage != HireStage.Hired)
+        {
+            Destroy(InGameAI.gameObject.gameObject);
+            Destroy(gameObject);
+        }
+    }
     protected override void SpawnTagOnStart(Rarerity rarerity = Rarerity.Null)
     {
         int level = 0;
@@ -166,11 +181,11 @@ public class RoitCharacter : Character
         }
         for (int i = 0; i < level; i++)
         {
-            tagList.Add(RoitTags[Random.Range(0, RoitTags.Count)]);
+            tagList.Add(RoitTags[UnityEngine.Random.Range(0, RoitTags.Count)]);
         }
         for (int i = 0; i < (5 - level); i++)
         {
-            tagList.Add(badTags[Random.Range(0, badTags.Count)]);
+            tagList.Add(badTags[UnityEngine.Random.Range(0, badTags.Count)]);
         }
     }
 }
