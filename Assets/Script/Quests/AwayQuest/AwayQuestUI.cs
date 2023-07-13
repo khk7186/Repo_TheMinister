@@ -66,7 +66,7 @@ public class AwayQuestUI : MonoBehaviour, ICharacterSelect
         daySpend.text = AwayDays + "Ìì";
         for (int i = 0; i < 3 - CharacterAllow; i++)
         {
-            CharacterImages[i].transform.parent.gameObject.SetActive(false);
+            CharacterImages[2 - i].transform.parent.gameObject.SetActive(false);
         }
     }
     public void ChangeCharacter(int index)
@@ -122,6 +122,8 @@ public class AwayQuestUI : MonoBehaviour, ICharacterSelect
     }
     public void ChooseCharacter(Character character)
     {
+        Debug.Log(characters.Count);
+        Debug.Log(currentIndex);
         if (characters[currentIndex] != null)
         {
             RemoveFromRoom(currentIndex);
@@ -159,7 +161,6 @@ public class AwayQuestUI : MonoBehaviour, ICharacterSelect
             UI.SetupSelection(gameObject);
         }
         target.CurrentTarget.gameObject.SetActive(true);
-        Debug.Log(1);
     }
     public void RemoveFromRoom(int index)
     {
