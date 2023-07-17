@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character_Names : MonoBehaviour
 {
-    public static string Character_Names(CharacterArtCode characterArtCode)
+    public static string CharacterNames(CharacterArtCode characterArtCode)
     {
         string[] firstNames = new string[]
         {
