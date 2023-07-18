@@ -129,7 +129,6 @@ public class CharacterMovement : MonoBehaviour, IStopAllCoroutine
             yield return MoveToNextBlock();
         }
     }
-
     public IEnumerator MoveToNextBlock()
     {
         Vector2 startPt = transform.position;
@@ -145,7 +144,6 @@ public class CharacterMovement : MonoBehaviour, IStopAllCoroutine
         currentBlock = currentBlock % blockCount;
         yield return null;
     }
-
     public IEnumerator MoveToLocation(Vector2 endPosition, float speed = 3)
     {
         Vector2 startPosition = transform.position;

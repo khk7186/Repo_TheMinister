@@ -9,7 +9,8 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
 {
     public string QuestID;
     public Vector2 position;
-    public (bool, bool) frontRight;
+    public bool front;
+    public bool right;
     public DialogueSystemTrigger _dialogueTriggerUncollected;
     public DialogueSystemTrigger _dialogueTriggerCollected;
     private void Awake()
