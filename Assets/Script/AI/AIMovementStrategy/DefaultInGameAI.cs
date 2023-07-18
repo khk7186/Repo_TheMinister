@@ -57,7 +57,6 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
             DontDestroyOnLoad(gameObject);
             SetLocation();
         }
-
     }
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
     {

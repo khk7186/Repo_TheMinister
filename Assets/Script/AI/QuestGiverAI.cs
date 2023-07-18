@@ -3,45 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 using PixelCrushers.QuestMachine;
 using PixelCrushers.DialogueSystem;
+using System;
 
-
-public class QuestGiverAI : MonoBehaviour
+public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
 {
     public string QuestID;
-    public Character character;
-    public NPCConversationTriggerGroup npcConversationTriggerGroup;
-    public Grid movementGrid;
-    public int blockStay;
-    public bool inner = true;
+    public Vector2 position;
+    public (bool, bool) frontRight;
+    public DialogueSystemTrigger _dialogueTriggerUncollected;
+    public DialogueSystemTrigger _dialogueTriggerCollected;
     private void Awake()
     {
-        movementGrid = FindObjectOfType<MovementGrid>().GetComponent<Grid>();
-        inner = Random.Range(0, 2) == 0 ? false : true;
-        //foreach (var subject in FindObjectsOfType<MonoBehaviour>().OfType<ISubject>())
-        //{
-        //    subject.RegisterObserver(this);
-        //}
+        Dice.Instance.RegisterObserver(this);
+    }
+    private int Chapter()
+    {
+        var charList = QuestID.ToCharArray();
+        var targetString = new string(new char[] { charList[2], charList[3] });
+        int output = int.Parse(targetString);
+        return output;
     }
     protected void StartConmunicate()
     {
         var DSC = FindObjectOfType<DialogueSystemController>();
-        DSC.initialDatabase = Resources.Load<DialogueDatabase>($"Conversions/任务");
+        DSC.initialDatabase = Resources.Load<DialogueDatabase>(CorrectConversationBasedOnQuest());
         DSC.Awake();
-        npcConversationTriggerGroup.StartGeneral();
-    }
-    public void SetConversationDatabase()
-    {
-        var pref = Resources.Load<NPCConversationTriggerGroup>
-            ($"{ReturnAssetPath.ReturnNPCConversationTriggerGroupPath(character.characterArtCode.ToString())}");
-        npcConversationTriggerGroup = Instantiate<NPCConversationTriggerGroup>(pref, transform);
-        GetComponentInChildren<EventAfterConversation>().EnemyUnitA = character;
+        if (DialogueLua.GetVariable("Assign").asBool == false)
+        {
+            _dialogueTriggerUncollected.OnUse();
+        }
+        else
+        {
+            _dialogueTriggerCollected.OnUse();
+        }
     }
     public void Setup(string QuestID)
     {
-        if (QuestID[-1] == 'f')
-        {
-            QuestID = QuestID.Remove(QuestID.Length - 1);
-        }
+
     }
     protected void OnMouseDown()
     {
@@ -49,5 +47,44 @@ public class QuestGiverAI : MonoBehaviour
         DSC.initialDatabase = Resources.Load<DialogueDatabase>($"Conversions/任务");
         DSC.Awake();
         GetComponentInChildren<QuestGiver>().StartDialogueWithPlayer();
+    }
+    public string CorrectConversationBasedOnQuest()
+    {
+        var folderName = FindQuestFolder(this.QuestID);
+        return $"{folderName}/对话{QuestID}";
+    }
+    public static string FindQuestFolder(string questID)
+    {
+        if (questID == null) return null;
+        string folderPath = string.Empty;
+        if (questID[0] == 'M' || questID[0] == 'm')
+        {
+            folderPath = $"QuestDatabases/支线任务/{questID}";
+        }
+        return folderPath;
+    }
+    private int _counter = 0;
+    private readonly int DISSAPEAR_TIME = 4;
+    public IEnumerator DisappearAfterQuestSign()
+    {
+        Func<bool> _notifyOnce = () => _counter > 0;
+        Func<bool> _counterFinish = () => _counter >= DISSAPEAR_TIME;
+        yield return new WaitUntil(_notifyOnce);
+        if (DialogueLua.GetVariable("Assign").asBool == false)
+        {
+        }
+        else if (Chapter() < ChapterCounter.Instance.Chapter)
+        {
+        }
+        else
+        {
+            yield return new WaitUntil(_counterFinish);
+            Destroy(gameObject);
+        }
+    }
+
+    public void OnNotify(object value, NotificationType notificationType)
+    {
+        _counter++;
     }
 }
