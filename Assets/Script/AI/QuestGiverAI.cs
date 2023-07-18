@@ -16,6 +16,8 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     private void Awake()
     {
         Dice.Instance.RegisterObserver(this);
+        GetComponent<SideChanger>().changeSide(front, right);
+        transform.position = position;
     }
     private int Chapter()
     {
@@ -37,10 +39,6 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
         {
             _dialogueTriggerCollected.OnUse();
         }
-    }
-    public void Setup(string QuestID)
-    {
-
     }
     protected void OnMouseDown()
     {
@@ -76,6 +74,7 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
         }
         else if (Chapter() < ChapterCounter.Instance.Chapter)
         {
+            Destroy(gameObject);
         }
         else
         {
@@ -83,7 +82,6 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
             Destroy(gameObject);
         }
     }
-
     public void OnNotify(object value, NotificationType notificationType)
     {
         _counter++;
