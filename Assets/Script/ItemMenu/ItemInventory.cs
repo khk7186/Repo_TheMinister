@@ -25,7 +25,7 @@ public class ItemInventory : MonoBehaviour
         //{
         //    AddItem(ItemName.Îä¹Ù×´);
         //}
-        
+
         //    AddItem(item);
         //    AddItem(item);
         //    AddItem(item);
@@ -46,6 +46,17 @@ public class ItemInventory : MonoBehaviour
         {
             AddItem(itemName);
         }
+    }
+    public bool CheckItem(ItemName item)
+    {
+        if (ItemDict.ContainsKey(item))
+        {
+            if (ItemDict[item] > 0)
+            {
+                return true;
+            }
+        }
+        return false;
     }
     public void RemoveItem(ItemName item)
     {
