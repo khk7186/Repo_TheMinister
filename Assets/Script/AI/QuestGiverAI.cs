@@ -8,6 +8,8 @@ using System;
 public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
 {
     public string QuestID;
+    public string QuestChainName = string.Empty;
+    public int QuestChainOrder = 0;
     public Vector2 position;
     public bool front;
     public bool right;

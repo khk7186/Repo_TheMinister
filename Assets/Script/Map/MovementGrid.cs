@@ -76,7 +76,6 @@ public class MovementGrid : MonoBehaviour
             new Vector3Int(102,59,0),
             new Vector3Int(97,59,0),
             new Vector3Int(94,56,0),
-
         };
     public static List<Vector3Int> EnemyInnerMovementBlocks = new List<Vector3Int>()
         {

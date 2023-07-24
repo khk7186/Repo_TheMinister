@@ -22,5 +22,9 @@ public class ItemRequstAction : MonoBehaviour
             inventory.RemoveItem();
             questActive.Invoke();
         }
+        else
+        {
+            DialogueLua.SetVariable("noItem", "true");
+        }
     }
 }
