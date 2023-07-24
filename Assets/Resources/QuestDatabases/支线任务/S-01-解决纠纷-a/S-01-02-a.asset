@@ -38,7 +38,7 @@ MonoBehaviour:
   - id: 1
     fields:
     - title: Name
-      value: Player
+      value: "\u674E\u8881\u964C"
       type: 0
       typeString: 
     - title: Pictures
@@ -53,14 +53,14 @@ MonoBehaviour:
       value: True
       type: 2
       typeString: CustomFieldType_Boolean
-    portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    portrait: {fileID: 2800000, guid: 28550c0fa213cdc418fc41e2a175e53f, type: 3}
+    spritePortrait: {fileID: 21300000, guid: 28550c0fa213cdc418fc41e2a175e53f, type: 3}
     alternatePortraits: []
     spritePortraits: []
   - id: 2
     fields:
     - title: Name
-      value: NPC
+      value: "\u738B\u4F1F"
       type: 0
       typeString: 
     - title: Pictures
@@ -75,8 +75,8 @@ MonoBehaviour:
       value: False
       type: 2
       typeString: CustomFieldType_Boolean
-    portrait: {fileID: 0}
-    spritePortrait: {fileID: 0}
+    portrait: {fileID: 2800000, guid: 712ae0657b7a7884181e3c5b741f5622, type: 3}
+    spritePortrait: {fileID: 21300000, guid: 712ae0657b7a7884181e3c5b741f5622, type: 3}
     alternatePortraits: []
     spritePortraits: []
   items: []
@@ -85,13 +85,13 @@ MonoBehaviour:
   - id: 1
     fields:
     - title: Name
-      value: Alert
+      value: Assign
       type: 0
       typeString: 
     - title: Initial Value
-      value: 
-      type: 0
-      typeString: CustomFieldType_Text
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
     - title: Description
       value: 
       type: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   - id: 1
     fields:
     - title: Title
-      value: New Conversation 1
+      value: dialogueTriggerUncollected
       type: 0
       typeString: 
     - title: Description
@@ -287,6 +287,18 @@ MonoBehaviour:
         value: 
         type: 0
         typeString: 
+      - title: en
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: zh
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: ja
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
       conversationID: 1
       isRoot: 0
       isGroup: 0
@@ -302,12 +314,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 'Variable["startAssign"] = true;
-
-        Variable["tryAssign"]
-        = false;
-
-        Variable["canAssign"] = false'
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -362,12 +369,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 'Variable["startAssign"] = false;
-
-        Variable["tryAssign"]
-        = false;
-
-        Variable["canAssign"] = false'
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -414,7 +416,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 4
+        destinationConversationID: 1
+        destinationDialogueID: 6
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: 
       onExecute:
@@ -463,7 +471,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 5
+        destinationConversationID: 1
+        destinationDialogueID: 7
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: 
       onExecute:
@@ -475,13 +489,147 @@ MonoBehaviour:
         y: 489
         width: 160
         height: 30
+    - id: 6
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: "\u5C0F\u4E8B\u4E00\u6869"
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: en
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: zh
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: ja
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: Variable["Assign"] = true;
+      onExecute:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 6314716713428874753, guid: c967a16d6749016439bd3a71a7cc9484, type: 3}
+            m_TargetAssemblyTypeName: GiveQuestOnActive, Assembly-CSharp
+            m_MethodName: Start
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      canvasRect:
+        serializedVersion: 2
+        x: 20.196716
+        y: 697.295
+        width: 160
+        height: 30
+    - id: 7
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: "\u518D\u89C1"
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: en
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: zh
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: ja
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 244.39343
+        y: 606.2131
+        width: 160
+        height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 10.639337, y: 10.264709}
-    canvasZoom: 0.9100001
+    canvasScrollPosition: {x: 0, y: 0}
+    canvasZoom: 0.6100004
   - id: 2
     fields:
     - title: Title
-      value: Assign
+      value: dialogueTriggercollected
       type: 0
       typeString: 
     - title: Description
@@ -612,7 +760,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\u6B63\u5728\u89E3\u51B3\u95EE\u9898"
+        value: "\u7EA0\u7EB7\u5DF2\u7ECF\u89E3\u51B3\u4E86 \u611F\u8C22\u5927\u4EBA"
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -653,7 +801,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 47
-        y: 113
+        y: 112
         width: 160
         height: 30
     - id: 2
@@ -679,7 +827,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\u7EE7\u7EED\u5427"
+        value: "\u6CA1\u95EE\u9898"
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence

@@ -85,35 +85,7 @@ MonoBehaviour:
   - id: 1
     fields:
     - title: Name
-      value: canAssign
-      type: 0
-      typeString: 
-    - title: Initial Value
-      value: True
-      type: 2
-      typeString: CustomFieldType_Boolean
-    - title: Description
-      value: 
-      type: 0
-      typeString: 
-  - id: 2
-    fields:
-    - title: Name
-      value: startAssign
-      type: 0
-      typeString: 
-    - title: Initial Value
-      value: False
-      type: 2
-      typeString: CustomFieldType_Boolean
-    - title: Description
-      value: 
-      type: 0
-      typeString: 
-  - id: 3
-    fields:
-    - title: Name
-      value: tryAssign
+      value: Assign
       type: 0
       typeString: 
     - title: Initial Value
@@ -128,7 +100,7 @@ MonoBehaviour:
   - id: 1
     fields:
     - title: Title
-      value: New Conversation 1
+      value: dialogueTriggerUncollected
       type: 0
       typeString: 
     - title: Description
@@ -342,12 +314,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 'Variable["startAssign"] = true;
-
-        Variable["tryAssign"]
-        = false;
-
-        Variable["canAssign"] = false'
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -414,12 +381,7 @@ MonoBehaviour:
         isConnector: 0
         priority: 2
       conditionsString: 
-      userScript: 'Variable["startAssign"] = false;
-
-        Variable["tryAssign"]
-        = false;
-
-        Variable["canAssign"] = false'
+      userScript: 
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -478,7 +440,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 4
+        destinationConversationID: 1
+        destinationDialogueID: 6
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: 
       onExecute:
@@ -539,7 +507,13 @@ MonoBehaviour:
       delaySimStatus: 0
       falseConditionAction: Block
       conditionPriority: 2
-      outgoingLinks: []
+      outgoingLinks:
+      - originConversationID: 1
+        originDialogueID: 5
+        destinationConversationID: 1
+        destinationDialogueID: 7
+        isConnector: 0
+        priority: 2
       conditionsString: 
       userScript: 
       onExecute:
@@ -551,13 +525,147 @@ MonoBehaviour:
         y: 434
         width: 160
         height: 30
+    - id: 6
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: "\u6B63\u5728\u505A"
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: en
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: zh
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: ja
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: Variable["Assign"] = true;
+      onExecute:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 6314716713428874753, guid: 76306f881ad56da438e639bb33072638, type: 3}
+            m_TargetAssemblyTypeName: GiveQuestOnActive, Assembly-CSharp
+            m_MethodName: Start
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+      canvasRect:
+        serializedVersion: 2
+        x: 36.12658
+        y: 537.69617
+        width: 160
+        height: 30
+    - id: 7
+      fields:
+      - title: Title
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Description
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Actor
+        value: 1
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Conversant
+        value: 2
+        type: 5
+        typeString: CustomFieldType_Actor
+      - title: Menu Text
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Dialogue Text
+        value: "\u8D70\u4E86"
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: Sequence
+        value: 
+        type: 0
+        typeString: CustomFieldType_Text
+      - title: en
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: zh
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      - title: ja
+        value: 
+        type: 4
+        typeString: CustomFieldType_Localization
+      conversationID: 1
+      isRoot: 0
+      isGroup: 0
+      nodeColor: 
+      delaySimStatus: 0
+      falseConditionAction: Block
+      conditionPriority: 2
+      outgoingLinks: []
+      conditionsString: 
+      userScript: 
+      onExecute:
+        m_PersistentCalls:
+          m_Calls: []
+      canvasRect:
+        serializedVersion: 2
+        x: 236.17722
+        y: 544.75946
+        width: 160
+        height: 30
     entryGroups: []
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 1
+    canvasZoom: 0.7900002
   - id: 2
     fields:
     - title: Title
-      value: Assign
+      value: dialogueTriggercollected
       type: 0
       typeString: 
     - title: Description
@@ -688,7 +796,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\u5927\u4EBA\u8FD8\u5728 \u5BFB\u627E\u6728\u6750\u5417"
+        value: "\u8FD0\u8F93\u9053\u8DEF\u5DF2\u7ECF\u7545\u901A\u4E86 \u5927\u4EBA\u505A\u5F97\u597D"
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -755,7 +863,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\u9759\u5019\u4F73\u97F3\u5373\u53EF"
+        value: "\u5DE5\u4F5C\u5B8C\u6210\u4E86"
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
