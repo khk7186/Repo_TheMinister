@@ -151,9 +151,6 @@ public class Dice : MonoBehaviour, IDiceSubject
             if (go != null)
                 AllgoName += $"{index}. {go.name}\n";
         }
-        //Debug.Log(AllgoName);
-
-        //PathManager.Instance?.Reset();
         foreach (var observer in Observers.ToList())
         {
             if (observer != null)
@@ -162,8 +159,6 @@ public class Dice : MonoBehaviour, IDiceSubject
             }
         }
     }
-
-
     public void CancelObserver(IDiceRollEvent observer)
     {
         if (Observers.Contains(observer))

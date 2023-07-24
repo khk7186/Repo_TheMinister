@@ -16,6 +16,18 @@ public class SOSubQuestDB : ScriptableObject
     {
         CURRENT = (QuestChainStateWrap)ORIGIN.Clone();
     }
+
+    public int CurrentQuestChainOrder(string questChainName)
+    {
+        foreach (QuestChainState chainState in CURRENT.questChainStates)
+        {
+            if (chainState.QuestChainName == questChainName)
+            {
+                return chainState.QuestChainOrder;
+            }
+        }
+        return 0;
+    }
 }
 [Serializable]
 public class QuestChainStateWrap : ICloneable

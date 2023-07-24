@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ChapterCounter : MonoBehaviour
 {
+    public static ChapterCounter Instance;
     public int Chapter
     {
         get
@@ -13,13 +14,25 @@ public class ChapterCounter : MonoBehaviour
         }
         set
         {
-            Chapter = value;
+            count = value;
             RegularQuestEventHandler.ChapterShiftMessage(value);
+            LastChapterAIExitGame();
         }
     }
-    public int count = 0;
-
-    public static ChapterCounter Instance;
+    private int count = 0;
+    private List<QuestGiverAI> InGameQuestAI = new List<QuestGiverAI>();
+    public static void AISignIn(QuestGiverAI questGiverAI)
+    {
+        ChapterCounter.Instance.InGameQuestAI.Add(questGiverAI);
+    }
+    public static void LastChapterAIExitGame()
+    {
+        foreach (QuestGiverAI ai in Instance.InGameQuestAI)
+        {
+            if (ai != null)
+                Destroy(ai.gameObject);
+        }
+    }
     public void Awake()
     {
         if (Instance == null)

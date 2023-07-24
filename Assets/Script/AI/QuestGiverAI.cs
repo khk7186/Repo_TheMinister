@@ -17,7 +17,6 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     public DialogueSystemTrigger _dialogueTriggerCollected;
     private void Awake()
     {
-        Dice.Instance.RegisterObserver(this);
         GetComponent<SideChanger>().changeSide(front, right);
         transform.position = position;
     }
@@ -36,6 +35,7 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
         if (DialogueLua.GetVariable("Assign").asBool == false)
         {
             _dialogueTriggerUncollected.OnUse();
+            StartCoroutine(DisappearAfterQuestSign());
         }
         else
         {
@@ -47,7 +47,7 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
         var DSC = FindObjectOfType<DialogueSystemController>();
         DSC.initialDatabase = Resources.Load<DialogueDatabase>($"Conversions/ÈÎÎñ");
         DSC.Awake();
-        GetComponentInChildren<QuestGiver>().StartDialogueWithPlayer();
+        StartConmunicate();
     }
     public string CorrectConversationBasedOnQuest()
     {
@@ -68,9 +68,9 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     private readonly int DISSAPEAR_TIME = 4;
     public IEnumerator DisappearAfterQuestSign()
     {
-        Func<bool> _notifyOnce = () => _counter > 0;
         Func<bool> _counterFinish = () => _counter >= DISSAPEAR_TIME;
-        yield return new WaitUntil(_notifyOnce);
+        Dice.Instance.RegisterObserver(this);
+        yield return new WaitUntil(_counterFinish);
         if (DialogueLua.GetVariable("Assign").asBool == false)
         {
         }
@@ -80,7 +80,6 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
         }
         else
         {
-            yield return new WaitUntil(_counterFinish);
             Destroy(gameObject);
         }
     }
