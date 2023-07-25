@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class QuestAIManager : MonoBehaviour
+public class QuestAIManager : MonoBehaviour, IDiceRollEvent
 {
     public static QuestAIManager Instance;
     public ChapterCounter chapterCounter => ChapterCounter.Instance;
@@ -17,6 +17,7 @@ public class QuestAIManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            Dice.Instance.RegisterObserver(this);
         }
         else
         {
@@ -34,12 +35,10 @@ public class QuestAIManager : MonoBehaviour
     public void QuestCountAdd()
     {
         inGameQuestCount++;
-        TryActiveNextQuest();
     }
     public void QuestCountMinus()
     {
         inGameQuestCount--;
-        TryActiveNextQuest();
     }
     public void QuestCountZero()
     {
@@ -85,5 +84,9 @@ public class QuestAIManager : MonoBehaviour
     public void Save()
     {
 
+    }
+    public void OnNotify(object value, NotificationType notificationType)
+    {
+        TryActiveNextQuest();
     }
 }

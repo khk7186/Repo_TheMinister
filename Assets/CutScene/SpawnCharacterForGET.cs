@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class SpawnCharacterForGET : MonoBehaviour
     {
         public string CharacterName;
         public CharacterArtCode ArtCode;
-        public List<Tag> Tags;
+        public List<string> TagNames;
     }
 
     public List<CharacterTemp> CharacterTemps;
@@ -22,7 +23,7 @@ public class SpawnCharacterForGET : MonoBehaviour
 
     public void OnEnable()
     {
-        if (SetOnEnable && CharacterTemps.Count>0)
+        if (SetOnEnable && CharacterTemps.Count > 0)
         {
             Set();
         }
@@ -32,11 +33,16 @@ public class SpawnCharacterForGET : MonoBehaviour
         foreach (var item in CharacterTemps)
         {
             List<Character> characters = new List<Character>();
+            List<Tag> tags = new List<Tag>();
+            foreach (var tagName in item.TagNames)
+            {
+                tags.Add((Tag)Enum.Parse(typeof(Tag), tagName));
+            }
             var character = new Character
             {
                 CharacterName = item.CharacterName,
                 characterArtCode = item.ArtCode,
-                tagList = item.Tags
+                tagList = tags
             };
             characters.Add(character);
             if (Host != null)
@@ -53,5 +59,5 @@ public class SpawnCharacterForGET : MonoBehaviour
             }
         }
     }
-    
+
 }

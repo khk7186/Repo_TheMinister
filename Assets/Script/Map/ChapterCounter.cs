@@ -21,7 +21,7 @@ public class ChapterCounter : MonoBehaviour
     }
     private int count = 0;
     private List<QuestGiverAI> InGameQuestAI = new List<QuestGiverAI>();
-    public static void AISignIn(QuestGiverAI questGiverAI)
+    public static void QuestAISignIn(QuestGiverAI questGiverAI)
     {
         ChapterCounter.Instance.InGameQuestAI.Add(questGiverAI);
     }

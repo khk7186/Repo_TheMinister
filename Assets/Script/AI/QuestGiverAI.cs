@@ -15,19 +15,23 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     public bool right;
     public DialogueSystemTrigger _dialogueTriggerUncollected;
     public DialogueSystemTrigger _dialogueTriggerCollected;
-    private void Awake()
+    protected void Awake()
     {
         GetComponent<SideChanger>().changeSide(front, right);
         transform.position = position;
     }
-    private int Chapter()
+    protected void Start()
+    {
+        ChapterCounter.QuestAISignIn(this);
+    }
+    protected int Chapter()
     {
         var charList = QuestID.ToCharArray();
         var targetString = new string(new char[] { charList[2], charList[3] });
         int output = int.Parse(targetString);
         return output;
     }
-    protected void StartConmunicate()
+    protected virtual void StartConmunicate()
     {
         var DSC = FindObjectOfType<DialogueSystemController>();
         DSC.initialDatabase = Resources.Load<DialogueDatabase>(CorrectConversationBasedOnQuest());
@@ -64,9 +68,9 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
         }
         return folderPath;
     }
-    private int _counter = 0;
-    private readonly int DISSAPEAR_TIME = 4;
-    public IEnumerator DisappearAfterQuestSign()
+    protected int _counter = 0;
+    protected readonly int DISSAPEAR_TIME = 4;
+    public virtual IEnumerator DisappearAfterQuestSign()
     {
         Func<bool> _counterFinish = () => _counter >= DISSAPEAR_TIME;
         Dice.Instance.RegisterObserver(this);
