@@ -9,6 +9,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     public static QuestAIManager Instance;
     public ChapterCounter chapterCounter => ChapterCounter.Instance;
     public SOSubQuestDB subQuestDB;
+    public string CurrentSave = string.Empty;
     public QUEST_GIVER_BY_ORDER CurrentQuestList => subQuestDB.QUEST_GIVER_BY_ORDER[chapterCounter.Chapter];
     public List<QuestGiverAI> InactiveQuestGivers;
     private int inGameQuestCount = 0;
@@ -25,7 +26,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         }
         if (subQuestDB != null)
         {
-            if (subQuestDB.CURRENT == null) subQuestDB.NewCurrent();
+            if (subQuestDB.CurrentSave != CurrentSave) subQuestDB.NewCurrent(CurrentSave);
             CloneList();
         }
     }

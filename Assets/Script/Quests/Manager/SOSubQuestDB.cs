@@ -11,10 +11,17 @@ public class SOSubQuestDB : ScriptableObject
     public List<QUEST_GIVER_BY_ORDER> QUEST_GIVER_BY_ORDER;
     public QuestChainStateWrap ORIGIN;
     public QuestChainStateWrap CURRENT;
+    public string CurrentSave = string.Empty;
 
-    public void NewCurrent()
+
+    public void NewCurrent(string currentSaveName)
     {
-        CURRENT = (QuestChainStateWrap)ORIGIN.Clone();
+        NewCurrent();
+        CurrentSave = currentSaveName;
+    }
+    protected void NewCurrent()
+    {
+        CURRENT = ORIGIN;
     }
 
     public int CurrentQuestChainOrder(string questChainName)
