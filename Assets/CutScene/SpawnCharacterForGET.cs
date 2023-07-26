@@ -13,7 +13,6 @@ public class SpawnCharacterForGET : MonoBehaviour
         public CharacterArtCode ArtCode;
         public List<string> TagNames;
     }
-
     public List<CharacterTemp> CharacterTemps;
     public Transform Host;
     public GeneralEventTrigger generalEventTrigger;

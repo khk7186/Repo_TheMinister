@@ -727,6 +727,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 0}
+  modelController: {fileID: 0}
   animator: {fileID: 4259714183110914990}
   AI: 1
   speed: 6
@@ -754,6 +755,7 @@ MonoBehaviour:
   isFront: 0
   CutScene: 1
   characterArtCode: 5
+  model: {fileID: 0}
 --- !u!210 &4259714183242729394
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -867,6 +869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flipOnEnable: 1
+  disableAfterFlip: 0
   flipMain: 1
   sideChanger: {fileID: 0}
   front: 0
@@ -884,6 +887,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flipOnEnable: 1
+  disableAfterFlip: 0
   flipMain: 0
   sideChanger: {fileID: 4259714183242729405}
   front: 1
@@ -1163,6 +1167,7 @@ GameObject:
   - component: {fileID: 4259714183508674784}
   - component: {fileID: 4259714183508674785}
   - component: {fileID: 4259714183508674796}
+  - component: {fileID: 7044474735713100185}
   m_Layer: 0
   m_Name: "\u6587\u6597"
   m_TagString: Untagged
@@ -1198,8 +1203,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleType: 2
   moneyRewards: 0
-  influenceRewards: 0
-  prestigeRewards: 0
+  pressureRewards: 0
+  moneyPunishment: -100
+  pressurePunishment: 10
   itemRewards: 
   playerCharacters: []
   enemyCharacters: []
@@ -1235,19 +1241,19 @@ MonoBehaviour:
   CharacterTemps:
   - CharacterName: "\u9C7C\u592B\u5B50"
     ArtCode: 3
-    Tags: 3f00000064000000140000006200000019000000
+    TagNames: []
   - CharacterName: "\u9CA4\u9C7C"
     ArtCode: 16
-    Tags: 6000000060000000600000006000000060000000
+    TagNames: []
   - CharacterName: "\u8349\u9C7C"
     ArtCode: 16
-    Tags: 7500000075000000750000007500000075000000
+    TagNames: []
   - CharacterName: "\u9CB6\u9C7C"
     ArtCode: 16
-    Tags: 1800000018000000180000001800000018000000
+    TagNames: []
   - CharacterName: "\u9CAB\u9C7C"
     ArtCode: 16
-    Tags: a7000000a7000000a7000000a7000000a7000000
+    TagNames: []
   Host: {fileID: 4259714183508674790}
   generalEventTrigger: {fileID: 4259714183508674797}
   SetOnEnable: 1
@@ -1268,19 +1274,19 @@ MonoBehaviour:
   CharacterTemps:
   - CharacterName: "\u5218\u76CA\u5584"
     ArtCode: 5
-    Tags: 2e00000030000000320000003100000044000000
+    TagNames: []
   - CharacterName: "\u6D77\u7A57"
     ArtCode: 1
-    Tags: 2e0000002e0000002b0000002b00000066000000
+    TagNames: []
   - CharacterName: "\u9A6C\u4E1C\u6765"
     ArtCode: 9
-    Tags: 2e000000780000007b000000790000007a000000
+    TagNames: []
   - CharacterName: "\u58A8\u5B88\u6587"
     ArtCode: 4
-    Tags: 2e0000002e0000002e0000002e0000002e000000
+    TagNames: []
   - CharacterName: "\u4E8C\u560E"
     ArtCode: 6
-    Tags: 2f00000046000000430000007500000094000000
+    TagNames: []
   Host: {fileID: 4259714183508674790}
   generalEventTrigger: {fileID: 4259714183508674797}
   SetOnEnable: 1
@@ -1301,19 +1307,19 @@ MonoBehaviour:
   CharacterTemps:
   - CharacterName: "\u4E91\u68A6"
     ArtCode: 12
-    Tags: 25000000300000006a00000041000000a5000000
+    TagNames: []
   - CharacterName: "\u5FB7\u5B89"
     ArtCode: 12
-    Tags: 2f000000a50000001d000000880000002e000000
+    TagNames: []
   - CharacterName: "\u5FB7\u6E05"
     ArtCode: 0
-    Tags: a50000002e000000c90000002a000000da000000
+    TagNames: []
   - CharacterName: "\u5FB7\u8FDC"
     ArtCode: 0
-    Tags: 1300000039000000a50000005c0000002d000000
+    TagNames: []
   - CharacterName: "\u5FB7\u9759"
     ArtCode: 0
-    Tags: f1000000e6000000e6000000e6000000e6000000
+    TagNames: []
   Host: {fileID: 4259714183508674790}
   generalEventTrigger: {fileID: 4259714183508674797}
   SetOnEnable: 1
@@ -1334,6 +1340,18 @@ MonoBehaviour:
   GETrigger: {fileID: 4259714183508674797}
   _objectsToActive:
   - {fileID: 4259714183216858595}
+--- !u!114 &7044474735713100185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4259714183508674791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce37ce89eea30d24b96fe054392dfdac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4259714183697154513
 GameObject:
   m_ObjectHideFlags: 0
@@ -1380,6 +1398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flipOnEnable: 1
+  disableAfterFlip: 0
   flipMain: 1
   sideChanger: {fileID: 0}
   front: 0
@@ -1397,6 +1416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flipOnEnable: 1
+  disableAfterFlip: 0
   flipMain: 0
   sideChanger: {fileID: 4259714183242729405}
   front: 0
@@ -1414,6 +1434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flipOnEnable: 0
+  disableAfterFlip: 0
   flipMain: 0
   sideChanger: {fileID: 4259714183993290675}
   front: 1
@@ -2090,6 +2111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character: {fileID: 0}
+  modelController: {fileID: 0}
   animator: {fileID: 4259714185006324476}
   AI: 1
   speed: 6
@@ -2117,6 +2139,7 @@ MonoBehaviour:
   isFront: 0
   CutScene: 1
   characterArtCode: 15
+  model: {fileID: 0}
 --- !u!210 &4259714183993290685
 SortingGroup:
   m_ObjectHideFlags: 0
@@ -2698,6 +2721,8 @@ MonoBehaviour:
   gameObjectsToSpawn:
   - {fileID: 788018517121047573, guid: fa8c0364a48d3aa4c89cbc096328ef31, type: 3}
   spawnPosition: {x: 0, y: 0, z: 0}
+  isUI: 0
+  holder: {fileID: 0}
   spawnOnEnable: 1
 --- !u!1 &4259714185006324477
 GameObject:

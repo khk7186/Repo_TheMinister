@@ -56,13 +56,15 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     public string CorrectConversationBasedOnQuest()
     {
         var folderName = FindQuestFolder(this.QuestID);
-        return $"{folderName}/对话{QuestID}";
+        var output = $"{folderName}/对话{QuestID}";
+        Debug.Log(output);
+        return output;
     }
     public static string FindQuestFolder(string questID)
     {
         if (questID == null) return null;
         string folderPath = string.Empty;
-        if (questID[0] == 'M' || questID[0] == 'm')
+        if (questID[0] == 'S' || questID[0] == 's')
         {
             folderPath = $"QuestDatabases/支线任务/{questID}";
         }

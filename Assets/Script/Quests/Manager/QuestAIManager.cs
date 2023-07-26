@@ -12,7 +12,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     public QUEST_GIVER_BY_ORDER CurrentQuestList => subQuestDB.QUEST_GIVER_BY_ORDER[chapterCounter.Chapter];
     public List<QuestGiverAI> InactiveQuestGivers;
     private int inGameQuestCount = 0;
-    private void Awake()
+    private void Start()
     {
         if (Instance == null)
         {
@@ -23,9 +23,6 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         {
             Destroy(this);
         }
-    }
-    private void Start()
-    {
         if (subQuestDB != null)
         {
             if (subQuestDB.CURRENT == null) subQuestDB.NewCurrent();
