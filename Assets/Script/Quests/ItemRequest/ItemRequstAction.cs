@@ -19,7 +19,7 @@ public class ItemRequstAction : MonoBehaviour
         var carryItem = inventory.CheckItem(item);
         if (carryItem)
         {
-            inventory.RemoveItem();
+            inventory.RemoveItem(item);
             questActive.Invoke();
         }
         else
