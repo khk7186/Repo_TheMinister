@@ -48,6 +48,10 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     }
     protected void OnMouseDown()
     {
+        if (IsPointerOver.IsPointerOverUIObject())
+        {
+            return;
+        }
         var DSC = FindObjectOfType<DialogueSystemController>();
         DSC.initialDatabase = Resources.Load<DialogueDatabase>($"Conversions/хннЯ");
         DSC.Awake();
