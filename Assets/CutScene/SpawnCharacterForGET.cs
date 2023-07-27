@@ -18,31 +18,30 @@ public class SpawnCharacterForGET : MonoBehaviour
     public GeneralEventTrigger generalEventTrigger;
     public bool SetOnEnable = false;
     public bool Debate = false;
-    public int Digit = 0;
 
     public void OnEnable()
     {
         if (SetOnEnable && CharacterTemps.Count > 0)
         {
             Set();
+            Debug.Log("set");
         }
     }
     public void Set()
     {
-        foreach (var item in CharacterTemps)
+        for (int i = 0; i < CharacterTemps.Count; i++)
         {
+            var item = CharacterTemps[i];
             List<Character> characters = new List<Character>();
             List<Tag> tags = new List<Tag>();
             foreach (var tagName in item.TagNames)
             {
                 tags.Add((Tag)Enum.Parse(typeof(Tag), tagName));
             }
-            var character = new Character
-            {
-                CharacterName = item.CharacterName,
-                characterArtCode = item.ArtCode,
-                tagList = tags
-            };
+            var character = new GameObject(item.CharacterName).AddComponent(typeof(Character)) as Character;
+            character.CharacterName = item.CharacterName;
+            character.characterArtCode = item.ArtCode;
+            character.tagList = tags;
             characters.Add(character);
             if (Host != null)
             {

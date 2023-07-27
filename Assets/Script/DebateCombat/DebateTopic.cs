@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,7 @@ public enum DebateTopicCode
     ±ßÈû¾üÂÃ,
     ½è¹Å·í½ñ
 }
+[Serializable]
 public class DebateTopic
 {
     public static Dictionary<DebateTopicCode, ArrayList> TopicCodeDict =
@@ -85,4 +87,4 @@ public class DebateTopic
     //    }
     //    return total;
     //}
-}   
+}

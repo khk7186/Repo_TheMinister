@@ -25,6 +25,7 @@ public class GeneralEventTrigger : MonoBehaviour
     private int scene = 1;
     public List<Character> LostCharacters = new List<Character>();
     public EndGamePannel endGamePannel;
+    public EventAfterCombatBasedOnResult EventAC;
     private void Awake()
     {
         var pannelPath = "CombatScene/VictoryUI";
@@ -40,6 +41,7 @@ public class GeneralEventTrigger : MonoBehaviour
                 scene = 2;
                 break;
             case BattleType.Debate:
+                Debug.Log(enemyCharactersCardsList.Count);
                 playerCharacters = SelectOnDuty.GetOndutyAll(OndutyType.Debate);
                 scene = 3;
                 break;
@@ -103,6 +105,7 @@ public class GeneralEventTrigger : MonoBehaviour
         SceneManager.LoadScene(scene);
         yield return WaitUntilSceneLoad.WaitUntilScene(scene);
         animation.Open();
+        //AfterEvent
         if (scene == 1)
         {
             while (SceneManager.GetActiveScene().buildIndex != 1)
@@ -110,6 +113,15 @@ public class GeneralEventTrigger : MonoBehaviour
                 yield return null;
             }
             Debug.Log("Game Over");
+            //Extra Event After Combat
+            if (EventAC == null)
+                TryGetComponent(out EventAC);
+            if (EventAC != null)
+            {
+                EventAC.trigger = this;
+                EventAC.RunEventBasedOnResult();
+            }
+            //resultPanel
             Transform canvas = MainCanvas.FindMainCanvas();
             if (canvas != null)
             {
