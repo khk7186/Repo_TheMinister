@@ -7,7 +7,6 @@ using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCou
 
 public class DebateTriggerAI : QuestGiverAI
 {
-
     protected override void StartConmunicate()
     {
         var DSC = FindObjectOfType<DialogueSystemController>();
