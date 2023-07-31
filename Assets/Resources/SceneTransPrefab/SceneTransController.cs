@@ -14,6 +14,7 @@ public class SceneTransController : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         yield return new WaitUntil(() => transition.GetCurrentAnimatorStateInfo(0).IsName("NoAction"));
         yield return new WaitForSeconds(0.2f);
+        Debug.Log("Destroy");
         Destroy(GetComponentInParent<Canvas>().gameObject);
     }
     public void Open()
