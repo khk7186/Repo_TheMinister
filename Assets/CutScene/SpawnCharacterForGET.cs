@@ -29,10 +29,10 @@ public class SpawnCharacterForGET : MonoBehaviour
     }
     public void Set()
     {
+        List<Character> characters = new List<Character>();
         for (int i = 0; i < CharacterTemps.Count; i++)
         {
             var item = CharacterTemps[i];
-            List<Character> characters = new List<Character>();
             List<Tag> tags = new List<Tag>();
             foreach (var tagName in item.TagNames)
             {
@@ -51,10 +51,10 @@ public class SpawnCharacterForGET : MonoBehaviour
             {
                 character.transform.parent = generalEventTrigger.transform;
             }
-            if (Debate)
-            {
-                generalEventTrigger.enemyCharactersCardsList.Add(characters.ToArray());
-            }
+        }
+        if (Debate)
+        {
+            generalEventTrigger.enemyCharactersCardsList.Add(characters.ToArray());
         }
     }
 
