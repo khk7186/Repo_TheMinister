@@ -122,7 +122,8 @@ public class GeneralEventTrigger : MonoBehaviour
                 EventAC.RunEventBasedOnResult();
             }
             //resultPanel
-            Transform canvas = GameObject.FindGameObjectWithTag("MainUICanvas")?.transform;
+            FindObjectOfType<MainUI>(true).transform.parent.gameObject.SetActive(true);
+            Transform canvas = MainCanvas.FindMainCanvas();
             if (canvas != null)
             {
                 var pannel = Instantiate(endGamePannel, canvas);
