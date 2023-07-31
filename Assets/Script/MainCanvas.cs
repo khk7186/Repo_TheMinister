@@ -6,7 +6,8 @@ public class MainCanvas
 {
     public static Transform FindMainCanvas()
     {
-        return GameObject.FindGameObjectWithTag("MainUICanvas").transform;
+        var canvas = GameObject.FindGameObjectWithTag("MainUICanvas");
+        return canvas == null ? canvas.transform : null;
     }
 
 
