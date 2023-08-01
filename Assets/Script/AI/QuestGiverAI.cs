@@ -15,6 +15,7 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     public bool right;
     public DialogueSystemTrigger _dialogueTriggerUncollected;
     public DialogueSystemTrigger _dialogueTriggerCollected;
+    public bool Assign = false;
     protected void Awake()
     {
         GetComponent<SideChanger>().changeSide(front, right);
@@ -31,18 +32,30 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
         int output = int.Parse(targetString);
         return output;
     }
+    public void AssignTrue()
+    {
+        Assign = true;
+    }
     protected virtual void StartConmunicate()
     {
         var DSC = FindObjectOfType<DialogueSystemController>();
         DSC.initialDatabase = Resources.Load<DialogueDatabase>(CorrectConversationBasedOnQuest());
         DSC.Awake();
-        if (DialogueLua.GetVariable("Assign").asBool == false)
+        if (!Assign)
         {
             _dialogueTriggerUncollected.OnUse();
             StartCoroutine(DisappearAfterQuestSign());
         }
         else
         {
+            GeneralEventTrigger GET = GetComponentInChildren<GeneralEventTrigger>();
+            if (GET != null)
+            {
+                if (GET.gameTracker.gameWin) DialogueLua.SetVariable("LostDebate", true);
+                else DialogueLua.SetVariable("WinDebate", true);
+            }
+
+            Debug.Log("Assigned");
             _dialogueTriggerCollected.OnUse();
         }
     }
