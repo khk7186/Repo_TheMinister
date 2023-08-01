@@ -642,7 +642,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trigger: 2
   condition:
-    luaConditions: []
+    luaConditions:
+    - Variable["WinDebate"] == true
+    - Variable["LostDebate"] == true
     questConditions: []
     acceptedTags: []
     acceptedGameObjects: []
@@ -812,6 +814,8 @@ MonoBehaviour:
   condition:
     luaConditions:
     - Variable["StartDebate"] == true
+    - Variable["WinDebate"] == false
+    - Variable["LostDebate"] == false
     questConditions: []
     acceptedTags: []
     acceptedGameObjects: []
@@ -842,7 +846,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: Uncollected
+  conversation: 
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
@@ -1167,18 +1171,6 @@ MonoBehaviour:
   WinEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1999842743591115453}
-        m_TargetAssemblyTypeName: ChangeQuestStageOnEnable, Assembly-CSharp
-        m_MethodName: ChangeStage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 4002541968392672290}
         m_TargetAssemblyTypeName: PixelCrushers.DialogueSystem.DialogueSystemTrigger,
           Assembly-CSharp-firstpass
@@ -1192,12 +1184,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  LostEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1179022641172959051}
-        m_TargetAssemblyTypeName: ChangeQuestStageOnEnable, Assembly-CSharp
-        m_MethodName: ChangeStage
+      - m_Target: {fileID: 5198907391399748151, guid: e93a3dc72ceb1484ca609dd86b805b8a, type: 3}
+        m_TargetAssemblyTypeName: GiveQuestOnActive, Assembly-CSharp
+        m_MethodName: Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1207,6 +1196,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  LostEvent:
+    m_PersistentCalls:
+      m_Calls:
       - m_Target: {fileID: 6115847227582302510}
         m_TargetAssemblyTypeName: PixelCrushers.DialogueSystem.DialogueSystemTrigger,
           Assembly-CSharp-firstpass
@@ -1297,7 +1289,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: 
+  conversation: DebateEnd
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
@@ -1335,7 +1327,7 @@ MonoBehaviour:
   changeQuestStructs:
   - QuestID: "S-01-\u4E0E\u5B59\u4F0F\u4E4B\u8FA9-d"
     questNode: Failure
-    questNodeState: 2
+    questNodeState: 1
 --- !u!1 &4981306858229791325
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,7 +1610,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: 
+  conversation: DebateEnd
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
@@ -1656,4 +1648,4 @@ MonoBehaviour:
   changeQuestStructs:
   - QuestID: "S-01-\u4E0E\u5B59\u4F0F\u4E4B\u8FA9-d"
     questNode: Reward
-    questNodeState: 2
+    questNodeState: 1
