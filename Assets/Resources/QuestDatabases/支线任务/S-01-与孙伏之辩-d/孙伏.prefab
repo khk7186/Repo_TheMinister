@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 656854644282230625}
   - component: {fileID: 656854644282230624}
   - component: {fileID: 656854644282230631}
-  - component: {fileID: 27714924351254137}
   - component: {fileID: 656854644282230630}
   m_Layer: 0
   m_Name: "\u6587\u6597trigger"
@@ -95,7 +94,7 @@ MonoBehaviour:
     - "\u8FD1\u89C6"
     - "\u516D\u6839\u4E0D\u51C0"
     - "\u591A\u52A8\u75C7"
-    - "\u4E94\u5473\u6742\u6210"
+    - "\u4E94\u5473\u6742\u9648"
   - CharacterName: "\u5510\u6708"
     ArtCode: 1
     TagNames:
@@ -116,26 +115,6 @@ MonoBehaviour:
   generalEventTrigger: {fileID: 656854644282230624}
   SetOnEnable: 1
   Debate: 1
---- !u!114 &27714924351254137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656854644282230629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2caaf9d07de1b3941bba43dd167b4b43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CharacterTemps:
-  - CharacterName: 
-    ArtCode: 0
-    TagNames: []
-  Host: {fileID: 3631973197943009650}
-  generalEventTrigger: {fileID: 656854644282230624}
-  SetOnEnable: 0
-  Debate: 0
 --- !u!114 &656854644282230630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,7 +604,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: 
+  conversation: Collected
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
@@ -793,7 +772,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: 
+  conversation: Uncollected
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
@@ -1147,7 +1126,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4981306858229791323}
-  - component: {fileID: 4981306858229791326}
   - component: {fileID: 4981306858229791322}
   - component: {fileID: 5135814733269613037}
   - component: {fileID: 2138228420194533998}
@@ -1155,6 +1133,8 @@ GameObject:
   - component: {fileID: 2728395394341696224}
   - component: {fileID: 4981306858229791321}
   - component: {fileID: 4981306858229791318}
+  - component: {fileID: 4258855410032422511}
+  - component: {fileID: 4477908584329362230}
   m_Layer: 0
   m_Name: "\u5B59\u4F0F"
   m_TagString: Untagged
@@ -1181,26 +1161,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4981306858229791326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4981306858229791325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfbd8ec1308ef4641b7321c79d823e54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  QuestID: 
-  QuestChainName: 
-  QuestChainOrder: 0
-  position: {x: 102, y: 48}
-  front: 1
-  right: 0
-  _dialogueTriggerUncollected: {fileID: 0}
-  _dialogueTriggerCollected: {fileID: 0}
 --- !u!70 &4981306858229791322
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1313,3 +1273,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
+--- !u!114 &4258855410032422511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4981306858229791325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d9dedad596e2dc45a02ecd50f5c5481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  QuestID: "S-01-\u4E0E\u5B59\u4F0F\u4E4B\u8FA9-d"
+  QuestChainName: 
+  QuestChainOrder: 0
+  position: {x: 0, y: 0}
+  front: 0
+  right: 0
+  _dialogueTriggerUncollected: {fileID: 3409824699012978957}
+  _dialogueTriggerCollected: {fileID: 3409824698870444293}
+--- !u!114 &4477908584329362230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4981306858229791325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce37ce89eea30d24b96fe054392dfdac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  topics:
+  - debateTopicCode: 5
+    rarerity: 0
+    tagRequest: 
+    characterValue: 
+    IsClose: 0
+  - debateTopicCode: 7
+    rarerity: 0
+    tagRequest: 
+    characterValue: 
+    IsClose: 0
+  - debateTopicCode: 3
+    rarerity: 0
+    tagRequest: 
+    characterValue: 
+    IsClose: 0
+  ManualSetup: 1
