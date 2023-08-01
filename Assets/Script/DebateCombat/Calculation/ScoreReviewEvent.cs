@@ -67,9 +67,19 @@ public class ScoreReviewEvent : MonoBehaviour
     {
         var allUnits = FindObjectsOfType<DebateUnit>();
         var GET = FindObjectOfType<GeneralEventTrigger>();
+        bool playerHaveTopScore = true;
+        int playerScore = allUnits.First(x => x.isPlayer).Points;
+        foreach (var unit in allUnits)
+        {
+            if (unit.Points > playerScore)
+            {
+                playerHaveTopScore = false;
+                break;
+            }
+        }
         if (FindObjectOfType<DebateMainEventManager>().topicPool.Count == 0)
         {
-            GET.TriggerEnd(1);
+            GET.TriggerEnd(playerHaveTopScore ? 1 : -1);
         }
         foreach (var unit in allUnits)
         {
@@ -77,8 +87,7 @@ public class ScoreReviewEvent : MonoBehaviour
             {
                 if (unit.index == 0)
                 {
-                    int result = loseOrder.Count > 0 ? 1 : -1;
-                    GET.TriggerEnd(result);
+                    GET.TriggerEnd(playerHaveTopScore ? 1 : -1);
                     return;
                 }
                 else
@@ -91,8 +100,7 @@ public class ScoreReviewEvent : MonoBehaviour
             }
             if (loseOrder.Count >= allUnits.Length - 1)
             {
-                int result = loseOrder.Count > 0 ? 1 : -1;
-                GET.TriggerEnd(result);
+                GET.TriggerEnd(playerHaveTopScore ? 1 : -1);
             }
         }
     }
