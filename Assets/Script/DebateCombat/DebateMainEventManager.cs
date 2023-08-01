@@ -45,6 +45,13 @@ public class DebateMainEventManager : MonoBehaviour
         //Debug.Log(currentTopic);
         topicPool.RemoveAt(0);
         FindObjectOfType<TopicUI>().StartNewTopic(currentTopic);
+        foreach (DebateCharacterCard card in InGameDebateUnits[0].characterCards)
+        {
+            if (card.CardUI.OnSelect)
+            {
+                card.CardUI.UnSelectCharacter();
+            }
+        }
     }
     public void SetGameUnits()
     {
