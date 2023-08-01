@@ -80,6 +80,7 @@ public class ScoreReviewEvent : MonoBehaviour
         if (FindObjectOfType<DebateMainEventManager>().topicPool.Count == 0)
         {
             GET.TriggerEnd(playerHaveTopScore ? 1 : -1);
+            return;
         }
         foreach (var unit in allUnits)
         {
