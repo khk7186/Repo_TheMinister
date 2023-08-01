@@ -86,7 +86,6 @@ public class DebateMainEventManager : MonoBehaviour
             var selectedCharacterCards = DebateAI.MakeDecision(unit, currentTopic);
             var selectedCharacter = new Character[selectedCharacterCards.Count];
             int count = 0;
-            Debug.Log("Count: " + i);
             foreach (var card in selectedCharacterCards)
             {
                 selectedCharacter[count] = card.character;

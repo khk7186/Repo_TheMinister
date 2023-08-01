@@ -42,7 +42,7 @@ public class LightController : MonoBehaviour, IDiceRollEvent
     private void OnEnable()
     {
         if (map != null)
-            ChangeLight(Map.Instance.DayTime);
+            ConstantLight(Map.Instance.DayTime);
         if (Instance != this) { Instance = this; }
         else { Destroy(gameObject); }
         DontDestroyOnLoad(gameObject);
@@ -60,7 +60,7 @@ public class LightController : MonoBehaviour, IDiceRollEvent
         else
         {
             Wrapper.SetActive(true);
-            ConstantLight(map.DayTime);
+            ConstantLight(Map.Instance.DayTime);
         }
     }
 
@@ -108,16 +108,22 @@ public class LightController : MonoBehaviour, IDiceRollEvent
                 Day_Evening.gameObject.SetActive(true);
                 Evening_Night.gameObject.SetActive(false);
                 Night.gameObject.SetActive(false);
+                Day.gameObject.SetActive(false);
+                Evening.gameObject.SetActive(false);
                 break;
             case 1:
                 Night_Day.gameObject.SetActive(false);
                 Evening_Night.gameObject.SetActive(true);
                 Day.gameObject.SetActive(false);
+                Night.gameObject.SetActive(false);
+                Evening.gameObject.SetActive(false);
                 break;
             case 2:
                 Night_Day.gameObject.SetActive(true);
                 Day_Evening.gameObject.SetActive(false);
                 Evening.gameObject.SetActive(false);
+                Day.gameObject.SetActive(false);
+                Night.gameObject.SetActive(false);
                 break;
         }
     }
