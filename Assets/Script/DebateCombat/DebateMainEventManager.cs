@@ -103,7 +103,6 @@ public class DebateMainEventManager : MonoBehaviour
         //Debug.Log("total ch:" + characters.Count);
         ScoreReviewEvent.NewReview(characters, currentTopic, idleImages);
     }
-
 }
 
 

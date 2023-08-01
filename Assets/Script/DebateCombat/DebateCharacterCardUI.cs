@@ -102,12 +102,18 @@ public class DebateCharacterCardUI : MonoBehaviour, IPointerClickHandler
         OnSelect = true;
         StartCoroutine(SelectAnimation());
         changeMaterial?.Change(topRarerity.ToString(), cardBackAsset);
+        FindObjectOfType<DebateConfirm>(true).gameObject.SetActive(true);
     }
     public void UnSelectCharacter()
     {
         OnSelect = false;
         StartCoroutine(UnSelectAnimation());
         changeMaterial?.UnChange(cardBackAsset);
+        foreach (DebateCharacterCard card in unit.characterCards)
+        {
+            if (card.CardUI.OnSelect) return;
+        }
+        FindObjectOfType<DebateConfirm>()?.gameObject.SetActive(false);
     }
     public IEnumerator SelectAnimation()
     {
