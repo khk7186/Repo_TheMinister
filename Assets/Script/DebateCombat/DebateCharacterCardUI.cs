@@ -25,10 +25,12 @@ public class DebateCharacterCardUI : MonoBehaviour, IPointerClickHandler
     public bool OnSelect = false;
     public Character character => card.character;
     public DebateUnit unit => card.unit;
+    Rarerity topRarerity;
     public bool Acvite => unit.isActive;
     public float selectAnimationSpeed = 0.1f;
     public float selectAnimationRange = 10f;
     public Vector3 mainPannelOrigin;
+    ChangeMaterial changeMaterial => GetComponent<ChangeMaterial>();
     public void Setup(DebateCharacterCard card = null)
     {
         if (card != null)
@@ -71,7 +73,7 @@ public class DebateCharacterCardUI : MonoBehaviour, IPointerClickHandler
     }
     public void ModifyCardFrame()
     {
-        Rarerity topRarerity = Rarerity.N;
+        topRarerity = Rarerity.N;
         var targetDict = character.characterValueRareDict;
         foreach (CharacterValueType type in targetDict.Keys)
         {
@@ -99,13 +101,13 @@ public class DebateCharacterCardUI : MonoBehaviour, IPointerClickHandler
     {
         OnSelect = true;
         StartCoroutine(SelectAnimation());
-
+        changeMaterial?.Change(topRarerity.ToString(), cardBackAsset);
     }
     public void UnSelectCharacter()
     {
         OnSelect = false;
         StartCoroutine(UnSelectAnimation());
-
+        changeMaterial?.UnChange(cardBackAsset);
     }
     public IEnumerator SelectAnimation()
     {
