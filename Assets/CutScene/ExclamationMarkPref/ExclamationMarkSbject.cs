@@ -12,6 +12,7 @@ public class ExclamationMarkSbject : MonoBehaviour
     public AnimationCurve hideCurveY;
     public Transform Red;
     public Transform Yellow;
+    public bool LoopAnimation = false;
     public Vector2 startSize = new Vector2(0f, 0f);
     public Vector2 targetSize = new Vector2(0.7f, 0.7f);
     public float duration = 0.5f;
@@ -47,6 +48,10 @@ public class ExclamationMarkSbject : MonoBehaviour
                 {
                     Destroy(gameObject);
                 }
+                if (LoopAnimation)
+                {
+                    StartCoroutine(WaitToShow());
+                }
             }
         );
     }
@@ -54,5 +59,10 @@ public class ExclamationMarkSbject : MonoBehaviour
     {
         yield return new WaitForSeconds(wait);
         Hide();
+    }
+    public IEnumerator WaitToShow()
+    {
+        yield return new WaitForSeconds(wait);
+        Show();
     }
 }
