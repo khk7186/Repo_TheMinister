@@ -43,6 +43,7 @@ public class MiniMapManager : MonoBehaviour, IDiceRollEvent
     }
     private void OnEnable()
     {
+        FindCurrentBlock();
         playerRect.position = blocks[currentBlock].position;
     }
     public void OnNotify(object value, NotificationType notificationType)
