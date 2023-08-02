@@ -79,7 +79,8 @@ public class ScoreReviewEvent : MonoBehaviour
         }
         if (FindObjectOfType<DebateMainEventManager>().topicPool.Count == 0)
         {
-            GET.TriggerEnd(playerHaveTopScore ? 1 : -1);
+            var endCtrl = FindObjectOfType<CombatEndingAnimationController>();
+            if (playerHaveTopScore) endCtrl.Win(); else endCtrl.Lose();
             return;
         }
         foreach (var unit in allUnits)
@@ -88,7 +89,8 @@ public class ScoreReviewEvent : MonoBehaviour
             {
                 if (unit.index == 0)
                 {
-                    GET.TriggerEnd(playerHaveTopScore ? 1 : -1);
+                    var endCtrl = FindObjectOfType<CombatEndingAnimationController>();
+                    if (playerHaveTopScore) endCtrl.Win(); else endCtrl.Lose();
                     return;
                 }
                 else
@@ -101,7 +103,8 @@ public class ScoreReviewEvent : MonoBehaviour
             }
             if (loseOrder.Count >= allUnits.Length - 1)
             {
-                GET.TriggerEnd(playerHaveTopScore ? 1 : -1);
+                var endCtrl = FindObjectOfType<CombatEndingAnimationController>();
+                if (playerHaveTopScore) endCtrl.Win(); else endCtrl.Lose();
             }
         }
     }
