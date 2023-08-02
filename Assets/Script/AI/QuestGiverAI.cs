@@ -25,6 +25,13 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     {
         ChapterCounter.QuestAISignIn(this);
     }
+    private void OnEnable()
+    {
+        if (Assign == false)
+        {
+            GetComponentInChildren<ExclamationMarkBuilder>().gameObject.SetActive(true);
+        }
+    }
     protected int Chapter()
     {
         var charList = QuestID.ToCharArray();
@@ -35,6 +42,13 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     public void AssignTrue()
     {
         Assign = true;
+        GetComponentInChildren<ExclamationMarkBuilder>().gameObject.SetActive(false);
+        var indicators = GetComponentsInChildren<ExclamationMarkSbject>();
+        foreach (var indicator in indicators)
+        {
+            indicator.gameObject.SetActive(false);
+        }
+        StartCoroutine(DisappearAfterQuestSign());
     }
     protected virtual void StartConmunicate()
     {
@@ -44,7 +58,6 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
         if (!Assign)
         {
             _dialogueTriggerUncollected.OnUse();
-            StartCoroutine(DisappearAfterQuestSign());
         }
         else
         {
