@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 36357328868516241}
   - component: {fileID: 36357328868516254}
   m_Layer: 0
-  m_Name: "\u738B\u4F1F"
+  m_Name: "\u6D1B\u98CE\u4E91"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,14 +54,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9dedad596e2dc45a02ecd50f5c5481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuestID: "S-01-\u65AD\u6897\u6D6E\u840D-a"
+  QuestID: "S-02-\u753B\u5C55-a"
   QuestChainName: "\u5F02\u65C5\u4ED6\u4E61"
   QuestChainOrder: 0
-  position: {x: 28, y: 92}
+  position: {x: 91, y: 56}
   front: 1
   right: 0
   _dialogueTriggerUncollected: {fileID: 7706260950033482437}
   _dialogueTriggerCollected: {fileID: 7706260949890951885}
+  Assign: 0
 --- !u!70 &36357328868516242
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -97,7 +98,7 @@ MonoBehaviour:
   isRight: 0
   isFront: 0
   CutScene: 1
-  characterArtCode: 14
+  characterArtCode: 11
   model: {fileID: 36357328868516241}
 --- !u!114 &6344588452417722790
 MonoBehaviour:
@@ -268,7 +269,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4c0acde92500ab34e93f841d49618283, type: 2}
+  - {fileID: 2100000, guid: 23f1db80693869e49b6c0dab90499546, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -300,7 +301,7 @@ Animator:
   m_GameObject: {fileID: 7706260949660947013}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a1fc01e55aa00824cb6dc13d04c7e3b2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 34959af91b4e24046b27eb693d561c5e, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -321,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9db98c60740638449864eb028fbe7ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 0588566bd17f8fe4ab6d7f0cb755433a, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: b6946823b314ef142a8d63f26f96eeaa, type: 2}
   initialSkinName: face-normal expression
   fixPrefabOverrideViaMeshFilter: 0
   initialFlipX: 0
@@ -401,7 +402,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1f1e7a84c3e1c2942ade83e2dafdbabb, type: 2}
+  - {fileID: 2100000, guid: 73f5f5be938780f4a9510d12bc2b38aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -445,8 +446,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   referenceRenderer: {fileID: 7706260949660947010}
   replacementMaterials:
-  - originalMaterial: {fileID: 2100000, guid: 4c0acde92500ab34e93f841d49618283, type: 2}
-    replacementMaterial: {fileID: 2100000, guid: 1f1e7a84c3e1c2942ade83e2dafdbabb, type: 2}
+  - originalMaterial: {fileID: 2100000, guid: 23f1db80693869e49b6c0dab90499546, type: 2}
+    replacementMaterial: {fileID: 2100000, guid: 73f5f5be938780f4a9510d12bc2b38aa, type: 2}
 --- !u!1 &7706260949890951884
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,6 +557,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7706260950033482436}
   - component: {fileID: 7706260950033482437}
+  - component: {fileID: 1343616363428015980}
   m_Layer: 0
   m_Name: uncollected
   m_TagString: Untagged
@@ -644,7 +646,88 @@ MonoBehaviour:
   useConversationTitlePicker: 1
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
-  selectedDatabase: {fileID: 11400000, guid: 232cb0d31a93d6a4aa9bf92aa2da7062, type: 2}
+  selectedDatabase: {fileID: 11400000, guid: 6ab336137f2e5db419e8b3d4743c199b, type: 2}
+--- !u!114 &1343616363428015980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7706260950033482439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: 2
+  condition:
+    luaConditions:
+    - Variable["Assign"] == true
+    questConditions: []
+    acceptedTags: []
+    acceptedGameObjects: []
+    luaWizardIndex: -1
+    lastEvaluationValue: 0
+  setQuestState: 1
+  questName: 
+  questState: 0
+  setQuestEntryState: 0
+  questEntryNumber: 1
+  questEntryState: 0
+  luaCode: 
+  sequence: 
+  sequenceSpeaker: {fileID: 0}
+  sequenceListener: {fileID: 0}
+  waitOneFrameOnStartOrEnable: 1
+  alertMessage: 
+  textTable: {fileID: 0}
+  alertDuration: 0
+  sendMessages: []
+  barkSource: 0
+  barkConversation: 
+  barkText: 
+  barkTextSequence: 
+  barker: {fileID: 0}
+  barkTarget: {fileID: 0}
+  barkOrder: 0
+  allowBarksDuringConversations: 0
+  skipBarkIfNoValidEntries: 0
+  cacheBarkLines: 0
+  conversation: 
+  conversationConversant: {fileID: 0}
+  conversationActor: {fileID: 0}
+  startConversationEntryID: -1
+  exclusive: 0
+  replace: 0
+  skipIfNoValidEntries: 0
+  stopConversationOnTriggerExit: 0
+  stopConversationIfTooFar: 0
+  maxConversationDistance: 5
+  monitorConversationDistanceFrequency: 1
+  showCursorDuringConversation: 0
+  pauseGameDuringConversation: 0
+  setActiveActions: []
+  setEnabledActions: []
+  setAnimatorStateActions: []
+  onExecute:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 36357328868516240}
+        m_TargetAssemblyTypeName: QuestGiverAI, Assembly-CSharp
+        m_MethodName: AssignTrue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  useConversationTitlePicker: 1
+  useBarkTitlePicker: 1
+  useQuestNamePicker: 1
+  selectedDatabase: {fileID: 11400000, guid: 6ab336137f2e5db419e8b3d4743c199b, type: 2}
 --- !u!1 &7706260950098442446
 GameObject:
   m_ObjectHideFlags: 0
@@ -707,7 +790,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 33eab9ab9dd3fd94e8b1806c7eb54d35, type: 2}
+  - {fileID: 2100000, guid: 312a7bcd1afcf7c4cb8769e4f91cb055, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -739,7 +822,7 @@ Animator:
   m_GameObject: {fileID: 7706260950098442446}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 431bc25d6978a304caf2f654b514425e, type: 2}
+  m_Controller: {fileID: 9100000, guid: fefb3daa21b6f4e488a6d261ed713024, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -760,7 +843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9db98c60740638449864eb028fbe7ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 5720cf08c8293774e82760f9a5f39e96, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: d56886faec845184e88fa97c5912ccc5, type: 2}
   initialSkinName: face-normal expression
   fixPrefabOverrideViaMeshFilter: 0
   initialFlipX: 0
@@ -840,7 +923,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 78fb058abf5f1704eaf0c7a06330ea48, type: 2}
+  - {fileID: 2100000, guid: eb6f51d383ca3994db2ab4d5b4a859f8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -884,8 +967,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   referenceRenderer: {fileID: 7706260950098442447}
   replacementMaterials:
-  - originalMaterial: {fileID: 2100000, guid: 33eab9ab9dd3fd94e8b1806c7eb54d35, type: 2}
-    replacementMaterial: {fileID: 2100000, guid: 78fb058abf5f1704eaf0c7a06330ea48, type: 2}
+  - originalMaterial: {fileID: 2100000, guid: 312a7bcd1afcf7c4cb8769e4f91cb055, type: 2}
+    replacementMaterial: {fileID: 2100000, guid: eb6f51d383ca3994db2ab4d5b4a859f8, type: 2}
 --- !u!1 &7706260950951579527
 GameObject:
   m_ObjectHideFlags: 0
