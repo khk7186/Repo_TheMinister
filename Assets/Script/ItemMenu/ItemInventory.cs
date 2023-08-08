@@ -21,10 +21,10 @@ public class ItemInventory : MonoBehaviour
         //    AddItem(item);
         //    AddItem(item);
         //}
-        //for (int i = 0; i < 100; i++)
-        //{
-        //    AddItem(ItemName.Îä¹Ù×´);
-        //}
+        for (int i = 0; i < 1; i++)
+        {
+            AddItem(ItemName.Îä¹Ù×´);
+        }
 
         //    AddItem(item);
         //    AddItem(item);

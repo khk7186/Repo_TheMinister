@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
 using System;
 
 public class PathPointHandler

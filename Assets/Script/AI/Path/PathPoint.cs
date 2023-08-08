@@ -1,11 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class PathPoint : MonoBehaviour

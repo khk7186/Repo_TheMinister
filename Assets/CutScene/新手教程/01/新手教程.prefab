@@ -3065,6 +3065,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a16e40d287c93745a48c643ad8f8d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LostAllyHolder: {fileID: 0}
+  LostEnemyHolder: {fileID: 0}
+  eGP_CharacterPrefab: {fileID: 0}
+  MoneyRewardText: {fileID: 0}
+  PressureRewardText: {fileID: 0}
+  ItemRewardHolder: {fileID: 0}
+  ItemUIPrefab: {fileID: 0}
+  WinSkin: {fileID: 0}
+  LostSkin: {fileID: 0}
 --- !u!114 &3185509081179364884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4892,10 +4901,13 @@ MonoBehaviour:
   pref: {fileID: 6052006852464220667}
   yChange: 5
   TargetCharacter: {fileID: 6712669021014132669}
+  waitTime: 0.4
+  duration: 0.1
   MainCharacter: 0
   Red: 1
   SpawnOnEnable: 1
   DestroyAfterUse: 1
+  Loop: 0
 --- !u!1 &6125283921863089956
 GameObject:
   m_ObjectHideFlags: 0
@@ -6770,14 +6782,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   battleType: 1
   moneyRewards: 100
-  influenceRewards: 1
-  prestigeRewards: 0
+  pressureRewards: 0
+  moneyPunishment: -100
+  pressurePunishment: 10
   itemRewards: d2000000
   playerCharacters: []
   enemyCharacters:
   - {fileID: 4317320659349160026}
   LostCharacters: []
   endGamePannel: {fileID: 1808533205442087187, guid: a2363c9350157ea4a89f6d51650f4998, type: 3}
+  EventAC: {fileID: 0}
 --- !u!1 &8115558393874513877
 GameObject:
   m_ObjectHideFlags: 0

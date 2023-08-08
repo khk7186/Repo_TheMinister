@@ -19,7 +19,7 @@ public class ChapterCounter : MonoBehaviour
             LastChapterAIExitGame();
         }
     }
-    private int count = 0;
+    public int count = 0;
     private List<QuestGiverAI> InGameQuestAI = new List<QuestGiverAI>();
     public static void QuestAISignIn(QuestGiverAI questGiverAI)
     {

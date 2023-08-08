@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static Spine.Unity.Editor.SpineEditorUtilities;
-using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class ItemUIwithNameCount : ItemUI
 {

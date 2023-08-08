@@ -4,11 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Spine.Unity;
-using UnityEngine.Tilemaps;
-using UnityEngine.EventSystems;
 using PixelCrushers.DialogueSystem;
-using UnityEditor.SearchService;
-using PixelCrushers.DialogueSystem.UnityGUI;
 
 public enum AIInteractType
 {
