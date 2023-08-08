@@ -82,4 +82,9 @@ public class MiniMapManager : MonoBehaviour, IDiceRollEvent
             yield return null;
         }
     }
+
+    public void OpenCloseEvent()
+    {
+        gameObject.SetActive(!gameObject.activeSelf);
+    }
 }
