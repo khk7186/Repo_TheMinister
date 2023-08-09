@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
     public SOAudio soAudio;
+    public AudioMixerGroup mixerGroup;
     public AudioSource[] CurrentPlay => transform.GetComponentsInChildren<AudioSource>();
 
     private void Awake()
@@ -20,6 +22,7 @@ public class AudioManager : MonoBehaviour
         audioSource.playOnAwake = false;
         audioSource.clip = clip;
         audioSource.loop = loop;
+        audioSource.outputAudioMixerGroup = mixerGroup;
         audioSource.Play();
         if (loop == false)
         {
@@ -29,7 +32,7 @@ public class AudioManager : MonoBehaviour
     }
     private IEnumerator DestroyAfterPlay(AudioSource audioSource)
     {
-        yield return new WaitUntil(()=> !audioSource.isPlaying);
+        yield return new WaitUntil(() => !audioSource.isPlaying);
         Destroy(audioSource.gameObject);
     }
     public static void Play(string Name, bool loop = false)
