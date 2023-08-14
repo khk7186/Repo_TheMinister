@@ -245,7 +245,7 @@ public enum ItemType
     ÆæÊÞ,
     ²ÄÁÏ
 }
-public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
+public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IDetailAble
 {
     public ItemName ItemName;
     public Image icon;
@@ -256,6 +256,8 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
     public bool CanClick = true;
     public Image Icon => icon;
     public bool InUse = true;
+
+
     public virtual void OnPointerClick(PointerEventData eventData)
     {
         AudioManager.Play("°´Å¥");
@@ -336,4 +338,23 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler
         }
     }
 
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        SetOffDetail();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        SetOnDetail(ItemName);
+    }
+
+    public void SetOnDetail(ItemName itemName)
+    {
+        ItemDetailUI.Show(itemName);
+    }
+
+    public void SetOffDetail()
+    {
+        ItemDetailUI.Hide();
+    }
 }

@@ -1841,7 +1841,4 @@ public class SOItem : ScriptableObject
         }
         return ItemType.服装;
     }
-
-
-
 }
