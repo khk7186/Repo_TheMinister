@@ -14,5 +14,6 @@ public struct DescriptionMenu
     public string name => Target;
     public string Target;
     public string Description;
+    public List<string> MultiLangDescription;
 }
 
