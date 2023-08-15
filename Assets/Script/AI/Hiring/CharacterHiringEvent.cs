@@ -761,6 +761,170 @@ public class CharacterHiringEvent : MonoBehaviour
                  }
             },
 };
+    private static Dictionary<Rarerity, Dictionary<ItemName, int>> TaijianRarityItemRequestDict
+= new Dictionary<Rarerity, Dictionary<ItemName, int>>
+{
+            {Rarerity.N,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.有破损的黄金,1}
+                 }
+            },
+            {
+             Rarerity.R,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.有破损的黄金,2},
+                    {ItemName.凉州马,1}
+                 }
+            } ,
+            {
+             Rarerity.SR,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.有破损的黄金,3},
+                    {ItemName.凉州马,2},
+                    {ItemName.丝绸,1},
+                    {ItemName.人参,1}
+                 }
+            },
+            {
+             Rarerity.SSR,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.有破损的黄金,4},
+                    {ItemName.凉州马,3},
+                    {ItemName.丝绸,2},
+                    {ItemName.人参,2},
+                    {ItemName.亮云白龙驹,1 },
+                    {ItemName.象虎,1},
+                 }
+            },
+            {
+             Rarerity.UR,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.有破损的黄金,5},
+                    {ItemName.凉州马,4},
+                    {ItemName.丝绸,3},
+                    {ItemName.人参,3},
+                    {ItemName.亮云白龙驹,2 },
+                    {ItemName.象虎,2},
+                    {ItemName.龙马,1},
+                    {ItemName.和氏璧,1}
+                 }
+            }
+
+
+};
+    private static Dictionary<Rarerity, Dictionary<ItemName, int>> DancerRarityItemRequestDict
+    = new Dictionary<Rarerity, Dictionary<ItemName, int>>
+    {
+            {Rarerity.N,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.唇纸,1}
+                 }
+            },
+            {
+             Rarerity.R,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.唇纸,2},
+                    {ItemName.胭脂,1}
+                 }
+            } ,
+            {
+             Rarerity.SR,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.唇纸,3},
+                    {ItemName.胭脂,2},
+                    {ItemName.朱砂脂,1},
+                    {ItemName.祖母绿,1}
+                 }
+            },
+            {
+             Rarerity.SSR,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.唇纸,4},
+                    {ItemName.胭脂,3},
+                    {ItemName.朱砂脂,2},
+                    {ItemName.祖母绿,2},
+                    {ItemName.锦绣华服,1 },
+                    {ItemName.玉手镯,1},
+                 }
+            },
+            {
+             Rarerity.UR,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.唇纸,5},
+                    {ItemName.胭脂,4},
+                    {ItemName.朱砂脂,3},
+                    {ItemName.祖母绿,3},
+                    {ItemName.锦绣华服,2 },
+                    {ItemName.玉手镯,2},
+                    {ItemName.钻石,1},
+                    {ItemName.和氏璧,1}
+                 }
+            },
+    };
+    private static Dictionary<Rarerity, Dictionary<ItemName, int>> FemaleSouthernerItemRequestDict
+    = new Dictionary<Rarerity, Dictionary<ItemName, int>>
+    {
+            {Rarerity.N,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.金疮药,1}
+                 }
+            },
+            {
+             Rarerity.R,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.金疮药,2},
+                    {ItemName.何首乌,1}
+                 }
+            } ,
+            {
+             Rarerity.SR,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.金疮药,3},
+                    {ItemName.何首乌,2},
+                    {ItemName.沉香,1},
+                    {ItemName.当归,1}
+                 }
+            },
+            {
+             Rarerity.SSR,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.金疮药,4},
+                    {ItemName.何首乌,3},
+                    {ItemName.沉香,2},
+                    {ItemName.当归,2},
+                    {ItemName.养气筑基散,1 },
+                    {ItemName.灵芝,1},
+                 }
+            },
+            {
+             Rarerity.UR,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.金疮药,5},
+                    {ItemName.何首乌,4},
+                    {ItemName.沉香,3},
+                    {ItemName.当归,3},
+                    {ItemName.养气筑基散,2 },
+                    {ItemName.灵芝,2},
+                    {ItemName.阴阳玄龙丹,1},
+                    {ItemName.十全大补丸,1}
+                 }
+            },
+    };
 
     private static Dictionary<CharacterArtCode, Dictionary<Rarerity, Dictionary<ItemName, int>>> CharacterArtCodeToRarityItemRequestDict
         = new Dictionary<CharacterArtCode, Dictionary<Rarerity, Dictionary<ItemName, int>>>
@@ -779,6 +943,9 @@ public class CharacterHiringEvent : MonoBehaviour
             {CharacterArtCode.方丈, MonkRarityItemRequestDict },
             {CharacterArtCode.官员, GovernorRarityItemRequestDict },
             {CharacterArtCode.拾荒者, LooterRarityItemRequestDict },
+            {CharacterArtCode.太监, TaijianRarityItemRequestDict },
+            {CharacterArtCode.舞女, DancerRarityItemRequestDict },
+            {CharacterArtCode.南疆女, FemaleSouthernerItemRequestDict },
 
         };
 
