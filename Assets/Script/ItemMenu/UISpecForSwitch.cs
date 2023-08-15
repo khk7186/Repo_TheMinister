@@ -26,32 +26,32 @@ public class UISpecForSwitch : TagSpecUI
     public override void SetTagInfo(Tag tag, bool origin = true)
     {
         var targetText = origin ? Info : switchText;
-        string output = "";
-        for (int i = 0; i < Player.TagInfDict[tag].Count; i++)
-        {
-            if (Player.TagInfDict[tag][i] == 0) continue;
-            switch (i)
-            {
-                case 0:
-                    output += $"ÖÇ{PlusOrMinus(Player.TagInfDict[tag][0])} ";
-                    break;
-                case 1:
-                    output += $"²Å{PlusOrMinus(Player.TagInfDict[tag][1])} ";
-                    break;
-                case 2:
-                    output += $"Ä±{PlusOrMinus(Player.TagInfDict[tag][2])} ";
-                    break;
-                case 3:
-                    output += $"Îä{PlusOrMinus(Player.TagInfDict[tag][3])} ";
-                    break;
-                case 4:
-                    output += $"´Ì{PlusOrMinus(Player.TagInfDict[tag][4])} ";
-                    break;
-                case 5:
-                    output += $"ÊØ{PlusOrMinus(Player.TagInfDict[tag][5])}";
-                    break;
-            }
-        }
+        string output = ItemStatPrinter.PrintAllStats(tag).Replace("\n", "");
+        //for (int i = 0; i < Player.TagInfDict[tag].Count; i++)
+        //{
+        //    if (Player.TagInfDict[tag][i] == 0) continue;
+        //    switch (i)
+        //    {
+        //        case 0:
+        //            output += $"ÖÇ{PlusOrMinus(Player.TagInfDict[tag][0])} ";
+        //            break;
+        //        case 1:
+        //            output += $"²Å{PlusOrMinus(Player.TagInfDict[tag][1])} ";
+        //            break;
+        //        case 2:
+        //            output += $"Ä±{PlusOrMinus(Player.TagInfDict[tag][2])} ";
+        //            break;
+        //        case 3:
+        //            output += $"Îä{PlusOrMinus(Player.TagInfDict[tag][3])} ";
+        //            break;
+        //        case 4:
+        //            output += $"´Ì{PlusOrMinus(Player.TagInfDict[tag][4])} ";
+        //            break;
+        //        case 5:
+        //            output += $"ÊØ{PlusOrMinus(Player.TagInfDict[tag][5])}";
+        //            break;
+        //    }
+        //}
         targetText.text = output;
     }
     public void FlipTag()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MiniMapManager : MonoBehaviour, IDiceRollEvent
+public class MiniMapManager : MonoBehaviour
 {
     public static MiniMapManager Instance;
     public RectTransform[] blocks;
@@ -38,7 +38,6 @@ public class MiniMapManager : MonoBehaviour, IDiceRollEvent
     }
     private void Start()
     {
-        Dice.Instance?.RegisterObserver(this);
         speed = CharacterMovement.playerSpeed;
     }
     private void OnEnable()
@@ -46,15 +45,15 @@ public class MiniMapManager : MonoBehaviour, IDiceRollEvent
         FindCurrentBlock();
         playerRect.position = blocks[currentBlock].position;
     }
-    public void OnNotify(object value, NotificationType notificationType)
-    {
-        MoveWithCharacter();
-    }
-    public void MoveWithCharacter()
-    {
-        FindCurrentBlock();
-        StartCoroutine(MoveRator());
-    }
+    //public void OnNotify(object value, NotificationType notificationType)
+    //{
+    //    MoveWithCharacter();
+    //}
+    //public void MoveWithCharacter()
+    //{
+    //    FindCurrentBlock();
+    //    StartCoroutine(MoveRator());
+    //}
     public void FindCurrentBlock()
     {
         var player = FindPlayer;
@@ -63,25 +62,25 @@ public class MiniMapManager : MonoBehaviour, IDiceRollEvent
             currentBlock = player.GetComponent<CharacterMovement>().currentBlock;
         }
     }
-    public IEnumerator MoveRator()
-    {
-        while (transform.position != blocks[currentBlock].position)
-        {
-            Vector3 endPosition = blocks[nextBlock].position;
-            yield return MoveABlock(endPosition);
-        }
-    }
-    public IEnumerator MoveABlock(Vector3 endPosition)
-    {
-        Vector3 startPosition = transform.position;
-        float time = 0f;
-        while (playerRect.position != endPosition)
-        {
-            time += Time.deltaTime;
-            playerRect.position = Vector2.MoveTowards(startPosition, endPosition, speed * time);
-            yield return null;
-        }
-    }
+    //public IEnumerator MoveRator()
+    //{
+    //    while (transform.position != blocks[currentBlock].position)
+    //    {
+    //        Vector3 endPosition = blocks[nextBlock].position;
+    //        yield return MoveABlock(endPosition);
+    //    }
+    //}
+    //public IEnumerator MoveABlock(Vector3 endPosition)
+    //{
+    //    Vector3 startPosition = transform.position;
+    //    float time = 0f;
+    //    while (playerRect.position != endPosition)
+    //    {
+    //        time += Time.deltaTime;
+    //        playerRect.position = Vector2.MoveTowards(startPosition, endPosition, speed * time);
+    //        yield return null;
+    //    }
+    //}
 
     public void OpenCloseEvent()
     {

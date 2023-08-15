@@ -414,6 +414,10 @@ public class Character : MonoBehaviour, IRound
             cacList = cacList.Where(x => x != CharacterArtCode.ÀîÔ¬Ä° && x != CharacterArtCode.ÄÐµ¶¿Í).ToArray();
             if (characterArtCode == CharacterArtCode.ÀîÔ¬Ä° && characterType != CharacterType.Main)
                 characterArtCode = cacList[UnityEngine.Random.Range(0, cacList.Length)];
+            if (CharacterName == string.Empty)
+            {
+                CharacterName = RandomCharacterNameSpawner.SpawnCharacterName(characterArtCode);
+            }
             if (tagList.Count == 0)
             {
                 SpawnTagOnStart(rarerity);

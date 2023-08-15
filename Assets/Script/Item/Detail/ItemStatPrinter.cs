@@ -21,6 +21,7 @@ public static class ItemStatPrinter
             output += " ";
             count++;
         }
+        if (count == 0) return "²»×ã¹Ò³Ý ºÁÎÞÓ°Ïì";
         return output;
     }
     public static string PrintAllStats(ItemName item)
@@ -53,7 +54,7 @@ public static class ItemStatPrinter
             default: break;
         }
         string sign = value > 0 ? "+" : string.Empty;
-        string output = value != 0 ? $" {valueType.ToString()} {sign}{value}" : string.Empty;
+        string output = value != 0 ? $" {valueType.ToString()}{sign}{value}" : string.Empty;
         return output;
     }
     public static string PrintStat(ItemName item, CharacterValueType valueType)

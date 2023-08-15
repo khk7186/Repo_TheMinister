@@ -1,13 +1,13 @@
+using Language.Lua;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
-public class Character_Names : MonoBehaviour
+public static class RandomCharacterNameSpawner
 {
-    public static string CharacterNames(CharacterArtCode characterArtCode)
-    {
-        string[] firstNames = new string[]
-        {
+    public static string[] firstNames = new string[]
+          {
             "李",
             "王",
             "张",
@@ -24,9 +24,9 @@ public class Character_Names : MonoBehaviour
             "赵",
             "钱",
             "白"
-        };
-        string[] maleLastNames = new string[]
-        {
+          };
+    public static string[] maleLastNames = new string[]
+    {
             "宇",
             "东",
             "胜",
@@ -76,9 +76,9 @@ public class Character_Names : MonoBehaviour
             "才",
             "良",
             "权",
-        };
-        string[] femaleLastNames = new string[]
-        {
+    };
+    public static string[] femaleLastNames = new string[]
+    {
             "月",
             "可",
             "青",
@@ -128,10 +128,10 @@ public class Character_Names : MonoBehaviour
             "雯文",
             "艺昕",
             "艺芷"
-        };
-        string maleName = firstNames[Random.Range(0, firstNames.Length - 1)] + maleLastNames[Random.Range(0, maleLastNames.Length - 1)];
-        string femaleName = firstNames[Random.Range(0, firstNames.Length - 1)] + maleLastNames[Random.Range(0, femaleLastNames.Length - 1)];
-        List<CharacterArtCode> maleCharacterArtCode = new List<CharacterArtCode>
+    };
+    public static string maleName => firstNames[Random.Range(0, firstNames.Length - 1)] + maleLastNames[Random.Range(0, maleLastNames.Length - 1)];
+    public static string femaleName => firstNames[Random.Range(0, firstNames.Length - 1)] + maleLastNames[Random.Range(0, femaleLastNames.Length - 1)];
+    public static List<CharacterArtCode> maleCharacterArtCode = new List<CharacterArtCode>
         {
             CharacterArtCode.男书生,
             CharacterArtCode.老者,
@@ -147,6 +147,8 @@ public class Character_Names : MonoBehaviour
             CharacterArtCode.拾荒者,
             CharacterArtCode.太监
         };
+    public static string SpawnCharacterName(CharacterArtCode characterArtCode)
+    {
         if (maleCharacterArtCode.Contains(characterArtCode))
         {
             return maleName;
