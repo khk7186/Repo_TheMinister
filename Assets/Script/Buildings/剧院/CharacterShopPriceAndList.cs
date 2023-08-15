@@ -8,11 +8,17 @@ public class CharacterShopPriceAndList : MonoBehaviour
     public static Dictionary<string, ArrayList> CharacterPool = new Dictionary<string, ArrayList>()
     {
         //姓名，{是否在商店或被招募了（默认false），artCode，拥有的tag,价格{金钱，声望，势力（没有写0）}}
-        {"王小", new ArrayList(){false,CharacterArtCode.女布衣, new  List<Tag>() { Tag.一点寒芒, Tag.不孕不育, Tag.不孝子, Tag.义肢, Tag.买瓜人}, new List<int>(){100,0,0} } },
-        {"王大", new ArrayList(){false, CharacterArtCode.女布衣, new  List<Tag>() { Tag.一点寒芒, Tag.不孕不育, Tag.不孝子, Tag.义肢, Tag.买瓜人}, new List<int>(){100,0,0} } },
+        {"王小", new ArrayList(){false,CharacterArtCode.女布衣, new  List<Tag>() { Tag.才华横溢, Tag.小有谋略, Tag.东洋语, Tag.能歌善舞, Tag.不孕不育 }, new List<int>(){100,0,0} } },
+        {"王大", new ArrayList(){false, CharacterArtCode.舞女, new  List<Tag>() { Tag.长袖善舞, Tag.通晓天文, Tag.离经叛道, Tag.演员, Tag.体态端正 }, new List<int>(){100,0,0} } },
+        {"王大", new ArrayList(){false, CharacterArtCode.舞女, new  List<Tag>() { Tag.妙手丹心, Tag.小有谋略, Tag.西洋语, Tag.演员, Tag.不孕不育 }, new List<int>(){100,0,0} } },
+        {"王大", new ArrayList(){false, CharacterArtCode.舞女, new  List<Tag>() { Tag.通晓天文, Tag.东洋语, Tag.能歌善舞, Tag.体态端正, Tag.不孕不育 }, new List<int>(){100,0,0} } },
+        {"王大", new ArrayList(){false, CharacterArtCode.舞女, new  List<Tag>() { Tag.略有才名, Tag.长袖善舞, Tag.棋道, Tag.根骨清奇, Tag.体态端正 }, new List<int>(){100,0,0} } },
+        {"王大", new ArrayList(){false, CharacterArtCode.舞女, new  List<Tag>() { Tag.长袖善舞, Tag.心算, Tag.离经叛道, Tag.演员, Tag.体态端正 }, new List<int>(){100,0,0} } },
+        {"王大", new ArrayList(){false, CharacterArtCode.舞女, new  List<Tag>() { Tag.长袖善舞, Tag.琴师, Tag.外乡人, Tag.珠光宝气, Tag.辟邪安正 }, new List<int>(){100,0,0} } },
     };
     public static Dictionary<string, ArrayList> UnSelectedCharacters
         => CharacterPool.Where(x => (bool)x.Value[0] == false).ToDictionary(x => x.Key, x => x.Value);
+    
     public static Dictionary<string, ArrayList> TopCharacterPool = new Dictionary<string, ArrayList>()
     {
         {"王小", new ArrayList(){false,CharacterArtCode.女布衣, new  List<Tag>() { Tag.一点寒芒, Tag.不孕不育, Tag.不孝子, Tag.义肢, Tag.买瓜人}, new List<int>(){100,0,0} } },
