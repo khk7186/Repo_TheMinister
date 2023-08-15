@@ -10,5 +10,6 @@ public class HiringRequestItemUI : ItemUI
     {
         base.Setup(item,amount);
         RequestAmount.text = request.ToString();
+        gameObject.SetActive(true);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MaterialUI : MonoBehaviour, IPointerClickHandler
+public class MaterialUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler, IDetailAble
 {
     public Image ItemImage;
     public Image Frame;
@@ -14,19 +14,40 @@ public class MaterialUI : MonoBehaviour, IPointerClickHandler
     public int IntNeedAmount = 1;
     public int IntHaveAmount;
 
+    private ItemName ItemName;
     public void OnPointerClick(PointerEventData eventData)
     {
-        //TODO: show item info
     }
 
     public void SetUp(ItemName item, int haveAmount)
     {
         IntHaveAmount = haveAmount;
-        ItemImage.sprite = Resources.Load<Sprite>(ReturnAssetPath.ReturnItemPath(item)); 
+        ItemImage.sprite = Resources.Load<Sprite>(ReturnAssetPath.ReturnItemPath(item));
         var framRarity = Player.AllTagRareDict[SOItem.ItemMap[item]] != Rarerity.B ? Player.AllTagRareDict[SOItem.ItemMap[item]] : Rarerity.N;
         string FramePath = $"Art/BuildingUI/杂货铺/初级五金铺/物品框/物品框-{framRarity}";
         Frame.sprite = Resources.Load<Sprite>(FramePath);
         NeedAmount.text = 1.ToString();
         HaveAmount.text = haveAmount.ToString();
+        ItemName = item;
+    }
+
+    public void SetOnDetail(ItemName itemName)
+    {
+        ItemDetailUI.Show(itemName);
+    }
+
+    public void SetOffDetail()
+    {
+        ItemDetailUI.Hide();
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        SetOnDetail(ItemName);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        SetOffDetail();
     }
 }

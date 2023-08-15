@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class CraftingMenuUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class CraftingMenuUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDetailAble
 {
     public ItemName ItemName;
     public Image ItemIcon;
@@ -14,7 +14,6 @@ public class CraftingMenuUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private void Start()
     {
-        ItemNameText.color = Color.white;
         GetComponent<Button>().onClick.AddListener(SetupParent);
     }
     public void SetupParent()
@@ -24,12 +23,13 @@ public class CraftingMenuUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        ItemNameText.color = Color.yellow;
+        SetOnDetail(ItemName);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         ItemNameText.color = Color.white;
+        SetOffDetail();
     }
 
     public void SetUp(ItemName item)
@@ -38,5 +38,15 @@ public class CraftingMenuUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         string path = ("Art/ItemIcon/" + item.ToString()).Replace(" ", string.Empty);
         ItemIcon.sprite = Resources.Load<Sprite>(path);
         ItemNameText.text = item.ToString();
+    }
+
+    public void SetOnDetail(ItemName itemName)
+    {
+        ItemDetailUI.Show(itemName);
+    }
+
+    public void SetOffDetail()
+    {
+        ItemDetailUI.Hide();
     }
 }
