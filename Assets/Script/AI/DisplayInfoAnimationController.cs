@@ -28,11 +28,14 @@ public class DisplayInfoAnimationController : MonoBehaviour
             SetupName(FakeName);
             return;
         }
-        var ai = GetComponent<DefaultInGameAI>();
-        if (ai != null)
+        else
         {
-            SetupTags(ai.character.tagList);
-            SetupName(ai.character.CharacterName);
+            var ai = GetComponent<DefaultInGameAI>();
+            if (ai != null)
+            {
+                SetupTags(ai.character.tagList);
+                SetupName(ai.character.CharacterName);
+            }
         }
     }
     public void SetupName(string Name)
