@@ -49,6 +49,7 @@ public class InteractAsset : MonoBehaviour, IDetailAble
             //Debug.Log("OverUI");
             return;
         }
+        SetOnDetail(building.buildingType.ToString());
         if (Active == false)
         {
             GetComponent<Renderer>().material = unreachMaterial;
@@ -63,7 +64,7 @@ public class InteractAsset : MonoBehaviour, IDetailAble
         BuildingName.color = ReachableColor;
         BuildingName.text = buildingNameText;
         BuildingName.gameObject.SetActive(true);
-        SetOnDetail(building.buildingType.ToString());
+
     }
     private void OnMouseExit()
     {
