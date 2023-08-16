@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.EventSystems;
 using TMPro;
-public class InteractAsset : MonoBehaviour
+public class InteractAsset : MonoBehaviour, IDetailAble
 {
     private Building building;
     public bool Active = false;
@@ -44,6 +44,11 @@ public class InteractAsset : MonoBehaviour
     private void OnMouseEnter()
     {
         BuildingName.renderer.sortingOrder = 100;
+        if (IsPointerOver.IsPointerOverUIObject())
+        {
+            //Debug.Log("OverUI");
+            return;
+        }
         if (Active == false)
         {
             GetComponent<Renderer>().material = unreachMaterial;
@@ -53,26 +58,23 @@ public class InteractAsset : MonoBehaviour
             BuildingName.gameObject.SetActive(true);
             return;
         }
-        if (IsPointerOver.IsPointerOverUIObject())
-        {
-            //Debug.Log("OverUI");
-            return;
-        }
         GetComponent<Renderer>().material = highlightMaterial;
         BuildingName.fontSize = 40f;
         BuildingName.color = ReachableColor;
         BuildingName.text = buildingNameText;
         BuildingName.gameObject.SetActive(true);
+        SetOnDetail(building.buildingType.ToString());
     }
     private void OnMouseExit()
     {
-        BuildingName.gameObject.SetActive(false);
         GetComponent<Renderer>().material = defaultMaterial;
+        BuildingName.gameObject.SetActive(false);
         if (Active == false) return;
         if (IsPointerOver.IsPointerOverUIObject())
         {
             return;
         }
+        SetOffDetail();
     }
     IEnumerator HideUIUntilClose()
     {
@@ -80,5 +82,14 @@ public class InteractAsset : MonoBehaviour
         hud.Hide();
         yield return new WaitUntil(() => building.currentUI.gameObject.activeSelf == false);
         hud.Show();
+    }
+
+    public void SetOffDetail()
+    {
+        MenuDescriptionUI.Hide();
+    }
+    public void SetOnDetail(string target)
+    {
+        MenuDescriptionUI.Show(target);
     }
 }
