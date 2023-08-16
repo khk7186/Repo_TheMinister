@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,14 @@ public class ItemDetailUI : MonoBehaviour
     public Text Name;
     public Text description;
     public Text stat;
-
+    public Vector2 offset = new Vector2(15, -15);  // Offset from the mouse position
+    private RectTransform imageRectTransform;
+    private RectTransform canvasRectTransform;
+    private void Awake()
+    {
+        imageRectTransform = GetComponent<RectTransform>();
+        canvasRectTransform = transform.parent.GetComponent<RectTransform>();
+    }
     public void SetItemDetail()
     {
         Name.text = itemName.ToString();
@@ -28,12 +36,30 @@ public class ItemDetailUI : MonoBehaviour
     }
     public void SetPositionNextToMouse()
     {
-        transform.position = Input.mousePosition;
+        // Convert mouse position to canvas space
+        Vector2 mousePos;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            canvasRectTransform,
+            Input.mousePosition,
+            null,
+            out mousePos);
+
+        // Add the offset to the mouse position
+        mousePos += offset;
+
+        // Set the anchored position based on mouse
+        imageRectTransform.anchoredPosition = mousePos;
+
+        // Clamp the position so the UI stays within the screen bounds
+        Vector2 clampedPosition = imageRectTransform.anchoredPosition;
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, -canvasRectTransform.sizeDelta.x / 2 + imageRectTransform.sizeDelta.x / 2, canvasRectTransform.sizeDelta.x / 2 - imageRectTransform.sizeDelta.x / 2);
+        clampedPosition.y = Mathf.Clamp(clampedPosition.y, -canvasRectTransform.sizeDelta.y / 2 + imageRectTransform.sizeDelta.y / 2, canvasRectTransform.sizeDelta.y / 2 - imageRectTransform.sizeDelta.y / 2);
+        imageRectTransform.anchoredPosition = clampedPosition;
     }
-    public static void Show(ItemName itemName)
+    public static void Show(string target)
     {
         var ui = GameObject.FindObjectOfType<ItemDetailUI>(true);
-        ui.itemName = itemName;
+        ui.itemName = (ItemName)Enum.Parse(typeof(ItemName), target);
         ui.gameObject.SetActive(true);
     }
     public static void Hide()
@@ -44,6 +70,6 @@ public class ItemDetailUI : MonoBehaviour
 
 public interface IDetailAble
 {
-    public void SetOnDetail(ItemName itemName);
+    public void SetOnDetail(string target);
     public void SetOffDetail();
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,7 @@ public class CraftingMenuUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        SetOnDetail(ItemName);
+        SetOnDetail(ItemName.ToString());
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -40,9 +41,9 @@ public class CraftingMenuUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         ItemNameText.text = item.ToString();
     }
 
-    public void SetOnDetail(ItemName itemName)
+    public void SetOnDetail(string target)
     {
-        ItemDetailUI.Show(itemName);
+        ItemDetailUI.Show(ItemName.ToString());
     }
 
     public void SetOffDetail()

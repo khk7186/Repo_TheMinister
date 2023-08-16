@@ -345,12 +345,12 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler, IPointerEnterH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        SetOnDetail(ItemName);
+        SetOnDetail(ItemName.ToString());
     }
 
-    public void SetOnDetail(ItemName itemName)
+    public void SetOnDetail(string target)
     {
-        ItemDetailUI.Show(itemName);
+        ItemDetailUI.Show(ItemName.ToString());
     }
 
     public void SetOffDetail()

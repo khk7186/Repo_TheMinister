@@ -7,6 +7,15 @@ using UnityEngine;
 public class SOGameDescription : ScriptableObject
 {
     public List<DescriptionMenu> GameDescriptions;
+    public string Find(string name)
+    {
+        foreach (DescriptionMenu menu in GameDescriptions)
+        {
+            if (menu.name == name)
+                return menu.Description;
+        }
+        return "Nathan忘了加这段的描述了";
+    }
 }
 [Serializable]
 public struct DescriptionMenu

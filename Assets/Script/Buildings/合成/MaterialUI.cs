@@ -31,9 +31,9 @@ public class MaterialUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         ItemName = item;
     }
 
-    public void SetOnDetail(ItemName itemName)
+    public void SetOnDetail(string target)
     {
-        ItemDetailUI.Show(itemName);
+        ItemDetailUI.Show(ItemName.ToString());
     }
 
     public void SetOffDetail()
@@ -43,7 +43,7 @@ public class MaterialUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        SetOnDetail(ItemName);
+        SetOnDetail(ItemName.ToString());
     }
 
     public void OnPointerExit(PointerEventData eventData)
