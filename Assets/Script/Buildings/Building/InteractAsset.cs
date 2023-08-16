@@ -70,12 +70,12 @@ public class InteractAsset : MonoBehaviour, IDetailAble
     {
         GetComponent<Renderer>().material = defaultMaterial;
         BuildingName.gameObject.SetActive(false);
+        SetOffDetail();
         if (Active == false) return;
         if (IsPointerOver.IsPointerOverUIObject())
         {
             return;
         }
-        SetOffDetail();
     }
     IEnumerator HideUIUntilClose()
     {
