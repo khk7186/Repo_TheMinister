@@ -58,15 +58,15 @@ public class CombatInteractableUnit : MonoBehaviour
     {
         CombatSelectUIController.Hide();
     }
-    public void OnMouseDown()
-    {
-        if (FindObjectOfType<CombatTrigger>() == null) return;
-        var csc = FindObjectOfType<CombatSceneController>();
-        if (csc.OnAction == false)
-        {
-            ChangeTarget();
-        }
-    }
+    //public void OnMouseDown()
+    //{
+    //    if (FindObjectOfType<CombatTrigger>() == null) return;
+    //    var csc = FindObjectOfType<CombatSceneController>();
+    //    if (csc.OnAction == false)
+    //    {
+    //        ChangeTarget();
+    //    }
+    //}
     public void ChangeTarget()
     {
 
