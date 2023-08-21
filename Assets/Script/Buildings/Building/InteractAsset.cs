@@ -66,6 +66,13 @@ public class InteractAsset : MonoBehaviour, IDetailAble
         BuildingName.gameObject.SetActive(true);
 
     }
+    private void OnMouseOver()
+    {
+        if (IsPointerOver.IsPointerOverUIObject())
+        {
+            SetOffDetail();
+        }
+    }
     private void OnMouseExit()
     {
         GetComponent<Renderer>().material = defaultMaterial;
