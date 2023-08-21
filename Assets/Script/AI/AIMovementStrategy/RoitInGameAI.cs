@@ -54,20 +54,22 @@ public class RoitInGameAI : DefaultInGameAI
         bool lost = character.hireStage == HireStage.Defeated;
         while (!lost)
         {
-            bool getTarget = LookingForTarget();
-            if (!getTarget)
-            {
-                yield return MakeAMoveRator();
-                yield return new WaitForSeconds(stayDuration);
-            }
-            else
-            {
-                break;
-            }
+            yield return MakeAMoveRator();
+
+            yield return StopAndLaugh();
         }
+    }
+    public IEnumerator StopAndLaugh()
+    {
+        CharacterModelController controller = GetComponent<CharacterModelController>();
+        controller.SetTrigger("attack");
+        controller.SetSkin("face-angry expression");
+        yield return new WaitForSeconds(stayDuration);
     }
     public IEnumerator MakeAMoveRator()
     {
+        CharacterModelController controller = GetComponent<CharacterModelController>();
+        controller.SetSkin("face-normal expression");
         PathPoint direction = OnStartPoint ? endPoint : startPoint;
         float time = 0;
         float distance = Vector3.Distance(startPoint.transform.position, endPoint.transform.position);
@@ -142,43 +144,6 @@ public class RoitInGameAI : DefaultInGameAI
                                                                 && (x.GetComponent<RoitInGameAI>() == null));
         if (target == null) return null;
         return target.GetComponent<DefaultInGameAI>();
-    }
-    public bool LookingForTarget()
-    {
-        var target = DefaultAIAround();
-        if (target != null)
-        {
-            StartCoroutine(AttackRator(target.transform));
-            return true;
-        }
-        return false;
-    }
-    public IEnumerator AttackRator(Transform target)
-    {
-        var distance = Vector2.Distance(transform.position, target.position) - 2f;
-        Vector3 dir = (target.transform.position - this.transform.position).normalized;
-        if (distance <= 0)
-        {
-            distance = 2;
-        }
-        float moveDuration = distance / moveSpeed;
-        float time = 0;
-        while (time < moveDuration)
-        {
-            time += Time.deltaTime;
-            transform.Translate(dir * Time.deltaTime * moveSpeed);
-            yield return null;
-        }
-        var roitModel = GetComponent<CharacterMovement>()?.modelController;
-        var targetModel = target.GetComponent<CharacterMovement>()?.modelController;
-        var roitModelSideChanger = GetComponent<SideChanger>();
-        target.GetComponent<SideChanger>().changeSide(!roitModelSideChanger.isFront, !roitModelSideChanger.isRight);
-        while (true)
-        {
-            roitModel?.SetTrigger("Attack");
-            targetModel?.SetTrigger("Defence");
-            yield return new WaitForSeconds(1f);
-        }
     }
     public void DeathAction()
     {

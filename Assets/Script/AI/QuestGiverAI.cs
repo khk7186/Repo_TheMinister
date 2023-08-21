@@ -29,7 +29,7 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     {
         if (Assign == false)
         {
-            GetComponentInChildren<ExclamationMarkBuilder>().gameObject.SetActive(true);
+            GetComponentInChildren<ExclamationMarkBuilder>()?.gameObject.SetActive(true);
         }
     }
     protected int Chapter()

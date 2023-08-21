@@ -6,6 +6,9 @@ using UnityEngine;
 public class CombatSelectUI : MonoBehaviour
 {
     public CombatCharacterUnit unit;
+    public Canvas displayCanvas;
+    public float xDiff = 60;
+    public float yDiff = 60;
     public void Setup(Transform targetUnit)
     {
         SetPosition(targetUnit);
@@ -13,35 +16,36 @@ public class CombatSelectUI : MonoBehaviour
     }
     private void SetPosition(Transform targetTransform)
     {
-        var CanvasRect = MainCanvas.FindMainCanvas().GetComponent<RectTransform>();
+        var CanvasRect = GetComponentInParent<Canvas>().GetComponent<RectTransform>();
         var MainCamera = Camera.main;
         var Position = targetTransform.position;
-        Vector2 AP = WorldToCanvasPosition.GetCanvasPosition(CanvasRect, MainCamera, Position);
-        //AP.x += 60;
-        //AP.y += 90;
+        Vector2 AP = WorldToCanvasPosition.GetCanvasPosition
+                                                        (displayCanvas.GetComponent<RectTransform>(), MainCamera, Position);
+        AP.x += xDiff;
+        AP.y += yDiff;
         GetComponent<RectTransform>().anchoredPosition = AP;
     }
     private void Awake()
     {
-        StartCoroutine(DestryoRator());
+        //StartCoroutine(DestryoRator());
     }
-    public IEnumerator DestryoRator()
-    {
-        var csc = FindObjectOfType<CombatSceneController>();
-        csc.OnAction = true;
-        yield return new WaitForEndOfFrame();
-        while (csc.OnAction)
-        {
-            if (Input.GetMouseButtonDown(1))
-            {
+    //public IEnumerator DestryoRator()
+    //{
+    //    var csc = FindObjectOfType<CombatSceneController>();
+    //    csc.OnAction = true;
+    //    yield return new WaitForEndOfFrame();
+    //    while (csc.OnAction)
+    //    {
+    //        if (Input.GetMouseButtonDown(1))
+    //        {
 
-                csc.OnAction = false;
-                GetComponent<MenuPopLeftAnimation>().Hide();
-            }
+    //            csc.OnAction = false;
+    //            GetComponent<MenuPopLeftAnimation>().Hide();
+    //        }
 
-            yield return null;
-        }
-    }
+    //        yield return null;
+    //    }
+    //}
     public void Attack()
     {
         unit.currentAction = Action.Attack;

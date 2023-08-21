@@ -25,6 +25,10 @@ public class MenuPopLeftAnimation : MonoBehaviour
         }
         Show();
     }
+    private void OnEnable()
+    {
+        
+    }
     public void Show()
     {
         FindObjectOfType<CombatSceneController>().OnAction = true;
@@ -53,7 +57,7 @@ public class MenuPopLeftAnimation : MonoBehaviour
             if (i == Buttons.Count - 1)
             {
                 target.DOAnchorPos(tartgetPos, speed).SetEase(curve)
-                    .OnComplete(() => { Destroy(gameObject); });
+                    .OnComplete(() => {/* Destroy(gameObject);*/ });
             }
             else target.DOAnchorPos(tartgetPos, speed).SetEase(curve);
         }

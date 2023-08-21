@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9144515298582892850}
   - component: {fileID: 1716188604189515662}
-  - component: {fileID: 4009866318483009152}
   - component: {fileID: -1853890329359798725}
   - component: {fileID: 8023319143142728344}
-  - component: {fileID: -1604071739128305786}
+  - component: {fileID: 8197753790112400158}
+  - component: {fileID: 2128937578}
   m_Layer: 5
   m_Name: CombatSelectMenu
   m_TagString: Untagged
@@ -30,7 +30,7 @@ RectTransform:
   m_GameObject: {fileID: 697450305245109469}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.41666666}
+  m_LocalScale: {x: 1, y: 1, z: 0.4166667}
   m_Children:
   - {fileID: 4606154114606683785}
   - {fileID: 2712335514610231028}
@@ -51,36 +51,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 697450305245109469}
   m_CullTransparentMesh: 1
---- !u!114 &4009866318483009152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 697450305245109469}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0.12657738, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1d8af801e2442cc4ba1c77964024e735, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &-1853890329359798725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,6 +64,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unit: {fileID: 0}
+  displayCanvas: {fileID: 0}
+  xDiff: -30
+  yDiff: 0
 --- !u!114 &8023319143142728344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,14 +86,14 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 3
   m_Spacing: 5
-  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &-1604071739128305786
+--- !u!114 &8197753790112400158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,44 +102,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 697450305245109469}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 684f986fe3dc89e4e85b7aacd4844485, type: 3}
+  m_Script: {fileID: 11500000, guid: 6efcf05eb052b2b458a23244a498cd82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  X: 80
-  Xadds: 60
-  Yadds: 15
-  YSpace: 5
-  mainRT: {fileID: 9144515298582892850}
-  Buttons:
-  - {fileID: 4606154114606683785}
-  - {fileID: 2712335514610231028}
-  - {fileID: 706077166734037007}
-  speed: 0.1
-  delay: 0.04
+  Target: {fileID: 0}
+  onCCU: 0
+  onUI: 0
+  UIAnimator: {fileID: 2128937578}
+--- !u!95 &2128937578
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697450305245109469}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0b2ff794b97bcd747b842230c28dd999, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &706077166734037006
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +142,7 @@ GameObject:
   - component: {fileID: 706077166734037010}
   - component: {fileID: 5572847530331763784}
   m_Layer: 5
-  m_Name: "\u653B\u51FB"
+  m_Name: "\u88AD"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,9 +163,9 @@ RectTransform:
   m_Father: {fileID: 9144515298582892850}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 20, y: -110}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &706077166734037009
@@ -289,10 +250,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -1604071739128305786}
-        m_TargetAssemblyTypeName: MenuPopLeftAnimation, Assembly-CSharp
+      - m_Target: {fileID: 8197753790112400158}
+        m_TargetAssemblyTypeName: CombatSelectUIController, Assembly-CSharp
         m_MethodName: Hide
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -327,6 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ThingToSpawn: {fileID: 0}
   CurrentTarget: {fileID: 0}
+  specificCanvas: {fileID: 0}
 --- !u!1 &706077166932755764
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,7 +461,7 @@ GameObject:
   - component: {fileID: 6557914573376920229}
   - component: {fileID: 3047947563610249554}
   m_Layer: 5
-  m_Name: "\u5BF9\u8BDD"
+  m_Name: "\u5B88"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -520,9 +482,9 @@ RectTransform:
   m_Father: {fileID: 9144515298582892850}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 20, y: -65}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5432320909142786187
@@ -607,10 +569,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -1604071739128305786}
-        m_TargetAssemblyTypeName: MenuPopLeftAnimation, Assembly-CSharp
+      - m_Target: {fileID: 8197753790112400158}
+        m_TargetAssemblyTypeName: CombatSelectUIController, Assembly-CSharp
         m_MethodName: Hide
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -645,6 +607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ThingToSpawn: {fileID: 0}
   CurrentTarget: {fileID: 0}
+  specificCanvas: {fileID: 0}
 --- !u!1 &6760199073636802272
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +622,7 @@ GameObject:
   - component: {fileID: 1058159811596709991}
   - component: {fileID: 7460717764927115033}
   m_Layer: 5
-  m_Name: "\u653B\u51FB"
+  m_Name: "\u653B"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -680,9 +643,9 @@ RectTransform:
   m_Father: {fileID: 9144515298582892850}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 20, y: -20}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6182783050201523920
@@ -767,10 +730,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -1604071739128305786}
-        m_TargetAssemblyTypeName: MenuPopLeftAnimation, Assembly-CSharp
+      - m_Target: {fileID: 8197753790112400158}
+        m_TargetAssemblyTypeName: CombatSelectUIController, Assembly-CSharp
         m_MethodName: Hide
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -805,6 +768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ThingToSpawn: {fileID: 0}
   CurrentTarget: {fileID: 0}
+  specificCanvas: {fileID: 0}
 --- !u!1 &7095090235340661537
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,30 +24,39 @@ public class CombatInteractableUnit : MonoBehaviour
         //outline.referenceRenderer.material = (Material)Resources.Load($"{outline.referenceRenderer.material.name}_outline", typeof(Material));
         //outline.Set();
     }
-    public void OnMouseOver()
+    //public void OnMouseOver()
+    //{
+    //    if (FindObjectOfType<CombatTrigger>() == null) return;
+    //    if (!IsPointerOver.IsPointerOverUIObject())
+    //    {
+    //        if (Input.GetMouseButtonUp(1) && !csc.OnAction)
+    //        {
+    //            var others = FindObjectsOfType<CombatInteractableUnit>();
+    //            foreach (var other in others)
+    //            {
+    //                if (other.selectUI != null) Destroy(other.selectUI.gameObject);
+    //            }
+    //            if (selectUI == null)
+    //            {
+    //                Debug.Log("Creating select UI");
+    //                string path = "NPCInteractiveUI/CombatMenu/CombatSelectMenu";
+    //                selectUI = Instantiate(Resources.Load<CombatSelectUI>(path), MainCanvas.FindMainCanvas().transform);
+    //                if (selectUI != null)
+    //                {
+    //                    selectUI.Setup(transform);
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
+    private void OnMouseEnter()//new
     {
-        if (FindObjectOfType<CombatTrigger>() == null) return;
-        if (!IsPointerOver.IsPointerOverUIObject())
-        {
-            if (Input.GetMouseButtonUp(1) && !csc.OnAction)
-            {
-                var others = FindObjectsOfType<CombatInteractableUnit>();
-                foreach (var other in others)
-                {
-                    if (other.selectUI != null) Destroy(other.selectUI.gameObject);
-                }
-                if (selectUI == null)
-                {
-                    Debug.Log("Creating select UI");
-                    string path = "NPCInteractiveUI/CombatMenu/CombatSelectMenu";
-                    selectUI = Instantiate(Resources.Load<CombatSelectUI>(path), MainCanvas.FindMainCanvas().transform);
-                    if (selectUI != null)
-                    {
-                        selectUI.Setup(transform);
-                    }
-                }
-            }
-        }
+        CombatSelectUIController.Show(GetComponent<CombatCharacterUnit>());
+
+    }
+    public void OnMouseExit()
+    {
+        CombatSelectUIController.Hide();
     }
     public void OnMouseDown()
     {
@@ -152,7 +161,7 @@ public class CombatInteractableUnit : MonoBehaviour
 
             if (unit.line != null)
             {
-                
+
                 if (unit.GetComponent<CombatCharacterUnit>().target.gameObject.activeSelf == false && enable)
                 {
                     unit.line.enabled = false;
@@ -160,7 +169,7 @@ public class CombatInteractableUnit : MonoBehaviour
                 }
                 else
                 {
-                    unit.line.enabled = enable; 
+                    unit.line.enabled = enable;
                     unit.line.GetComponent<CombatLine>().arrow.enabled = enable;
                 }
                 if (enable && unit != null)

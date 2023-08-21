@@ -26,6 +26,19 @@ public class MenuDescriptionUI : MonoBehaviour
     public void SetDescription()
     {
         description.text = gameDescription.Find(Target);
+        //Rebuild();
+    }
+    private void OnEnable()
+    {
+        Rebuild();
+    }
+    public void Rebuild()
+    {
+        LayoutRebuilder.ForceRebuildLayoutImmediate(imageRectTransform);
+        var child = imageRectTransform.GetComponentInChildren<RectTransform>(true);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(child);
+        var grandChild = child.GetComponentInChildren<RectTransform>(true);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(grandChild);
     }
 
     public void SetPositionNextToMouse()

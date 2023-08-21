@@ -13,7 +13,6 @@ public class KillingTest : MonoBehaviour
     {
         RoitInGameAI.SetupRoitAI(RoitCharacter,null);
         DefaultInGameAI.Setup(Character);
-        RoitInGameAI.LookingForTarget();
     }
 
     private void OnDrawGizmos()

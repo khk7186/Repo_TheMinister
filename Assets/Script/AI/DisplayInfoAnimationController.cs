@@ -63,6 +63,11 @@ public class DisplayInfoAnimationController : MonoBehaviour
     }
     public void OnMouseEnter()
     {
+        if (IsPointerOver.IsPointerOverUIObject())
+        {
+            //Debug.Log("OverUI");
+            return;
+        }
         Show();
     }
     public void OnMouseExit()
