@@ -13,8 +13,10 @@ public class CombatSelectUIController : MonoBehaviour, IPointerEnterHandler, IPo
     public bool onCCU = false;
     public bool onUI = false;
     public Animator UIAnimator;
+    public static bool SHOWING = false;
     private void Awake()
     {
+        SHOWING = false;
         gameObject.SetActive(false);
     }
 
@@ -41,7 +43,7 @@ public class CombatSelectUIController : MonoBehaviour, IPointerEnterHandler, IPo
         //}
         ui.UIAnimator.Play("Show", -1, 0f);
         ui.UIAnimator.SetBool("Show", true);
-
+        SHOWING = true;
     }
 
 
@@ -60,8 +62,9 @@ public class CombatSelectUIController : MonoBehaviour, IPointerEnterHandler, IPo
         if (ui.onUI == false && ui.onCCU == false)
         {
             ui.UIAnimator.SetBool("Show", false);
+            SHOWING = false;
+            Debug.Log("Hide");
         }
-        Debug.Log("Hide");
     }
 
     public void OnPointerEnter(PointerEventData eventData)

@@ -51,12 +51,27 @@ public class CombatInteractableUnit : MonoBehaviour
     //}
     private void OnMouseEnter()//new
     {
+        if (IsPointerOver.IsPointerOverUIObject())
+        {
+            return;
+        }
         CombatSelectUIController.Show(GetComponent<CombatCharacterUnit>());
 
     }
     public void OnMouseExit()
     {
         CombatSelectUIController.Hide();
+    }
+    private void OnMouseOver()
+    {
+        if (IsPointerOver.IsPointerOverUIObject())
+        {
+            return;
+        }
+        if (CombatSelectUIController.SHOWING == false)
+        {
+            CombatSelectUIController.Show(GetComponent<CombatCharacterUnit>());
+        }
     }
     //public void OnMouseDown()
     //{
