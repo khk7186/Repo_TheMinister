@@ -179,10 +179,10 @@ public class CombatCharacterUnit : MonoBehaviour
     }
     public void TakeDamge(int damage, bool asDefender = false)
     {
-        
+        string screenSakeType = "Attack";
         if (Defender == null || asDefender == true)
         {
-            int result;
+            int result = 0;
             switch (stat)
             {
                 case CharacterStat.weak:
@@ -203,15 +203,18 @@ public class CombatCharacterUnit : MonoBehaviour
                     break;
             }
             healthBar.Setup(character.health);
+            if (result >= 5) screenSakeType = "HardAttack";
             if (character.health <= 0)
             {
                 AudioManager.Play("ËÀÍö");
                 DeathAction();
+                screenSakeType = "Death";
             }
             else
             {
                 DefenceAction();
             }
+            ScreenShakeTrigger.TryScreenShake(screenSakeType);
         }
         else if (target != null)
         {
@@ -322,7 +325,7 @@ public class CombatCharacterUnit : MonoBehaviour
         }
         if (result != 0)
         {
-            var endCtrl =FindObjectOfType<CombatEndingAnimationController>();
+            var endCtrl = FindObjectOfType<CombatEndingAnimationController>();
             if (result == 1)
             {
                 endCtrl.Win();
