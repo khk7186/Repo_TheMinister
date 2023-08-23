@@ -56,9 +56,11 @@ public class CombatTriggerAnimationController : MonoBehaviour
     public void Hide()
     {
         Showing = false;
+        combatTrigger.Play("Hide");
     }
     public void Show()
     {
         Showing = true;
+        combatTrigger.Play("Show");
     }
 }
