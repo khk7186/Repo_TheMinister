@@ -6,17 +6,17 @@ using System.Linq;
 public class Combat : MonoBehaviour
 {
     public Queue CombatQueue = new Queue();
-    //private static void Start()
-    //{
-    //    var combat = new Combat();
-        
-    //}
     public static Combat NewCombat()
     {
+        if (FindObjectOfType<CombatSceneController>().OnAction)
+        {
+            return null;
+        }
         if (FindObjectOfType<Combat>() != null)
         {
             return null;
         }
+
         var combat = new GameObject().gameObject.AddComponent<Combat>();
         var allCCUinGame = GameObject.FindObjectsOfType<CombatCharacterUnit>().ToList();
         combat.MakeQueue(allCCUinGame);

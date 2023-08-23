@@ -141,7 +141,7 @@ public class CombatInteractableUnit : MonoBehaviour
             if (Input.GetMouseButtonDown(1))
             {
                 NotEnd = false;
-
+                GetComponent<CombatCharacterUnit>().currentAction = Action.NoSelect;
                 Destroy(line.gameObject);
             }
             yield return null;

@@ -22,7 +22,7 @@ public class CombatCharacterUnit : MonoBehaviour
     public static Grid grid;
 
     public CharacterStat stat = CharacterStat.normal;
-    public Action currentAction = Action.Attack;
+    public Action currentAction = Action.NoSelect;
     public CombatCharacterUnit target = null;
     public bool SelfDefending = false;
     private const int IsometricRangePerYUnit = 1;

@@ -20,13 +20,13 @@ public class SceneTransController : MonoBehaviour
     public void Open()
     {
         transition.Play("Open");
-        Debug.Log("Open");
+        //Debug.Log("Open");
         StartCoroutine(DestroyAfterPlay());
     }
     public void Close()
     {
         transition.Play("Close");
-        Debug.Log("Close");
+        //Debug.Log("Close");
         StartCoroutine(transDelegate());
     }
 

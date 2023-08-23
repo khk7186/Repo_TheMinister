@@ -33,7 +33,6 @@ public class CombatSelectUIController : MonoBehaviour, IPointerEnterHandler, IPo
             ui.ccu.unit = target;
             ui.ccu.Setup(target.transform);
         }
-        Debug.Log("Show");
         //if (ui.UIAnimator.GetBool("Show") == true)
         //{
         //    ui.UIAnimator.Play("Show", 0, 0f);
@@ -63,7 +62,6 @@ public class CombatSelectUIController : MonoBehaviour, IPointerEnterHandler, IPo
         {
             ui.UIAnimator.SetBool("Show", false);
             SHOWING = false;
-            Debug.Log("Hide");
         }
     }
 
