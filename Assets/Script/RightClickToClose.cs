@@ -30,6 +30,5 @@ public class RightClickToClose : MonoBehaviour, IPointerClickHandler
             Destroy(gameObject);
         }
         else { IIA.Outro(); }
-
     }
 }

@@ -119,4 +119,12 @@ public class EndGamePannel : MonoBehaviour
             }
         }
     }
+    private void OnDestroy()
+    {
+        var lostAlly = generalEventTrigger.LostCharacters;
+        foreach (Character character in lostAlly)
+        {
+            character.TryDeath();
+        }
+    }
 }

@@ -660,6 +660,7 @@ public class Character : MonoBehaviour, IRound
         if (ReturnRounds <= 0)
         {
             ReturnToHand();
+            TryDeath();
         }
     }
     public void Away(int rounds, GameObject spawnAfterAway = null)
@@ -724,6 +725,16 @@ public class Character : MonoBehaviour, IRound
         {
             hireStage = HireStage.InCity;
             transform.parent = GameObject.FindGameObjectWithTag("InGameCharacterInventory").transform;
+            LostCharacterAlertManager.CallRetireAlert(this);
+        }
+    }
+    public void TryDeath()
+    {
+        if (health <= 0)
+        {
+            hireStage = HireStage.InCity;
+            transform.parent = GameObject.FindGameObjectWithTag("InGameCharacterInventory").transform;
+            LostCharacterAlertManager.CallDeathAlert(this);
         }
     }
     public IEnumerator TryMergeTags(bool Changed = true)
@@ -786,7 +797,7 @@ public class Character : MonoBehaviour, IRound
     {
         if (damage <= 0) damage = 0;
         health -= damage;
-        if (health < 0)
+        if (health <= 0)
         {
 
         }

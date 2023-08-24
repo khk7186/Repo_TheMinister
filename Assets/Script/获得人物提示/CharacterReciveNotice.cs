@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CharacterReciveNotice : MonoBehaviour
@@ -17,7 +18,7 @@ public class CharacterReciveNotice : MonoBehaviour
     public Text Defense;
     public Transform tags;
     public List<Color> RarityColors = new List<Color>()
-    {   
+    {
         new Color(63,77,49),
         new Color(147,136,123),
         new Color(87,148,179),
@@ -25,8 +26,9 @@ public class CharacterReciveNotice : MonoBehaviour
         new Color(248,212,95),
         new Color(217,50,35)
     };
-    public Button Confirm;
-    public void Setup(Character character)
+    public UnityEvent destroyEvents = new UnityEvent();
+
+    public virtual void Setup(Character character)
     {
         Rarerity rarerity = character.CheckTopRare();
         Name.text = character.CharacterName;
@@ -54,9 +56,14 @@ public class CharacterReciveNotice : MonoBehaviour
         Sneak.color = RarityColors[sneak > 0 ? sneak : 0];
         var defense = (int)character.characterValueRareDict[CharacterValueType.สุ] / 2;
         Defense.color = RarityColors[defense > 0 ? defense : 0];
+
     }
     public void SelfDestroy()
     {
         Destroy(gameObject);
+    }
+    private void OnDestroy()
+    {
+        destroyEvents.Invoke();
     }
 }

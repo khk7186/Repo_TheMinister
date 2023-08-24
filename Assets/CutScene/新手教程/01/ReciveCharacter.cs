@@ -29,13 +29,20 @@ public class ReciveCharacter : MonoBehaviour
         character.UpdateVariables();
         var congrat = Instantiate(Resources.Load<CharacterReciveNotice>("MainUI/CharacterReciveConfirmWindow"), canvas.transform);
         congrat.Setup(character);
+        congrat.GetComponent<CharacterRetireNotice>().Show();
+        //congrat.destroyEvents.AddListener(() => SetCharacterToInv(character));
         foreach (var item in _objectToActive)
         {
-            congrat.Confirm.onClick.AddListener(() =>
+            congrat.destroyEvents.AddListener(() =>
             {
                 item.SetActive(true);
             });
         }
+    }
+    public static void SetCharacterToInv(Character character)
+    {
+        //character.transform.parent = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
+        //FindObjectOfType<PlayerCharactersInventory>().SetupNewCharacter(character);
     }
     public static void TakeCharacter(Character character)
     {
@@ -58,6 +65,8 @@ public class ReciveCharacter : MonoBehaviour
     {
         var congrat = Instantiate(Resources.Load<CharacterReciveNotice>("MainUI/CharacterReciveConfirmWindow"), MainCanvas.FindMainCanvas());
         congrat.Setup(character);
+        congrat.destroyEvents.AddListener(() => SetCharacterToInv(character));
+        congrat.GetComponent<CharacterRetireNotice>().Show();
     }
     public static void DestroyInGameAvantor(Character character)
     {
