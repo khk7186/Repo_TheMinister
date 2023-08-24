@@ -660,7 +660,8 @@ public class Character : MonoBehaviour, IRound
         if (ReturnRounds <= 0)
         {
             ReturnToHand();
-            TryDeath();
+            if (health <= 0) TryDeath();
+            else if (loyalty <= 0) TryDeath();
         }
     }
     public void Away(int rounds, GameObject spawnAfterAway = null)
