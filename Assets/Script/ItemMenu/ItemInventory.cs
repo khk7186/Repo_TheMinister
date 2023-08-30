@@ -11,25 +11,25 @@ public class ItemInventory : MonoBehaviour
 
     private void Awake()
     {
-        //foreach (ItemName item in Enum.GetValues(typeof(ItemName)))
+        ////foreach (ItemName item in Enum.GetValues(typeof(ItemName)))
+        ////{
+        ////    if (item == ItemName.Null)
+        ////        continue;
+        ////    AddItem(item);
+        ////    AddItem(item);
+        ////    AddItem(item);
+        ////    AddItem(item);
+        ////    AddItem(item);
+        ////}
+        //for (int i = 0; i < 1; i++)
         //{
-        //    if (item == ItemName.Null)
-        //        continue;
-        //    AddItem(item);
-        //    AddItem(item);
-        //    AddItem(item);
-        //    AddItem(item);
-        //    AddItem(item);
+        //    AddItem(ItemName.Îä¹Ù×´);
         //}
-        for (int i = 0; i < 1; i++)
-        {
-            AddItem(ItemName.Îä¹Ù×´);
-        }
 
-        //    AddItem(item);
-        //    AddItem(item);
-        //    AddItem(item);
-        //    AddItem(item);
+        ////    AddItem(item);
+        ////    AddItem(item);
+        ////    AddItem(item);
+        ////    AddItem(item);
     }
     public void AddItem(ItemName item)
     //add item into dic, if dont have one, add new key, else add count.

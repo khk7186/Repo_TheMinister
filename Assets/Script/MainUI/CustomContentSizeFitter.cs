@@ -40,7 +40,7 @@ public class CustomContentSizeFitter : ContentSizeFitter
     }
 }
 
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(CustomContentSizeFitter))]
 public class CustomContentSizeFitterEditor : Editor
 {
@@ -50,4 +50,6 @@ public class CustomContentSizeFitterEditor : Editor
         base.OnInspectorGUI();
         //var contentSizeFitter = (CustomContentSizeFitter)target;
     }
+
 }
+#endif

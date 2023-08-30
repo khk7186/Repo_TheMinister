@@ -86,4 +86,9 @@ public class CharacterModelController : MonoBehaviour
         front.GetComponent<Animator>().SetTrigger(trigger);
         back.GetComponent<Animator>().SetTrigger(trigger);
     }
+    public void PlayAnimation(string animationName)
+    {
+        front.GetComponent<Animator>().Play(animationName);
+        back.GetComponent<Animator>().Play(animationName);
+    }
 }
