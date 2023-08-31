@@ -62,7 +62,7 @@ public class RoitInGameAI : DefaultInGameAI
     public IEnumerator StopAndLaugh()
     {
         CharacterModelController controller = GetComponent<CharacterModelController>();
-        controller.SetTrigger("attack");
+        controller.SetTrigger("Attack");
         controller.SetSkin("face-angry expression");
         yield return new WaitForSeconds(stayDuration);
     }
