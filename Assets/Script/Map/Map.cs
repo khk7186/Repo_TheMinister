@@ -121,7 +121,7 @@ public class Map : MonoBehaviour, IDiceRollEvent
         AudioManager.Play("走路", true);
         yield return PlayerMovement.MoveToLocationOld();
         AudioManager.Stop("走路");
-        FindObjectOfType<Dice>().rolling = false;
+        Dice.Instance.rolling = false;
         SetBuildings();
         HorseMovementBuff = 1;
     }
@@ -140,7 +140,7 @@ public class Map : MonoBehaviour, IDiceRollEvent
         {
             DayTime++;
         }
-       
+
     }
 
     //private IEnumerator MoveAStep(Transform character)
