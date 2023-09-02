@@ -41,6 +41,7 @@ public class AwayQuestUI : MonoBehaviour, ICharacterSelect
         rt.localScale = Vector3.one;
         rt.anchoredPosition = Vector3.zero;
         Setup();
+        GetComponent<Canvas>().sortingOrder = 101;
     }
     public void Setup()
     {
