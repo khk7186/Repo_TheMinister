@@ -37,7 +37,6 @@ public class PathManager : MonoBehaviour, IDiceRollEvent
         points = FindObjectsOfType<PathPoint>();
         if (Dice.Instance != null)
             Dice.Instance.RegisterObserver(Instance);
-        DontDestroyOnLoad(gameObject);
     }
 
     public void RegistHandler(PathPointHandler handler)

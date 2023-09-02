@@ -16,7 +16,6 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
     {
         characterPref = Resources.Load<Character>("CharacterPrefab/Character");
         UpdateCurrentCharacters();
-        DontDestroyOnLoad(gameObject);
     }
 
     public void UpdateCurrentCharacters()

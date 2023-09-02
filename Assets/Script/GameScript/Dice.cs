@@ -34,7 +34,6 @@ public class Dice : MonoBehaviour, IDiceSubject
             Instance = this;
         }
         SceneManager.sceneLoaded += OnSceneChange;
-        DontDestroyOnLoad(gameObject);
     }
     private void OnDisable()
     {

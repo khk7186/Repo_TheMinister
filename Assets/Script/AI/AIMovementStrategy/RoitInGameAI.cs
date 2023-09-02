@@ -17,7 +17,6 @@ public class RoitInGameAI : DefaultInGameAI
 
     public override void StartAction()
     {
-        DontDestroyOnLoad(gameObject);
         GetComponent<CharacterMovement>().modelController.SetSkin("face-angry expression");
     }
     public override void Move()

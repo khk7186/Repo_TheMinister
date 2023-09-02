@@ -9,10 +9,6 @@ public class CurrencyInventory : MonoBehaviour
     public int Influence = 200;
     public int Prestige = 0;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
     public static void SetCurrencyUI()
     {
         var only = FindObjectOfType<CurrencyInventory>();

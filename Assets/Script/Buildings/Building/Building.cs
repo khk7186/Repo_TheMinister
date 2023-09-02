@@ -295,7 +295,6 @@ public class Building : MonoBehaviour
     {
         var target = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
         var currentTarget = target.CraftingUI.GetComponent<CraftingUI>();
-        Debug.Log(currentTarget == null);
         currentTarget.Setup(SOItem.BuildingCraftDict[buildingType]);
         if (CraftingList.Count > 0) target.CraftingUI.GetComponent<CraftingUI>().Setup(CraftingList[0]);
     }
@@ -328,7 +327,6 @@ public class Building : MonoBehaviour
             int randomTypeIndex = UnityEngine.Random.Range(0, targetList.Count);
             var targetItem = targetList[randomTypeIndex];
             outputItems.Add(targetItem);
-            Debug.Log(targetItem);
         }
         if (buildingType == BuildingType.马厩 || buildingType == BuildingType.御马场 || buildingType == BuildingType.天马阁)
         {

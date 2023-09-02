@@ -20,7 +20,6 @@ public class AreaControl : MonoBehaviour, IAreaChangeHandler
         {
             Destroy(gameObject);
         }
-        DontDestroyOnLoad(gameObject);
     }
     private void OnDestroy()
     {

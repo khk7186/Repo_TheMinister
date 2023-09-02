@@ -70,7 +70,14 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         }
         if (spawnAI != null)
         {
-            var spawnedClone = Instantiate(spawnAI);
+            if (spawnAI.QuestSpawnPref != null)
+            {
+                Instantiate(spawnAI.QuestSpawnPref, transform);
+            }
+            else
+            {
+                var spawnedClone = Instantiate(spawnAI, transform);
+            }
             InactiveQuestGivers.Remove(spawnAI);
             QuestCountAdd();
         }
