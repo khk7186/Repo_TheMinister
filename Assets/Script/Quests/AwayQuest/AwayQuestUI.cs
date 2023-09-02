@@ -83,7 +83,7 @@ public class AwayQuestUI : MonoBehaviour, ICharacterSelect
         if (sentCharacters.Count == 0) return false;
         foreach (Character character in sentCharacters)
         {
-            if (character.health < health || character.loyalty < loyalty) return false;
+            //if (character.health < health || character.loyalty < loyalty) return false;
             var containTags = character.tagList.Where(tag => tryTags.Contains(tag));
             tryTags = tryTags.Where(tag => !containTags.Contains(tag)).ToList();
             foreach (CharacterValueType type in tryTypeRare.ToList())
