@@ -6,6 +6,8 @@ public class MainCanvasOn : MonoBehaviour
 {
     private void Start()
     {
-        GameObject.FindObjectOfType<MainCanvasTag>(true).gameObject.SetActive(true);
+        var canvas = GameObject.FindObjectOfType<MainCanvasTag>(true);
+        canvas.gameObject.SetActive(true);
+        canvas.transform.GetComponentInChildren<NoTouchMask>().gameObject.SetActive(false);
     }
 }
