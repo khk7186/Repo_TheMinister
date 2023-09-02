@@ -177,7 +177,6 @@ public class RoitCharacter : Character
                 break;
             default:
                 break;
-
         }
         for (int i = 0; i < level; i++)
         {
@@ -187,5 +186,6 @@ public class RoitCharacter : Character
         {
             tagList.Add(badTags[UnityEngine.Random.Range(0, badTags.Count)]);
         }
+        UpdateVariables();
     }
 }
