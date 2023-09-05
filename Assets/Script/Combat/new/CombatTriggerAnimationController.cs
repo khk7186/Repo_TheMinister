@@ -29,6 +29,7 @@ public class CombatTriggerAnimationController : MonoBehaviour
                 if (ShowPlayerUnits == null || ShowPlayerUnits.Count == 0) return false;
                 foreach (CombatCharacterUnit unit in ShowPlayerUnits)
                 {
+                    if (unit.gameObject.activeSelf == false) continue;
                     if (unit.currentAction == Action.NoSelect) return false;
                 }
                 return true;
