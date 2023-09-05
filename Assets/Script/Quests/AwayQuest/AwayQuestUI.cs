@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using PixelCrushers.QuestMachine;
 using System.Linq;
-
 public class AwayQuestUI : MonoBehaviour, ICharacterSelect
 {
     [System.Serializable]
@@ -118,8 +117,12 @@ public class AwayQuestUI : MonoBehaviour, ICharacterSelect
     }
     public void NextQuestStage()
     {
-        QuestMachine.SetQuestNodeState(QuestID, "≈…«≤", QuestNodeState.True);
-        QuestMachine.SetQuestNodeState(QuestID, "µ»¥˝≈…«≤", QuestNodeState.Active);
+        //QuestMachine.SetQuestNodeState(QuestID, "≈…«≤", QuestNodeState.True);
+        var questJournal = FindObjectOfType<QuestJournal>();
+        var targetQuest = questJournal.FindQuest(QuestID);
+        targetQuest.GetNode("≈…«≤").SetState(QuestNodeState.True);
+        questJournal.RepaintUIs();
+        //QuestMachine.SetQuestNodeState(QuestID, "µ»¥˝≈…«≤", QuestNodeState.Active);
     }
     public void ChooseCharacter(Character character)
     {
