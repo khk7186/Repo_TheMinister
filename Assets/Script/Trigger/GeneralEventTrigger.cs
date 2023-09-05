@@ -83,6 +83,13 @@ public class GeneralEventTrigger : MonoBehaviour
                 StartCoroutine(JumpToScene(scene));
                 currencyInventory.MoneyAdd(moneyPunishment);
                 PressureEventHandler.OnPressureChange(pressurePunishment);
+                foreach (var character in playerCharacters)
+                {
+                    if (character != null && character.health > 0)
+                    {
+                        character.loyalty -= 5;
+                    }
+                }
             }
         }
     }

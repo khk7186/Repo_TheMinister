@@ -296,10 +296,10 @@ public class CombatCharacterUnit : MonoBehaviour
         }
         else
         {
-            character.loyalty -= 5;
+            CombatSelectUIController.Hide();
         }
-        CheckGameEnd();
 
+        CheckGameEnd();
         gameObject.SetActive(false);
     }
     public void DestroyHealthBar()
