@@ -115,6 +115,11 @@ public class CombatInteractableUnit : MonoBehaviour
         CameraShiftToEnemy();
         csc.lining = true;
         var Unit = GetComponent<CombatCharacterUnit>();
+        if (Unit.target != null && Unit.currentAction == Action.Defence)
+        {
+            Unit.target.Defender = null;
+        }
+        Unit.target = null;
         line.SetPosition(0, (Vector2)transform.position);
         bool NotEnd = true;
         yield return new WaitForSeconds(0.00001f);
@@ -128,11 +133,18 @@ public class CombatInteractableUnit : MonoBehaviour
                 {
                     if (potentialTarget.IsFriend == friend)
                     {
-                        target = potentialTarget.transform.position;
-                        if (Input.GetMouseButtonDown(0))
+                        if (friend == true && potentialTarget.Defender != null)
                         {
-                            NotEnd = false;
-                            Unit.target = potentialTarget;
+                        }
+                        else
+                        {
+                            target = potentialTarget.transform.position;
+                            if (Input.GetMouseButtonDown(0))
+                            {
+                                NotEnd = false;
+                                Unit.target = potentialTarget;
+                                if (friend == true) Unit.target.Defender = Unit;
+                            }
                         }
                     }
                 }
@@ -162,6 +174,7 @@ public class CombatInteractableUnit : MonoBehaviour
         yield return new WaitForSeconds(csc.duration);
         csc.OnAction = false;
     }
+
     public static void SetActiveAllLine(bool enable = false)
     {
         var list = FindObjectsOfType<CombatInteractableUnit>();
