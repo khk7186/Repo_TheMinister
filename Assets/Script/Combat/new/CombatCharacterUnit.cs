@@ -180,7 +180,7 @@ public class CombatCharacterUnit : MonoBehaviour
     public void TakeDamge(int damage, bool asDefender = false)
     {
         string screenSakeType = "Attack";
-        if (Defender == null || asDefender == true)
+        if (Defender == null || Defender.character.health <= 0 || asDefender == true)
         {
             int result = 0;
             switch (stat)
@@ -296,7 +296,7 @@ public class CombatCharacterUnit : MonoBehaviour
         }
         else
         {
-            
+
         }
 
         CheckGameEnd();

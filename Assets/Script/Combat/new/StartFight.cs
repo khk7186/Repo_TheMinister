@@ -97,7 +97,7 @@ public class StartFight : MonoBehaviour
             {
                 targetPosition.y -= distanceY;
                 targetPosition.x -= distanceX;
-                if (targetHaveDefender)
+                if (targetHaveDefender && target.Defender.character.health > 0)
                 {
                     defenderFinalPosition = targetPosition;
                     defenderOriginPosition = target.Defender.transform.position;

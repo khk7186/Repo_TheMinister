@@ -29,7 +29,11 @@ public class CombatTriggerAnimationController : MonoBehaviour
                 if (ShowPlayerUnits == null || ShowPlayerUnits.Count == 0) return false;
                 foreach (CombatCharacterUnit unit in ShowPlayerUnits)
                 {
-                    if (unit.gameObject.activeSelf == false) continue;
+                    if (unit.gameObject.activeSelf == false)
+                    {
+                        playerUnits.Remove(unit);
+                        continue;
+                    }
                     if (unit.currentAction == Action.NoSelect) return false;
                 }
                 return true;
@@ -38,17 +42,16 @@ public class CombatTriggerAnimationController : MonoBehaviour
     }
     [SerializeField]
     private List<CombatCharacterUnit> playerUnits = null;
-    private IEnumerator Start()
-    {
-        while (true)
-        {
-            yield return new WaitUntil(AllFriendlyUnitSet);
-            Show();
-        }
-    }
     private void Update()
     {
-        if (Showing)
+        if (!Showing)
+        {
+            if (AllFriendlyUnitSet.Invoke())
+            {
+                Show();
+            }
+        }
+        else if (Showing)
         {
             var allShowing = AllFriendlyUnitSet.Invoke();
             if (!allShowing) Hide();
