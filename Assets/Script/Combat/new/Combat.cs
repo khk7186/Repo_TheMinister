@@ -48,8 +48,21 @@ public class Combat : MonoBehaviour
         yield return new WaitForEndOfFrame();
         CombatInteractableUnit.SetActiveAllLine(true);
         FindObjectOfType<CombatUI>().BlackFrameAnimation(true);
+        ReprocessLineRenderIfTargetOff();
         Destroy(gameObject);
     }
-
+    public void ReprocessLineRenderIfTargetOff()
+    {
+        var interactables = FindObjectsOfType<CombatInteractableUnit>();
+        foreach (var interactable in interactables)
+        {
+            var ccu = interactable.GetComponent<CombatCharacterUnit>();
+            if (ccu.target == null || ccu.target.gameObject.activeSelf == false)
+            {
+                Destroy(interactable.line.gameObject);
+                ccu.target = null;
+            }
+        }
+    }
 
 }
