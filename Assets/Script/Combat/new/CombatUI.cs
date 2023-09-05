@@ -14,6 +14,7 @@ public class CombatUI : MonoBehaviour
     public float duration = 1;
     public float range = 15;
     public Ease effect = Ease.Linear;
+    public GameObject untouchMask;
 
     public Character characterOnDisplay = null;
 
@@ -23,6 +24,10 @@ public class CombatUI : MonoBehaviour
 
     public RectTransform CombatSign;
     public RectTransform ControlPannel;
+    private void Awake()
+    {
+        untouchMask.gameObject.SetActive(false);
+    }
 
     public void ShowNewCard(CombatCharacterUnit character)
     {
@@ -127,6 +132,7 @@ public class CombatUI : MonoBehaviour
 
     public void BlackFrameAnimation(bool open = false)
     {
+        untouchMask.gameObject.SetActive(true);
         float scale = open ? 1.5f : 1f;
         blackFrame.GetComponent<RectTransform>().DOScale(scale, UItransDuration).SetEase(Ease.OutSine);
 
@@ -138,6 +144,7 @@ public class CombatUI : MonoBehaviour
         ControlPannel.DOAnchorPosX(pannelPos, UItransDuration).SetEase(Ease.OutSine).OnComplete(() =>
         {
             ControlPannel.gameObject.SetActive(show);
+            untouchMask.gameObject.SetActive(false);
         });
 
         float flagPos = open ? 0f : 230f;
