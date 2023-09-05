@@ -14,6 +14,7 @@ public class CombatSurrender : MonoBehaviour
         {
             StartCoroutine(Surrender(unit));
         }
+        CombatSelectUIController.Hide();
     }
     public IEnumerator Surrender(CombatCharacterUnit unit)
     {

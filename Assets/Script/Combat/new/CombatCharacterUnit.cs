@@ -296,7 +296,7 @@ public class CombatCharacterUnit : MonoBehaviour
         }
         else
         {
-            CombatSelectUIController.Hide();
+            
         }
 
         CheckGameEnd();
