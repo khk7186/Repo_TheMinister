@@ -45,7 +45,6 @@ public class CombatSelectUIController : MonoBehaviour, IPointerEnterHandler, IPo
         SHOWING = true;
     }
 
-
     public static void Hide(bool fromCCU = true)
     {
         var ui = GameObject.FindObjectOfType<CombatSelectUIController>(true);
@@ -69,7 +68,6 @@ public class CombatSelectUIController : MonoBehaviour, IPointerEnterHandler, IPo
     {
         onUI = true;
     }
-
 
     public void OnPointerExit(PointerEventData eventData)
     {
