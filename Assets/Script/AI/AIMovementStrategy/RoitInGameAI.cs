@@ -149,6 +149,6 @@ public class RoitInGameAI : DefaultInGameAI
         StopAllCoroutines();
         GetComponentInChildren<IndicatorController>().ChangeSelected("hire");
         GetComponent<CharacterMovement>().modelController.SetSkin("face-crying expression");
-        RegularQuestEventHandler.ElimMessage();
+        RegularQuestEventHandler.KillAddMessage();
     }
 }

@@ -267,6 +267,7 @@ public class CombatCharacterUnit : MonoBehaviour
                 character.loyalty = 5;
                 if (character.characterType == CharacterType.Roit)
                 {
+                    RegularQuestEventHandler.WinCombatMessage();
                     RoitInGameAI rc = character.InGameAI as RoitInGameAI;
                     rc.DeathAction();
                 }
@@ -289,6 +290,7 @@ public class CombatCharacterUnit : MonoBehaviour
                 {
                     character.hireStage = HireStage.Defeated;
                     character.loyalty = 5;
+                    RegularQuestEventHandler.WinCombatMessage();
                 }
             }
         }
@@ -297,6 +299,7 @@ public class CombatCharacterUnit : MonoBehaviour
             character.loyalty -= 5;
         }
         CheckGameEnd();
+
         gameObject.SetActive(false);
     }
     public void DestroyHealthBar()

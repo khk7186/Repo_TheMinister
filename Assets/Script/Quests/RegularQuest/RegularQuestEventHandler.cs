@@ -5,7 +5,11 @@ using UnityEngine;
 
 public static class RegularQuestEventHandler
 {
-    public static void ElimMessage()
+    public static void KillAddMessage()
+    {
+        PixelCrushers.MessageSystem.SendMessage(null, "KillAdd", "1");
+    }
+    public static void WinCombatMessage()
     {
         PixelCrushers.MessageSystem.SendMessage(null, "ElimAdd", "1");
     }
