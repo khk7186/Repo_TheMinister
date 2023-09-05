@@ -8,6 +8,7 @@ public class CombatTriggerAnimationController : MonoBehaviour
 {
     public Animator combatTrigger;
     public bool Showing = false;
+    public bool stop = false;
     public List<CombatCharacterUnit> ShowPlayerUnits
     {
         get
@@ -20,42 +21,44 @@ public class CombatTriggerAnimationController : MonoBehaviour
             return playerUnits.Where(x => x.character.health > 0).ToList();
         }
     }
-    private Func<bool> AllFriendlyUnitSet
+    private bool AllFriendlyUnitSet
     {
         get
         {
-            return () =>
+            if (ShowPlayerUnits == null || ShowPlayerUnits.Count == 0) return false;
+            foreach (CombatCharacterUnit unit in ShowPlayerUnits)
             {
-                if (ShowPlayerUnits == null || ShowPlayerUnits.Count == 0) return false;
-                foreach (CombatCharacterUnit unit in ShowPlayerUnits)
+                if (unit.gameObject.activeSelf == false)
                 {
-                    if (unit.gameObject.activeSelf == false)
-                    {
-                        playerUnits.Remove(unit);
-                        continue;
-                    }
-                    if (unit.currentAction == Action.NoSelect) return false;
+                    playerUnits.Remove(unit);
+                    continue;
                 }
-                return true;
-            };
+                if (unit.currentAction == Action.NoSelect) return false;
+            }
+            return true;
         }
     }
     [SerializeField]
     private List<CombatCharacterUnit> playerUnits = null;
     private void Update()
     {
+        if (stop) return;
         if (!Showing)
         {
-            if (AllFriendlyUnitSet.Invoke())
+            if (AllFriendlyUnitSet)
             {
                 Show();
             }
         }
         else if (Showing)
         {
-            var allShowing = AllFriendlyUnitSet.Invoke();
+            var allShowing = AllFriendlyUnitSet;
             if (!allShowing) Hide();
         }
+    }
+    public void Stop()
+    {
+        stop = true;
     }
     public void Hide()
     {

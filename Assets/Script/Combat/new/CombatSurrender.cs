@@ -10,6 +10,7 @@ public class CombatSurrender : MonoBehaviour
     {
         Debug.Log("Surrender");
         var units = FindObjectsOfType<CombatCharacterUnit>().Where(x => x.IsFriend == true).ToList();
+        FindObjectOfType<CombatTriggerAnimationController>().Stop();
         foreach (var unit in units)
         {
             StartCoroutine(Surrender(unit));

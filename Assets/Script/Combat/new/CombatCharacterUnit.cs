@@ -294,10 +294,6 @@ public class CombatCharacterUnit : MonoBehaviour
                 }
             }
         }
-        else
-        {
-
-        }
 
         CheckGameEnd();
         gameObject.SetActive(false);
