@@ -172,6 +172,53 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &2436267652238312870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7610844601199236206}
+  - component: {fileID: 4201659318017014699}
+  m_Layer: 0
+  m_Name: DestroyObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7610844601199236206
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2436267652238312870}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3883848498556782626}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4201659318017014699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2436267652238312870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0165a88f3c75a049a2ba7b74b61d95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameObjectsToDestroy:
+  - {fileID: 6509371681189210187}
+  - {fileID: 1874743306627318718}
+  DestroyOnEnable: 1
 --- !u!1 &5183480637001778889
 GameObject:
   m_ObjectHideFlags: 0
@@ -236,6 +283,8 @@ PlayableDirector:
     value: {fileID: 707478515055608724}
   - key: {fileID: -6246993927961116066, guid: 9643aabd90cfbb041a1d324900b7daa2, type: 2}
     value: {fileID: 7873550057617358027}
+  - key: {fileID: -5891337218381549538, guid: 9643aabd90cfbb041a1d324900b7daa2, type: 2}
+    value: {fileID: 2436267652238312870}
   m_ExposedReferences:
     m_References:
     - c1f8a3fe3d8e7744fa6f67e60eab0283: {fileID: 7873550057617358027}
@@ -302,7 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goToActive:
   - {fileID: 5183480637001778889}
-  stayblock: 26
+  stayblock: 45
 --- !u!95 &6141823187678405862
 Animator:
   serializedVersion: 3
@@ -419,6 +468,7 @@ Transform:
   - {fileID: 7894417010165073458}
   - {fileID: 6509371681189210189}
   - {fileID: 1874743306627318712}
+  - {fileID: 7610844601199236206}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -603,6 +653,10 @@ PrefabInstance:
       propertyPath: right
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 36357328868516240, guid: cbf450f01151e8a45a8a0c5bdc11d23e, type: 3}
+      propertyPath: QuestSpawnPref
+      value: 
+      objectReference: {fileID: 8383943446029921867}
     - target: {fileID: 36357328868516243, guid: cbf450f01151e8a45a8a0c5bdc11d23e, type: 3}
       propertyPath: m_RootOrder
       value: 5
