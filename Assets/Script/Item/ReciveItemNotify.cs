@@ -1,12 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static ReciveItemNotify;
 
 public class ReciveItemNotify : MonoBehaviour
 {
     public ItemUIwithNameCount itemUIwithNameCount;
-
+    [System.Serializable]
+    public struct ItemInString
+    {
+        [SerializeField]
+        public string itemName;
+        [SerializeField]
+        public int amount;
+    }
     [System.Serializable]
     public struct Item
     {
@@ -16,7 +25,9 @@ public class ReciveItemNotify : MonoBehaviour
     }
     [SerializeField]
     public Item[] items;
+    public ItemInString[] itemsInString;
     public RectTransform ItemHolderTransform;
+    public bool stringSetup = false;
 
     private void Awake()
     {
@@ -27,6 +38,10 @@ public class ReciveItemNotify : MonoBehaviour
     }
     private void OnEnable()
     {
+        if (stringSetup)
+        {
+            SetupItemWithString();
+        }
         TransformEx.Clear(ItemHolderTransform);
         foreach (Item item in items)
         {
@@ -36,6 +51,19 @@ public class ReciveItemNotify : MonoBehaviour
         }
         LayoutRebuilder.ForceRebuildLayoutImmediate(ItemHolderTransform);
     }
+
+    private void SetupItemWithString()
+    {
+        var list = new List<Item>();
+        foreach (var item in itemsInString)
+        {
+            var import = new Item();
+            import.amount = item.amount;
+            import.itemName = (ItemName)Enum.Parse(typeof(Item), item.itemName);
+            list.Add(import);
+        }
+    }
+
     private void OnDestroy()
     {
         //add item to inventory and they destroy gameobject.
