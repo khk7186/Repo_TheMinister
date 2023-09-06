@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
+using UnityEngine.SceneManagement;
 
 public class SideChanger : MonoBehaviour
 {
@@ -36,6 +37,19 @@ public class SideChanger : MonoBehaviour
             }
         }
         oldPosition = transform.position;
+    }
+    private void Start()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        changeSide(isFront, isRight);
     }
     public void changeSide(bool front, bool right)
     {

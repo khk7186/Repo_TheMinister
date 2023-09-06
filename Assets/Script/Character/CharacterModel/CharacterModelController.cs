@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 using Spine.Unity.Examples;
+using UnityEngine.SceneManagement;
 
 public class CharacterModelController : MonoBehaviour
 {
@@ -91,4 +92,5 @@ public class CharacterModelController : MonoBehaviour
         front.GetComponent<Animator>().Play(animationName);
         back.GetComponent<Animator>().Play(animationName);
     }
+    
 }
