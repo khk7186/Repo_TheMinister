@@ -333,6 +333,7 @@ public class Character : MonoBehaviour, IRound
     public CharacterUI thisCharacterCard;
     public Transform characterCardInvUI;
     public DefaultInGameAI InGameAI;
+    public bool Deserializing = false;
 
     public Dictionary<CharacterValueType, int> CharactersValueDict => charactersValueDict;
 
@@ -404,6 +405,7 @@ public class Character : MonoBehaviour, IRound
     #endregion
     private void Awake()
     {
+        if (Deserializing) return;
         AwakeAction();
     }
     public virtual void AwakeAction()
@@ -440,6 +442,7 @@ public class Character : MonoBehaviour, IRound
 
     private void Start()
     {
+        if (Deserializing) return;
         StartAction();
     }
     public virtual void StartAction()
@@ -448,17 +451,22 @@ public class Character : MonoBehaviour, IRound
         {
             if (hireStage == HireStage.InCity)
             {
-                string path = $"InGameNPC/InGameNPC/{characterArtCode.ToString()}";
-                DefaultInGameAI prefab = null;
-                prefab = Resources.Load<DefaultInGameAI>(path);
-                if (prefab == null)
-                {
-                    Debug.Log(path);
-                }
-                DefaultInGameAI InGameAI = Instantiate(prefab);
-                InGameAI.Setup(this);
+                SpawnInGameAI();
             }
         }
+    }
+    public DefaultInGameAI SpawnInGameAI()
+    {
+        string path = $"InGameNPC/InGameNPC/{characterArtCode.ToString()}";
+        DefaultInGameAI prefab = null;
+        prefab = Resources.Load<DefaultInGameAI>(path);
+        if (prefab == null)
+        {
+            Debug.Log(path);
+        }
+        DefaultInGameAI InGameAI = Instantiate(prefab);
+        InGameAI.Setup(this);
+        return InGameAI;
     }
 
     public void ChangeNextHireStage()

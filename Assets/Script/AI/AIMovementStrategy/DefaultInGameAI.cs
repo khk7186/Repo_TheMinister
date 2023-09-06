@@ -36,16 +36,18 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     public Grid movementGrid;
     public NPCConversationTriggerGroup npcConversationTriggerGroup;
     protected bool NotClickable = false;
+    public bool Deserializing = false;
 
     protected void Awake()
     {
         map = FindObjectOfType<Map>();
         GetComponent<Collider2D>().enabled = false;
+        //CapsuleCollider2D
     }
     private void Start()
     {
         StartAction();
-        
+
         GetComponent<Collider2D>().enabled = true;
     }
     public virtual void StartAction()
@@ -54,6 +56,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
         {
             Register();
             DontDestroyOnLoad(gameObject);
+            if (Deserializing) return;
             SetLocation();
         }
     }

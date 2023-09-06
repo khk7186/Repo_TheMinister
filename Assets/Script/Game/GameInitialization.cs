@@ -8,6 +8,7 @@ public class GameInitialization : MonoBehaviour
     public static GameInitialization instance;
     public InGameCharacterStorage characterStorage;
     public int StartNPC;
+    public bool ReloadGame = false;
 
     public bool InProgress = false;
 
@@ -37,8 +38,11 @@ public class GameInitialization : MonoBehaviour
 
     private void InitialInGameAI(int startNPC)
     {
-        if (characterStorage != null)
-            characterStorage.SpawnNewCharacter(startNPC);
+        if (ReloadGame == false)
+        {
+            if (characterStorage != null)
+                characterStorage.SpawnNewCharacter(startNPC);
+        }
     }
 
     public IEnumerator StartProgress()

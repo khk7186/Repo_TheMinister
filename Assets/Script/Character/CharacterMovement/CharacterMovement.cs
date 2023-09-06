@@ -23,7 +23,7 @@ public class CharacterMovement : MonoBehaviour, IStopAllCoroutine
     private int blockCount => AI ? MovementGrid.EnemyInnerMovementBlocks.Count : MovementGrid.PlayerMovementBlocks.Count;
     public delegate Vector3Int GetGridBlock(int block);
     public GetGridBlock getGrid;
-    private CapsuleCollider2D EndPlaceVisibleChecker;
+    //private CapsuleCollider2D EndPlaceVisibleChecker;
     private Vector2 oldPosition;
     public void OnEnable()
     {
@@ -113,11 +113,12 @@ public class CharacterMovement : MonoBehaviour, IStopAllCoroutine
         }
         if (AI)
         {
-            EndPlaceVisibleChecker = new GameObject().AddComponent<CapsuleCollider2D>();
-            EndPlaceVisibleChecker.isTrigger = true;
-            EndPlaceVisibleChecker.size = character.GetComponent<CapsuleCollider2D>().size;
-            EndPlaceVisibleChecker.offset = character.GetComponent<CapsuleCollider2D>().offset;
-            EndPlaceVisibleChecker.gameObject.SetActive(false);
+            //EndPlaceVisibleChecker = new GameObject().AddComponent<CapsuleCollider2D>();
+            //EndPlaceVisibleChecker.name = "EndPlaceVisibleChecker";
+            //EndPlaceVisibleChecker.isTrigger = true;
+            //EndPlaceVisibleChecker.size = character.GetComponent<CapsuleCollider2D>().size;
+            //EndPlaceVisibleChecker.offset = character.GetComponent<CapsuleCollider2D>().offset;
+            //EndPlaceVisibleChecker.gameObject.SetActive(false);
         }
     }
     public IEnumerator MoveToLocationOld()

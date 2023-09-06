@@ -12,9 +12,11 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
     private Character characterPref;
     private int spawnRate = 500;
     private readonly int spawnTotal = 1000;
+    public bool Deserializing = false;
     public void Awake()
     {
         characterPref = Resources.Load<Character>("CharacterPrefab/Character");
+        if (Deserializing) return;
         UpdateCurrentCharacters();
     }
 
@@ -36,7 +38,11 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
             Destroy(gameObject);
         }
     }
-
+    public static void LoadCharacter(Character character)
+    {
+        character.transform.parent = Instance.transform;
+        Instance.CurrentCharacters.Add(character);
+    }
 
     public void AdjustCharacterStorage()
     {
@@ -70,7 +76,7 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
         {
             var target = Instantiate(characterPref, transform);
             target.hireStage = HireStage.InCity;
-            
+
         }
         UpdateCurrentCharacters();
     }
