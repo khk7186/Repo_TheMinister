@@ -36,7 +36,7 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
             Destroy(gameObject);
         }
     }
-    
+
 
     public void AdjustCharacterStorage()
     {
@@ -68,7 +68,9 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
         if (characterPref == null) return;
         for (int i = 0; i < count; i++)
         {
-            Instantiate(characterPref, transform);
+            var target = Instantiate(characterPref, transform);
+            target.hireStage = HireStage.InCity;
+            
         }
         UpdateCurrentCharacters();
     }

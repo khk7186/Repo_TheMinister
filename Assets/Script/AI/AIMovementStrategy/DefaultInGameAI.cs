@@ -40,10 +40,13 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     protected void Awake()
     {
         map = FindObjectOfType<Map>();
+        GetComponent<Collider2D>().enabled = false;
     }
     private void Start()
     {
         StartAction();
+        
+        GetComponent<Collider2D>().enabled = true;
     }
     public virtual void StartAction()
     {
@@ -94,7 +97,6 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
         this.character = character;
         SetConversationDatabase();
     }
-
     public virtual void SetLocation()
     {
         if (currentPathPoint == null)

@@ -62,7 +62,7 @@ public class SideChanger : MonoBehaviour
             StartCoroutine(changeModelSideAnimation(front, right));
         }
     }
-    IEnumerator changeModelSideAnimation(bool front, bool right)
+    private IEnumerator changeModelSideAnimation(bool front, bool right)
     {
         current = changeModelSideAnimation(front, right);
         float time = 0;

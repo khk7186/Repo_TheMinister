@@ -724,7 +724,7 @@ public class Character : MonoBehaviour, IRound
     {
         if (loyalty <= 0)
         {
-            hireStage = HireStage.InCity;
+            hireStage = HireStage.NotInMap;
             transform.parent = GameObject.FindGameObjectWithTag("InGameCharacterInventory").transform;
             LostCharacterAlertManager.CallRetireAlert(this);
         }
@@ -733,7 +733,7 @@ public class Character : MonoBehaviour, IRound
     {
         if (health <= 0)
         {
-            hireStage = HireStage.InCity;
+            hireStage = HireStage.NotInMap;
             transform.parent = GameObject.FindGameObjectWithTag("InGameCharacterInventory").transform;
             LostCharacterAlertManager.CallDeathAlert(this);
         }
