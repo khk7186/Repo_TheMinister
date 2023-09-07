@@ -43,7 +43,7 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     public void AssignTrue()
     {
         Assign = true;
-        GetComponentInChildren<ExclamationMarkBuilder>().gameObject.SetActive(false);
+       
         var indicators = GetComponentsInChildren<ExclamationMarkSbject>();
         foreach (var indicator in indicators)
         {
