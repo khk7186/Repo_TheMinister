@@ -10,6 +10,8 @@ public class TagMergeUnitUI : MonoBehaviour
 
     public Transform reqireTagsParent;
     public Transform outputTagsParent;
+    public Image bracket;
+    public List<Sprite> bracketRefs = new List<Sprite>();
     private static Dictionary<Tag, List<Tag>> MergeTagDict => Player.MergeTagDict;
 
     public void Setup(Tag tag)
@@ -22,6 +24,7 @@ public class TagMergeUnitUI : MonoBehaviour
         }
         var output = Instantiate(tagPref, outputTagsParent);
         output.Setup(tag);
+        bracket.sprite = bracketRefs[reqireTags.Count - 2];
     }
 
 }
