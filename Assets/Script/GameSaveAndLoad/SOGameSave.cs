@@ -9,32 +9,40 @@ namespace SaveSystem
     [Serializable]
     public class SOGameSave : ScriptableObject
     {
-        public List<ItemInString> playerOwnedItems;
-        public List<SerializedCharacter> playerOwnedCharacters;
+        public string saveName = string.Empty;
+        public string saveTime = string.Empty;
+        //Player Inventory
+        public List<ItemInString> playerOwnedItems = new List<ItemInString>();
+        public List<SerializedCharacter> playerOwnedCharacters = new List<SerializedCharacter>();
         public int Money = 0;
         public int Pressure = 0;
         //Map Data
-        public Map map;
-        public int DayTime = 0;
-        public int Day = 0;
+        public SerializedMapData serializedMapData = null;
+
+        //Pressure Data
+
+        //Roit Data
+        public SerializedRoitData roitData = null;
 
         //PlayerPositionData
         public int currentBlock = 0;
 
         //Player model & Side Data
-        public bool isFront;
-        public bool isRight;
-        
-        
+        public bool isFront = false;
+        public bool isRight = false;
 
+        //In City Characters
+        public List<SerializedCharacter> InCityCharacters = new List<SerializedCharacter>();
+
+        
     }
     [System.Serializable]
     public class ItemInString
     {
         [SerializeField]
-        public string itemName;
+        public string itemName = string.Empty;
         [SerializeField]
-        public int amount;
+        public int amount = 0;
     }
 
 }

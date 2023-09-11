@@ -464,7 +464,7 @@ public class Character : MonoBehaviour, IRound
         {
             Debug.Log(path);
         }
-        DefaultInGameAI InGameAI = Instantiate(prefab);
+        InGameAI = Instantiate(prefab);
         InGameAI.Setup(this);
         return InGameAI;
     }

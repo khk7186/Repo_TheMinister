@@ -34,4 +34,9 @@ public class CurrencyInventory : MonoBehaviour
         Money -= spend;
         FindObjectOfType<MainUI>().SetupMoney(Money);
     }
+    public void MoneyLoad(int amount)
+    {
+        Money = amount;
+        FindObjectOfType<MainUI>().SetupMoney(Money);
+    }
 }

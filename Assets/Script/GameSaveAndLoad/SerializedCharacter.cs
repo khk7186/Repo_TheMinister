@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 namespace SaveSystem
 {
@@ -24,7 +25,7 @@ namespace SaveSystem
         {
             var output = new SerializedCharacter();
             output.CharacterArtCode = character.characterArtCode.ToString();
-            output.CharacterName = character.name;
+            output.CharacterName = character.CharacterName;
             //Tags
             output.Tags = new List<string>();
             foreach (var tag in character.tagList)
@@ -41,45 +42,48 @@ namespace SaveSystem
             output.OnDebateDuty = character.OnDutyState[OndutyType.Debate];
 
             //InGameAISerialization
-            if (character.InGameAI == null)
-            {
-                output.HaveAI = false;
-                output.SerializedInGameAI = SerializedInGameAI.SerializingCharacterInGameAI(character);
-                return output;
-            }
-            else
+            if (character.InGameAI != null)
             {
                 output.HaveAI = true;
+                output.SerializedInGameAI = SerializedInGameAI.SerializingCharacterInGameAI(character);
             }
             return output;
         }
-
-        public static Character DeserializingCharacter(SerializedCharacter character)
+        public static Character DeserializingCharacter(SerializedCharacter characterData)
         {
             Character output = GameObject.Instantiate(Resources.Load<Character>("CharacterPrefab/DeserializeCharacter"));
-            output.hireStage = (global::HireStage)Enum.Parse(typeof(global::HireStage), character.HireStage);
-            output.tagList = new List<Tag>();
-            output.CharacterName = character.CharacterName;
-            output.characterArtCode = (CharacterArtCode)Enum.Parse(typeof(CharacterArtCode), character.CharacterArtCode);
-            foreach (string tag in character.Tags)
-            {
-                output.tagList.Add((Tag)Enum.Parse(typeof(Tag), tag));
-            }
-            output.UpdateVariables();
-            output.health = int.Parse(character.health);
-            output.loyalty = int.Parse(character.loyalty);
+            output.hireStage = (global::HireStage)Enum.Parse(typeof(global::HireStage), characterData.HireStage);
+            output.CharacterName = characterData.CharacterName;
+            output.characterArtCode = (CharacterArtCode)Enum.Parse(typeof(CharacterArtCode), characterData.CharacterArtCode);
+            DeserializingTags(characterData, output);
+            DeserializingStats(characterData, output);
             if (output.hireStage == global::HireStage.Hired)
             {
                 output.transform.parent = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
             }
-            output.OnDutyState[OndutyType.Combat] = character.OnCombatDuty;
-            output.OnDutyState[OndutyType.Debate] = character.OnDebateDuty;
-            if (character.HaveAI)
+            output.OnDutyState[OndutyType.Combat] = characterData.OnCombatDuty;
+            output.OnDutyState[OndutyType.Debate] = characterData.OnDebateDuty;
+            if (characterData.HaveAI)
             {
-                SerializedInGameAI.DeserializingCharacterInGameAI(character.SerializedInGameAI, output);
+                SerializedInGameAI.DeserializingCharacterInGameAI(characterData.SerializedInGameAI, output);
                 InGameCharacterStorage.LoadCharacter(output);
             }
             return (output);
+        }
+
+        public static void DeserializingTags(SerializedCharacter serializedCharacter, Character character)
+        {
+            character.tagList = new List<Tag>();
+            foreach (string tag in serializedCharacter.Tags)
+            {
+                character.tagList.Add((Tag)Enum.Parse(typeof(Tag), tag));
+            }
+            character.UpdateVariables();
+        }
+        public static void DeserializingStats(SerializedCharacter serializedCharacter, Character character)
+        {
+            character.health = int.Parse(serializedCharacter.health);
+            character.loyalty = int.Parse(serializedCharacter.loyalty);
         }
     }
 }

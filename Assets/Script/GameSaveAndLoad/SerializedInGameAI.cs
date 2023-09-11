@@ -6,14 +6,17 @@ namespace SaveSystem
     [System.Serializable]
     public class SerializedInGameAI
     {
-        public string pathPointName;
+        public string pathPointName = string.Empty;
 
-        public bool isFront;
-        public bool isRight;
+        public bool isFront = false;
+        public bool isRight = false;
         public static SerializedInGameAI SerializingCharacterInGameAI(Character character)
         {
             var output = new SerializedInGameAI();
-            output.pathPointName = character.InGameAI.currentPathPoint.name;
+            if (character.InGameAI.currentPathPoint != null)
+            {
+                output.pathPointName = character.InGameAI.currentPathPoint.name;
+            }
             output.isFront = character.InGameAI.GetComponent<SideChanger>().isFront;
             output.isRight = character.InGameAI.GetComponent<SideChanger>().isRight;
             return output;

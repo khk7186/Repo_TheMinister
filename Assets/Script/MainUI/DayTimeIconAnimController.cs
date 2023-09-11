@@ -40,7 +40,7 @@ public class DayTimeIconAnimController : MonoBehaviour
         EnableEvent();
 
     }
-    private void EnableEvent()
+    public void EnableEvent()
     {
         switch (Map.Instance.DayTime)
         {
@@ -67,7 +67,7 @@ public class DayTimeIconAnimController : MonoBehaviour
         //Debug.Log("play");
         SetNext(Map.Instance.DayTime);
     }
-    private void SetNext(int daytime)
+    public void SetNext(int daytime)
     {
         switch (daytime)
         {

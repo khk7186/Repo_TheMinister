@@ -67,11 +67,11 @@ public class RoitSpawnRange : MonoBehaviour, IDiceRollEvent
         var endPoint = startChoice[Random.Range(0, startChoice.Length)];
         return (starPoint, endPoint);
     }
-    public void SpawnRoit()
+    public RoitCharacter SpawnRoit()
     {
         if (CurrentRoit >= MaxRoit)
         {
-            return;
+            return null;
         }
         RoitCharacter roitCharacter = Instantiate(new GameObject().AddComponent<RoitCharacter>(), this.transform);
         roitCharacter.Setup(this);
@@ -90,6 +90,7 @@ public class RoitSpawnRange : MonoBehaviour, IDiceRollEvent
                 currentEAC.EnemyUnitC = otherCharacter;
         }
         roitCharacters.Add(roitCharacter);
+        return roitCharacter;
     }
 
     public void OnNotify(object value, NotificationType notificationType)

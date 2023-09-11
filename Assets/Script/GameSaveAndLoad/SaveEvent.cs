@@ -3,8 +3,65 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace SaveSystem
 {
-    public class SaveEvent : MonoBehaviour
+    public static class SaveEvent
     {
+        public static SOGameSave Save(SaveAndLoadManager manager)
+        {
+            //Create new save
+            var newGameSave = ScriptableObject.CreateInstance<SOGameSave>();
+            newGameSave.saveTime = System.DateTime.Now.ToString();
+            //Save player characters
+            var playerCharacters = manager.playerCharacterInventory.GetComponentsInChildren<Character>();
+            newGameSave.playerOwnedCharacters = new List<SerializedCharacter>();
+            foreach (Character character in playerCharacters)
+            {
+                var saveData = SerializedCharacter.SerializingCharacter(character);
+                newGameSave.playerOwnedCharacters.Add(saveData);
+            }
+            //SaveInCityCharacters
+            var incityCharacters = manager.inGameCharacterStorage.CurrentCharacters;
+            foreach (Character character in incityCharacters)
+            {
+                var saveData = SerializedCharacter.SerializingCharacter(character);
+                newGameSave.InCityCharacters.Add(saveData);
+            }
+
+            //Save player items and money
+            var playerItems = manager.itemInventory.ItemDict;
+            newGameSave.playerOwnedItems = new List<ItemInString>();
+            foreach (ItemName item in playerItems.Keys)
+            {
+                var itemData = SerializedInventory.SerializingItem(item, playerItems[item]);
+                newGameSave.playerOwnedItems.Add(itemData);
+            }
+            newGameSave.Money = manager.currencyInventory.Money;
+
+            //Save map data
+            var map = manager.map;
+            var mapData = SerializedMapData.SerializingMapData(map);
+            newGameSave.serializedMapData = mapData;
+
+            //Save roit data
+            var roitManager = manager.roitManager;
+            newGameSave.roitData = SerializedRoitData.Serializing(roitManager);
+
+            //Save player position
+            var player = manager.player;
+            var currenBlock = player.GetComponent<CharacterMovement>().currentBlock;
+            newGameSave.currentBlock = currenBlock;
+
+            //Save player facing
+            var playerSideChanger = player.GetComponent<SideChanger>();
+            newGameSave.isFront = playerSideChanger.isFront;
+            newGameSave.isRight = playerSideChanger.isRight;
+
+            //Save Main Quest Progress
+
+            //Save Side Quests
+
+
+            return newGameSave;
+        }
 
     }
 }

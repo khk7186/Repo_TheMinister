@@ -15,11 +15,6 @@ public class SettingsController : MonoBehaviour
     public Dropdown displayModeDropdown;
     private List<Resolution> resolutions = new List<Resolution>
     {
-        new Resolution { width = 640, height = 480 },
-        new Resolution { width = 800, height = 600 },
-        new Resolution { width = 1024, height = 768 },
-        new Resolution { width = 1280, height = 720 },
-        new Resolution { width = 1366, height = 768 },
         new Resolution { width = 1920, height = 1080 },
         new Resolution { width = 2560, height = 1440 },
         new Resolution { width = 3840, height = 2160 }
@@ -27,6 +22,12 @@ public class SettingsController : MonoBehaviour
 
     private void Start()
     {
+        resolutions = new List<Resolution>
+            {
+                new Resolution { width = 1920, height = 1080 },
+                new Resolution { width = 2560, height = 1440 },
+                new Resolution { width = 3840, height = 2160 }
+            };
         // You can load saved settings here, if any
 
         // Add listeners to sliders

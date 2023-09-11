@@ -31,6 +31,7 @@ public class Map : MonoBehaviour, IDiceRollEvent
     [SerializeField] private Animator PlayerAnimator;
     [SerializeField] private static CharacterMovement PlayerMovement;
     public bool OnStory = false;
+    public bool ReloadGame = false;
     private void Awake()
     {
         FindPlayer();
@@ -43,9 +44,13 @@ public class Map : MonoBehaviour, IDiceRollEvent
             Destroy(gameObject);
         }
         int block = PlayerMovement.currentBlock % MovementGrid.PlayerMovementBlocks.Count;
-        player.position = movementGrid.GetCellCenterWorld(MovementGrid.PlayerMovementBlocks[block]);
+        SetPlayerPosition(block);
         PlayerNextBlockToMove = PlayerCurrentBlock;
         SetBuildings();
+    }
+    public void SetPlayerPosition(int targetBlock)
+    {
+        player.position = movementGrid.GetCellCenterWorld(MovementGrid.PlayerMovementBlocks[targetBlock]);
     }
     private void Start()
     {
@@ -74,10 +79,14 @@ public class Map : MonoBehaviour, IDiceRollEvent
         player = FindObjectOfType<Player>()?.transform;
         if (player == null)
         {
-            player = Instantiate(Resources.Load<GameObject>("MainGame/ÀîÔ¬Ä°")).transform; PlayerAnimator = player.GetComponentInChildren<SkeletonMecanim>().GetComponent<Animator>();
+            player = Instantiate(Resources.Load<GameObject>("MainGame/ÀîÔ¬Ä°")).transform;
+            PlayerAnimator = player.GetComponentInChildren<SkeletonMecanim>().GetComponent<Animator>();
             PlayerMovement = player.GetComponent<CharacterMovement>();
-            PlayerMovement.currentBlock = PlayerCurrentBlock;
-            PlayerMovement.finalBlock = PlayerCurrentBlock;
+            if (ReloadGame == false)
+            {
+                PlayerMovement.currentBlock = PlayerCurrentBlock;
+                PlayerMovement.finalBlock = PlayerCurrentBlock;
+            }
             if (GameStart == false)
             {
                 player.gameObject.SetActive(false);
