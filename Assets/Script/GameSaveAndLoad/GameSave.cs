@@ -4,10 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace SaveSystem
 {
-
-    [CreateAssetMenu(fileName = "GameSave", menuName = "ScriptableObjects/GameSave", order = 7)]
     [Serializable]
-    public class SOGameSave : ScriptableObject
+    public class GameSave
     {
         public string saveName = string.Empty;
         public string saveTime = string.Empty;

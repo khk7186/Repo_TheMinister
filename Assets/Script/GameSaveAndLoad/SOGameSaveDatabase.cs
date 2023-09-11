@@ -7,10 +7,10 @@ using UnityEngine;
 [Serializable]
 public class SOGameSaveDatabase : ScriptableObject
 {
-    public List<SOGameSave> gameSaves = new List<SOGameSave>();
-    public SOGameSave currentGameSave = null;
+    public List<GameSave> gameSaves = new List<GameSave>();
+    public GameSave currentGameSave = null;
 
-    public List<SOGameSave> OutputGameSaves()
+    public List<GameSave> OutputGameSaves()
     {
         gameSaves.RemoveAll(x => x == null);
         return gameSaves;

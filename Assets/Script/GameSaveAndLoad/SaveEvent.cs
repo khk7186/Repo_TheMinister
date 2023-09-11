@@ -5,10 +5,10 @@ namespace SaveSystem
 {
     public static class SaveEvent
     {
-        public static SOGameSave Save(SaveAndLoadManager manager)
+        public static GameSave Save(SaveAndLoadManager manager)
         {
             //Create new save
-            var newGameSave = ScriptableObject.CreateInstance<SOGameSave>();
+            var newGameSave = new GameSave();
             newGameSave.saveTime = System.DateTime.Now.ToString();
             //Save player characters
             var playerCharacters = manager.playerCharacterInventory.GetComponentsInChildren<Character>();

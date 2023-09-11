@@ -19,7 +19,7 @@ namespace SaveSystem
                 item.gameObject.SetActive(false);
             }
         }
-        public void Setup(List<SOGameSave> gameSaves)
+        public void Setup(List<GameSave> gameSaves)
         {
             SetOff();
             int index = 0;

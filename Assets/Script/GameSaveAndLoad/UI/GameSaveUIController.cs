@@ -20,7 +20,7 @@ public class GameSaveUIController : MonoBehaviour
         pages.Clear();
         pageIndex = 0;
     }
-    private void OnEnable()
+    public void OnEnable()
     {
         Reset();
         pageTemp.gameObject.SetActive(false);
@@ -34,7 +34,7 @@ public class GameSaveUIController : MonoBehaviour
         pages[0].gameObject.SetActive(true);
         ButtonCheck();
     }
-    public void SetPages(List<SOGameSave> saves)
+    public void SetPages(List<GameSave> saves)
     {
         pageIndex = 0;
         int pageCount = (saves.Count + 1) / 4;
@@ -45,7 +45,7 @@ public class GameSaveUIController : MonoBehaviour
         {
             var page = Instantiate(pageTemp, pageHolder);
             pages.Add(page);
-            var saveList = new List<SOGameSave>();
+            var saveList = new List<GameSave>();
             if (saveIndex < saves.Count)
             {
                 saveList.Add(saves[saveIndex]);

@@ -12,7 +12,7 @@ public class SaveBlockUI : MonoBehaviour
     public Text PreviewPressure;
     public Text PreviewCharacterCount;
 
-    public SOGameSave save;
+    public GameSave save;
 
     public void Setup()
     {
@@ -25,5 +25,7 @@ public class SaveBlockUI : MonoBehaviour
     public void Save()
     {
         FindObjectOfType<SaveAndLoadManager>().SaveGame(SaveName.text);
+        FindObjectOfType<GameSaveUIController>().OnEnable();
+        
     }
 }

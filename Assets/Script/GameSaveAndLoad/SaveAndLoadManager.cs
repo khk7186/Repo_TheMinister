@@ -10,7 +10,7 @@ namespace SaveSystem
     public class SaveAndLoadManager : MonoBehaviour
     {
         public SOGameSaveDatabase GameSaveDatabase;
-        public SOGameSave gameSave;
+        public GameSave gameSave;
         public Map map;
         public PathManager pathManager;
         public CharacterSpawnPool characterSpawnPool;
@@ -38,7 +38,7 @@ namespace SaveSystem
             GameSaveDatabase.currentGameSave = GameSaveDatabase.gameSaves.Find(x => x.saveName == saveName);
             LoadEvent.Load(this, GameSaveDatabase.currentGameSave);
         }
-        public void LoadGame(SOGameSave save)
+        public void LoadGame(GameSave save)
         {
             player = FindObjectOfType<Player>();
             playerQuestJournal = player.GetComponent<QuestJournal>();
@@ -70,9 +70,12 @@ namespace SaveSystem
             {
                 save.saveName = SaveName;
             }
-            AssetDatabase.CreateAsset(save, $"Assets/Resources/SaveData/Save{save.saveName}.asset");
-            AssetDatabase.SaveAssets();
             GameSaveDatabase.gameSaves.Add(save);
+        }
+
+        public void DeleteGame(GameSave save)
+        {
+            GameSaveDatabase.gameSaves.Remove(save);
         }
     }
 }

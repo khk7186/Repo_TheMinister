@@ -1,6 +1,7 @@
 using SaveSystem;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,8 +13,8 @@ public class LoadBlockUI : MonoBehaviour
     public Text Pressure;
     public Text CharacterCount;
 
-    public SOGameSave save;
-    public void Setup(SOGameSave save)
+    public GameSave save;
+    public void Setup(GameSave save)
     {
         this.save = save;
         SaveName.text = save.saveName;
@@ -26,5 +27,11 @@ public class LoadBlockUI : MonoBehaviour
     public void Load()
     {
         FindObjectOfType<SaveAndLoadManager>().LoadGame(save);
+    }
+
+    public void Remove()
+    {
+        FindObjectOfType<SaveAndLoadManager>().DeleteGame(save);
+        gameObject.SetActive(false);
     }
 }

@@ -8,7 +8,7 @@ namespace SaveSystem
 {
     public static class LoadEvent
     {
-        public static void Load(SaveAndLoadManager manager, SOGameSave save)
+        public static void Load(SaveAndLoadManager manager, GameSave save)
         {
             LoadPlayerCharacters(save);
             LoadMap(manager, save);
@@ -17,7 +17,7 @@ namespace SaveSystem
             LoadPlayer(manager, save);
 
         }
-        public static void LoadPlayerCharacters(SOGameSave save)
+        public static void LoadPlayerCharacters(GameSave save)
         {
             foreach (SerializedCharacter target in save.playerOwnedCharacters)
             {
@@ -25,7 +25,7 @@ namespace SaveSystem
             }
         }
 
-        public static void LoadMap(SaveAndLoadManager manager, SOGameSave save)
+        public static void LoadMap(SaveAndLoadManager manager, GameSave save)
         {
             var map = manager.map;
             map.DayTime = save.serializedMapData.DayTime;
@@ -35,7 +35,7 @@ namespace SaveSystem
             mainUI.SetupTime();
         }
 
-        public static void LoadOtherCharacters(SOGameSave save)
+        public static void LoadOtherCharacters(GameSave save)
         {
             foreach (SerializedCharacter target in save.InCityCharacters)
             {
@@ -43,7 +43,7 @@ namespace SaveSystem
             }
         }
 
-        public static void LoadPlayer(SaveAndLoadManager manager, SOGameSave save)
+        public static void LoadPlayer(SaveAndLoadManager manager, GameSave save)
         {
             var player = manager.player;
             var playerMovement = player.GetComponent<CharacterMovement>();
@@ -55,7 +55,7 @@ namespace SaveSystem
             manager.map.SetBuildings();
         }
 
-        public static void LoadInventory(SaveAndLoadManager manager, SOGameSave save)
+        public static void LoadInventory(SaveAndLoadManager manager, GameSave save)
         {
             var inv = manager.itemInventory;
             var items = save.playerOwnedItems;
