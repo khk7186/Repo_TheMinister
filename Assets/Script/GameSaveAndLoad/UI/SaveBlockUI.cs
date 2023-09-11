@@ -14,18 +14,23 @@ public class SaveBlockUI : MonoBehaviour
 
     public GameSave save;
 
+    private void OnEnable()
+    {
+        Setup();
+    }
     public void Setup()
     {
         SaveName.text = save.saveName;
         PreviewSaveTime.text = save.saveTime;
-        PreviewMoney.text = save.Money.ToString();
-        PreviewCharacterCount.text = save.playerOwnedCharacters.Count.ToString();
+        PreviewMoney.text = FindObjectOfType<CurrencyInventory>().Money.ToString();
+        PreviewPressure.text = $"{PressureManager.Instance.pressure.ToString()}%";
+        PreviewCharacterCount.text = FindObjectOfType<CurrencyInventory>().Prestige.ToString();
     }
 
     public void Save()
     {
         FindObjectOfType<SaveAndLoadManager>().SaveGame(SaveName.text);
         FindObjectOfType<GameSaveUIController>().OnEnable();
-        
+
     }
 }

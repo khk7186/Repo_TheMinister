@@ -41,6 +41,9 @@ namespace SaveSystem
             var mapData = SerializedMapData.SerializingMapData(map);
             newGameSave.serializedMapData = mapData;
 
+            //Save Pressure data
+            newGameSave.Pressure = PressureManager.Instance.pressure;
+
             //Save roit data
             var roitManager = manager.roitManager;
             newGameSave.roitData = SerializedRoitData.Serializing(roitManager);

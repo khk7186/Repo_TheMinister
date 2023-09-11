@@ -19,6 +19,7 @@ public class LoadBlockUI : MonoBehaviour
         this.save = save;
         SaveName.text = save.saveName;
         SaveTime.text = save.saveTime;
+        Pressure.text = $"{save.Pressure.ToString()}%";
         Money.text = save.Money.ToString();
         CharacterCount.text = save.playerOwnedCharacters.Count.ToString();
         gameObject.SetActive(true);
