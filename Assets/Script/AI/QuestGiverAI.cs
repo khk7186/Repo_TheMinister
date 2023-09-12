@@ -18,6 +18,7 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     public bool Assign = false;
     public GameObject QuestSpawnPref;
     public GameObject ReloadPref;
+    public bool triggered = false;
     protected void Awake()
     {
         GetComponent<SideChanger>().changeSide(front, right);
@@ -44,7 +45,7 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     public void AssignTrue()
     {
         Assign = true;
-       
+
         var indicators = GetComponentsInChildren<ExclamationMarkSbject>();
         foreach (var indicator in indicators)
         {
