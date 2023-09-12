@@ -10,6 +10,7 @@ namespace SaveSystem
             //Create new save
             var newGameSave = new GameSave();
             newGameSave.saveTime = System.DateTime.Now.ToString();
+
             //Save player characters
             var playerCharacters = manager.playerCharacterInventory.GetComponentsInChildren<Character>();
             newGameSave.playerOwnedCharacters = new List<SerializedCharacter>();
@@ -18,6 +19,7 @@ namespace SaveSystem
                 var saveData = SerializedCharacter.SerializingCharacter(character);
                 newGameSave.playerOwnedCharacters.Add(saveData);
             }
+
             //SaveInCityCharacters
             var incityCharacters = manager.inGameCharacterStorage.CurrentCharacters;
             foreach (Character character in incityCharacters)
@@ -60,7 +62,12 @@ namespace SaveSystem
 
             //Save Main Quest Progress
 
-            //Save Side Quests
+            //Save Side Quests objects
+            manager.questionAIManager.Save(newGameSave);
+
+            //Save questMachine system
+            PixelCrushers.SaveSystem.BeforeSceneChange();
+            newGameSave.questMachineSave = PixelCrushers.SaveSystem.RecordSavedGameData();
 
             //Save Chapter & background music
             newGameSave.chapter = ChapterCounter.Instance.Chapter;

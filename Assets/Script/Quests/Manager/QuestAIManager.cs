@@ -1,3 +1,6 @@
+using PixelCrushers.QuestMachine;
+using PixelCrushers.QuestMachine.Wrappers;
+using SaveSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,7 +14,8 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     public SOSubQuestDB subQuestDB;
     public string CurrentSave = string.Empty;
     public QUEST_GIVER_BY_ORDER CurrentQuestList => subQuestDB.QUEST_GIVER_BY_ORDER[chapterCounter.Chapter];
-    public List<QuestGiverAI> InactiveQuestGivers;
+    public List<QuestGiverAI> InactiveQuestGivers = new List<QuestGiverAI>();
+    public List<QuestGiverAI> ActiveQuestsGivers = new List<QuestGiverAI>();
     private int inGameQuestCount = 0;
     private void Start()
     {
@@ -79,6 +83,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
                 var spawnedClone = Instantiate(spawnAI, transform);
             }
             InactiveQuestGivers.Remove(spawnAI);
+            ActiveQuestsGivers.Add(spawnAI);
             QuestCountAdd();
         }
     }
@@ -86,11 +91,53 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     {
         InactiveQuestGivers = new List<QuestGiverAI>(CurrentQuestList.questGivers);
     }
-    public void Save()
+    public void Save(GameSave gameSave)
     {
         //save quest chain states
+        gameSave.questChainStateWrapper = subQuestDB.CURRENT.Clone() as QuestChainStateWrap;
+        gameSave.InactiveQuestGivers = InactiveQuestGivers;
+
         //save quest current states and showed quest gameobjects.
-        //save quest jurnal
+        foreach (var questGiver in ActiveQuestsGivers)
+        {
+            if (questGiver.triggered)
+            {
+                gameSave.TriggeredQuestGivers.Add(questGiver);
+            }
+            else
+            {
+                gameSave.UntriggeredQuestGivers.Add(questGiver);
+            }
+        }
+    }
+
+    public void Load(GameSave gameSave)
+    {
+        subQuestDB.CURRENT = gameSave.questChainStateWrapper;
+
+        InactiveQuestGivers = gameSave.InactiveQuestGivers;
+
+        var untriggereds = gameSave.UntriggeredQuestGivers;
+        foreach (var untriggered in untriggereds)
+        {
+            if (untriggered.QuestSpawnPref != null)
+            {
+                Instantiate(untriggered.QuestSpawnPref, transform);
+            }
+            else
+            {
+                var spawnedClone = Instantiate(untriggered, transform);
+            }
+            InactiveQuestGivers.Remove(untriggered);
+            ActiveQuestsGivers.Add(untriggered);
+        }
+
+        var triggereds = gameSave.TriggeredQuestGivers;
+        foreach (var triggered in triggereds)
+        {
+            Instantiate(triggered.ReloadPref, transform);
+            ActiveQuestsGivers.Add(triggered);
+        }
     }
     public void OnNotify(object value, NotificationType notificationType)
     {

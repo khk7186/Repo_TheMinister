@@ -22,6 +22,7 @@ namespace SaveSystem
         public Player player;
         public QuestJournal playerQuestJournal;
         public InGameCharacterStorage inGameCharacterStorage;
+        public QuestAIManager questionAIManager;
 
 
         public void LoadCharacters()

@@ -1,3 +1,4 @@
+using PixelCrushers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -31,6 +32,16 @@ namespace SaveSystem
         public List<SerializedCharacter> InCityCharacters = new List<SerializedCharacter>();
 
         public int chapter = 0;
+
+        //Quest AI Manager Data
+        public QuestChainStateWrap questChainStateWrapper = null;
+        public List<QuestGiverAI> InactiveQuestGivers;
+        public List<QuestGiverAI> UntriggeredQuestGivers = new List<QuestGiverAI>();
+        public List<QuestGiverAI> TriggeredQuestGivers = new List<QuestGiverAI>();
+
+        //QuestMachine Data
+        public SavedGameData questMachineSave = null;
+
     }
     [System.Serializable]
     public class ItemInString

@@ -15,7 +15,8 @@ namespace SaveSystem
             LoadOtherCharacters(save);
             LoadInventory(manager, save);
             LoadPlayer(manager, save);
-
+            LoadQuestMachine(save);
+            manager.questionAIManager.Load(save);
         }
         public static void LoadPlayerCharacters(GameSave save)
         {
@@ -67,6 +68,10 @@ namespace SaveSystem
                 }
             }
             manager.currencyInventory.MoneyLoad(save.Money);
+        }
+        public static void LoadQuestMachine(GameSave save)
+        {
+            PixelCrushers.SaveSystem.ApplySavedGameData(save.questMachineSave);
         }
     }
 }
