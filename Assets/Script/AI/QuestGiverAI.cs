@@ -17,6 +17,7 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     public DialogueSystemTrigger _dialogueTriggerCollected;
     public bool Assign = false;
     public GameObject QuestSpawnPref;
+    public GameObject ReloadPref;
     protected void Awake()
     {
         GetComponent<SideChanger>().changeSide(front, right);
