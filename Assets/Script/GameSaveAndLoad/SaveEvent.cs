@@ -62,6 +62,8 @@ namespace SaveSystem
 
             //Save Side Quests
 
+            //Save Chapter & background music
+            newGameSave.chapter = ChapterCounter.Instance.Chapter;
 
             return newGameSave;
         }

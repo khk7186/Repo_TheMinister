@@ -17,8 +17,6 @@ namespace SaveSystem
         //Map Data
         public SerializedMapData serializedMapData = null;
 
-        //Pressure Data
-
         //Roit Data
         public SerializedRoitData roitData = null;
 
@@ -32,7 +30,7 @@ namespace SaveSystem
         //In City Characters
         public List<SerializedCharacter> InCityCharacters = new List<SerializedCharacter>();
 
-        
+        public int chapter = 0;
     }
     [System.Serializable]
     public class ItemInString

@@ -20,14 +20,10 @@ public class SettingsController : MonoBehaviour
         new Resolution { width = 3840, height = 2160 }
     };
 
+    public SOAudio sOAudio;
+
     private void Start()
     {
-        resolutions = new List<Resolution>
-            {
-                new Resolution { width = 1920, height = 1080 },
-                new Resolution { width = 2560, height = 1440 },
-                new Resolution { width = 3840, height = 2160 }
-            };
         // You can load saved settings here, if any
 
         // Add listeners to sliders
@@ -39,6 +35,13 @@ public class SettingsController : MonoBehaviour
         SetupResolutionDropdown();
         displayModeDropdown.AddOptions(new List<string> { "È«ÆÁ", "´°¿Ú" });
         displayModeDropdown.onValueChanged.AddListener(SetDisplayMode);
+    }
+    private void OnEnable()
+    {
+        masterVolumeSlider.value = sOAudio.MasterVolume;
+        musicVolumeSlider.value = sOAudio.MusicVolume;
+        sfxVolumeSlider.value = sOAudio.SFXVolume;
+
     }
     public void SetMasterVolume(float volume)
     {
@@ -73,9 +76,7 @@ public class SettingsController : MonoBehaviour
 
     private void SetupResolutionDropdown()
     {
-        resolutions = new List<Resolution>(Screen.resolutions);
         resolutionDropdown.ClearOptions();
-
         List<string> options = new List<string>();
 
         int currentResolutionIndex = 0;
@@ -90,9 +91,16 @@ public class SettingsController : MonoBehaviour
                 currentResolutionIndex = i;
             }
         }
-
         resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
+        if (sOAudio.resolutionIndex == -1)
+        {
+            sOAudio.resolutionIndex = currentResolutionIndex;
+            resolutionDropdown.value = currentResolutionIndex;
+        }
+        else
+        {
+            resolutionDropdown.value = sOAudio.resolutionIndex;
+        }
         resolutionDropdown.RefreshShownValue();
         resolutionDropdown.onValueChanged.AddListener(SetResolution);
     }

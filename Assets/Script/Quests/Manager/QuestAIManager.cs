@@ -88,7 +88,9 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     }
     public void Save()
     {
-
+        //save quest chain states
+        //save quest current states and showed quest gameobjects.
+        //save quest jurnal
     }
     public void OnNotify(object value, NotificationType notificationType)
     {

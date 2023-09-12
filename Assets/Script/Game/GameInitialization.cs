@@ -8,6 +8,7 @@ public class GameInitialization : MonoBehaviour
     public static GameInitialization instance;
     public InGameCharacterStorage characterStorage;
     public int StartNPC;
+    public SOAudio sOAudio;
     public bool ReloadGame = false;
 
     public bool InProgress = false;
@@ -44,10 +45,17 @@ public class GameInitialization : MonoBehaviour
                 characterStorage.SpawnNewCharacter(startNPC);
         }
     }
-
+    public void ModifySettings()
+    {
+        var setting = FindObjectOfType<SettingsController>(true);
+        setting.SetMasterVolume(sOAudio.MasterVolume);
+        setting.SetMusicVolume(sOAudio.MusicVolume);
+        setting.SetSFXVolume(sOAudio.SFXVolume);
+    }
     public IEnumerator StartProgress()
     {
         InProgress = true;
+        
         InitialInGameAI(StartNPC);
         yield return null;
         InProgress = false;
