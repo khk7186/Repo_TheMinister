@@ -4,6 +4,7 @@ using SaveSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -111,11 +112,13 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         {
             if (questGiver.triggered)
             {
-                gameSave.TriggeredQuestGivers.Add(questGiver);
+                gameSave.TriggeredQuestGivers.Add
+                    (subQuestDB.QUEST_GIVER_BY_ORDER[chapterCounter.count].questGivers.Find(x => x.QuestID == questGiver.QuestID));
             }
             else
             {
-                gameSave.UntriggeredQuestGivers.Add(questGiver);
+                gameSave.UntriggeredQuestGivers.Add
+                    (subQuestDB.QUEST_GIVER_BY_ORDER[chapterCounter.count].questGivers.Find(x => x.QuestID == questGiver.QuestID));
             }
         }
     }
