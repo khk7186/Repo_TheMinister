@@ -71,6 +71,7 @@ namespace SaveSystem
             itemInventory.Reset();
             playerCharacterInventory.Clear();
             characterAwaitTributeManager.Reset();
+            questionAIManager.Reset();
             yield return null;
         }
 

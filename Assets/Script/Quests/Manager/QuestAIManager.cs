@@ -77,7 +77,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         {
             if (spawnAI.QuestSpawnPref != null)
             {
-                var clone =  Instantiate(spawnAI.QuestSpawnPref, transform);
+                var clone = Instantiate(spawnAI.QuestSpawnPref, transform);
                 targetQuestGiver = clone.GetComponentInChildren<QuestGiverAI>();
             }
             else
@@ -92,6 +92,13 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     public void CloneList()
     {
         InactiveQuestGivers = new List<QuestGiverAI>(CurrentQuestList.questGivers);
+    }
+    public void Reset()
+    {
+        foreach (QuestGiverAI ai in ActiveQuestsGivers)
+        {
+            Destroy(ai.transform.parent.gameObject);
+        }
     }
     public void Save(GameSave gameSave)
     {
@@ -116,29 +123,20 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     public void Load(GameSave gameSave)
     {
         subQuestDB.CURRENT = gameSave.questChainStateWrapper;
-
         InactiveQuestGivers = new List<QuestGiverAI>(gameSave.InactiveQuestGivers);
         var untriggereds = gameSave.UntriggeredQuestGivers;
         ActiveQuestsGivers = new List<QuestGiverAI>();
         foreach (var untriggered in untriggereds)
         {
-            if (untriggered.QuestSpawnPref != null)
-            {
-                Instantiate(untriggered.QuestSpawnPref, transform);
-            }
-            else
-            {
-                var spawnedClone = Instantiate(untriggered, transform);
-            }
-            InactiveQuestGivers.Remove(untriggered);
-            ActiveQuestsGivers.Add(untriggered);
+            var clone = Instantiate(untriggered.QuestSpawnPref, transform);
+            ActiveQuestsGivers.Add(clone.GetComponent<QuestGiverPointer>().questGiverAI);
         }
 
         var triggereds = gameSave.TriggeredQuestGivers;
         foreach (var triggered in triggereds)
         {
-            Instantiate(triggered.ReloadPref, transform);
-            ActiveQuestsGivers.Add(triggered);
+            var clone = Instantiate(triggered.ReloadPref, transform);
+            ActiveQuestsGivers.Add(clone.GetComponent<QuestGiverPointer>().questGiverAI);
         }
     }
     public void OnNotify(object value, NotificationType notificationType)
