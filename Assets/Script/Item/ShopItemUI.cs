@@ -9,8 +9,8 @@ public class ShopItemUI : ItemUI
 {
     public Text Price;
     public GameObject BoughtSign;
-    private bool bought = false;
     private bool setdone = false;
+    private bool Bought => BoughtSign.gameObject.activeSelf;
     private void Awake()
     {
         if (!setdone)
@@ -29,7 +29,7 @@ public class ShopItemUI : ItemUI
     }
     public override void SetupInUseItem()
     {
-        if (bought)
+        if (Bought)
         {
             return;
         }
