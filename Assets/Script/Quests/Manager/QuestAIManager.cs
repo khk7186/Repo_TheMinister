@@ -113,12 +113,12 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
             if (questGiver.triggered)
             {
                 gameSave.TriggeredQuestGivers.Add
-                    (subQuestDB.QUEST_GIVER_BY_ORDER[chapterCounter.count].questGivers.Find(x => x.QuestID == questGiver.QuestID));
+                    (CurrentQuestList.questGivers.Find(x => x.QuestID == questGiver.QuestID));
             }
             else
             {
                 gameSave.UntriggeredQuestGivers.Add
-                    (subQuestDB.QUEST_GIVER_BY_ORDER[chapterCounter.count].questGivers.Find(x => x.QuestID == questGiver.QuestID));
+                    (CurrentQuestList.questGivers.Find(x => x.QuestID == questGiver.QuestID));
             }
         }
     }
