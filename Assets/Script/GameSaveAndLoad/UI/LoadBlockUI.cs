@@ -27,7 +27,7 @@ public class LoadBlockUI : MonoBehaviour
 
     public void Load()
     {
-        FindObjectOfType<SaveAndLoadManager>().LoadGame(save);
+        FindObjectOfType<SaveAndLoadManager>().ReloadMainScene(save);
     }
 
     public void Remove()

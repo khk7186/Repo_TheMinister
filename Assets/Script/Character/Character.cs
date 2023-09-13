@@ -403,6 +403,12 @@ public class Character : MonoBehaviour, IRound
     public int Influence = 200;
     public int Prestige = 200;
     #endregion
+    #region away data
+    public CharacterAwaitTribute characterAwaitTribute = null;
+    public int waitTime => characterAwaitTribute != null ? characterAwaitTribute.WaitTime : 0;
+    public int alreadyWait => characterAwaitTribute != null ? characterAwaitTribute.AlreadyWait : 0;
+    public GameObject spawnAfterAway = null;
+    #endregion
     private void Awake()
     {
         if (Deserializing) return;
@@ -464,7 +470,7 @@ public class Character : MonoBehaviour, IRound
         {
             Debug.Log(path);
         }
-        InGameAI = Instantiate(prefab);
+        InGameAI = Instantiate(prefab, transform);
         InGameAI.Setup(this);
         return InGameAI;
     }
@@ -681,7 +687,8 @@ public class Character : MonoBehaviour, IRound
         var e = new UnityEvent();
         e.AddListener(() => Instantiate(spawnAfterAway));
         e.AddListener(() => Back());
-        CharacterAwaitTributeManager.Instance.AddTribute(this, rounds * 3, e);
+        this.spawnAfterAway = spawnAfterAway;
+        characterAwaitTribute = CharacterAwaitTributeManager.Instance.AddTribute(this, rounds * 3, e);
     }
     public void Back()
     {

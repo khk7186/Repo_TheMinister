@@ -115,9 +115,9 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     {
         subQuestDB.CURRENT = gameSave.questChainStateWrapper;
 
-        InactiveQuestGivers = gameSave.InactiveQuestGivers;
-
+        InactiveQuestGivers = new List<QuestGiverAI>(gameSave.InactiveQuestGivers);
         var untriggereds = gameSave.UntriggeredQuestGivers;
+        ActiveQuestsGivers = new List<QuestGiverAI>();
         foreach (var untriggered in untriggereds)
         {
             if (untriggered.QuestSpawnPref != null)

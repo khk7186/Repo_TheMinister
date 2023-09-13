@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameInitialization : MonoBehaviour
 {
@@ -12,6 +14,15 @@ public class GameInitialization : MonoBehaviour
     public bool ReloadGame = false;
 
     public bool InProgress = false;
+    private void Awake()
+    {
+
+        var target = FindObjectOfType<SceneTransController>();
+        if (target != null)
+        {
+            ReloadGame = true;
+        }
+    }
 
     private void OnEnable()
     {
@@ -24,6 +35,7 @@ public class GameInitialization : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+
     }
     public void OnDisable()
     {
@@ -55,7 +67,7 @@ public class GameInitialization : MonoBehaviour
     public IEnumerator StartProgress()
     {
         InProgress = true;
-        
+
         InitialInGameAI(StartNPC);
         yield return null;
         InProgress = false;

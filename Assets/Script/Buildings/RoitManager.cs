@@ -83,6 +83,20 @@ public class RoitManager : MonoBehaviour, IDiceRollEvent
             //Debug.Log("spawn");
         }
     }
+
+    internal void Reset()
+    {
+        foreach (var spawnRange in spawnRanges)
+        {
+            foreach (var rc in spawnRange.roitCharacters)
+            {
+                Destroy(rc.InGameAI.gameObject);
+                Destroy(rc.gameObject);
+            }
+            spawnRange.roitCharacters = new List<Character>();
+            spawnRange.takenStartPoint = new List<PathPoint>();
+        }
+    }
     //public (PathPoint, PathPoint) GetRoitPath()
     //{
     //    PathPoint[] range = RoitPoints.Except(TakenPoints).ToArray();

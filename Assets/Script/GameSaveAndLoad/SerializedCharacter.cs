@@ -21,6 +21,9 @@ namespace SaveSystem
         public bool OnGobangDuty = false;
         public SerializedInGameAI SerializedInGameAI = null;
 
+        public int waitTime = 0;
+        public int alreadyWait = 0;
+        public GameObject spawnAfterAway;
         public static SerializedCharacter SerializingCharacter(Character character)
         {
             var output = new SerializedCharacter();
@@ -47,6 +50,14 @@ namespace SaveSystem
                 output.HaveAI = true;
                 output.SerializedInGameAI = SerializedInGameAI.SerializingCharacterInGameAI(character);
             }
+            //AwayTime
+            if (character.characterAwaitTribute != null)
+            {
+                output.waitTime = character.waitTime;
+                output.alreadyWait = character.alreadyWait;
+                output.spawnAfterAway = character.spawnAfterAway;
+            }
+
             return output;
         }
         public static Character DeserializingCharacter(SerializedCharacter characterData)
@@ -57,9 +68,13 @@ namespace SaveSystem
             output.characterArtCode = (CharacterArtCode)Enum.Parse(typeof(CharacterArtCode), characterData.CharacterArtCode);
             DeserializingTags(characterData, output);
             DeserializingStats(characterData, output);
-            if (output.hireStage == global::HireStage.Hired)
+            if (output.hireStage == global::HireStage.Hired || output.hireStage == global::HireStage.Away)
             {
                 output.transform.parent = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
+                if (output.hireStage == global::HireStage.Away)
+                {
+                    output.Away(output.waitTime - output.alreadyWait, output.spawnAfterAway);
+                }
             }
             output.OnDutyState[OndutyType.Combat] = characterData.OnCombatDuty;
             output.OnDutyState[OndutyType.Debate] = characterData.OnDebateDuty;

@@ -38,6 +38,12 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
             Destroy(gameObject);
         }
     }
+    public void Reset()
+    {
+        TransformEx.Clear(transform);
+        UnshowedCharacters = new List<Character>();
+        CurrentCharacters = new List<Character>();
+    }
     public static void LoadCharacter(Character character)
     {
         character.transform.parent = Instance.transform;

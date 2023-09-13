@@ -101,7 +101,6 @@ public class GeneralEventTrigger : MonoBehaviour
         DontDestroyOnLoad(canvas);
         var animation = Instantiate(Resources.Load<SceneTransController>(path), canvas.transform);
         animation.transDelegate = NextStep;
-
         animation.Close();
         yield return null;
     }

@@ -24,7 +24,7 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
     {
         Dice.Instance.RegisterObserver(this);
     }
-    public void AddTribute(Character character, int WaitTime, UnityEvent @event)
+    public CharacterAwaitTribute AddTribute(Character character, int WaitTime, UnityEvent @event)
     {
         var tribute = Instantiate(awaitTributePrefab, transform);
         tribute.gameObject.SetActive(true);
@@ -32,6 +32,7 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
         tribute.WaitTime = WaitTime;
         tribute.@event.AddListener(@event.Invoke);
         UnfinishedTributes.Add(tribute);
+        return tribute;
     }
     public void OnNotify(object value, NotificationType notificationType)
     {
@@ -39,5 +40,13 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
         {
             tribute.TimePlus();
         }
+    }
+    public void Reset()
+    {
+        foreach (var tribute in UnfinishedTributes)
+        {
+            Destroy(tribute.gameObject);
+        }
+        UnfinishedTributes = new List<CharacterAwaitTribute> ();
     }
 }

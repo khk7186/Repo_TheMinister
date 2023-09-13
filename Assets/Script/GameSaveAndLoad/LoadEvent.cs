@@ -16,7 +16,7 @@ namespace SaveSystem
             LoadInventory(manager, save);
             LoadPlayer(manager, save);
             LoadQuestMachine(save);
-            manager.questionAIManager.Load(save);
+            //manager.questionAIManager.Load(save);
         }
         public static void LoadPlayerCharacters(GameSave save)
         {

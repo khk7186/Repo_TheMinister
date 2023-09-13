@@ -25,7 +25,6 @@ public class LightController : MonoBehaviour, IDiceRollEvent
     {
         if (Instance != null && Instance != this)
         {
-            Dice.Instance.CancelObserver(this);
             Destroy(gameObject);
             return;
         }
@@ -59,7 +58,7 @@ public class LightController : MonoBehaviour, IDiceRollEvent
         }
         else
         {
-            Wrapper.SetActive(true);
+            Wrapper?.SetActive(true);
             ConstantLight(Map.Instance.DayTime);
         }
     }

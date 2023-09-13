@@ -28,7 +28,13 @@ public class PathManager : MonoBehaviour, IDiceRollEvent
     public void Reset()
     {
         handlers.Clear();
-        StopAllCoroutines();
+        StopAllCoroutines(); 
+        points = GetComponentsInChildren<PathPoint>();
+        takenPoints = new List<PathPoint>();
+    }
+    private void OnEnable()
+    {
+        points = GetComponentsInChildren<PathPoint>();
     }
     public void Start()
     {

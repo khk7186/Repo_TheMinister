@@ -31,6 +31,10 @@ public class ItemInventory : MonoBehaviour
         ////    AddItem(item);
         ////    AddItem(item);
     }
+    public void Reset()
+    {
+        itemDict = new Dictionary<ItemName, int>();
+    }
     public void AddItem(ItemName item)
     //add item into dic, if dont have one, add new key, else add count.
     {

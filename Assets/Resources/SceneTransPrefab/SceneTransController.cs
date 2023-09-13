@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SceneTransController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class SceneTransController : MonoBehaviour
     public Animator transition;
     public delegate IEnumerator SceneTransDelegate();
     public SceneTransDelegate transDelegate;
+    public UnityEvent afterSceneEvent = new UnityEvent();
 
     public IEnumerator DestroyAfterPlay()
     {
@@ -27,7 +29,14 @@ public class SceneTransController : MonoBehaviour
     {
         transition.Play("Close");
         //Debug.Log("Close");
-        StartCoroutine(transDelegate());
+        if (transDelegate != null)
+        {
+            StartCoroutine(transDelegate());
+        }
+        if (afterSceneEvent != null)
+        {
+            afterSceneEvent.Invoke();
+        }
     }
 
 }
