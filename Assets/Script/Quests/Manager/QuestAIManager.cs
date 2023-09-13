@@ -72,18 +72,20 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
                 break;
             }
         }
+        QuestGiverAI targetQuestGiver = null;
         if (spawnAI != null)
         {
             if (spawnAI.QuestSpawnPref != null)
             {
-                Instantiate(spawnAI.QuestSpawnPref, transform);
+                var clone =  Instantiate(spawnAI.QuestSpawnPref, transform);
+                targetQuestGiver = clone.GetComponentInChildren<QuestGiverAI>();
             }
             else
             {
-                var spawnedClone = Instantiate(spawnAI, transform);
+                targetQuestGiver = Instantiate(spawnAI, transform);
             }
             InactiveQuestGivers.Remove(spawnAI);
-            ActiveQuestsGivers.Add(spawnAI);
+            ActiveQuestsGivers.Add(targetQuestGiver);
             QuestCountAdd();
         }
     }
