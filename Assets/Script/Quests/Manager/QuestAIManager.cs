@@ -96,10 +96,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     }
     public void Reset()
     {
-        foreach (QuestGiverAI ai in ActiveQuestsGivers)
-        {
-            Destroy(ai.transform.parent.gameObject);
-        }
+        TransformEx.Clear(transform);
     }
     public void Save(GameSave gameSave)
     {
