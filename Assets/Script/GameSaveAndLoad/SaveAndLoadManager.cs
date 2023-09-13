@@ -31,13 +31,6 @@ namespace SaveSystem
         public GameInitialization gameFiles;
         public LightController lightController = null;
         public bool reloading = false;
-        private void Awake()
-        {
-            if (reloading)
-            {
-                LoadGame(gameSave);
-            }
-        }
         public void LoadCharacters()
         {
             foreach (SerializedCharacter target in gameSave.playerOwnedCharacters)
