@@ -16,7 +16,9 @@ namespace SaveSystem
             LoadInventory(manager, save);
             LoadPlayer(manager, save);
             LoadQuestMachine(save);
-            //manager.questionAIManager.Load(save);
+            manager.questionAIManager.Load(save);
+            manager.lightController.gameObject.SetActive(false);
+            manager.lightController.gameObject.SetActive(true);
         }
         public static void LoadPlayerCharacters(GameSave save)
         {

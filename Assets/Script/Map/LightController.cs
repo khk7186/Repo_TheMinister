@@ -44,7 +44,6 @@ public class LightController : MonoBehaviour, IDiceRollEvent
             ConstantLight(Map.Instance.DayTime);
         if (Instance != this) { Instance = this; }
         else { Destroy(gameObject); }
-        DontDestroyOnLoad(gameObject);
         if (Dice.Instance != null)
         {
             Dice.Instance.RegisterObserver(this);

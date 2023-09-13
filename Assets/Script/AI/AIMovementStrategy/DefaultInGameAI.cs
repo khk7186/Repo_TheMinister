@@ -55,7 +55,6 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
         if (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().name == "SampleScene 1")
         {
             Register();
-            DontDestroyOnLoad(gameObject);
             if (Deserializing) return;
             SetLocation();
         }

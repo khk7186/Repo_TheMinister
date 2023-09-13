@@ -29,7 +29,7 @@ namespace SaveSystem
         public CharacterAwaitTributeManager characterAwaitTributeManager => CharacterAwaitTributeManager.Instance;
 
         public GameInitialization gameFiles;
-
+        public LightController lightController = null;
         public bool reloading = false;
         private void Awake()
         {

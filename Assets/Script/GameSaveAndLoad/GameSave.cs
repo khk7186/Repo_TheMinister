@@ -41,7 +41,6 @@ namespace SaveSystem
 
         //QuestMachine Data
         public SavedGameData questMachineSave = null;
-
     }
     [System.Serializable]
     public class ItemInString
