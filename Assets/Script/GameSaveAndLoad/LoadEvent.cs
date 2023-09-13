@@ -17,8 +17,7 @@ namespace SaveSystem
             LoadPlayer(manager, save);
             LoadQuestMachine(save);
             manager.questionAIManager.Load(save);
-            manager.lightController.gameObject.SetActive(false);
-            manager.lightController.gameObject.SetActive(true);
+            manager.lightController.ConstantLight(Map.Instance.DayTime);
         }
         public static void LoadPlayerCharacters(GameSave save)
         {
