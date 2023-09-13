@@ -73,6 +73,24 @@ MonoBehaviour:
     m_textTable: {fileID: 0}
     m_textTableFieldID: 0
   m_useOriginalName: 0
+--- !u!114 &-6265199026816748813
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ed0c4e68ee98946bb5016adda42373, type: 3}
+  m_Name: BodyTextQuestContent
+  m_EditorClassIdentifier: 
+  m_contentID: -1
+  m_bodyText:
+    m_text: "\u4E00\u821E\u5973\u671D\u4F60\u51B2\u8FC7\u6765\u3002"
+    m_stringAsset: {fileID: 0}
+    m_textTable: {fileID: 0}
+    m_textTableFieldID: 0
 --- !u!114 &-3572459007158601030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -322,7 +340,7 @@ MonoBehaviour:
       m_conditionCountMode: 0
       m_minConditionCount: 0
       m_numTrueConditions: 0
-    m_childIndexList: 0400000001000000
+    m_childIndexList: 0500000004000000
     m_canvasRect:
       serializedVersion: 2
       x: 176.59573
@@ -376,8 +394,8 @@ MonoBehaviour:
     m_childIndexList: 02000000
     m_canvasRect:
       serializedVersion: 2
-      x: 167.68085
-      y: 143.85107
+      x: 169.68085
+      y: 187.85107
       width: 120
       height: 48
   - m_id:
@@ -471,8 +489,8 @@ MonoBehaviour:
     m_childIndexList: 
     m_canvasRect:
       serializedVersion: 2
-      x: 325.79492
-      y: 218.53192
+      x: 311.79492
+      y: 196.53192
       width: 120
       height: 35
   - m_id:
@@ -510,15 +528,65 @@ MonoBehaviour:
       - m_contentList: []
       - m_contentList: []
     m_conditionSet:
-      m_conditionList: []
+      m_conditionList:
+      - {fileID: 7519229603040110612}
       m_conditionCountMode: 1
       m_minConditionCount: 0
       m_numTrueConditions: 0
     m_childIndexList: 03000000
     m_canvasRect:
       serializedVersion: 2
-      x: 331.59573
-      y: 125.872345
+      x: 313.59573
+      y: 108.872345
+      width: 120
+      height: 48
+  - m_id:
+      m_text: InProgress
+      m_stringAsset: {fileID: 0}
+      m_textTable: {fileID: 0}
+      m_textTableFieldID: 0
+    m_internalName:
+      m_text: 
+      m_stringAsset: {fileID: 0}
+      m_textTable: {fileID: 0}
+      m_textTableFieldID: 0
+    m_nodeType: 4
+    m_isOptional: 0
+    m_state: 0
+    m_speaker:
+      m_text: 
+      m_stringAsset: {fileID: 0}
+      m_textTable: {fileID: 0}
+      m_textTableFieldID: 0
+    m_stateInfoList:
+    - m_actionList: []
+      m_categorizedContentList:
+      - m_contentList: []
+      - m_contentList: []
+      - m_contentList: []
+    - m_actionList:
+      - {fileID: 581457312839593733}
+      m_categorizedContentList:
+      - m_contentList: []
+      - m_contentList:
+        - {fileID: 1878223136112392139}
+        - {fileID: -6265199026816748813}
+      - m_contentList: []
+    - m_actionList: []
+      m_categorizedContentList:
+      - m_contentList: []
+      - m_contentList: []
+      - m_contentList: []
+    m_conditionSet:
+      m_conditionList: []
+      m_conditionCountMode: 1
+      m_minConditionCount: 0
+      m_numTrueConditions: 0
+    m_childIndexList: 01000000
+    m_canvasRect:
+      serializedVersion: 2
+      x: 170
+      y: 108
       width: 120
       height: 48
   m_goalEntityTypeName: 
@@ -550,7 +618,46 @@ MonoBehaviour:
   - {fileID: -3481506233552336293}
   m_actionsProxy:
     actions: []
+--- !u!114 &581457312839593733
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05643b85c87be547af5871e9bf6e10a, type: 3}
+  m_Name: InstantiatePrefabQuestAction
+  m_EditorClassIdentifier: 
+  m_prefab: {fileID: 6455529624729957052, guid: e0c48d4f9d2385e40a87f5d6fe12bcad, type: 3}
+  m_locationTransform:
+    m_text: 
+    m_stringAsset: {fileID: 0}
+    m_textTable: {fileID: 0}
+    m_textTableFieldID: 0
+  m_useOriginalName: 0
 --- !u!114 &1557326762327619458
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c47e1bb9cdd9a474c8d3f5d555d7533a, type: 3}
+  m_Name: HeadingTextQuestContent
+  m_EditorClassIdentifier: 
+  m_contentID: -1
+  m_useQuestTitle: 1
+  m_headingText:
+    m_text: 
+    m_stringAsset: {fileID: 0}
+    m_textTable: {fileID: 0}
+    m_textTableFieldID: 0
+  m_headingLevel: 1
+--- !u!114 &1878223136112392139
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -616,3 +723,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7519229603040110612
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a976671aaa12c2e428b2aac89a260302, type: 3}
+  m_Name: CounterQuestCondition
+  m_EditorClassIdentifier: 
+  m_counterIndex: 1
+  m_counterValueMode: 0
+  m_requiredCounterValue:
+    m_valueType: 0
+    m_literalValue: 2
+    m_counterIndex: 0

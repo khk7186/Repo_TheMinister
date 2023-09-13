@@ -47,6 +47,9 @@ MonoBehaviour:
   - QuestID: "S-01-\u5149\u660E\u6B63\u5927-k"
     questNode: Failure
     questNodeState: 2
+  - QuestID: "S-01-\u5149\u660E\u6B63\u5927-k"
+    questNode: InProgress
+    questNodeState: 0
 --- !u!1 &2573510057837774819
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,13 +95,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96111ea2f435f3a41ad014b9050bf6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: {fileID: 6455529624729957043, guid: cd0a29bd14202b24ba9fe8c92a88643c, type: 3}
+  trigger: {fileID: 6455529624729957043, guid: e0c48d4f9d2385e40a87f5d6fe12bcad, type: 3}
   WinEvent:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4162124619621036389}
         m_TargetAssemblyTypeName: ChangeQuestStageOnEnable, Assembly-CSharp
-        m_MethodName: OnEnable
+        m_MethodName: ChangeStage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -113,7 +116,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7290142840620276390}
         m_TargetAssemblyTypeName: ChangeQuestStageOnEnable, Assembly-CSharp
-        m_MethodName: OnEnable
+        m_MethodName: ChangeStage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -170,3 +173,6 @@ MonoBehaviour:
   - QuestID: "S-01-\u5149\u660E\u6B63\u5927-k"
     questNode: Reward
     questNodeState: 1
+  - QuestID: "S-01-\u5149\u660E\u6B63\u5927-k"
+    questNode: InProgress
+    questNodeState: 0
