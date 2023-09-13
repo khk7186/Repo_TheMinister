@@ -96,10 +96,9 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     }
     public void Reset()
     {
-        foreach (Transform go in transform.GetComponentsInChildren<Transform>())
+        foreach (QuestGiverPointer pointer in transform.GetComponentsInChildren<QuestGiverPointer>())
         {
-            if (go.GetComponents<QuestAIManager>() == null)
-                Destroy(go.gameObject);
+            Destroy(pointer.gameObject);
         }
     }
     public void Save(GameSave gameSave)
