@@ -98,7 +98,8 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     {
         foreach (Transform go in transform.GetComponentsInChildren<Transform>())
         {
-            Destroy(go.gameObject);
+            if (go != this)
+                Destroy(go.gameObject);
         }
     }
     public void Save(GameSave gameSave)
