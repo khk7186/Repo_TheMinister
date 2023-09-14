@@ -46,6 +46,7 @@ namespace SaveSystem
         }
         public void ReloadMainScene(GameSave save)
         {
+
             string path = $"SceneTransPrefab/{SceneType.MainGame}/{SceneType.MainGame}Animation";
             FindObjectOfType<SaveAndLoadManager>().gameSave = save;
             var canvas = Instantiate(Resources.Load<Canvas>("SceneTransPrefab/Canvas"));
@@ -64,6 +65,9 @@ namespace SaveSystem
             playerCharacterInventory.Clear();
             characterAwaitTributeManager.Reset();
             questionAIManager.Reset();
+            map.ReloadPlayer();
+            player = FindObjectOfType<Player>();
+            playerQuestJournal = player.GetComponent<QuestJournal>();
             yield return null;
         }
 

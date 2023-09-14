@@ -74,7 +74,14 @@ public class Map : MonoBehaviour, IDiceRollEvent
             Instance = null;
         }
     }
-    private void FindPlayer()
+    public void ReloadPlayer()
+    {
+        Destroy(player.gameObject);
+        player = Instantiate(Resources.Load<GameObject>("MainGame/ÀîÔ¬Ä°")).transform;
+        PlayerAnimator = player.GetComponentInChildren<SkeletonMecanim>().GetComponent<Animator>();
+        PlayerMovement = player.GetComponent<CharacterMovement>();
+    }
+    public void FindPlayer()
     {
         player = FindObjectOfType<Player>()?.transform;
         if (player == null)

@@ -72,7 +72,10 @@ namespace SaveSystem
         }
         public static void LoadQuestMachine(GameSave save)
         {
+
             PixelCrushers.SaveSystem.ApplySavedGameData(save.questMachineSave);
+            //Debug.Log(save.questMachineSave);
+            //PixelCrushers.QuestMachine.QuestJournal.
         }
     }
 }

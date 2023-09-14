@@ -12,7 +12,7 @@ namespace PixelCrushers
     /// Holds the data for a saved game.
     /// </summary>
     [Serializable]
-    public class SavedGameData : ISerializationCallbackReceiver
+    public class SavedGameData : ISerializationCallbackReceiver, ICloneable
     {
 
         /// <summary>
@@ -147,6 +147,15 @@ namespace PixelCrushers
                 .ToDictionary(element => element.Key, element => element.Value);
         }
 
+        public object Clone()
+        {
+            var output = new SavedGameData();
+            output.m_sceneName = m_sceneName;
+            output.m_version = m_version;
+            output.m_dict = new Dictionary<string, SaveRecord>(m_dict);
+            output.m_list = new List<SaveRecord>(m_list);
+            return output;
+        }
     }
 
 }

@@ -40,7 +40,8 @@ namespace SaveSystem
         public List<QuestGiverAI> TriggeredQuestGivers = new List<QuestGiverAI>();
 
         //QuestMachine Data
-        public SavedGameData questMachineSave = null;
+        [SerializeField]
+        public SavedGameData questMachineSave = new SavedGameData();
     }
     [System.Serializable]
     public class ItemInString

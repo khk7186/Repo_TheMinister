@@ -66,8 +66,11 @@ namespace SaveSystem
             manager.questionAIManager.Save(newGameSave);
 
             //Save questMachine system
-            PixelCrushers.SaveSystem.BeforeSceneChange();
-            newGameSave.questMachineSave = PixelCrushers.SaveSystem.RecordSavedGameData();
+            //PixelCrushers.SaveSystem.BeforeSceneChange();
+            //PixelCrushers.SaveSystem.SaveToSlot(0);
+            var origin = PixelCrushers.SaveSystem.RecordSavedGameData();
+            newGameSave.questMachineSave = (PixelCrushers.SavedGameData)origin.Clone();
+
 
             //Save Chapter & background music
             newGameSave.chapter = ChapterCounter.Instance.Chapter;

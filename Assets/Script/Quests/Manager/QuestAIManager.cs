@@ -100,7 +100,6 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         {
             Destroy(aqg.transform.parent.gameObject);
         }
-        Debug.Log("Reset");
     }
     public void Save(GameSave gameSave)
     {
