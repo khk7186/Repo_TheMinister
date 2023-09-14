@@ -28,6 +28,8 @@ public class LoadBlockUI : MonoBehaviour
     public void Load()
     {
         FindObjectOfType<SaveAndLoadManager>().ReloadMainScene(save);
+        Debug.Log("LogButton");
+        gameObject.SetActive(false);
     }
 
     public void Remove()

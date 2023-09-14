@@ -16,12 +16,6 @@ public class GameInitialization : MonoBehaviour
     public bool InProgress = false;
     private void Awake()
     {
-
-        var target = FindObjectOfType<SceneTransController>();
-        if (target != null)
-        {
-            ReloadGame = true;
-        }
     }
 
     private void OnEnable()

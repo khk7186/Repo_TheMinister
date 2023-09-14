@@ -30,7 +30,6 @@ namespace SaveSystem
 
         public GameInitialization gameFiles;
         public LightController lightController = null;
-        public bool reloading = false;
         public void LoadCharacters()
         {
             foreach (SerializedCharacter target in gameSave.playerOwnedCharacters)
@@ -89,7 +88,6 @@ namespace SaveSystem
         public static void SetGameLoadMode(GameSave save)
         {
             var saveManager = FindObjectOfType<SaveAndLoadManager>();
-            saveManager.reloading = true;
             saveManager.gameSave = save;
             //FindObjectOfType<GameInitialization>().ReloadGame = true;
         }

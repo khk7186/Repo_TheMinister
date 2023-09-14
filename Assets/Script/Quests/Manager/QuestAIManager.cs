@@ -96,10 +96,11 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     }
     public void Reset()
     {
-        foreach (QuestGiverPointer pointer in transform.GetComponentsInChildren<QuestGiverPointer>())
+        foreach (var aqg in ActiveQuestsGivers)
         {
-            Destroy(pointer.gameObject);
+            Destroy(aqg.transform.parent.gameObject);
         }
+        Debug.Log("Reset");
     }
     public void Save(GameSave gameSave)
     {
@@ -127,8 +128,10 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     {
         subQuestDB.CURRENT = gameSave.questChainStateWrapper;
         InactiveQuestGivers = new List<QuestGiverAI>(gameSave.InactiveQuestGivers);
-        var untriggereds = gameSave.UntriggeredQuestGivers;
+
         ActiveQuestsGivers = new List<QuestGiverAI>();
+
+        var untriggereds = gameSave.UntriggeredQuestGivers;
         foreach (var untriggered in untriggereds)
         {
             var clone = Instantiate(untriggered.QuestSpawnPref, transform);
