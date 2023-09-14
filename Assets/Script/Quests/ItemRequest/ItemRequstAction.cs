@@ -12,6 +12,8 @@ public class ItemRequstAction : MonoBehaviour
     public string itemName;
     private ItemName item;
     public UnityEvent questActive;
+    public DialogueSystemTrigger haveItem;
+    public DialogueSystemTrigger noItem;
     public void HandInAction()
     {
         Enum.TryParse(itemName, out item);
@@ -21,10 +23,11 @@ public class ItemRequstAction : MonoBehaviour
         {
             inventory.RemoveItem(item);
             questActive.Invoke();
+            haveItem.OnUse();
         }
         else
         {
-            DialogueLua.SetVariable("noItem", "true");
+            noItem.OnUse();
         }
     }
 }
