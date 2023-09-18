@@ -13,6 +13,7 @@ public class HorseItemUI : ItemUI
     public Button BuyButton;
     public Button RentButton;
     private int buff;
+    public GameObject itemImage;
     private IEnumerator Start()
     {
         var map = FindObjectOfType<Map>();
@@ -35,6 +36,7 @@ public class HorseItemUI : ItemUI
         BoughtSign.SetActive(false);
         BuyPrice.text = SOItem.ItempriceTag[buildingType][ItemType.×øÆï][(int)framRarity / 2 - 1].ToString();
         RentPrice.text = SOItem.ItemRentPrice[(int)framRarity / 2 - 1].ToString();
+        itemImage.gameObject.SetActive(true);
     }
     public void Rent()
     {

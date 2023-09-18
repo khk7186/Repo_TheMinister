@@ -12,10 +12,15 @@ public class NoTouchMask : MonoBehaviour, IDiceRollEvent
         Dice.Instance.RegisterObserver(this);
         mask.enabled = false;
     }
+    //private void OnDisable()
+    //{
+    //    StopCoroutine(WaitForPlayerStop());
+    //}
     public void OnNotify(object value, NotificationType notificationType)
     {
         mask.enabled = true;
-        StartCoroutine(WaitForPlayerStop());
+        if (gameObject.activeSelf)
+            StartCoroutine(WaitForPlayerStop());
     }
     public IEnumerator WaitForPlayerStop()
     {

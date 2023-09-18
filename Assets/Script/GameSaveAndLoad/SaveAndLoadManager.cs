@@ -2,11 +2,6 @@ using PixelCrushers.QuestMachine.Wrappers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-using UnityEditor;
-using UnityEngine.SceneManagement;
-using UnityEditor.SearchService;
-using DG.Tweening;
 
 namespace SaveSystem
 {
@@ -67,6 +62,7 @@ namespace SaveSystem
             questionAIManager.Reset();
             map.ReloadPlayer();
             player = FindObjectOfType<Player>();
+
             playerQuestJournal = player.GetComponent<QuestJournal>();
             yield return null;
         }
@@ -78,6 +74,10 @@ namespace SaveSystem
             yield return new WaitUntil(() => animation.transition.GetCurrentAnimatorStateInfo(0).IsName("Wait"));
             FindObjectOfType<GameSaveUIController>()?.gameObject?.SetActive(false);
             FindObjectOfType<SaveAndLoadManager>().LoadGame(gameSave);
+
+            var gameLostUI = FindObjectOfType<GameLostUI>();
+            if (gameLostUI != null) Destroy(gameLostUI.gameObject);
+
             yield return new WaitForSeconds(2);
             animation.Open();
         }

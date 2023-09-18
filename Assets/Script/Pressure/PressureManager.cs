@@ -7,7 +7,10 @@ public class PressureManager : MonoBehaviour
     public static PressureManager Instance;
     public int pressure = 0;
     public int maxPressure = 100;
-    public int pressureAddPerDay = 1;
+    public List<int> pressureAddPerDayBaseOnChapter = new List<int> { 0, 3, 5, 6 };
+    public int chapter => ChapterCounter.Instance.Chapter;
+    public int pressureAddPerDay => pressureAddPerDayBaseOnChapter[chapter];
+    public GameLostUI gameLostUI = null;
     private void Awake()
     {
         if (Instance == null)

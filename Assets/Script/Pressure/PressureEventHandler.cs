@@ -19,18 +19,18 @@ public static class PressureEventHandler
     {
         OnPressureChange(pressureManager.pressureAddPerDay);
     }
-    public static void OnAddPerDayChange(int amount)
+    public static void OnAddPerDayChange(int index)
     {
-        pressureManager.pressureAddPerDay = amount;
-        GameObject.FindObjectOfType<PressureView>()?.SetAddPerDay(amount);
+        GameObject.FindObjectOfType<PressureView>()?.SetAddPerDay(pressureManager.pressureAddPerDay);
     }
 
     private static int CalculatePressureChange(int origin, int changeAmount)
     {
         int output = origin;
         output += changeAmount;
-        if (output > maxPressure)
+        if (output >= maxPressure)
         {
+            GameLostEvent.TriggerGameLost();
             output = maxPressure;
         }
         else if (output < minPressure)

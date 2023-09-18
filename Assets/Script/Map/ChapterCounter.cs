@@ -16,6 +16,7 @@ public class ChapterCounter : MonoBehaviour
         {
             count = value;
             RegularQuestEventHandler.ChapterShiftMessage(value);
+            PressureEventHandler.OnAddPerDayChange(value);
             LastChapterAIExitGame();
         }
     }
