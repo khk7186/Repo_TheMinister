@@ -20,6 +20,7 @@ public class CraftingUI : MonoBehaviour
         foreach (ItemName item in CraftingList)
         {
             if (first == ItemName.Null) first = item;
+            Debug.Log(item);
             var target = Instantiate(CraftingMenuPref, CraftingListTransform);
             target.parentUI = this;
             target.SetUp(item);

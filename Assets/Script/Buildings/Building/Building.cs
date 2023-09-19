@@ -293,7 +293,7 @@ public class Building : MonoBehaviour
     }
     public void SetupCraft()
     {
-        var target = FindObjectOfType<BuildingUI>().GetComponent<ShopRef>();
+        var target = currentUI.GetComponent<ShopRef>();
         var currentTarget = target.CraftingUI.GetComponent<CraftingUI>();
         currentTarget.Setup(SOItem.BuildingCraftDict[buildingType]);
         if (CraftingList.Count > 0) target.CraftingUI.GetComponent<CraftingUI>().Setup(CraftingList[0]);
