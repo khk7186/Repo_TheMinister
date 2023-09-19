@@ -31,12 +31,13 @@ public class HorseItemUI : ItemUI
     }
     public void SetupHorseItem(ItemName item, BuildingType buildingType)
     {
-        Setup(item,0);
+        Setup(item, 0);
         amount.gameObject.SetActive(false);
         BoughtSign.SetActive(false);
         BuyPrice.text = SOItem.ItempriceTag[buildingType][ItemType.×øÆï][(int)framRarity / 2 - 1].ToString();
         RentPrice.text = SOItem.ItemRentPrice[(int)framRarity / 2 - 1].ToString();
-        itemImage.gameObject.SetActive(true);
+        if (itemImage != null)
+            itemImage.gameObject.SetActive(true);
     }
     public void Rent()
     {
