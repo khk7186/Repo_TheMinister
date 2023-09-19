@@ -21,6 +21,10 @@ public class StartFight : MonoBehaviour
             if (!selfUnit.IsFriend)
             {
                 selfUnit.currentAction = AIStrategy(selfUnit);
+                if (selfUnit.currentAction == Action.Defence)
+                {
+                    selfUnit.target = selfUnit;
+                }
             }
             if (selfUnit.currentAction == Action.NoSelect)
             {
@@ -161,6 +165,16 @@ public class StartFight : MonoBehaviour
         if (reachMaxHealth)
         {
             actionChoices.Remove(Action.Surrender);
+            //actionChoices.Add(Action.Defence);
+            //actionChoices.Add(Action.Defence);
+            //actionChoices.Add(Action.Defence);
+            //actionChoices.Add(Action.Defence);
+            //actionChoices.Add(Action.Defence);
+            //actionChoices.Add(Action.Defence);
+            //actionChoices.Add(Action.Defence);
+            //actionChoices.Add(Action.Defence);
+            //actionChoices.Add(Action.Defence);
+            //actionChoices.Add(Action.Defence);
             actionChoices.Remove(Action.Defence);
             actionChoices.Add(Action.Attack);
             actionChoices.Add(Action.Attack);
