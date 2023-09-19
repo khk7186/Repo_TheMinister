@@ -68,7 +68,7 @@ public class PawnshopUI : MonoBehaviour
             return output;
         }
     }
-    private int RarityInOrder(Rarerity rarerity)
+    public static int RarityInOrder(Rarerity rarerity)
     {
         switch (rarerity)
         {

@@ -35,7 +35,7 @@ public class PawnShopItemUI : ItemUI
             {
                 int current = (int.Parse(sellAmount.text) - 1);
                 sellAmount.text = current.ToString();
-                if (current <= 0 )
+                if (current <= 0)
                 {
                     sellAmountGO.SetActive(false);
                 }
@@ -49,5 +49,8 @@ public class PawnShopItemUI : ItemUI
         Setup(itemName, amount);
         sellAmountGO.SetActive(false);
         item = itemName;
+        Tag output = Tag.Null;
+        Rarerity rarity = Player.AllTagRareDict[SOItem.ItemMap[ItemName]];
+        Price.text = SOItem.PawnshopPrice[SOItem.FindType(itemName)][PawnshopUI.RarityInOrder(rarity)].ToString();
     }
 }
