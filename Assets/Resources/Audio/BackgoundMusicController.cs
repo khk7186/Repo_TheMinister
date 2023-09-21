@@ -8,6 +8,7 @@ public class BackgoundMusicController : MonoBehaviour
     public List<string> soundTrackNames = new List<string>()
     {
             "SoundTrack_01",
+            "SoundTrack_01",
             "SoundTrack_02",
             "SoundTrack_03"
     };

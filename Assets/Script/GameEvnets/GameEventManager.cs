@@ -18,6 +18,15 @@ public class GameEventManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public bool CheckForSave()
+    {
+        if (currentEvent != null) return false;
+        return true;
+    }
+    public void Reset()
+    {
+        DestroyCurrent();
+    }
     private void Start()
     {
         currentEvent = Instantiate(nextEvent, transform);
