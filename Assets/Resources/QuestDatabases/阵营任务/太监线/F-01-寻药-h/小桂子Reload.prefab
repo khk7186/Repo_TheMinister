@@ -94,7 +94,31 @@ MonoBehaviour:
   setAnimatorStateActions: []
   onExecute:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1564160818211656628}
+        m_TargetAssemblyTypeName: QuestGiverAI, Assembly-CSharp
+        m_MethodName: AssignTrue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 999826139281256071}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   useConversationTitlePicker: 1
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
@@ -142,6 +166,7 @@ Transform:
   - {fileID: 9207058270781096859}
   - {fileID: 7761161812884648586}
   - {fileID: 2822075211399822350}
+  - {fileID: 8943533389984828529}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -166,9 +191,9 @@ MonoBehaviour:
   _dialogueTriggerUncollected: {fileID: 9207058271248216289}
   _dialogueTriggerCollected: {fileID: 9207058271407528169}
   Assign: 0
-  QuestSpawnPref: {fileID: 8383943446029921867, guid: 4398797afd3022d4f960610fee612c8e, type: 3}
-  ReloadPref: {fileID: 1564160818211656625}
-  triggered: 0
+  QuestSpawnPref: {fileID: 0}
+  ReloadPref: {fileID: 0}
+  triggered: 1
 --- !u!70 &1564160818211656630
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -328,6 +353,52 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &3004956547035954621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8943533389984828529}
+  - component: {fileID: 999826139281256071}
+  m_Layer: 0
+  m_Name: DestroyExclamationMark
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8943533389984828529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3004956547035954621}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1564160818211656631}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &999826139281256071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3004956547035954621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0165a88f3c75a049a2ba7b74b61d95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameObjectsToDestroy:
+  - {fileID: 2822075211399822833}
+  DestroyOnEnable: 1
 --- !u!1 &3226184727920267454
 GameObject:
   m_ObjectHideFlags: 0
@@ -422,19 +493,7 @@ MonoBehaviour:
   setAnimatorStateActions: []
   onExecute:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   useConversationTitlePicker: 1
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
@@ -1168,18 +1227,6 @@ MonoBehaviour:
   onExecute:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1564160818211656628}
-        m_TargetAssemblyTypeName: QuestGiverAI, Assembly-CSharp
-        m_MethodName: AssignTrue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1189571586387714537}
         m_TargetAssemblyTypeName: ItemRequstAction, Assembly-CSharp
         m_MethodName: HandInAction
@@ -1360,6 +1407,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 546ea70e89c933e4ca5720f6cb8a98dc, type: 3}
+--- !u!4 &7846063626502297612 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7814269828628949284, guid: 546ea70e89c933e4ca5720f6cb8a98dc, type: 3}
+  m_PrefabInstance: {fileID: 41390349325922600}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1189571586387714537 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1157769541505962177, guid: 546ea70e89c933e4ca5720f6cb8a98dc, type: 3}
@@ -1371,11 +1423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ab667be3f09b54c9f2d67691a058ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &7846063626502297612 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7814269828628949284, guid: 546ea70e89c933e4ca5720f6cb8a98dc, type: 3}
-  m_PrefabInstance: {fileID: 41390349325922600}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &334680117564418059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1606,6 +1653,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9764e2fb56efbe64ba09a7bb5ad26902, type: 3}
+--- !u!1 &2822075211399822833 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 706043140440545276, guid: 9764e2fb56efbe64ba09a7bb5ad26902, type: 3}
+  m_PrefabInstance: {fileID: 3379485384301128205}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2822075211399822350 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 706043140440544771, guid: 9764e2fb56efbe64ba09a7bb5ad26902, type: 3}
