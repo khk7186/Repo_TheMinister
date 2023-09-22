@@ -24,5 +24,7 @@ public class NormalizeGame : MonoBehaviour
         }
         igcs.gameObject.SetActive(On);
         igcs.AdjustCharacterStorage();
+
+        GameInitialization.instance.StartComfortGame();
     }
 }

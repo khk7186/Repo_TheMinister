@@ -9,10 +9,12 @@ public class GameInitialization : MonoBehaviour
     public int StartNPC;
     public SOAudio sOAudio;
     public bool ReloadGame = false;
+    public QuestAIManager questAIManager;
 
     public bool InProgress = false;
     private void Awake()
     {
+        ModifySettings();
     }
 
     private void OnEnable()
@@ -35,7 +37,11 @@ public class GameInitialization : MonoBehaviour
             instance = null;
         }
     }
-    public void Start()
+    //public void Start()
+    //{
+    //    StartCoroutine(StartProgress());
+    //}
+    public void StartComfortGame()
     {
         StartCoroutine(StartProgress());
     }
@@ -58,8 +64,9 @@ public class GameInitialization : MonoBehaviour
     public IEnumerator StartProgress()
     {
         InProgress = true;
-
-        InitialInGameAI(StartNPC);
+        ChapterCounter.Instance.Chapter = 1;
+        questAIManager.gameObject.SetActive(true);
+        //InitialInGameAI(StartNPC);
         yield return null;
         InProgress = false;
     }

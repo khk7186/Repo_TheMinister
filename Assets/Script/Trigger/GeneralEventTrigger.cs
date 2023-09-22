@@ -25,6 +25,7 @@ public class GeneralEventTrigger : MonoBehaviour
     private int scene = 1;
     public List<Character> LostCharacters = new List<Character>();
     public EndGamePannel endGamePannel;
+    public bool dontPopEndGamePannel = false;
     public EventAfterCombatBasedOnResult EventAC;
     private void Awake()
     {
@@ -132,8 +133,11 @@ public class GeneralEventTrigger : MonoBehaviour
             Transform canvas = MainCanvas.FindMainCanvas();
             if (canvas != null)
             {
-                var pannel = Instantiate(endGamePannel, canvas);
-                pannel.Setup(this);
+                if (!dontPopEndGamePannel)
+                {
+                    var pannel = Instantiate(endGamePannel, canvas);
+                    pannel.Setup(this);
+                }
             }
         }
     }
