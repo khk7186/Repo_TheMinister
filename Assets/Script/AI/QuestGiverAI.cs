@@ -97,9 +97,34 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     {
         if (questID == null) return null;
         string folderPath = string.Empty;
+        List<string> resultList = new List<string>(questID.Split('-'));
+        bool sideQuest = (resultList[0] == "S");
+        string type = sideQuest ? "支线任务/" : "阵营任务/";
+        string chapter = sideQuest ? $"{resultList[1]}/" : string.Empty;
+        string form = string.Empty;
+        if (sideQuest)
+        {
+            switch (resultList[3])
+            {
+                case ("h"):
+                    form = "交付任务/";
+                    break;
+                case ("d"):
+                    form = "文斗任务/";
+                    break;
+                case ("a"):
+                    form = "派遣任务/";
+                    break;
+                case ("k"):
+                    form = "击杀任务/";
+                    break;
+                default:
+                    break;
+            }
+        }
         if (questID[0] == 'S' || questID[0] == 's')
         {
-            folderPath = $"QuestDatabases/支线任务/{questID}";
+            folderPath = $"QuestDatabases/{type}{chapter}{form}{questID}";
         }
         return folderPath;
     }
