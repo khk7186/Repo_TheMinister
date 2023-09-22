@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameEventManager : MonoBehaviour
 {
     public static GameEventManager Instance;
+    public bool SaveReady = true;
     public GameObject nextEvent;
     public GameObject currentEvent;
     private void Awake()
@@ -20,8 +21,7 @@ public class GameEventManager : MonoBehaviour
     }
     public bool CheckForSave()
     {
-        if (currentEvent != null) return false;
-        return true;
+        return SaveReady;
     }
     public void Reset()
     {

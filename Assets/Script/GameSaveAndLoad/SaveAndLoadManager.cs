@@ -25,6 +25,8 @@ namespace SaveSystem
 
         public GameInitialization gameFiles;
         public LightController lightController = null;
+
+        public GameEventManager gameEventManager = null;
         public void LoadCharacters()
         {
             foreach (SerializedCharacter target in gameSave.playerOwnedCharacters)
@@ -62,7 +64,7 @@ namespace SaveSystem
             questionAIManager.Reset();
             map.ReloadPlayer();
             player = FindObjectOfType<Player>();
-
+            gameEventManager.Reset();
             playerQuestJournal = player.GetComponent<QuestJournal>();
             yield return null;
         }

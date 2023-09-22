@@ -29,6 +29,12 @@ public class SaveBlockUI : MonoBehaviour
 
     public void Save()
     {
+        if (GameEventManager.Instance.SaveReady == false)
+        {
+            var alert = Instantiate<Text>(Resources.Load<Text>("Hiring/Message"), MainCanvas.FindMainCanvas());
+            alert.text = "主线剧情期间无法保存游戏";
+            return;
+        }
         FindObjectOfType<SaveAndLoadManager>().SaveGame(SaveName.text);
         FindObjectOfType<GameSaveUIController>().OnEnable();
 
