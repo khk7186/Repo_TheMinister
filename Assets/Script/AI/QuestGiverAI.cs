@@ -115,11 +115,11 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
         }
         else if (Chapter() < ChapterCounter.Instance.Chapter)
         {
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
     public void OnNotify(object value, NotificationType notificationType)
