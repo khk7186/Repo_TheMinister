@@ -122,10 +122,7 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
                     break;
             }
         }
-        if (questID[0] == 'S' || questID[0] == 's')
-        {
-            folderPath = $"QuestDatabases/{type}{chapter}{form}{questID}";
-        }
+        folderPath = $"QuestDatabases/{type}{chapter}{form}{questID}";
         Debug.Log(folderPath);
         return folderPath;
     }
