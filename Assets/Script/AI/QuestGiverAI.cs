@@ -126,6 +126,7 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
         {
             folderPath = $"QuestDatabases/{type}{chapter}{form}{questID}";
         }
+        Debug.Log(folderPath);
         return folderPath;
     }
     protected int _counter = 0;
