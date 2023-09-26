@@ -61,6 +61,7 @@ public class ScoreReviewEvent : MonoBehaviour
         var effectAnimation = FindObjectOfType<DebateEffectAnimationController>();
         var damageList = effectAnimation.Setup(Result);
         yield return effectAnimation.StartCoroutine(effectAnimation.PlayRoutine());
+        ScreenShakeTrigger.TryScreenShake(" ‹…À");
         GameEndCheck();
     }
     public void GameEndCheck()
