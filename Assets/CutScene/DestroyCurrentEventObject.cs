@@ -5,7 +5,7 @@ using UnityEngine;
 public class DestroyCurrentEventObject : MonoBehaviour
 {
     GameEventManager gameEventManager => GameEventManager.Instance;
-    public GameObject nextEvent;
+    public MainEventUnitProfile nextEvent;
     public int delayDays = 5;
 
     private void OnEnable()
@@ -23,7 +23,6 @@ public class DestroyCurrentEventObject : MonoBehaviour
             Dice.Instance.RegisterObserver(Map.Instance);
             Map.Instance.Player.gameObject.GetComponent<Animator>().enabled = false;
         }
-        
         gameEventManager.DestroyCurrent();
     }
 }

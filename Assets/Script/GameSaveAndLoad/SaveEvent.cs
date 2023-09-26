@@ -61,6 +61,7 @@ namespace SaveSystem
             newGameSave.isRight = playerSideChanger.isRight;
 
             //Save Main Quest Progress
+            //manager.gameEventManager.currentEvent
 
             //Save Side Quests objects
             manager.questionAIManager.Save(newGameSave);

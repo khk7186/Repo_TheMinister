@@ -24,7 +24,7 @@ public class ChangeQuestStageOnEnable : MonoBehaviour
         foreach (ChangeQuestStruct changeQuestStruct in changeQuestStructs)
         {
             QuestMachine.SetQuestNodeState(changeQuestStruct.QuestID, changeQuestStruct.questNode, changeQuestStruct.questNodeState);
-            if (changeQuestStruct.questNode == "Fail"|| changeQuestStruct.questNode == "Success")
+            if (changeQuestStruct.questNode == "Fail" || changeQuestStruct.questNode == "Success")
             {
                 var asset = QuestMachine.GetQuestInstance(changeQuestStruct.QuestID);
                 Debug.Log(asset.id);
@@ -32,8 +32,8 @@ public class ChangeQuestStageOnEnable : MonoBehaviour
                     (asset.id.ToString()
                     , asset.title.ToString()
                     , asset.GetState() == QuestState.Successful);
+                QuestAIManager.Instance?.QuestCountMinus();
             }
         }
-        
     }
 }

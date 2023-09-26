@@ -5,6 +5,7 @@ using PixelCrushers.DialogueSystem;
 using UnityEngine.Experimental.GlobalIllumination;
 using System;
 using System.Linq;
+using UnityEngine.Events;
 
 public class RoitInGameAI : DefaultInGameAI
 {
@@ -14,6 +15,8 @@ public class RoitInGameAI : DefaultInGameAI
     public PathPoint startPoint;
     public PathPoint endPoint;
     public bool OnStartPoint = true;
+    public bool robbed = false;
+    public RobbingTriggerGroup robbingTriggerGroup;
 
     public override void StartAction()
     {
@@ -98,10 +101,26 @@ public class RoitInGameAI : DefaultInGameAI
     }
     protected override void StartConmunicate()
     {
+        var ready = AbleToCombat.CheckingForDuty(BattleType.Combat);
         var DSC = FindObjectOfType<DialogueSystemController>();
         DSC.initialDatabase = Resources.Load<DialogueDatabase>($"Conversions/Õ½¶·");
         DSC.Awake();
-        npcConversationTriggerGroup.StartGeneral();
+        if (ready == true)
+        {
+            npcConversationTriggerGroup.StartGeneral();
+        }
+        else
+        {
+            if (robbed == true)
+            {
+                robbingTriggerGroup?.afterRobbing.OnUse();
+            }
+            else
+            {
+                robbingTriggerGroup?.beforeRobbing.OnUse();
+                robbed = true;
+            }
+        }
     }
     public override void SetConversationDatabase()
     {
