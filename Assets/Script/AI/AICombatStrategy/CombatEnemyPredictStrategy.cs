@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CombatEnemyPredictStrategy : IAICombatStrategy
 {
-    public void MakeDecision(Dictionary<Action, int> targetDic)
+    public void MakeDecision(Dictionary<CombatAction, int> targetDic)
     {
         BattleSystem battleSystem = CombatTool.FindBattleSystem();
         List<Character> playerCharacters = battleSystem.PlayerCharacters;
@@ -19,13 +19,13 @@ public class CombatEnemyPredictStrategy : IAICombatStrategy
                 default:
                     break;
                 case CharacterValueType.´Ì:
-                    targetDic[Action.Attack]++;
+                    targetDic[CombatAction.Attack]++;
                     break;
                 case CharacterValueType.Îä:
-                    targetDic[Action.Defence]++;
+                    targetDic[CombatAction.Defence]++;
                     break;
                 case CharacterValueType.ÊØ:
-                    targetDic[Action.Assassin]++;
+                    targetDic[CombatAction.Assassin]++;
                     break;
             }
         }
@@ -36,13 +36,13 @@ public class CombatEnemyPredictStrategy : IAICombatStrategy
                 default:
                     break;
                 case CharacterValueType.ÖÇ:
-                    targetDic[Action.Attack]++;
+                    targetDic[CombatAction.Attack]++;
                     break;
                 case CharacterValueType.²Å:
-                    targetDic[Action.Defence]++;
+                    targetDic[CombatAction.Defence]++;
                     break;
                 case CharacterValueType.Ä±:
-                    targetDic[Action.Assassin]++;
+                    targetDic[CombatAction.Assassin]++;
                     break;
             }
         }

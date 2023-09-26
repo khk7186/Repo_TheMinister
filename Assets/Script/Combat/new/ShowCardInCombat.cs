@@ -28,8 +28,8 @@ public class ShowCardInCombat : MonoBehaviour
             csc = FindObjectOfType<CombatSceneController>();
         }
         show = !csc.OnAction
-                    || csc.CurrentOnActionCCU?.currentAction == Action.Defence && thisUnit.IsFriend
-                    || csc.CurrentOnActionCCU?.currentAction != Action.Defence && !thisUnit.IsFriend;
+                    || csc.CurrentOnActionCCU?.currentAction == CombatAction.Defence && thisUnit.IsFriend
+                    || csc.CurrentOnActionCCU?.currentAction != CombatAction.Defence && !thisUnit.IsFriend;
         if (show)
         {
             CombatSceneController.ShowCard(thisUnit);

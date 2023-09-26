@@ -18,7 +18,7 @@ public enum BattleType
     Debate = 2,
     GoBang = 3
 }
-public enum Action
+public enum CombatAction
 {
     NoSelect = 0,
     Attack = 1,
@@ -35,8 +35,8 @@ public class BattleSystem : MonoBehaviour
     public Character PlayerCurrentCharacter;
     public Character EnemyCurrentCharacter;
     public BattleType battleType;
-    public Action currentPlayerAction = Action.NoSelect;
-    public Action currentEnemyAction = Action.NoSelect;
+    public CombatAction currentPlayerAction = CombatAction.NoSelect;
+    public CombatAction currentEnemyAction = CombatAction.NoSelect;
     public BaseBattleAI battleAI;
 
     //new combat scene
@@ -104,7 +104,7 @@ public class BattleSystem : MonoBehaviour
                 CurrentBattleUI.informationUI.gameObject.SetActive(true);
                 CurrentBattleUI.ActionChoosePannel.gameObject.SetActive(false);
                 CurrentBattleUI.Setup(PlayerCharacters, EnemyCharacters, battleType);
-                SetCurrentAction(Action.NoSelect);
+                SetCurrentAction(CombatAction.NoSelect);
                 NextState();
                 StartCoroutine(WaitToReady());
                 break;
@@ -120,69 +120,69 @@ public class BattleSystem : MonoBehaviour
                 break;
         }
     }
-    public void FightResultHandler(Action playerAction, Action enemyAction)
+    public void FightResultHandler(CombatAction playerAction, CombatAction enemyAction)
     {
 
         switch (playerAction)
         {
             default:
                 break;
-            case Action.Attack:
+            case CombatAction.Attack:
                 Attack(enemyAction);
                 break;
-            case Action.Defence:
+            case CombatAction.Defence:
                 Defence(enemyAction);
                 break;
-            case Action.Assassin:
+            case CombatAction.Assassin:
                 Assinate(enemyAction);
                 break;
         }
     }
-    private void Attack(Action enemyAction)
+    private void Attack(CombatAction enemyAction)
     {
         switch (enemyAction)
         {
             default:
                 break;
-            case Action.Attack:
+            case CombatAction.Attack:
                 AttackNAttack(PlayerCurrentCharacter, EnemyCurrentCharacter);
                 break;
-            case Action.Defence:
+            case CombatAction.Defence:
                 AttackNDefence(PlayerCurrentCharacter, EnemyCurrentCharacter);
                 break;
-            case Action.Assassin:
+            case CombatAction.Assassin:
                 AttackNAssinate(PlayerCurrentCharacter, EnemyCurrentCharacter);
                 break;
-            case Action.Surrender:
+            case CombatAction.Surrender:
                 PlayerCurrentCharacter.health += 1;
                 break;
         }
     }
-    private void Defence(Action enemyAction)
+    private void Defence(CombatAction enemyAction)
     {
         switch (enemyAction)
         {
             default:
                 break;
-            case Action.Attack:
+            case CombatAction.Attack:
                 AttackNDefence(EnemyCurrentCharacter, PlayerCurrentCharacter);
                 break;
-            case Action.Defence:
+            case CombatAction.Defence:
                 DefenceNDefence(EnemyCurrentCharacter, PlayerCurrentCharacter);
                 break;
-            case Action.Assassin:
+            case CombatAction.Assassin:
                 DefenceNAssinate(PlayerCurrentCharacter, EnemyCurrentCharacter);
                 break;
-            case Action.Surrender:
+            case CombatAction.Surrender:
                 PlayerCurrentCharacter.health += 2;
                 break;
         }
     }
 
-    public void SetCurrentAction(Action buttonAction)
+    public void SetCurrentAction(CombatAction buttonAction)
     {
         currentPlayerAction = buttonAction;
-        if (currentPlayerAction != Action.NoSelect)
+        if (currentPlayerAction != CombatAction.NoSelect)
         {
             CurrentBattleUI.Confirm.gameObject.SetActive(true);
         }
@@ -190,22 +190,22 @@ public class BattleSystem : MonoBehaviour
             CurrentBattleUI.Confirm.gameObject.SetActive(false);
     }
 
-    private void Assinate(Action enemyAction)
+    private void Assinate(CombatAction enemyAction)
     {
         switch (enemyAction)
         {
             default:
                 break;
-            case Action.Attack:
+            case CombatAction.Attack:
                 AttackNAssinate(EnemyCurrentCharacter, PlayerCurrentCharacter);
                 break;
-            case Action.Defence:
+            case CombatAction.Defence:
                 DefenceNAssinate(EnemyCurrentCharacter, PlayerCurrentCharacter);
                 break;
-            case Action.Assassin:
+            case CombatAction.Assassin:
                 AssinateNAssinate(PlayerCurrentCharacter, EnemyCurrentCharacter);
                 break;
-            case Action.Surrender:
+            case CombatAction.Surrender:
                 PlayerCurrentCharacter.health += 2;
                 break;
         }

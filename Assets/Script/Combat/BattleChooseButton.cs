@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class BattleChooseButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
-    public Action buttonAction = Action.NoSelect;
+    public CombatAction buttonAction = CombatAction.NoSelect;
     public void OnPointerClick(PointerEventData eventData)
     {
         FindObjectOfType<BattleSystem>().SetCurrentAction(buttonAction);

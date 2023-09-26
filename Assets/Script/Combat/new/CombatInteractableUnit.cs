@@ -87,7 +87,7 @@ public class CombatInteractableUnit : MonoBehaviour
 
         if (line == null) line = Instantiate(Resources.Load<LineRenderer>("Lines/Line"));
         var Unit = GetComponent<CombatCharacterUnit>();
-        bool friend = Unit.currentAction == Action.Defence;
+        bool friend = Unit.currentAction == CombatAction.Defence;
         SetLineColor();
         StartCoroutine(EnableTargetSelection(friend));
     }
@@ -96,13 +96,13 @@ public class CombatInteractableUnit : MonoBehaviour
         var Unit = GetComponent<CombatCharacterUnit>();
         switch (Unit.currentAction)
         {
-            case Action.Attack:
+            case CombatAction.Attack:
                 line.SetColors(Color.red, Color.red);
                 break;
-            case Action.Assassin:
+            case CombatAction.Assassin:
                 line.SetColors(Color.yellow, Color.yellow);
                 break;
-            case Action.Defence:
+            case CombatAction.Defence:
                 line.SetColors(Color.blue, Color.blue);
                 break;
         }
@@ -115,7 +115,7 @@ public class CombatInteractableUnit : MonoBehaviour
         CameraShiftToEnemy();
         csc.lining = true;
         var Unit = GetComponent<CombatCharacterUnit>();
-        if (Unit.target != null && Unit.currentAction == Action.Defence)
+        if (Unit.target != null && Unit.currentAction == CombatAction.Defence)
         {
             Unit.target.Defender = null;
         }
@@ -153,7 +153,7 @@ public class CombatInteractableUnit : MonoBehaviour
             if (Input.GetMouseButtonDown(1))
             {
                 NotEnd = false;
-                GetComponent<CombatCharacterUnit>().currentAction = Action.NoSelect;
+                GetComponent<CombatCharacterUnit>().currentAction = CombatAction.NoSelect;
                 Destroy(line.gameObject);
             }
             yield return null;
@@ -233,7 +233,7 @@ public class CombatInteractableUnit : MonoBehaviour
         var thisUnit = GetComponent<CombatCharacterUnit>();
         if (thisUnit != null)
         {
-            if (thisUnit.currentAction != Action.Defence)
+            if (thisUnit.currentAction != CombatAction.Defence)
             {
                 var allUnit = FindObjectsOfType<CombatCharacterUnit>();
                 CombatCharacterUnit FirstEnemy = null;

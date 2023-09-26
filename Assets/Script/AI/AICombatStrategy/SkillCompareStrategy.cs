@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SkillCompareStrategy : MonoBehaviour, IAICombatStrategy
 {
-    public void MakeDecision(Dictionary<Action, int> targetDic)
+    public void MakeDecision(Dictionary<CombatAction, int> targetDic)
     {
         BattleSystem battleSystem = CombatTool.FindBattleSystem();
         List<Character> playerCharacters = battleSystem.PlayerCharacters;

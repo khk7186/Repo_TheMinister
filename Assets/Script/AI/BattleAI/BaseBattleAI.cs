@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class BaseBattleAI
 {
-    public Dictionary<Action, int> DecisionPoints =
-        new Dictionary<Action, int>()
+    public Dictionary<CombatAction, int> DecisionPoints =
+        new Dictionary<CombatAction, int>()
                 {
-                    { Action.Attack,5 },
-                    { Action.Defence, 5 },
-                    { Action.Assassin, 5 },
-                    { Action.Surrender, 0 }
+                    { CombatAction.Attack,5 },
+                    { CombatAction.Defence, 5 },
+                    { CombatAction.Assassin, 5 },
+                    { CombatAction.Surrender, 0 }
                 };
     public Character nextCharacter;
 
-    public Action MakeDecision(List<Character> characters, BattleSystem battleSystem)
+    public CombatAction MakeDecision(List<Character> characters, BattleSystem battleSystem)
     {
         int highestPoints = 0;
-        Action output = Action.Attack;
-        foreach (Action key in DecisionPoints.Keys)
+        CombatAction output = CombatAction.Attack;
+        foreach (CombatAction key in DecisionPoints.Keys)
         {
             if (DecisionPoints[key] > highestPoints)
             {
@@ -34,12 +34,12 @@ public class BaseBattleAI
 
     public void SetDefaultDecision(BattleType battleType)
     {
-        DecisionPoints = new Dictionary<Action, int>()
+        DecisionPoints = new Dictionary<CombatAction, int>()
                 {
-                    { Action.Attack,5 },
-                    { Action.Defence, 5 },
-                    {Action.Assassin, 5 },
-                    { Action.Surrender, 0 }
+                    { CombatAction.Attack,5 },
+                    { CombatAction.Defence, 5 },
+                    {CombatAction.Assassin, 5 },
+                    { CombatAction.Surrender, 0 }
                 };
     }
 }

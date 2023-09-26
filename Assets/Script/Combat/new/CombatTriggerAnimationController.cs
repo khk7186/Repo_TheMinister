@@ -33,7 +33,7 @@ public class CombatTriggerAnimationController : MonoBehaviour
                     playerUnits.Remove(unit);
                     continue;
                 }
-                if (unit.currentAction == Action.NoSelect) return false;
+                if (unit.currentAction == CombatAction.NoSelect) return false;
             }
             return true;
         }

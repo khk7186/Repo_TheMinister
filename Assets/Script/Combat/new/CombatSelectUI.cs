@@ -48,7 +48,7 @@ public class CombatSelectUI : MonoBehaviour
     //}
     public void Attack()
     {
-        unit.currentAction = Action.Attack;
+        unit.currentAction = CombatAction.Attack;
         var interactUnit = unit.GetComponent<CombatInteractableUnit>();
         if (interactUnit != null)
         {
@@ -57,7 +57,7 @@ public class CombatSelectUI : MonoBehaviour
     }
     public void Defence()
     {
-        unit.currentAction = Action.Defence;
+        unit.currentAction = CombatAction.Defence;
         var interactUnit = unit.GetComponent<CombatInteractableUnit>();
         if (interactUnit != null)
         {
@@ -66,7 +66,7 @@ public class CombatSelectUI : MonoBehaviour
     }
     public void Assassinate()
     {
-        unit.currentAction = Action.Assassin;
+        unit.currentAction = CombatAction.Assassin;
         var interactUnit = unit.GetComponent<CombatInteractableUnit>();
         if (interactUnit != null)
         {

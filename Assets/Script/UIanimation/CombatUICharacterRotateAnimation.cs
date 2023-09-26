@@ -52,7 +52,7 @@ public class CombatUICharacterRotateAnimation : MonoBehaviour
             Front.GetComponent<UIGroupLayerSorting>().Setup(3);
             Next.GetComponent<UIGroupLayerSorting>().Setup(2);
             Last.GetComponent<UIGroupLayerSorting>().Setup(1);
-            FindObjectOfType<BattleSystem>().SetCurrentAction(Action.NoSelect);
+            FindObjectOfType<BattleSystem>().SetCurrentAction(CombatAction.NoSelect);
         }
         yield return null;
     }
@@ -96,7 +96,7 @@ public class CombatUICharacterRotateAnimation : MonoBehaviour
             Front.GetComponent<UIGroupLayerSorting>().Setup(3);
             Next.GetComponent<UIGroupLayerSorting>().Setup(1);
             Last.GetComponent<UIGroupLayerSorting>().Setup(2);
-            FindObjectOfType<BattleSystem>().SetCurrentAction(Action.NoSelect);
+            FindObjectOfType<BattleSystem>().SetCurrentAction(CombatAction.NoSelect);
             yield return null;
         }
     }

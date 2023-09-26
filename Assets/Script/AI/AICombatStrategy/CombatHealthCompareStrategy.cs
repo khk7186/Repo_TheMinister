@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CombatHealthCompareStrategy : MonoBehaviour, IAICombatStrategy
 {
-    public void MakeDecision(Dictionary<Action, int> targetDic)
+    public void MakeDecision(Dictionary<CombatAction, int> targetDic)
     {
         BattleSystem battleSystem = CombatTool.FindBattleSystem();
         List<Character> selfCharacters = battleSystem.EnemyCharacters;
@@ -20,7 +20,7 @@ public class CombatHealthCompareStrategy : MonoBehaviour, IAICombatStrategy
         {
             if (ch.health < 10)
             {
-                targetDic[Action.Assassin] += 1;
+                targetDic[CombatAction.Assassin] += 1;
             }
             if (ch.health < highestHealth)
             {
@@ -30,25 +30,25 @@ public class CombatHealthCompareStrategy : MonoBehaviour, IAICombatStrategy
         Character highestAttackCharacter = CombatTool.FindSpecific(selfCharacters, targetBattletype);
         if (highestAttackCharacter.health < 10)
         {
-            targetDic[Action.Assassin] -= 1;
+            targetDic[CombatAction.Assassin] -= 1;
         }
         Character enemyLowestHealthCharacter = CombatTool.FindLowestHealth(playerCharacters, battleSystem.battleType);
         if (highestAttackCharacter.CharactersValueDict[targetBattletype] > enemyLowestHealthCharacter.health)
         {
-            targetDic[Action.Assassin] += 2;
+            targetDic[CombatAction.Assassin] += 2;
         }
         foreach (Character ch in selfCharacters)
         {
             if (ch.health < 10)
             {
-                targetDic[Action.Surrender] += 5;
-                targetDic[Action.Attack] += 1;
-                targetDic[Action.Assassin] -= 2;
-                targetDic[Action.Defence] += 3;
+                targetDic[CombatAction.Surrender] += 5;
+                targetDic[CombatAction.Attack] += 1;
+                targetDic[CombatAction.Assassin] -= 2;
+                targetDic[CombatAction.Defence] += 3;
                 if (ch.health < 5)
                 {
-                    targetDic[Action.Defence] += 3;
-                    targetDic[Action.Surrender] += 5;
+                    targetDic[CombatAction.Defence] += 3;
+                    targetDic[CombatAction.Surrender] += 5;
                 }
             }
             

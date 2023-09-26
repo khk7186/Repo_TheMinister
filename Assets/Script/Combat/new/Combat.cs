@@ -61,7 +61,7 @@ public class Combat : MonoBehaviour
             {
                 Destroy(interactable.line.gameObject);
                 ccu.target = null;
-                ccu.currentAction = Action.NoSelect;
+                ccu.currentAction = CombatAction.NoSelect;
             }
         }
     }

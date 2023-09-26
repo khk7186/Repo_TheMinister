@@ -20,23 +20,30 @@ public class StartFight : MonoBehaviour
             selfUnit.ModifyStat();
             if (!selfUnit.IsFriend)
             {
-                selfUnit.currentAction = AIStrategy(selfUnit);
-                if (selfUnit.currentAction == Action.Defence)
+                if (selfUnit.plan == null)
+                {
+                    selfUnit.currentAction = AIStrategy(selfUnit);
+                }
+                else
+                {
+                    selfUnit.currentAction = selfUnit.plan.NextAction();
+                }
+                if (selfUnit.currentAction == CombatAction.Defence)
                 {
                     selfUnit.target = selfUnit;
                 }
             }
-            if (selfUnit.currentAction == Action.NoSelect)
+            if (selfUnit.currentAction == CombatAction.NoSelect)
             {
-                selfUnit.currentAction = Action.Attack;
+                selfUnit.currentAction = CombatAction.Attack;
             }
-            if (selfUnit.currentAction != Action.Surrender)
+            if (selfUnit.currentAction != CombatAction.Surrender)
                 yield return StatChangeAnimation(selfUnit);
-            if (selfUnit.currentAction == Action.Surrender)
+            if (selfUnit.currentAction == CombatAction.Surrender)
             {
                 yield return Surrender(selfUnit);
             }
-            else if (selfUnit.currentAction != Action.Defence)
+            else if (selfUnit.currentAction != CombatAction.Defence)
             {
                 yield return Attack(selfUnit);
             }
@@ -153,18 +160,18 @@ public class StartFight : MonoBehaviour
             }
         }
     }
-    public Action AIStrategy(CombatCharacterUnit unit)
+    public CombatAction AIStrategy(CombatCharacterUnit unit)
     {
         int health = (int)unit.healthBar.slider.value;
         bool reachMaxHealth = 18 <= health;
         bool reachMidHealth = 10 <= health;
         bool reachLowHealth = 8 >= health;
-        Action[] actionArray = Enum.GetValues(typeof(Action)) as Action[];
-        List<Action> actionChoices = actionArray.Where(x => x != Action.NoSelect).ToList();
+        CombatAction[] actionArray = Enum.GetValues(typeof(CombatAction)) as CombatAction[];
+        List<CombatAction> actionChoices = actionArray.Where(x => x != CombatAction.NoSelect).ToList();
 
         if (reachMaxHealth)
         {
-            actionChoices.Remove(Action.Surrender);
+            actionChoices.Remove(CombatAction.Surrender);
             //actionChoices.Add(Action.Defence);
             //actionChoices.Add(Action.Defence);
             //actionChoices.Add(Action.Defence);
@@ -175,26 +182,26 @@ public class StartFight : MonoBehaviour
             //actionChoices.Add(Action.Defence);
             //actionChoices.Add(Action.Defence);
             //actionChoices.Add(Action.Defence);
-            actionChoices.Remove(Action.Defence);
-            actionChoices.Add(Action.Attack);
-            actionChoices.Add(Action.Attack);
-            actionChoices.Add(Action.Assassin);
-            actionChoices.Add(Action.Assassin);
+            actionChoices.Remove(CombatAction.Defence);
+            actionChoices.Add(CombatAction.Attack);
+            actionChoices.Add(CombatAction.Attack);
+            actionChoices.Add(CombatAction.Assassin);
+            actionChoices.Add(CombatAction.Assassin);
         }
         if (reachLowHealth)
         {
-            actionChoices.RemoveAll(x => x == Action.Attack);
-            actionChoices.Add(Action.Assassin);
-            actionChoices.Add(Action.Assassin);
-            actionChoices.Add(Action.Surrender);
-            actionChoices.Add(Action.Surrender);
+            actionChoices.RemoveAll(x => x == CombatAction.Attack);
+            actionChoices.Add(CombatAction.Assassin);
+            actionChoices.Add(CombatAction.Assassin);
+            actionChoices.Add(CombatAction.Surrender);
+            actionChoices.Add(CombatAction.Surrender);
         }
         if (reachMidHealth)
         {
-            actionChoices.Remove(Action.Assassin);
-            actionChoices.Remove(Action.Defence);
+            actionChoices.Remove(CombatAction.Assassin);
+            actionChoices.Remove(CombatAction.Defence);
         }
-        Action output = actionChoices[UnityEngine.Random.Range(0, actionChoices.Count)];
+        CombatAction output = actionChoices[UnityEngine.Random.Range(0, actionChoices.Count)];
         return output;
     }
     public bool TargetHaveDefender(CombatCharacterUnit target)

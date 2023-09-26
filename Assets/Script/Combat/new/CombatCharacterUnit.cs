@@ -22,7 +22,7 @@ public class CombatCharacterUnit : MonoBehaviour
     public static Grid grid;
 
     public CharacterStat stat = CharacterStat.normal;
-    public Action currentAction = Action.NoSelect;
+    public CombatAction currentAction = CombatAction.NoSelect;
     public CombatCharacterUnit target = null;
     public bool SelfDefending = false;
     private const int IsometricRangePerYUnit = 1;
@@ -30,7 +30,7 @@ public class CombatCharacterUnit : MonoBehaviour
     SortingGroup sg = null;
     public HealthBar healthBar;
     public Vector3Int cellPosition;
-
+    public CombatPlan plan = null;
     private void Awake()
     {
         if (grid == null)
@@ -42,6 +42,22 @@ public class CombatCharacterUnit : MonoBehaviour
     private void Start()
     {
         GetComponent<CharacterMovement>().enabled = true;
+        if (!IsFriend)
+        {
+
+            var plans = FindObjectsOfType<CombatPlan>();
+            if (plan != null)
+            {
+                foreach (CombatPlan pl in plans)
+                {
+                    if (pl.character == character)
+                    {
+                        plan = pl;
+                        return;
+                    }
+                }
+            }
+        }
     }
 
     public static CombatCharacterUnit NewCombatCharacterUnit(Character character, bool isFriend)
@@ -62,7 +78,7 @@ public class CombatCharacterUnit : MonoBehaviour
     {
         armor = 0;
         stat = CharacterStat.normal;
-        currentAction = Action.NoSelect;
+        currentAction = CombatAction.NoSelect;
         target = null;
         SelfDefending = false;
         Defender = null;
@@ -108,11 +124,11 @@ public class CombatCharacterUnit : MonoBehaviour
         {
             default:
                 break;
-            case Action.Attack:
-            case Action.Assassin:
+            case CombatAction.Attack:
+            case CombatAction.Assassin:
 
                 break;
-            case Action.Defence:
+            case CombatAction.Defence:
                 break;
         }
     }
@@ -132,7 +148,7 @@ public class CombatCharacterUnit : MonoBehaviour
         {
             default:
                 break;
-            case Action.Defence:
+            case CombatAction.Defence:
                 if (SelfDefending)
                 {
                     NextStat = CharacterStat.strong;
@@ -142,7 +158,7 @@ public class CombatCharacterUnit : MonoBehaviour
                     NextStat = (CharacterStat)((((int)stat + 1) >= 2) ? 2 : ((int)stat + 1));
                 }
                 break;
-            case Action.Assassin:
+            case CombatAction.Assassin:
                 NextStat = (CharacterStat)((((int)stat - 1) <= 0) ? 0 : ((int)stat - 1));
                 break;
         }
@@ -168,10 +184,10 @@ public class CombatCharacterUnit : MonoBehaviour
             {
                 default:
                     break;
-                case Action.Attack:
+                case CombatAction.Attack:
                     target.TakeDamge(character.CharactersValueDict[CharacterValueType.Îä]);
                     break;
-                case Action.Assassin:
+                case CombatAction.Assassin:
                     target.TakeDamge(character.CharactersValueDict[CharacterValueType.Îä]);
                     break;
             }
@@ -240,7 +256,7 @@ public class CombatCharacterUnit : MonoBehaviour
         stat = CharacterStat.normal;
         target = null;
         Defender = null;
-        currentAction = Action.NoSelect;
+        currentAction = CombatAction.NoSelect;
     }
     public void DefenceAction()
     {
