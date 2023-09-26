@@ -70,7 +70,7 @@ public class GeneralEventTrigger : MonoBehaviour
                 scene = 1;
                 StartCoroutine(JumpToScene(scene));
                 currencyInventory.MoneyAdd(gameTracker.moneyRewards);
-                PressureEventHandler.OnPressureChange(gameTracker.moneyRewards);
+                PressureEventHandler.OnPressureChange(gameTracker.pressureRewards);
                 if (itemRewards.Count > 0)
                 {
                     ItemInventory itemInventory = FindObjectOfType<ItemInventory>();
