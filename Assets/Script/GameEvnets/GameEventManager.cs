@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameEventManager : MonoBehaviour, IDiceRollEvent
 {
     public static GameEventManager Instance;
-    public bool SaveReady = true;
+    public bool SaveReady => currentEvent == null;
     public MainEventUnitProfile nextEvent;
     public MainEventUnitProfile currentEvent;
     public bool readyForNext = false;
@@ -48,8 +48,9 @@ public class GameEventManager : MonoBehaviour, IDiceRollEvent
     {
         Destroy(currentEvent.gameObject);
     }
-    public void ActiveNext(MainEventUnitProfile nextEvent = null)
+    public void ActiveNext(MainEventUnitProfile nextEvent = null, int waitFor = 0)
     {
+        timeRemain = waitFor;
         if (nextEvent != null) this.nextEvent = nextEvent;
         if (this.nextEvent != null)
         {
@@ -61,6 +62,7 @@ public class GameEventManager : MonoBehaviour, IDiceRollEvent
         readyForNext = true;
         yield return new WaitUntil(() => isTime == true);
         currentEvent = Instantiate(nextEvent, transform);
+        currentEvent.OnGoing = true;
         readyForNext = false;
     }
 

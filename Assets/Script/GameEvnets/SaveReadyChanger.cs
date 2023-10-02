@@ -16,6 +16,6 @@ public class SaveReadyChanger : MonoBehaviour
     }
     public void SetSaveReadyStat()
     {
-        GameEventManager.Instance.SaveReady = changeStatInto;
+        //GameEventManager.Instance.SaveReady = changeStatInto;
     }
 }
