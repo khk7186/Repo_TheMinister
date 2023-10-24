@@ -8,8 +8,8 @@ public class SOMainGameEventDatabase : ScriptableObject
 {
     public List<MainEventUnitProfile> gameEventProfils = new List<MainEventUnitProfile>();
 
-    public void Find(string Name)
+    public MainEventUnitProfile Find(string Name)
     {
-        gameEventProfils.First(x => x.profileName == Name);
+        return gameEventProfils.First(x => x.profileName == Name);
     }
 }

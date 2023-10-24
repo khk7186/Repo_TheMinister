@@ -27,6 +27,7 @@ namespace SaveSystem
         public LightController lightController = null;
 
         public GameEventManager gameEventManager = null;
+        public SOMainGameEventDatabase gameEventDatabase = null;
         public void LoadCharacters()
         {
             foreach (SerializedCharacter target in gameSave.playerOwnedCharacters)
@@ -59,6 +60,7 @@ namespace SaveSystem
             pathManager.Reset();
             roitManager.Reset();
             itemInventory.Reset();
+            gameEventManager.Reset();
             playerCharacterInventory.Clear();
             characterAwaitTributeManager.Reset();
             questionAIManager.Reset();

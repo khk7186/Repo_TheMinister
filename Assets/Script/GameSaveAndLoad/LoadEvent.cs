@@ -1,5 +1,6 @@
 using PixelCrushers;
 using PixelCrushers.DialogueSystem;
+using Spine.Unity.Examples;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace SaveSystem
             LoadInventory(manager, save);
             LoadPlayer(manager, save);
             LoadQuestMachine(save);
+            LoadMain(manager, save);
             manager.questionAIManager.Load(save);
             manager.lightController.ConstantLight(Map.Instance.DayTime);
         }
@@ -76,6 +78,14 @@ namespace SaveSystem
             PixelCrushers.SaveSystem.ApplySavedGameData(save.questMachineSave);
             //Debug.Log(save.questMachineSave);
             //PixelCrushers.QuestMachine.QuestJournal.
+        }
+        public static void LoadMain(SaveAndLoadManager manager, GameSave save)
+        {
+            var gameEventManager = manager.gameEventManager;
+            gameEventManager.StopAllCoroutines();
+            gameEventManager.nextEvent = manager.gameEventDatabase.Find(save.currentMainEventName);
+            gameEventManager.timeRemain = save.MainEventRemainToShow;
+            gameEventManager.ActiveNext(gameEventManager.nextEvent, gameEventManager.timeRemain);
         }
     }
 }
