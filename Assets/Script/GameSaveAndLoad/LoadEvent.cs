@@ -83,7 +83,9 @@ namespace SaveSystem
         {
             var gameEventManager = manager.gameEventManager;
             gameEventManager.StopAllCoroutines();
-            gameEventManager.nextEvent = manager.gameEventDatabase.Find(save.currentMainEventName);
+            var target = manager.gameEventDatabase.Find(save.currentMainEventName);
+            if (target == null) return;
+            gameEventManager.nextEvent = target;
             gameEventManager.timeRemain = save.MainEventRemainToShow;
             gameEventManager.ActiveNext(gameEventManager.nextEvent, gameEventManager.timeRemain);
         }

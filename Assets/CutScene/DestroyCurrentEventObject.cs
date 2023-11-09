@@ -22,5 +22,6 @@ public class DestroyCurrentEventObject : MonoBehaviour
             Map.Instance.Player.gameObject.GetComponent<Animator>().enabled = false;
         }
         gameEventManager.DestroyCurrent();
+        Destroy(gameEventManager.currentEvent.gameObject);
     }
 }
