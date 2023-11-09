@@ -61,7 +61,8 @@ namespace SaveSystem
             newGameSave.isRight = playerSideChanger.isRight;
 
             //Save Main Quest Progress
-            newGameSave.currentMainEventName = manager.gameEventManager.nextEvent.profileName;
+            if (manager.gameEventManager.nextEvent != null)
+                newGameSave.currentMainEventName = manager.gameEventManager.nextEvent.profileName;
             newGameSave.MainEventRemainToShow = manager.gameEventManager.timeRemain;
 
             //Save Side Quests objects
