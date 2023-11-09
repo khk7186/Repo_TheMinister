@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class DestroyCurrentEventObject : MonoBehaviour
 {
@@ -8,7 +9,11 @@ public class DestroyCurrentEventObject : MonoBehaviour
     public MainEventUnitProfile nextEvent;
     public int delayDays = 5;
 
-    private IEnumerator Start()
+    private void OnEnable()
+    {
+        StartCoroutine(StartAfterQuest());
+    }
+    public IEnumerator StartAfterQuest()
     {
         yield return new WaitForSeconds(1f);
         NormalizeGame();
