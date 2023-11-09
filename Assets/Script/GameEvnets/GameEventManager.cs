@@ -46,8 +46,6 @@ public class GameEventManager : MonoBehaviour, IDiceRollEvent
     }
     public void DestroyCurrent()
     {
-        if (currentEvent.gameObject != null)
-            Destroy(currentEvent.gameObject);
         StopAllCoroutines();
     }
     public void ActiveNext(MainEventUnitProfile nextEvent = null, int waitFor = 0)
