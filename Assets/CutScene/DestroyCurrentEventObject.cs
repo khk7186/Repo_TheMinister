@@ -10,7 +10,7 @@ public class DestroyCurrentEventObject : MonoBehaviour
 
     private IEnumerator Start()
     {
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(1f);
         NormalizeGame();
     }
     public void NormalizeGame()
