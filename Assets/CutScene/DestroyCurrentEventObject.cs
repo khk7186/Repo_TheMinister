@@ -8,8 +8,9 @@ public class DestroyCurrentEventObject : MonoBehaviour
     public MainEventUnitProfile nextEvent;
     public int delayDays = 5;
 
-    private void OnEnable()
+    private IEnumerator Start()
     {
+        yield return new WaitForEndOfFrame();
         NormalizeGame();
     }
     public void NormalizeGame()
