@@ -38,7 +38,7 @@ public class GameEventManager : MonoBehaviour, IDiceRollEvent
     {
         DestroyCurrent();
     }
-    
+
     private void Start()
     {
         currentEvent = Instantiate(nextEvent, transform);
@@ -46,7 +46,8 @@ public class GameEventManager : MonoBehaviour, IDiceRollEvent
     }
     public void DestroyCurrent()
     {
-        Destroy(currentEvent.gameObject);
+        if (currentEvent.gameObject != null)
+            Destroy(currentEvent.gameObject);
         StopAllCoroutines();
     }
     public void ActiveNext(MainEventUnitProfile nextEvent = null, int waitFor = 0)
