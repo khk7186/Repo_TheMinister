@@ -14,10 +14,8 @@ public class DestroyCurrentEventObject : MonoBehaviour
     }
     public void NormalizeGame()
     {
-        if (nextEvent != null)
-        {
-            gameEventManager.nextEvent = nextEvent;
-        }
+        gameEventManager.nextEvent = nextEvent;
+
         if (Map.Instance != null)
         {
             Dice.Instance.RegisterObserver(Map.Instance);
