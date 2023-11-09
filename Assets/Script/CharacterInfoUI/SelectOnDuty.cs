@@ -28,7 +28,7 @@ public static class SelectOnDuty
         }
         else
         {
-            SwitchCurrentOndutyImage(character,ondutyType);
+            SwitchCurrentOndutyImage(character, ondutyType);
         }
     }
     public static List<Character> GetOndutyAll(OndutyType ondutyType)
@@ -40,7 +40,10 @@ public static class SelectOnDuty
         {
             if (character.OnDutyState[ondutyType] == true)
             {
-                targetList.Add(character);
+                if (character.hireStage != HireStage.Away)
+                {
+                    targetList.Add(character);
+                }
             }
         }
         return targetList;
