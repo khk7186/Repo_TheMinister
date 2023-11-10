@@ -73,5 +73,9 @@ public class CraftingUI : MonoBehaviour
         {
             PlayerItemDic.RemoveItem(item);
         }
+        foreach (MaterialUI material in CraftingMaterialTransform.GetComponentsInChildren<MaterialUI>())
+        {
+            material.LessHaveAmount();
+        }
     }
 }
