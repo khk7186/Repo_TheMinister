@@ -44,7 +44,7 @@ public class CraftingUI : MonoBehaviour
         bool craftble = true;
         foreach (MaterialUI material in CraftingMaterialTransform.GetComponentsInChildren<MaterialUI>())
         {
-            if (material.IntHaveAmount <= material.IntNeedAmount)
+            if (material.IntHaveAmount < material.IntNeedAmount)
             {
                 Debug.Log("你需要更多" + $"{material.IntHaveAmount}/{material.IntNeedAmount}");
                 craftble = false;
