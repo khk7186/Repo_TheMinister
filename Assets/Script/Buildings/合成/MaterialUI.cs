@@ -30,7 +30,11 @@ public class MaterialUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
         HaveAmount.text = haveAmount.ToString();
         ItemName = item;
     }
-
+    public void LessHaveAmount()
+    {
+        IntNeedAmount -= 1; 
+        HaveAmount.text = IntNeedAmount.ToString();
+    }
     public void SetOnDetail(string target)
     {
         ItemDetailUI.Show(ItemName.ToString());
