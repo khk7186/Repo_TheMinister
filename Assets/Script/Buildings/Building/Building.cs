@@ -178,6 +178,10 @@ public class Building : MonoBehaviour
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.长安织造, 0);
                 SetupCraft();
                 break;
+            case BuildingType.服装店:
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.纺织铺, 0);
+                ShopList[1] = SpawnItemBasedOnType(BuildingType.服装店, 0);
+                break;
             case BuildingType.商行:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.商行, 0);
                 break;
