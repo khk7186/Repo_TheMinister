@@ -43,7 +43,8 @@ public class GameEventManager : MonoBehaviour, IDiceRollEvent
 
     private void Start()
     {
-        currentEvent = Instantiate(nextEvent, transform);
+        if (nextEvent != null)
+            currentEvent = Instantiate(nextEvent, transform);
         Dice.Instance.RegisterObserver(this);
     }
     public void DestroyCurrent()
