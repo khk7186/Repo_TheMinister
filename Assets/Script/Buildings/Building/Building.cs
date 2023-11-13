@@ -220,8 +220,8 @@ public class Building : MonoBehaviour
                 SetupCraft();
                 break;
             case BuildingType.机关阁:
-                //ShopList[0] = SpawnItemBasedOnType(BuildingType.机关阁, 0);
-                //ShopList[1] = SpawnItemBasedOnType(BuildingType.机关阁, 1);
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.铁匠铺, 0);
+                ShopList[1] = SpawnItemBasedOnType(BuildingType.机关阁, 1);
                 SetupCraft();
                 break;
             case BuildingType.武侯楼:
