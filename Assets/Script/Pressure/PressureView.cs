@@ -9,7 +9,7 @@ public class PressureView : MonoBehaviour
     public RectTransform textWrapper;
     public Text PercentageText;
     public Text AddPerDayText;
-
+    
     public void SetPercentage(int percentage)
     {
         fillImage.fillAmount = percentage / 100f;
