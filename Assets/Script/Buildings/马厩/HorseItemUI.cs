@@ -36,6 +36,7 @@ public class HorseItemUI : ItemUI
         BoughtSign.SetActive(false);
         BuyPrice.text = SOItem.ItempriceTag[buildingType][ItemType.×øÆï][(int)framRarity / 2 - 1].ToString();
         RentPrice.text = SOItem.ItemRentPrice[(int)framRarity / 2 - 1].ToString();
+        HorseName.text = ItemName.ToString();
         if (itemImage != null)
             itemImage.gameObject.SetActive(true);
     }
