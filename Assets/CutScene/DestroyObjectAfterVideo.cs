@@ -22,7 +22,7 @@ public class DestroyObjectAfterVideo : MonoBehaviour
     {
         lastRecordTime = currentTime;
         currentTime = gameObject.GetComponent<VideoPlayer>().time;
-        if (currentTime == lastRecordTime) currentTime += Time.deltaTime;
+        if (currentTime == lastRecordTime) currentTime += 0.1f;
         if (currentTime >= time)
         {
             foreach (GameObject gameObject in gameObjectsToDestroy)
