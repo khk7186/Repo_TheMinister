@@ -5,9 +5,10 @@ using UnityEngine.Video;
 
 public class DestroyObjectAfterVideo : MonoBehaviour
 {
-    public double time;
-    public double currentTime;
+    public double time = 0;
+    public double currentTime = 0;
     public List<GameObject> gameObjectsToDestroy;
+    public double lastRecordTime = 0;
     // Use this for initialization
     void Start()
     {
@@ -20,6 +21,7 @@ public class DestroyObjectAfterVideo : MonoBehaviour
     void Update()
     {
         currentTime = gameObject.GetComponent<VideoPlayer>().time;
+        if (currentTime == lastRecordTime) currentTime += Time.deltaTime;
         if (currentTime >= time)
         {
             foreach (GameObject gameObject in gameObjectsToDestroy)
