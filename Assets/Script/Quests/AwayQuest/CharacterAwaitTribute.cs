@@ -15,7 +15,7 @@ public class CharacterAwaitTribute : MonoBehaviour
 
     public void TimePlus()
     {
-        if (destroyNext) CharacterAwaitTributeManager.Instance.FinishTribute(this);
+        if (destroyNext) Destroy(gameObject);
         AlreadyWait += 1;
         if (EndWait)
         {

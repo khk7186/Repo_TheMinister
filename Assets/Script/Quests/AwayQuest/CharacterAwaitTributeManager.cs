@@ -36,7 +36,6 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
     }
     public void FinishTribute(CharacterAwaitTribute tribute)
     {
-        Destroy(tribute.gameObject);
         UnfinishedTributes.RemoveAll(x => x == null);
     }
     public void OnNotify(object value, NotificationType notificationType)
