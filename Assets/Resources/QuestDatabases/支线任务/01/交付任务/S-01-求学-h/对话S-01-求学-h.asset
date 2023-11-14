@@ -96,6 +96,20 @@ MonoBehaviour:
       value: 
       type: 0
       typeString: 
+  - id: 3
+    fields:
+    - title: Name
+      value: Assign
+      type: 0
+      typeString: 
+    - title: Initial Value
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: 
+      type: 0
+      typeString: 
   conversations:
   - id: 1
     fields:
@@ -326,26 +340,19 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: Variable["tryHandIn"] = true
+      userScript: 'Variable["tryHandIn"] = true
+
+        ;
+
+        Variable["Assign"]
+        = true'
       onExecute:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1157769541505962177, guid: ab73b18646324264693ed7f90d8bfb60, type: 3}
-            m_TargetAssemblyTypeName: ItemRequstAction, Assembly-CSharp
-            m_MethodName: HandInAction
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
       canvasRect:
         serializedVersion: 2
         x: 1
-        y: 682.4036
+        y: 701.5817
         width: 160
         height: 30
     - id: 4
@@ -1021,7 +1028,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 43
-        y: 612
+        y: 610.6302
         width: 160
         height: 30
     - id: 14
@@ -1081,13 +1088,13 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 219.11935
-        y: 682.8955
+        x: 180.76321
+        y: 689.7449
         width: 160
         height: 30
     entryGroups: []
-    canvasScrollPosition: {x: 0, y: 141.45654}
-    canvasZoom: 0.5800004
+    canvasScrollPosition: {x: 0, y: 148.00647}
+    canvasZoom: 0.73000026
   - id: 2
     fields:
     - title: Title
