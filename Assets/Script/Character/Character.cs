@@ -684,10 +684,14 @@ public class Character : MonoBehaviour, IRound
         OnCombatDuty = false;
         OnDebateDuty = false;
         OnGobangDuty = false;
+
         var e = new UnityEvent();
-        e.AddListener(() => Instantiate(spawnAfterAway.gameObject));
         e.AddListener(() => Back());
-        this.spawnAfterAway = spawnAfterAway;
+        if (spawnAfterAway != null)
+        {
+            this.spawnAfterAway = spawnAfterAway;
+            e.AddListener(() => Instantiate(spawnAfterAway.gameObject));
+        }
         characterAwaitTribute = CharacterAwaitTributeManager.Instance.AddTribute(this, rounds * 3, e);
     }
     public void Back()
