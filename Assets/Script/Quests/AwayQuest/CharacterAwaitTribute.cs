@@ -21,6 +21,7 @@ public class CharacterAwaitTribute : MonoBehaviour
             {
                 @event.Invoke();
             }
+            CharacterAwaitTributeManager.Instance.FinishTribute(this);
         }
     }
 }

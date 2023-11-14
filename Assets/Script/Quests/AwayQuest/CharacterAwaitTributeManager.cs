@@ -34,6 +34,11 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
         UnfinishedTributes.Add(tribute);
         return tribute;
     }
+    public void FinishTribute(CharacterAwaitTribute tribute)
+    {
+        UnfinishedTributes.Remove(tribute);
+        Destroy(tribute.gameObject);
+    }
     public void OnNotify(object value, NotificationType notificationType)
     {
         foreach (var tribute in UnfinishedTributes)
@@ -47,6 +52,6 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
         {
             Destroy(tribute.gameObject);
         }
-        UnfinishedTributes = new List<CharacterAwaitTribute> ();
+        UnfinishedTributes = new List<CharacterAwaitTribute>();
     }
 }
