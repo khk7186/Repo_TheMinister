@@ -407,7 +407,7 @@ public class Character : MonoBehaviour, IRound
     public CharacterAwaitTribute characterAwaitTribute = null;
     public int waitTime => characterAwaitTribute != null ? characterAwaitTribute.WaitTime : 0;
     public int alreadyWait => characterAwaitTribute != null ? characterAwaitTribute.AlreadyWait : 0;
-    public GameObject spawnAfterAway = null;
+    public SpawnAfterAwayGuest spawnAfterAway = null;
     #endregion
     private void Awake()
     {
@@ -678,14 +678,14 @@ public class Character : MonoBehaviour, IRound
             else if (loyalty <= 0) TryDeath();
         }
     }
-    public void Away(int rounds, GameObject spawnAfterAway = null)
+    public void Away(int rounds, SpawnAfterAwayGuest spawnAfterAway = null)
     {
         hireStage = HireStage.Away;
         OnCombatDuty = false;
         OnDebateDuty = false;
         OnGobangDuty = false;
         var e = new UnityEvent();
-        e.AddListener(() => Instantiate(spawnAfterAway));
+        e.AddListener(() => Instantiate(spawnAfterAway.gameObject));
         e.AddListener(() => Back());
         this.spawnAfterAway = spawnAfterAway;
         characterAwaitTribute = CharacterAwaitTributeManager.Instance.AddTribute(this, rounds * 3, e);

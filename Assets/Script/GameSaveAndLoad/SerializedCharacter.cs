@@ -22,7 +22,7 @@ namespace SaveSystem
 
         public int waitTime = 0;
         public int alreadyWait = 0;
-        public GameObject spawnAfterAway;
+        public string spawnAfterAwayGuestName;
         public static SerializedCharacter SerializingCharacter(Character character)
         {
             var output = new SerializedCharacter();
@@ -54,7 +54,7 @@ namespace SaveSystem
             {
                 output.waitTime = character.waitTime;
                 output.alreadyWait = character.alreadyWait;
-                output.spawnAfterAway = character.spawnAfterAway;
+                output.spawnAfterAwayGuestName = character.spawnAfterAway.guestName;
             }
 
             return output;
@@ -72,7 +72,8 @@ namespace SaveSystem
                 output.transform.parent = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
                 if (output.hireStage == global::HireStage.Away)
                 {
-                    output.Away(output.waitTime - output.alreadyWait, output.spawnAfterAway);
+                    var spawnAfterAwayDB = Resources.Load<SOSpawnAfterAwayDB>("Data/SpawnAfterAwayDB");
+                    output.Away(output.waitTime - output.alreadyWait, spawnAfterAwayDB.Find(characterData.spawnAfterAwayGuestName));
                 }
             }
             output.OnDutyState[OndutyType.Combat] = characterData.OnCombatDuty;
