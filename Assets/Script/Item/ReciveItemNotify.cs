@@ -62,6 +62,7 @@ public class ReciveItemNotify : MonoBehaviour
             import.itemName = (ItemName)Enum.Parse(typeof(ItemName), item.itemName);
             list.Add(import);
         }
+        items = list.ToArray();
     }
 
     private void OnDestroy()
