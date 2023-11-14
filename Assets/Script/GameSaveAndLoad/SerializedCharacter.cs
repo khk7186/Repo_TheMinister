@@ -54,7 +54,10 @@ namespace SaveSystem
             {
                 output.waitTime = character.waitTime;
                 output.alreadyWait = character.alreadyWait;
-                output.spawnAfterAwayGuestName = character.spawnAfterAway.guestName;
+                if (character.spawnAfterAway != null)
+                {
+                    output.spawnAfterAwayGuestName = character.spawnAfterAway.guestName;
+                }
             }
 
             return output;
