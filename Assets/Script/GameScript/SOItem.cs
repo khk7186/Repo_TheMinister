@@ -1467,6 +1467,7 @@ public class SOItem : ScriptableObject
         {ItemName.洗髓丹,new List<ItemName>(){ItemName.轻粉,ItemName.核桃粉}},
         {ItemName.龙虎丹,new List<ItemName>(){ItemName.当归,ItemName.核桃粉}},
         {ItemName.阴阳玄龙丹,new List<ItemName>(){ItemName.白花蛇舌草,ItemName.过山龙}},
+        {ItemName.天机造化丹,new List<ItemName>(){ItemName.星辰花,ItemName.罗汉果,ItemName.八角莲,ItemName.鸽血红} },
         {ItemName.落日神弓,new List<ItemName>(){ItemName.穿石烈风弓, ItemName.紫木雷电枪}},
         {ItemName.白银枪,new List<ItemName>(){ItemName.银矿, ItemName.枪}},
         {ItemName.黄金弓,new List<ItemName>(){ItemName.有破损的黄金, ItemName.弓}},
