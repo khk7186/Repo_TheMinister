@@ -59,7 +59,7 @@ public class ReciveItemNotify : MonoBehaviour
         {
             var import = new Item();
             import.amount = item.amount;
-            import.itemName = (ItemName)Enum.Parse(typeof(Item), item.itemName);
+            import.itemName = (ItemName)Enum.Parse(typeof(ItemName), item.itemName);
             list.Add(import);
         }
     }
