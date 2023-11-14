@@ -66,7 +66,7 @@ public class GameInitialization : MonoBehaviour
         InProgress = true;
         ChapterCounter.Instance.Chapter = 1;
         questAIManager.gameObject.SetActive(true);
-        //InitialInGameAI(StartNPC);
+        InitialInGameAI(StartNPC);
         yield return null;
         InProgress = false;
     }

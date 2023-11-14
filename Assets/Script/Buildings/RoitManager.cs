@@ -76,12 +76,12 @@ public class RoitManager : MonoBehaviour, IDiceRollEvent
 
     public void OnNotify(object value, NotificationType notificationType)
     {
-        bool spawn = Random.Range(spawnRate, spawnTotal) <= spawnRate;
+        bool spawn = Random.Range(0, spawnTotal) <= spawnRate;
         if (spawn)
         {
             if (!EnoughRoit)
                 SpawnRoit();
-            //Debug.Log("spawn");
+            Debug.Log("spawn");
         }
     }
 
