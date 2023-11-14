@@ -20,6 +20,7 @@ public class DestroyObjectAfterVideo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        lastRecordTime = currentTime;
         currentTime = gameObject.GetComponent<VideoPlayer>().time;
         if (currentTime == lastRecordTime) currentTime += Time.deltaTime;
         if (currentTime >= time)
