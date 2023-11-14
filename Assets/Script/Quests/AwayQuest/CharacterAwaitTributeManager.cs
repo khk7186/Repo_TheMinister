@@ -34,15 +34,16 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
         UnfinishedTributes.Add(tribute);
         return tribute;
     }
-    public void FinishTribute(CharacterAwaitTribute tribute)
-    {
-        UnfinishedTributes.RemoveAll(x => x == null);
-    }
     public void OnNotify(object value, NotificationType notificationType)
     {
         foreach (var tribute in UnfinishedTributes)
         {
-            tribute.TimePlus();
+            if (tribute != null)
+                tribute.TimePlus();
+            else
+            {
+                UnfinishedTributes.Remove(tribute);
+            }
         }
     }
     public void Reset()
