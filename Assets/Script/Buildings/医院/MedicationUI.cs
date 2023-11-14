@@ -15,7 +15,7 @@ public class MedicationUI : MonoBehaviour
     public Button switchCharacter;
     public CureTagUI TMP;
     public Transform CureContent;
-    public int healPrice =10;
+    public int healPrice = 10;
     public Slider healthBar;
     bool OnCure => cureUI?.gameObject.active == true;
     private void Awake()
@@ -85,7 +85,9 @@ public class MedicationUI : MonoBehaviour
         {
             currencyInv.MoneyAdd(-healPrice);
             currentCharacter.health += 5;
+
             message = "÷Œ¡∆≥…π¶";
+            Setup();
         }
         var alert = Instantiate(Resources.Load<RiseUpTextAnimation>("Hiring/Message"), MainCanvas.FindMainCanvas());
         alert.GetComponent<Text>().text = message;
