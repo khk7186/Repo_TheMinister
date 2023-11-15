@@ -42,10 +42,10 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
                 tribute.TimePlus();
             if (tribute.destroyNext)
             {
-                UnfinishedTributes.Remove(tribute);
                 Destroy(tribute.gameObject);
             }
         }
+        UnfinishedTributes.RemoveAll(x => x == null);
     }
     public void Reset()
     {
