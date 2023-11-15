@@ -76,7 +76,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 166126051}
-  - component: {fileID: 166126052}
+  - component: {fileID: 6290340986944955031}
   m_Layer: 0
   m_Name: AnimatorTrigger
   m_TagString: Untagged
@@ -98,7 +98,7 @@ Transform:
   m_Father: {fileID: 6361315037408790092}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &166126052
+--- !u!114 &6290340986944955031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,11 +107,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 166126050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7781a6eac715f3047944106f71df8666, type: 3}
+  m_Script: {fileID: 11500000, guid: 67dd9a62b780d9f4fa3b4826c1893951, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TriggerOnEnable: 1
-  animator: {fileID: 7270455391916508606}
+  triggerOnEnable: 1
+  characterModelController: {fileID: 6254046433246932426}
   triggerName: Death
 --- !u!1 &175706355
 GameObject:
@@ -205,6 +205,7 @@ GameObject:
   - component: {fileID: 362565895}
   - component: {fileID: 362565897}
   - component: {fileID: 362565896}
+  - component: {fileID: 494981545327052509}
   m_Layer: 0
   m_Name: "\u5BF9\u8BDD3"
   m_TagString: Untagged
@@ -238,7 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: 32
+  trigger: 64
   condition:
     luaConditions: []
     questConditions: []
@@ -271,7 +272,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: M-01-18-f
+  conversation: M-01-19-f
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
@@ -371,6 +372,19 @@ MonoBehaviour:
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
   selectedDatabase: {fileID: 11400000, guid: 7cdab55b927f0074aa4c01623d243ee4, type: 2}
+--- !u!114 &494981545327052509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362565894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0edf9b9acf5df5b44916b753c4dc65fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueDatabase: {fileID: 11400000, guid: 7cdab55b927f0074aa4c01623d243ee4, type: 2}
 --- !u!1 &1441536692
 GameObject:
   m_ObjectHideFlags: 0
@@ -513,7 +527,7 @@ MonoBehaviour:
   tagMax: 5
   TagSpawnRareRate: c8000000cc0100004a0100003200000001000000
   characterType: 0
-  characterArtCode: 0
+  characterArtCode: 6
   loyalty: 10
   health: 1
   rarerity: 0
@@ -720,7 +734,7 @@ MonoBehaviour:
   tagMax: 5
   TagSpawnRareRate: c8000000cc0100004a0100003200000001000000
   characterType: 0
-  characterArtCode: 0
+  characterArtCode: 13
   loyalty: 10
   health: 1
   rarerity: 0
@@ -1272,7 +1286,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6361315037408790092
 Transform:
   m_ObjectHideFlags: 0
@@ -1340,6 +1354,7 @@ GameObject:
   - component: {fileID: 6361315038040664698}
   - component: {fileID: 6361315038040664697}
   - component: {fileID: 6361315038040664696}
+  - component: {fileID: 1005337425858956465}
   m_Layer: 0
   m_Name: "\u5BF9\u8BDD1"
   m_TagString: Untagged
@@ -1506,6 +1521,19 @@ MonoBehaviour:
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
   selectedDatabase: {fileID: 11400000, guid: 7cdab55b927f0074aa4c01623d243ee4, type: 2}
+--- !u!114 &1005337425858956465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6361315038040664699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0edf9b9acf5df5b44916b753c4dc65fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueDatabase: {fileID: 11400000, guid: 7cdab55b927f0074aa4c01623d243ee4, type: 2}
 --- !u!1 &6361315038395582065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,6 +1545,7 @@ GameObject:
   - component: {fileID: 6361315038395582064}
   - component: {fileID: 6361315038395582071}
   - component: {fileID: 6361315038395582070}
+  - component: {fileID: 3820103147207768272}
   m_Layer: 0
   m_Name: "\u5BF9\u8BDD2"
   m_TagString: Untagged
@@ -1683,6 +1712,19 @@ MonoBehaviour:
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
   selectedDatabase: {fileID: 11400000, guid: 7cdab55b927f0074aa4c01623d243ee4, type: 2}
+--- !u!114 &3820103147207768272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6361315038395582065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0edf9b9acf5df5b44916b753c4dc65fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueDatabase: {fileID: 11400000, guid: 7cdab55b927f0074aa4c01623d243ee4, type: 2}
 --- !u!1 &6361315038590614616
 GameObject:
   m_ObjectHideFlags: 0
@@ -2326,7 +2368,7 @@ MonoBehaviour:
   tagMax: 5
   TagSpawnRareRate: c8000000cc0100004a0100003200000001000000
   characterType: 0
-  characterArtCode: 0
+  characterArtCode: 2
   loyalty: 10
   health: 1
   rarerity: 0
@@ -2603,6 +2645,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5370261386494435608 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8002943024120730214, guid: e3965579db3690948bf9884a42faeda1, type: 3}
+  m_PrefabInstance: {fileID: 2708679881894884222}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5370261387509422211 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8002943023005150205, guid: e3965579db3690948bf9884a42faeda1, type: 3}
@@ -2645,17 +2698,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5370261386494435608 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8002943024120730214, guid: e3965579db3690948bf9884a42faeda1, type: 3}
-  m_PrefabInstance: {fileID: 2708679881894884222}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!95 &5370261386280525632 stripped
