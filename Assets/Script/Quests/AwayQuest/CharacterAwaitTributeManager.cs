@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -50,9 +51,16 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
     }
     IEnumerator DestroyAfterSec(List<CharacterAwaitTribute> toDestroy)
     {
-        yield return new WaitForSeconds(1);
-        foreach (var tribute in toDestroy) Destroy(tribute.gameObject);
-        UnfinishedTributes.RemoveAll(x => x == null);
+        if (toDestroy.Where(x => x != null).Count() >= 0)
+        {
+            yield return new WaitForSeconds(1);
+            foreach (var tribute in toDestroy)
+            {
+                if (tribute != null)
+                    Destroy(tribute.gameObject);
+            }
+            UnfinishedTributes.RemoveAll(x => x == null);
+        }
     }
     public void Reset()
     {
