@@ -41,13 +41,13 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
         {
             if (tribute != null)
                 tribute.TimePlus();
-            if (tribute.destroyNext)
-            {
-                Debug.Log(tribute.gameObject == null);
-                toDestroy.Add(tribute.gameObject);
-            }
+            //if (tribute.destroyNext)
+            //{
+            //    Debug.Log(tribute.gameObject == null);
+            //    toDestroy.Add(tribute.gameObject);
+            //}
         }
-        if (toDestroy.Count > 0) { StartCoroutine(DestroyAfterSec(toDestroy)); }
+        //if (toDestroy.Count > 0) { StartCoroutine(DestroyAfterSec(toDestroy)); }
     }
     IEnumerator DestroyAfterSec(List<GameObject> toDestroy)
     {
