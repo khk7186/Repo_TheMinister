@@ -47,6 +47,11 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
                 toDestroy.Add(tribute.gameObject);
             }
         }
+        if (toDestroy.Count > 0) { StartCoroutine(DestroyAfterSec(toDestroy)); }
+    }
+    IEnumerator DestroyAfterSec(List<GameObject> toDestroy)
+    {
+        yield return new WaitForSeconds(1);
         foreach (var tribute in toDestroy) Destroy(tribute.gameObject);
         UnfinishedTributes.RemoveAll(x => x == null);
     }
