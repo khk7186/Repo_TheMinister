@@ -37,17 +37,17 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
     public void OnNotify(object value, NotificationType notificationType)
     {
         List<GameObject> toDestroy = new List<GameObject>();
-        foreach (var tribute in UnfinishedTributes)
+        for (int i = 0; i < UnfinishedTributes.Count; i++)
         {
-            if (tribute != null)
-                tribute.TimePlus();
-            //if (tribute.destroyNext)
-            //{
-            //    Debug.Log(tribute.gameObject == null);
-            //    toDestroy.Add(tribute.gameObject);
-            //}
+            if (UnfinishedTributes[i] != null)
+                UnfinishedTributes[i].TimePlus();
+            if (UnfinishedTributes[i].destroyNext)
+            {
+                Debug.Log(UnfinishedTributes[i].gameObject == null);
+                toDestroy.Add(UnfinishedTributes[i].gameObject);
+            }
         }
-        //if (toDestroy.Count > 0) { StartCoroutine(DestroyAfterSec(toDestroy)); }
+        if (toDestroy.Count > 0) { StartCoroutine(DestroyAfterSec(toDestroy)); }
     }
     IEnumerator DestroyAfterSec(List<GameObject> toDestroy)
     {
