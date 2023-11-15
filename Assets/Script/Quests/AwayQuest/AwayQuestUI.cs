@@ -106,6 +106,8 @@ public class AwayQuestUI : MonoBehaviour, ICharacterSelect
             foreach (Character character in characters.Where(x => x != null).ToList())
             {
                 character.Away(AwayDays, spawnAfterQuest.GetComponent<SpawnAfterAwayGuest>());
+                character.health -= health;
+                character.loyalty -= loyalty;
             }
             NextQuestStage();
             Destroy(gameObject);
