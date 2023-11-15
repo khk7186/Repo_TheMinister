@@ -43,6 +43,7 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
                 tribute.TimePlus();
             if (tribute.destroyNext)
             {
+                Debug.Log(tribute.gameObject == null);
                 toDestroy.Add(tribute.gameObject);
             }
         }
