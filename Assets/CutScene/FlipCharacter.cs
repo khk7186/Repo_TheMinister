@@ -28,6 +28,6 @@ public class FlipCharacter : MonoBehaviour
         {
             sideChanger = FindObjectOfType<Player>().GetComponent<SideChanger>();
         }
-        sideChanger.changeSide(front, right);
+        sideChanger.ChangeSideViaData(front, right);
     }
 }
