@@ -85,9 +85,10 @@ public class MedicationUI : MonoBehaviour
         {
             currencyInv.MoneyAdd(-healPrice);
             currentCharacter.health += 5;
+            if (currentCharacter.health > 20) currentCharacter.health = 20;
 
             message = "ÖÎÁÆ³É¹¦";
-            Setup();
+            Setup(currentCharacter);
         }
         var alert = Instantiate(Resources.Load<RiseUpTextAnimation>("Hiring/Message"), MainCanvas.FindMainCanvas());
         alert.GetComponent<Text>().text = message;
