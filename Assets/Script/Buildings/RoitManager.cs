@@ -81,7 +81,7 @@ public class RoitManager : MonoBehaviour, IDiceRollEvent
         {
             if (!EnoughRoit)
                 SpawnRoit();
-            Debug.Log("spawn");
+            //Debug.Log("spawn");
         }
     }
 

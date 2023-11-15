@@ -53,6 +53,8 @@ public class SideChanger : MonoBehaviour
     }
     public void changeSide(bool front, bool right)
     {
+        this.isFront = front;
+        this.isRight = right;
         if (model == null)
         {
             StartCoroutine(changeSideAnimation(front, right));

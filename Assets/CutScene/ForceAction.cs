@@ -23,6 +23,6 @@ public class ForceAction : MonoBehaviour,IStopPlayer
         var movementGrid = FindObjectOfType<MovementGrid>();
         var gridVector = MovementGrid.GetPlayerBlock(stayblock);
         transform.position =movementGrid.GetComponent<Grid>().GetCellCenterWorld(gridVector);
-        Debug.Log(transform.position);
+        //Debug.Log(transform.position);
     }
 }

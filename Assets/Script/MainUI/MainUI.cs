@@ -51,7 +51,7 @@ public class MainUI : MonoBehaviour
         }
         Time.gameObject.SetActive(true);
         var totalDay = map.Day + originTime[2];
-        int day = totalDay % 30;
+        int day = totalDay % 30 +1;
         int totalMonth = totalDay / 30 + originTime[1];
         int month = totalMonth % 12;
         int year = totalMonth / 12 + originTime[0];

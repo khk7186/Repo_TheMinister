@@ -43,6 +43,7 @@ public class BanquetUI : MonoBehaviour
         InGameCharacterStorage inGameCharacterStorage =
             GameObject.FindObjectOfType<InGameCharacterStorage>();
         characters.AddRange(inGameCharacterStorage.SelectOtherCharacters(MaxPersonHere, building.charactersHere));
+        Debug.Log(characters.Count);
         TransformEx.Clear(Content);
         foreach (Character character in characters)
         {
