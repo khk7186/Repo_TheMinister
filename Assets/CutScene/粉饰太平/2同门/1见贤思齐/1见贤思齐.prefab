@@ -984,6 +984,7 @@ GameObject:
   - component: {fileID: 8421991420245420890}
   - component: {fileID: 8421991420245420884}
   - component: {fileID: 8421991420245420885}
+  - component: {fileID: 4038975528575074475}
   m_Layer: 0
   m_Name: "\u5BF9\u8BDD3"
   m_TagString: Untagged
@@ -1150,6 +1151,19 @@ MonoBehaviour:
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
   selectedDatabase: {fileID: 11400000, guid: 7cdab55b927f0074aa4c01623d243ee4, type: 2}
+--- !u!114 &4038975528575074475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8421991420245420891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0edf9b9acf5df5b44916b753c4dc65fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueDatabase: {fileID: 11400000, guid: 7cdab55b927f0074aa4c01623d243ee4, type: 2}
 --- !u!1 &8421991420325075846
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,6 +1255,7 @@ MonoBehaviour:
   GameObjectsToDestroy:
   - {fileID: 8421991420907820969}
   DestroyOnEnable: 1
+  destroyMainProfile: 
 --- !u!1 &8421991420659598002
 GameObject:
   m_ObjectHideFlags: 0
@@ -1251,6 +1266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8421991420659597965}
   - component: {fileID: 8421991420659597964}
+  - component: {fileID: 8419685469905543812}
   m_Layer: 0
   m_Name: "\u4E0B\u4E00\u7AE0\u8282"
   m_TagString: Untagged
@@ -1279,7 +1295,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8421991420659598002}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e76cce9a24e4474e8158aad8911c0ee, type: 3}
   m_Name: 
@@ -1289,6 +1305,21 @@ MonoBehaviour:
   isUI: 0
   holder: {fileID: 0}
   spawnOnEnable: 0
+--- !u!114 &8419685469905543812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8421991420659598002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66e9f83746c5c445bd1a49771da62ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextEvent: {fileID: 6160020701574081268, guid: c5674a412a152814589539a8f0991002, type: 3}
+  waitForTurns: 0
+  ActiveOnEnable: 1
 --- !u!1 &8421991420704223745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1305,7 +1336,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8421991420704223747
 Transform:
   m_ObjectHideFlags: 0
@@ -1514,10 +1545,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goToActive:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8421991419340454686}
+  - {fileID: 8421991421365969523}
+  - {fileID: 8421991420098005985}
+  - {fileID: 8421991420704223745}
   stayblock: 28
 --- !u!1 &8421991421282070742
 GameObject:
@@ -1575,6 +1606,7 @@ GameObject:
   - component: {fileID: 8421991421349765005}
   - component: {fileID: 8421991421349765007}
   - component: {fileID: 8421991421349765004}
+  - component: {fileID: 5327770328575466150}
   m_Layer: 0
   m_Name: "\u5BF9\u8BDD2"
   m_TagString: Untagged
@@ -1741,6 +1773,19 @@ MonoBehaviour:
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
   selectedDatabase: {fileID: 11400000, guid: 7cdab55b927f0074aa4c01623d243ee4, type: 2}
+--- !u!114 &5327770328575466150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8421991421349765042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0edf9b9acf5df5b44916b753c4dc65fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueDatabase: {fileID: 11400000, guid: 7cdab55b927f0074aa4c01623d243ee4, type: 2}
 --- !u!1 &8421991421365969523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1752,6 +1797,7 @@ GameObject:
   - component: {fileID: 8421991421365969522}
   - component: {fileID: 8421991421365969484}
   - component: {fileID: 8421991421365969485}
+  - component: {fileID: 6643218292592655370}
   m_Layer: 0
   m_Name: "\u5BF9\u8BDD1"
   m_TagString: Untagged
@@ -1918,6 +1964,19 @@ MonoBehaviour:
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
   selectedDatabase: {fileID: 11400000, guid: 7cdab55b927f0074aa4c01623d243ee4, type: 2}
+--- !u!114 &6643218292592655370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8421991421365969523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0edf9b9acf5df5b44916b753c4dc65fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueDatabase: {fileID: 11400000, guid: 7cdab55b927f0074aa4c01623d243ee4, type: 2}
 --- !u!1001 &7408880759511848147
 PrefabInstance:
   m_ObjectHideFlags: 0
