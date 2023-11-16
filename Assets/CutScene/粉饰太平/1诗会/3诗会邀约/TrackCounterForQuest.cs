@@ -13,6 +13,7 @@ public class TrackCounterForQuest : MonoBehaviour
     public CharacterValueType valueType = CharacterValueType.²Å;
     public Rarerity rarerity = Rarerity.SR;
     private bool dead = false;
+    public int currentValue = 0;
 
     private void Start()
     {
@@ -26,6 +27,7 @@ public class TrackCounterForQuest : MonoBehaviour
         if (dead == false)
         {
             var current = CheckCurrent();
+            currentValue = current;
             SyncJurnal(current);
             if (current >= RequireAmount)
             {
@@ -37,6 +39,7 @@ public class TrackCounterForQuest : MonoBehaviour
     IEnumerator DestroyOnDead()
     {
         yield return new WaitUntil(() => dead);
+        Debug.Log("destroyOnGoal" + currentValue);
         Destroy(gameObject); yield return null;
     }
 
