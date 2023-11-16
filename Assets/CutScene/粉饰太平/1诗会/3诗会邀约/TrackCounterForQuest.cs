@@ -28,7 +28,7 @@ public class TrackCounterForQuest : MonoBehaviour
             SyncJurnal(current);
             if (current == RequireAmount)
             {
-                Debug.Log("Match Goal");
+                Debug.Log("Match Goal" + current);
                 dead = true;
             }
         }
