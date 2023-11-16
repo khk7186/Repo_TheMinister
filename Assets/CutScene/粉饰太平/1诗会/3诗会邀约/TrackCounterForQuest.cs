@@ -11,21 +11,30 @@ public class TrackCounterForQuest : MonoBehaviour
     private Transform inventory;
     public CharacterValueType valueType = CharacterValueType.²Å;
     public Rarerity rarerity = Rarerity.SR;
+    private bool dead = false;
 
     private void Start()
     {
         inventory = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
         DontDestroyOnLoad(gameObject);
+        StartCoroutine(DestroyOnDead());
     }
 
     private void FixedUpdate()
     {
-        var current = CheckCurrent();
-        SyncJurnal(current);
-        if (current == RequireAmount)
+        if (dead == false)
         {
-            Destroy(gameObject);
+            var current = CheckCurrent();
+            SyncJurnal(current);
+            if (current == RequireAmount)
+            {
+                dead = true;
+            }
         }
+    }
+    IEnumerator DestroyOnDead()
+    {
+        yield return new WaitUntil(() => dead);
     }
 
     public void SyncJurnal(int current)
