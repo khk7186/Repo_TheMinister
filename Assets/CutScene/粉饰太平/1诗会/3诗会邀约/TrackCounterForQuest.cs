@@ -8,6 +8,7 @@ public class TrackCounterForQuest : MonoBehaviour
     public string QuestID;
     public int RequireAmount = 1;
     public string CounterName;
+    public string Message = "CharacterAdd";
     private Transform inventory;
     public CharacterValueType valueType = CharacterValueType.²Å;
     public Rarerity rarerity = Rarerity.SR;
@@ -26,7 +27,7 @@ public class TrackCounterForQuest : MonoBehaviour
         {
             var current = CheckCurrent();
             SyncJurnal(current);
-            if (current == RequireAmount)
+            if (current >= RequireAmount)
             {
                 Debug.Log("Match Goal" + current);
                 dead = true;
@@ -41,7 +42,7 @@ public class TrackCounterForQuest : MonoBehaviour
 
     public void SyncJurnal(int current)
     {
-        PixelCrushers.MessageSystem.SendMessage(null, QuestID, current.ToString());
+        PixelCrushers.MessageSystem.SendMessage(null, Message, QuestID, current);
     }
 
     private int CheckCurrent()
