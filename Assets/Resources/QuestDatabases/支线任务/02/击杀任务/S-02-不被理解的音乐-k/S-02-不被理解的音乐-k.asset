@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7625270104470427734
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9840a28297a53d449903f34dc60157bb, type: 3}
+  m_Name: UnityEventQuestAction
+  m_EditorClassIdentifier: 
+  m_onExecute:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6449213166141911161, guid: 1f9bf6a8e42d4854ba82523e47787fff, type: 3}
+        m_TargetAssemblyTypeName: EndQuestNotify, Assembly-CSharp
+        m_MethodName: Notify
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-7149476468339889008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -423,7 +450,8 @@ MonoBehaviour:
         - {fileID: 202078047432143564}
         - {fileID: 220152273492992412}
       - m_contentList: []
-    - m_actionList: []
+    - m_actionList:
+      - {fileID: -7625270104470427734}
       m_categorizedContentList:
       - m_contentList: []
       - m_contentList: []
