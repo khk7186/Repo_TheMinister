@@ -41,7 +41,7 @@ public class TrackCounterForQuest : MonoBehaviour
 
     public void SyncJurnal(int current)
     {
-        QuestMachineMessages.SetQuestCounter(null, new PixelCrushers.StringField(QuestID), new PixelCrushers.StringField(CounterName), current);
+        PixelCrushers.MessageSystem.SendMessage(null, QuestID, current.ToString());
     }
 
     private int CheckCurrent()
