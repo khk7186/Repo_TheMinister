@@ -28,6 +28,7 @@ public class TrackCounterForQuest : MonoBehaviour
             SyncJurnal(current);
             if (current == RequireAmount)
             {
+                Debug.Log("Match Goal");
                 dead = true;
             }
         }
@@ -35,6 +36,7 @@ public class TrackCounterForQuest : MonoBehaviour
     IEnumerator DestroyOnDead()
     {
         yield return new WaitUntil(() => dead);
+        Destroy(gameObject); yield return null;
     }
 
     public void SyncJurnal(int current)
