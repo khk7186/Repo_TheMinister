@@ -17,7 +17,7 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
         ItemInventory itemInventory = GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>();
         SetUp(itemInventory);
     }
-    private void SetUp(ItemInventory itemInventory)
+    public void SetUp(ItemInventory itemInventory)
     {
         this.itemInventory = itemInventory;
         if (itemInventory != null)

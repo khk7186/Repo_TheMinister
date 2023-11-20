@@ -30,6 +30,8 @@ public class ItemInvBackgroundAnimation : MonoBehaviour
         else
         {
             confirmButton.SetActive(true);
+            var inv = FindObjectOfType<ItemInventoryUI>();
+            inv.SetUp(inv.itemInventory);
         }
         float backShift = toRight ? -_backRange : 0;
         float frontShift = toRight ? -_frontRange : 1170;

@@ -104,8 +104,18 @@ public class UISpecForSwitch : TagSpecUI
         FlipBack();
         if (!itemInv.ItemDict.ContainsKey(OSA.item))
         {
-            FindObjectOfType<ItemInventoryUI>().SetUp();
-            FindObjectOfType<ItemInventoryUI>().GetComponentInChildren<ItemUI>().SetupInUseItem();
+            bool notEmptyInv = FindObjectOfType<ItemInventory>().ItemDict.Keys.Count > 0;
+            var inv = FindObjectOfType<ItemInventoryUI>();
+            inv.SetUp();
+            inv.SetUp(inv.itemInventory);
+            if (notEmptyInv)
+            {
+                FindObjectOfType<ItemInventoryUI>().GetComponentInChildren<ItemUI>().SetupInUseItem();
+            }
+            else
+            {
+                FindObjectOfType<ItemInvBackgroundAnimation>().BackGroundShift(false);
+            }
         }
     }
 }
