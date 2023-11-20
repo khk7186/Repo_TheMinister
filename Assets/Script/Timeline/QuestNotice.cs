@@ -14,20 +14,20 @@ public class QuestNotice : MonoBehaviour
         QuestNotice target = FindObjectOfType<QuestNotice>(true);
         target.gameObject.SetActive(true);
         string type = QuestID[0] == 'M' ? "主线" : "支线";
-        target.text.text = $"{reciveQuestTitle}{type}任务：<color=#FF0000>{QuestName}</color>";
+        target.text.text = $"{reciveQuestTitle}{type}任务：<color=#4F3C34>{QuestName}</color>";
     }
     public static void ShowQuestFinishConfirm(string QuestID, string QuestName)
     {
         QuestNotice target = FindObjectOfType<QuestNotice>(true);
         target.gameObject.SetActive(true);
         string type = QuestID[0] == 'M' ? "主线" : "支线";
-        target.text.text = $"{finishQuestTitle}{type}任务：<color=#FF0000>{QuestName}</color>";
+        target.text.text = $"{finishQuestTitle}{type}任务：<color=#234619>{QuestName}</color>";
     }    
     public static void ShowQuestFailConfirm(string QuestID, string QuestName)
     {
         QuestNotice target = FindObjectOfType<QuestNotice>(true);
         target.gameObject.SetActive(true);
         string type = QuestID[0] == 'M' ? "主线" : "支线";
-        target.text.text = $"{failQuestTitle}{type}任务：<color=#FF0000>{QuestName}</color>";
+        target.text.text = $"{failQuestTitle}{type}任务：<color=#B01717>{QuestName}</color>";
     }
 }

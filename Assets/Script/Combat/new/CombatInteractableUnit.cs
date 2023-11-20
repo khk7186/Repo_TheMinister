@@ -94,18 +94,20 @@ public class CombatInteractableUnit : MonoBehaviour
     public void SetLineColor()
     {
         var Unit = GetComponent<CombatCharacterUnit>();
+        Color color = Color.white;
         switch (Unit.currentAction)
         {
             case CombatAction.Attack:
-                line.SetColors(Color.red, Color.red);
+                ColorUtility.TryParseHtmlString("#980a0a", out color);
                 break;
             case CombatAction.Assassin:
-                line.SetColors(Color.yellow, Color.yellow);
+                ColorUtility.TryParseHtmlString("#e0a60a", out color);
                 break;
             case CombatAction.Defence:
-                line.SetColors(Color.blue, Color.blue);
+                ColorUtility.TryParseHtmlString("#0e77ad", out color);
                 break;
         }
+        line.SetColors(color, color);
     }
     public IEnumerator EnableTargetSelection(bool friend = false)
     {

@@ -34,10 +34,10 @@ public class CharacterReciveNotice : MonoBehaviour
         Name.text = character.CharacterName;
         Head.sprite = Resources.Load<Sprite>(ReturnAssetPath.ReturnCharacterSpritePath(character.characterArtCode, false));
         Frame.sprite = Resources.Load<Sprite>($"Art/BuildingUI/杂货铺/初级五金铺/物品框/物品框-{rarerity}");
-        foreach (var render in Renders)
-        {
-            render.material = Resources.Load<Material>($"Mat/BackInkEffect/{rarerity}");
-        }
+        //foreach (var render in Renders)
+        //{
+        //    render.material = Resources.Load<Material>($"Mat/BackInkEffect/{rarerity}");
+        //}
         TransformEx.Clear(tags);
         foreach (Tag tag in character.tagList)
         {
