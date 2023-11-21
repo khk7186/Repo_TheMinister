@@ -61,7 +61,7 @@ public class ScoreReviewEvent : MonoBehaviour
         var effectAnimation = FindObjectOfType<DebateEffectAnimationController>();
         var damageList = effectAnimation.Setup(Result);
         yield return effectAnimation.StartCoroutine(effectAnimation.PlayRoutine());
-        ScreenShakeTrigger.TryScreenShake(" ‹…À");
+        ScreenShakeTrigger.TryScreenShake("HardAttack");
         GameEndCheck();
     }
     public void GameEndCheck()
@@ -82,6 +82,7 @@ public class ScoreReviewEvent : MonoBehaviour
         {
             var endCtrl = FindObjectOfType<CombatEndingAnimationController>();
             if (playerHaveTopScore) endCtrl.Win(); else endCtrl.Lose();
+            Debug.Log("EndByOutOfTopic");
             return;
         }
         foreach (var unit in allUnits)
@@ -92,6 +93,7 @@ public class ScoreReviewEvent : MonoBehaviour
                 {
                     var endCtrl = FindObjectOfType<CombatEndingAnimationController>();
                     if (playerHaveTopScore) endCtrl.Win(); else endCtrl.Lose();
+                    Debug.Log("EndByLostEnemy");
                     return;
                 }
                 else

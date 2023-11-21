@@ -45,6 +45,7 @@ public class Combat : MonoBehaviour
             else
                 yield return null;
         }
+        
         yield return new WaitForEndOfFrame();
         CombatInteractableUnit.SetActiveAllLine(true);
         FindObjectOfType<CombatUI>().BlackFrameAnimation(true);

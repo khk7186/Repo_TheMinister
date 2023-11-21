@@ -132,7 +132,7 @@ public class CombatUI : MonoBehaviour
 
     public void BlackFrameAnimation(bool open = false)
     {
-        untouchMask.gameObject.SetActive(true);
+        untouchMask.gameObject.SetActive(!open);
         float scale = open ? 1.5f : 1f;
         blackFrame.GetComponent<RectTransform>().DOScale(scale, UItransDuration).SetEase(Ease.OutSine);
 
@@ -144,7 +144,7 @@ public class CombatUI : MonoBehaviour
         ControlPannel.DOAnchorPosX(pannelPos, UItransDuration).SetEase(Ease.OutSine).OnComplete(() =>
         {
             ControlPannel.gameObject.SetActive(show);
-            untouchMask.gameObject.SetActive(false);
+
         });
 
         float flagPos = open ? 0f : 230f;
