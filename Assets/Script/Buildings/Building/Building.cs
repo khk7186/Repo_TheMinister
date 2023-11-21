@@ -199,7 +199,7 @@ public class Building : MonoBehaviour
             case BuildingType.Œ˜”Ú’‰∆∑:
                 SetupCraft();
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.÷È±¶µÍ, 0);
-                ShopList[0] = SpawnItemBasedOnType(BuildingType.Œ˜”Ú’‰∆∑, 1);
+                ShopList[1] = SpawnItemBasedOnType(BuildingType.Œ˜”Ú’‰∆∑, 0);
                 break;
             case BuildingType.“©∆Ã:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.“©∆Ã, 0);
