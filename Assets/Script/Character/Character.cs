@@ -426,8 +426,9 @@ public class Character : MonoBehaviour, IRound
             {
                 CharacterName = RandomCharacterNameSpawner.SpawnCharacterName(characterArtCode);
             }
-            if (tagList.Count == 0)
+            if (tagList.Count == 0 || hireStage == HireStage.InCity)
             {
+                tagList = new List<Tag>();
                 SpawnTagOnStart(rarerity);
             }
             if (hireStage != HireStage.Hired)
