@@ -197,7 +197,6 @@ public class Building : MonoBehaviour
                 SetupCraft();
                 break;
             case BuildingType.西域珍品:
-                SetupCraft();
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.珠宝店, 0);
                 ShopList[1] = SpawnItemBasedOnType(BuildingType.西域珍品, 0);
                 break;
