@@ -808,6 +808,7 @@ public class SOItem : ScriptableObject
         {
             BuildingType.铁匠铺, new List<ItemName>()
             {
+                ItemName.棍子,
                 ItemName.铁矿,
                 ItemName.布匹,
                 ItemName.铜矿,
@@ -822,21 +823,56 @@ public class SOItem : ScriptableObject
         {
             BuildingType.武器铺, new List<ItemName>()
             {
+                ItemName.棍子,
                 ItemName.刀,
                 ItemName.枪,
                 ItemName.剑,
                 ItemName.戟,
-                ItemName.弓
+                ItemName.弓,
+                ItemName.铁矿,
+                ItemName.布匹,
+                ItemName.铜矿,
+                ItemName.银矿,
+                ItemName.木头,
+                ItemName.皮革,
+                ItemName.绳子,
+                ItemName.铆钉,
+                ItemName.硬木,
+                 ItemName.铁矿,
+                ItemName.布匹,
+                ItemName.铜矿,
+                ItemName.银矿,
+                ItemName.木头,
+                ItemName.皮革,
+                ItemName.绳子,
+                ItemName.铆钉,
+                ItemName.硬木
             }
         },
         {
             BuildingType.万兵阁, new List<ItemName>()
             {
+                ItemName.棍子,
+                ItemName.棍子,
                 ItemName.刀,
                 ItemName.枪,
                 ItemName.剑,
                 ItemName.戟,
-                ItemName.弓
+                ItemName.弓,
+                ItemName.刀,
+                ItemName.枪,
+                ItemName.剑,
+                ItemName.戟,
+                ItemName.弓,
+                ItemName.铁矿,
+                ItemName.布匹,
+                ItemName.铜矿,
+                ItemName.银矿,
+                ItemName.木头,
+                ItemName.皮革,
+                ItemName.绳子,
+                ItemName.铆钉,
+                ItemName.硬木
             }
         },
         {
