@@ -257,7 +257,8 @@ public class SOItem : ScriptableObject
                 ItemName.剑,
                 ItemName.戟,
                 ItemName.有缺口的武器,
-                ItemName.铁片戟
+                ItemName.铁片戟,
+                ItemName.棍子
             }
         },
         {
