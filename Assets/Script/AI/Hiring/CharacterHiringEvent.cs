@@ -840,6 +840,60 @@ public class CharacterHiringEvent : MonoBehaviour
                 {
                     {ItemName.¥Ω÷Ω,3},
                     {ItemName.ÎŸ÷¨,2},
+                    {ItemName.¿œª¢,1},
+                    {ItemName.–Âª®’Î,1}
+                 }
+            },
+            {
+             Rarerity.SSR,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.¥Ω÷Ω,4},
+                    {ItemName.ÎŸ÷¨,3},
+                    {ItemName.¿œª¢,2},
+                    {ItemName.–Âª®’Î,2},
+                    {ItemName.∂È‘∆ª¢,1 },
+                    {ItemName.Õ‰‘¬¿«,1},
+                 }
+            },
+            {
+             Rarerity.UR,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.¥Ω÷Ω,5},
+                    {ItemName.ÎŸ÷¨,4},
+                    {ItemName.¿œª¢,3},
+                    {ItemName.–Âª®’Î,3},
+                    {ItemName.Ωı–Âª™∑˛,2 },
+                    {ItemName.∂È‘∆ª¢,2},
+                    {ItemName.Õ‰‘¬¿«,1},
+                    {ItemName.∫Õ œËµ,1}
+                 }
+            },
+    };
+    private static Dictionary<Rarerity, Dictionary<ItemName, int>> BeautyRarityItemRequestDict
+    = new Dictionary<Rarerity, Dictionary<ItemName, int>>
+    {
+            {Rarerity.N,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.¥Ω÷Ω,1}
+                 }
+            },
+            {
+             Rarerity.R,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.¥Ω÷Ω,2},
+                    {ItemName.ÎŸ÷¨,1}
+                 }
+            } ,
+            {
+             Rarerity.SR,
+                new Dictionary<ItemName, int>()
+                {
+                    {ItemName.¥Ω÷Ω,3},
+                    {ItemName.ÎŸ÷¨,2},
                     {ItemName.÷Ï…∞÷¨,1},
                     {ItemName.◊Êƒ∏¬Ã,1}
                  }
@@ -850,7 +904,7 @@ public class CharacterHiringEvent : MonoBehaviour
                 {
                     {ItemName.¥Ω÷Ω,4},
                     {ItemName.ÎŸ÷¨,3},
-                    {ItemName.÷Ï…∞÷¨,2},
+                    {ItemName.∂´—Û¥ µ‰,2},
                     {ItemName.◊Êƒ∏¬Ã,2},
                     {ItemName.Ωı–Âª™∑˛,1 },
                     {ItemName.”Ò ÷ÔÌ,1},
@@ -946,6 +1000,7 @@ public class CharacterHiringEvent : MonoBehaviour
             {CharacterArtCode.Ã´º‡, TaijianRarityItemRequestDict },
             {CharacterArtCode.ŒË≈Æ, DancerRarityItemRequestDict },
             {CharacterArtCode.ƒœΩÆ≈Æ, FemaleSouthernerItemRequestDict },
+            {CharacterArtCode.ª®ø˝, BeautyRarityItemRequestDict },
 
         };
 
