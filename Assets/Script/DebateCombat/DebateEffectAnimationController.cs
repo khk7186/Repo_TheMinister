@@ -12,6 +12,7 @@ public class DebateEffectAnimationController : MonoBehaviour
     public List<Image> VictoryImages = new List<Image>();
     public List<Image> DefeatImages = new List<Image>();
     public List<RectTransform> DamageText = new List<RectTransform>();
+    public List<ShakeObject> shakeObjects = new List<ShakeObject>();
     public List<int> damageShow = new List<int>() { 0, 0, 0, 0 };
 
     private void Start()
@@ -87,6 +88,7 @@ public class DebateEffectAnimationController : MonoBehaviour
                 continue;
             }
             DamageText[i].gameObject.SetActive(true);
+            shakeObjects[i].StartShake();
             Text pref = DamageText[i].GetComponentInChildren<Text>(true);
             var output = Instantiate<Text>(pref, DamageText[i].transform);
             output.text = damageShow[i].ToString();

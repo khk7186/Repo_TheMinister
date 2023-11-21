@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using PixelCrushers.QuestMachine;
+using UnityEngine.PlayerLoop;
 
-public class TrackCounterForQuest : MonoBehaviour
+public class TrackCounterForQuest : MonoBehaviour, IDiceRollEvent
 {
     public string QuestID;
     public int RequireAmount = 1;
@@ -28,7 +29,6 @@ public class TrackCounterForQuest : MonoBehaviour
         {
             var current = CheckCurrent();
             currentValue = current;
-            SyncJurnal(current);
             if (current >= RequireAmount)
             {
                 Debug.Log("Match Goal" + current);
@@ -36,12 +36,16 @@ public class TrackCounterForQuest : MonoBehaviour
             }
         }
     }
+    private void Update()
+    {
+        SyncJurnal(currentValue);
+    }
     IEnumerator DestroyOnDead()
     {
-        yield return new WaitUntil(() => dead);
-        Debug.Log("destroyOnGoal" + currentValue);
+        yield return new WaitUntil(() => PixelCrushers.QuestMachine.QuestMachine.GetQuestNodeState(QuestID, " ’ºØ") == QuestNodeState.True);
         Destroy(gameObject); yield return null;
     }
+
 
     public void SyncJurnal(int current)
     {
@@ -60,5 +64,10 @@ public class TrackCounterForQuest : MonoBehaviour
             }
         }
         return count;
+    }
+
+    public void OnNotify(object value, NotificationType notificationType)
+    {
+        throw new System.NotImplementedException();
     }
 }
