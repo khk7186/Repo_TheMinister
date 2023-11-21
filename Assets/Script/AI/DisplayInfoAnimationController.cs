@@ -14,8 +14,9 @@ public class DisplayInfoAnimationController : MonoBehaviour
     public bool FakeData = false;
     public List<string> FakeTags;
     public string FakeName;
+    public bool setDone = false;
 
-    public void Start()
+    public void Start()//change to enable
     {
         if (FakeData)
         {
@@ -36,6 +37,20 @@ public class DisplayInfoAnimationController : MonoBehaviour
                 SetupTags(ai.character.tagList);
                 SetupName(ai.character.CharacterName);
             }
+        }
+    }
+    private void OnEnable()
+    {
+        if (FakeData && setDone == false)
+        {
+            List<Tag> tags = new List<Tag>();
+            foreach (string tag in FakeTags)
+            {
+                tags.Add((Tag)Enum.Parse(typeof(Tag), tag));
+            }
+            SetupTags(tags);
+            SetupName(FakeName);
+            return;
         }
     }
     public void SetupName(string Name)
