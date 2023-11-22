@@ -45,17 +45,10 @@ public class CombatCharacterUnit : MonoBehaviour
         if (!IsFriend)
         {
 
-            var plans = FindObjectsOfType<CombatPlan>();
-            if (plan != null)
+            var characterPlan = character.GetComponent<CombatPlan>();
+            if (characterPlan != null)
             {
-                foreach (CombatPlan pl in plans)
-                {
-                    if (pl.character == character)
-                    {
-                        plan = pl;
-                        return;
-                    }
-                }
+                this.plan = characterPlan;
             }
         }
     }
@@ -196,6 +189,7 @@ public class CombatCharacterUnit : MonoBehaviour
     public void TakeDamge(int damage, bool asDefender = false)
     {
         string screenSakeType = "Attack";
+        string audioName = " ‹…À";
         if (Defender == null || Defender.character.health <= 0 || asDefender == true)
         {
             int result = 0;
@@ -204,33 +198,28 @@ public class CombatCharacterUnit : MonoBehaviour
                 case CharacterStat.weak:
                     result = damage > 0 ? damage * 2 : minimumDamage * 2;
                     character.FightHealthModify(result);
-                    AudioManager.Play(" ‹…À");
                     break;
                 case CharacterStat.normal:
                     result = damage > 0 ? damage : minimumDamage;
                     character.FightHealthModify(result);
-                    AudioManager.Play(" ‹…À");
                     break;
                 case CharacterStat.strong:
                     var tempDmg = damage - character.CharactersValueDict[CharacterValueType. ÿ];
                     result = tempDmg > 0 ? damage : 0;
                     character.FightHealthModify(result);
-                    AudioManager.Play("µ÷øπ");
+                    audioName = "µ÷øπ";
                     break;
             }
             healthBar.Setup(character.health);
             if (result >= 5) screenSakeType = "HardAttack";
             if (character.health <= 0)
             {
-                AudioManager.Play("À¿Õˆ");
-                DeathAction();
-                screenSakeType = "Death";
+                StartCoroutine(DeathAnimation());
             }
             else
             {
-                StartCoroutine(DefenceAction());
+                StartCoroutine(DefenceAction(audioName, screenSakeType));
             }
-            ScreenShakeTrigger.TryScreenShake(screenSakeType);
         }
         else if (target != null)
         {
@@ -258,13 +247,25 @@ public class CombatCharacterUnit : MonoBehaviour
         Defender = null;
         currentAction = CombatAction.NoSelect;
     }
-    public IEnumerator DefenceAction()
+    public IEnumerator DefenceAction(string audioName, string screenSakeType)
     {
         yield return new WaitForSeconds(0.22f);
         GetComponent<CharacterModelController>().PlayAnimation("def");
+        AudioManager.Play(audioName);
+        ScreenShakeTrigger.TryScreenShake(screenSakeType);
+    }
+    public IEnumerator DeathAnimation()
+    {
+        yield return new WaitForSeconds(0.22f);
+        GetComponent<CharacterModelController>().PlayAnimation("dead");
+        AudioManager.Play("À¿Õˆ");
+        ScreenShakeTrigger.TryScreenShake("Death");
+        yield return new WaitForSeconds(0.5f);
+        DeathAction();
     }
     public void DeathAction()
     {
+
         if (IsFriend)
         {
             var trigger = FindObjectOfType<GeneralEventTrigger>();

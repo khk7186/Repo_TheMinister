@@ -24,28 +24,30 @@ public class HealthBar : MonoBehaviour
     }
     IEnumerator healthChange(int health)
     {
-        bool costHealth = health < slider.value;
-        if (costHealth)
+        if (health != slider.value)
         {
-            var target = slider.value - health;
-            while (target > 0)
+            bool costHealth = health < slider.value;
+            if (costHealth)
             {
-                target--;
-                slider.value -= 1;
-                yield return new WaitForSeconds(duration);
+                var target = slider.value - health;
+                while (target > 0)
+                {
+                    target--;
+                    slider.value -= 1;
+                    yield return new WaitForSeconds(duration);
+                }
+            }
+            else
+            {
+                var target = health - slider.value;
+                while (target < health)
+                {
+                    target++;
+                    slider.value += 1;
+                    yield return new WaitForSeconds(duration);
+                }
             }
         }
-        else
-        {
-            var target = health - slider.value;
-            while (target < health)
-            {
-                target++;
-                slider.value += 1;
-                yield return new WaitForSeconds(duration);
-            }
-        }
-
     }
 
     private void Update()

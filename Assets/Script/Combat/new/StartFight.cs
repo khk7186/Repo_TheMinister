@@ -11,6 +11,10 @@ public class StartFight : MonoBehaviour
     private float distanceX = 2.5f;
     private float distanceY = 2.5f;
     private CharacterModelController model;
+    private void Start()
+    {
+        GetAction();
+    }
     public IEnumerator StartNewFight()
     {
         var selfUnit = GetComponent<CombatCharacterUnit>();
@@ -20,14 +24,7 @@ public class StartFight : MonoBehaviour
             selfUnit.ModifyStat();
             if (!selfUnit.IsFriend)
             {
-                if (selfUnit.plan == null)
-                {
-                    selfUnit.currentAction = AIStrategy(selfUnit);
-                }
-                else
-                {
-                    selfUnit.currentAction = selfUnit.plan.NextAction();
-                }
+
                 if (selfUnit.currentAction == CombatAction.Defence)
                 {
                     selfUnit.target = selfUnit;
@@ -52,7 +49,32 @@ public class StartFight : MonoBehaviour
             {
                 selfUnit.target.Defender = selfUnit;
             }
+            GetAction();
             yield return null;
+        }
+    }
+    public void GetAction()
+    {
+        var selfUnit = GetComponent<CombatCharacterUnit>();
+        if (selfUnit.IsFriend) return;
+        if (selfUnit.plan == null)
+        {
+            selfUnit.currentAction = AIStrategy(selfUnit);
+        }
+        else
+        {
+            selfUnit.currentAction = selfUnit.plan.NextAction();
+        }
+        bool attackOn = selfUnit.currentAction == CombatAction.Attack || selfUnit.currentAction == CombatAction.Assassin;
+        if (attackOn)
+        {
+            var choices = FindObjectsOfType<CombatCharacterUnit>().Where(x=>x.IsFriend == true).ToList();
+            selfUnit.target = choices[UnityEngine.Random.Range(0, choices.Count())];
+        }
+        else
+        {
+            var choices = FindObjectsOfType<CombatCharacterUnit>().Where(x => x.IsFriend == false).ToList();
+            selfUnit.target = choices[UnityEngine.Random.Range(0, choices.Count())];
         }
     }
     public IEnumerator Surrender(CombatCharacterUnit unit)
@@ -192,6 +214,12 @@ public class StartFight : MonoBehaviour
         if (reachLowHealth)
         {
             actionChoices.RemoveAll(x => x == CombatAction.Attack);
+            actionChoices.Add(CombatAction.Assassin);
+            actionChoices.Add(CombatAction.Assassin);
+            actionChoices.Add(CombatAction.Assassin);
+            actionChoices.Add(CombatAction.Assassin);
+            actionChoices.Add(CombatAction.Assassin);
+            actionChoices.Add(CombatAction.Assassin);
             actionChoices.Add(CombatAction.Assassin);
             actionChoices.Add(CombatAction.Assassin);
             actionChoices.Add(CombatAction.Surrender);
