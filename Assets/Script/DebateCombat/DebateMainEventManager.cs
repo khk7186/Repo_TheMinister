@@ -56,7 +56,7 @@ public class DebateMainEventManager : MonoBehaviour
     public void SetGameUnits()
     {
         var GET = FindObjectOfType<GeneralEventTrigger>();
-        InGameDebateUnits[0].Setup(GET.playerCharacters, "李袁陌", CharacterArtCode.官员, true);
+        InGameDebateUnits[0].Setup(GET.playerCharacters, "李袁陌", CharacterArtCode.李袁陌, true);
         InGameDebateUnits[0].SetUnitUI(InGameDebateUnits[0].GetComponent<DebateUnitUI>());
         for (int i = 0; (i) < GET.enemyCharactersCardsList.Count; i++)
         {

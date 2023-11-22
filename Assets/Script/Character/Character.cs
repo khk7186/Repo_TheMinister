@@ -316,8 +316,8 @@ public class Character : MonoBehaviour, IRound
     #endregion
 
     #region Max
-    [SerializeField] private int loyaltyMax = 10;
-    [SerializeField] private int healthMax = 20;
+    private int loyaltyMax = 20;
+    private int healthMax = 20;
     [SerializeField] private int tagMax = 5;
 
     [SerializeField] private List<int> TagSpawnRareRate = new List<int>(5) { 600, 460, 330, 10, 1, 0 };

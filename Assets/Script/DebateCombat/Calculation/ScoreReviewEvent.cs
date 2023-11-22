@@ -17,12 +17,15 @@ public class ScoreReviewEvent : MonoBehaviour
     public static void NewReview(List<Character[]> characters,
                                                     DebateTopic topic, List<CharacterArtCode> idleImage)
     {
+        GameObject.FindObjectOfType<BlinkEffect>().gameObject.SetActive(false);
+        GameObject.FindObjectOfType<DebateConfirm>().gameObject.SetActive(false);
         ScoreReviewEvent review = new GameObject("ScoreReviewEvent").AddComponent<ScoreReviewEvent>();
         review.characters = characters;
         review.topic = topic;
         review.playerIndex = 0;
         review.idleImage = idleImage;
         review.StartCoroutine(review.ShowReview());
+
     }
     private IEnumerator WaitForMouseDown()
     {
@@ -61,7 +64,7 @@ public class ScoreReviewEvent : MonoBehaviour
         var effectAnimation = FindObjectOfType<DebateEffectAnimationController>();
         var damageList = effectAnimation.Setup(Result);
         yield return effectAnimation.StartCoroutine(effectAnimation.PlayRoutine());
-        
+        GameObject.FindObjectOfType<BlinkEffect>().gameObject.SetActive(true);
         GameEndCheck();
     }
     public void GameEndCheck()
