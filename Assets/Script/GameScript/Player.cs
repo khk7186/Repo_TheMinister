@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
         {Tag.长生不老,new List<int>(){12,0,0,0,0,0}},
         {Tag.生死肉骨,new List<int>(){0,0,0,0,0,12}},
         {Tag.碧血丹心,new List<int>(){0,12,0,0,0,0}},
-        {Tag.陆地神仙,new List<int>(){12,12,12,12,12,12},
+        {Tag.陆地神仙,new List<int>(){12,12,12,12,12,12} },
         {Tag.黯然销魂掌,new List<int>(){-6,-5,-6,9,9,9}},
         {Tag.围棋十段,new List<int>(){0,0,10,0,0,0}},
         {Tag.状元,new List<int>(){8,0,0,0,0,0}},
