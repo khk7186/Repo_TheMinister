@@ -7,7 +7,7 @@ using DG.Tweening.Plugins.Options;
 
 public class StartFight : MonoBehaviour
 {
-    public float duration = 0.3f;
+    private float duration = 0.25f;
     private float distanceX = 2.5f;
     private float distanceY = 2.5f;
     private CharacterModelController model;
@@ -129,8 +129,9 @@ public class StartFight : MonoBehaviour
             }
             time = 0;
             selfUnit.MakeTurn();
-            model.SetTrigger(selfUnit.currentAction.ToString());
-            yield return new WaitForSeconds(0.5f);
+            string triggerName = "attack";
+            model.PlayAnimation(triggerName);
+            yield return new WaitForSeconds(0.6f);
             while (time < duration)
             {
                 time += Time.deltaTime;

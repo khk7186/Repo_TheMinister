@@ -228,7 +228,7 @@ public class CombatCharacterUnit : MonoBehaviour
             }
             else
             {
-                DefenceAction();
+                StartCoroutine(DefenceAction());
             }
             ScreenShakeTrigger.TryScreenShake(screenSakeType);
         }
@@ -258,9 +258,10 @@ public class CombatCharacterUnit : MonoBehaviour
         Defender = null;
         currentAction = CombatAction.NoSelect;
     }
-    public void DefenceAction()
+    public IEnumerator DefenceAction()
     {
-        GetComponent<CharacterModelController>().SetTrigger("Defence");
+        yield return new WaitForSeconds(0.22f);
+        GetComponent<CharacterModelController>().PlayAnimation("def");
     }
     public void DeathAction()
     {
