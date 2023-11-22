@@ -10,7 +10,7 @@ using UnityEngine.Events;
 public class RoitInGameAI : DefaultInGameAI
 {
     public RoitSpawnRange spawnRange;
-    public float moveSpeed = 1f;
+    public float moveSpeed = 9f;
     public float stayDuration = 1.5f;
     public PathPoint startPoint;
     public PathPoint endPoint;

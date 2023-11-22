@@ -104,7 +104,7 @@ public class CombatInteractableUnit : MonoBehaviour
                 ColorUtility.TryParseHtmlString("#e0a60a", out color);
                 break;
             case CombatAction.Defence:
-                ColorUtility.TryParseHtmlString("#0e77ad", out color);
+                ColorUtility.TryParseHtmlString("#116cb9", out color);
                 break;
         }
         line.SetColors(color, color);
