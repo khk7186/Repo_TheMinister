@@ -133,17 +133,8 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
         Func<bool> _counterFinish = () => _counter >= DISSAPEAR_TIME;
         Dice.Instance.RegisterObserver(this);
         yield return new WaitUntil(_counterFinish);
-        if (DialogueLua.GetVariable("Assign").asBool == false)
-        {
-        }
-        else if (Chapter() < ChapterCounter.Instance.Chapter)
-        {
-            Destroy(transform.parent.gameObject);
-        }
-        else
-        {
-            Destroy(transform.parent.gameObject);
-        }
+
+        Destroy(transform.parent.gameObject);
     }
     public void OnNotify(object value, NotificationType notificationType)
     {
