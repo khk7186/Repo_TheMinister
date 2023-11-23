@@ -436,7 +436,10 @@ public class SOItem : ScriptableObject
                 ItemName.绳子,
                 ItemName.酱油,
                 ItemName.醋,
-                ItemName.盐
+                ItemName.盐,
+                ItemName.蚕丝,
+                ItemName.布匹,
+                ItemName.麻布,
 
             }
         },
@@ -932,16 +935,31 @@ public class SOItem : ScriptableObject
         {
             BuildingType.纺织铺, new List<ItemName>()
             {
+                ItemName.蚕丝,
+                ItemName.皮毛,
+                ItemName.麻布,
+                ItemName.蚕丝,
+                ItemName.皮毛,
+                ItemName.麻布,
+                ItemName.蓑衣,
                 ItemName.蓑衣,
                 ItemName.布衣,
-                ItemName.丝绸
+                ItemName.丝绸,
 
             }
         },
         {
             BuildingType.梭织坊, new List<ItemName>()
             {
+                ItemName.蚕丝,
+                ItemName.皮毛,
+                ItemName.麻布,
+                ItemName.蚕丝,
+                ItemName.皮毛,
+                ItemName.麻布,
                 ItemName.蓑衣,
+                ItemName.蓑衣,
+                ItemName.布衣,
                 ItemName.布衣,
                 ItemName.丝绸
 
@@ -951,25 +969,41 @@ public class SOItem : ScriptableObject
         {
             BuildingType.长安织造, new List<ItemName>()
             {
+                ItemName.蚕丝,
+                ItemName.皮毛,
+                ItemName.麻布,
                 ItemName.蓑衣,
                 ItemName.布衣,
-                ItemName.丝绸
+                ItemName.丝绸,
+                ItemName.布衣,
+                ItemName.丝绸,
 
             }
         },
         {
             BuildingType.服装店, new List<ItemName>()
             {
+                ItemName.烂衣服,
+                ItemName.烂衣服,
+                ItemName.护心镜,
                 ItemName.皮甲,
                 ItemName.铁甲,
+                ItemName.羽衣,
+                ItemName.羽衣,
+                ItemName.锦绣华服,
 
             }
         },
         {
             BuildingType.玉服华裳, new List<ItemName>()
             {
+                ItemName.烂衣服,
+                ItemName.护心镜,
                 ItemName.皮甲,
-                ItemName.铁甲
+                ItemName.铁甲,
+                ItemName.羽衣,
+                ItemName.羽衣,
+                ItemName.锦绣华服,
 
             }
         },
@@ -1296,13 +1330,9 @@ public class SOItem : ScriptableObject
             {
                 ItemName.糖,
                 ItemName.铁矿,
-                ItemName.布匹,
-                ItemName.木头,
-                ItemName.皮革,
                 ItemName.铆钉,
                 ItemName.硬木,
                 ItemName.油,
-                ItemName.绳子,
                 ItemName.酱油,
                 ItemName.醋,
                 ItemName.盐,
@@ -1315,22 +1345,21 @@ public class SOItem : ScriptableObject
     BuildingType.百货店, new List<ItemName>()
             {
                 ItemName.糖,
-                ItemName.铁矿,
-                ItemName.布匹,
-                ItemName.木头,
-                ItemName.皮革,
-                ItemName.铆钉,
-                ItemName.硬木,
                 ItemName.油,
-                ItemName.绳子,
                 ItemName.酱油,
                 ItemName.醋,
                 ItemName.盐,
                 ItemName.咖啡,
                 ItemName.毛笔,
+                ItemName.毛笔,
+                ItemName.毛笔,
                 ItemName.咖啡,
                 ItemName.毛笔,
                 ItemName.拂尘,
+                ItemName.拂尘,
+                ItemName.拂尘,
+                ItemName.佛珠,
+                ItemName.佛珠,
                 ItemName.佛珠,
                 ItemName.剪刀,
                 ItemName.锤子,
@@ -1343,28 +1372,32 @@ public class SOItem : ScriptableObject
     BuildingType.万仙楼, new List<ItemName>()
             {
                 ItemName.糖,
-                ItemName.铁矿,
-                ItemName.布匹,
-                ItemName.木头,
-                ItemName.皮革,
-                ItemName.铆钉,
-                ItemName.硬木,
                 ItemName.油,
-                ItemName.绳子,
                 ItemName.酱油,
                 ItemName.醋,
                 ItemName.盐,
                 ItemName.咖啡,
+                ItemName.毛笔,
+                ItemName.毛笔,
                 ItemName.毛笔,
                 ItemName.阴阳八卦盘,
                 ItemName.浑天仪,
                 ItemName.咖啡,
                 ItemName.毛笔,
                 ItemName.拂尘,
+                ItemName.拂尘,
+                ItemName.拂尘,
+                ItemName.拂尘,
+                ItemName.佛珠,
+                ItemName.佛珠,
+                ItemName.佛珠,
                 ItemName.佛珠,
                 ItemName.毒奶瓶,
                 ItemName.剪刀,
+                ItemName.剪刀,
                 ItemName.锤子,
+                ItemName.锤子,
+                ItemName.刻刀,
                 ItemName.刻刀,
                 ItemName.绣花针,
                 ItemName.文化沙漠,
@@ -1381,12 +1414,6 @@ public class SOItem : ScriptableObject
     BuildingType.拍卖行, new List<ItemName>()
             {
                 ItemName.糖,
-                ItemName.铁矿,
-                ItemName.布匹,
-                ItemName.木头,
-                ItemName.皮革,
-                ItemName.铆钉,
-                ItemName.硬木,
                 ItemName.油,
                 ItemName.绳子,
                 ItemName.酱油,
@@ -1394,11 +1421,21 @@ public class SOItem : ScriptableObject
                 ItemName.盐,
                 ItemName.咖啡,
                 ItemName.毛笔,
+                ItemName.毛笔,
+                ItemName.毛笔,
                 ItemName.阴阳八卦盘,
+                ItemName.阴阳八卦盘,
+                ItemName.浑天仪,
                 ItemName.浑天仪,
                 ItemName.咖啡,
                 ItemName.毛笔,
                 ItemName.拂尘,
+                ItemName.拂尘,
+                ItemName.拂尘,
+                ItemName.拂尘,
+                ItemName.佛珠,
+                ItemName.佛珠,
+                ItemName.佛珠,
                 ItemName.佛珠,
                 ItemName.毒奶瓶,
                 ItemName.剪刀,
@@ -1418,6 +1455,7 @@ public class SOItem : ScriptableObject
                 ItemName.洗冤录,
                 ItemName.演员的自我修养,
                 ItemName.孝经,
+                ItemName.药材大全
             }
         },
         {
@@ -1433,6 +1471,20 @@ public class SOItem : ScriptableObject
         {
     BuildingType.戏院, new List<ItemName>()
             {
+                ItemName.山海经,
+                ItemName.机关残卷,
+                ItemName.蛤蟆功秘籍,
+                ItemName.东洋词典,
+                ItemName.西洋词典,
+                ItemName.杂技,
+                ItemName.混元功,
+                ItemName.九阳真经,
+                ItemName.九阴真经,
+                ItemName.毒经,
+                ItemName.唯物论,
+                ItemName.棋诀,
+                ItemName.货殖列传,
+                ItemName.伤寒杂病论,
                 ItemName.山海经,
                 ItemName.机关残卷,
                 ItemName.蛤蟆功秘籍,
