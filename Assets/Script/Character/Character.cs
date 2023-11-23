@@ -426,9 +426,12 @@ public class Character : MonoBehaviour, IRound
             {
                 CharacterName = RandomCharacterNameSpawner.SpawnCharacterName(characterArtCode);
             }
-            if (tagList.Count == 0 || hireStage == HireStage.InCity)
+            if (hireStage == HireStage.InCity)
             {
-                tagList = new List<Tag>();
+
+            }
+            else if (tagList.Count == 0)
+            {
                 SpawnTagOnStart(rarerity);
             }
             if (hireStage != HireStage.Hired)
@@ -459,6 +462,11 @@ public class Character : MonoBehaviour, IRound
             if (hireStage == HireStage.InCity)
             {
                 SpawnInGameAI();
+                var rareList = new List<Rarerity>() { Rarerity.N, Rarerity.N, Rarerity.N, Rarerity.N, Rarerity.N, Rarerity.R, Rarerity.R, Rarerity.R, Rarerity.SR, Rarerity.SR };
+                rarerity = rareList[UnityEngine.Random.Range(0, rareList.Count)];
+                tagList = new List<Tag>();
+                SpawnTagOnStart(rarerity);
+                UpdateVariables();
             }
         }
     }
@@ -576,7 +584,16 @@ public class Character : MonoBehaviour, IRound
         }
         else
         {
+            int randomBad = UnityEngine.Random.Range(0, 2);
             tagList.Add(RandomTag(rarerity));
+            for (int i = 0; i < maxTag - (1 + randomBad); i++)
+            {
+                tagList.Add(RandomTag(Rarerity.N));
+            }
+            for (int i = 0; i < randomBad; i++)
+            {
+                tagList.Add(RandomTag(Rarerity.B));
+            }
         }
     }
 

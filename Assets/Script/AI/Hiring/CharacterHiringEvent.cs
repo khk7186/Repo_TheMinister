@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -1022,15 +1023,15 @@ public class CharacterHiringEvent : MonoBehaviour
     public void SetRequest()
     {
 
-        Rarerity rarerity = Rarerity.N;
-        foreach (Tag tag in character.tag)
-        {
-            if ((int)Player.AllTagRareDict[tag] > (int)rarerity)
-            {
-                rarerity = (Rarerity)Player.AllTagRareDict[tag];
-            }
-        }
-        requestItems = CharacterArtCodeToRarityItemRequestDict[character.characterArtCode][rarerity];
+        //Rarerity rarerity = Rarerity.N;
+        //foreach (Tag tag in character.tag)
+        //{
+        //    if ((int)Player.AllTagRareDict[tag] > (int)rarerity)
+        //    {
+        //        rarerity = (Rarerity)Player.AllTagRareDict[tag];
+        //    }
+        //}
+        requestItems = CharacterArtCodeToRarityItemRequestDict[character.characterArtCode][character.rarerity];
     }
     public IEnumerator HiringRator()
     {
