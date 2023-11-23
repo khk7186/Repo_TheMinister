@@ -910,9 +910,13 @@ public class SOItem : ScriptableObject
         {
             BuildingType.药铺, new List<ItemName>()
             {
+                ItemName.核桃粉,
+                ItemName.核桃粉,
                 ItemName.过山龙,
                 ItemName.当归,
+                ItemName.当归,
                 ItemName.人参,
+                ItemName.轻粉,
                 ItemName.轻粉,
                 ItemName.三七,
                 ItemName.黄精,
@@ -1269,9 +1273,12 @@ public class SOItem : ScriptableObject
         {
     BuildingType.丹房, new List<ItemName>()
             {
+                ItemName.核桃粉,
+                ItemName.核桃粉,
                 ItemName.过山龙,
                 ItemName.当归,
                 ItemName.人参,
+                ItemName.轻粉,
                 ItemName.轻粉,
                 ItemName.三七,
                 ItemName.黄精,
@@ -1297,14 +1304,17 @@ public class SOItem : ScriptableObject
                 ItemName.过山龙,
                 ItemName.当归,
                 ItemName.人参,
+                ItemName.人参,
                 ItemName.轻粉,
                 ItemName.三七,
                 ItemName.黄精,
                 ItemName.血风藤,
                 ItemName.罗汉果,
+                ItemName.罗汉果,
                 ItemName.黄芪,
                 ItemName.八角莲,
                 ItemName.乌桕子,
+                ItemName.何首乌,
                 ItemName.何首乌,
                 ItemName.麝香,
                 ItemName.红花,
