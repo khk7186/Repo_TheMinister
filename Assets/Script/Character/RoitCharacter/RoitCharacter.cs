@@ -343,6 +343,7 @@ public class RoitCharacter : Character
     {
         characterType = CharacterType.Roit;
         hireStage = HireStage.InCity;
+
     }
     public override void StartAction()
     {
@@ -354,6 +355,7 @@ public class RoitCharacter : Character
         this.spawnRange = spawnRange;
         characterArtCode = RoitCharacterArtCode;
         SpawnTagOnStart(RoitManager.Instance.Difficulty);
+        rarerity = RoitManager.Instance.Difficulty;
         string inGameAiString = "";
         switch (Area)
         {
