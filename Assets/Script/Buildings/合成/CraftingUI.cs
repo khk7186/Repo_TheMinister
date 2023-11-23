@@ -77,5 +77,8 @@ public class CraftingUI : MonoBehaviour
         {
             material.LessHaveAmount();
         }
+        var message = $"获得道具——{CurrentItem}";
+        var alert = Instantiate(Resources.Load<RiseUpTextAnimation>("Hiring/Message"), MainCanvas.FindMainCanvas());
+        alert.GetComponent<Text>().text = message;
     }
 }
