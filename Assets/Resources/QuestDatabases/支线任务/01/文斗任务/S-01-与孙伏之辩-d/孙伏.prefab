@@ -539,7 +539,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3409824698870444290}
   - component: {fileID: 3409824698870444293}
-  - component: {fileID: 3409824698870444294}
   m_Layer: 0
   m_Name: collected
   m_TagString: Untagged
@@ -607,76 +606,6 @@ MonoBehaviour:
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
   conversation: Collected
-  conversationConversant: {fileID: 0}
-  conversationActor: {fileID: 0}
-  startConversationEntryID: -1
-  exclusive: 0
-  replace: 0
-  skipIfNoValidEntries: 0
-  stopConversationOnTriggerExit: 0
-  stopConversationIfTooFar: 0
-  maxConversationDistance: 5
-  monitorConversationDistanceFrequency: 1
-  showCursorDuringConversation: 0
-  pauseGameDuringConversation: 0
-  setActiveActions: []
-  setEnabledActions: []
-  setAnimatorStateActions: []
-  onExecute:
-    m_PersistentCalls:
-      m_Calls: []
-  useConversationTitlePicker: 1
-  useBarkTitlePicker: 1
-  useQuestNamePicker: 1
-  selectedDatabase: {fileID: 11400000, guid: 9c6826e56029bdb448f70cb439b5e770, type: 2}
---- !u!114 &3409824698870444294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3409824698870444292}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trigger: 2
-  condition:
-    luaConditions:
-    - Variable["WinDebate"] == true
-    - Variable["LostDebate"] == true
-    questConditions: []
-    acceptedTags: []
-    acceptedGameObjects: []
-    luaWizardIndex: -1
-    lastEvaluationValue: 0
-  setQuestState: 1
-  questName: 
-  questState: 0
-  setQuestEntryState: 0
-  questEntryNumber: 1
-  questEntryState: 0
-  luaCode: 
-  sequence: 
-  sequenceSpeaker: {fileID: 0}
-  sequenceListener: {fileID: 0}
-  waitOneFrameOnStartOrEnable: 1
-  alertMessage: 
-  textTable: {fileID: 0}
-  alertDuration: 0
-  sendMessages: []
-  barkSource: 0
-  barkConversation: 
-  barkText: 
-  barkTextSequence: 
-  barker: {fileID: 0}
-  barkTarget: {fileID: 0}
-  barkOrder: 0
-  allowBarksDuringConversations: 0
-  skipBarkIfNoValidEntries: 0
-  cacheBarkLines: 0
-  conversation: 
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
@@ -1260,7 +1189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96111ea2f435f3a41ad014b9050bf6de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: {fileID: 0}
+  trigger: {fileID: 656854644282230624}
   WinEvent:
     m_PersistentCalls:
       m_Calls:
@@ -1277,9 +1206,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 5198907391399748151, guid: e93a3dc72ceb1484ca609dd86b805b8a, type: 3}
-        m_TargetAssemblyTypeName: GiveQuestOnActive, Assembly-CSharp
-        m_MethodName: Start
+      - m_Target: {fileID: 894094435006697528}
+        m_TargetAssemblyTypeName: ChangeQuestCollectedDialogue, Assembly-CSharp
+        m_MethodName: ChangeDialogue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1305,6 +1234,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4729923385753948073}
+        m_TargetAssemblyTypeName: ChangeQuestCollectedDialogue, Assembly-CSharp
+        m_MethodName: ChangeDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3874395225648044945
 GameObject:
   m_ObjectHideFlags: 0
@@ -1316,13 +1257,15 @@ GameObject:
   - component: {fileID: 3980389267306063658}
   - component: {fileID: 6115847227582302510}
   - component: {fileID: 1179022641172959051}
+  - component: {fileID: 495636088}
+  - component: {fileID: 4729923385753948073}
   m_Layer: 0
   m_Name: lost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3980389267306063658
 Transform:
   m_ObjectHideFlags: 0
@@ -1421,6 +1364,33 @@ MonoBehaviour:
   - QuestID: "S-01-\u4E0E\u5B59\u4F0F\u4E4B\u8FA9-d"
     questNode: Failure
     questNodeState: 1
+--- !u!114 &495636088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3874395225648044945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0edf9b9acf5df5b44916b753c4dc65fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueDatabase: {fileID: 0}
+--- !u!114 &4729923385753948073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3874395225648044945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 795c622dabc94474684003e193866374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questGiver: {fileID: 4258855410032422511}
+  dialogueTarget: {fileID: 6115847227582302510}
 --- !u!1 &4981306858229791325
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,7 +1572,7 @@ MonoBehaviour:
   _dialogueTriggerCollected: {fileID: 3409824698870444293}
   Assign: 0
   QuestSpawnPref: {fileID: 4165110359614422788, guid: b553b7aa51f5ac14a91e733b6d477b19, type: 3}
-  ReloadPref: {fileID: 2971090131695075481, guid: e20b37639dc4a0949b27d4cc4c876599, type: 3}
+  ReloadPref: {fileID: 4165110359614422788, guid: 8788ad38a6acd554cab1ef83b91bafed, type: 3}
   triggered: 0
 --- !u!114 &4477908584329362230
 MonoBehaviour:
@@ -1673,13 +1643,14 @@ GameObject:
   - component: {fileID: 8120397133978990979}
   - component: {fileID: 4002541968392672290}
   - component: {fileID: 1999842743591115453}
+  - component: {fileID: 894094435006697528}
   m_Layer: 0
   m_Name: win
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8120397133978990979
 Transform:
   m_ObjectHideFlags: 0
@@ -1778,6 +1749,20 @@ MonoBehaviour:
   - QuestID: "S-01-\u4E0E\u5B59\u4F0F\u4E4B\u8FA9-d"
     questNode: Reward
     questNodeState: 1
+--- !u!114 &894094435006697528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4985694654709780133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 795c622dabc94474684003e193866374, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questGiver: {fileID: 4258855410032422511}
+  dialogueTarget: {fileID: 4002541968392672290}
 --- !u!1001 &5833232742739191511
 PrefabInstance:
   m_ObjectHideFlags: 0
