@@ -261,7 +261,7 @@ public class Building : MonoBehaviour
                 target.AllCinema[0].GetComponent<CinemaUI>().Setup(currentPlay[0]);
                 break;
             case BuildingType.ϷԺ:
-                ShopList[0] = SpawnItemBasedOnType(BuildingType.Ϸ��, 0);
+                ShopList[0] = SpawnItemBasedOnType(BuildingType.ϷԺ, 0);
                 currentPlay[0] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
                 currentPlay[1] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
                 target.AllCinema[0].GetComponent<CinemaUI>().Setup(currentPlay[0]);
