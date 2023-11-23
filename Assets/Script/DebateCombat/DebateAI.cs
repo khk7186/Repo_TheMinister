@@ -1,10 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using static UnityEngine.UI.CanvasScaler;
 
 public class DebateAI : MonoBehaviour
 {
     public static List<DebateCharacterCard> MakeDecision(DebateUnit unit, DebateTopic topic)
+    {
+        if (unit.debatePlan == null)
+        {
+            return DefaultSelect(unit, topic);
+        }
+        else
+        {
+            List<DebateCharacterCard> output = new List<DebateCharacterCard>();
+            var selects = unit.debatePlan.NextPlan();
+            Debug.Log(string.Join(",", selects));
+            foreach (var targetName in selects)
+            {
+                var aim = unit.characterCards.FirstOrDefault(x => x.character.CharacterName == targetName);
+                if (aim != null) { output.Add(aim); }
+            }
+            return output;
+        }
+
+    }
+    public static List<DebateCharacterCard> DefaultSelect(DebateUnit unit, DebateTopic topic)
     {
         List<DebateCharacterCard> output = new List<DebateCharacterCard>();
         List<DebateCharacterCard> characterCards = unit.characterCards;

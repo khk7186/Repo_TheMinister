@@ -57,5 +57,4 @@ public class SpawnCharacterForGET : MonoBehaviour
             generalEventTrigger.enemyCharactersCardsList.Add(characters.ToArray());
         }
     }
-
 }

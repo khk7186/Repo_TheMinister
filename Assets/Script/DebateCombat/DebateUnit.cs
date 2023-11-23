@@ -17,6 +17,7 @@ public class DebateUnit : MonoBehaviour
     public int Points = 4000;
     public bool isActive = false;
     public DebateUnitUI UnitUI = null;
+    public DebatePlan debatePlan;
     public int index => UnitUI.index;
     public Vector2 cardConfirmPosition;
     public void Setup(List<Character> characters, string name, CharacterArtCode iconArtCode, bool isPlayer = false)
@@ -31,6 +32,7 @@ public class DebateUnit : MonoBehaviour
         this.isPlayer = isPlayer;
         Name = name;
         IconArtCode = iconArtCode;
+        debatePlan = FindObjectsOfType<DebatePlan>().FirstOrDefault(p => p.ownerName == Name);
     }
     public void UnitDown()
     {
