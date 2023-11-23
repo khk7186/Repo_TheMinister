@@ -1627,6 +1627,7 @@ public class SOItem : ScriptableObject
         {BuildingType.万兵阁,new Dictionary<ItemType, List<int>>(){{ItemType.兵器, new List<int>(){ 27, 73, 264, 1406, 7737, 0 } },
                                                                 {ItemType.材料,new List<int>(){ 24, 62, 214, 1070, 5145, 0 } }}},
         {BuildingType.机关阁,new Dictionary<ItemType, List<int>>(){{ItemType.兵器, new List<int>(){ 25, 66, 232, 1189, 0, 0 } },
+                                                                                                                    {ItemType.机关, new List<int>(){ 27, 73, 264, 1406, 7737, 0 }},
                                                                 {ItemType.材料,new List<int>(){ 22, 56, 187, 898, 0, 0 } }}},
         {BuildingType.武侯楼,new Dictionary<ItemType, List<int>>(){{ItemType.兵器, new List<int>(){ 27, 73, 264, 1406, 7737, 0 } },
                                                                 {ItemType.机关, new List<int>(){ 27, 73, 264, 1406, 7737, 0 }},
