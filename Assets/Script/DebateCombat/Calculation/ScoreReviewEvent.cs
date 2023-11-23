@@ -17,7 +17,7 @@ public class ScoreReviewEvent : MonoBehaviour
     public static void NewReview(List<Character[]> characters,
                                                     DebateTopic topic, List<CharacterArtCode> idleImage)
     {
-        GameObject.FindObjectOfType<BlinkEffect>().gameObject.SetActive(false);
+        GameObject.FindObjectOfType<BlinkEffect>()?.gameObject.SetActive(false);
         GameObject.FindObjectOfType<DebateConfirm>().gameObject.SetActive(false);
         ScoreReviewEvent review = new GameObject("ScoreReviewEvent").AddComponent<ScoreReviewEvent>();
         review.characters = characters;

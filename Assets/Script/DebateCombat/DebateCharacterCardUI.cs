@@ -4,8 +4,17 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Linq;
+
 public class DebateCharacterCardUI : MonoBehaviour, IPointerClickHandler
 {
+    public int currentSelect
+    {
+        get
+        {
+            return unit.characterCards.Where(x => x.CardUI.OnSelect).Count();
+        }
+    }
     public DebateCharacterCard card;
     public RectTransform mainPannel;
     public RectTransform cardBack;
@@ -88,17 +97,25 @@ public class DebateCharacterCardUI : MonoBehaviour, IPointerClickHandler
     }
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (unit.isPlayer == false) return;
         if (OnSelect)
         {
             UnSelectCharacter();
         }
         else
         {
+            if (currentSelect >= 3)
+            {
+                var alert = Instantiate<Text>(Resources.Load<Text>("Hiring/Message"), MainCanvas.FindMainCanvas());
+                alert.text = "最多同时选择三名文客辩题 ";
+                return;
+            }
             SelectCharacter();
         }
     }
     public void SelectCharacter()
     {
+
         OnSelect = true;
         StartCoroutine(SelectAnimation());
         changeMaterial?.Change(topRarerity.ToString(), cardBackAsset);
@@ -109,11 +126,8 @@ public class DebateCharacterCardUI : MonoBehaviour, IPointerClickHandler
         OnSelect = false;
         StartCoroutine(UnSelectAnimation());
         changeMaterial?.UnChange(cardBackAsset);
-        foreach (DebateCharacterCard card in unit.characterCards)
-        {
-            if (card.CardUI.OnSelect) return;
-        }
-        FindObjectOfType<DebateConfirm>()?.gameObject.SetActive(false);
+        if (currentSelect <= 0)
+            FindObjectOfType<DebateConfirm>(true)?.gameObject.SetActive(false);
     }
     public IEnumerator SelectAnimation()
     {

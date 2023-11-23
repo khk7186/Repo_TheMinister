@@ -115,6 +115,5 @@ public class DebateEffectAnimationController : MonoBehaviour
         yield return new WaitForSeconds(Delay);
         Start();
         FindObjectOfType<DebateMainEventManager>().NextTopic();
-        FindObjectOfType<DebateConfirm>(true).gameObject.SetActive(true);
     }
 }

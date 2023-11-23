@@ -40,4 +40,8 @@ public class FlagUI : MonoBehaviour
         Name.text = character.CharacterName;
         Health.text = character.health.ToString();
     }
+    //public void FixedUpdate()
+    //{
+    //    if (Character.)
+    //}
 }
