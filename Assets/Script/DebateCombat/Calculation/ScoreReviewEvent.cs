@@ -64,7 +64,7 @@ public class ScoreReviewEvent : MonoBehaviour
         var effectAnimation = FindObjectOfType<DebateEffectAnimationController>();
         var damageList = effectAnimation.Setup(Result);
         yield return effectAnimation.StartCoroutine(effectAnimation.PlayRoutine());
-        GameObject.FindObjectOfType<BlinkEffect>().gameObject.SetActive(true);
+        GameObject.FindObjectOfType<BlinkEffect>()?.gameObject.SetActive(true);
         GameEndCheck();
     }
     public void GameEndCheck()
