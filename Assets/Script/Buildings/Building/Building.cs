@@ -281,10 +281,10 @@ public class Building : MonoBehaviour
             case BuildingType.∫Ï»Àπ›:
                 currentPlay[0] = (PlayName)values.GetValue(UnityEngine.Random.Range(0, values.Length));
                 target.AllCinema[0].GetComponent<CinemaUI>().Setup(currentPlay[0]);
-                if (charactersHere != null)
-                {
-                    CharacterShopPriceAndList.ReturnSomeGirls(charactersHere);
-                }
+                //if (charactersHere != null)
+                //{
+                //    CharacterShopPriceAndList.ReturnSomeGirls(charactersHere);
+                //}
                 charactersHere = CharacterShopPriceAndList.GetSomeGirls(MaxPersonHere);
                 Debug.Log(charactersHere.Count);
                 //if (charactersAlwaysHere != null)
