@@ -1017,6 +1017,12 @@ public class SOItem : ScriptableObject
                 ItemName.有破损的黄金,
                 ItemName.缺口的宝石,
                 ItemName.零落的宝石,
+                 ItemName.有破损的黄金,
+                ItemName.缺口的宝石,
+                ItemName.零落的宝石,
+                 ItemName.有破损的黄金,
+                ItemName.缺口的宝石,
+                ItemName.零落的宝石,
                 ItemName.祖母绿,
                 ItemName.蛋白石,
                 ItemName.紫水晶,
@@ -1026,6 +1032,9 @@ public class SOItem : ScriptableObject
         {
             BuildingType.珠宝店, new List<ItemName>()
             {
+                ItemName.有破损的黄金,
+                ItemName.缺口的宝石,
+                ItemName.零落的宝石,
                 ItemName.有破损的黄金,
                 ItemName.缺口的宝石,
                 ItemName.零落的宝石,
