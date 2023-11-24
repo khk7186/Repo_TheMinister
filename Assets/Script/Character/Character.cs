@@ -731,6 +731,8 @@ public class Character : MonoBehaviour, IRound
         if (spawnAfterAway != null) Instantiate(spawnAfterAway);
         hireStage = HireStage.Hired;
         CurrencyInvAnimationManager.Instance.PrestigeChange(1);
+        TryRetire();
+        TryDeath();
     }
 
     public void ReturnToHand()
