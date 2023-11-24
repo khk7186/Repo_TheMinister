@@ -49,7 +49,6 @@ public class CharacterShopPriceAndList : MonoBehaviour
         character.characterArtCode = (CharacterArtCode)value[1];
         character.tagList = value[2] as List<Tag>;
         character.UpdateVariables();
-
         return character;
     }
     public static Character OuputTopCharacter(string key)

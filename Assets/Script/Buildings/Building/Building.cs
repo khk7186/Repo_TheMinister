@@ -285,7 +285,7 @@ public class Building : MonoBehaviour
                 //{
                 //    CharacterShopPriceAndList.ReturnSomeGirls(charactersHere);
                 //}
-                charactersHere = CharacterShopPriceAndList.GetSomeGirls(MaxPersonHere);
+                charactersHere.AddRange(CharacterShopPriceAndList.GetSomeGirls(MaxPersonHere - charactersHere.Count));
                 Debug.Log(charactersHere.Count);
                 //if (charactersAlwaysHere != null)
                 //{
