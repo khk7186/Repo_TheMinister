@@ -168,11 +168,11 @@ public class Building : MonoBehaviour
                 break;
             case BuildingType.纺织铺:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.纺织铺, 0);
-                ShopList[1] = SpawnItemBasedOnType(BuildingType.纺织铺, 0);
+                ShopList[1] = SpawnItemBasedOnType(BuildingType.纺织铺, 1);
                 break;
             case BuildingType.梭织坊:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.纺织铺, 0);
-                ShopList[1] = SpawnItemBasedOnType(BuildingType.梭织坊, 0);
+                ShopList[1] = SpawnItemBasedOnType(BuildingType.梭织坊, 1);
                 SetupCraft();
                 break;
             case BuildingType.长安织造:
@@ -181,7 +181,7 @@ public class Building : MonoBehaviour
                 break;
             case BuildingType.服装店:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.服装店, 0);
-                ShopList[1] = SpawnItemBasedOnType(BuildingType.服装店, 0);
+                ShopList[1] = SpawnItemBasedOnType(BuildingType.服装店, 1);
                 break;
             case BuildingType.商行:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.商行, 0);
@@ -198,7 +198,7 @@ public class Building : MonoBehaviour
                 break;
             case BuildingType.西域珍品:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.珠宝店, 0);
-                ShopList[1] = SpawnItemBasedOnType(BuildingType.西域珍品, 0);
+                ShopList[1] = SpawnItemBasedOnType(BuildingType.西域珍品, 1);
                 break;
             case BuildingType.药铺:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.药铺, 0);
@@ -225,7 +225,7 @@ public class Building : MonoBehaviour
                 break;
             case BuildingType.机关阁:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.铁匠铺, 0);
-                ShopList[1] = SpawnItemBasedOnType(BuildingType.机关阁, 0);
+                ShopList[1] = SpawnItemBasedOnType(BuildingType.机关阁, 1);
                 SetupCraft();
                 break;
             case BuildingType.武侯楼:
