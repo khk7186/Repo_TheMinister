@@ -35,12 +35,12 @@ public class FakeCharacterValues : MonoBehaviour
         }
         characterInfoUI.SetValues(fakeCharacterValues);
         characterInfoUI.SetValueColors(
-            CharacterUI.TagUIColorCode[Character.CheckVariablesRare(fakeCharacterValues[CharacterValueType.ÖÇ])],
-            CharacterUI.TagUIColorCode[Character.CheckVariablesRare(fakeCharacterValues[CharacterValueType.²Å])],
-            CharacterUI.TagUIColorCode[Character.CheckVariablesRare(fakeCharacterValues[CharacterValueType.Ä±])],
-            CharacterUI.TagUIColorCode[Character.CheckVariablesRare(fakeCharacterValues[CharacterValueType.Îä])],
-            CharacterUI.TagUIColorCode[Character.CheckVariablesRare(fakeCharacterValues[CharacterValueType.´Ì])],
-            CharacterUI.TagUIColorCode[Character.CheckVariablesRare(fakeCharacterValues[CharacterValueType.ÊØ])]
+            Character.CheckVariablesRare(fakeCharacterValues[CharacterValueType.ÖÇ]),
+            Character.CheckVariablesRare(fakeCharacterValues[CharacterValueType.²Å]),
+            Character.CheckVariablesRare(fakeCharacterValues[CharacterValueType.Ä±]),
+            Character.CheckVariablesRare(fakeCharacterValues[CharacterValueType.Îä]),
+            Character.CheckVariablesRare(fakeCharacterValues[CharacterValueType.´Ì]),
+            Character.CheckVariablesRare(fakeCharacterValues[CharacterValueType.ÊØ])
             );
     }
 

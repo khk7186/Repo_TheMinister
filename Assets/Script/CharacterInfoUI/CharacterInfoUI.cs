@@ -79,14 +79,15 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void SetValueColors(Color32 wisdom, Color32 writing, Color32 strategy, Color32 strength, Color32 sneak, Color32 defense)
+    public void SetValueColors(Rarerity wisdom, Rarerity writing, Rarerity strategy, Rarerity strength, Rarerity sneak, Rarerity defense)
     {
-        Wisdom.color = wisdom;
-        Writing.color = writing;
-        Strategy.color = strategy;
-        Strength.color = strength;
-        Sneak.color = sneak;
-        Defense.color = defense;
+        var path = "Art/人物卡/六大项/字体背景/";
+        Wisdom.sprite = Resources.Load<Sprite>($"{path}{wisdom.ToString()}");
+        Writing.sprite = Resources.Load<Sprite>($"{path}{writing.ToString()}"); 
+        Strategy.sprite = Resources.Load<Sprite>($"{path}{strategy.ToString()}");
+        Strength.sprite = Resources.Load<Sprite>($"{path}{strength.ToString()}"); 
+        Sneak.sprite = Resources.Load<Sprite>($"{path}{sneak.ToString()}"); ;
+        Defense.sprite = Resources.Load<Sprite>($"{path}{defense.ToString()}"); ;
     }
 
     public void SetOnSelectButton(Character character)
