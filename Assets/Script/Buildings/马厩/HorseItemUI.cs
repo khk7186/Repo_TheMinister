@@ -44,14 +44,14 @@ public class HorseItemUI : ItemUI
     {
         var map = FindObjectOfType<Map>();
         var currencyInv = FindObjectOfType<CurrencyInventory>();
-        if (currencyInv.Money < int.Parse(BuyPrice.text))
+        if (currencyInv.Money < int.Parse(RentPrice.text))
         {
             var alert = Instantiate<Text>(Resources.Load<Text>("Hiring/Message"), MainCanvas.FindMainCanvas());
             alert.text = "你需要更多银两";
             return;
         }
         buff = (int)framRarity / 2 + 1;
-        string message = "是否花费" + BuyPrice.text + "银两租用" + ItemName + $"并获得{buff}倍移动加成?";
+        string message = "是否花费" + RentPrice.text + "银两租用" + ItemName + $"并获得{buff}倍移动加成?";
         StartCoroutine(Confirmation.CreateNewComfirmation(RentItem, message).Confirm());
     }
     public void RentItem()
@@ -59,7 +59,7 @@ public class HorseItemUI : ItemUI
         var alert = Instantiate<Text>(Resources.Load<Text>("Hiring/Message"), MainCanvas.FindMainCanvas());
         alert.text = "获得了 " + buff + "倍移速加成";
         var currencyInv = FindObjectOfType<CurrencyInventory>();
-        currencyInv.Money -= int.Parse(BuyPrice.text);
+        currencyInv.Money -= int.Parse(RentPrice.text);
         FindObjectOfType<Map>().HorseMovementBuff = buff;
         Destroy(this.gameObject);
     }

@@ -17,7 +17,4 @@ public class HorseRentUI : MonoBehaviour
             current.gameObject.SetActive(true);
         }
     }
-
-
-    
 }
