@@ -730,9 +730,10 @@ public class Character : MonoBehaviour, IRound
         yield return new WaitUntil(() => (map.Day == targetDay) && (map.DayTime == targetTime));
         if (spawnAfterAway != null) Instantiate(spawnAfterAway);
         hireStage = HireStage.Hired;
-        CurrencyInvAnimationManager.Instance.PrestigeChange(1);
         TryRetire();
-        TryDeath();
+        if (hireStage == HireStage.Hired) TryDeath();
+        if (hireStage == HireStage.Hired)
+            CurrencyInvAnimationManager.Instance.PrestigeChange(1);
     }
 
     public void ReturnToHand()
