@@ -377,7 +377,7 @@ public class RoitCharacter : Character
         InGameAI = inGameAi;
         characterCard = Resources.Load<Character>("CharacterPrefab/Character").characterCard;
         inGameAi.SetupRoitAI(this, this.spawnRange);
-        CharacterName = "ÎÞÃû";
+        CharacterName = RandomCharacterNameSpawner.SpawnCharacterName(characterArtCode);
     }
     protected IEnumerator RemoveFromGame()
     {

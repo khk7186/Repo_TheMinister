@@ -20,6 +20,8 @@ public class CharacterAwaitTribute : MonoBehaviour
         {
             if (@event != null)
             {
+                character.TryRetire();
+                if (character.hireStage == HireStage.Hired) character.TryDeath();
                 @event.Invoke();
                 destroyNext = true;
             }

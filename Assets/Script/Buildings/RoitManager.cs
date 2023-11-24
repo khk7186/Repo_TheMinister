@@ -49,7 +49,7 @@ public class RoitManager : MonoBehaviour, IDiceRollEvent
     public int spawnRate => spawnRateByChapter[ChapterCounter.Instance.Chapter];
     public List<int> spawnRateByChapter = new List<int> { 100, 200, 300, 500 };
     public int spawnTotal = 1000;
-    public Rarerity Difficulty = Rarerity.N;
+    public Rarerity Difficulty = Rarerity.R;
     private Character characterPref;
     private void Start()
     {

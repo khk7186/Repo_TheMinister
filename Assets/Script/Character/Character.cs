@@ -728,12 +728,11 @@ public class Character : MonoBehaviour, IRound
         int targetDay = map.Day + rounds;
         CurrencyInvAnimationManager.Instance.PrestigeChange(-1);
         yield return new WaitUntil(() => (map.Day == targetDay) && (map.DayTime == targetTime));
-        if (spawnAfterAway != null) Instantiate(spawnAfterAway);
         hireStage = HireStage.Hired;
         TryRetire();
         if (hireStage == HireStage.Hired) TryDeath();
-        if (hireStage == HireStage.Hired)
-            CurrencyInvAnimationManager.Instance.PrestigeChange(1);
+        if (hireStage == HireStage.Hired) CurrencyInvAnimationManager.Instance.PrestigeChange(1);
+        if (spawnAfterAway != null) Instantiate(spawnAfterAway);
     }
 
     public void ReturnToHand()
