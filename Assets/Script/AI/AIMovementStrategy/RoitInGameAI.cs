@@ -72,14 +72,16 @@ public class RoitInGameAI : DefaultInGameAI
     {
         CharacterModelController controller = GetComponent<CharacterModelController>();
         controller.SetSkin("face-normal expression");
-        PathPoint direction = OnStartPoint ? endPoint : startPoint;
+        //PathPoint direction = OnStartPoint ? endPoint : startPoint;
+        Vector2 fianlPoint = OnStartPoint ? (startPoint.transform.position + endPoint.transform.position) / 1.5f : startPoint.transform.position;
+
         float time = 0;
         float distance = Vector3.Distance(startPoint.transform.position, endPoint.transform.position);
         float moveDuration = distance / moveSpeed;
         while (time < moveDuration)
         {
             time += Time.deltaTime;
-            transform.position = Vector2.Lerp(transform.position, direction.transform.position, time / moveDuration);
+            transform.position = Vector2.Lerp(transform.position, fianlPoint, time / moveDuration);
             yield return null;
         }
         OnStartPoint = !OnStartPoint;
