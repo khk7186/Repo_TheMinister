@@ -188,6 +188,7 @@ public class Building : MonoBehaviour
                 break;
             case BuildingType.ÎŸ÷¨∆Ã:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.ÎŸ÷¨∆Ã, 0);
+                ShopList[1] = SpawnItemBasedOnType(BuildingType.…Ã––, 1);
                 break;
             case BuildingType.ÕÚœ„∏Û:
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.ÕÚœ„∏Û, 0);
