@@ -28,7 +28,7 @@ public class GeneralEventTrigger : MonoBehaviour
     public EndGamePannel endGamePannel;
     public bool dontPopEndGamePannel = false;
     public EventAfterCombatBasedOnResult EventAC;
-    public UnityEvent NoDebateEvent = null;
+    public UnityEvent NoDebateEvent = new UnityEvent();
     private void Awake()
     {
         var pannelPath = "CombatScene/VictoryUI";
