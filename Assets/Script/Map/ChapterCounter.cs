@@ -6,6 +6,8 @@ using UnityEngine;
 public class ChapterCounter : MonoBehaviour
 {
     public static ChapterCounter Instance;
+    public GameObject WarAssets;
+    public GameObject RegularAssets;
     public int Chapter
     {
         get
@@ -17,6 +19,11 @@ public class ChapterCounter : MonoBehaviour
             count = value;
             RegularQuestEventHandler.ChapterShiftMessage(value);
             PressureEventHandler.OnAddPerDayChange(value);
+            if (count == 3)
+            {
+                RegularAssets.SetActive(false);
+                WarAssets.SetActive(true);
+            }
             LastChapterAIExitGame();
         }
     }
