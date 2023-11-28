@@ -54,7 +54,7 @@ public class TrackCounterForQuest : MonoBehaviour, IDiceRollEvent
 
     private int CheckCurrent()
     {
-        var characters = inventory.GetComponentsInChildren<Character>();
+        var characters = SelectOnDuty.GetOndutyAll(OndutyType.Debate);
         int count = 0;
         foreach (Character character in characters)
         {
