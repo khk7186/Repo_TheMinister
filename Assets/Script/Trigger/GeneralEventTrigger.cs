@@ -6,6 +6,7 @@ using UnityEngine;
 using PixelCrushers.QuestMachine;
 using UnityEngine.SceneManagement;
 using PixelCrushers.DialogueSystem;
+using UnityEngine.Events;
 
 public class GeneralEventTrigger : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class GeneralEventTrigger : MonoBehaviour
     public EndGamePannel endGamePannel;
     public bool dontPopEndGamePannel = false;
     public EventAfterCombatBasedOnResult EventAC;
+    public UnityEvent NoDebateEvent = null;
     private void Awake()
     {
         var pannelPath = "CombatScene/VictoryUI";
@@ -44,6 +46,10 @@ public class GeneralEventTrigger : MonoBehaviour
             case BattleType.Debate:
                 Debug.Log(enemyCharactersCardsList.Count);
                 playerCharacters = SelectOnDuty.GetOndutyAll(OndutyType.Debate);
+                if (playerCharacters.Count == 0)
+                {
+                    if (NoDebateEvent != null) NoDebateEvent.Invoke();
+                }
                 scene = 3;
                 break;
             case BattleType.GoBang:
