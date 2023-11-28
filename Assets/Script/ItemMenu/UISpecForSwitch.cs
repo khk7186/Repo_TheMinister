@@ -117,5 +117,18 @@ public class UISpecForSwitch : TagSpecUI
                 FindObjectOfType<ItemInvBackgroundAnimation>().BackGroundShift(false);
             }
         }
+        if (OSA.character.OnCombatDuty)
+        {
+            if (OSA.character.CharactersValueDict[CharacterValueType.Œ‰] <= 0 || OSA.character.CharactersValueDict[CharacterValueType. ÿ] <= 0) OSA.character.OnCombatDuty = false;
+        }
+        if (OSA.character.OnDebateDuty)
+        {
+            if (OSA.character.CharactersValueDict[CharacterValueType.÷«] <= 0
+                && OSA.character.CharactersValueDict[CharacterValueType.≤≈] <= 0
+                && OSA.character.CharactersValueDict[CharacterValueType.ƒ±] <= 0)
+            {
+                OSA.character.OnDebateDuty = false;
+            }
+        }
     }
 }
