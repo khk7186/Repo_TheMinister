@@ -11,6 +11,7 @@ public class PressureManager : MonoBehaviour
     public int chapter => ChapterCounter.Instance.Chapter;
     public int pressureAddPerDay => pressureAddPerDayBaseOnChapter[chapter];
     public GameLostUI gameLostUI = null;
+    public GameObject gameDeathUI = null;
     private void Awake()
     {
         if (Instance == null)
