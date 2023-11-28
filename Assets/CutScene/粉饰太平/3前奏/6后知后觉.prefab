@@ -57,9 +57,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1265502280072420213}
-  - component: {fileID: 1265502280072420218}
+  - component: {fileID: 6839205542961123671}
   m_Layer: 0
-  m_Name: DelaySpawn
+  m_Name: Next
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ Transform:
   m_Father: {fileID: 1265502278464106102}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1265502280072420218
+--- !u!114 &6839205542961123671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,15 +88,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1265502280072420212}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57369139d5e1b094aa78cd5f76873e8d, type: 3}
+  m_Script: {fileID: 11500000, guid: b66e9f83746c5c445bd1a49771da62ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startCountOnEnable: 1
-  delayRounds: 1
-  gameObjects:
-  - {fileID: 337624888776270126, guid: 4e98c8bbeb397ed4fb37c6c36a5f1daa, type: 3}
-  UsePlanedBlock: 1
-  PlanedBlock: 0
+  nextEvent: {fileID: -3061352660177177290, guid: 4e98c8bbeb397ed4fb37c6c36a5f1daa, type: 3}
+  waitForTurns: 0
+  ActiveOnEnable: 1
 --- !u!1 &1265502280295749373
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +110,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1265502280295749314
 Transform:
   m_ObjectHideFlags: 0
