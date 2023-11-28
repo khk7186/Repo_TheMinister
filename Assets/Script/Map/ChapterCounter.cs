@@ -8,6 +8,9 @@ public class ChapterCounter : MonoBehaviour
     public static ChapterCounter Instance;
     public GameObject WarAssets;
     public GameObject RegularAssets;
+    public GameObject ChapterOneIcon;
+    public GameObject ChapterTwoIcon;
+    public GameObject ChapterThreeIcon;
     public int Chapter
     {
         get
@@ -19,10 +22,21 @@ public class ChapterCounter : MonoBehaviour
             count = value;
             RegularQuestEventHandler.ChapterShiftMessage(value);
             PressureEventHandler.OnAddPerDayChange(value);
-            if (count == 3)
+            if (count == 1)
+            {
+                ChapterOneIcon.SetActive(true);
+            }
+            else if (count == 2)
+            {
+                ChapterTwoIcon.SetActive(true);
+                ChapterOneIcon.SetActive(false);
+            }
+            else if (count == 3)
             {
                 RegularAssets.SetActive(false);
                 WarAssets.SetActive(true);
+                ChapterThreeIcon.SetActive(true);
+                ChapterTwoIcon.SetActive(false);
             }
             LastChapterAIExitGame();
         }
