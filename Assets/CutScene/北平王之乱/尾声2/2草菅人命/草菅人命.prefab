@@ -921,9 +921,9 @@ MonoBehaviour:
   LostEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3324151531042265319}
-        m_TargetAssemblyTypeName: GameLostEvent, Assembly-CSharp
-        m_MethodName: TriggerGameLost
+      - m_Target: {fileID: 8432290828327777018}
+        m_TargetAssemblyTypeName: DeathEvent, Assembly-CSharp
+        m_MethodName: TriggerDeath
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1044,6 +1044,9 @@ MonoBehaviour:
   generalEventTrigger: {fileID: 3248518611035338923}
   InactiveGameobjs: []
   ActiveGameobjs: []
+  EventIfNoDuty:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3248518611035338923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1069,6 +1072,9 @@ MonoBehaviour:
   endGamePannel: {fileID: 1808533205442087187, guid: a2363c9350157ea4a89f6d51650f4998, type: 3}
   dontPopEndGamePannel: 0
   EventAC: {fileID: 4239203804951855619}
+  NoDebateEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1235006828667252604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1130,6 +1136,9 @@ MonoBehaviour:
   generalEventTrigger: {fileID: 4784147030635602390}
   InactiveGameobjs: []
   ActiveGameobjs: []
+  EventIfNoDuty:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4784147030635602390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1155,6 +1164,9 @@ MonoBehaviour:
   endGamePannel: {fileID: 1808533205442087187, guid: a2363c9350157ea4a89f6d51650f4998, type: 3}
   dontPopEndGamePannel: 0
   EventAC: {fileID: 4438666702166827141}
+  NoDebateEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1397509014865671624
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1344,6 +1356,24 @@ MonoBehaviour:
       luaWizardIndex: 0
       lastEvaluationValue: 0
     target: {fileID: 8241687853708083146}
+    state: 0
+  - condition:
+      luaConditions: []
+      questConditions: []
+      acceptedTags: []
+      acceptedGameObjects: []
+      luaWizardIndex: 0
+      lastEvaluationValue: 0
+    target: {fileID: 6624688979194783814}
+    state: 0
+  - condition:
+      luaConditions: []
+      questConditions: []
+      acceptedTags: []
+      acceptedGameObjects: []
+      luaWizardIndex: 0
+      lastEvaluationValue: 0
+    target: {fileID: 3925499285918591717}
     state: 0
   setEnabledActions: []
   setAnimatorStateActions: []
@@ -2410,6 +2440,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8997607238160959919}
   - component: {fileID: 8504920307651531415}
+  - component: {fileID: 6504686636161823497}
   m_Layer: 0
   m_Name: fail (2)
   m_TagString: Untagged
@@ -2441,6 +2472,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7689a50af0cc5a446b154be9571ef50a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6504686636161823497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490474402173503859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7cdaf179d5f39f448959d746fb3967e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1544358348838674208
@@ -2815,6 +2858,8 @@ Transform:
   - {fileID: 1109170995154016029}
   - {fileID: 7372118028512378895}
   - {fileID: 869383670463160742}
+  - {fileID: 6624688979194783814}
+  - {fileID: 3925499285918591717}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3401,6 +3446,9 @@ MonoBehaviour:
   generalEventTrigger: {fileID: 7526707779414381857}
   InactiveGameobjs: []
   ActiveGameobjs: []
+  EventIfNoDuty:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &7526707779414381857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3426,6 +3474,9 @@ MonoBehaviour:
   endGamePannel: {fileID: 1808533205442087187, guid: a2363c9350157ea4a89f6d51650f4998, type: 3}
   dontPopEndGamePannel: 0
   EventAC: {fileID: 1365415458251721218}
+  NoDebateEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2701008271485866633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3608,6 +3659,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6281430431015186491}
   - component: {fileID: 5931338322135561541}
+  - component: {fileID: 9130664314788437644}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -3666,6 +3718,21 @@ MonoBehaviour:
   Prestige: 200
   characterAwaitTribute: {fileID: 0}
   spawnAfterAway: {fileID: 0}
+--- !u!114 &9130664314788437644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2441716300345500323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4f79593041826e49a6167cf2af17303, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 5931338322135561541}
+  actions: 010000000100000001000000
+  index: -1
 --- !u!1 &2540801694453952299
 GameObject:
   m_ObjectHideFlags: 0
@@ -3829,9 +3896,9 @@ MonoBehaviour:
   LostEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8452598908354437597}
-        m_TargetAssemblyTypeName: GameLostEvent, Assembly-CSharp
-        m_MethodName: TriggerGameLost
+      - m_Target: {fileID: 269810815822586248}
+        m_TargetAssemblyTypeName: DeathEvent, Assembly-CSharp
+        m_MethodName: TriggerDeath
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6822,14 +6889,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1678788994073858909}
-  - component: {fileID: 3324151531042265319}
+  - component: {fileID: 8432290828327777018}
+  - component: {fileID: 7285112456436632338}
   m_Layer: 0
   m_Name: fail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1678788994073858909
 Transform:
   m_ObjectHideFlags: 0
@@ -6844,7 +6912,19 @@ Transform:
   m_Father: {fileID: 3046864629681493918}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3324151531042265319
+--- !u!114 &8432290828327777018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4478947755869264802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7cdaf179d5f39f448959d746fb3967e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7285112456436632338
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8049,6 +8129,55 @@ MonoBehaviour:
   Prestige: 200
   characterAwaitTribute: {fileID: 0}
   spawnAfterAway: {fileID: 0}
+--- !u!1 &6270765450058791024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3925499285918591717}
+  - component: {fileID: 8107046560736377129}
+  m_Layer: 0
+  m_Name: "\u7B49\u5F85"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &3925499285918591717
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6270765450058791024}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1965659508458029341}
+  m_RootOrder: 34
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8107046560736377129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6270765450058791024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57369139d5e1b094aa78cd5f76873e8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startCountOnEnable: 0
+  delayRounds: 2
+  gameObjects:
+  - {fileID: 9199174448610450549, guid: 8abc4fe30c132ef4fa210ddc1f0fd940, type: 3}
+  UsePlanedBlock: 0
+  PlanedBlock: 0
 --- !u!1 &6388077578545851065
 GameObject:
   m_ObjectHideFlags: 0
@@ -11628,9 +11757,9 @@ MonoBehaviour:
   LostEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8504920307651531415}
-        m_TargetAssemblyTypeName: GameLostEvent, Assembly-CSharp
-        m_MethodName: TriggerGameLost
+      - m_Target: {fileID: 6504686636161823497}
+        m_TargetAssemblyTypeName: DeathEvent, Assembly-CSharp
+        m_MethodName: TriggerDeath
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12245,6 +12374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4863410157447216573}
   - component: {fileID: 8452598908354437597}
+  - component: {fileID: 269810815822586248}
   m_Layer: 0
   m_Name: fail (1)
   m_TagString: Untagged
@@ -12276,6 +12406,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7689a50af0cc5a446b154be9571ef50a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &269810815822586248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8887889756267427205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7cdaf179d5f39f448959d746fb3967e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8945220830959075668
@@ -12520,6 +12662,52 @@ MonoBehaviour:
   m_hasQuestToOfferState: 4
   m_hasQuestButCannotOfferState: 0
   m_checkSinglePlayerJournal: 1
+--- !u!1 &9010573665792295925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6624688979194783814}
+  - component: {fileID: 6547542421689201456}
+  m_Layer: 0
+  m_Name: Next
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6624688979194783814
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9010573665792295925}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1965659508458029341}
+  m_RootOrder: 33
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6547542421689201456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9010573665792295925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66e9f83746c5c445bd1a49771da62ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextEvent: {fileID: 4408617022841829792, guid: 1420ae182e3c0294d8c143dd1bce33c3, type: 3}
+  waitForTurns: 0
+  ActiveOnEnable: 1
 --- !u!1 &9049634700750134773
 GameObject:
   m_ObjectHideFlags: 0
