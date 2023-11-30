@@ -130,7 +130,7 @@ public static class RandomCharacterNameSpawner
             "ÒÕÜÆ"
     };
     public static string maleName => firstNames[Random.Range(0, firstNames.Length - 1)] + maleLastNames[Random.Range(0, maleLastNames.Length - 1)];
-    public static string femaleName => firstNames[Random.Range(0, firstNames.Length - 1)] + maleLastNames[Random.Range(0, femaleLastNames.Length - 1)];
+    public static string femaleName => firstNames[Random.Range(0, firstNames.Length - 1)] + femaleLastNames[Random.Range(0, femaleLastNames.Length - 1)];
     public static List<CharacterArtCode> maleCharacterArtCode = new List<CharacterArtCode>
         {
             CharacterArtCode.ÄĞÊéÉú,
