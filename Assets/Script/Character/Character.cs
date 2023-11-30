@@ -422,10 +422,7 @@ public class Character : MonoBehaviour, IRound
             cacList = cacList.Where(x => x != CharacterArtCode.ÀîÔ¬Ä° && x != CharacterArtCode.ÄÐµ¶¿Í).ToArray();
             if (characterArtCode == CharacterArtCode.ÀîÔ¬Ä° && characterType != CharacterType.Main)
                 characterArtCode = cacList[UnityEngine.Random.Range(0, cacList.Length)];
-            if (CharacterName == string.Empty)
-            {
-                CharacterName = RandomCharacterNameSpawner.SpawnCharacterName(characterArtCode);
-            }
+            
             if (hireStage == HireStage.InCity)
             {
 
@@ -468,6 +465,10 @@ public class Character : MonoBehaviour, IRound
                 SpawnTagOnStart(rarerity);
                 UpdateVariables();
             }
+        }
+        if (CharacterName == string.Empty)
+        {
+            CharacterName = RandomCharacterNameSpawner.SpawnCharacterName(characterArtCode);
         }
     }
     public DefaultInGameAI SpawnInGameAI()
