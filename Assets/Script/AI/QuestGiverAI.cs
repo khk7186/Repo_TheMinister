@@ -82,8 +82,8 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
             return;
         }
         var DSC = FindObjectOfType<DialogueSystemController>();
-        DSC.initialDatabase = Resources.Load<DialogueDatabase>($"Conversions/任务");
-        DSC.Awake();
+        //DSC.initialDatabase = Resources.Load<DialogueDatabase>($"Conversions/任务");
+        //DSC.Awake();
         StartConmunicate();
     }
     public string CorrectConversationBasedOnQuest()
@@ -101,7 +101,7 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
         bool sideQuest = (resultList[0] == "S");
         string type = sideQuest ? "支线任务/" : "阵营任务/";
         string chapter = sideQuest ? $"{resultList[1]}/" : string.Empty;
-        string form = "/";
+        string form = string.Empty;
         if (sideQuest)
         {
             switch (resultList[3])
