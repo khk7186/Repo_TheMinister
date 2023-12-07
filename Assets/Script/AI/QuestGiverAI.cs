@@ -101,7 +101,7 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
         bool sideQuest = (resultList[0] == "S");
         string type = sideQuest ? "支线任务/" : "阵营任务/";
         string chapter = sideQuest ? $"{resultList[1]}/" : string.Empty;
-        string form = string.Empty;
+        string form = "/";
         if (sideQuest)
         {
             switch (resultList[3])
