@@ -52,7 +52,7 @@ public class ChapterCounter : MonoBehaviour
         foreach (QuestGiverAI ai in Instance.InGameQuestAI)
         {
             if (ai != null)
-                Destroy(ai.gameObject);
+                Destroy(ai.GetComponentInParent<QuestGiverPointer>().gameObject);
         }
     }
     public void Awake()
