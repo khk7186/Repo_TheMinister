@@ -20,7 +20,7 @@ public class ItemRequstAction : MonoBehaviour
         Enum.TryParse(itemName, out item);
         ItemInventory inventory = FindObjectOfType<ItemInventory>();
         bool carryItem = inventory.CheckItem(item);
-        bool enoughItem = inventory.ItemDict[item] >= requestCount;
+        bool enoughItem = carryItem ? inventory.ItemDict[item] >= requestCount : false;
         if (carryItem && enoughItem)
         {
             inventory.RemoveItem(item);
