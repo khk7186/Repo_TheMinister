@@ -863,7 +863,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7706260950033482436}
   - component: {fileID: 7706260950033482437}
-  - component: {fileID: 6684144313649174599}
   - component: {fileID: 2612412474754312055}
   m_Layer: 0
   m_Name: uncollected
@@ -938,75 +937,6 @@ MonoBehaviour:
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
   exclusive: 1
-  replace: 0
-  skipIfNoValidEntries: 0
-  stopConversationOnTriggerExit: 0
-  stopConversationIfTooFar: 0
-  maxConversationDistance: 5
-  monitorConversationDistanceFrequency: 1
-  showCursorDuringConversation: 0
-  pauseGameDuringConversation: 0
-  setActiveActions: []
-  setEnabledActions: []
-  setAnimatorStateActions: []
-  onExecute:
-    m_PersistentCalls:
-      m_Calls: []
-  useConversationTitlePicker: 1
-  useBarkTitlePicker: 1
-  useQuestNamePicker: 1
-  selectedDatabase: {fileID: 11400000, guid: b3dc1c142e2b5ee489fac45b095ccd51, type: 2}
---- !u!114 &6684144313649174599
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7706260950033482439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trigger: 32
-  condition:
-    luaConditions:
-    - Variable["Assign"] == true
-    questConditions: []
-    acceptedTags: []
-    acceptedGameObjects: []
-    luaWizardIndex: -1
-    lastEvaluationValue: 0
-  setQuestState: 1
-  questName: 
-  questState: 0
-  setQuestEntryState: 0
-  questEntryNumber: 1
-  questEntryState: 0
-  luaCode: 
-  sequence: 
-  sequenceSpeaker: {fileID: 0}
-  sequenceListener: {fileID: 0}
-  waitOneFrameOnStartOrEnable: 1
-  alertMessage: 
-  textTable: {fileID: 0}
-  alertDuration: 0
-  sendMessages: []
-  barkSource: 0
-  barkConversation: 
-  barkText: 
-  barkTextSequence: 
-  barker: {fileID: 0}
-  barkTarget: {fileID: 0}
-  barkOrder: 0
-  allowBarksDuringConversations: 0
-  skipBarkIfNoValidEntries: 0
-  cacheBarkLines: 0
-  conversation: "\u91CD\u590D\u5BF9\u8BDD"
-  conversationConversant: {fileID: 0}
-  conversationActor: {fileID: 0}
-  startConversationEntryID: -1
-  exclusive: 0
   replace: 0
   skipIfNoValidEntries: 0
   stopConversationOnTriggerExit: 0
@@ -1491,6 +1421,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e3965579db3690948bf9884a42faeda1, type: 3}
+--- !u!224 &8716282954932883601 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8002943023702923905, guid: e3965579db3690948bf9884a42faeda1, type: 3}
+  m_PrefabInstance: {fileID: 1722168833551223312}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &8716282954511931510 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8002943024120730214, guid: e3965579db3690948bf9884a42faeda1, type: 3}
@@ -1562,11 +1497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &8716282954932883601 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8002943023702923905, guid: e3965579db3690948bf9884a42faeda1, type: 3}
-  m_PrefabInstance: {fileID: 1722168833551223312}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7236128204243950678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1699,6 +1629,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f9933953966d454a85e82a49fbe51b0, type: 3}
+--- !u!4 &2156153592259857719 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7814269828628949284, guid: 7f9933953966d454a85e82a49fbe51b0, type: 3}
+  m_PrefabInstance: {fileID: 8186962778631693331}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7029228443377415378 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1157769541505962177, guid: 7f9933953966d454a85e82a49fbe51b0, type: 3}
@@ -1710,8 +1645,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5ab667be3f09b54c9f2d67691a058ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &2156153592259857719 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7814269828628949284, guid: 7f9933953966d454a85e82a49fbe51b0, type: 3}
-  m_PrefabInstance: {fileID: 8186962778631693331}
-  m_PrefabAsset: {fileID: 0}
