@@ -39,6 +39,7 @@ public class ChapterCounter : MonoBehaviour
                 ChapterTwoIcon.SetActive(false);
             }
             LastChapterAIExitGame();
+            QuestAIManager.Instance.CloneList();
         }
     }
     public int count = 0;
