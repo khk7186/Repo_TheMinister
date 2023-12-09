@@ -60,7 +60,7 @@ MonoBehaviour:
   - id: 2
     fields:
     - title: Name
-      value: "\u9648\u4E91\u68A6"
+      value: "\u8D75\u5C71\u5DDD"
       type: 0
       typeString: 
     - title: Pictures
@@ -75,8 +75,8 @@ MonoBehaviour:
       value: False
       type: 2
       typeString: CustomFieldType_Boolean
-    portrait: {fileID: 2800000, guid: efab0a47000ed254498d0f1bef2f80b0, type: 3}
-    spritePortrait: {fileID: 21300000, guid: efab0a47000ed254498d0f1bef2f80b0, type: 3}
+    portrait: {fileID: 2800000, guid: ed05242b3bab42945aac00b9b85dbb1b, type: 3}
+    spritePortrait: {fileID: 21300000, guid: ed05242b3bab42945aac00b9b85dbb1b, type: 3}
     alternatePortraits: []
     spritePortraits: []
   items: []
@@ -85,7 +85,7 @@ MonoBehaviour:
   - id: 2
     fields:
     - title: Name
-      value: tryHadin
+      value: tryHandIn
       type: 0
       typeString: 
     - title: Initial Value
@@ -326,22 +326,10 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 
+      userScript: Variable["tryHandIn"] = true
       onExecute:
         m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 1157769541505962177, guid: e47c77927bed9ba469e97f8a2b3ae508, type: 3}
-            m_TargetAssemblyTypeName: ItemRequstAction, Assembly-CSharp
-            m_MethodName: HandInAction
-            m_Mode: 1
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
+          m_Calls: []
       canvasRect:
         serializedVersion: 2
         x: 18.63636
@@ -406,7 +394,7 @@ MonoBehaviour:
       canvasRect:
         serializedVersion: 2
         x: 500.54538
-        y: 786.545
+        y: 784.7268
         width: 160
         height: 30
     - id: 4
@@ -499,7 +487,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\u5927\u4EBA\uFF0C\u5C0F\u6C11\u8D75\u5C71\u5DDD\uFF0C\u4ECE\u5357\u65B9\u9003\u96BE\u800C\u6765\u3002"
+        value: "\u5927\u4EBA\uFF0C\u5C0F\u6C11\u8D75\u5C71\u5DDD\uFF0C\u4ECE\u5357\u65B9\u6765\uFF0C\u6253\u7B97\u5728\u4EAC\u57CE\u5B9A\u5C45\u3002"
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -539,7 +527,7 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 224.81818
+        x: 226.63635
         y: 212
         width: 160
         height: 30
@@ -968,7 +956,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\u90A3\u4F60\u8981\u600E\u4E48\u529E\u5462"
+        value: "\u90A3\u4F60\u53EB\u6211\u6240\u4E3A\u4F55\u4E8B\uFF1F"
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -1102,7 +1090,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\u662F\u5417\u7ED9\u6211\u770B\u770B"
+        value: "\u662F\u5417\u7ED9\u6211\u770B\u770B\uFF1F"
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -1169,8 +1157,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\u8FD9\u6837\uFF0C\u60A8\u7ED9\u6211\u627E\u6765\u4E00\u53EA<colour
-          #A52B7C>\u516B\u5B9D\u91CE\u9E2D</colour>\uFF0C\u6211\u7528\u8FD9\u624B\u91CC\u7684\u5B9D\u77F3\uFF0C\u4E0E\u4F60\u4EA4\u6362\u3002"
+        value: "\u8FD9\u6837\uFF0C\u542C\u95FB\u4EAC\u57CE\u6709\u8BB8\u591A\u7F8E\u98DF\uFF0C\u60A8\u7ED9\u6211\u627E\u6765\u4E00\u53EA<color=#A52B7C>\u516B\u5B9D\u91CE\u9E2D</color>\uFF0C\u6211\u7528\u8FD9\u624B\u91CC\u7684\u5B9D\u77F3\uFF0C\u4E0E\u4F60\u4EA4\u6362\u3002"
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -1666,7 +1653,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\u522B\u6025\uFF0C\u6211\u5B89\u6392\u53A8\u5B50\u53BB\u505A\u4E86\uFF01"
+        value: "\u7A0D\u5B89\u52FF\u8E81\uFF0C\u5F85\u6211\u53BB\u4E00\u8D9F\u9152\u697C\uFF01"
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -1841,8 +1828,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\u674E\u5927\u4EBA\uFF0C\u60A8\u627E\u5230...\u4E86 \u771F\u68D2
-          \u5B9D\u77F3\u662F\u4F60\u7684\u4E86"
+        value: "\u4E0D\u6127\u662F\u6210\u540D\u7F8E\u98DF\uFF0C\u8FD9\u9999\u6C14\uFF0C\u4E0D\u4E8F\uFF01\u4E0D\u4E8F\uFF01"
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -1882,8 +1868,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 108
-        y: 167
+        x: 82
+        y: 174
         width: 160
         height: 30
     - id: 2
@@ -1909,7 +1895,7 @@ MonoBehaviour:
         type: 0
         typeString: CustomFieldType_Text
       - title: Dialogue Text
-        value: "\u597D\u7684"
+        value: "\u6CA1\u60F3\u5230\u8D75\u5144\u5BF9\u7F8E\u98DF\u5982\u6B64\u6C89\u9189\u3002"
         type: 0
         typeString: CustomFieldType_Text
       - title: Sequence
@@ -1943,8 +1929,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 85
-        y: 318
+        x: 97
+        y: 319
         width: 160
         height: 30
     entryGroups: []

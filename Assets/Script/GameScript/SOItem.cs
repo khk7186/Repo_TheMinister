@@ -1772,7 +1772,7 @@ public class SOItem : ScriptableObject
         {ItemName.神气丹,"江湖武者中流传甚广的丹药。获得词条<color=#694F70>武功小成</color>"},
         {ItemName.养气筑基散,"江湖武者中流传甚广的丹药。获得词条<color=#694F70>武功小成</color>"},
         {ItemName.医圣的药箱,"古代医生遗留下的药箱。获得词条<color=#694F70>妙手丹心</color>"},
-        {ItemName.鸽血红,"色泽纯净如同燃烧的火。获得词条<color=#694F70>侵略入伙</color>"},
+        {ItemName.鸽血红,"色泽纯净如同燃烧的火。获得词条<color=#694F70>侵略如火</color>"},
         {ItemName.木佐绿,"苍翠刚劲，如文人雅士。获得词条<color=#694F70>仁人君子</color>"},
         {ItemName.撕风赤兔马,"赤兔马中可以撕裂飓风的存在。获得词条<color=#694F70>宝马良驹</color>"},
         {ItemName.亮云白龙驹,"传说此白马一出可和月亮比亮度 。获得词条<color=#694F70>宝马良驹</color>"},

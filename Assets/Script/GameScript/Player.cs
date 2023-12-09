@@ -772,6 +772,7 @@ public class Player : MonoBehaviour
     };
     public static Dictionary<ItemName, Tag> ItemToTag = new Dictionary<ItemName, Tag>
     {
+        {ItemName.长生不老药,Tag.长生不老},
         {ItemName.落日神弓,Tag.穿日},
         {ItemName.暴雨梨花针,Tag.无声},
         {ItemName.青龙方戟,Tag.青龙},
