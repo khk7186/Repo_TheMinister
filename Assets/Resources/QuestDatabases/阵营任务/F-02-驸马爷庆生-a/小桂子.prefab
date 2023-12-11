@@ -398,7 +398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9dedad596e2dc45a02ecd50f5c5481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuestID: "F-02-\u94F2\u9664\u5F02\u515A-h"
+  QuestID: "F-02-\u9A78\u9A6C\u7237\u5E86\u751F-a"
   QuestChainName: 
   QuestChainOrder: 0
   position: {x: 76.31, y: 52.6}
@@ -406,10 +406,15 @@ MonoBehaviour:
   right: 1
   _dialogueTriggerUncollected: {fileID: 7706260950033482437}
   _dialogueTriggerCollected: {fileID: 7706260949890951885}
+  _readyToFight: {fileID: 0}
+  _notReadyToFight: {fileID: 0}
   Assign: 0
-  QuestSpawnPref: {fileID: 8620146014711280809, guid: cd7caa866a3cbe7428ae8cb416f5f3a9, type: 3}
-  ReloadPref: {fileID: 6981625438791679559, guid: cc11d20fddcf0104480137fdc5f11abb, type: 3}
+  QuestSpawnPref: {fileID: 8620146014711280809, guid: d67f78dda55e15940a8e67fb4f29a47d, type: 3}
+  ReloadPref: {fileID: 6981625438791679559, guid: 3346ad49e9d60054eab228f5c0f0d5a5, type: 3}
   triggered: 0
+  battleQuest: 0
+  AfterShow: 0
+  battleType: 0
 --- !u!70 &36357328868516242
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -686,6 +691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: "\u9752\u9152"
+  requestCount: 1
   questActive:
     m_PersistentCalls:
       m_Calls:
