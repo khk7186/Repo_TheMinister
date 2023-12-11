@@ -66,7 +66,7 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     public void BattleDialogueTrigger()
     {
         if (battleQuest == false) return;
-        bool ready = SelectOnDuty.GetOndutyAll(battleType).Count >= 0;
+        bool ready = SelectOnDuty.GetOndutyAll(battleType).Count > 0;
         if (ready) _readyToFight.OnUse();
         else _notReadyToFight.OnUse();
     }
