@@ -97,6 +97,8 @@ PlayableDirector:
     value: {fileID: 1062006354}
   - key: {fileID: 7713362465368459702, guid: c27451146424684498dfa0ce7ed259bd, type: 2}
     value: {fileID: 0}
+  - key: {fileID: 1773333144623477299, guid: c27451146424684498dfa0ce7ed259bd, type: 2}
+    value: {fileID: 3837171223481586725}
   m_ExposedReferences:
     m_References: []
 --- !u!95 &1062006354
@@ -183,6 +185,53 @@ MonoBehaviour:
   - {fileID: 8439437514823732798}
   - {fileID: 0}
   stayblock: 33
+--- !u!1 &3837171223481586725
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5952644844232367810}
+  - component: {fileID: 3532809482379721784}
+  m_Layer: 0
+  m_Name: DestroyFA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5952644844232367810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3837171223481586725}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9105859991127979350}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3532809482379721784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3837171223481586725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0165a88f3c75a049a2ba7b74b61d95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameObjectsToDestroy:
+  - {fileID: 3509383409204671765}
+  DestroyOnEnable: 1
+  destroyMainProfile: 
 --- !u!1 &8439437514823732798
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +310,7 @@ Transform:
   - {fileID: 36357329561348983}
   - {fileID: 1047245972}
   - {fileID: 352814961}
+  - {fileID: 5952644844232367810}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

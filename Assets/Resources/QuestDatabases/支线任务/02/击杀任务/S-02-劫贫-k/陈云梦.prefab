@@ -64,10 +64,15 @@ MonoBehaviour:
   right: 1
   _dialogueTriggerUncollected: {fileID: 7706260950033482437}
   _dialogueTriggerCollected: {fileID: 7706260949890951885}
+  _readyToFight: {fileID: 0}
+  _notReadyToFight: {fileID: 0}
   Assign: 0
   QuestSpawnPref: {fileID: 2531801622637003693, guid: c74fb74eef57f4745b9e6843af9dd17f, type: 3}
-  ReloadPref: {fileID: 0}
+  ReloadPref: {fileID: 2531801622637003693, guid: 4318f638721600747af5b4bfad0aa9e6, type: 3}
   triggered: 0
+  battleQuest: 0
+  AfterShow: 0
+  battleType: 0
 --- !u!70 &36357328868516242
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -658,7 +663,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: "\u5F00\u59CB"
+  conversation: dialogueTriggerUncollected
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
@@ -696,7 +701,7 @@ MonoBehaviour:
   trigger: 2
   condition:
     luaConditions:
-    - Variable["noItem"] == true
+    - Variable["Assign"] == true
     questConditions: []
     acceptedTags: []
     acceptedGameObjects: []
