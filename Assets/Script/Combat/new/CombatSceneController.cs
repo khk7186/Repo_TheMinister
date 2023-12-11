@@ -49,7 +49,7 @@ public class CombatSceneController : MonoBehaviour
     private void InitializeScene(Scene scene, LoadSceneMode mode)
     {
         InitializeEnvirment();
-        var trigger = FindObjectOfType<GeneralEventTrigger>();
+        var trigger = GeneralEventTrigger.CurrentGET;
         InitializeCCUs(trigger.playerCharacters);
         InitializeCCUs(trigger.enemyCharacters);
         var ccus = FindObjectsOfType<CombatCharacterUnit>();

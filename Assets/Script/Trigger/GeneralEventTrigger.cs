@@ -10,6 +10,7 @@ using UnityEngine.Events;
 
 public class GeneralEventTrigger : MonoBehaviour
 {
+    public static GeneralEventTrigger CurrentGET = null;
     public BattleType battleType = BattleType.Combat;
     //rewards
     public int moneyRewards = 0;
@@ -37,6 +38,7 @@ public class GeneralEventTrigger : MonoBehaviour
     public void TriggerEvent()
     {
         DontDestroyOnLoad(gameObject);
+        CurrentGET = this;
         switch (battleType)
         {
             case BattleType.Combat:
