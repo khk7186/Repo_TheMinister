@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1837681621971741078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8477176361863271448}
+  - component: {fileID: 3179575000580337046}
+  m_Layer: 0
+  m_Name: DestroyFA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &8477176361863271448
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837681621971741078}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7991225899040073922}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3179575000580337046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837681621971741078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0165a88f3c75a049a2ba7b74b61d95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameObjectsToDestroy:
+  - {fileID: 7991225900120905378}
+  DestroyOnEnable: 1
+  destroyMainProfile: 
 --- !u!95 &2502350426628064519
 Animator:
   serializedVersion: 3
@@ -52,6 +99,7 @@ Transform:
   - {fileID: 7991225899052931686}
   - {fileID: 7991225900120905379}
   - {fileID: 7991225899912109031}
+  - {fileID: 8477176361863271448}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -161,6 +209,8 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: -3984001132281278647, guid: c8c65f705952cce40a807a9bd321f6a4, type: 2}
     value: {fileID: 2502350426628064519}
+  - key: {fileID: -3174263769473088565, guid: c8c65f705952cce40a807a9bd321f6a4, type: 2}
+    value: {fileID: 1837681621971741078}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &7991225899912109030

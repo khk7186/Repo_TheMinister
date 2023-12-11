@@ -101,6 +101,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 1671755708871790641, guid: 62f74bf35a06a454b86178f94bf49dfa, type: 2}
     value: {fileID: 796208177145538819, guid: d6ea3ced51bdb4443afad41aff68c7b0, type: 3}
+  - key: {fileID: -666425395915626684, guid: 62f74bf35a06a454b86178f94bf49dfa, type: 2}
+    value: {fileID: 7524784110995044041}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &197307062657367557
@@ -199,6 +201,7 @@ Transform:
   - {fileID: 197307061451222798}
   - {fileID: 197307062657367558}
   - {fileID: 8152567240329282530}
+  - {fileID: 1135516834252192656}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -215,6 +218,53 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questGiverAI: {fileID: 36357328868516240, guid: d6ea3ced51bdb4443afad41aff68c7b0, type: 3}
+--- !u!1 &7524784110995044041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1135516834252192656}
+  - component: {fileID: 7334111215400105861}
+  m_Layer: 0
+  m_Name: DestroyFA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1135516834252192656
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7524784110995044041}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 197307062894159237}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7334111215400105861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7524784110995044041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0165a88f3c75a049a2ba7b74b61d95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameObjectsToDestroy:
+  - {fileID: 197307062657367557}
+  DestroyOnEnable: 1
+  destroyMainProfile: 
 --- !u!1001 &8188272522024772209
 PrefabInstance:
   m_ObjectHideFlags: 0
