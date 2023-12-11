@@ -63,6 +63,13 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
         if (battleQuest == false) return;
         AfterShow = true;
     }
+    public void BattleDialogueTrigger()
+    {
+        if (battleQuest == false) return;
+        bool ready = SelectOnDuty.GetOndutyAll(battleType).Count >= 0;
+        if (ready) _readyToFight.OnUse();
+        else _notReadyToFight.OnUse();
+    }
     protected virtual void StartConmunicate()
     {
         var DSC = FindObjectOfType<DialogueSystemController>();
@@ -77,9 +84,7 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
             }
             else
             {
-                bool ready = SelectOnDuty.GetOndutyAll(battleType).Count >= 0;
-                if (ready) _readyToFight.OnUse();
-                else _notReadyToFight.OnUse();
+                BattleDialogueTrigger();
             }
         }
         else
