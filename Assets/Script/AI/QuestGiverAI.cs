@@ -58,6 +58,11 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
         }
         StartCoroutine(DisappearAfterQuestSign());
     }
+    public void AssignShow()
+    {
+        if (battleQuest == false) return;
+        AfterShow = true;
+    }
     protected virtual void StartConmunicate()
     {
         var DSC = FindObjectOfType<DialogueSystemController>();
