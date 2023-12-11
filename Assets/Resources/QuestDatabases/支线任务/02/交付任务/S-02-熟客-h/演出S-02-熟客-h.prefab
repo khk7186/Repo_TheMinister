@@ -116,6 +116,8 @@ PlayableDirector:
     value: {fileID: 204994631119784229}
   - key: {fileID: 0}
     value: {fileID: 0}
+  - key: {fileID: -1252394629358523499, guid: 4274e6c4f507c09419163a1f66a58b75, type: 2}
+    value: {fileID: 8844163349462122581}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &204994629642959444
@@ -150,6 +152,7 @@ Transform:
   - {fileID: 204994630840663736}
   - {fileID: 204994631244389668}
   - {fileID: 204994629459902154}
+  - {fileID: 6460627661598932856}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -262,6 +265,53 @@ MonoBehaviour:
   - {fileID: 204994629529754396}
   - {fileID: 204994630840663738}
   stayblock: 42
+--- !u!1 &8844163349462122581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6460627661598932856}
+  - component: {fileID: 5131652588696092876}
+  m_Layer: 0
+  m_Name: DestroyFA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6460627661598932856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844163349462122581}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 204994629642959445}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5131652588696092876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8844163349462122581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0165a88f3c75a049a2ba7b74b61d95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameObjectsToDestroy:
+  - {fileID: 204994631244389671}
+  DestroyOnEnable: 1
+  destroyMainProfile: 
 --- !u!1001 &204994630234394212
 PrefabInstance:
   m_ObjectHideFlags: 0
