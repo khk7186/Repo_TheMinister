@@ -63,6 +63,53 @@ MonoBehaviour:
   goToActive:
   - {fileID: 8443889191940063401}
   stayblock: 28
+--- !u!1 &7983951208607624337
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5795257778591591361}
+  - component: {fileID: 3569133399243708014}
+  m_Layer: 0
+  m_Name: DestroyFA
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5795257778591591361
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7983951208607624337}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9105859991127979350}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3569133399243708014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7983951208607624337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0165a88f3c75a049a2ba7b74b61d95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameObjectsToDestroy:
+  - {fileID: 3509383409204671765}
+  DestroyOnEnable: 1
+  destroyMainProfile: 
 --- !u!1 &8443889191940063401
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,6 +160,10 @@ PlayableDirector:
     value: {fileID: 391339959760828349}
   - key: {fileID: -5345247894206075946, guid: 3aaaf19ea021b3e49943ccf4774a4cd9, type: 2}
     value: {fileID: 9170348551682147766}
+  - key: {fileID: -1177993391430003834, guid: 3aaaf19ea021b3e49943ccf4774a4cd9, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -6085969367786241499, guid: 3aaaf19ea021b3e49943ccf4774a4cd9, type: 2}
+    value: {fileID: 7983951208607624337}
   m_ExposedReferences:
     m_References:
     - a940f17968c143c4b85b6e5928f08dc3: {fileID: 0}
@@ -151,6 +202,7 @@ Transform:
   - {fileID: 3948432975530407067}
   - {fileID: 427696084649812971}
   - {fileID: 4883094351384162715}
+  - {fileID: 5795257778591591361}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
