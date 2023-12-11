@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class ReciveCurrencyNotify : MonoBehaviour
 {
     public int Money;
-    public int Prestige;
+    public int Pressure;
     public int Influence;
+
 
     public RectTransform MoneyHolderTransform;
     public RectTransform PrestigeHolderTransform;
@@ -23,10 +24,10 @@ public class ReciveCurrencyNotify : MonoBehaviour
             MoneyHolderTransform.gameObject.SetActive(true);
             MoneyText.text = Money.ToString();
         }
-        if (Prestige != 0)
+        if (Pressure != 0)
         {
             PrestigeHolderTransform.gameObject.SetActive(true);
-            PrestigeText.text = Prestige.ToString();
+            PrestigeText.text = Pressure.ToString();
         }
         if (Influence != 0)
         {
@@ -38,7 +39,7 @@ public class ReciveCurrencyNotify : MonoBehaviour
     {
         var inv = FindObjectOfType<CurrencyInventory>();
         inv.Money += Money;
-        inv.Prestige += Prestige;
+        PressureEventHandler.OnPressureChange(Pressure);
         inv.Influence += Influence;
         CurrencyInventory.SetCurrencyUI();
     }
