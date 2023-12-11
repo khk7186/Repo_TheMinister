@@ -15,10 +15,15 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     public bool right;
     public DialogueSystemTrigger _dialogueTriggerUncollected;
     public DialogueSystemTrigger _dialogueTriggerCollected;
+    public DialogueSystemTrigger _readyToFight = null;
+    public DialogueSystemTrigger _notReadyToFight = null;
     public bool Assign = false;
     public GameObject QuestSpawnPref;
     public GameObject ReloadPref;
     public bool triggered = false;
+    public bool battleQuest = false;
+    public bool AfterShow = false;
+    public OndutyType battleType = OndutyType.Combat;
     protected void Awake()
     {
         GetComponent<SideChanger>().ChangeSideViaData(front, right);
@@ -60,7 +65,17 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
         DSC.Awake();
         if (!Assign)
         {
-            _dialogueTriggerUncollected.OnUse();
+            if (AfterShow == false || battleQuest == false)
+            {
+                _dialogueTriggerUncollected.OnUse();
+                AfterShow = true;
+            }
+            else
+            {
+                bool ready = SelectOnDuty.GetOndutyAll(battleType).Count >= 0;
+                if (ready) _readyToFight.OnUse();
+                else _notReadyToFight.OnUse();
+            }
         }
         else
         {
