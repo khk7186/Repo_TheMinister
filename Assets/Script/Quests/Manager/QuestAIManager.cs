@@ -98,7 +98,8 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     {
         foreach (var aqg in ActiveQuestsGivers)
         {
-            Destroy(aqg.transform.parent.gameObject);
+            if (aqg != null)
+                Destroy(aqg.transform.parent.gameObject);
         }
     }
     public void Save(GameSave gameSave)
