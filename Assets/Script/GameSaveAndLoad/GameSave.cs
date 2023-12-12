@@ -35,9 +35,12 @@ namespace SaveSystem
 
         //Quest AI Manager Data
         public QuestChainStateWrap questChainStateWrapper = null;
-        public List<QuestGiverAI> InactiveQuestGivers;
-        public List<QuestGiverAI> UntriggeredQuestGivers = new List<QuestGiverAI>();
-        public List<QuestGiverAI> TriggeredQuestGivers = new List<QuestGiverAI>();
+        //public List<QuestGiverAI> InactiveQuestGivers;
+        public List<string> InactiveQuestGiverID = new List<string>();
+        //public List<QuestGiverAI> UntriggeredQuestGivers = new List<QuestGiverAI>();
+        public List<string> UntriggeredQuestGiverID = new List<string>();
+        //public List<QuestGiverAI> TriggeredQuestGivers = new List<QuestGiverAI>();
+        public List<string> TriggeredQuestGiverID = new List<string>();
 
         //QuestMachine Data
         [SerializeField]

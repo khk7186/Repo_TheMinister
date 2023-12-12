@@ -106,20 +106,22 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     {
         //save quest chain states
         gameSave.questChainStateWrapper = subQuestDB.CURRENT.Clone() as QuestChainStateWrap;
-        gameSave.InactiveQuestGivers = InactiveQuestGivers;
+        //gameSave.InactiveQuestGivers = InactiveQuestGivers;
 
         //save quest current states and showed quest gameobjects.
         foreach (var questGiver in ActiveQuestsGivers)
         {
             if (questGiver.triggered)
             {
-                gameSave.TriggeredQuestGivers.Add
-                    (CurrentQuestList.questGivers.Find(x => x.QuestID == questGiver.QuestID));
+                //gameSave.TriggeredQuestGivers.Add
+                //    (CurrentQuestList.questGivers.Find(x => x.QuestID == questGiver.QuestID));
+                gameSave.TriggeredQuestGiverID.Add(questGiver.QuestID);
             }
             else
             {
-                gameSave.UntriggeredQuestGivers.Add
-                    (CurrentQuestList.questGivers.Find(x => x.QuestID == questGiver.QuestID));
+                //gameSave.UntriggeredQuestGivers.Add
+                //    (CurrentQuestList.questGivers.Find(x => x.QuestID == questGiver.QuestID));
+                gameSave.UntriggeredQuestGiverID.Add(questGiver.QuestID);
             }
         }
     }
@@ -127,18 +129,19 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     public void Load(GameSave gameSave)
     {
         subQuestDB.CURRENT = gameSave.questChainStateWrapper;
-        InactiveQuestGivers = new List<QuestGiverAI>(gameSave.InactiveQuestGivers);
+        var originInactive = subQuestDB.QUEST_GIVER_BY_ORDER[gameSave.chapter].questGivers.Where(x => gameSave.InactiveQuestGiverID.Contains(x.QuestID));
+        InactiveQuestGivers = new List<QuestGiverAI>(originInactive);
 
         ActiveQuestsGivers = new List<QuestGiverAI>();
 
-        var untriggereds = gameSave.UntriggeredQuestGivers;
+        var untriggereds = subQuestDB.QUEST_GIVER_BY_ORDER[gameSave.chapter].questGivers.Where(x => gameSave.UntriggeredQuestGiverID.Contains(x.QuestID));
         foreach (var untriggered in untriggereds)
         {
             var clone = Instantiate(untriggered.QuestSpawnPref, transform);
             ActiveQuestsGivers.Add(clone.GetComponent<QuestGiverPointer>().questGiverAI);
         }
 
-        var triggereds = gameSave.TriggeredQuestGivers;
+        var triggereds = subQuestDB.QUEST_GIVER_BY_ORDER[gameSave.chapter].questGivers.Where(x => gameSave.TriggeredQuestGiverID.Contains(x.QuestID));
         foreach (var triggered in triggereds)
         {
             var clone = Instantiate(triggered.ReloadPref, transform);

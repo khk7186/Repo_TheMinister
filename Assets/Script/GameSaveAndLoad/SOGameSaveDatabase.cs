@@ -1,5 +1,6 @@
 using SaveSystem;
 using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,5 +15,16 @@ public class SOGameSaveDatabase : ScriptableObject
     {
         gameSaves.RemoveAll(x => x == null);
         return gameSaves;
+    }
+    public void FindAllSaves()
+    {
+        gameSaves.Clear();
+        string path = $"{Application.persistentDataPath}/Save";
+        string[] jsonFiles = System.IO.Directory.GetFiles(path, "*.json");
+        foreach (string file in jsonFiles)
+        {
+            string jsonData = System.IO.File.ReadAllText(file);
+            gameSaves.Add(DeserializeSave.LoadSave(jsonData));
+        }
     }
 }

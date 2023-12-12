@@ -28,6 +28,10 @@ namespace SaveSystem
 
         public GameEventManager gameEventManager = null;
         public SOMainGameEventDatabase gameEventDatabase = null;
+        private void Start()
+        {
+            GameSaveDatabase.FindAllSaves();
+        }
         public void LoadCharacters()
         {
             foreach (SerializedCharacter target in gameSave.playerOwnedCharacters)
@@ -125,10 +129,19 @@ namespace SaveSystem
                 save.saveName = SaveName;
             }
             GameSaveDatabase.gameSaves.Add(save);
+            SerializeSave.SaveData(save);
         }
 
         public void DeleteGame(GameSave save)
         {
+            string path = $"{Application.persistentDataPath}/Save";
+            string filePath = $"{path}/{save.saveTime.Replace("/", string.Empty).Replace(":", string.Empty).Replace(" ", string.Empty)}.json";
+            Debug.Log(filePath);
+            if (System.IO.File.Exists(filePath))
+            {
+                Debug.Log("exist");
+                System.IO.File.Delete(filePath);
+            }
             GameSaveDatabase.gameSaves.Remove(save);
         }
     }
