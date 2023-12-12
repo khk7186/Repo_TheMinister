@@ -16,8 +16,7 @@ public class ZeroOutCharacter : MonoBehaviour
         }
         if (loyalty)
         {
-            character.loyalty = 0;
-            character.TryRetire();
+            character.StartCoroutine(character.TryLeavePlayer());
         }
     }
 }
