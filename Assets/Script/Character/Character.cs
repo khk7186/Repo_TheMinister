@@ -422,7 +422,7 @@ public class Character : MonoBehaviour, IRound
             cacList = cacList.Where(x => x != CharacterArtCode.ÀîÔ¬Ä° && x != CharacterArtCode.ÄÐµ¶¿Í).ToArray();
             if (characterArtCode == CharacterArtCode.ÀîÔ¬Ä° && characterType != CharacterType.Main)
                 characterArtCode = cacList[UnityEngine.Random.Range(0, cacList.Length)];
-            
+
             if (hireStage == HireStage.InCity)
             {
 
@@ -731,6 +731,7 @@ public class Character : MonoBehaviour, IRound
         yield return new WaitUntil(() => (map.Day == targetDay) && (map.DayTime == targetTime));
         hireStage = HireStage.Hired;
         TryRetire();
+        yield return new WaitForFixedUpdate();
         if (hireStage == HireStage.Hired) TryDeath();
         if (hireStage == HireStage.Hired) CurrencyInvAnimationManager.Instance.PrestigeChange(1);
         if (spawnAfterAway != null) Instantiate(spawnAfterAway);
@@ -759,8 +760,14 @@ public class Character : MonoBehaviour, IRound
             hireStage = HireStage.Hired;
         }
     }
+    public IEnumerator TryLeavePlayer()
+    {
+        yield return StartCoroutine(TryRetire());
+        if (hireStage == HireStage.Hired)
+            StartCoroutine(TryDeath());
+    }
 
-    public void TryRetire()
+    public IEnumerator TryRetire()
     {
         if (loyalty <= 0)
         {
@@ -768,8 +775,9 @@ public class Character : MonoBehaviour, IRound
             transform.parent = GameObject.FindGameObjectWithTag("InGameCharacterInventory").transform;
             LostCharacterAlertManager.CallRetireAlert(this);
         }
+        yield return null;
     }
-    public void TryDeath()
+    public IEnumerator TryDeath()
     {
         if (health <= 0)
         {
@@ -777,6 +785,7 @@ public class Character : MonoBehaviour, IRound
             transform.parent = GameObject.FindGameObjectWithTag("InGameCharacterInventory").transform;
             LostCharacterAlertManager.CallDeathAlert(this);
         }
+        yield return null;
     }
     public IEnumerator TryMergeTags(bool Changed = true)
     {
