@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class GameSaveUIController : MonoBehaviour
 {
     public SaveAndLoadManager Manager => FindObjectOfType<SaveAndLoadManager>();
+    public SOGameSaveDatabase GameSaveDatabase = null;
     public List<GameSaveUI> pages;
     public Transform pageHolder;
     public GameSaveUI pageTemp;
@@ -25,10 +26,10 @@ public class GameSaveUIController : MonoBehaviour
         Reset();
         pageTemp.gameObject.SetActive(false);
         var manager = Manager;
-        if (manager == null) return;
-        var saveDB = manager.GameSaveDatabase;
-        if (saveDB == null) return;
-        var saves = saveDB.OutputGameSaves();
+        if (manager != null) GameSaveDatabase = manager.GameSaveDatabase;
+        else GameSaveDatabase.FindAllSaves();
+        if (GameSaveDatabase == null) return;
+        var saves = GameSaveDatabase.OutputGameSaves();
         saves.Reverse();
         SetPages(saves);
         pages[0].gameObject.SetActive(true);
