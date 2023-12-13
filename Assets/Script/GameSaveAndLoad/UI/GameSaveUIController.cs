@@ -2,6 +2,7 @@ using SaveSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameSaveUIController : MonoBehaviour
@@ -30,16 +31,17 @@ public class GameSaveUIController : MonoBehaviour
         else GameSaveDatabase.FindAllSaves();
         if (GameSaveDatabase == null) return;
         var saves = GameSaveDatabase.OutputGameSaves();
-        saves.Reverse();
+        //saves.Reverse();
         SetPages(saves);
         pages[0].gameObject.SetActive(true);
         ButtonCheck();
     }
     public void SetPages(List<GameSave> saves)
     {
+        bool mainMenu = SceneManager.GetActiveScene().buildIndex == 0;
         pageIndex = 0;
         int pageCount = (saves.Count + 1) / 4;
-        if ((saves.Count + 1) % 4 > 0) pageCount++;
+        if ((saves.Count + 1) % 4 > 0 && !mainMenu) pageCount++;
 
         int saveIndex = 0;
         for (int i = 0; i < pageCount; i++)
@@ -50,26 +52,28 @@ public class GameSaveUIController : MonoBehaviour
             if (saveIndex < saves.Count)
             {
                 saveList.Add(saves[saveIndex]);
+                saveIndex += 1;
             }
-            if (saveIndex + 1 < saves.Count)
+            if (saveIndex < saves.Count)
             {
-                saveList.Add(saves[saveIndex + 1]);
+                saveList.Add(saves[saveIndex]);
+                saveIndex += 1;
             }
-            if (saveIndex + 2 < saves.Count)
+            if (saveIndex < saves.Count)
             {
-                saveList.Add(saves[saveIndex + 2]);
+                saveList.Add(saves[saveIndex]);
+                saveIndex += 1;
             }
             page.Setup(saveList);
-            saveIndex += 2;
-            if (i == 0)
+            if (i == 0 && !mainMenu)
             {
                 page.SetupFirst();
             }
             else
             {
-                if (saveIndex + 3 < saves.Count)
+                if (saveIndex < saves.Count)
                 {
-                    saveList.Add(saves[saveIndex + 3]);
+                    saveList.Add(saves[saveIndex]);
                     saveIndex += 1;
                 }
             }
