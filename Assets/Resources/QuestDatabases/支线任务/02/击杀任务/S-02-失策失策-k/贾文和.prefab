@@ -684,7 +684,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: "\u5F00\u59CB"
+  conversation: dialogueTriggerUncollected
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
@@ -721,8 +721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trigger: 2
   condition:
-    luaConditions:
-    - Variable["noItem"] == true
+    luaConditions: []
     questConditions: []
     acceptedTags: []
     acceptedGameObjects: []
@@ -774,7 +773,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 36357328868516240}
         m_TargetAssemblyTypeName: QuestGiverAI, Assembly-CSharp
-        m_MethodName: AssignTrue
+        m_MethodName: BattleDialogueTrigger
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
