@@ -17,11 +17,10 @@ GameObject:
   - component: {fileID: 6952774807238486312}
   - component: {fileID: 36357328868516241}
   - component: {fileID: 36357328868516254}
-  - component: {fileID: 1884288086}
   - component: {fileID: 1884288088}
   - component: {fileID: 6676276371382335774}
   m_Layer: 0
-  m_Name: "\u9A6C\u71D5\u9A9DReloard"
+  m_Name: "\u9A6C\u71D5\u9A9DReload"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,25 +187,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
---- !u!320 &1884288086
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 36357328868516245}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: c8c65f705952cce40a807a9bd321f6a4, type: 2}
-  m_InitialState: 1
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: -3984001132281278647, guid: c8c65f705952cce40a807a9bd321f6a4, type: 2}
-    value: {fileID: 1884288088}
-  m_ExposedReferences:
-    m_References: []
 --- !u!95 &1884288088
 Animator:
   serializedVersion: 3
@@ -604,7 +584,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: "\u4EFB\u52A1\u7ED3\u675F"
+  conversation: dialogueTriggerCollected
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
@@ -704,7 +684,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: "\u5F00\u59CB"
+  conversation: dialogueTriggerUncollected
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
