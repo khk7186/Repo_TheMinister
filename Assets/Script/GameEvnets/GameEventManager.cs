@@ -41,7 +41,7 @@ public class GameEventManager : MonoBehaviour, IDiceRollEvent
         DestroyCurrent();
     }
 
-    private void Start()
+    public void NewGame()
     {
         if (nextEvent != null)
             currentEvent = Instantiate(nextEvent, transform);

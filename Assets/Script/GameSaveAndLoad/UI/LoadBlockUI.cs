@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LoadBlockUI : MonoBehaviour
@@ -27,9 +28,16 @@ public class LoadBlockUI : MonoBehaviour
 
     public void Load()
     {
-        FindObjectOfType<SaveAndLoadManager>().ReloadMainScene(save);
-        Debug.Log("LogButton");
-        gameObject.SetActive(false);
+        bool OnMainScene = SceneManager.GetActiveScene().buildIndex == 1;
+        if (OnMainScene)
+        {
+            FindObjectOfType<SaveAndLoadManager>().ReloadMainScene(save);
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            FindObjectOfType<StartNewGame>().StartAGame(save);
+        }
     }
 
     public void Remove()
