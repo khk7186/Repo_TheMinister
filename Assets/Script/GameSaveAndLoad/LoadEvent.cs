@@ -71,6 +71,7 @@ namespace SaveSystem
                 }
             }
             manager.currencyInventory.MoneyLoad(save.Money);
+            manager.currencyInventory.PressureLoad(save.Pressure);
         }
         public static void LoadQuestMachine(GameSave save)
         {

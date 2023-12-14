@@ -38,5 +38,9 @@ public class CurrencyInventory : MonoBehaviour
     {
         Money = amount;
         FindObjectOfType<MainUI>().SetupMoney(Money);
+    } 
+    public void PressureLoad(int amount)
+    {
+        PressureEventHandler.SetPressureTo(amount);
     }
 }

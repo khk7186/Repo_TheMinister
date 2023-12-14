@@ -23,6 +23,11 @@ public static class PressureEventHandler
     {
         GameObject.FindObjectOfType<PressureView>()?.SetAddPerDay(pressureManager.pressureAddPerDay);
     }
+    public static void SetPressureTo(int Amount = 0)
+    {
+        pressureManager.pressure = Amount;
+        GameObject.FindObjectOfType<PressureView>()?.SetPercentage(pressureManager.pressure);
+    }
 
     private static int CalculatePressureChange(int origin, int changeAmount)
     {
