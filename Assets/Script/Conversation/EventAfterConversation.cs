@@ -115,6 +115,10 @@ public class EventAfterConversation : MonoBehaviour
             DialogueLua.SetVariable("tryHire", false);
         }
     }
+    private void OnDestroy()
+    {
+        
+    }
 
     internal void ChangeConversation()
     {
