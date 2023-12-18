@@ -46,8 +46,11 @@ public class EndGamePannel : MonoBehaviour
 
     private void SetPunishment()
     {
-        MoneyRewardText.text = $"{generalEventTrigger.moneyPunishment}";
-        PressureRewardText.text = $"+{generalEventTrigger.pressurePunishment}";
+        string symbol = "";
+        if (generalEventTrigger.moneyPunishment >0) symbol = "+";
+        MoneyRewardText.text = $"{symbol}{generalEventTrigger.moneyPunishment}";
+        if (generalEventTrigger.pressurePunishment < 0) symbol = "";
+        PressureRewardText.text = $"{symbol}{generalEventTrigger.pressurePunishment}";
     }
 
     private void SetLostSkin()
@@ -96,12 +99,16 @@ public class EndGamePannel : MonoBehaviour
 
     private void SetPressure()
     {
-        PressureRewardText.text = $"{generalEventTrigger.pressureRewards.ToString()}%";
+        string symbol = "";
+        if (generalEventTrigger.pressurePunishment > 0) symbol = "+";
+        PressureRewardText.text = $"{symbol}{generalEventTrigger.pressurePunishment.ToString()}%";
     }
 
     public void SetMoney()
     {
-        MoneyRewardText.text = $"+{generalEventTrigger.moneyRewards.ToString()}";
+        string symbol = "";
+        if (generalEventTrigger.moneyPunishment > 0) symbol ="+";
+        MoneyRewardText.text = $"{symbol}{generalEventTrigger.moneyRewards.ToString()}";
     }
     public void SetItem()
     {
