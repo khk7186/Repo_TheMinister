@@ -49,8 +49,7 @@ public class LoadBlockUI : MonoBehaviour
         }
         else
         {
-            FindObjectOfType<SaveAndLoadManager>().DeleteGame(save);
-            gameObject.SetActive(false);
+            DeleteGame(save);
         }
 
     }
