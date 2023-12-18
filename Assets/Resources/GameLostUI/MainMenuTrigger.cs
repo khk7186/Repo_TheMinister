@@ -1,3 +1,4 @@
+using SaveSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class MainMenuTrigger : MonoBehaviour
         DontDestroyOnLoad(canvas);
         var animation = Instantiate(Resources.Load<SceneTransController>(path), canvas.transform);
         animation.transDelegate = NextStep;
+        FindObjectOfType<SaveAndLoadManager>().GameReset();
         animation.Close();
     }
     IEnumerator NextStep()

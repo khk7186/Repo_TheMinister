@@ -58,6 +58,10 @@ namespace SaveSystem
             animation.transDelegate = ReloadGameSequence;
             animation.Close();
         }
+        public void GameReset()
+        {
+            StartCoroutine(ResetScene());
+        }
         public IEnumerator ResetScene()
         {
             inGameCharacterStorage.Reset();

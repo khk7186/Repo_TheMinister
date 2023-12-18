@@ -34,6 +34,7 @@ public class InteractAsset : MonoBehaviour, IDetailAble
     {
         AudioManager.Play("°´Å¥");
         if (Active == false) return;
+        if (ChapterCounter.Instance.Chapter == 3) return;
         if (IsPointerOver.IsPointerOverUIObject())
         {
             //Debug.Log("Clicked on UI");
@@ -73,7 +74,6 @@ public class InteractAsset : MonoBehaviour, IDetailAble
         BuildingName.color = ReachableColor;
         BuildingName.text = buildingNameText;
         BuildingName.gameObject.SetActive(true);
-
     }
     private void OnMouseOver()
     {

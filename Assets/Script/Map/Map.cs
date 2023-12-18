@@ -16,7 +16,7 @@ public class Map : MonoBehaviour, IDiceRollEvent
     public Grid movementGrid;
     public int mapCount => MovementGrid.EnemyInnerMovementBlocks.Count;
     private int PlayerNextBlockToMove = 0;
-    [SerializeField] private int PlayerCurrentBlock = 0;
+    [SerializeField] private int PlayerCurrentBlock = 69;
     [SerializeField] private Transform player;
     public Transform Player => player;
     [SerializeField] private float delayPerMove = 1f;
@@ -77,9 +77,12 @@ public class Map : MonoBehaviour, IDiceRollEvent
     public void ReloadPlayer()
     {
         Destroy(player.gameObject);
+        PlayerCurrentBlock = 69;
         player = Instantiate(Resources.Load<GameObject>("MainGame/ÀîÔ¬Ä°")).transform;
         PlayerAnimator = player.GetComponentInChildren<SkeletonMecanim>().GetComponent<Animator>();
         PlayerMovement = player.GetComponent<CharacterMovement>();
+        player.GetComponent<CharacterMovement>().finalBlock = 69;
+        player.GetComponent<CharacterMovement>().currentBlock = 69;
     }
     public void FindPlayer()
     {
