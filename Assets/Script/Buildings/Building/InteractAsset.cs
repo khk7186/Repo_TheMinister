@@ -50,6 +50,15 @@ public class InteractAsset : MonoBehaviour, IDetailAble
             return;
         }
         SetOnDetail(building.buildingType.ToString());
+        if (ChapterCounter.Instance.Chapter == 3)
+        {
+            GetComponent<Renderer>().material = unreachMaterial;
+            BuildingName.fontSize = 30f;
+            BuildingName.color = UnreachableColor;
+            BuildingName.text = $"无人营业";
+            BuildingName.gameObject.SetActive(true);
+            return;
+        }
         if (Active == false)
         {
             GetComponent<Renderer>().material = unreachMaterial;
