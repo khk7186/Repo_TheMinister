@@ -309,6 +309,12 @@ public class CombatCharacterUnit : MonoBehaviour
                     character.hireStage = HireStage.Defeated;
                     character.loyalty = 5;
                     RegularQuestEventHandler.WinCombatMessage();
+                    if (character.characterType == CharacterType.Roit)
+                    {
+                        RegularQuestEventHandler.WinCombatMessage();
+                        RoitInGameAI rc = character.InGameAI as RoitInGameAI;
+                        rc.DeathAction();
+                    }
                 }
             }
         }
