@@ -42,7 +42,27 @@ public class LoadBlockUI : MonoBehaviour
 
     public void Remove()
     {
-        FindObjectOfType<SaveAndLoadManager>().DeleteGame(save);
-        gameObject.SetActive(false);
+        bool OnMainScene = SceneManager.GetActiveScene().buildIndex == 1;
+        if (OnMainScene)
+        {
+            DeleteGame(save);
+        }
+        else
+        {
+            FindObjectOfType<SaveAndLoadManager>().DeleteGame(save);
+            gameObject.SetActive(false);
+        }
+
+    }
+    public void DeleteGame(GameSave save)
+    {
+        string path = $"{Application.persistentDataPath}/Save";
+        string filePath = $"{path}/{save.saveTime.Replace("/", string.Empty).Replace(":", string.Empty).Replace(" ", string.Empty)}.json";
+        Debug.Log(filePath);
+        if (System.IO.File.Exists(filePath))
+        {
+            Debug.Log("exist");
+            System.IO.File.Delete(filePath);
+        }
     }
 }
