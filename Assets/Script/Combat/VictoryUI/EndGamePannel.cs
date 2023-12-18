@@ -96,7 +96,7 @@ public class EndGamePannel : MonoBehaviour
 
     private void SetPressure()
     {
-        PressureRewardText.text = $"-{generalEventTrigger.pressureRewards.ToString()}%";
+        PressureRewardText.text = $"{generalEventTrigger.pressureRewards.ToString()}%";
     }
 
     public void SetMoney()
