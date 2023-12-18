@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -47,7 +48,7 @@ public class EndGamePannel : MonoBehaviour
     private void SetPunishment()
     {
         string symbol = "";
-        if (generalEventTrigger.moneyPunishment >0) symbol = "+";
+        if (generalEventTrigger.moneyPunishment > 0) symbol = "+";
         MoneyRewardText.text = $"{symbol}{generalEventTrigger.moneyPunishment}";
         if (generalEventTrigger.pressurePunishment < 0) symbol = "";
         PressureRewardText.text = $"{symbol}{generalEventTrigger.pressurePunishment}";
@@ -66,7 +67,7 @@ public class EndGamePannel : MonoBehaviour
     }
     private void SetLostEnemy()
     {
-        var lostEnemy = generalEventTrigger.enemyCharacters;
+        var lostEnemy = generalEventTrigger.LostCharacters.Where(x => x.hireStage != HireStage.Hired);
         TransformEx.Clear(LostEnemyHolder);
         foreach (var character in lostEnemy)
         {
@@ -79,7 +80,7 @@ public class EndGamePannel : MonoBehaviour
 
     private void SetLostAlly()
     {
-        var lostAlly = generalEventTrigger.LostCharacters;
+        var lostAlly = generalEventTrigger.LostCharacters.Where(x => x.hireStage == HireStage.Hired).ToList();
         TransformEx.Clear(LostAllyHolder);
         if (lostAlly == null || lostAlly.Count == 0)
         {
@@ -107,7 +108,7 @@ public class EndGamePannel : MonoBehaviour
     public void SetMoney()
     {
         string symbol = "";
-        if (generalEventTrigger.moneyPunishment > 0) symbol ="+";
+        if (generalEventTrigger.moneyPunishment > 0) symbol = "+";
         MoneyRewardText.text = $"{symbol}{generalEventTrigger.moneyRewards.ToString()}";
     }
     public void SetItem()

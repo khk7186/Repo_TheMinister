@@ -268,7 +268,7 @@ public class CombatCharacterUnit : MonoBehaviour
 
         if (IsFriend)
         {
-            var trigger = FindObjectOfType<GeneralEventTrigger>();
+            var trigger = GeneralEventTrigger.CurrentGET;
             trigger.LostCharacters.Add(character);
         }
         DestroyHealthBar();
