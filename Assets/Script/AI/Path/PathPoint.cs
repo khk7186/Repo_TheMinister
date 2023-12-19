@@ -15,6 +15,7 @@ public class PathPoint : MonoBehaviour
     public CircleCollider2D circleCollider;
     public short radius = 1;
     public float colliderRadius = 1;
+    public bool roit = false;
 
     private void Reset()
     {
@@ -29,7 +30,6 @@ public class PathPoint : MonoBehaviour
             circleCollider = gameObject.AddComponent<CircleCollider2D>();
         }
         circleCollider.radius = colliderRadius;
-
     }
 
     private void OnDrawGizmos()
@@ -49,6 +49,7 @@ public class PathPoint : MonoBehaviour
 
     public void OnNotify(object value, NotificationType notificationType)
     {
+        if (roit) return;
         float distance = CharacterMovement.playerSpeed * (int)value;
         float maxSpeed = PathManager.Instance.maxSpeed;
         radius = (short)(distance / maxSpeed);

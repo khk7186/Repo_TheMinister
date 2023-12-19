@@ -41,7 +41,6 @@ public class RoitInGameAI : DefaultInGameAI
     {
         try
         {
-
             transform.position = startPoint.transform.position;
         }
         catch (NullReferenceException)
@@ -64,7 +63,7 @@ public class RoitInGameAI : DefaultInGameAI
     public IEnumerator StopAndLaugh()
     {
         CharacterModelController controller = GetComponent<CharacterModelController>();
-        controller.SetTrigger("Attack");
+        controller.SetTrigger("Angry");
         controller.SetSkin("face-angry expression");
         yield return new WaitForSeconds(stayDuration);
     }
