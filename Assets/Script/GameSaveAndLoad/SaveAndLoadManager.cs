@@ -1,3 +1,4 @@
+using PixelCrushers;
 using PixelCrushers.QuestMachine.Wrappers;
 using System.Collections;
 using System.Collections.Generic;
@@ -64,6 +65,7 @@ namespace SaveSystem
         }
         public IEnumerator ResetScene()
         {
+            GameSaveDatabase.currentGameSave = null;
             inGameCharacterStorage.Reset();
             pathManager.Reset();
             roitManager.Reset();
@@ -100,6 +102,7 @@ namespace SaveSystem
             playerQuestJournal = player.GetComponent<QuestJournal>();
             GameSaveDatabase.currentGameSave = save;
             LoadEvent.Load(this, GameSaveDatabase.currentGameSave);
+            
         }
         public static void SetGameLoadMode(GameSave save)
         {

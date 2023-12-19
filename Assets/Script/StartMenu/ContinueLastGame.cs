@@ -20,7 +20,7 @@ public class ContinueLastGame : MonoBehaviour
     }
     public void Continue()
     {
-        FindObjectOfType<StartNewGame>().StartAGame(gameSave);
+        FindObjectOfType<StartNewGame>().StartAGameWithSave(gameSave);
     }
     private void OnDestroy()
     {

@@ -10,7 +10,7 @@ public class StartNewGame : MonoBehaviour
 {
     public MainEventUnitProfile startProfile = null;
     public GameSave gameSave = null;
-    public bool plainStart => gameSave == null;
+    public bool plainStart = true;
     private void OnEnable()
     {
         gameSave = null;
@@ -21,6 +21,7 @@ public class StartNewGame : MonoBehaviour
     }
     public void StartAGame()
     {
+        plainStart = true;
         string path = $"SceneTransPrefab/{SceneType.MainGame}/{SceneType.MainGame}Animation";
         var canvas = Instantiate(Resources.Load<Canvas>("SceneTransPrefab/Canvas"));
         DontDestroyOnLoad(canvas);
@@ -28,10 +29,16 @@ public class StartNewGame : MonoBehaviour
         animation.transDelegate = NextStep;
         animation.Close();
     }
-    public void StartAGame(GameSave Save)
+    public void StartAGameWithSave(GameSave Save)
     {
+        plainStart = false;
         gameSave = Save;
-        StartAGame();
+        string path = $"SceneTransPrefab/{SceneType.MainGame}/{SceneType.MainGame}Animation";
+        var canvas = Instantiate(Resources.Load<Canvas>("SceneTransPrefab/Canvas"));
+        DontDestroyOnLoad(canvas);
+        var animation = Instantiate(Resources.Load<SceneTransController>(path), canvas.transform);
+        animation.transDelegate = NextStep;
+        animation.Close();
     }
     IEnumerator NextStep()
     {
@@ -44,13 +51,17 @@ public class StartNewGame : MonoBehaviour
             var manager = FindObjectOfType<GameEventManager>();
             manager.nextEvent = startProfile;
             manager.NewGame();
+            yield return new WaitForSeconds(0.5f);
+            animation.Open();
         }
         else
         {
-            FindObjectOfType<SaveAndLoadManager>().LoadGame(gameSave);
-            yield return null;
+            //FindObjectOfType<SaveAndLoadManager>().LoadGame(gameSave);
+            var manager = FindObjectOfType<SaveAndLoadManager>();
+            yield return manager.ResetScene();
+            manager.LoadGame(gameSave);
+            yield return new WaitForSeconds(2);
+            animation.Open();
         }
-        yield return new WaitForSeconds(0.5f);
-        animation.Open();
     }
 }

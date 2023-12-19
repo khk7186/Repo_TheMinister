@@ -13,12 +13,13 @@ public class MainMenuTrigger : MonoBehaviour
         DontDestroyOnLoad(canvas);
         var animation = Instantiate(Resources.Load<SceneTransController>(path), canvas.transform);
         animation.transDelegate = NextStep;
-        FindObjectOfType<SaveAndLoadManager>().GameReset();
         animation.Close();
     }
     IEnumerator NextStep()
     {
         var animation = FindObjectOfType<SceneTransController>();
+        var manager = FindObjectOfType<SaveAndLoadManager>();
+        yield return manager.StartCoroutine(manager.ResetScene());
         yield return new WaitUntil(() => animation.transition.GetCurrentAnimatorStateInfo(0).IsName("Wait"));
         SceneManager.LoadScene(0);
         yield return WaitUntilSceneLoad.WaitUntilScene(1);

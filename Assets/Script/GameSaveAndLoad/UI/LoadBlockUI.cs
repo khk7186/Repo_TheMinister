@@ -36,7 +36,8 @@ public class LoadBlockUI : MonoBehaviour
         }
         else
         {
-            FindObjectOfType<StartNewGame>().StartAGame(save);
+            Debug.Log("Load");
+            FindObjectOfType<StartNewGame>().StartAGameWithSave(save);
         }
     }
 
