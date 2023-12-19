@@ -101,7 +101,7 @@ public class EndGamePannel : MonoBehaviour
     private void SetPressure()
     {
         string symbol = "";
-        if (generalEventTrigger.pressurePunishment > 0) symbol = "+";
+        //if (generalEventTrigger.pressurePunishment > 0) symbol = "+";
         PressureRewardText.text = $"{symbol}{generalEventTrigger.pressureRewards.ToString()}%";
     }
 

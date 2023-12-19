@@ -22,8 +22,8 @@ public class HotelUI : MonoBehaviour, ICharacterSelect
         Characters =
         new List<List<Character>>()
         {
-            new List<Character>(){ null},
-            new List<Character>(){ null,null},
+            new List<Character>(){ null,null,null,null,null},
+            new List<Character>(){ null,null,null,null,null},
             new List<Character>(){ null,null,null,null,null}
         };
     }
