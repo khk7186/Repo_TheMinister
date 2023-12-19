@@ -42,4 +42,8 @@ public class SOGameSaveDatabase : ScriptableObject
         }).ToList();
         gameSaves = sortedList;
     }
+    public GameSave FindLatest()
+    {
+        return gameSaves[0];
+    }
 }
