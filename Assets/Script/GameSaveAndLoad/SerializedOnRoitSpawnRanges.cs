@@ -40,12 +40,12 @@ namespace SaveSystem
                 SerializedCharacter.DeserializingTags(characterData, target);
                 SerializedCharacter.DeserializingStats(characterData, target);
                 var rcAI = (RoitInGameAI)target.InGameAI;
-                var pathManager = manager.pathManager;
-                var startPoint = pathManager.transform.Find(roitCharacterStartPoints[i]);
+                var startPoint = spawnRange.transform.Find(roitCharacterStartPoints[i]);
                 rcAI.startPoint = startPoint.GetComponent<PathPoint>();
                 spawnRange.takenStartPoint.Add(startPoint.GetComponent<PathPoint>());
-                var endPoint = pathManager.transform.Find(roitCharacterEndPoints[i]);
+                var endPoint = spawnRange.transform.Find(roitCharacterEndPoints[i]);
                 rcAI.startPoint = endPoint.GetComponent<PathPoint>();
+                rcAI.StartCoroutine(rcAI.OnStreetRator());
             }
         }
     }
