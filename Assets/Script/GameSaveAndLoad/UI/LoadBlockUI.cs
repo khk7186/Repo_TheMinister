@@ -46,10 +46,16 @@ public class LoadBlockUI : MonoBehaviour
         if (OnMainScene)
         {
             DeleteGame(save);
+            var targetRef = FindObjectOfType<SaveAndLoadManager>();
+            targetRef.GameSaveDatabase.gameSaves.Remove(save);
+            targetRef.GameSaveDatabase.FindAllSaves();
         }
         else
         {
             DeleteGame(save);
+            var targetRef = FindObjectOfType<GameSaveUIController>();
+            targetRef.GameSaveDatabase.gameSaves.Remove(save);
+            targetRef.GameSaveDatabase.FindAllSaves();
         }
 
     }
@@ -63,5 +69,8 @@ public class LoadBlockUI : MonoBehaviour
             Debug.Log("exist");
             System.IO.File.Delete(filePath);
         }
+
+        FindObjectOfType<GameSaveUIController>().Setup();
+
     }
 }

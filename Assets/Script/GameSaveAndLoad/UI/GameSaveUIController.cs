@@ -24,6 +24,10 @@ public class GameSaveUIController : MonoBehaviour
     }
     public void OnEnable()
     {
+        Setup();
+    }
+    public void Setup()
+    {
         Reset();
         pageTemp.gameObject.SetActive(false);
         var manager = Manager;
@@ -41,10 +45,11 @@ public class GameSaveUIController : MonoBehaviour
         bool mainMenu = SceneManager.GetActiveScene().buildIndex == 0;
         pageIndex = 0;
         int pageCount = (saves.Count + 1) / 4;
-        if ((saves.Count + 1) % 4 > 0 && !mainMenu) pageCount++;
+        if ((saves.Count + 1) / 4 > 0 && !mainMenu) pageCount++;
 
         int saveIndex = 0;
-        for (int i = 0; i < pageCount; i++)
+        Debug.Log(saves.Count);
+        for (int i = 0; i <= pageCount; i++)
         {
             var page = Instantiate(pageTemp, pageHolder);
             pages.Add(page);

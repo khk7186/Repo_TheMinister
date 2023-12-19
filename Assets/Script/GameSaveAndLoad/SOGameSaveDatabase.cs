@@ -15,7 +15,6 @@ public class SOGameSaveDatabase : ScriptableObject
 
     public List<GameSave> OutputGameSaves()
     {
-        gameSaves.RemoveAll(x => x == null);
         return gameSaves;
     }
     public void FindAllSaves()
