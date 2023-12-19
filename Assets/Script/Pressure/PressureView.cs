@@ -33,4 +33,8 @@ public class PressureView : MonoBehaviour
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(textWrapper);
     }
+    private void OnLevelWasLoaded(int level)
+    {
+        SetPercentage(PressureManager.Instance.pressure);
+    }
 }

@@ -7,18 +7,18 @@ using UnityEngine.UI;
 public class MoneyCollectPoint : MonoBehaviour
 {
     public static MoneyCollectManager manager => MoneyCollectManager.Instance;
-    public int value = 100;
     public MCPStateCheckHandler StateChecker;
     public bool OnRoit => StateChecker.onRoit;
+    public List<int> collectAmount = new List<int>() { 100, 100, 200, 0 };
     public int Value
     {
         get
         {
             if (OnRoit)
             {
-                return (int)(1f - manager.MoneyDecreaseOnRoit) * value;
+                return (int)(1f - manager.MoneyDecreaseOnRoit) * collectAmount[ChapterCounter.Instance.Chapter];
             }
-            return value;
+            return collectAmount[ChapterCounter.Instance.Chapter];
         }
     }
     public string Name = "…Ã––";
