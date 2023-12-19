@@ -77,8 +77,8 @@ public class GeneralEventTrigger : MonoBehaviour
             {
                 scene = 1;
                 StartCoroutine(JumpToScene(scene));
-                currencyInventory.MoneyAdd(gameTracker.moneyRewards);
-                PressureEventHandler.OnPressureChange(gameTracker.pressureRewards);
+                currencyInventory.MoneyAdd(moneyRewards);
+                PressureEventHandler.OnPressureChange(pressureRewards);
                 if (itemRewards.Count > 0)
                 {
                     ItemInventory itemInventory = FindObjectOfType<ItemInventory>();
@@ -146,7 +146,7 @@ public class GeneralEventTrigger : MonoBehaviour
                     pannel.Setup(this);
                 }
             }
-            foreach(var ch in LostCharacters)
+            foreach (var ch in LostCharacters)
             {
                 if (ch.hireStage == HireStage.Hired)
                 {

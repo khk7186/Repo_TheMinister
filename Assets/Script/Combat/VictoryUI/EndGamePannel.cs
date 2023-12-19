@@ -31,6 +31,7 @@ public class EndGamePannel : MonoBehaviour
         this.generalEventTrigger = generalEventTrigger;
         if (generalEventTrigger.gameTracker.gameWin)
         {
+            SetLostEnemy();
             SetWinSkin();
             SetMoney();
             SetPressure();
@@ -42,7 +43,6 @@ public class EndGamePannel : MonoBehaviour
         }
         SetItem();
         SetLostAlly();
-        SetLostEnemy();
     }
 
     private void SetPunishment()
@@ -102,7 +102,7 @@ public class EndGamePannel : MonoBehaviour
     {
         string symbol = "";
         if (generalEventTrigger.pressurePunishment > 0) symbol = "+";
-        PressureRewardText.text = $"{symbol}{generalEventTrigger.pressurePunishment.ToString()}%";
+        PressureRewardText.text = $"{symbol}{generalEventTrigger.pressureRewards.ToString()}%";
     }
 
     public void SetMoney()
@@ -132,8 +132,8 @@ public class EndGamePannel : MonoBehaviour
         var lostAlly = generalEventTrigger.LostCharacters;
         foreach (Character character in lostAlly)
         {
-            character.StartCoroutine( character.TryDeath());
-            character.StartCoroutine( character.TryRetire());
+            character.StartCoroutine(character.TryDeath());
+            character.StartCoroutine(character.TryRetire());
         }
     }
 }
