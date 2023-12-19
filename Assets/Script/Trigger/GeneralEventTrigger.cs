@@ -127,7 +127,6 @@ public class GeneralEventTrigger : MonoBehaviour
             {
                 yield return null;
             }
-            Debug.Log("Game Over");
             //Extra Event After Combat
             if (EventAC == null)
                 TryGetComponent(out EventAC);
@@ -145,6 +144,13 @@ public class GeneralEventTrigger : MonoBehaviour
                 {
                     var pannel = Instantiate(endGamePannel, canvas);
                     pannel.Setup(this);
+                }
+            }
+            foreach(var ch in LostCharacters)
+            {
+                if (ch.hireStage == HireStage.Hired)
+                {
+                    ch.TryDeath();
                 }
             }
         }
