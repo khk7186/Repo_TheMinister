@@ -27,7 +27,10 @@ namespace SaveSystem
             var inGameAI = character.SpawnInGameAI();
             inGameAI.Deserializing = true;
             var pm = UnityEngine.GameObject.FindObjectOfType<PathManager>().transform;
-            inGameAI.currentPathPoint = pm.Find(serializedInGameAI.pathPointName).GetComponent<PathPoint>();
+            if (serializedInGameAI.pathPointName != string.Empty)
+            {
+                inGameAI.currentPathPoint = pm.Find(serializedInGameAI.pathPointName).GetComponent<PathPoint>();
+            }
             inGameAI.SetLocation();
             inGameAI.GetComponent<SideChanger>().changeSide(serializedInGameAI.isFront, serializedInGameAI.isRight);
             return inGameAI;
