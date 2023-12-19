@@ -44,6 +44,7 @@ public class SOGameSaveDatabase : ScriptableObject
     }
     public GameSave FindLatest()
     {
+        if (gameSaves.Count < 0) return null;
         return gameSaves[0];
     }
 }
