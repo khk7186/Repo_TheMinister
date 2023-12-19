@@ -43,11 +43,11 @@ public class RoitSpawnRange : MonoBehaviour, IDiceRollEvent
     }
     public void DetectRangeVariable()
     {
-        var list = Physics2D.OverlapCircleAll(transform.position, PathPointRadius);
-        pathPoints = list.Where(p => p.tag == "PathPoint").ToArray()
-                                    .Select(x => x.GetComponent<PathPoint>()).ToArray();
+        //var list = Physics2D.OverlapCircleAll(transform.position, PathPointRadius);
+        //pathPoints = list.Where(p => p.tag == "PathPoint").ToArray()
+        //                            .Select(x => x.GetComponent<PathPoint>()).ToArray();
+        pathPoints = GetComponentsInChildren<PathPoint>();
     }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
