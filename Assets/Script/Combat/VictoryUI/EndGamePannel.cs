@@ -67,24 +67,31 @@ public class EndGamePannel : MonoBehaviour
     }
     private void SetLostEnemy()
     {
-        var lostEnemy = generalEventTrigger.LostCharacters.Where(x => x.hireStage != HireStage.Hired);
+        var lostEnemy = generalEventTrigger.enemyCharacters;
         TransformEx.Clear(LostEnemyHolder);
-        foreach (var character in lostEnemy)
+        if (lostEnemy == null || lostEnemy.Count == 0)
         {
-            var egpc = Instantiate(eGP_CharacterPrefab, LostEnemyHolder);
-            egpc.Setup(character.characterArtCode);
-            egpc.transform.localScale = Vector3.one;
-            egpc.SetState(true);
+            LostEnemyHolder.transform.parent.gameObject.SetActive(false);
+        }
+        else
+        {
+            foreach (Character character in lostEnemy)
+            {
+                var egpc = Instantiate(eGP_CharacterPrefab, LostEnemyHolder);
+                egpc.Setup(character.characterArtCode);
+                egpc.transform.localScale = Vector3.one;
+                egpc.SetState(true);
+            }
         }
     }
 
     private void SetLostAlly()
     {
-        var lostAlly = generalEventTrigger.LostCharacters.Where(x => x.hireStage == HireStage.Hired).ToList();
+        var lostAlly = generalEventTrigger.playerCharacters.Where(x => x.health <= 0).ToList();
         TransformEx.Clear(LostAllyHolder);
         if (lostAlly == null || lostAlly.Count == 0)
         {
-            LostAllyHolder.gameObject.SetActive(false);
+            LostAllyHolder.transform.parent.gameObject.SetActive(false);
         }
         else
         {
