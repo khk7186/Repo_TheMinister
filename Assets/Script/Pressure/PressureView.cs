@@ -18,7 +18,12 @@ public class PressureView : MonoBehaviour
     }
     public void SetAddPerDay(int amount)
     {
-        AddPerDayText.text = $"{amount}日增\r\n1点";
+        int add = PressureManager.Instance.pressureAddPerDay;
+        AddPerDayText.text = $"{amount}日增\r\n{add}点";
+        ForceLayout();
+    }
+    public void FixedUpdate()
+    {
         ForceLayout();
     }
     private void ForceLayout()
