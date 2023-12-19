@@ -38,6 +38,7 @@ public class ChapterCounter : MonoBehaviour
                 ChapterThreeIcon.SetActive(true);
                 ChapterTwoIcon.SetActive(false);
             }
+            FindObjectOfType<PressureView>().SetAddPerDay();
             LastChapterAIExitGame();
             QuestAIManager.Instance.CloneList();
         }

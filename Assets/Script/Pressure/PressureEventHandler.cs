@@ -21,7 +21,7 @@ public static class PressureEventHandler
     }
     public static void OnAddPerDayChange(int index)
     {
-        GameObject.FindObjectOfType<PressureView>()?.SetAddPerDay(pressureManager.pressureAddPerDay);
+        GameObject.FindObjectOfType<PressureView>()?.SetAddPerDay();
     }
     public static void SetPressureTo(int Amount = 0)
     {

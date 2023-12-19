@@ -9,17 +9,20 @@ public class PressureView : MonoBehaviour
     public RectTransform textWrapper;
     public Text PercentageText;
     public Text AddPerDayText;
-    
+    private void Start()
+    {
+        SetAddPerDay();
+    }
     public void SetPercentage(int percentage)
     {
         fillImage.fillAmount = percentage / 100f;
         PercentageText.text = $"{percentage}%";
         ForceLayout();
     }
-    public void SetAddPerDay(int amount)
+    public void SetAddPerDay()
     {
         int add = PressureManager.Instance.pressureAddPerDay;
-        AddPerDayText.text = $"{amount}日增\r\n{add}点";
+        AddPerDayText.text = $"日增\r\n<color=red>{add}</color>点";
         ForceLayout();
     }
     public void FixedUpdate()
