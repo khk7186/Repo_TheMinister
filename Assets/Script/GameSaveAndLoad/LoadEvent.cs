@@ -53,7 +53,7 @@ namespace SaveSystem
             var playerMovement = player.GetComponent<CharacterMovement>();
             playerMovement.currentBlock = save.currentBlock;
             playerMovement.finalBlock = save.currentBlock;
-             var playerSideChanger = player.GetComponent<SideChanger>();
+            var playerSideChanger = player.GetComponent<SideChanger>();
             playerSideChanger.changeSide(save.isFront, save.isRight);
             manager.map.SetPlayerPosition(save.currentBlock);
             manager.map.SetBuildings();
@@ -89,6 +89,12 @@ namespace SaveSystem
             gameEventManager.nextEvent = target;
             gameEventManager.timeRemain = save.MainEventRemainToShow;
             gameEventManager.ActiveNext(gameEventManager.nextEvent, gameEventManager.timeRemain);
+        }
+        public static void LoadDelayToSpawn(SaveAndLoadManager manager, GameSave save)
+        {
+            var spawnAfterAwayDB = Resources.Load<SOSpawnAfterAwayDB>("Data/SpawnAfterAwayDB");
+            var target = manager.gameEventDatabase.Find(save.delayToSpawn);
+            GameObject.Instantiate(target);
         }
     }
 }
