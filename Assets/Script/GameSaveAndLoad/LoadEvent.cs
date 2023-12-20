@@ -78,8 +78,7 @@ namespace SaveSystem
         }
         public static void LoadQuestMachine(GameSave save)
         {
-
-            PixelCrushers.SaveSystem.ApplySavedGameData(save.questMachineSave);
+            PixelCrushers.SaveSystem.ApplySavedGameData(PixelCrushers.SaveSystem.Deserialize<SavedGameData>(save.questMachineSave));
             //Debug.Log(save.questMachineSave);
             //PixelCrushers.QuestMachine.QuestJournal.
         }

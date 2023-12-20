@@ -44,7 +44,7 @@ namespace SaveSystem
 
         //QuestMachine Data
         [SerializeField]
-        public SavedGameData questMachineSave = new SavedGameData();
+        public string questMachineSave = string.Empty;
 
         public string currentMainEventName = string.Empty;
         public int MainEventRemainToShow = 0;

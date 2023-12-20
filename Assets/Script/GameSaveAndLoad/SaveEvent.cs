@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PixelCrushers;
 namespace SaveSystem
 {
     public static class SaveEvent
@@ -70,8 +71,8 @@ namespace SaveSystem
             //Save questMachine system
             //PixelCrushers.SaveSystem.BeforeSceneChange();
             //PixelCrushers.SaveSystem.SaveToSlot(0);
-            var origin = PixelCrushers.SaveSystem.RecordSavedGameData();
-            newGameSave.questMachineSave = (PixelCrushers.SavedGameData)origin.Clone();
+            string questMachineSave = PixelCrushers.SaveSystem.Serialize(PixelCrushers.SaveSystem.RecordSavedGameData());
+            newGameSave.questMachineSave = questMachineSave;
 
 
             //Save Chapter & background music
