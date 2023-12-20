@@ -112,6 +112,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         //save quest current states and showed quest gameobjects.
         foreach (var questGiver in ActiveQuestsGivers)
         {
+            if (questGiver == null) continue;
             if (questGiver.triggered)
             {
                 //gameSave.TriggeredQuestGivers.Add
