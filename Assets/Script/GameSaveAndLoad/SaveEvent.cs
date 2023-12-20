@@ -19,7 +19,6 @@ namespace SaveSystem
                 var saveData = SerializedCharacter.SerializingCharacter(character);
                 newGameSave.playerOwnedCharacters.Add(saveData);
             }
-
             //SaveInCityCharacters
             var incityCharacters = manager.inGameCharacterStorage.CurrentCharacters;
             foreach (Character character in incityCharacters)

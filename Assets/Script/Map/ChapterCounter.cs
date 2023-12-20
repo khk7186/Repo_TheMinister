@@ -24,15 +24,23 @@ public class ChapterCounter : MonoBehaviour
             PressureEventHandler.OnAddPerDayChange(value);
             if (count == 1)
             {
+                WarAssets.SetActive(false);
+                RegularAssets.SetActive(true);
                 ChapterOneIcon.SetActive(true);
+                ChapterTwoIcon.SetActive(false);
+                ChapterThreeIcon.SetActive(false);
             }
             else if (count == 2)
             {
+                WarAssets.SetActive(false);
+                RegularAssets.SetActive(true);
                 ChapterTwoIcon.SetActive(true);
                 ChapterOneIcon.SetActive(false);
+                ChapterThreeIcon.SetActive(false);
             }
             else if (count == 3)
             {
+                ChapterOneIcon.SetActive(false);
                 ChapterThreeIcon.SetActive(true);
                 ChapterTwoIcon.SetActive(false);
                 InGameCharacterStorage.Instance.ThemeMode(true);
