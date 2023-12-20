@@ -14,7 +14,7 @@ public class BackgoundMusicController : MonoBehaviour
     };
     public AudioManager audioManager;
     public int chapter => ChapterCounter.Instance.Chapter;
-    private void OnEnable()
+    public void OnEnable()
     {
         StartCoroutine(WaitForChapterLoaded());
     }
