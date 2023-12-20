@@ -703,7 +703,11 @@ public class Character : MonoBehaviour, IRound
         OnCombatDuty = false;
         OnDebateDuty = false;
         OnGobangDuty = false;
-
+        if (thisCharacterCard != null)
+        {
+            thisCharacterCard.OnCombatImage.gameObject.SetActive(false);
+            thisCharacterCard.OnDebateImage.gameObject.SetActive(false);
+        }
         var e = new UnityEvent();
         e.AddListener(() => Back());
         if (spawnAfterAway != null)

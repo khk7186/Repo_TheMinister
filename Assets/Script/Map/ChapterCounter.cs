@@ -33,10 +33,10 @@ public class ChapterCounter : MonoBehaviour
             }
             else if (count == 3)
             {
-                RegularAssets.SetActive(false);
-                WarAssets.SetActive(true);
                 ChapterThreeIcon.SetActive(true);
                 ChapterTwoIcon.SetActive(false);
+                WarAssets.SetActive(true);
+                RegularAssets.SetActive(false);
             }
             FindObjectOfType<PressureView>().SetAddPerDay();
             LastChapterAIExitGame();
