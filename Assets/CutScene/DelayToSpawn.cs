@@ -18,18 +18,15 @@ public class DelayToSpawn : MonoBehaviour
             StartCoroutine(WaitToSpawn());
         }
     }
+    
 
     public IEnumerator WaitToSpawn()
     {
         var player = FindObjectOfType<Player>().GetComponent<CharacterMovement>();
-        int start = player.currentBlock;
-        if (!UsePlanedBlock)
-        {
-            start = PlanedBlock;
-        }
+        int start = PlanedBlock;
         for (int i = 0; i < delayRounds; i++)
         {
-            yield return new WaitUntil(() => player.currentBlock == start - 1);
+            yield return new WaitUntil(() => player.currentBlock == PlanedBlock);
         }
         foreach (var item in gameObjects)
         {

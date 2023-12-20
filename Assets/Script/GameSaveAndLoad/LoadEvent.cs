@@ -20,6 +20,7 @@ namespace SaveSystem
             LoadMain(manager, save);
             manager.questionAIManager.Load(save);
             manager.lightController.ConstantLight(Map.Instance.DayTime);
+            LoadDelayToSpawn(manager, save);
         }
         public static void LoadPlayerCharacters(GameSave save)
         {
@@ -94,7 +95,8 @@ namespace SaveSystem
         {
             var spawnAfterAwayDB = Resources.Load<SOSpawnAfterAwayDB>("Data/SpawnAfterAwayDB");
             var target = manager.gameEventDatabase.Find(save.delayToSpawn);
-            GameObject.Instantiate(target);
+            var clone = GameObject.Instantiate(target);
+            manager.delayToSpawn = clone.GetComponent<DelayToSpawn>();
         }
     }
 }
