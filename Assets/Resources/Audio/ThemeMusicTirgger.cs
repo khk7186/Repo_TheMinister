@@ -8,7 +8,13 @@ public class ThemeMusicTirgger : MonoBehaviour
     public bool TriggerOn = true;
     public bool SetOnEnable = false;
 
-
+    public void OnEnable()
+    {
+        if (SetOnEnable)
+        {
+            Trigger();
+        }
+    }
     public void Trigger()
     {
         var controller = FindObjectOfType<BackgoundMusicController>();
@@ -19,7 +25,7 @@ public class ThemeMusicTirgger : MonoBehaviour
         }
         else
         {
-
+            SetBack();
         }
     }
     public void SetMusic()
