@@ -66,7 +66,8 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
     {
         foreach (var tribute in UnfinishedTributes)
         {
-            Destroy(tribute.gameObject);
+            if (tribute != null)
+                Destroy(tribute.gameObject);
         }
         UnfinishedTributes = new List<CharacterAwaitTribute>();
     }
