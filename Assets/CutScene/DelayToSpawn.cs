@@ -25,7 +25,6 @@ public class DelayToSpawn : MonoBehaviour
         {
             yield return new WaitUntil(() => player.currentBlock == PlanedBlock);
             yield return new WaitUntil(() => player.currentBlock != PlanedBlock);
-            Debug.Log(i);
         }
         foreach (var item in gameObjects)
         {

@@ -37,6 +37,7 @@ public class GameEventManager : MonoBehaviour, IDiceRollEvent
     public void Reset()
     {
         if (currentEvent != null) Destroy(currentEvent.gameObject);
+        if (nextEvent != null) Destroy(nextEvent.gameObject);
         currentEvent = null;
         DestroyCurrent();
     }
