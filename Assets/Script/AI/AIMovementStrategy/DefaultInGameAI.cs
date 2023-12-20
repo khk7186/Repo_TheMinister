@@ -92,6 +92,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     }
     public virtual void OnNotify(object value, NotificationType notificationType)
     {
+        if (InGameCharacterStorage.Instance.OffForTheme) return;
         Move();
     }
     public virtual void Setup(Character character)

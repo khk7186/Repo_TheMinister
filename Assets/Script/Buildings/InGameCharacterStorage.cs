@@ -13,6 +13,7 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
     private int spawnRate = 500;
     private readonly int spawnTotal = 1000;
     public bool Deserializing = false;
+    public bool OffForTheme = false;
     public void Awake()
     {
         characterPref = Resources.Load<Character>("CharacterPrefab/Character");
@@ -25,7 +26,24 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
         CurrentCharacters = GetComponentsInChildren<Character>().ToList<Character>();
         UnshowedCharacters = CurrentCharacters;
     }
-
+    public void ThemeMode(bool Off)
+    {
+        OffForTheme = Off;
+        if (Off == true)
+        {
+            foreach(var ch in GetComponentsInChildren<Character>())
+            {
+                ch.gameObject.SetActive(false);
+            }
+        }
+        else
+        {
+            foreach (var ch in GetComponentsInChildren<Character>())
+            {
+                ch.gameObject.SetActive(true);
+            }
+        }
+    }
     public void Start()
     {
         if (Instance == null)
@@ -118,6 +136,7 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
 
     public void OnNotify(object value, NotificationType notificationType)
     {
+        if (OffForTheme == true) return;
         var map = FindObjectOfType<Map>();
         if (map.DayTime == 0)
         {

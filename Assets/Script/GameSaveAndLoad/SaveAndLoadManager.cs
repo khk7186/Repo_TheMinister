@@ -29,6 +29,7 @@ namespace SaveSystem
 
         public GameEventManager gameEventManager = null;
         public SOMainGameEventDatabase gameEventDatabase = null;
+        public DelayToSpawn delayToSpawn = null;
         private void Start()
         {
             GameSaveDatabase.FindAllSaves();

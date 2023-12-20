@@ -78,6 +78,10 @@ namespace SaveSystem
             //Save Chapter & background music
             newGameSave.chapter = ChapterCounter.Instance.Chapter;
 
+            //delayToSpawn data
+            if (manager.delayToSpawn != null)
+                newGameSave.delayToSpawn = manager.delayToSpawn.name;
+
             return newGameSave;
         }
 
