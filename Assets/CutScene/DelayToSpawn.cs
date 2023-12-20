@@ -18,7 +18,7 @@ public class DelayToSpawn : MonoBehaviour
             StartCoroutine(WaitToSpawn());
         }
     }
-    
+
 
     public IEnumerator WaitToSpawn()
     {
@@ -33,6 +33,7 @@ public class DelayToSpawn : MonoBehaviour
             Instantiate(item);
             item.transform.position = Vector3.zero;
         }
+        yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 }
