@@ -51,6 +51,7 @@ public class Map : MonoBehaviour, IDiceRollEvent
     public void SetPlayerPosition(int targetBlock)
     {
         player.position = movementGrid.GetCellCenterWorld(MovementGrid.PlayerMovementBlocks[targetBlock]);
+        PlayerCurrentBlock = targetBlock;
     }
     private void Start()
     {

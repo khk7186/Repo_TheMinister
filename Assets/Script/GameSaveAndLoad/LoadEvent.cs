@@ -53,7 +53,7 @@ namespace SaveSystem
             var playerMovement = player.GetComponent<CharacterMovement>();
             playerMovement.currentBlock = save.currentBlock;
             playerMovement.finalBlock = save.currentBlock;
-            var playerSideChanger = player.GetComponent<SideChanger>();
+             var playerSideChanger = player.GetComponent<SideChanger>();
             playerSideChanger.changeSide(save.isFront, save.isRight);
             manager.map.SetPlayerPosition(save.currentBlock);
             manager.map.SetBuildings();

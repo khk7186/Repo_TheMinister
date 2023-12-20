@@ -15,6 +15,11 @@ public class MainMenuTrigger : MonoBehaviour
         animation.transDelegate = NextStep;
         animation.Close();
     }
+
+    public void Notify()
+    {
+
+    }
     IEnumerator NextStep()
     {
         var animation = FindObjectOfType<SceneTransController>();
