@@ -97,6 +97,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     }
     public void Reset()
     {
+        inGameQuestCount = 0;
         foreach (var aqg in ActiveQuestsGivers)
         {
             if (aqg != null)
@@ -132,23 +133,37 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     {
         subQuestDB.CURRENT = gameSave.questChainStateWrapper;
         var originInactive = subQuestDB.QUEST_GIVER_BY_ORDER[gameSave.chapter].questGivers.Where(x => gameSave.InactiveQuestGiverID.Contains(x.QuestID));
-        InactiveQuestGivers = new List<QuestGiverAI>(originInactive);
-
-        ActiveQuestsGivers = new List<QuestGiverAI>();
-
-        var untriggereds = subQuestDB.QUEST_GIVER_BY_ORDER[gameSave.chapter].questGivers.Where(x => gameSave.UntriggeredQuestGiverID.Contains(x.QuestID));
-        foreach (var untriggered in untriggereds)
+        CloneList();
+        foreach (var id in gameSave.UntriggeredQuestGiverID)
         {
-            var clone = Instantiate(untriggered.QuestSpawnPref, transform);
+            var origin = InactiveQuestGivers.Find(x => x.QuestID == id);
+            var clone = Instantiate(origin.QuestSpawnPref, transform);
+            InactiveQuestGivers.Remove(origin);
+            ActiveQuestsGivers.Add(clone.GetComponent<QuestGiverPointer>().questGiverAI);
+        }
+        foreach (var id in gameSave.TriggeredQuestGiverID)
+        {
+            var origin = InactiveQuestGivers.Find(x => x.QuestID == id);
+            var clone = Instantiate(origin.ReloadPref, transform);
+            InactiveQuestGivers.Remove(origin);
             ActiveQuestsGivers.Add(clone.GetComponent<QuestGiverPointer>().questGiverAI);
         }
 
-        var triggereds = subQuestDB.QUEST_GIVER_BY_ORDER[gameSave.chapter].questGivers.Where(x => gameSave.TriggeredQuestGiverID.Contains(x.QuestID));
-        foreach (var triggered in triggereds)
-        {
-            var clone = Instantiate(triggered.ReloadPref, transform);
-            ActiveQuestsGivers.Add(clone.GetComponent<QuestGiverPointer>().questGiverAI);
-        }
+        //ActiveQuestsGivers = new List<QuestGiverAI>();
+
+        //var untriggereds = subQuestDB.QUEST_GIVER_BY_ORDER[gameSave.chapter].questGivers.Where(x => gameSave.UntriggeredQuestGiverID.Contains(x.QuestID));
+        //foreach (var untriggered in untriggereds)
+        //{
+        //    var clone = Instantiate(untriggered.QuestSpawnPref, transform);
+        //    ActiveQuestsGivers.Add(clone.GetComponent<QuestGiverPointer>().questGiverAI);
+        //}
+
+        //var triggereds = subQuestDB.QUEST_GIVER_BY_ORDER[gameSave.chapter].questGivers.Where(x => gameSave.TriggeredQuestGiverID.Contains(x.QuestID));
+        //foreach (var triggered in triggereds)
+        //{
+        //    var clone = Instantiate(triggered.ReloadPref, transform);
+        //    ActiveQuestsGivers.Add(clone.GetComponent<QuestGiverPointer>().questGiverAI);
+        //}
     }
     public void OnNotify(object value, NotificationType notificationType)
     {
