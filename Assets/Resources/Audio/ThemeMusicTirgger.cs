@@ -47,6 +47,7 @@ public class ThemeMusicTirgger : MonoBehaviour
     {
         var controller = FindObjectOfType<BackgoundMusicController>();
         if (controller == null) Debug.LogError("BackgoundMusicController not fund on function");
+        //TODO: waitUntil music stop playing
         controller.OnEnable();
     }
 }
