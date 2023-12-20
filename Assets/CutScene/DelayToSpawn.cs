@@ -7,7 +7,6 @@ public class DelayToSpawn : MonoBehaviour
     public bool startCountOnEnable;
     public int delayRounds = 1;
     public List<GameObject> gameObjects;
-    public bool UsePlanedBlock = false;
     public int PlanedBlock = 0;
 
     private void OnEnable()
