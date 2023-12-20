@@ -136,6 +136,7 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
 
     public void OnNotify(object value, NotificationType notificationType)
     {
+        if (ChapterCounter.Instance.Chapter == 3) return;
         if (OffForTheme == true) return;
         var map = FindObjectOfType<Map>();
         if (map.DayTime == 0)

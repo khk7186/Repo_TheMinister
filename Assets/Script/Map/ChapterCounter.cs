@@ -35,6 +35,7 @@ public class ChapterCounter : MonoBehaviour
             {
                 ChapterThreeIcon.SetActive(true);
                 ChapterTwoIcon.SetActive(false);
+                InGameCharacterStorage.Instance.ThemeMode(true);
                 WarAssets.SetActive(true);
                 RegularAssets.SetActive(false);
             }

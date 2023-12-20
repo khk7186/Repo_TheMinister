@@ -18,8 +18,6 @@ public class DelayToSpawn : MonoBehaviour
             StartCoroutine(WaitToSpawn());
         }
     }
-
-
     public IEnumerator WaitToSpawn()
     {
         var player = FindObjectOfType<Player>().GetComponent<CharacterMovement>();
