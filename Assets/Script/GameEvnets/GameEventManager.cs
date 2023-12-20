@@ -67,6 +67,7 @@ public class GameEventManager : MonoBehaviour, IDiceRollEvent
         yield return new WaitUntil(() => isTime == true);
         currentEvent = Instantiate(nextEvent, transform);
         currentEvent.OnGoing = true;
+        nextEvent = null;
         readyForNext = false;
     }
 
