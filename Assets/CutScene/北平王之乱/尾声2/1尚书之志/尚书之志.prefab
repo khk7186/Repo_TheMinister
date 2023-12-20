@@ -465,6 +465,52 @@ MonoBehaviour:
     useCustomMixMode: 1
     layerMixModes: 01000000
     layerBlendModes: 01000000
+--- !u!1 &2209864057067261570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 411124475963709436}
+  - component: {fileID: 4202959097187883275}
+  m_Layer: 0
+  m_Name: Next
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &411124475963709436
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2209864057067261570}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 126.399994, y: 38.386322, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3421612752396435585}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4202959097187883275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2209864057067261570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66e9f83746c5c445bd1a49771da62ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextEvent: {fileID: 4281592790546442303, guid: f74b21aa6608e964b9bd65b54f04642d, type: 3}
+  waitForTurns: 0
+  ActiveOnEnable: 1
 --- !u!1 &2540024642882024345
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,6 +871,7 @@ Transform:
   - {fileID: 3752262926769845918}
   - {fileID: 5510320002350022481}
   - {fileID: 489230774484844040}
+  - {fileID: 411124475963709436}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1544,8 +1591,11 @@ PlayableDirector:
     value: {fileID: 3421612751784510118}
   - key: {fileID: 4410495812362185070, guid: ad9d5ed014957d341b35f41561bd1f58, type: 2}
     value: {fileID: 2540024642882024345}
+  - key: {fileID: 1774722567514810368, guid: ad9d5ed014957d341b35f41561bd1f58, type: 2}
+    value: {fileID: 2209864057067261570}
   m_ExposedReferences:
-    m_References: []
+    m_References:
+    - 0bc142217978427458cf4d57c9cd9c22: {fileID: 2209864057067261570}
 --- !u!1 &6606951777823793906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,7 +1915,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: M-05-04-f
+  conversation: M-05-05-f
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
