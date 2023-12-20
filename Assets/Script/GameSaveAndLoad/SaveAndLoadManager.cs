@@ -79,6 +79,7 @@ namespace SaveSystem
             player = FindObjectOfType<Player>();
             gameEventManager.Reset();
             playerQuestJournal = player.GetComponent<QuestJournal>();
+            playerQuestJournal.Reset();
             yield return null;
         }
 
