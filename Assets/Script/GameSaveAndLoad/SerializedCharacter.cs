@@ -86,6 +86,7 @@ namespace SaveSystem
                 SerializedInGameAI.DeserializingCharacterInGameAI(characterData.SerializedInGameAI, output);
                 InGameCharacterStorage.LoadCharacter(output);
             }
+            output.UpdateVariables();
             return (output);
         }
 
