@@ -92,6 +92,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     }
     public void CloneList()
     {
+        QuestCountZero();
         ActiveQuestsGivers = new List<QuestGiverAI>();
         InactiveQuestGivers = new List<QuestGiverAI>(CurrentQuestList.questGivers);
     }
