@@ -12,10 +12,11 @@ public class StopDetector : MonoBehaviour
         {
             Debug.Log("stop");
             GameObject ai = target.gameObject;
+            if (ai.GetComponent<ForceAction>().stopPlayer == false) return;
             float distanceToTarget = (ai.transform.position.x - transform.position.x) * (ai.transform.position.x - transform.position.x)
                 + (ai.transform.position.y - transform.position.y) * (ai.transform.position.y - transform.position.y);
-                characterMovement.finalBlock = (target.CurrentBlock - 1)% MovementGrid.PlayerMovementBlocks.Count;
-                FindObjectOfType<Map>().OnStory = true;
+            characterMovement.finalBlock = (target.CurrentBlock - 1) % MovementGrid.PlayerMovementBlocks.Count;
+            FindObjectOfType<Map>().OnStory = true;
         }
     }
 }

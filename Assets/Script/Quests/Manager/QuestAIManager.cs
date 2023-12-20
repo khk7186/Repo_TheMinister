@@ -17,7 +17,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     public QUEST_GIVER_BY_ORDER CurrentQuestList => subQuestDB.QUEST_GIVER_BY_ORDER[chapterCounter.Chapter];
     public List<QuestGiverAI> InactiveQuestGivers = new List<QuestGiverAI>();
     public List<QuestGiverAI> ActiveQuestsGivers = new List<QuestGiverAI>();
-    private int inGameQuestCount = 0;
+    public int inGameQuestCount = 0;
     private void Start()
     {
         if (Instance == null)

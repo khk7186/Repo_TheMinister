@@ -5,6 +5,7 @@ using UnityEngine;
 public class ForceAction : MonoBehaviour,IStopPlayer
 {
     public List<GameObject> goToActive;
+    public bool stopPlayer = true;
     public int stayblock;
     public int CurrentBlock => stayblock;
 
