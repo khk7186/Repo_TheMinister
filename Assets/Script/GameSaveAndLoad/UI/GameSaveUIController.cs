@@ -48,7 +48,7 @@ public class GameSaveUIController : MonoBehaviour
         if ((saves.Count + 1) / 4 > 0 && !mainMenu) pageCount++;
 
         int saveIndex = 0;
-        Debug.Log(saves.Count);
+        //Debug.Log(saves.Count);
         for (int i = 0; i <= pageCount; i++)
         {
             var page = Instantiate(pageTemp, pageHolder);
