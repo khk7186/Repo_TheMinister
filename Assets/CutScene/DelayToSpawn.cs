@@ -24,7 +24,7 @@ public class DelayToSpawn : MonoBehaviour
     {
         var player = FindObjectOfType<Player>().GetComponent<CharacterMovement>();
         int start = PlanedBlock;
-        for (int i = 0; i < delayRounds; i++)
+        for (int i = 0; i <= delayRounds; i++)
         {
             yield return new WaitUntil(() => player.currentBlock == PlanedBlock);
         }
