@@ -29,7 +29,7 @@ namespace SaveSystem
             var pm = UnityEngine.GameObject.FindObjectOfType<PathManager>().transform;
             if (serializedInGameAI.pathPointName != string.Empty)
             {
-                Debug.Log(serializedInGameAI.pathPointName);
+                //Debug.Log(serializedInGameAI.pathPointName);
                 inGameAI.currentPathPoint = pm.Find(serializedInGameAI.pathPointName.Replace(" ", string.Empty).Replace("(", string.Empty).Replace(")", string.Empty)).GetComponent<PathPoint>();
             }
             inGameAI.SetLocation();
