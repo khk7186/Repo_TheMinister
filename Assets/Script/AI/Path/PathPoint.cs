@@ -63,7 +63,8 @@ public class PathPoint : MonoBehaviour
         {
             if (collider.TryGetComponent(out PathPoint pp))
             {
-                if (!UnApproachablePoints.Contains(pp))
+                bool roitPP = pp.roit == true;
+                if (!UnApproachablePoints.Contains(pp) && !roitPP)
                 {
                     approachablePoints.Add(pp);
                 }
