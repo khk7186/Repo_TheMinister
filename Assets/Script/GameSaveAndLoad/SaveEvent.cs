@@ -86,7 +86,7 @@ namespace SaveSystem
                     if (item == null) continue;
                     else
                     {
-                        newGameSave.delayToSpawn.Add(item.name);
+                        newGameSave.delayToSpawn.Add(item.guestName);
                     }
                 }
             }

@@ -80,7 +80,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
             if (spawnAI.QuestSpawnPref != null)
             {
                 var clone = Instantiate(spawnAI.QuestSpawnPref, transform);
-                targetQuestGiver = clone.GetComponentInChildren<QuestGiverAI>();
+                targetQuestGiver = clone.GetComponentInChildren<QuestGiverAI>(true);
             }
             else
             {
