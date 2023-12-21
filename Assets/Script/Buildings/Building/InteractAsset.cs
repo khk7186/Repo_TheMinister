@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using UnityEngine.Rendering;
 using UnityEngine.EventSystems;
 using TMPro;
+using Language.Lua;
+
 public class InteractAsset : MonoBehaviour, IDetailAble
 {
     private Building building;
@@ -53,12 +55,27 @@ public class InteractAsset : MonoBehaviour, IDetailAble
         SetOnDetail(building.buildingType.ToString());
         if (ChapterCounter.Instance.Chapter == 3)
         {
-            GetComponent<Renderer>().material = unreachMaterial;
-            BuildingName.fontSize = 30f;
-            BuildingName.color = UnreachableColor;
-            BuildingName.text = $"无人营业";
-            BuildingName.gameObject.SetActive(true);
-            return;
+            if (building.buildingType == BuildingType.武器铺)
+            {
+
+            }
+            else if (building.buildingType == BuildingType.铁匠铺)
+            {
+
+            }
+            else if (building.buildingType == BuildingType.仙鼎台)
+            {
+
+            }
+            else
+            {
+                GetComponent<Renderer>().material = unreachMaterial;
+                BuildingName.fontSize = 30f;
+                BuildingName.color = UnreachableColor;
+                BuildingName.text = $"无人营业";
+                BuildingName.gameObject.SetActive(true);
+                return;
+            }
         }
         if (Active == false)
         {
