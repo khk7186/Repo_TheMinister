@@ -94,6 +94,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     public void CloneList()
     {
         QuestCountZero();
+        Debug.Log(chapterCounter.Chapter);
         ActiveQuestsGivers = new List<QuestGiverAI>();
         InactiveQuestGivers = new List<QuestGiverAI>(CurrentQuestList.questGivers);
     }
@@ -138,8 +139,11 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         ChapterCounter.Instance.Chapter = gameSave.chapter;
         foreach (var id in gameSave.UntriggeredQuestGiverID)
         {
-            //Debug.Log(id);
             var origin = InactiveQuestGivers.Find(x => x.QuestID == id);
+            if (origin.QuestSpawnPref == null)
+            {
+                Debug.Log(id);
+            }
             var clone = Instantiate(origin.QuestSpawnPref, transform);
             InactiveQuestGivers.Remove(origin);
             ActiveQuestsGivers.Add(clone.GetComponent<QuestGiverPointer>().questGiverAI);

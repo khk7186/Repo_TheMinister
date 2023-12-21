@@ -39,6 +39,7 @@ namespace SaveSystem
             var mainUI = GameObject.FindObjectOfType<MainUI>();
             mainUI.DayTimeIconAnimController.EnableEvent();
             mainUI.SetupTime();
+            Debug.Log(save.chapter);
         }
 
         public static void LoadOtherCharacters(GameSave save)
