@@ -28,7 +28,7 @@ public class PlayerCharactersInventory : MonoBehaviour
     {
         GetComponent<RightClickToClose>().RightClickEvent();
     }
-    private void Awake()
+    private void OnEnable()
     {
         Setup();
     }
