@@ -222,6 +222,10 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 if (characterSelectUI != null)
                     characterSelectUI.GetComponent<ICharacterSelect>().CloseInventory();
             }
+            else if (cardMode == CardMode.OnDebateSwitchMode || cardMode == CardMode.OnCombatSwitchMode || cardMode == CardMode.OnGobangSwitchMode)
+            {
+                FindObjectOfType<CharacterOndutySwitchUI>().GetComponent<RightClickToClose>().RightClickEvent();
+            }
             else
             {
                 if (inventoryCharacters != null)
