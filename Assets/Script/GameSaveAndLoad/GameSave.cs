@@ -48,7 +48,7 @@ namespace SaveSystem
 
         public string currentMainEventName = string.Empty;
         public int MainEventRemainToShow = 0;
-        public string delayToSpawn = string.Empty;
+        public List<string> delayToSpawn = null;
     }
     [System.Serializable]
     public class ItemInString

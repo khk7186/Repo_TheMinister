@@ -79,8 +79,18 @@ namespace SaveSystem
             newGameSave.chapter = ChapterCounter.Instance.Chapter;
 
             //delayToSpawn data
-            if (manager.delayToSpawn != null)
-                newGameSave.delayToSpawn = manager.delayToSpawn.name;
+            newGameSave.delayToSpawn = new List<string>();
+            if (manager.delayToSpawn != null && manager.delayToSpawn.Count >= 0)
+            {
+                foreach (var item in manager.delayToSpawn)
+                {
+                    if (item == null) continue;
+                    else
+                    {
+                        newGameSave.delayToSpawn.Add(item.name);
+                    }
+                }
+            }
 
             return newGameSave;
         }

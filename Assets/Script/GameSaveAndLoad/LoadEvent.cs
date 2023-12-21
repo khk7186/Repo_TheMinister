@@ -94,11 +94,15 @@ namespace SaveSystem
         }
         public static void LoadDelayToSpawn(SaveAndLoadManager manager, GameSave save)
         {
-            if (save.delayToSpawn == string.Empty) return;
+            if (save.delayToSpawn == null || save.delayToSpawn.Count <= 0) return;
             var spawnAfterAwayDB = Resources.Load<SOSpawnAfterAwayDB>("Data/SpawnAfterAwayDB");
-            var target = manager.gameEventDatabase.Find(save.delayToSpawn);
-            var clone = GameObject.Instantiate(target);
-            manager.delayToSpawn = clone.GetComponent<DelayToSpawn>();
+            manager.delayToSpawn = new List<DelayToSpawn>();
+            foreach (var item in save.delayToSpawn)
+            {
+                DelayToSpawn origin = spawnAfterAwayDB.Find(item).GetComponent<DelayToSpawn>();
+                DelayToSpawn clone = UnityEngine.Object.Instantiate(origin);
+                manager.delayToSpawn.Add(clone);
+            }
         }
     }
 }
