@@ -89,6 +89,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        StopAllCoroutines();
     }
     public virtual void OnNotify(object value, NotificationType notificationType)
     {
