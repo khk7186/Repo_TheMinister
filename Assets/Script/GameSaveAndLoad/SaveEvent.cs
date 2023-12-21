@@ -11,7 +11,6 @@ namespace SaveSystem
             //Create new save
             var newGameSave = new GameSave();
             newGameSave.saveTime = System.DateTime.Now.ToString();
-
             //Save player characters
             var playerCharacters = manager.playerCharacterInventory.GetComponentsInChildren<Character>();
             newGameSave.playerOwnedCharacters = new List<SerializedCharacter>();

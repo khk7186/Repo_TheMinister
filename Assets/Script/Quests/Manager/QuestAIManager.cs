@@ -1,3 +1,4 @@
+using PixelCrushers;
 using PixelCrushers.QuestMachine;
 using PixelCrushers.QuestMachine.Wrappers;
 using SaveSystem;
@@ -134,10 +135,10 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     {
         subQuestDB.CURRENT = gameSave.questChainStateWrapper;
         var originInactive = subQuestDB.QUEST_GIVER_BY_ORDER[gameSave.chapter].questGivers.Where(x => gameSave.InactiveQuestGiverID.Contains(x.QuestID));
-        CloneList();
+        ChapterCounter.Instance.Chapter = gameSave.chapter;
         foreach (var id in gameSave.UntriggeredQuestGiverID)
         {
-            Debug.Log(id);
+            //Debug.Log(id);
             var origin = InactiveQuestGivers.Find(x => x.QuestID == id);
             var clone = Instantiate(origin.QuestSpawnPref, transform);
             InactiveQuestGivers.Remove(origin);
