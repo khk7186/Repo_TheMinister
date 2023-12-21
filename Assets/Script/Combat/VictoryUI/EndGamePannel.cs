@@ -35,13 +35,14 @@ public class EndGamePannel : MonoBehaviour
             SetWinSkin();
             SetMoney();
             SetPressure();
+            SetItem();
         }
         else
         {
             SetLostSkin();
             SetPunishment();
+            ItemRewardHolder.gameObject.SetActive(false);
         }
-        SetItem();
         SetLostAlly();
     }
 
