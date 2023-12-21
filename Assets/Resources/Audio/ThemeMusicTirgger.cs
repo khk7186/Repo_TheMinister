@@ -23,6 +23,7 @@ public class ThemeMusicTirgger : MonoBehaviour
         {
             Trigger();
         }
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -119,9 +120,11 @@ public class ThemeMusicTirgger : MonoBehaviour
     private void OnDestroy()
     {
         StopAllCoroutines();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
     private void OnDisable()
     {
         StopAllCoroutines();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
