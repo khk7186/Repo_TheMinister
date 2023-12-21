@@ -15,6 +15,7 @@ public class GameSaveUIController : MonoBehaviour
     public Button nextPageButton;
     public Button prevPageButton;
     public int pageIndex = 0;
+    public bool readOnly = false;
     public int lastPageIndex => pages.Count - 1;
     private void Reset()
     {
@@ -42,7 +43,7 @@ public class GameSaveUIController : MonoBehaviour
     }
     public void SetPages(List<GameSave> saves)
     {
-        bool mainMenu = SceneManager.GetActiveScene().buildIndex == 0;
+        bool mainMenu = SceneManager.GetActiveScene().buildIndex == 0 || readOnly == true;
         pageIndex = 0;
         int pageCount = (saves.Count + 1) / 4;
         if ((saves.Count + 1) / 4 > 0 && !mainMenu) pageCount++;
