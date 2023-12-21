@@ -38,9 +38,12 @@ public class ThemeMusicTirgger : MonoBehaviour
         {
             SadLoop();
         }
+        else if (style == "Depress")
+        {
+            DepressLoop();
+        }
         else
             SetMusic();
-
     }
     public void SetMusic()
     {
@@ -70,6 +73,16 @@ public class ThemeMusicTirgger : MonoBehaviour
         var AudioDB = AudioManager.instance.soAudio;
         audioSourceA.clip = AudioDB.GetAudio("SadA");
         audioSourceB.clip = AudioDB.GetAudio("SadB");
+        var controller = FindObjectOfType<BackgoundMusicController>();
+        if (controller == null) Debug.LogError("BackgoundMusicController not fund on function");
+        controller.audioSource.Stop();
+        StartCoroutine(SadRoutine());
+    }
+    public void DepressLoop()
+    {
+        var AudioDB = AudioManager.instance.soAudio;
+        audioSourceA.clip = AudioDB.GetAudio("Depress");
+        audioSourceB.clip = AudioDB.GetAudio("Depress");
         var controller = FindObjectOfType<BackgoundMusicController>();
         if (controller == null) Debug.LogError("BackgoundMusicController not fund on function");
         controller.audioSource.Stop();
