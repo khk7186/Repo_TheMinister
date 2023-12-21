@@ -15,4 +15,8 @@ public class SetThemeModeForCharacterStorage : MonoBehaviour
         if (SetOnEnable)
             Set();
     }
+    public void OnDestroy()
+    {
+        InGameCharacterStorage.Instance?.ThemeMode(false);
+    }
 }
