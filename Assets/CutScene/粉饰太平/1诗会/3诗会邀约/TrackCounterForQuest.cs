@@ -66,8 +66,8 @@ public class TrackCounterForQuest : MonoBehaviour, IDiceRollEvent
         return count;
     }
 
-    public void OnNotify(object value, NotificationType notificationType)
-    {
-        throw new System.NotImplementedException();
-    }
+    //public void OnNotify(object value, NotificationType notificationType)
+    //{
+        
+    //}
 }
