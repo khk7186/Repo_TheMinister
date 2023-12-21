@@ -299,7 +299,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void SelectCharacterInfo()
     {
-        currentCharacterInfoUI = Instantiate(characterInfoUI, FindObjectOfType<Canvas>().transform);
+        currentCharacterInfoUI = Instantiate(characterInfoUI, MainCanvas.FindMainCanvas());
         currentCharacterInfoUI.Setup(character);
         //Debug.Log(currentCharacterInfoUI);
     }
