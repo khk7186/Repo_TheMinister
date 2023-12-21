@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 1901604831}
   m_Father: {fileID: 6361315037408790092}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &163883764
 MonoBehaviour:
@@ -96,7 +96,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6361315037408790092}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6290340986944955031
 MonoBehaviour:
@@ -143,7 +143,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6361315037408790092}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!320 &175706357
 PlayableDirector:
@@ -227,7 +227,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6361315037408790092}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &362565897
 MonoBehaviour:
@@ -416,7 +416,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6361315037408790092}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1441536694
 MonoBehaviour:
@@ -776,7 +776,7 @@ MonoBehaviour:
   characterType: 0
   characterArtCode: 6
   loyalty: 10
-  health: 1
+  health: 20
   rarerity: 0
   characterCard: {fileID: 6978759770948470115, guid: bcb976df68f93ec4ba4682e0d891984c, type: 3}
   thisCharacterCard: {fileID: 0}
@@ -809,6 +809,83 @@ MonoBehaviour:
   character: {fileID: 295374654748809579}
   actions: 0100000003000000
   index: -1
+--- !u!1 &1144685541519534735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5892912478791786995}
+  - component: {fileID: 3784238363759436718}
+  m_Layer: 0
+  m_Name: EventAC
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5892912478791786995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144685541519534735}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6361315038395582064}
+  - {fileID: 6389082723018832900}
+  m_Father: {fileID: 6361315037408790092}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3784238363759436718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1144685541519534735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96111ea2f435f3a41ad014b9050bf6de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: {fileID: 6361315036898463000}
+  WinEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6361315038395582071}
+        m_TargetAssemblyTypeName: PixelCrushers.DialogueSystem.DialogueSystemTrigger,
+          Assembly-CSharp-firstpass
+        m_MethodName: OnUse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  LostEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7769051513146927886}
+        m_TargetAssemblyTypeName: DeathEvent, Assembly-CSharp
+        m_MethodName: TriggerDeath
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1383890940527066782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1026,7 +1103,7 @@ MonoBehaviour:
   characterType: 0
   characterArtCode: 13
   loyalty: 10
-  health: 1
+  health: 20
   rarerity: 0
   characterCard: {fileID: 6978759770948470115, guid: bcb976df68f93ec4ba4682e0d891984c, type: 3}
   thisCharacterCard: {fileID: 0}
@@ -1202,6 +1279,49 @@ MonoBehaviour:
     useCustomMixMode: 1
     layerMixModes: 01000000
     layerBlendModes: 01000000
+--- !u!1 &2420481886777001561
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6389082723018832900}
+  - component: {fileID: 7769051513146927886}
+  m_Layer: 0
+  m_Name: lost
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6389082723018832900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2420481886777001561}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5892912478791786995}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7769051513146927886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2420481886777001561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7cdaf179d5f39f448959d746fb3967e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2612586503612316403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,7 +1502,7 @@ RectTransform:
   - {fileID: 702664540231605323}
   - {fileID: 3432862153359212800}
   m_Father: {fileID: 6361315037408790092}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1483,7 +1603,7 @@ Transform:
   - {fileID: 295374654748809556}
   - {fileID: 8914850885177227196}
   m_Father: {fileID: 6361315037408790092}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6361315036898463000
 MonoBehaviour:
@@ -1529,57 +1649,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generalEventTrigger: {fileID: 6361315036898463000}
   InactiveGameobjs: []
-  ActiveGameobjs:
-  - {fileID: 6361315036908065681}
+  ActiveGameobjs: []
   EventIfNoDuty:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &6361315036908065681
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6361315036908065680}
-  - component: {fileID: 6361315036908065687}
-  m_Layer: 0
-  m_Name: "\u884C\u4E3A1"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &6361315036908065680
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6361315036908065681}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6361315037408790092}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6361315036908065687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6361315036908065681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fb39a68cd9865c419c139b566502b8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GETrigger: {fileID: 6361315036898463000}
-  _objectsToActive:
-  - {fileID: 6361315038395582065}
 --- !u!1 &6361315037408790093
 GameObject:
   m_ObjectHideFlags: 0
@@ -1613,9 +1686,8 @@ Transform:
   - {fileID: 4638301926908745428}
   - {fileID: 7054401095556501245}
   - {fileID: 6361315038040664698}
+  - {fileID: 5892912478791786995}
   - {fileID: 6361315036898463006}
-  - {fileID: 6361315036908065680}
-  - {fileID: 6361315038395582064}
   - {fileID: 6361315038590614623}
   - {fileID: 163883763}
   - {fileID: 166126051}
@@ -1864,7 +1936,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6361315038395582064
 Transform:
   m_ObjectHideFlags: 0
@@ -1872,12 +1944,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6361315038395582065}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 6361315037408790092}
-  m_RootOrder: 6
+  m_Father: {fileID: 5892912478791786995}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6361315038395582071
 MonoBehaviour:
@@ -1891,7 +1963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: 64
+  trigger: 32
   condition:
     luaConditions: []
     questConditions: []
@@ -2066,7 +2138,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6361315037408790092}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!320 &6361315038590614622
 PlayableDirector:
@@ -2669,7 +2741,7 @@ Transform:
   - {fileID: 252730622043948966}
   - {fileID: 252730621146615411}
   m_Father: {fileID: 6361315037408790092}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8898675472860719893
 MonoBehaviour:
@@ -2995,7 +3067,7 @@ MonoBehaviour:
   characterType: 0
   characterArtCode: 2
   loyalty: 10
-  health: 1
+  health: 20
   rarerity: 0
   characterCard: {fileID: 6978759770948470115, guid: bcb976df68f93ec4ba4682e0d891984c, type: 3}
   thisCharacterCard: {fileID: 0}
@@ -3155,7 +3227,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6361315037408790092}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7408201026404044467
 MonoBehaviour:
