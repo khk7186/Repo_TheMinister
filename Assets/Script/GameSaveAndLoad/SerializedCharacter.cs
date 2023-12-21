@@ -19,6 +19,7 @@ namespace SaveSystem
         public bool OnDebateDuty = false;
         public bool OnGobangDuty = false;
         public SerializedInGameAI SerializedInGameAI = null;
+        public Rarerity rarerity;
 
         public int waitTime = 0;
         public int alreadyWait = 0;
@@ -28,6 +29,7 @@ namespace SaveSystem
             var output = new SerializedCharacter();
             output.CharacterArtCode = character.characterArtCode.ToString();
             output.CharacterName = character.CharacterName;
+            output.rarerity = character.rarerity;
             //Tags
             output.Tags = new List<string>();
             foreach (var tag in character.tagList)
@@ -87,6 +89,7 @@ namespace SaveSystem
                 InGameCharacterStorage.LoadCharacter(output);
             }
             output.UpdateVariables();
+            output.rarerity = characterData.rarerity;
             return (output);
         }
 
