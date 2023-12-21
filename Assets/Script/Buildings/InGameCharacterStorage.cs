@@ -38,7 +38,7 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
         }
         else
         {
-            foreach (var ch in GetComponentsInChildren<Character>())
+            foreach (var ch in GetComponentsInChildren<Character>(true))
             {
                 ch.gameObject.SetActive(true);
             }
