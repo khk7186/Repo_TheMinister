@@ -21,19 +21,24 @@ public class IndicatorController : MonoBehaviour
     public float fadeDuration => movementDuration + delay;
     public float startValue => Selected.rectTransform.anchoredPosition.y - floatRange;
     public float endValue => Selected.rectTransform.anchoredPosition.y + floatRange;
+    public float currentStartValue;
+    public float currentEndValue;
+    public bool endP = false;
+    public Sequence currentSequence = null;
     public Sequence sequence
     {
         get
         {
             var output = DOTween.Sequence();
-            output.Append(Selected.rectTransform.DOAnchorPosY(endValue, movementDuration)
-                                                                            .SetEase(curve).SetDelay(delay).OnComplete(() =>
+            output.Append(Selected.rectTransform.DOAnchorPosY(currentEndValue, movementDuration)
+                                                                            .SetEase(curve).OnComplete(() =>
                                                                             {
-                                                                                Selected.rectTransform.DOAnchorPosY(startValue, movementDuration)
-                                                                                                                        .SetEase(curve).SetDelay(delay);
+
+                                                                                Selected.rectTransform.DOAnchorPosY(currentStartValue, movementDuration)
+                                                                                                                        .SetEase(Ease.InSine).SetDelay(delay).OnComplete(() => { currentSequence = null; });
                                                                             })
                 );
-            output.Append(Selected.DOFade(fadeEnd, fadeDuration)).SetEase(curve).OnComplete(() =>
+            output.Append(Selected.DOFade(fadeEnd, fadeDuration)).SetEase(Ease.InSine).OnComplete(() =>
                                                                             {
                                                                                 Selected.DOFade(fadeStart, fadeDuration).SetEase(curve);
                                                                             }
@@ -52,14 +57,18 @@ public class IndicatorController : MonoBehaviour
     }
     public void OnDisable()
     {
-        if (Selected != null) StopCoroutine(SequenceRator(Selected));
+        StopAllCoroutines();
     }
     private IEnumerator SequenceRator(Image target)
     {
+        currentStartValue = startValue;
+        currentEndValue = endValue;
         while (Selected != null)
         {
-            sequence.Play();
-            yield return new WaitForSeconds(movementDuration * 2 + delay * 2);
+            currentSequence = sequence;
+            currentSequence.Play();
+            //Debug.Log(endP);
+            yield return new WaitUntil(() => currentSequence == null);
         }
     }
     public void ChangeSelected(string type)
@@ -92,5 +101,9 @@ public class IndicatorController : MonoBehaviour
         if (attack != null) attack.gameObject.SetActive(false);
         if (debate != null) debate.gameObject.SetActive(false);
         if (hire != null) hire.gameObject.SetActive(false);
+    }
+    private void OnDestroy()
+    {
+        StopAllCoroutines();
     }
 }
