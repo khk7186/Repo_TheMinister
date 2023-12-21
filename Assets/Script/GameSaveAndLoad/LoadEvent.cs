@@ -96,12 +96,11 @@ namespace SaveSystem
         {
             if (save.delayToSpawn == null || save.delayToSpawn.Count <= 0) return;
             var spawnAfterAwayDB = Resources.Load<SOSpawnAfterAwayDB>("Data/SpawnAfterAwayDB");
-            manager.delayToSpawn = new List<DelayToSpawn>();
+            manager.gameGuests = new List<SpawnAfterAwayGuest>();
             foreach (var item in save.delayToSpawn)
             {
-                DelayToSpawn origin = spawnAfterAwayDB.Find(item).GetComponent<DelayToSpawn>();
-                DelayToSpawn clone = UnityEngine.Object.Instantiate(origin);
-                manager.delayToSpawn.Add(clone);
+                SpawnAfterAwayGuest origin = spawnAfterAwayDB.Find(item).GetComponent<SpawnAfterAwayGuest>();
+                SpawnAfterAwayGuest clone = UnityEngine.Object.Instantiate(origin);
             }
         }
     }

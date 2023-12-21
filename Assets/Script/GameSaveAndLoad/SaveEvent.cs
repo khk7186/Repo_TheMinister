@@ -79,9 +79,9 @@ namespace SaveSystem
 
             //delayToSpawn data
             newGameSave.delayToSpawn = new List<string>();
-            if (manager.delayToSpawn != null && manager.delayToSpawn.Count >= 0)
+            if (manager.gameGuests != null && manager.gameGuests.Count >= 0)
             {
-                foreach (var item in manager.delayToSpawn)
+                foreach (var item in manager.gameGuests)
                 {
                     if (item == null) continue;
                     else

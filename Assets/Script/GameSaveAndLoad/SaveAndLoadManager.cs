@@ -29,7 +29,7 @@ namespace SaveSystem
 
         public GameEventManager gameEventManager = null;
         public SOMainGameEventDatabase gameEventDatabase = null;
-        public List<DelayToSpawn> delayToSpawn = new List<DelayToSpawn>();
+        public List<SpawnAfterAwayGuest> gameGuests = new List<SpawnAfterAwayGuest>();
         private void Start()
         {
             GameSaveDatabase.FindAllSaves();
