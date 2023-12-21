@@ -2,6 +2,7 @@ using PixelCrushers.QuestMachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 
 public class ThemeMusicTirgger : MonoBehaviour
@@ -22,6 +23,11 @@ public class ThemeMusicTirgger : MonoBehaviour
         {
             Trigger();
         }
+    }
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.buildIndex != 1) StopAllCoroutines();
+        else Trigger();
     }
     public void Trigger()
     {
