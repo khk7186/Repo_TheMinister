@@ -155,7 +155,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
             InactiveQuestGivers.Remove(origin);
             ActiveQuestsGivers.Add(clone.GetComponent<QuestGiverPointer>().questGiverAI);
         }
-
+        inGameQuestCount = ActiveQuestsGivers.Count();
         //ActiveQuestsGivers = new List<QuestGiverAI>();
 
         //var untriggereds = subQuestDB.QUEST_GIVER_BY_ORDER[gameSave.chapter].questGivers.Where(x => gameSave.UntriggeredQuestGiverID.Contains(x.QuestID));
