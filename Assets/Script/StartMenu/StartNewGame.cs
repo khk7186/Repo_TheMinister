@@ -11,6 +11,7 @@ public class StartNewGame : MonoBehaviour
     public MainEventUnitProfile startProfile = null;
     public GameSave gameSave = null;
     public bool plainStart = true;
+    public bool start = false;
     private void OnEnable()
     {
         gameSave = null;
@@ -21,6 +22,7 @@ public class StartNewGame : MonoBehaviour
     }
     public void StartAGame()
     {
+        if (start) return;
         plainStart = true;
         string path = $"SceneTransPrefab/{SceneType.MainGame}/{SceneType.MainGame}Animation";
         var canvas = Instantiate(Resources.Load<Canvas>("SceneTransPrefab/Canvas"));
@@ -31,6 +33,7 @@ public class StartNewGame : MonoBehaviour
     }
     public void StartAGameWithSave(GameSave Save)
     {
+        if (start) return;
         plainStart = false;
         gameSave = Save;
         string path = $"SceneTransPrefab/{SceneType.MainGame}/{SceneType.MainGame}Animation";
