@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &42954774249118666
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1627517795611554094}
+  - component: {fileID: 8905450026265300517}
+  m_Layer: 0
+  m_Name: Next
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1627517795611554094
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42954774249118666}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8697597144853388403}
+  m_RootOrder: 62
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8905450026265300517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42954774249118666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b66e9f83746c5c445bd1a49771da62ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextEvent: {fileID: 9140330035330772865, guid: fdacb91c3597d0048b437e6875d4bcbc, type: 3}
+  waitForTurns: 0
+  ActiveOnEnable: 1
 --- !u!1 &44342067287351040
 GameObject:
   m_ObjectHideFlags: 0
@@ -3328,6 +3374,7 @@ MonoBehaviour:
   NoDebateEvent:
     m_PersistentCalls:
       m_Calls: []
+  canSurrender: 1
 --- !u!114 &21534180846809512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5055,6 +5102,7 @@ MonoBehaviour:
   NoDebateEvent:
     m_PersistentCalls:
       m_Calls: []
+  canSurrender: 1
 --- !u!114 &7000782710555342027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6131,7 +6179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0165a88f3c75a049a2ba7b74b61d95b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameObjectsToDestroy: []
+  GameObjectsToDestroy:
+  - {fileID: 8697597144853388400}
   DestroyOnEnable: 1
   destroyMainProfile: "\u9A70\u63F4\u5218\u5C1A\u4E66"
 --- !u!1 &3793221930915173496
@@ -20392,6 +20441,7 @@ Transform:
   - {fileID: 8901352767174246780}
   - {fileID: 4775525174004293662}
   - {fileID: 268732681874007577}
+  - {fileID: 1627517795611554094}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21131,6 +21181,8 @@ PlayableDirector:
     value: {fileID: 8697597143424437614}
   - key: {fileID: 197778972963931569, guid: a07c509bdf1476f498df03adba6b85fb, type: 2}
     value: {fileID: 4139606819989812644}
+  - key: {fileID: -1304909655369214893, guid: a07c509bdf1476f498df03adba6b85fb, type: 2}
+    value: {fileID: 42954774249118666}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &9132618932990248099
