@@ -20,10 +20,10 @@ public class CharacterAwaitTribute : MonoBehaviour
         {
             if (@event != null)
             {
-                character.StartCoroutine(character.TryLeavePlayer());
                 @event.Invoke();
-                destroyNext = true;
             }
+            character.StartCoroutine(character.TryLeavePlayer());
+            destroyNext = true;
         }
     }
 }
