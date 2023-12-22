@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 656854644282230625}
   - component: {fileID: 656854644282230624}
-  - component: {fileID: 656854644282230631}
   - component: {fileID: 656854644282230630}
   m_Layer: 0
   m_Name: "\u6587\u6597trigger"
@@ -63,63 +62,7 @@ MonoBehaviour:
   NoDebateEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &656854644282230631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656854644282230629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2caaf9d07de1b3941bba43dd167b4b43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CharacterTemps:
-  - CharacterName: "\u5B59\u4F0F"
-    ArtCode: 5
-    TagNames:
-    - "\u5112\u751F"
-    - "\u6587\u8D1E"
-    - "\u7EE3\u82B1\u6795\u5934"
-    - "\u6742\u4E03\u6742\u516B"
-    - "\u8EAB\u4F53\u5B71\u5F31"
-  - CharacterName: "\u5218\u5C55"
-    ArtCode: 4
-    TagNames:
-    - "\u5112\u751F"
-    - "\u81EA\u662F\u4E09\u516C"
-    - "\u5E73\u5E73\u65E0\u5947"
-    - "\u6545\u4E8B\u738B"
-    - "\u5F97\u5BF8\u8FDB\u5C3A"
-  - CharacterName: "\u5F90\u6653\u660E"
-    ArtCode: 4
-    TagNames:
-    - "\u5112\u751F"
-    - "\u8FD1\u89C6"
-    - "\u516D\u6839\u4E0D\u51C0"
-    - "\u591A\u52A8\u75C7"
-    - "\u4E94\u5473\u6742\u9648"
-  - CharacterName: "\u5510\u6708"
-    ArtCode: 1
-    TagNames:
-    - "\u73E0\u5149\u5B9D\u6C14"
-    - "\u5112\u751F"
-    - "\u7434\u5E08"
-    - "\u6742\u4E03\u6742\u516B"
-    - "\u516D\u6839\u4E0D\u51C0"
-  - CharacterName: "\u8D75\u8D85"
-    ArtCode: 4
-    TagNames:
-    - "\u4E1C\u6D0B\u8BED"
-    - "\u6545\u4E8B\u738B"
-    - "\u4E0D\u5B55\u4E0D\u80B2"
-    - "\u5E73\u5E73\u65E0\u5947"
-    - "\u4E0D\u5B5D\u5B50"
-  Host: {fileID: 3631973197943009650}
-  generalEventTrigger: {fileID: 656854644282230624}
-  SetOnEnable: 1
-  Debate: 1
+  canSurrender: 1
 --- !u!114 &656854644282230630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1413,6 +1356,7 @@ GameObject:
   - component: {fileID: 4258855410032422511}
   - component: {fileID: 4477908584329362230}
   - component: {fileID: 4703854074966076940}
+  - component: {fileID: 8893443721774290784}
   m_Layer: 0
   m_Name: "\u5B59\u4F0F"
   m_TagString: Untagged
@@ -1640,6 +1584,63 @@ MonoBehaviour:
   - "\u81EA\u662F\u4E09\u516C"
   FakeName: "\u5B59\u4F0F"
   setDone: 0
+--- !u!114 &8893443721774290784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4981306858229791325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2caaf9d07de1b3941bba43dd167b4b43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterTemps:
+  - CharacterName: "\u5B59\u4F0F"
+    ArtCode: 5
+    TagNames:
+    - "\u5112\u751F"
+    - "\u6587\u8D1E"
+    - "\u7EE3\u82B1\u6795\u5934"
+    - "\u6742\u4E03\u6742\u516B"
+    - "\u8EAB\u4F53\u5B71\u5F31"
+  - CharacterName: "\u5218\u5C55"
+    ArtCode: 4
+    TagNames:
+    - "\u5112\u751F"
+    - "\u81EA\u662F\u4E09\u516C"
+    - "\u5E73\u5E73\u65E0\u5947"
+    - "\u6545\u4E8B\u738B"
+    - "\u5F97\u5BF8\u8FDB\u5C3A"
+  - CharacterName: "\u5F90\u6653\u660E"
+    ArtCode: 4
+    TagNames:
+    - "\u5112\u751F"
+    - "\u8FD1\u89C6"
+    - "\u516D\u6839\u4E0D\u51C0"
+    - "\u591A\u52A8\u75C7"
+    - "\u4E94\u5473\u6742\u9648"
+  - CharacterName: "\u5510\u6708"
+    ArtCode: 1
+    TagNames:
+    - "\u73E0\u5149\u5B9D\u6C14"
+    - "\u5112\u751F"
+    - "\u7434\u5E08"
+    - "\u6742\u4E03\u6742\u516B"
+    - "\u516D\u6839\u4E0D\u51C0"
+  - CharacterName: "\u8D75\u8D85"
+    ArtCode: 4
+    TagNames:
+    - "\u4E1C\u6D0B\u8BED"
+    - "\u6545\u4E8B\u738B"
+    - "\u4E0D\u5B55\u4E0D\u80B2"
+    - "\u5E73\u5E73\u65E0\u5947"
+    - "\u4E0D\u5B5D\u5B50"
+  Host: {fileID: 3631973197943009650}
+  generalEventTrigger: {fileID: 656854644282230624}
+  SetOnEnable: 1
+  Debate: 1
 --- !u!1 &4985694654709780133
 GameObject:
   m_ObjectHideFlags: 0
