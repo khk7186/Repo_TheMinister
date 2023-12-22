@@ -23,7 +23,7 @@ public class ThemeMusicTirgger : MonoBehaviour
         {
             Trigger();
         }
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        //SceneManager.sceneLoaded += OnSceneLoaded;
     }
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -32,7 +32,7 @@ public class ThemeMusicTirgger : MonoBehaviour
     }
     public void Trigger()
     {
-        var controller = FindObjectOfType<BackgoundMusicController>();
+        var controller = FindObjectOfType<BackgroundMusicController>();
         if (controller == null) { Debug.LogError("BackgoundMusicController not fund on function"); return; }
 
         if (style == "Sad")
@@ -48,7 +48,7 @@ public class ThemeMusicTirgger : MonoBehaviour
     }
     public void SetMusic()
     {
-        var controller = FindObjectOfType<BackgoundMusicController>();
+        var controller = FindObjectOfType<BackgroundMusicController>();
         if (controller == null) Debug.LogError("BackgoundMusicController not fund on function");
         else
         {
@@ -63,7 +63,7 @@ public class ThemeMusicTirgger : MonoBehaviour
     }
     public void SetBack()
     {
-        var controller = FindObjectOfType<BackgoundMusicController>();
+        var controller = FindObjectOfType<BackgroundMusicController>();
         if (controller == null) Debug.LogError("BackgoundMusicController not fund on function");
         //TODO: waitUntil music stop playing
         controller.OnEnable();
@@ -74,7 +74,7 @@ public class ThemeMusicTirgger : MonoBehaviour
         var AudioDB = AudioManager.instance.soAudio;
         audioSourceA.clip = AudioDB.GetAudio("SadA");
         audioSourceB.clip = AudioDB.GetAudio("SadB");
-        var controller = FindObjectOfType<BackgoundMusicController>();
+        var controller = FindObjectOfType<BackgroundMusicController>();
         if (controller == null) Debug.LogError("BackgoundMusicController not fund on function");
         controller.audioSource.Stop();
         StartCoroutine(SadRoutine());
@@ -84,7 +84,7 @@ public class ThemeMusicTirgger : MonoBehaviour
         var AudioDB = AudioManager.instance.soAudio;
         audioSourceA.clip = AudioDB.GetAudio("Depress");
         audioSourceB.clip = AudioDB.GetAudio("Depress");
-        var controller = FindObjectOfType<BackgoundMusicController>();
+        var controller = FindObjectOfType<BackgroundMusicController>();
         if (controller == null) Debug.LogError("BackgoundMusicController not fund on function");
         controller.audioSource.Stop();
         StartCoroutine(SadRoutine());
@@ -120,11 +120,11 @@ public class ThemeMusicTirgger : MonoBehaviour
     private void OnDestroy()
     {
         StopAllCoroutines();
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        //SceneManager.sceneLoaded -= OnSceneLoaded;
     }
     private void OnDisable()
     {
         StopAllCoroutines();
-        SceneManager.sceneLoaded -= OnSceneLoaded;
+        //SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
