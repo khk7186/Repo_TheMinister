@@ -32,7 +32,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         }
         if (subQuestDB != null)
         {
-            if (subQuestDB.CurrentSave != CurrentSave) subQuestDB.NewCurrent(CurrentSave);
+            //if (subQuestDB.CurrentSave != CurrentSave) subQuestDB.NewCurrent(CurrentSave);
             CloneList();
         }
     }
