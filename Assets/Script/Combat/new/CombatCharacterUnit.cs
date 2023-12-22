@@ -97,7 +97,7 @@ public class CombatCharacterUnit : MonoBehaviour
         }
         healthBar = Instantiate(Resources.Load<HealthBar>("CombatScene/HealthBar"), MainCanvas.FindMainCanvas());
         healthBar.followCharacter = this.transform;
-        healthBar.Setup(character.health);
+        healthBar.slider.value = character.health;
     }
 
     public void SetGridPosition(Vector3Int cellPosition)
