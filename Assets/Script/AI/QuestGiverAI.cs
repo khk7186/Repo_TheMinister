@@ -39,6 +39,13 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
         {
             GetComponentInChildren<ExclamationMarkBuilder>()?.gameObject.SetActive(true);
         }
+        StartCoroutine(RestartCollider());
+    }
+    public IEnumerator RestartCollider()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForFixedUpdate();
+        GetComponent<Collider2D>().enabled = true;
     }
     protected int Chapter()
     {
