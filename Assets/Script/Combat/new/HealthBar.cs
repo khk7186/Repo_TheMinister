@@ -20,7 +20,7 @@ public class HealthBar : MonoBehaviour
     }
     public void Setup(int health)
     {
-        StartCoroutine(healthChange(health));
+        slider.value = health;
     }
     IEnumerator healthChange(int health)
     {
