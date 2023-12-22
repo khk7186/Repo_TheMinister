@@ -19,18 +19,18 @@ public class TurnBackground : MonoBehaviour
     {
         if (!TurnItOn)
         {
-            FindObjectOfType<BackgoundMusicController>().GetComponent<AudioSource>().Stop();
+            FindObjectOfType<BackgroundMusicController>().GetComponent<AudioSource>().Stop();
         }
         else
         {
-            FindObjectOfType<BackgoundMusicController>().GetComponent<AudioSource>().Play();
+            FindObjectOfType<BackgroundMusicController>().GetComponent<AudioSource>().Play();
         }
     }
     private void OnDestroy()
     {
         if (ResumeOnDestroy)
         {
-            FindObjectOfType<BackgoundMusicController>().GetComponent<AudioSource>().Play();
+            FindObjectOfType<BackgroundMusicController>().GetComponent<AudioSource>().Play();
         }
     }
 }
