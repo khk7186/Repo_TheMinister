@@ -700,14 +700,9 @@ public class Character : MonoBehaviour, IRound
     public void Away(int rounds, SpawnAfterAwayGuest spawnAfterAway = null)
     {
         hireStage = HireStage.Away;
-        OnCombatDuty = false;
-        OnDebateDuty = false;
-        OnGobangDuty = false;
-        if (thisCharacterCard != null)
-        {
-            thisCharacterCard.OnCombatImage.gameObject.SetActive(false);
-            thisCharacterCard.OnDebateImage.gameObject.SetActive(false);
-        }
+        OnDutyState[OndutyType.Combat] = false;
+        OnDutyState[OndutyType.Debate] = false;
+        OnDutyState[OndutyType.Gobang] = false;
         var e = new UnityEvent();
         e.AddListener(() => Back());
         if (spawnAfterAway != null)
