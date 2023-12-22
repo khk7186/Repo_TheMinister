@@ -52,7 +52,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     {
         ActiveQuestsGivers.RemoveAll(x => x == null);
         inGameQuestCount = ActiveQuestsGivers.Count;
-        if (inGameQuestCount < 7)
+        if (inGameQuestCount < 3)
             ActiveNextQuest();
     }
 
