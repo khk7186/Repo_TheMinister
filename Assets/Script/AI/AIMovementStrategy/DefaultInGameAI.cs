@@ -50,6 +50,12 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
 
         GetComponent<Collider2D>().enabled = true;
     }
+    public IEnumerator RestartCollider()
+    {
+        GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForFixedUpdate();
+        GetComponent<Collider2D>().enabled = true;
+    }
     public virtual void StartAction()
     {
         if (SceneManager.GetActiveScene().buildIndex == 1 || SceneManager.GetActiveScene().name == "SampleScene 1")
@@ -76,6 +82,7 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
             Register();
+            StartCoroutine(RestartCollider());
         }
         //if (character != null)
         //{
