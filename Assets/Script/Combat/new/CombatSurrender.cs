@@ -6,6 +6,13 @@ using UnityEngine;
 public class CombatSurrender : MonoBehaviour
 {
     public float duration = 0.3f;
+    public void Start()
+    {
+        if (GeneralEventTrigger.CurrentGET.canSurrender == false)
+        {
+            gameObject.SetActive(false);
+        }
+    }
     public void Surrender()
     {
         Debug.Log("Surrender");

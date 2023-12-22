@@ -30,6 +30,7 @@ public class GeneralEventTrigger : MonoBehaviour
     public bool dontPopEndGamePannel = false;
     public EventAfterCombatBasedOnResult EventAC;
     public UnityEvent NoDebateEvent = new UnityEvent();
+    public bool canSurrender = true;
     private void Awake()
     {
         var pannelPath = "CombatScene/VictoryUI";
