@@ -17,18 +17,18 @@ public class SpawnUI : MonoBehaviour
         }
         else
         {
-            CurrentTarget = Instantiate(ThingToSpawn, GameObject.FindGameObjectWithTag("MainUICanvas").transform);
+            CurrentTarget = Instantiate(ThingToSpawn, MainCanvas.FindMainCanvas());
         }
     }
     public Transform SpawnWithReturn()
     {
-        CurrentTarget = Instantiate(ThingToSpawn, GameObject.FindGameObjectWithTag("MainUICanvas").transform);
+        CurrentTarget = Instantiate(ThingToSpawn, MainCanvas.FindMainCanvas());
         return CurrentTarget;
     }
 
     public void SpawnHere()
     {
-        CurrentTarget = Instantiate(ThingToSpawn, transform);
+        CurrentTarget = Instantiate(ThingToSpawn, MainCanvas.FindMainCanvas());
     }
 
     public void ChangePosition(Vector2 targetPos)
