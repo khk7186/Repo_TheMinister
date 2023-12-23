@@ -24,13 +24,15 @@ public class PlayerCharactersInventory : MonoBehaviour
     public Transform Storage;
 
     public Transform OndutySlot;
+    public CardMode uiMode = CardMode.ViewMode;
     public void RightClickSelectMode()
     {
         GetComponent<RightClickToClose>().RightClickEvent();
     }
     private void OnEnable()
     {
-        Setup();
+        if (uiMode == CardMode.ViewMode)
+            Setup();
     }
 
     public void Setup()
@@ -77,6 +79,7 @@ public class PlayerCharactersInventory : MonoBehaviour
     }
     public void SetupMode(CardMode mode)
     {
+        uiMode = mode;
         foreach (CharacterUI character in characterUIList)
         {
             character.cardMode = mode;
