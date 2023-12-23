@@ -31,7 +31,7 @@ public class PlayerCharactersInventory : MonoBehaviour
     }
     private void OnEnable()
     {
-        if (uiMode == CardMode.ViewMode)
+        if (uiMode == CardMode.ViewMode || uiMode == CardMode.ItemSelectMode)
             Setup();
     }
 
