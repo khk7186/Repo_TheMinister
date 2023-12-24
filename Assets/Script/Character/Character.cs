@@ -735,6 +735,7 @@ public class Character : MonoBehaviour, IRound
         yield return new WaitForFixedUpdate();
         if (hireStage == HireStage.Hired) TryDeath();
         if (hireStage == HireStage.Hired) CurrencyInvAnimationManager.Instance.PrestigeChange(1);
+        if (hireStage == HireStage.Hired) NotifyReturn();
         if (spawnAfterAway != null) Instantiate(spawnAfterAway);
     }
 
