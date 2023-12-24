@@ -45,7 +45,10 @@ public class Combat : MonoBehaviour
             else
                 yield return null;
         }
-        
+        foreach (var ccu in FindObjectsOfType<CombatCharacterUnit>())
+        {
+            ccu.Defender = null;
+        }
         yield return new WaitForEndOfFrame();
         CombatInteractableUnit.SetActiveAllLine(true);
         FindObjectOfType<CombatUI>().BlackFrameAnimation(true);
