@@ -39,7 +39,7 @@ public class InteractAsset : MonoBehaviour, IDetailAble
         if (ChapterCounter.Instance.Chapter == 3 && building.buildingType != BuildingType.ÎäÆ÷ÆÌ && building.buildingType != BuildingType.Ìú½³ÆÌ && building.buildingType != BuildingType.ÏÉ¶¦Ì¨) return;
         if (IsPointerOver.IsPointerOverUIObject())
         {
-            Debug.Log("Clicked on UI");
+            //Debug.Log("Clicked on UI");
             return;
         }
         building.OpenMenu();

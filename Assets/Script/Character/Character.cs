@@ -5,6 +5,7 @@ using System;
 using UnityEngine.EventSystems;
 using System.Linq;
 using UnityEngine.Events;
+using PixelCrushers.DialogueSystem;
 
 public enum Tag
 {
@@ -834,6 +835,9 @@ public class Character : MonoBehaviour, IRound
                         tagExchangeUI.FlipZero(Tag.Œﬁ…À¥Û—≈);
                     }
                 }
+                UpdateVariables();
+                CharacterInfoUI characterInfoUI = FindObjectOfType<CharacterInfoUI>();
+                characterInfoUI.SetValues(charactersValueDict);
                 yield return new WaitForSeconds(FindObjectOfType<UISpecForSwitch>().duration * 2);
             }
             break;
