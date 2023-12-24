@@ -21,7 +21,7 @@ namespace SaveSystem
             manager.questionAIManager.Load(save);
             manager.lightController.ConstantLight(Map.Instance.DayTime);
             LoadDelayToSpawn(manager, save);
-
+            GameObject.FindObjectOfType<BackgoundMusicController>()?.OnEnable();
         }
         public static void LoadPlayerCharacters(GameSave save)
         {
