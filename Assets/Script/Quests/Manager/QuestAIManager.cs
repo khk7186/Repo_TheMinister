@@ -19,6 +19,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     public List<QuestGiverAI> InactiveQuestGivers = new List<QuestGiverAI>();
     public List<QuestGiverAI> ActiveQuestsGivers = new List<QuestGiverAI>();
     public int inGameQuestCount = 0;
+    public bool themeMode = false;
     private void Start()
     {
         if (Instance == null)
@@ -36,6 +37,14 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
             CloneList();
         }
     }
+    public void ThemeMode(bool Off)
+    {
+        foreach (var quest in GetComponentsInChildren<GameObject>(true))
+        {
+            quest.gameObject.SetActive(Off);
+        }
+        themeMode = Off;
+    }
     public void QuestCountAdd()
     {
         inGameQuestCount++;
@@ -50,6 +59,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     }
     public void TryActiveNextQuest()
     {
+        if (themeMode == true) return;
         ActiveQuestsGivers.RemoveAll(x => x == null);
         inGameQuestCount = ActiveQuestsGivers.Count;
         if (inGameQuestCount < 3)
@@ -103,6 +113,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     public void Reset()
     {
         inGameQuestCount = 0;
+        themeMode = false;
         foreach (var aqg in ActiveQuestsGivers)
         {
             if (aqg != null)

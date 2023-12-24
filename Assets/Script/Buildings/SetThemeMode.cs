@@ -9,6 +9,7 @@ public class SetThemeMode : MonoBehaviour
     public void Set()
     {
         InGameCharacterStorage.Instance?.ThemeMode(ThemeModeOn);
+        QuestAIManager.Instance?.ThemeMode(ThemeModeOn);
     }
     private void OnEnable()
     {
@@ -18,5 +19,6 @@ public class SetThemeMode : MonoBehaviour
     public void OnDestroy()
     {
         InGameCharacterStorage.Instance?.ThemeMode(false);
+        QuestAIManager.Instance?.ThemeMode(false);
     }
 }
