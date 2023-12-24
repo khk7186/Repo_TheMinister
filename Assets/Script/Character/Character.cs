@@ -5,6 +5,7 @@ using System;
 using UnityEngine.EventSystems;
 using System.Linq;
 using UnityEngine.Events;
+using UnityEngine.UI;
 using PixelCrushers.DialogueSystem;
 
 public enum Tag
@@ -855,7 +856,14 @@ public class Character : MonoBehaviour, IRound
 
         }
     }
-
+    public void NotifyReturn()
+    {
+        AudioManager.Play("角色回归");
+        var sampleText = Resources.Load<Text>("Hiring/Message");
+        var message = Instantiate<Text>(sampleText, MainCanvas.FindMainCanvas());
+        message.text = $"{CharacterName}  回来了";
+        return;
+    }
 
 
 }
