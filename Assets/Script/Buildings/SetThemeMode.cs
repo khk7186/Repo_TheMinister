@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SetThemeModeForCharacterStorage : MonoBehaviour
+public class SetThemeMode : MonoBehaviour
 {
     public bool SetOnEnable = false;
     public bool ThemeModeOn = false;
