@@ -53,7 +53,7 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
     {
         if (toDestroy.Where(x => x != null).Count() >= 0)
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(20);
             foreach (var tribute in toDestroy)
             {
                 if (tribute != null)

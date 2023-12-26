@@ -40,8 +40,12 @@ public class ShopItemUI : ItemUI
             alert.text = "你需要更多银两";
             return;
         }
-        string message = "是否花费" + Price.text + "银两购买" + ItemName + "?";
-        StartCoroutine(Confirmation.CreateNewComfirmation(BuyItem, message).Confirm());
+        else
+        {
+            BuyItem();
+        }
+        //string message = "是否花费" + Price.text + "银两购买" + ItemName + "?";
+        //StartCoroutine(Confirmation.CreateNewComfirmation(BuyItem, message).Confirm());
     }
     public void BuyItem()
     {

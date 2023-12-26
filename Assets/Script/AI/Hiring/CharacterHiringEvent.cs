@@ -981,7 +981,7 @@ public class CharacterHiringEvent : MonoBehaviour
             },
     };
 
-    private static Dictionary<CharacterArtCode, Dictionary<Rarerity, Dictionary<ItemName, int>>> CharacterArtCodeToRarityItemRequestDict
+    public static Dictionary<CharacterArtCode, Dictionary<Rarerity, Dictionary<ItemName, int>>> CharacterArtCodeToRarityItemRequestDict
         = new Dictionary<CharacterArtCode, Dictionary<Rarerity, Dictionary<ItemName, int>>>
         {
             {CharacterArtCode.Å®Ê«ÈË, FemalePoestRarityItemRequestDict },
