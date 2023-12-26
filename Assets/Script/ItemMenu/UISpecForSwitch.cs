@@ -8,15 +8,15 @@ public class UISpecForSwitch : TagSpecUI
     public RectTransform originRect;
     public Tag switchTag;
     public RectTransform switchRect;
-    public Image switchImage;
+    public TagWithDescribetion switchTagWithDescribetion;
     public Text switchText;
     public float duration = 0.2f;
     public GameObject HideIfBad;
 
     public override void SetTagIcon(Tag tag, bool origin = true)
     {
-        var target = origin ? tagIcon : switchImage;
-        target.sprite = FindTagSprite(tag);
+        var target = origin ? tagWithDescribetion : switchTagWithDescribetion;
+        target.Setup(tag);
         Rarerity rarerity = Player.AllTagRareDict[tag];
         if (rarerity <= Rarerity.B)
         {

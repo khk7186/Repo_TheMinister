@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class TagSpecUI : MonoBehaviour
 {
     public Tag originTag;
-    public Image tagIcon;
     public TagWithDescribetion tagWithDescribetion;
     public Text Info;
 
