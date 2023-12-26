@@ -62,7 +62,7 @@ public class SOItem : ScriptableObject
         {ItemName.云纹袍,Tag.景星庆云},
         {ItemName.长袖装,Tag.长袖善舞},
         {ItemName.金钱镖,Tag.金钱镖},
-        {ItemName.袖炮,Tag.袖袍},
+        {ItemName.袖炮,Tag.袖炮},
         {ItemName.血滴子,Tag.血滴子},
         {ItemName.灵芝,Tag.妙手丹心},
         {ItemName.锦绣华服,Tag.理财大师},
