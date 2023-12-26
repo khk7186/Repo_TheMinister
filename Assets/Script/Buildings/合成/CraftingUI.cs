@@ -13,6 +13,10 @@ public class CraftingUI : MonoBehaviour
     private List<ItemName> CraftingList;
     private ItemName CurrentItem;
 
+    private void OnEnable()
+    {
+        Setup(CraftingList);
+    }
     public void Setup(List<ItemName> CraftingList)
     {
         this.CraftingList = CraftingList;
