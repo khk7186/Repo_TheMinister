@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
     public ItemInventory itemInventory;
     public GameObject EmptyWarn;
     public GameObject[] OffForEmptyWarn;
+    public Rarerity currentRareFilter = Rarerity.Null;
+    public string currentTypeFilter = string.Empty;
 
     private void Awake()
     {
@@ -22,7 +25,7 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
         this.itemInventory = itemInventory;
         if (itemInventory != null)
         {
-            if (itemInventory.ItemDict.Count <=0)
+            if (itemInventory.ItemDict.Count <= 0)
             {
                 EmptyInvView();
                 return;
@@ -65,6 +68,104 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
         else if (eventData.button == PointerEventData.InputButton.Right)
         {
 
+        }
+    }
+
+    public void FilterByRarerity(string rare)
+    {
+        if (rare == "All")
+        {
+            currentRareFilter = Rarerity.Null;
+            foreach (Transform child in transform)
+            {
+                if (currentTypeFilter == "All")
+                {
+
+                    child.gameObject.SetActive(true);
+                }
+                else
+                {
+                    ItemType itemType = (ItemType)Enum.Parse(typeof(ItemType), currentTypeFilter);
+                    if (SOItem.ItemTypeDict[itemType].Contains(child.GetComponent<ItemUI>().ItemName))
+                    {
+                        child.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        child.gameObject.SetActive(false);
+                    }
+                }
+            }
+            return;
+        }
+        var rarerity = (Rarerity)Enum.Parse(typeof(Rarerity), rare);
+        currentRareFilter = rarerity;
+        foreach (Transform child in transform)
+        {
+            if (child.GetComponent<ItemUI>().framRarity == rarerity)
+            {
+                if (currentTypeFilter == "All")
+                {
+
+                    child.gameObject.SetActive(true);
+                }
+                else
+                {
+                    ItemType itemType = (ItemType)Enum.Parse(typeof(ItemType), currentTypeFilter);
+                    if (SOItem.ItemTypeDict[itemType].Contains(child.GetComponent<ItemUI>().ItemName))
+                    {
+                        child.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        child.gameObject.SetActive(false);
+                    }
+                }
+            }
+            else
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+    }
+    public void FilterByItemType(string type)
+    {
+        currentTypeFilter = type;
+        if (type == "All")
+        {
+            foreach (Transform child in transform)
+            {
+                if (currentRareFilter == Rarerity.Null || child.GetComponent<ItemUI>().framRarity == currentRareFilter)
+                {
+
+                    child.gameObject.SetActive(true);
+                }
+                else
+                {
+                    child.gameObject.SetActive(false);
+                }
+            }
+            return;
+        }
+        ItemType itemType = (ItemType)Enum.Parse(typeof(ItemType), type);
+        foreach (Transform child in transform)
+        {
+            if (SOItem.ItemTypeDict[itemType].Contains(child.GetComponent<ItemUI>().ItemName))
+            {
+                if (currentRareFilter == Rarerity.Null || child.GetComponent<ItemUI>().framRarity == currentRareFilter)
+                {
+
+                    child.gameObject.SetActive(true);
+                }
+                else
+                {
+                    child.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                child.gameObject.SetActive(false);
+            }
         }
     }
 }
