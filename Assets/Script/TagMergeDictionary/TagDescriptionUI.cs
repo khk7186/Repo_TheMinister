@@ -14,6 +14,7 @@ public class TagDescriptionUI : MonoBehaviour
     private RectTransform canvasRectTransform;
     public TagMergeUnitUI mergeUnitUITemp = null;
     public Transform mergeInfoHolder = null;
+    public TagFromWhere tagFromWhere = null;
     private void Awake()
     {
         imageRectTransform = GetComponent<RectTransform>();
@@ -39,6 +40,7 @@ public class TagDescriptionUI : MonoBehaviour
             tagImage.sprite = Resources.Load<Sprite>(ReturnAssetPath.ReturnTagPath(currentTag));
             tagStats.text = ItemStatPrinter.PrintAllStats(currentTag);
             SetMergeInfo(targetTag);
+            tagFromWhere.Setup(targetTag);
         }
     }
     public void ResetMergeInfo()

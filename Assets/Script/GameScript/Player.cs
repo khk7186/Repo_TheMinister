@@ -993,7 +993,6 @@ public class Player : MonoBehaviour
     };
     public static Dictionary<Tag, GameObject> TagPrefabDict = new Dictionary<Tag, GameObject> { };
 
-
     private static Dictionary<Rarerity, List<Tag>> FemalePoestTagPool =
         new Dictionary<Rarerity, List<Tag>>
     {
