@@ -1,3 +1,4 @@
+using Language.Lua;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,10 +39,27 @@ public class CharacterHireRequireDescriptionUI : MonoBehaviour
             else if (Rarity == Rarerity.SR) rareColor = SRColor;
             else if (Rarity == Rarerity.SSR) rareColor = SSRColor;
             else if (Rarity == Rarerity.UR) rareColor = URColor;
-            string line = $"<color=#{ColorUtility.ToHtmlStringRGBA(rareColor)}>{item.Key.ToString()}</color> * {item.Value}";
+            string valueColor = HaveEnough(item.Value <= HaveAmount(item.Key));
+            string line = $"<color=#{ColorUtility.ToHtmlStringRGBA(rareColor)}>{item.Key.ToString()}</color> * <color={valueColor}>{HaveAmount(item.Key)}</color>/{item.Value}";
             text += line;
         }
         requestText.text = text;
+    }
+    public int HaveAmount(ItemName itemName)
+    {
+        var PlayerItemDic = GameObject.FindGameObjectWithTag("PlayerItemInventory").GetComponent<ItemInventory>().ItemDict;
+
+        int HaveAmount = 0;
+        if (PlayerItemDic.ContainsKey(itemName))
+        {
+            HaveAmount = PlayerItemDic[itemName];
+        }
+        return HaveAmount;
+    }
+    public string HaveEnough(bool success)
+    {
+        string color = success ? "#60FF45" : "#FF0000";
+        return color;
     }
     public static void Show(Character character)
     {
