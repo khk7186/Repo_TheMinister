@@ -14,6 +14,7 @@ public class ItemDetailUI : MonoBehaviour
     public Vector2 offset = new Vector2(15, -15);  // Offset from the mouse position
     private RectTransform imageRectTransform;
     private RectTransform canvasRectTransform;
+    public ItemFromWhere itemFromWhere;
     private void Awake()
     {
         imageRectTransform = GetComponent<RectTransform>();
@@ -24,6 +25,7 @@ public class ItemDetailUI : MonoBehaviour
         Name.text = itemName.ToString();
         description.text = ItemDescription[itemName];
         stat.text = ItemStatPrinter.PrintAllStats(itemName);
+        itemFromWhere.Setup(itemName);
     }
     private void OnEnable()
     {
