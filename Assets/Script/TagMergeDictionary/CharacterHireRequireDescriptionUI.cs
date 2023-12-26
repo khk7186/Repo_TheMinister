@@ -70,7 +70,7 @@ public class CharacterHireRequireDescriptionUI : MonoBehaviour
     }
     public static void Hide()
     {
-        FindObjectOfType<CharacterHireRequireDescriptionUI>().gameObject.SetActive(false);
+        FindObjectOfType<CharacterHireRequireDescriptionUI>()?.gameObject.SetActive(false);
     }
     public void SetPositionNextToMouse()
     {

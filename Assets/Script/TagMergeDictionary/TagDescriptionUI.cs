@@ -12,6 +12,8 @@ public class TagDescriptionUI : MonoBehaviour
     public Vector2 offset = new Vector2(15, -15);  // Offset from the mouse position
     private RectTransform imageRectTransform;
     private RectTransform canvasRectTransform;
+    public TagMergeUnitUI mergeUnitUITemp = null;
+    public Transform mergeInfoHolder = null;
     private void Awake()
     {
         imageRectTransform = GetComponent<RectTransform>();
@@ -36,6 +38,31 @@ public class TagDescriptionUI : MonoBehaviour
             currentTag = targetTag;
             tagImage.sprite = Resources.Load<Sprite>(ReturnAssetPath.ReturnTagPath(currentTag));
             tagStats.text = ItemStatPrinter.PrintAllStats(currentTag);
+            SetMergeInfo(targetTag);
+        }
+    }
+    public void ResetMergeInfo()
+    {
+        foreach (Transform child in mergeInfoHolder)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+    private void SetMergeInfo(Tag tag)
+    {
+        ResetMergeInfo();
+        Dictionary<Tag, List<Tag>> outputMergeTagDict = new Dictionary<Tag, List<Tag>>();
+        foreach (var suspect in Player.MergeTagDict)
+        {
+            if (suspect.Value.Contains(tag))
+            {
+                outputMergeTagDict.Add(suspect.Key, suspect.Value);
+            }
+        }
+        foreach (var target in outputMergeTagDict)
+        {
+            var clone = Instantiate(mergeUnitUITemp, mergeInfoHolder);
+            clone.Setup(target.Key);
         }
     }
     private void Update()

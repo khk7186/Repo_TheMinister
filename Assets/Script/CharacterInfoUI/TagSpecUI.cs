@@ -7,6 +7,7 @@ public class TagSpecUI : MonoBehaviour
 {
     public Tag originTag;
     public Image tagIcon;
+    public TagWithDescribetion tagWithDescribetion;
     public Text Info;
 
     public void SetUp(Tag tag, bool origin = true)
@@ -21,7 +22,7 @@ public class TagSpecUI : MonoBehaviour
 
     public virtual void SetTagIcon(Tag tag, bool origin = true)
     {
-        tagIcon.sprite = FindTagSprite(tag);
+        tagWithDescribetion.Setup(tag);
     }
 
     public static Sprite FindTagSprite(Tag tag)
