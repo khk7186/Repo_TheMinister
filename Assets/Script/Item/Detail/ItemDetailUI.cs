@@ -15,6 +15,7 @@ public class ItemDetailUI : MonoBehaviour
     private RectTransform imageRectTransform;
     private RectTransform canvasRectTransform;
     public ItemFromWhere itemFromWhere;
+    public ItemToWhere itemToWhere;
     private void Awake()
     {
         imageRectTransform = GetComponent<RectTransform>();
@@ -26,6 +27,7 @@ public class ItemDetailUI : MonoBehaviour
         description.text = ItemDescription[itemName];
         stat.text = ItemStatPrinter.PrintAllStats(itemName);
         itemFromWhere.Setup(itemName);
+        itemToWhere.Setup(itemName);
     }
     private void OnEnable()
     {
