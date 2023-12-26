@@ -44,6 +44,7 @@ public class CharacterHireRequireDescriptionUI : MonoBehaviour
             text += line;
         }
         requestText.text = text;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
     }
     public int HaveAmount(ItemName itemName)
     {

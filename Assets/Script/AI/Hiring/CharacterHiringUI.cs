@@ -11,6 +11,7 @@ public class CharacterHiringUI : MonoBehaviour
     public Transform Tags;
     public Vector2 SizeDelta = new Vector2(70f, 20f);
     public Transform Items;
+    public TagWithDescribetion tagTemp;
 
     public GameObject Defeated;
     public GameObject Committed;
@@ -43,14 +44,11 @@ public class CharacterHiringUI : MonoBehaviour
     }
     public void SetTags(Character character)
     {
-        Image tagObject = Resources.Load<Image>("Tag/Tag");
         TransformEx.Clear(Tags);
         foreach (Tag tag in character.tagList)
         {
-            var tagImagePath = $"Art/Tags/{tag.ToString()}";
-            var current = Instantiate(tagObject, Tags);
-            current.sprite = Resources.Load<Sprite>(tagImagePath);
-            current.GetComponent<RectTransform>().sizeDelta = SizeDelta;
+            var current = Instantiate(tagTemp, Tags);
+            current.Setup(tag);
         }
     }
     public void SetItems(Dictionary<ItemName, int> ItemsAmountDict)

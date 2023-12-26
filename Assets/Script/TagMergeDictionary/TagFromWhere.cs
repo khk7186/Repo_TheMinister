@@ -25,7 +25,6 @@ public class TagFromWhere : MonoBehaviour
         {
             output += "出生获得\n";
         }
-
         if (TryItem())
         {
             output += "使用道具获得：\n";
