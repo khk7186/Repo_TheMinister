@@ -13,6 +13,7 @@ public class BuildingUI : MonoBehaviour
     private void Awake()
     {
         MeetPeopleLayoutPrefab = Resources.Load<MeetPeopleCharacterCardUI>("BuildingUI/MeetCharacter");
+        DontDestroyOnLoad(gameObject);
     }
 
     public void UpdateUI()
