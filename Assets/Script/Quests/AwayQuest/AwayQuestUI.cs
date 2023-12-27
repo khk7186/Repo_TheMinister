@@ -56,9 +56,8 @@ public class AwayQuestUI : MonoBehaviour, ICharacterSelect
         tagTemp.gameObject.SetActive(false);
         foreach (Tag tag in Tags)
         {
-            var current = Instantiate(tagTemp, TagContent).GetComponent<Image>();
-            current.sprite = Resources.Load<Sprite>(ReturnAssetPath.ReturnTagPath(tag));
-            current.gameObject.SetActive(true);
+            var current = Instantiate(tagTemp, TagContent).GetComponentInChildren<TagWithDescribetion>();
+            current.Setup(tag);
         }
         healthText.text = health.ToString();
         loyaltyText.text = loyalty.ToString();
