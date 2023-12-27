@@ -16,6 +16,7 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
     public string currentTypeFilter = string.Empty;
     public Transform rareButtons;
     public Transform typeButtons;
+    public List<GameObject> FrameAssets = new List<GameObject>();
 
     private void Awake()
     {
@@ -206,10 +207,17 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
         {
             child.gameObject.SetActive(false);
         }
+        foreach (var go in FrameAssets)
+        {
+            go.SetActive(false);
+        }
     }
     public void FilterSetup()
     {
-        Debug.Log("filter");
+        foreach (var go in FrameAssets)
+        {
+            go.SetActive(true);
+        }
         List<string> rareList = new List<string>();
         List<ItemType> typeList = new List<ItemType>();
         foreach (Transform child in transform)
