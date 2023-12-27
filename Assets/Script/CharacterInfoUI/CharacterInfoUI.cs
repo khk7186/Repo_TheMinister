@@ -57,6 +57,8 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
     }
     public void Setup(Character character)
     {
+        var valueSignController = FindObjectOfType<ValueChangeSignController>();
+        valueSignController?.Reset();
         rarerity = character.CheckTopRare();
         if (backGround != null)
         {

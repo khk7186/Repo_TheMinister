@@ -34,6 +34,20 @@ public class FakeCharacterValues : MonoBehaviour
             fakeCharacterValues[CharacterValueType. ÿ] += varlist[5];
         }
         characterInfoUI.SetValues(fakeCharacterValues);
+        var valueSignController = FindObjectOfType<ValueChangeSignController>();
+        valueSignController.Reset();
+        foreach (CharacterValueType type in fakeCharacterValues.Keys)
+        {
+            if (fakeCharacterValues[type] > character.CharactersValueDict[type])
+            {
+                valueSignController.ValueChange(type, true);
+            }
+            else if (fakeCharacterValues[type] < character.CharactersValueDict[type])
+            {
+                valueSignController.ValueChange(type, false);
+            }
+            else continue;
+        }
         characterInfoUI.SetValueColors(
             Character.CheckVariablesRare(fakeCharacterValues[CharacterValueType.÷«]),
             Character.CheckVariablesRare(fakeCharacterValues[CharacterValueType.≤≈]),
