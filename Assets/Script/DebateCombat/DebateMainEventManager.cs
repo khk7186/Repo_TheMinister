@@ -55,7 +55,7 @@ public class DebateMainEventManager : MonoBehaviour
     }
     public void SetGameUnits()
     {
-        var GET = FindObjectOfType<GeneralEventTrigger>();
+        var GET = GeneralEventTrigger.CurrentGET;
         InGameDebateUnits[0].Setup(GET.playerCharacters, "ÀîÔ¬Ä°", CharacterArtCode.ÀîÔ¬Ä°, true);
         InGameDebateUnits[0].SetUnitUI(InGameDebateUnits[0].GetComponent<DebateUnitUI>());
         for (int i = 0; (i) < GET.enemyCharactersCardsList.Count; i++)
