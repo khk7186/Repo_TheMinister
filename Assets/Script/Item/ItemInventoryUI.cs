@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
 {
@@ -78,6 +79,17 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
 
     public void FilterByRarerity(string rare)
     {
+        foreach (Transform child in rareButtons)
+        {
+            if (child.name != rare)
+            {
+                HorizontalDeselectAnimation(child.gameObject.GetComponent<RectTransform>());
+            }
+            else
+            {
+                HorizontalSelectAnimation(child.gameObject.GetComponent<RectTransform>());
+            }
+        }
         if (rare == "All")
         {
             currentRareFilter = Rarerity.Null;
@@ -135,6 +147,17 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
     }
     public void FilterByItemType(string type)
     {
+        foreach (Transform child in typeButtons)
+        {
+            if (child.name != type)
+            {
+                VerticalDeselectAnimation(child.gameObject.GetComponent<RectTransform>());
+            }
+            else
+            {
+                VerticalSelectAnimation(child.gameObject.GetComponent<RectTransform>());
+            }
+        }
         currentTypeFilter = type;
         if (type == "All")
         {
@@ -202,8 +225,7 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
                 }
             }
         }
-        Debug.Log(string.Join(",", typeList));
-        Debug.Log(string.Join(",", rareList));
+
         foreach (Transform child in rareButtons)
         {
             if (child.name == "All")
@@ -221,7 +243,6 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
         }
         foreach (Transform child in typeButtons)
         {
-            Debug.Log(child.gameObject.name);
             if (child.name == "All")
             {
                 child.gameObject.SetActive(true);
@@ -239,5 +260,35 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
                 }
             }
         }
+        StartCoroutine(UpdateButtons());
+    }
+    public void VerticalSelectAnimation(RectTransform target)
+    {
+        target.DOAnchorPosY(-35, 0.1f);
+    }
+    public void VerticalDeselectAnimation(RectTransform target)
+    {
+        target.DOAnchorPosY(-25, 0.1f);
+    }
+    public void HorizontalSelectAnimation(RectTransform target)
+    {
+        target.DOAnchorPosX(35, 0.1f);
+    }
+    public void HorizontalDeselectAnimation(RectTransform target)
+    {
+        target.DOAnchorPosX(25, 0.1f);
+    }
+    IEnumerator UpdateButtons()
+    {
+        rareButtons.GetComponent<VerticalLayoutGroup>().enabled = true;
+        typeButtons.GetComponent<HorizontalLayoutGroup>().enabled = true;
+
+        yield return new WaitForEndOfFrame();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rareButtons.GetComponent<RectTransform>());
+        LayoutRebuilder.ForceRebuildLayoutImmediate(typeButtons.GetComponent<RectTransform>());
+
+        yield return new WaitForEndOfFrame();
+        rareButtons.GetComponent<VerticalLayoutGroup>().enabled = false;
+        typeButtons.GetComponent<HorizontalLayoutGroup>().enabled = false;
     }
 }
