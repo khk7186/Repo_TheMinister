@@ -40,8 +40,7 @@ public class TopicUI : MonoBehaviour
         foreach (Tag tag in topic.tagRequest)
         {
             var newTag = Instantiate(tagPref, tags);
-            string FolderPathOfTags = ("Art/Tags/" + tag.ToString()).Replace(" ", string.Empty);
-            newTag.GetComponent<Image>().sprite = Resources.Load<Sprite>(FolderPathOfTags);
+            newTag.GetComponentInChildren<TagWithDescribetion>().Setup(tag);
         }
     }
 }

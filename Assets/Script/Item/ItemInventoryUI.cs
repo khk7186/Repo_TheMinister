@@ -38,6 +38,8 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
         }
         SetUp();
         FilterSetup();
+        FilterByItemType("All");
+        FilterByRarerity("All");
     }
     public void EmptyInvView()
     {
@@ -271,19 +273,19 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
     }
     public void VerticalSelectAnimation(RectTransform target)
     {
-        target.DOAnchorPosY(-35, 0.1f);
+        target.DOAnchorPosY(-40, 0.1f);
     }
     public void VerticalDeselectAnimation(RectTransform target)
     {
-        target.DOAnchorPosY(-25, 0.1f);
+        target.DOAnchorPosY(-30, 0.1f);
     }
     public void HorizontalSelectAnimation(RectTransform target)
     {
-        target.DOAnchorPosX(35, 0.1f);
+        target.DOAnchorPosX(40, 0.1f);
     }
     public void HorizontalDeselectAnimation(RectTransform target)
     {
-        target.DOAnchorPosX(25, 0.1f);
+        target.DOAnchorPosX(30, 0.1f);
     }
     IEnumerator UpdateButtons()
     {
