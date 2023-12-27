@@ -10,10 +10,11 @@ public class StatChangeAnimation : MonoBehaviour
     {
         videoPlayer.playOnAwake = false;
     }
-    
+
     public IEnumerator DestroyAfterPlay(string statName)
     {
         videoPlayer.clip = Resources.Load<VideoClip>($"Art/Îä¶·/buffÐ§¹û¶¯»­/webm files/{statName}");
+        videoPlayer.playbackSpeed = 5f;
         videoPlayer.Play();
         while (!videoPlayer.isPlaying)
         {

@@ -17,6 +17,7 @@ public class StartFight : MonoBehaviour
     }
     public IEnumerator StartNewFight()
     {
+
         var selfUnit = GetComponent<CombatCharacterUnit>();
         if (selfUnit.gameObject.activeSelf != false)
         {
@@ -52,6 +53,7 @@ public class StartFight : MonoBehaviour
             GetAction();
             yield return null;
         }
+
     }
     public void GetAction()
     {
@@ -68,7 +70,7 @@ public class StartFight : MonoBehaviour
         bool attackOn = selfUnit.currentAction == CombatAction.Attack || selfUnit.currentAction == CombatAction.Assassin;
         if (attackOn)
         {
-            var choices = FindObjectsOfType<CombatCharacterUnit>().Where(x=>x.IsFriend == true).ToList();
+            var choices = FindObjectsOfType<CombatCharacterUnit>().Where(x => x.IsFriend == true).ToList();
             selfUnit.target = choices[UnityEngine.Random.Range(0, choices.Count())];
         }
         else

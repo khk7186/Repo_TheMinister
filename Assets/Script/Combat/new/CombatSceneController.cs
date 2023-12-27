@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class CombatSceneController : MonoBehaviour
 {
     BattleSystem gameBattleSystem;
+    public bool fastMode = false;
 
     public List<Vector3Int> friendList = new List<Vector3Int>()
     { new Vector3Int(-1, -2, 0), new Vector3Int(-1, -1, 0), new Vector3Int(-1, 0, 0) };
@@ -36,10 +37,20 @@ public class CombatSceneController : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += InitializeScene;
+
     }
     private void OnDisable()
     {
+        Time.timeScale = 1f;
         SceneManager.sceneLoaded -= InitializeScene;
+    }
+    public void FastModeOn()
+    {
+        fastMode = true;
+    }
+    public void FastModeOff()
+    {
+        fastMode = false;
     }
     private void SetLevel()
     {

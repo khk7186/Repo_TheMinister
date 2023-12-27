@@ -40,10 +40,15 @@ public class Combat : MonoBehaviour
             var OnActionCCU = (CombatCharacterUnit)CombatQueue.Dequeue();
             if (OnActionCCU != null)
             {
+                if (FindObjectOfType<CombatSceneController>().fastMode)
+                {
+                    Time.timeScale = 3f;
+                }
                 yield return OnActionCCU.GetComponent<StartFight>().StartNewFight();
             }
             else
                 yield return null;
+            Time.timeScale = 1f;
         }
         foreach (var ccu in FindObjectsOfType<CombatCharacterUnit>())
         {
