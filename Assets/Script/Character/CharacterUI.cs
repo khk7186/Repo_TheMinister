@@ -139,9 +139,9 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         foreach (Tag tag in character.tagList)
         {
-            var newTag = Instantiate(tagPref, TagSlot.transform);
-            string FolderPathOfTags = ("Art/Tags/" + tag.ToString()).Replace(" ", string.Empty);
-            newTag.GetComponent<Image>().sprite = Resources.Load<Sprite>(FolderPathOfTags);
+            var current = Instantiate(tagPref, TagSlot.transform).GetComponentInChildren<TagWithDescribetion>();
+            current.name = tag.ToString();
+            current.Setup(tag);
         }
     }
 
