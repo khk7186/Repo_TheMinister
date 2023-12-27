@@ -252,7 +252,7 @@ public enum Tag
     无用之人,
     文化沙漠,
     武功小成,
-
+    袖炮,
 }
 public enum Rarerity
 {
