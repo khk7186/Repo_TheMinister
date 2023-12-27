@@ -9,4 +9,8 @@ public class EndQuestDayCounter : MonoBehaviour
     {
         QuestDayCounterManager.Instance.RemoveCounter(QuestID);
     }
+    public void End()
+    {
+
+    }
 }
