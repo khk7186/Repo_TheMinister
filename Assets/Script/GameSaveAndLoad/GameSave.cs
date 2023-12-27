@@ -49,6 +49,8 @@ namespace SaveSystem
         public string currentMainEventName = string.Empty;
         public int MainEventRemainToShow = 0;
         public List<string> delayToSpawn = null;
+
+        public List<QuestDayCounter> questDayCounters = new List<QuestDayCounter>();
     }
     [System.Serializable]
     public class ItemInString

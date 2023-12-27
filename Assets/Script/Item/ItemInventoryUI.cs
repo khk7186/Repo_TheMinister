@@ -233,7 +233,6 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
                 }
             }
         }
-
         foreach (Transform child in rareButtons)
         {
             if (child.name == "All")

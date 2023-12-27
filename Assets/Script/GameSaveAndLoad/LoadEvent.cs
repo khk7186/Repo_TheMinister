@@ -22,6 +22,8 @@ namespace SaveSystem
             manager.lightController.ConstantLight(Map.Instance.DayTime);
             LoadDelayToSpawn(manager, save);
             GameObject.FindObjectOfType<BackgoundMusicController>()?.OnEnable();
+            manager.questDayCounterManager.QuestDayCounters = new List<QuestDayCounter>(save.questDayCounters);
+            manager.questDayCounterManager.Load();
         }
         public static void LoadPlayerCharacters(GameSave save)
         {

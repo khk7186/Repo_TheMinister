@@ -91,6 +91,9 @@ namespace SaveSystem
                 }
             }
 
+            //save quest day counter
+            newGameSave.questDayCounters = new List<QuestDayCounter>(manager.questDayCounterManager.QuestDayCounters);
+
             return newGameSave;
         }
 

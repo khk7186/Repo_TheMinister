@@ -159,8 +159,8 @@ public class Map : MonoBehaviour, IDiceRollEvent
         else
         {
             DayTime++;
+            QuestDayCounterManager.Instance.AddDay();
         }
-
     }
 
     //private IEnumerator MoveAStep(Transform character)

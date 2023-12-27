@@ -30,6 +30,7 @@ namespace SaveSystem
         public GameEventManager gameEventManager = null;
         public SOMainGameEventDatabase gameEventDatabase = null;
         public List<SpawnAfterAwayGuest> gameGuests = new List<SpawnAfterAwayGuest>();
+        public QuestDayCounterManager questDayCounterManager = null;
         private void Start()
         {
             GameSaveDatabase.FindAllSaves();
