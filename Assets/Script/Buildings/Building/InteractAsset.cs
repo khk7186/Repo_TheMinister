@@ -94,9 +94,16 @@ public class InteractAsset : MonoBehaviour, IDetailAble
     }
     private void OnMouseOver()
     {
-        if (IsPointerOver.IsPointerOverUIObject())
+        if (IsPointerOver.IsPointerOverUIObject() && BuildingName.gameObject.activeSelf == true)
         {
-            SetOffDetail();
+            OnMouseExit();
+        }
+        else
+        {
+            if (BuildingName.gameObject.activeSelf == false)
+            {
+                OnMouseEnter();
+            }
         }
     }
     private void OnMouseExit()
