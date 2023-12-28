@@ -56,6 +56,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public Transform hungrySign;
     public Transform loyaltySign;
     public Transform healthSign;
+    public Text Favor;
 
     public static Dictionary<Rarerity, Color> TagUIColorCode = new Dictionary<Rarerity, Color>()
     {
@@ -106,6 +107,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             OnAwayImage.gameObject.SetActive(false);
         }
         SetupSign();
+        Favor.text = character.edibleFavor.ToString();
     }
 
     private void ModifyCardImage()
@@ -338,7 +340,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     {
         ResetSigns();
         hungrySign.Find("¼õ").gameObject.SetActive(true);
-        
+
         if (character.hungry < 1)
         {
             loyaltySign.Find("¼õ¼õ").gameObject.SetActive(true);
@@ -359,7 +361,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             sign.gameObject.SetActive(false);
         }
-        foreach(Transform sign in hungrySign)
+        foreach (Transform sign in hungrySign)
         {
             sign.gameObject.SetActive(false);
         }

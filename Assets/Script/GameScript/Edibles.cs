@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,7 @@ public enum EdibleType
 public class EdiblesItems : MonoBehaviour
 {
 
-    
+
     // Start is called before the first frame update
     public static Dictionary<ItemName, List<int>> FoodRecovery = new Dictionary<ItemName, List<int>>()
     {
@@ -55,4 +56,14 @@ public class EdiblesItems : MonoBehaviour
         {ItemName.Ä¾ÐëÈâ,new List<int>(){0,3}},
 
     };
+    public static EdibleType RandomFavor()
+    {
+        List<EdibleType> list = new List<EdibleType>();
+        foreach (EdibleType type in Enum.GetValues(typeof(EdibleType)))
+        {
+            list.Add(type);
+        }
+        int index = UnityEngine.Random.Range(0, list.Count);
+        return list[index];
+    }
 }

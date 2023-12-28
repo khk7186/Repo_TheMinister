@@ -21,6 +21,7 @@ namespace SaveSystem
         public bool OnGobangDuty = false;
         public SerializedInGameAI SerializedInGameAI = null;
         public Rarerity rarerity;
+        public EdibleType edibleFavor;
 
         public int waitTime = 0;
         public int alreadyWait = 0;
@@ -31,6 +32,7 @@ namespace SaveSystem
             output.CharacterArtCode = character.characterArtCode.ToString();
             output.CharacterName = character.CharacterName;
             output.rarerity = character.rarerity;
+            output.edibleFavor = character.edibleFavor;
             //Tags
             output.Tags = new List<string>();
             foreach (var tag in character.tagList)
@@ -92,6 +94,7 @@ namespace SaveSystem
             }
             output.UpdateVariables();
             output.rarerity = characterData.rarerity;
+            output.edibleFavor = characterData.edibleFavor;
             return (output);
         }
 

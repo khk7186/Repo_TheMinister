@@ -337,7 +337,7 @@ public class Character : MonoBehaviour, IRound
     public Transform characterCardInvUI;
     public DefaultInGameAI InGameAI;
     public bool Deserializing = false;
-
+    public EdibleType edibleFavor = EdibleType.荤食;
     public Dictionary<CharacterValueType, int> CharactersValueDict => charactersValueDict;
 
     private Dictionary<CharacterValueType, int> charactersValueDict =
@@ -466,6 +466,7 @@ public class Character : MonoBehaviour, IRound
                 rarerity = rareList[UnityEngine.Random.Range(0, rareList.Count)];
                 tagList = new List<Tag>();
                 SpawnTagOnStart(rarerity);
+                edibleFavor = EdiblesItems.RandomFavor();
                 UpdateVariables();
             }
         }
@@ -921,6 +922,4 @@ public class Character : MonoBehaviour, IRound
         message.text = $"{CharacterName}  回来了";
         return;
     }
-
-
 }
