@@ -13,7 +13,9 @@ public enum EdibleType
     调料,
     素食,
     荤食,
-    甜点
+    甜点,
+    酒水,
+    丹药
 };
 public class EdiblesItems : MonoBehaviour
 {
@@ -34,12 +36,14 @@ public class EdiblesItems : MonoBehaviour
         {ItemName.轻粉,new List<int>(){-3,0}},
         {ItemName.过山龙,new List<int>(){-3,0}},
         {ItemName.星辰花,new List<int>(){-3,0}},
+        {ItemName.麝香,new List<int>(){-3,0}},
         {ItemName.人参,new List<int>(){2,1}},
         {ItemName.当归,new List<int>(){2,1}},
         {ItemName.沉香,new List<int>(){2,1}},
         {ItemName.水翁花,new List<int>(){2,1}},
         {ItemName.虎骨,new List<int>(){2,1}},
         {ItemName.守宫,new List<int>(){2,1}},
+        {ItemName.何首乌,new List<int>(){1,0}},
         {ItemName.灵芝,new List<int>(){10,1}},
         {ItemName.良姜,new List<int>(){0,0}},
         {ItemName.谷芽,new List<int>(){0,0}},
@@ -47,16 +51,51 @@ public class EdiblesItems : MonoBehaviour
         {ItemName.羊乳,new List<int>(){0,0}},
         {ItemName.红花,new List<int>(){0,0}},
         {ItemName.核桃粉,new List<int>(){0,0}},
+        {ItemName.咖啡,new List<int>(){0,0}},
         {ItemName.油,new List<int>(){0,0}},
         {ItemName.酱油,new List<int>(){0,0}},
         {ItemName.醋,new List<int>(){0,0}},
         {ItemName.盐,new List<int>(){0,0}},
+        {ItemName.五香粉,new List<int>(){0,0}},
         {ItemName.木须柿子,new List<int>(){0,3}},
         {ItemName.酸菜粉条,new List<int>(){0,3}},
         {ItemName.红烧茄子,new List<int>(){0,3}},
         {ItemName.清炒菜心,new List<int>(){0,3}},
+        {ItemName.高汤白菜,new List<int>(){0,4}},
+        {ItemName.龙井竹荪,new List<int>(){0,4}},
+        {ItemName.清炒豆芽,new List<int>(){0,4}},
+        {ItemName.拍黄瓜,new List<int>(){0,4}},
+        {ItemName.蛋炒饭,new List<int>(){0,4}},
+        {ItemName.清蒸白萝卜,new List<int>(){0,4}},
         {ItemName.蒜薹炒肉,new List<int>(){0,3}},
         {ItemName.木须肉,new List<int>(){0,3}},
+        {ItemName.八宝野鸭,new List<int>(){0,4}},
+        {ItemName.佛手金卷,new List<int>(){0,4}},
+        {ItemName.水酒,new List<int>(){-2,0}},
+        {ItemName.毒酒,new List<int>(){-4,0}},
+        {ItemName.青酒,new List<int>(){-1,0}},
+        {ItemName.黄酒,new List<int>(){-1,0}},
+        {ItemName.羊酒,new List<int>(){-1,0}},
+        {ItemName.芦酒,new List<int>(){-1,0}},
+        {ItemName.杏仁酒,new List<int>(){-1,0}},
+        {ItemName.银条酒,new List<int>(){-1,0}},
+        {ItemName.竹叶青,new List<int>(){0,0}},
+        {ItemName.杜康酒,new List<int>(){0,0}},
+        {ItemName.女儿红,new List<int>(){0,0}},
+        {ItemName.美梦酒,new List<int>(){1,0}},
+        {ItemName.三味酒,new List<int>(){1,0}},
+        {ItemName.仙人醉,new List<int>(){2,0}},
+        {ItemName.止血膏,new List<int>(){4,0}},
+        {ItemName.金疮药,new List<int>(){4,0}},
+        {ItemName.奉子丹,new List<int>(){-1,0}},
+        {ItemName.龙虎丹,new List<int>(){1,0}},
+        {ItemName.洗髓丹,new List<int>(){1,0}},
+        {ItemName.神气丹,new List<int>(){2,0}},
+        {ItemName.养气筑基散,new List<int>(){2,0}},
+        {ItemName.天机造化丹,new List<int>(){3,0}},
+        {ItemName.阴阳玄龙丹,new List<int>(){10,0}},
+        {ItemName.长生不老药,new List<int>(){20,0}},
+        {ItemName.十全大补丸,new List<int>(){20,0}},
 
     };
     public static EdibleType RandomFavor()
@@ -86,6 +125,7 @@ public class EdiblesItems : MonoBehaviour
         ItemName.轻粉,
         ItemName.过山龙,
         ItemName.星辰花,
+        ItemName.麝香,
         }
     },
             {EdibleType.补药,new List<ItemName>()
@@ -96,6 +136,7 @@ public class EdiblesItems : MonoBehaviour
                 ItemName.水翁花,
                 ItemName.虎骨,
                 ItemName.守宫,
+                ItemName.何首乌,
                 ItemName.灵芝,
         }
 
@@ -107,8 +148,8 @@ public class EdiblesItems : MonoBehaviour
                 ItemName.陈皮,
                 ItemName.羊乳,
                 ItemName.红花,
-                ItemName.咖啡,
                 ItemName.核桃粉,
+                ItemName.咖啡
         }
 
         },
@@ -118,6 +159,7 @@ public class EdiblesItems : MonoBehaviour
                 ItemName.酱油,
                 ItemName.醋,
                 ItemName.盐,
+                ItemName.五香粉
         }
 
         },
@@ -127,7 +169,12 @@ public class EdiblesItems : MonoBehaviour
                 ItemName.酸菜粉条,
                 ItemName.红烧茄子,
                 ItemName.清炒菜心,
+                ItemName.高汤白菜,
                 ItemName.龙井竹荪,
+                ItemName.清炒豆芽,
+                ItemName.拍黄瓜,
+                ItemName.蛋炒饭,
+                ItemName.清蒸白萝卜
         }
 
         },
@@ -137,8 +184,44 @@ public class EdiblesItems : MonoBehaviour
                 ItemName.蒜薹炒肉,
                 ItemName.木须肉,
                 ItemName.八宝野鸭,
+                ItemName.佛手金卷
             }
-        }
+        },
+         {
+            EdibleType.酒水,new List<ItemName>()
+            {
+                ItemName.水酒,
+                ItemName.毒酒,
+                ItemName.青酒,
+                ItemName.黄酒,
+                ItemName.羊酒,
+                ItemName.芦酒,
+                ItemName.杏仁酒,
+                ItemName.银条酒,
+                ItemName.竹叶青,
+                ItemName.杜康酒,
+                ItemName.女儿红,
+                ItemName.美梦酒,
+                ItemName.三味酒,
+                ItemName.仙人醉
+            }
+        },
+         {
+            EdibleType.丹药,new List<ItemName>()
+            {
+                ItemName.止血膏,
+                ItemName.金疮药,
+                ItemName.奉子丹,
+                ItemName.龙虎丹,
+                ItemName.洗髓丹,
+                ItemName.神气丹,
+                ItemName.养气筑基散,
+                ItemName.天机造化丹,
+                ItemName.阴阳玄龙丹,
+                ItemName.长生不老药,
+                ItemName.十全大补丸
+            }
+        },
     };
 
     public static bool IsEdible(ItemName item)
