@@ -15,6 +15,8 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public Text Name;
     public Text Health;
     public Text Loyalty;
+    public Text Hungry;
+    public Text HungrySign;
     public GameObject TagSlot;
 
     public Image Wisdom;
@@ -80,6 +82,15 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         Name.text = character.CharacterName;
         Health.text = character.health.ToString();
         Loyalty.text = character.loyalty.ToString();
+        Hungry.text = character.hungry.ToString();
+        if (character.hungry <= 1)
+        {
+            HungrySign.color = Color.red;
+        }
+        else
+        {
+            HungrySign.color = Color.black;
+        }
         ModifyValueColor();
         ModifyTags();
         ModifyCardImage();

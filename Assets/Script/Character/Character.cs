@@ -330,6 +330,7 @@ public class Character : MonoBehaviour, IRound
     public CharacterArtCode characterArtCode;
     public int loyalty = 20;
     public int health = 20;
+    public int hungry = 20;
     public Rarerity rarerity = Rarerity.Null;
     public CharacterUI characterCard;
     public CharacterUI thisCharacterCard;
@@ -500,7 +501,32 @@ public class Character : MonoBehaviour, IRound
                 return;
         }
     }
-
+    public void ApplyFood(ItemName itemName)
+    {
+        //ApplyFood();
+    }
+    public void ApplyFood(int hungryIncrease)
+    {
+        hungry += hungryIncrease;
+        if (hungry > 20) hungry = 20;
+        if (hungry < 0) HungryEvent();
+    }
+    public void HungryEvent()
+    {
+        hungry -= 1;
+        if (hungry < 0)
+        {
+            hungry = 0;
+            health -= 1;
+            ApplyLoyalty(-1);
+        }
+        else if (hungry >= 15)
+        {
+            ApplyLoyalty(1);
+        }
+        if (thisCharacterCard != null) thisCharacterCard.Setup();
+        FindObjectOfType<CharacterInfoUI>()?.SetHealthAndLoyalty(this);
+    }
     public CharacterUI BelongCheck()
     {
         if (hireStage == HireStage.Hired || hireStage == HireStage.Away)
@@ -855,6 +881,19 @@ public class Character : MonoBehaviour, IRound
         if (health <= 0)
         {
 
+        }
+    }
+    public void ApplyLoyalty(int increase)
+    {
+        loyalty += increase;
+        if (loyalty < 0)
+        {
+            loyalty = 0;
+            TryRetire();
+        }
+        if (loyalty > 20)
+        {
+            loyalty = 20;
         }
     }
     public void NotifyReturn()

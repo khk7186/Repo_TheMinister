@@ -12,6 +12,7 @@ namespace SaveSystem
         public List<string> Tags = new List<string>();
         public string health;
         public string loyalty;
+        public string hungry = "20";
         public string HireStage;
         public string characterType;
         public bool HaveAI = false;
@@ -41,6 +42,7 @@ namespace SaveSystem
             output.characterType = character.characterType.ToString();
             output.loyalty = character.loyalty.ToString();
             output.health = character.health.ToString();
+            output.hungry = character.hungry.ToString();
             //duty
             output.OnCombatDuty = character.OnDutyState[OndutyType.Combat];
             output.OnDebateDuty = character.OnDutyState[OndutyType.Debate];
@@ -106,6 +108,7 @@ namespace SaveSystem
         {
             character.health = int.Parse(serializedCharacter.health);
             character.loyalty = int.Parse(serializedCharacter.loyalty);
+            character.hungry = int.Parse(serializedCharacter.hungry);
         }
     }
 }

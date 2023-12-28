@@ -251,8 +251,6 @@ public class Building : MonoBehaviour
             case BuildingType.아짜:
                 SetPersonHere();
                 ShopList[0] = SpawnItemBasedOnType(BuildingType.아짜, 0);
-                target.BanquetUI.GetComponent<BanquetUI>().Setup(this);
-                target.BigBanquatUI.GetComponent<BanquetUI>().Setup(this);
                 target.DatingUI.GetComponent<DatingInterfaceUI>().Setup(charactersHere);
                 break;
             case BuildingType.狗반:
