@@ -282,6 +282,17 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler, IPointerEnterH
         OSA.replacementTagOrigin = Use();
         //Debug.Log(FindObjectOfType<OnSwitchAssets>().replacementTag);
         FindObjectOfType<OnSwitchAssets>().item = ItemName;
+
+        bool edible = EdiblesItems.IsEdible(ItemName);
+        var eatItem = FindObjectOfType<EatItem>(true);
+        if (eatItem != null)
+        {
+            eatItem.gameObject.SetActive(edible);
+            if (edible)
+            {
+                eatItem.Setup();
+            }
+        }
     }
     protected virtual void LeftClickAction()
     {

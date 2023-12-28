@@ -62,7 +62,7 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
         foreach (ItemName key in itemInventory.ItemDict.Keys)
         {
             Image target = Instantiate(ItemPrefab, transform);
-            //Debug.Log(key);
+            Debug.Log(itemInventory.ItemDict[key]);
             target.GetComponent<ItemUI>().Setup(key, itemInventory.ItemDict[key]);
         }
 

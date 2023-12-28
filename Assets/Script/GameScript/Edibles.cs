@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public enum EdibleType
@@ -138,4 +140,21 @@ public class EdiblesItems : MonoBehaviour
             }
         }
     };
+
+    public static bool IsEdible(ItemName item)
+    {
+        if (FoodRecovery.Keys.ToList().Contains(item)) return true;
+        return false;
+    }
+    public static EdibleType GetEdibleType(ItemName item)
+    {
+        foreach (var unit in EdibleTypeDict)
+        {
+            if (unit.Value.Contains(item))
+            {
+                return unit.Key;
+            }
+        }
+        return EdibleType.²ÝÒ©;
+    }
 }

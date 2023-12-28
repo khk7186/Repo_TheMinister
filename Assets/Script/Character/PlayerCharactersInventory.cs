@@ -14,6 +14,7 @@ public enum CardMode
     OnCombatSwitchMode,
     OnDebateSwitchMode,
     OnGobangSwitchMode,
+    EatMode
 }
 
 public class PlayerCharactersInventory : MonoBehaviour
@@ -83,6 +84,10 @@ public class PlayerCharactersInventory : MonoBehaviour
         foreach (CharacterUI character in characterUIList)
         {
             character.cardMode = mode;
+            if (mode != CardMode.ViewMode)
+            {
+                character.ResetSigns();
+            }
         }
     }
     public void SetupSelection(GameObject gameObject)

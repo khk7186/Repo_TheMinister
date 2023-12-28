@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 using UnityEngine.EventSystems;
 using System.Linq;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 
 public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
@@ -80,6 +81,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void Setup()
     {
+        ResetSigns();
         string idleSpritePath = ("Art/CharacterSprites/Idle/Idle_" + character.characterArtCode.ToString()).Replace(" ", string.Empty);
         Idle.sprite = Resources.Load<Sprite>(idleSpritePath);
         Idle.rectTransform.sizeDelta = new Vector2(420f, 630f);
@@ -106,7 +108,8 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             OnAwayImage.gameObject.SetActive(false);
         }
-        SetupSign();
+
+        if (cardMode == CardMode.ViewMode) SetupSign();
         Favor.text = character.edibleFavor.ToString();
     }
 
@@ -167,6 +170,38 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         GetComponent<RectTransform>().localScale = new Vector3(0.9f, 0.9f, 1f);
         var origin = GetComponent<RectTransform>().localPosition;
         GetComponent<RectTransform>().localPosition = new Vector2(origin.x - 10, origin.y - 15);
+        if (cardMode == CardMode.EatMode)
+        {
+            var eatItem = FindObjectOfType<EatItem>();
+            int loyalUp = 0;
+            int healthUp = eatItem.healthUp;
+            int hungryUp = eatItem.hungryUp;
+            if (character.edibleFavor == eatItem.edibleType)
+            {
+                loyalUp = FavorLoyaltyAdd(eatItem.rarerity);
+            }
+            SetupSignOnEat(hungryUp, loyalUp, healthUp);
+        }
+    }
+    public int FavorLoyaltyAdd(Rarerity rare)
+    {
+        int output = 0;
+        switch (rare)
+        {
+            case Rarerity.R:
+                output = 1;
+                break;
+            case Rarerity.SR:
+                output = 2;
+                break;
+            case Rarerity.SSR:
+                output = 3;
+                break;
+            case Rarerity.UR:
+                output = 4;
+                break;
+        }
+        return output;
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -174,6 +209,10 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         GetComponent<RectTransform>().localScale = new Vector3(0.8f, 0.8f, 1f);
         var origin = GetComponent<RectTransform>().localPosition;
         GetComponent<RectTransform>().localPosition = new Vector2(origin.x + 10, origin.y + 15);
+        if (cardMode == CardMode.EatMode)
+        {
+            ResetSigns();
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -229,6 +268,14 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
                 case CardMode.UpgradeSelectMode:
                     SelectForSlot();
                     characterSelectUI.GetComponent<ICharacterSelect>().CloseInventory(this);
+                    break;
+                case CardMode.EatMode:
+                    var eatItem = FindObjectOfType<EatItem>();
+                    if (character.edibleFavor == eatItem.edibleType)
+                    {
+                        eatItem.loyaltyUp = FavorLoyaltyAdd(eatItem.rarerity);
+                    }
+                    eatItem.EatBy(character);
                     break;
             }
         }
@@ -338,7 +385,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void SetupSign()
     {
-        ResetSigns();
+
         hungrySign.Find("减").gameObject.SetActive(true);
 
         if (character.hungry < 1)
@@ -353,6 +400,62 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         else if (character.hungry >= 15)
         {
             loyaltySign.Find("加").gameObject.SetActive(true);
+        }
+    }
+    public void SetupSignOnEat(int hungryUp, int loyaltySignUp, int healthUp)
+    {
+        if (hungryUp > 1)
+        {
+            hungrySign.Find("加加").gameObject.SetActive(true);
+        }
+        else if (hungryUp == 1)
+        {
+            hungrySign.Find("加").gameObject.SetActive(true);
+        }
+        else if (hungryUp == 0) { }
+        else if (hungryUp > -2)
+        {
+            hungrySign.Find("减").gameObject.SetActive(true);
+        }
+        else if (healthUp > -1)
+        {
+            hungrySign.Find("减减").gameObject.SetActive(true);
+        }
+
+        if (loyaltySignUp > 1)
+        {
+            loyaltySign.Find("加加").gameObject.SetActive(true);
+        }
+        else if (loyaltySignUp == 1)
+        {
+            loyaltySign.Find("加").gameObject.SetActive(true);
+        }
+        else if (loyaltySignUp == 0) { }
+        else if (loyaltySignUp > -2)
+        {
+            loyaltySign.Find("减").gameObject.SetActive(true);
+        }
+        else if (loyaltySignUp > -1)
+        {
+            loyaltySign.Find("减减").gameObject.SetActive(true);
+        }
+
+        if (healthUp > 1)
+        {
+            healthSign.Find("加加").gameObject.SetActive(true);
+        }
+        else if (healthUp == 1)
+        {
+            healthSign.Find("加").gameObject.SetActive(true);
+        }
+        else if (healthUp == 0) { }
+        else if (healthUp > -2)
+        {
+            healthSign.Find("减").gameObject.SetActive(true);
+        }
+        else if (healthUp > -1)
+        {
+            healthSign.Find("减减").gameObject.SetActive(true);
         }
     }
     public void ResetSigns()
