@@ -517,7 +517,11 @@ public class Character : MonoBehaviour, IRound
         if (hungry < 0)
         {
             hungry = 0;
-            health -= 1;
+            ApplyHealth(-1);
+            ApplyLoyalty(-2);
+        }
+        else if (hungry <= 5)
+        {
             ApplyLoyalty(-1);
         }
         else if (hungry >= 15)
@@ -894,6 +898,19 @@ public class Character : MonoBehaviour, IRound
         if (loyalty > 20)
         {
             loyalty = 20;
+        }
+    }
+    public void ApplyHealth(int increase)
+    {
+        health += increase;
+        if (health < 0)
+        {
+            health = 0;
+            TryDeath();
+        }
+        if (health > 20)
+        {
+            health = 20;
         }
     }
     public void NotifyReturn()
