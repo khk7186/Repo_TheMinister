@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class EatItem : MonoBehaviour
@@ -40,6 +41,7 @@ public class EatItem : MonoBehaviour
         character.ApplyLoyalty(loyaltyUp);
         current.GetComponent<RightClickToClose>().RightClickEvent();
         var itemInv = FindObjectOfType<ItemInventory>();
+        TryAddTemporaryTag(character);
         itemInv.RemoveItem(item);
         ResetUI();
     }
@@ -65,6 +67,22 @@ public class EatItem : MonoBehaviour
         if (notEmptyInv)
         {
             inv.GetComponentInChildren<ItemUI>().SetupInUseItem();
+        }
+    }
+    public void TryAddTemporaryTag(Character character)
+    {
+        var item = FindObjectOfType<OnSwitchAssets>().item;
+        if (EdiblesItems.ItemToTempDict.Keys.Contains(item))
+        {
+            var targetTag = EdiblesItems.ItemToTempDict[item];
+            foreach (var tempTag in character.temporaryTags)
+            {
+                if (tempTag.tag == targetTag)
+                {
+                    tempTag.timeLeft = Mathf.Max(tempTag.timeLeft, 7);
+                }
+            }
+            character.temporaryTags.Add(new TemporaryTag(targetTag, 7));
         }
     }
 }

@@ -11,6 +11,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 {
     public Character character;
     public GameObject tagPref;
+    public GameObject tempTagPref;
 
     public Image Idle;
     public Text Name;
@@ -167,6 +168,12 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             var current = Instantiate(tagPref, TagSlot.transform).GetComponentInChildren<TagWithDescribetion>();
             current.name = tag.ToString();
             current.Setup(tag);
+        }
+        foreach (TemporaryTag temporaryTag in character.temporaryTags)
+        {
+            var current = Instantiate(tempTagPref, TempTagSlot.transform).GetComponentInChildren<TagWithDescribetion>();
+            current.name = tag.ToString();
+            current.Setup(temporaryTag.tag);
         }
     }
 

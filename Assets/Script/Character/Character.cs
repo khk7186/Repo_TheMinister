@@ -572,7 +572,16 @@ public class Character : MonoBehaviour, IRound
             CharactersValueDict[CharacterValueType.¥Ã] += varlist[4];
             CharactersValueDict[CharacterValueType. ÿ] += varlist[5];
         }
-
+        foreach (TemporaryTag tag in temporaryTags)
+        {
+            List<int> varlist = Player.TagInfDict[tag.tag];
+            CharactersValueDict[CharacterValueType.÷«] += varlist[0];
+            CharactersValueDict[CharacterValueType.≤≈] += varlist[1];
+            CharactersValueDict[CharacterValueType.ƒ±] += varlist[2];
+            CharactersValueDict[CharacterValueType.Œ‰] += varlist[3];
+            CharactersValueDict[CharacterValueType.¥Ã] += varlist[4];
+            CharactersValueDict[CharacterValueType. ÿ] += varlist[5];
+        }
         foreach (CharacterValueType key in Enum.GetValues(typeof(CharacterValueType)))
         {
             if (key == CharacterValueType.Ã”) continue;
