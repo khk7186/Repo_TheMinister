@@ -15,6 +15,8 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public Text Name;
     public Text Health;
     public Text Loyalty;
+    public Text Hungry;
+    public Text HungrySign;
     public GameObject TagSlot;
 
     public Image Wisdom;
@@ -51,6 +53,9 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public GameObject characterSelectUI;
     public ESlot CurrentESlot;
+    public Transform hungrySign;
+    public Transform loyaltySign;
+    public Transform healthSign;
 
     public static Dictionary<Rarerity, Color> TagUIColorCode = new Dictionary<Rarerity, Color>()
     {
@@ -80,6 +85,15 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         Name.text = character.CharacterName;
         Health.text = character.health.ToString();
         Loyalty.text = character.loyalty.ToString();
+        Hungry.text = character.hungry.ToString();
+        if (character.hungry <= 1)
+        {
+            HungrySign.color = Color.red;
+        }
+        else
+        {
+            HungrySign.color = Color.black;
+        }
         ModifyValueColor();
         ModifyTags();
         ModifyCardImage();
@@ -91,6 +105,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             OnAwayImage.gameObject.SetActive(false);
         }
+        SetupSign();
     }
 
     private void ModifyCardImage()
@@ -316,6 +331,41 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             target.ChooseCharacter(character);
             target.SetupSlotIcon();
             target.CloseInventory(this);
+        }
+    }
+
+    public void SetupSign()
+    {
+        ResetSigns();
+        hungrySign.Find("受").gameObject.SetActive(true);
+        
+        if (character.hungry < 1)
+        {
+            loyaltySign.Find("受受").gameObject.SetActive(true);
+            healthSign.Find("受").gameObject.SetActive(true);
+        }
+        else if (character.hungry <= 5)
+        {
+            loyaltySign.Find("受").gameObject.SetActive(true);
+        }
+        else if (character.hungry >= 15)
+        {
+            loyaltySign.Find("紗").gameObject.SetActive(true);
+        }
+    }
+    public void ResetSigns()
+    {
+        foreach (Transform sign in loyaltySign)
+        {
+            sign.gameObject.SetActive(false);
+        }
+        foreach(Transform sign in hungrySign)
+        {
+            sign.gameObject.SetActive(false);
+        }
+        foreach (Transform sign in healthSign)
+        {
+            sign.gameObject.SetActive(false);
         }
     }
 }

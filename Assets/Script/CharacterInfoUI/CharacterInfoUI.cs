@@ -13,6 +13,7 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
 
     public Slider loyalty;
     public Slider health;
+    public Slider hungry;
 
     public Transform tagHolder;
     public TagSpecUI tagSpecUI;
@@ -85,9 +86,9 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
     {
         var path = "Art/人物卡/六大项/字体背景/";
         Wisdom.sprite = Resources.Load<Sprite>($"{path}{wisdom.ToString()}");
-        Writing.sprite = Resources.Load<Sprite>($"{path}{writing.ToString()}"); 
+        Writing.sprite = Resources.Load<Sprite>($"{path}{writing.ToString()}");
         Strategy.sprite = Resources.Load<Sprite>($"{path}{strategy.ToString()}");
-        Strength.sprite = Resources.Load<Sprite>($"{path}{strength.ToString()}"); 
+        Strength.sprite = Resources.Load<Sprite>($"{path}{strength.ToString()}");
         Sneak.sprite = Resources.Load<Sprite>($"{path}{sneak.ToString()}"); ;
         Defense.sprite = Resources.Load<Sprite>($"{path}{defense.ToString()}"); ;
     }
@@ -142,6 +143,7 @@ public class CharacterInfoUI : MonoBehaviour, IPointerClickHandler
         }
         health.value = character.health;
         loyalty.value = character.loyalty;
+        hungry.value = character.hungry;
     }
 
     public void OnPointerClick(PointerEventData eventData)
