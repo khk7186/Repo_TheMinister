@@ -111,7 +111,7 @@ public class AwayQuestUI : MonoBehaviour, ICharacterSelect
                 character.loyalty -= loyalty;
             }
             NextQuestStage();
-            QuestDayCounterManager.Instance.AddCounter(QuestID);
+            QuestDayCounterManager.Instance.AddCounter(QuestID, AwayDays);
             Destroy(gameObject);
         }
         else

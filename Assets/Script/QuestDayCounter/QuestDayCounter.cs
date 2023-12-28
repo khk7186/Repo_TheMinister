@@ -6,4 +6,5 @@ public class QuestDayCounter
 {
     public string QuestID;
     public int DayCount = 0;
+    public int DayCountMax = 0;
 }

@@ -5,8 +5,9 @@ using UnityEngine;
 public class StartQuestDayCounter : MonoBehaviour
 {
     public string QuestID;
+    public int maxDay;
     public void Start()
     {
-        QuestDayCounterManager.Instance.AddCounter(QuestID);
+        QuestDayCounterManager.Instance.AddCounter(QuestID, maxDay);
     }
 }

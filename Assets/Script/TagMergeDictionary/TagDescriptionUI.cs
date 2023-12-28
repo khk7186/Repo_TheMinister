@@ -15,6 +15,9 @@ public class TagDescriptionUI : MonoBehaviour
     public TagMergeUnitUI mergeUnitUITemp = null;
     public Transform mergeInfoHolder = null;
     public TagFromWhere tagFromWhere = null;
+    public GameObject timeLeftGO = null;
+    public Text timeLeftText = null;
+
     private void Awake()
     {
         imageRectTransform = GetComponent<RectTransform>();
@@ -27,6 +30,7 @@ public class TagDescriptionUI : MonoBehaviour
         ui.SetPositionNextToMouse();
         ui.gameObject.SetActive(true);
     }
+
     public static void Hide()
     {
         FindObjectOfType<TagDescriptionUI>().gameObject.SetActive(false);
@@ -41,6 +45,28 @@ public class TagDescriptionUI : MonoBehaviour
             tagStats.text = ItemStatPrinter.PrintAllStats(currentTag);
             SetMergeInfo(targetTag);
             tagFromWhere.Setup(targetTag);
+            timeLeftGO.SetActive(false);
+        }
+    }
+    public static void ShowTemp(string tag, int timeLeft)
+    {
+        var ui = FindObjectOfType<TagDescriptionUI>(true);
+        ui.SetupTemp(tag, timeLeft);
+        ui.SetPositionNextToMouse();
+        ui.gameObject.SetActive(true);
+    }
+    private void SetupTemp(string tag, int timeLeft)
+    {
+        var targetTag = (Tag)Enum.Parse(typeof(Tag), tag);
+        if (currentTag != targetTag)
+        {
+            currentTag = targetTag;
+            tagImage.sprite = Resources.Load<Sprite>(ReturnAssetPath.ReturnTagPath(currentTag));
+            tagStats.text = ItemStatPrinter.PrintAllStats(currentTag);
+            timeLeftGO.SetActive(true);
+            timeLeftText.text = timeLeft.ToString();
+            tagFromWhere.Setup(targetTag);
+            SetMergeInfo(targetTag);
         }
     }
     public void ResetMergeInfo()

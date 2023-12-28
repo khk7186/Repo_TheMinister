@@ -18,6 +18,11 @@ public class TagWithDescribetion : MonoBehaviour, IDetailAble, IPointerEnterHand
 
     public void SetOnDetail(string target)
     {
+        if (TempTag)
+        {
+            TagDescriptionUI.ShowTemp(Tag.ToString(), timeLeft);
+            return;
+        }
         TagDescriptionUI.Show(Tag.ToString());
     }
 

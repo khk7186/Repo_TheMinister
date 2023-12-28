@@ -28,6 +28,7 @@ public class QuestDayCounterManager : MonoBehaviour
         foreach (QuestDayCounter counter in QuestDayCounters)
         {
             counter.DayCount++;
+            if (counter.DayCount > counter.DayCountMax) { counter.DayCount = counter.DayCountMax; }
         }
         SendSetDaysMessages();
     }
@@ -38,9 +39,9 @@ public class QuestDayCounterManager : MonoBehaviour
             PixelCrushers.MessageSystem.SendMessage(null, "SetDays", counter.QuestID, counter.DayCount);
         }
     }
-    public void AddCounter(string questID)
+    public void AddCounter(string questID,int maxDay)
     {
-        QuestDayCounterManager.Instance.QuestDayCounters.Add(new QuestDayCounter { QuestID = questID, DayCount = 0 });
+        QuestDayCounterManager.Instance.QuestDayCounters.Add(new QuestDayCounter { QuestID = questID, DayCount = 0 ,DayCountMax = maxDay});
     }
     public void RemoveCounter(string questID)
     {

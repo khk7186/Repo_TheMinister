@@ -192,6 +192,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             {
                 loyalUp = FavorLoyaltyAdd(eatItem.rarerity);
             }
+            
             SetupSignOnEat(hungryUp, loyalUp, healthUp);
         }
     }
