@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EdibleType
+{
+    草药,
+    补药,
+    香料,
+    调料,
+    素食,
+    荤食
+};
 public class EdiblesItems : MonoBehaviour
 {
 
-    public enum EdibleType
-    {
-        草药,
-        补药,
-        香料,
-        调料,
-        素食,
-        荤食
-    };
+    
     // Start is called before the first frame update
     public static Dictionary<ItemName, List<int>> FoodRecovery = new Dictionary<ItemName, List<int>>()
     {
