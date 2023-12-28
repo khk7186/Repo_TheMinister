@@ -362,6 +362,7 @@ public class Character : MonoBehaviour, IRound
         };
 
     public List<Tag> tagList = new List<Tag>();
+    public List<TemporaryTag> temporaryTags = new List<TemporaryTag>();
 
     public int ReturnRounds = 0;
 

@@ -19,6 +19,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public Text Hungry;
     public Text HungrySign;
     public GameObject TagSlot;
+    public GameObject TempTagSlot;
 
     public Image Wisdom;
     public Image Writing;
@@ -82,6 +83,10 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public void Setup()
     {
         ResetSigns();
+        foreach (Transform t in TempTagSlot.transform)
+        {
+            Destroy(t.gameObject);
+        }
         string idleSpritePath = ("Art/CharacterSprites/Idle/Idle_" + character.characterArtCode.ToString()).Replace(" ", string.Empty);
         Idle.sprite = Resources.Load<Sprite>(idleSpritePath);
         Idle.rectTransform.sizeDelta = new Vector2(420f, 630f);

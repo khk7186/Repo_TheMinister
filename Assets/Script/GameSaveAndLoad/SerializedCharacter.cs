@@ -10,6 +10,7 @@ namespace SaveSystem
         public string CharacterArtCode;
         public string CharacterName;
         public List<string> Tags = new List<string>();
+        public List<TemporaryTag> temporaryTags = new List<TemporaryTag>();
         public string health;
         public string loyalty;
         public string hungry = "20";
@@ -65,7 +66,7 @@ namespace SaveSystem
                     output.spawnAfterAwayGuestName = character.spawnAfterAway.guestName;
                 }
             }
-
+            output.temporaryTags = character.temporaryTags;
             return output;
         }
         public static Character DeserializingCharacter(SerializedCharacter characterData)
@@ -95,6 +96,7 @@ namespace SaveSystem
             output.UpdateVariables();
             output.rarerity = characterData.rarerity;
             output.edibleFavor = characterData.edibleFavor;
+            output.temporaryTags = characterData.temporaryTags;
             return (output);
         }
 
