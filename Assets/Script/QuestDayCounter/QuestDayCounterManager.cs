@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using PixelCrushers.QuestMachine;
 using PixelCrushers.QuestMachine.Wrappers;
-using UnityEditor.VersionControl;
 
 public class QuestDayCounterManager : MonoBehaviour
 {

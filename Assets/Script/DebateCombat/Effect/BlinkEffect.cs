@@ -6,7 +6,7 @@ public class BlinkEffect : MonoBehaviour
 {
     public GameObject lookingAt = null;
     public GameObject aimObject = null;
-    private bool trigger = true;
+    //private bool trigger = true;
     //private void Awake()
     //{
     //    aimObject?.SetActive(true);
