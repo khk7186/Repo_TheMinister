@@ -75,14 +75,16 @@ public class EatItem : MonoBehaviour
         if (EdiblesItems.ItemToTempDict.Keys.Contains(item))
         {
             var targetTag = EdiblesItems.ItemToTempDict[item];
+            var duration = EdiblesItems.ItemTempDuration[item];
             foreach (var tempTag in character.temporaryTags)
             {
                 if (tempTag.tag == targetTag)
                 {
-                    tempTag.timeLeft = Mathf.Max(tempTag.timeLeft, 7);
+                    tempTag.timeLeft = Mathf.Max(tempTag.timeLeft, duration);
+                    return;
                 }
             }
-            character.temporaryTags.Add(new TemporaryTag(targetTag, 7));
+            character.temporaryTags.Add(new TemporaryTag(targetTag, duration));
         }
     }
 }

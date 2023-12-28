@@ -8,6 +8,8 @@ public class TagWithDescribetion : MonoBehaviour, IDetailAble, IPointerEnterHand
 {
     public Image Image;
     private Tag Tag;
+    public int timeLeft = 0;
+    public bool TempTag = false;
 
     public void SetOffDetail()
     {
@@ -24,7 +26,7 @@ public class TagWithDescribetion : MonoBehaviour, IDetailAble, IPointerEnterHand
         Image.sprite = Resources.Load<Sprite>(ReturnAssetPath.ReturnTagPath(tag));
         Tag = tag;
     }
-   
+
 
     public void OnPointerEnter(PointerEventData eventData)
     {
