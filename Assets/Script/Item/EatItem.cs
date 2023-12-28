@@ -36,7 +36,7 @@ public class EatItem : MonoBehaviour
     {
         var item = FindObjectOfType<OnSwitchAssets>().item;
         character.ApplyHealth(healthUp);
-        character.ApplyFood(item);
+        character.ApplyFood(hungryUp);
         character.ApplyLoyalty(loyaltyUp);
         current.GetComponent<RightClickToClose>().RightClickEvent();
         var itemInv = FindObjectOfType<ItemInventory>();
