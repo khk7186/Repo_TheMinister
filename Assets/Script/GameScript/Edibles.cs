@@ -235,6 +235,15 @@ public class EdiblesItems : MonoBehaviour
         {ItemName.养气筑基散,Tag.淬体},
         {ItemName.天机造化丹,Tag.养神},
     };
+    public static Dictionary<Tag, int> TempTagDuration = new Dictionary<Tag, int>()
+    {
+        {Tag.益血,4},
+        {Tag.固肾,4},
+        {Tag.提神,4},
+        {Tag.中毒,6},
+        {Tag.淬体,2},
+        {Tag.养神,2},
+    };
     public static bool IsEdible(ItemName item)
     {
         if (FoodRecovery.Keys.ToList().Contains(item)) return true;
