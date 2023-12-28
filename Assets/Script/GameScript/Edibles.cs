@@ -235,14 +235,18 @@ public class EdiblesItems : MonoBehaviour
         {ItemName.养气筑基散,Tag.淬体},
         {ItemName.天机造化丹,Tag.养神},
     };
-    public static Dictionary<Tag, int> TempTagDuration = new Dictionary<Tag, int>()
+    public static Dictionary<ItemName, int> ItemTempDuration = new Dictionary<ItemName, int>()
     {
-        {Tag.益血,4},
-        {Tag.固肾,4},
-        {Tag.提神,4},
-        {Tag.中毒,6},
-        {Tag.淬体,2},
-        {Tag.养神,2},
+        {ItemName.人参,4},
+        {ItemName.虎骨,4},
+        {ItemName.咖啡,4},
+        {ItemName.毒酒,6},
+        {ItemName.龙虎丹,2},
+        {ItemName.洗髓丹,2},
+        {ItemName.神气丹,3},
+        {ItemName.养气筑基散,3},
+        {ItemName.天机造化丹,4},
+
     };
     public static bool IsEdible(ItemName item)
     {
