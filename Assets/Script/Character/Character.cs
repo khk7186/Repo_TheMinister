@@ -108,7 +108,6 @@ public enum Tag
     景星庆云,
     长袖善舞,
     金钱镖,
-    袖袍,
     血滴子,
     文正,
     武忠,
@@ -253,6 +252,13 @@ public enum Tag
     文化沙漠,
     武功小成,
     袖炮,
+    //Temp Type,
+    益血,
+    固肾,
+    提神,
+    中毒,
+    淬体,
+    养神
 }
 public enum Rarerity
 {

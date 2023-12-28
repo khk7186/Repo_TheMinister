@@ -248,8 +248,15 @@ public class Player : MonoBehaviour
         {Tag.醉拳,new List<int>(){0,0,0,3,0,0}},
         {Tag.无用之人,new List<int>(){0,0,0,1,-1,0}},
         {Tag.文化沙漠,new List<int>(){-1,-1,-1,3,3,3}},
-        {Tag.武功小成,new List<int>(){0,0,0,5,0,2}}
+        {Tag.武功小成,new List<int>(){0,0,0,5,0,2}},
 
+        //Temp Tags
+        {Tag.益血,new List<int>(){0,0,0,0,0,1}},
+        {Tag.固肾,new List<int>(){0,0,0,1,0,0}},
+        {Tag.提神,new List<int>(){1,1,1,0,0,0}},
+        {Tag.中毒,new List<int>(){0,0,0,-1,-1,-1}},
+        {Tag.淬体,new List<int>(){0,0,0,1,1,1}},
+        {Tag.养神,new List<int>(){2,2,2,0,0,0}},
 
     };
     public static Dictionary<Rarerity, List<Tag>> GivenableTagRareDict = new Dictionary<Rarerity, List<Tag>>()
@@ -282,6 +289,7 @@ public class Player : MonoBehaviour
         Tag.肥胖症,
         Tag.长短腿,
         Tag.义肢,
+        
     }},
 
         {Rarerity.R,new List<Tag>()
@@ -660,6 +668,14 @@ public class Player : MonoBehaviour
         {Tag.长生不老,Rarerity.UR},
         {Tag.生死肉骨,Rarerity.UR},
         {Tag.碧血丹心,Rarerity.UR},
+
+        //Temp Tags
+        {Tag.中毒,Rarerity.B},
+        {Tag.益血,Rarerity.R},
+        {Tag.固肾,Rarerity.R},
+        {Tag.提神,Rarerity.SR},
+        {Tag.淬体,Rarerity.SR},
+        {Tag.养神,Rarerity.SSR},
    };
     public readonly static Dictionary<Tag, List<Tag>> MergeTagDict = new Dictionary<Tag, List<Tag>>
     {

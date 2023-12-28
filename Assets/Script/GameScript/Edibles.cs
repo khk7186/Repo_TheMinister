@@ -63,10 +63,10 @@ public class EdiblesItems : MonoBehaviour
         {ItemName.清炒菜心,new List<int>(){0,3}},
         {ItemName.高汤白菜,new List<int>(){0,4}},
         {ItemName.龙井竹荪,new List<int>(){0,4}},
-        {ItemName.清炒豆芽,new List<int>(){0,4}},
-        {ItemName.拍黄瓜,new List<int>(){0,4}},
-        {ItemName.蛋炒饭,new List<int>(){0,4}},
-        {ItemName.清蒸白萝卜,new List<int>(){0,4}},
+        {ItemName.清炒豆芽,new List<int>(){0,2}},
+        {ItemName.拍黄瓜,new List<int>(){0,2}},
+        {ItemName.蛋炒饭,new List<int>(){0,2}},
+        {ItemName.清蒸白萝卜,new List<int>(){0,2}},
         {ItemName.蒜薹炒肉,new List<int>(){0,3}},
         {ItemName.木须肉,new List<int>(){0,3}},
         {ItemName.八宝野鸭,new List<int>(){0,4}},
@@ -224,6 +224,18 @@ public class EdiblesItems : MonoBehaviour
         },
     };
 
+    public static Dictionary<ItemName, Tag> ItemToTempDict = new Dictionary<ItemName, Tag>()
+    {
+        {ItemName.人参,Tag.益血},
+        {ItemName.虎骨,Tag.固肾},
+        {ItemName.咖啡,Tag.提神},
+        {ItemName.毒酒,Tag.中毒},
+        {ItemName.龙虎丹,Tag.淬体},
+        {ItemName.洗髓丹,Tag.淬体},
+        {ItemName.神气丹,Tag.淬体},
+        {ItemName.养气筑基散,Tag.淬体},
+        {ItemName.天机造化丹,Tag.养神},
+    };
     public static bool IsEdible(ItemName item)
     {
         if (FoodRecovery.Keys.ToList().Contains(item)) return true;
