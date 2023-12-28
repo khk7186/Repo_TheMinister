@@ -10,7 +10,8 @@ public enum EdibleType
     香料,
     调料,
     素食,
-    荤食
+    荤食,
+    甜点
 };
 public class EdiblesItems : MonoBehaviour
 {
@@ -66,4 +67,75 @@ public class EdiblesItems : MonoBehaviour
         int index = UnityEngine.Random.Range(0, list.Count);
         return list[index];
     }
+
+    public static Dictionary<EdibleType, List<ItemName>> EdibleTypeDict = new Dictionary<EdibleType, List<ItemName>>()
+    {
+        {EdibleType.草药,new List<ItemName>()
+        {
+        ItemName.乌桕子,
+        ItemName.铁苋,
+        ItemName.八角莲,
+        ItemName.黄芪,
+        ItemName.罗汉果,
+        ItemName.血风藤,
+        ItemName.黄精,
+        ItemName.白花蛇舌草,
+        ItemName.三七,
+        ItemName.轻粉,
+        ItemName.过山龙,
+        ItemName.星辰花,
+        }
+    },
+            {EdibleType.补药,new List<ItemName>()
+        {
+                ItemName.人参,
+                ItemName.当归,
+                ItemName.沉香,
+                ItemName.水翁花,
+                ItemName.虎骨,
+                ItemName.守宫,
+                ItemName.灵芝,
+        }
+
+        },
+        {EdibleType.香料,new List<ItemName>()
+        {
+                ItemName.良姜,
+                ItemName.谷芽,
+                ItemName.陈皮,
+                ItemName.羊乳,
+                ItemName.红花,
+                ItemName.咖啡,
+                ItemName.核桃粉,
+        }
+
+        },
+        {EdibleType.调料,new List<ItemName>()
+        {
+                ItemName.油,
+                ItemName.酱油,
+                ItemName.醋,
+                ItemName.盐,
+        }
+
+        },
+        {EdibleType.素食,new List<ItemName>()
+        {
+                ItemName.木须柿子,
+                ItemName.酸菜粉条,
+                ItemName.红烧茄子,
+                ItemName.清炒菜心,
+                ItemName.龙井竹荪,
+        }
+
+        },
+        {
+            EdibleType.荤食,new List<ItemName>()
+            {
+                ItemName.蒜薹炒肉,
+                ItemName.木须肉,
+                ItemName.八宝野鸭,
+            }
+        }
+    };
 }
