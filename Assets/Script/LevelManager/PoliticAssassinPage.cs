@@ -36,7 +36,7 @@ public class PoliticAssassinPage : PoliticPage, IPoliticSelectionAction
     }
     public void StartEvent()
     {
-        PoliticAssassinEvent.StartAssassin(slot.GateHolder, target);
+        PoliticSystemManager.Instance.OngoingAssassinEvents.Add(PoliticAssassinEvent.StartAssassin(slot.GateHolder, target));
         ConfirmButton.SetActive(false);
         OngoingView.SetActive(true);
     }

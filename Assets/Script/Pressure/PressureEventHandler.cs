@@ -30,6 +30,11 @@ public static class PressureEventHandler
         pressureManager.pressure = Amount;
         GameObject.FindObjectOfType<PressureView>()?.SetPercentage(pressureManager.pressure);
     }
+    public static void PressureAdd(int increase)
+    {
+        pressureManager.pressure += increase;
+        GameObject.FindObjectOfType<PressureView>()?.SetPercentage(pressureManager.pressure);
+    }
 
     private static int CalculatePressureChange(int origin, int changeAmount)
     {

@@ -9,6 +9,8 @@ public class PoliticCharacter : Character
     public int BribePrice = 100;
     public bool bribed = false;
     public PoliticSlot slot = null;
+    public int pressurePunishment = 2;
+    public Character Assassin = null;
     public override void AwakeAction()
     {
 

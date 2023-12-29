@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class PoliticAssassinEvent
@@ -22,6 +23,7 @@ public class PoliticAssassinEvent
         int totalRate = politicCharacter.difficulty;
         int asssinValue = assasin.CharactersValueDict[CharacterValueType.¥Ã];
         var output = new PoliticAssassinEvent(totalRate, asssinValue, politicCharacter);
+        politicCharacter.Assassin = assasin;
         assasin.Away(output.duration);
         return output;
     }
@@ -31,6 +33,14 @@ public class PoliticAssassinEvent
         if (result == true)
         {
             GateHolderAnimationPlayer.AddAnimation(true, assassinEvent.politicCharacter.slot);
+        }
+        else
+        {
+            PressureEventHandler.PressureAdd(assassinEvent.politicCharacter.pressurePunishment);
+            assassinEvent.politicCharacter.Assassin.ApplyHealth(-20);
+            var sampleText = Resources.Load<Text>("Hiring/Message");
+            var message = GameObject.Instantiate<Text>(sampleText, MainCanvas.FindMainCanvas());
+            message.text = $"¥Ã…±{assassinEvent.politicCharacter.CharacterName} ß∞‹";
         }
     }
 }
