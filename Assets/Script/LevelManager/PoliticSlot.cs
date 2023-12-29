@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PoliticSlot : MonoBehaviour, ICharacterSelect
 {
     public string slotName;
+    public GameObject page = null;
     public Image CharacterHead = null;
     public Character characterOnHold = null;
     public int exp;
