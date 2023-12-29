@@ -40,5 +40,4 @@ public class LevelManager : MonoBehaviour
             ApplyExp(gap);
         }
     }
-
 }

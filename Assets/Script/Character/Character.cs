@@ -302,7 +302,8 @@ public enum CharacterType
 {
     General,
     Main,
-    Roit
+    Roit,
+    Politic
 }
 public enum HireStage
 {
