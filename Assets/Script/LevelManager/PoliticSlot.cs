@@ -1,15 +1,65 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PoliticSlot : MonoBehaviour,ICharacterSelect
+public class PoliticSlot : MonoBehaviour, ICharacterSelect
 {
+    public string slotName;
     public Image CharacterHead = null;
     public Character characterOnHold = null;
     public int exp;
+    public List<string> requestTagsInString;
     public List<Tag> requestTags;
     public List<PoliticSlot> preSlots = new List<PoliticSlot>();
+    public PoliticCharacter GateHolder = null;
+    public Image Frame;
+    public Sprite PlayerFrame;
+    public Sprite NonPlayerFrame;
+    public Sprite HighlightFrame;
+    public List<Image> upLines = new List<Image>();
+    public List<Image> lowerLines = new List<Image>();
+    public bool unlocked
+    {
+        get
+        {
+            if (GateHolder != null && GateHolder.bribed) return true;
+            else if (characterOnHold != null) return true;
+            return false;
+        }
+    }
+    public void Start()
+    {
+        SetupTags();
+        if (GateHolder != null)
+        {
+            GateModeSetup();
+        }
+        else
+        {
+            EmptySlotModeSetup();
+        }
+    }
+    public void GateModeSetup()
+    {
+
+    }
+    public void EmptySlotModeSetup()
+    {
+
+    }
+
+
+    public void SetupTags()
+    {
+        List<Tag> tags = new List<Tag>();
+        foreach (var tagName in requestTagsInString)
+        {
+            tags.Add((Tag)Enum.Parse(typeof(Tag), tagName));
+        }
+        requestTags = tags;
+    }
 
     public void ChooseCharacter(Character character)
     {
@@ -18,12 +68,12 @@ public class PoliticSlot : MonoBehaviour,ICharacterSelect
 
     public void CloseInventory()
     {
-        
+
     }
 
     public void CloseInventory(CharacterUI current)
     {
-        
+
     }
 
     public void PutCharacterOn(Character character)
@@ -33,6 +83,6 @@ public class PoliticSlot : MonoBehaviour,ICharacterSelect
 
     public void SetupSlotIcon()
     {
-        
+
     }
 }
