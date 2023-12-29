@@ -174,6 +174,8 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         {
             var current = Instantiate(tempTagPref, TempTagSlot.transform).GetComponentInChildren<TagWithDescribetion>();
             current.name = tag.ToString();
+            current.timeLeft = temporaryTag.timeLeft;
+            current.TempTag = true;
             current.Setup(temporaryTag.tag);
         }
     }
