@@ -32,7 +32,7 @@ public class PoliticSlotInteraction : MonoBehaviour, IPointerEnterHandler, IPoin
     public void OnPointerEnter(PointerEventData eventData)
     {
         politicSlot.Frame.sprite = politicSlot.HighlightFrame;
-        //politicPopup.Setup(politicSlot);
+        politicPopup.Setup(politicSlot);
         politicPopup.ShowPopup();
     }
 

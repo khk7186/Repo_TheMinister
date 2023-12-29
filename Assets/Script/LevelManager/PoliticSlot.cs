@@ -20,6 +20,7 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     public Sprite HighlightFrame;
     public List<Image> upLines = new List<Image>();
     public List<Image> lowerLines = new List<Image>();
+    public int Level = 0;
     public bool unlocked
     {
         get
@@ -43,7 +44,7 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     }
     public void GateModeSetup()
     {
-
+        GateHolder.slot = this;
     }
     public void EmptySlotModeSetup()
     {

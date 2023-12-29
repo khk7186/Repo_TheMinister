@@ -11,6 +11,7 @@ public class PoliticPopup : MonoBehaviour
     public Button AppointButton;
     public Button ImpeachButton;
     public Animator animator;
+    public PoliticSlot slot;
 
     public void ShowPopup()
     {
@@ -23,6 +24,7 @@ public class PoliticPopup : MonoBehaviour
     }
     public void Setup(PoliticSlot politicSlot)
     {
+        slot = politicSlot;
         if (politicSlot.GateHolder != null)
         {
             AssassinButton.gameObject.SetActive(true);
@@ -43,7 +45,7 @@ public class PoliticPopup : MonoBehaviour
     }
     public void OpenAssassin()
     {
-
+        FindObjectOfType<PoliticPageManager>().OnClickAssassinPage(slot);
     }
     public void OpenBribe()
     {
