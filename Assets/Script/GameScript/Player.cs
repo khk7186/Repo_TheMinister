@@ -686,7 +686,7 @@ public class Player : MonoBehaviour
         {Tag.弈星下凡,new List<Tag>(){Tag.围棋十段,Tag.纵横家}},
         {Tag.黯然销魂掌,new List<Tag>(){Tag.独臂,Tag.雕,Tag.平平无奇}},
         {Tag.八斗之才,new List<Tag>(){Tag.书通二酉,Tag.才华横溢,Tag.工于心计} },
-        {Tag.诸武精通,new List<Tag>(){Tag.刀,Tag.枪,Tag.剑,Tag.戟,Tag.弓}},
+        {Tag.诸武精通,new List<Tag>(){Tag.刀,Tag.一点寒芒,Tag.剑,Tag.戟,Tag.箭无虚发}},
         {Tag.文武双全,new List<Tag>(){Tag.文,Tag.武}},
         {Tag.纸上谈兵,new List<Tag>(){Tag.工于心计,Tag.书痴,Tag.自是三公}},
         {Tag.徒有虚名,new List<Tag>(){Tag.才华横溢,Tag.略有才名,Tag.绣花枕头}},
