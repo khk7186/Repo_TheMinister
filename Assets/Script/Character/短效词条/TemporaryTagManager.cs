@@ -41,6 +41,7 @@ public class TemporaryTagManager : MonoBehaviour, IDiceRollEvent
                         removeList.Add(tempTag);
                     }
                 }
+                character.GetComponent<Character>().UpdateVariables();
                 foreach (var tempTag in removeList)
                 {
                     list.Remove(tempTag);
