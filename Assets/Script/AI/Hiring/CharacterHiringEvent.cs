@@ -89,7 +89,6 @@ public class CharacterHiringEvent : MonoBehaviour
                 {
                     {ItemName.毛笔,1},
                     {ItemName.剑,1},
-                    {ItemName.货殖列传,1},
                     {ItemName.竹叶青,1},
                     {ItemName.货殖列传,1},
                  }
