@@ -85,6 +85,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public void Setup()
     {
         ResetSigns();
+        character.UpdateVariables();
         foreach (Transform t in TempTagSlot.transform)
         {
             Destroy(t.gameObject);

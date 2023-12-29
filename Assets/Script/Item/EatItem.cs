@@ -102,6 +102,7 @@ public class EatItem : MonoBehaviour
                 }
             }
             character.temporaryTags.Add(new TemporaryTag(targetTag, duration));
+
         }
     }
 }
