@@ -8,12 +8,17 @@ public class ShakeObject : MonoBehaviour
     // Variables for the shaking effect
     public float shakeDuration = 1.0f;    // Duration of the shake in seconds
     public float shakeIntensity = 0.1f;   // Intensity of the shake
+    public GameObject target = null;
 
     private float shakeTimer = 0f;
 
     void Start()
     {
-        initialPosition = transform.localPosition;
+        if (target == null)
+        {
+            target = gameObject;
+        }
+        initialPosition = target.transform.localPosition;
     }
 
     void Update()
@@ -25,7 +30,7 @@ public class ShakeObject : MonoBehaviour
             float offsetY = Random.Range(-1f, 1f) * shakeIntensity;
 
             // Apply the shake effect to the object's position
-            transform.localPosition = initialPosition + new Vector3(offsetX, offsetY, 0);
+            target.transform.localPosition = initialPosition + new Vector3(offsetX, offsetY, 0);
 
             // Decrement the timer
             shakeTimer -= Time.deltaTime;
@@ -33,7 +38,7 @@ public class ShakeObject : MonoBehaviour
         else
         {
             // Reset the object's position when the shake duration is over
-            transform.localPosition = initialPosition;
+            target.transform.localPosition = initialPosition;
         }
     }
 

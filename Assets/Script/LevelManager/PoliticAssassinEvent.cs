@@ -30,7 +30,7 @@ public class PoliticAssassinEvent
         bool result = Random.Range(0, assassinEvent.totalRate) < assassinEvent.asssinValue;
         if (result == true)
         {
-            
+            GateHolderAnimationPlayer.AddAnimation(true, assassinEvent.politicCharacter.slot);
         }
     }
 }

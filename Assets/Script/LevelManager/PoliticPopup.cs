@@ -29,12 +29,14 @@ public class PoliticPopup : MonoBehaviour
         {
             AssassinButton.gameObject.SetActive(true);
             BribeButton.gameObject.SetActive(true);
+            ImpeachButton.gameObject.SetActive(true);
             AppointButton.gameObject.SetActive(false);
         }
         else
         {
             AssassinButton.gameObject.SetActive(false);
             BribeButton.gameObject.SetActive(false);
+            ImpeachButton.gameObject.SetActive(false);
             AppointButton.gameObject.SetActive(true);
         }
         SetPosition(politicSlot.transform);

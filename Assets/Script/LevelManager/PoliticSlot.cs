@@ -49,7 +49,7 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     }
     public void EmptySlotModeSetup()
     {
-
+        CharacterHead.gameObject.SetActive(false);
     }
 
 
