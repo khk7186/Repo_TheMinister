@@ -18,7 +18,7 @@ public class MoneyCollectPoint : MonoBehaviour
             {
                 return (int)(1f - manager.MoneyDecreaseOnRoit) * collectAmount[ChapterCounter.Instance.Chapter];
             }
-            return collectAmount[ChapterCounter.Instance.Chapter];
+            return (int)(collectAmount[ChapterCounter.Instance.Chapter] * LevelManager.Instance.currentMultiplier) ;
         }
     }
     public string Name = "…Ã––";

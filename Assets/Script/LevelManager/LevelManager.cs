@@ -6,7 +6,7 @@ public class LevelManager : MonoBehaviour
 {
     public static readonly float TaxPerLevelMultiplier = 0.2f;
     public static LevelManager Instance;
-    public static readonly List<int> expPerLevel = new List<int>();
+    public List<int> expPerLevel = new List<int>();
     public int level = 1;
     public int exp;
     public float currentMultiplier => (level) * TaxPerLevelMultiplier + 1;
