@@ -12,6 +12,8 @@ public class EatItem : MonoBehaviour
     public int healthUp = 0;
     public EdibleType edibleType;
     public Rarerity rarerity;
+    public Tag tempTag = Tag.Null;
+    public int duration = 0;
     private void Start()
     {
         var item = FindObjectOfType<OnSwitchAssets>().item;
@@ -19,12 +21,14 @@ public class EatItem : MonoBehaviour
     }
     public void Setup()
     {
+
         var item = FindObjectOfType<OnSwitchAssets>().item;
         EdiblesItems.FoodRecovery.TryGetValue(item, out List<int> healthHungry);
         healthUp = healthHungry[0];
         hungryUp = healthHungry[1];
         rarerity = Player.AllTagRareDict[Use(item)] != Rarerity.B ? Player.AllTagRareDict[Use(item)] : Rarerity.N;
         edibleType = EdiblesItems.GetEdibleType(item);
+        SetTemporaryTag();
     }
     public void SpawnCharacterChooseUI()
     {
@@ -57,6 +61,19 @@ public class EatItem : MonoBehaviour
         {
             Debug.LogError(itemName);
             return output;
+        }
+    }
+    public void SetTemporaryTag()
+    {
+        var item = FindObjectOfType<OnSwitchAssets>().item;
+        if (EdiblesItems.ItemToTempDict.Keys.Contains(item))
+        {
+            tempTag = EdiblesItems.ItemToTempDict[item];
+            duration = EdiblesItems.ItemTempDuration[item];
+        }
+        else
+        {
+            tempTag = Tag.Null;
         }
     }
     public void ResetUI()

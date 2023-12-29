@@ -21,6 +21,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
     public Text HungrySign;
     public GameObject TagSlot;
     public GameObject TempTagSlot;
+    public GameObject fakeTempTag = null;
 
     public Image Wisdom;
     public Image Writing;
@@ -192,10 +193,28 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             {
                 loyalUp = FavorLoyaltyAdd(eatItem.rarerity);
             }
-            
+            SetupTempTag();
             SetupSignOnEat(hungryUp, loyalUp, healthUp);
         }
     }
+
+    private void SetupTempTag()
+    {
+        var eatItem = FindObjectOfType<EatItem>();
+        if (eatItem != null)
+        {
+            if (eatItem.tempTag != Tag.Null)
+            {
+                fakeTempTag = Instantiate(tempTagPref, TempTagSlot.transform);
+                var target = fakeTempTag.GetComponentInChildren<TagWithDescribetion>();
+                target.name = tag.ToString();
+                target.TempTag = true;
+                target.timeLeft = eatItem.duration;
+                target.Setup(eatItem.tempTag);
+            }
+        }
+    }
+
     public int FavorLoyaltyAdd(Rarerity rare)
     {
         int output = 0;
@@ -225,6 +244,7 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
         if (cardMode == CardMode.EatMode)
         {
             ResetSigns();
+            Destroy(fakeTempTag);
         }
     }
 

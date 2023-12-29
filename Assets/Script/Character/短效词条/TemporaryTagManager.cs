@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class TemporaryTagManager : MonoBehaviour, IDiceRollEvent
@@ -28,16 +29,21 @@ public class TemporaryTagManager : MonoBehaviour, IDiceRollEvent
         foreach (Transform character in characterInv)
         {
             var list = character.GetComponent<Character>().temporaryTags;
-            if (list != null || list.Count < 1) { return; }
+            if (list == null || list.Count < 1) { return; }
             else
             {
+                var removeList = new List<TemporaryTag>();
                 foreach (var tempTag in list)
                 {
                     tempTag.timeLeft -= 1;
                     if (tempTag.timeLeft < 1)
                     {
-                        list.Remove(tempTag);
+                        removeList.Add(tempTag);
                     }
+                }
+                foreach (var tempTag in removeList)
+                {
+                    list.Remove(tempTag);
                 }
             }
         }
