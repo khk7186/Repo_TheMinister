@@ -314,7 +314,8 @@ public enum HireStage
     Defeated,
     Committed,
     Away,
-    Quest
+    Quest,
+    OnCourt
 }
 public class Character : MonoBehaviour, IRound
 {

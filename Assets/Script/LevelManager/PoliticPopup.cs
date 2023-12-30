@@ -13,6 +13,10 @@ public class PoliticPopup : MonoBehaviour
     public Animator animator;
     public PoliticSlot slot;
 
+    private void Start()
+    {
+        GetComponent<Canvas>().sortingOrder = 102;
+    }
     public void ShowPopup()
     {
         gameObject.SetActive(true);
@@ -58,6 +62,6 @@ public class PoliticPopup : MonoBehaviour
     }
     public void OpenAppoint()
     {
-
+        FindObjectOfType<PoliticPageManager>().OnClickAppointPage(slot);
     }
 }

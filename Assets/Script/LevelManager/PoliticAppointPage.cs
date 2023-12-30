@@ -7,6 +7,7 @@ public class PoliticAppointPage : PoliticPage, IPoliticSelectionAction
 {
     public Character target => PoliticCharacterSelect.SelectedCharacter;
     public PoliticCharacterSelect politicCharacterSelect = null;
+    public Image currentOnHold = null;
     public PoliticSlot slot = null;
     public Text titleText = null;
     public Transform TagParent = null;
@@ -20,16 +21,28 @@ public class PoliticAppointPage : PoliticPage, IPoliticSelectionAction
     public GameObject ConfirmButton = null;
     public GameObject OngoingView = null;
     public TagWithDescribetion tagWithDescribetion = null;
+    public Sprite DarkFace = null;
+
     public void Setup(PoliticSlot slot)
     {
+        Reset();
         this.slot = slot;
-        Debug.Log(slot.GateHolder.characterArtCode);
-        var spritePath = ReturnAssetPath.ReturnCharacterSpritePath(slot.GateHolder.characterArtCode, false);
         titleText.text = slot.slotName;
-
+        currentOnHold.sprite = DarkFace;
         politicCharacterSelect.politicSelectionAction = this;
         politicCharacterSelect.SetupEmpty();
         ConfirmButton.SetActive(false);
+    }
+    public void Reset()
+    {
+        foreach (Transform child in TagParent)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Transform child in ValueParent)
+        {
+            child.gameObject.SetActive(false);
+        }
     }
     public void SetTags()
     {
@@ -44,7 +57,44 @@ public class PoliticAppointPage : PoliticPage, IPoliticSelectionAction
         if (slot.Wisdom != Rarerity.Null)
         {
             Wisdom.sprite = Resources.Load<Sprite>($"Art/人物卡/六大项/字体背景/{slot.Wisdom.ToString()}");
+            Wisdom.gameObject.SetActive(true);
         }
+        else { Wisdom.gameObject.SetActive(false); }
+
+        if (slot.Writing != Rarerity.Null)
+        {
+            Writing.sprite = Resources.Load<Sprite>($"Art/人物卡/六大项/字体背景/{slot.Writing.ToString()}");
+            Writing.gameObject.SetActive(true);
+        }
+        else { Writing.gameObject.SetActive(false); }
+
+        if (slot.Strategy != Rarerity.Null)
+        {
+            Strategy.sprite = Resources.Load<Sprite>($"Art/人物卡/六大项/字体背景/{slot.Strategy.ToString()}");
+            Strategy.gameObject.SetActive(true);
+        }
+        else { Strategy.gameObject.SetActive(false); }
+
+        if (slot.Strength != Rarerity.Null)
+        {
+            Strength.sprite = Resources.Load<Sprite>($"Art/人物卡/六大项/字体背景/{slot.Strength.ToString()}");
+            Strength.gameObject.SetActive(true);
+        }
+        else { Strength.gameObject.SetActive(false); }
+
+        if (slot.Sneak != Rarerity.Null)
+        {
+            Sneak.sprite = Resources.Load<Sprite>($"Art/人物卡/六大项/字体背景/{slot.Sneak.ToString()}");
+            Sneak.gameObject.SetActive(true);
+        }
+        else { Sneak.gameObject.SetActive(false); }
+
+        if (slot.Defense != Rarerity.Null)
+        {
+            Defense.sprite = Resources.Load<Sprite>($"Art/人物卡/六大项/字体背景/{slot.Defense.ToString()}");
+            Defense.gameObject.SetActive(true);
+        }
+        else { Defense.gameObject.SetActive(false); }
     }
     public void TryStartEvent()
     {
@@ -69,6 +119,15 @@ public class PoliticAppointPage : PoliticPage, IPoliticSelectionAction
     public void StartEvent()
     {
         slot.characterOnHold = target;
+        slot.CharacterHead.sprite = politicCharacterSelect.characterHead.sprite;
+        slot.CharacterHead.gameObject.SetActive(true);
+        politicCharacterSelect.gameObject.SetActive(false);
+        ConfirmButton.gameObject.SetActive(false);
+        OngoingView.gameObject.SetActive(true);
+        currentOnHold.sprite = politicCharacterSelect.characterHead.sprite;
+        target.hireStage = HireStage.OnCourt;
+        target.transform.parent = slot.transform;
+        //TODO: Show Message
     }
     public bool TestCharacter()
     {

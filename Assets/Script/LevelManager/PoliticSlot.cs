@@ -49,6 +49,14 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
         {
             EmptySlotModeSetup();
         }
+        foreach (var line in upLines)
+        {
+            line.raycastTarget = false;
+        }
+        foreach (var line in lowerLines)
+        {
+            line.raycastTarget = false;
+        }
     }
     public void GateModeSetup()
     {

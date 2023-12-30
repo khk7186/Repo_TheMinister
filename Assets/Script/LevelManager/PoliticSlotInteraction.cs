@@ -32,7 +32,7 @@ public class PoliticSlotInteraction : MonoBehaviour, IPointerEnterHandler, IPoin
     public void OnPointerEnter(PointerEventData eventData)
     {
         politicSlot.Frame.sprite = politicSlot.HighlightFrame;
-        politicPopup.Setup(politicSlot);
+
         politicPopup.ShowPopup();
     }
 
@@ -49,5 +49,9 @@ public class PoliticSlotInteraction : MonoBehaviour, IPointerEnterHandler, IPoin
     private void Awake()
     {
         politicSlot = GetComponent<PoliticSlot>();
+    }
+    private void Start()
+    {
+        politicPopup.Setup(politicSlot);
     }
 }

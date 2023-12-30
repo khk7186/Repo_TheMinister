@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PoliticPageManager : MonoBehaviour, IPointerClickHandler
 {
     public PoliticAssassinPage assassinPage = null;
+    public PoliticAppointPage appointPage = null;
     public PoliticPage currentPage = null;
     public Image mask = null;
 
@@ -15,6 +16,13 @@ public class PoliticPageManager : MonoBehaviour, IPointerClickHandler
         assassinPage.Setup(slot);
         assassinPage.Show();
         currentPage = assassinPage;
+        mask.gameObject.SetActive(true);
+    }
+    public void OnClickAppointPage(PoliticSlot slot)
+    {
+        appointPage.Setup(slot);
+        appointPage.Show();
+        currentPage = appointPage;
         mask.gameObject.SetActive(true);
     }
     public void OnPointerClick(PointerEventData eventData)
