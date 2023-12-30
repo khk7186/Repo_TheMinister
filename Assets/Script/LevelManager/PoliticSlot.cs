@@ -13,6 +13,12 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     public int exp;
     public List<string> requestTagsInString;
     public List<Tag> requestTags;
+    public int Wisdom = 0;
+    public int Writing = 0;
+    public int Strategy = 0;
+    public int Strength = 0;
+    public int Sneak = 0;
+    public int Defense = 0;
     public List<PoliticSlot> preSlots = new List<PoliticSlot>();
     public PoliticCharacter GateHolder = null;
     public Image Frame;
