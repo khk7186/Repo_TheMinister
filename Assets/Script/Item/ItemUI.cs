@@ -8,6 +8,7 @@ using UnityEditor;
 public enum ItemName
 {
     Null,
+    弹劾文书,
     长生不老药,
     十全大补丸,
     和氏璧,

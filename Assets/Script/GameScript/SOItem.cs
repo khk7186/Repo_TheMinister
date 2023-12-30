@@ -134,6 +134,7 @@ public class SOItem : ScriptableObject
         {ItemName.小刀,Tag.毒师},
         {ItemName.背剑,Tag.武艺精湛},
         {ItemName.文官状,Tag.文贞},
+
         {ItemName.武官状,Tag.武勇},
         {ItemName.蓑衣,Tag.平平无奇},
         {ItemName.布衣,Tag.平平无奇},
@@ -227,6 +228,7 @@ public class SOItem : ScriptableObject
         {ItemName.蚕丝,Tag.鸠工庀材},
         {ItemName.皮毛,Tag.鸠工庀材},
         {ItemName.麻布,Tag.鸠工庀材},
+        {ItemName.弹劾文书,Tag.惹人嫌 },
             };
     public static Dictionary<ItemType, List<ItemName>> ItemTypeDict = new Dictionary<ItemType, List<ItemName>>()
     {
@@ -373,6 +375,7 @@ public class SOItem : ScriptableObject
                 ItemName.御马官印,
                 ItemName.毒奶瓶,
                 ItemName.文官状,
+                ItemName.弹劾文书,
                 ItemName.武官状,
                 ItemName.杂技,
                 ItemName.剪刀,
@@ -1855,6 +1858,7 @@ public class SOItem : ScriptableObject
         {ItemName.酒葫芦,"充满酒的葫芦。获得词条<color=#535D77>醉拳</color>"},
         {ItemName.文官状,"皇帝赐予的委任状。获得词条<color=#5E5D41>文贞</color>"},
         {ItemName.武官状,"皇帝赐予的委任状。获得词条<color=#5E5D41>武勇</color>"},
+        {ItemName.弹劾文书,"用于弹劾的文书，拥有此物会被同行挤兑。获得词条<color=#785E57>惹人嫌</color>。" },
         {ItemName.蓑衣,"平常渔民的服装。获得词条<color=#5E5D41>平平无奇</color>"},
         {ItemName.布衣,"平民百姓的服装。获得词条<color=#5E5D41>平平无奇</color>"},
         {ItemName.青酒,"便宜的酒。获得词条<color=#5E5D41>醉酒</color>"},

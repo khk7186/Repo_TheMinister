@@ -1014,6 +1014,7 @@ public class Player : MonoBehaviour
         {ItemName.小刀,Tag.毒师},
         {ItemName.背剑,Tag.武艺精湛},
         {ItemName.文官状,Tag.文贞},
+        {ItemName.弹劾文书,Tag.惹人嫌},
         {ItemName.武官状,Tag.武勇},
         {ItemName.蓑衣,Tag.平平无奇},
         {ItemName.布衣,Tag.平平无奇},
