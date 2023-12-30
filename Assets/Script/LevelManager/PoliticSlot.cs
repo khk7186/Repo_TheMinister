@@ -11,6 +11,7 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     public Image CharacterHead = null;
     public Character characterOnHold = null;
     public int exp;
+    public int extraMoney;
     public List<string> requestTagsInString;
     public List<Tag> requestTags;
     public int Wisdom = 0;
