@@ -14,12 +14,12 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     public int extraMoney;
     public List<string> requestTagsInString;
     public List<Tag> requestTags;
-    public int Wisdom = 0;
-    public int Writing = 0;
-    public int Strategy = 0;
-    public int Strength = 0;
-    public int Sneak = 0;
-    public int Defense = 0;
+    public Rarerity Wisdom = Rarerity.Null;
+    public Rarerity Writing = Rarerity.Null;
+    public Rarerity Strategy = Rarerity.Null;
+    public Rarerity Strength = Rarerity.Null;
+    public Rarerity Sneak = Rarerity.Null;
+    public Rarerity Defense = Rarerity.Null;
     public List<PoliticSlot> preSlots = new List<PoliticSlot>();
     public PoliticCharacter GateHolder = null;
     public Image Frame;
@@ -58,7 +58,6 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     {
         CharacterHead.gameObject.SetActive(false);
     }
-
 
     public void SetupTags()
     {

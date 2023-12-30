@@ -11,7 +11,7 @@ public class GateHolderAnimationPlayer : MonoBehaviour
     public List<float> Yvalues = new List<float>();
     public float rollDuration = 1f;
     public float animationDuration = 0.5f;
-    public RectTransform page;
+    public RectTransform page = null;
     public IEnumerator StartAnimationSequence()
     {
         for (int i = 0; i < Yvalues.Count; i++)

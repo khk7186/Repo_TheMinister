@@ -43,4 +43,5 @@ public class PoliticAssassinEvent
             message.text = $"¥Ã…±{assassinEvent.politicCharacter.CharacterName} ß∞‹";
         }
     }
+
 }
