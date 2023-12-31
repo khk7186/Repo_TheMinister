@@ -55,7 +55,7 @@ public class PoliticPopup : MonoBehaviour
     }
     public void OpenBribe()
     {
-
+        FindObjectOfType<PoliticPageManager>().OnClickBribePage(slot);
     }
     public void OpenImpeach()
     {

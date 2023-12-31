@@ -29,6 +29,22 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     public List<Image> upLines = new List<Image>();
     public List<Image> lowerLines = new List<Image>();
     public int Level = 0;
+    public bool Unlocked
+    {
+        get
+        {
+            if (GateHolder != null)
+            {
+                return GateHolder.bribed;
+            }
+            else
+            {
+                if (characterOnHold != null)
+                    return true;
+            }
+            return false;
+        }
+    }
     public bool unlocked
     {
         get
