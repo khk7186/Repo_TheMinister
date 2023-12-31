@@ -32,6 +32,8 @@ public class PoliticAppointPage : PoliticPage, IPoliticSelectionAction
         politicCharacterSelect.politicSelectionAction = this;
         politicCharacterSelect.SetupEmpty();
         ConfirmButton.SetActive(false);
+        SetTags();
+        SetValues();
     }
     public void Reset()
     {
@@ -43,6 +45,10 @@ public class PoliticAppointPage : PoliticPage, IPoliticSelectionAction
         {
             child.gameObject.SetActive(false);
         }
+        currentOnHold.sprite = DarkFace;
+        politicCharacterSelect.gameObject.SetActive(true);
+        ConfirmButton.gameObject.SetActive(true);
+        OngoingView.gameObject.SetActive(false);
     }
     public void SetTags()
     {
@@ -128,6 +134,7 @@ public class PoliticAppointPage : PoliticPage, IPoliticSelectionAction
         target.hireStage = HireStage.OnCourt;
         target.transform.parent = slot.transform;
         //TODO: Show Message
+        LevelManager.UpdateLevel();
     }
     public bool TestCharacter()
     {

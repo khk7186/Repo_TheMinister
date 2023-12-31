@@ -29,22 +29,6 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     public List<Image> upLines = new List<Image>();
     public List<Image> lowerLines = new List<Image>();
     public int Level = 0;
-    public bool Unlocked
-    {
-        get
-        {
-            if (GateHolder != null)
-            {
-                return GateHolder.bribed;
-            }
-            else
-            {
-                if (characterOnHold != null)
-                    return true;
-            }
-            return false;
-        }
-    }
     public bool unlocked
     {
         get
@@ -59,7 +43,11 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
         SetupTags();
         if (GateHolder != null)
         {
-            GateModeSetup();
+            GateHolderModeSetup();
+        }
+        else if (characterOnHold != null)
+        {
+           OnHoldModeSetup();
         }
         else
         {
@@ -74,9 +62,18 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
             line.raycastTarget = false;
         }
     }
-    public void GateModeSetup()
+
+    private void OnHoldModeSetup()
+    {
+        var spritePath = ReturnAssetPath.ReturnCharacterSpritePath(characterOnHold.characterArtCode, false);
+        CharacterHead.sprite = Resources.Load<Sprite>(spritePath);
+    }
+
+    public void GateHolderModeSetup()
     {
         GateHolder.slot = this;
+        var spritePath = ReturnAssetPath.ReturnCharacterSpritePath(GateHolder.characterArtCode, false);
+        CharacterHead.sprite = Resources.Load<Sprite>(spritePath);
     }
     public void EmptySlotModeSetup()
     {
