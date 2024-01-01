@@ -32,7 +32,7 @@ public class PoliticPopup : MonoBehaviour
     public void Setup(PoliticSlot politicSlot)
     {
         slot = politicSlot;
-        if (politicSlot.GateHolder != null)
+        if (politicSlot.GateHolder != null && politicSlot.GateHolder.bribed == false)
         {
             AssassinButton.gameObject.SetActive(true);
             BribeButton.gameObject.SetActive(true);
@@ -40,6 +40,15 @@ public class PoliticPopup : MonoBehaviour
             AppointButton.gameObject.SetActive(false);
             RequestButton.gameObject.SetActive(false);
             GiveButton.gameObject.SetActive(false);
+        }
+        else if (politicSlot.GateHolder != null && politicSlot.GateHolder.bribed == true)
+        {
+            AssassinButton.gameObject.SetActive(false);
+            BribeButton.gameObject.SetActive(false);
+            ImpeachButton.gameObject.SetActive(false);
+            AppointButton.gameObject.SetActive(false);
+            RequestButton.gameObject.SetActive(true);
+            GiveButton.gameObject.SetActive(true);
         }
         else if (politicSlot.characterOnHold == null)
         {
@@ -80,7 +89,7 @@ public class PoliticPopup : MonoBehaviour
     }
     public void OpenRequest()
     {
-
+        FindObjectOfType<PoliticPageManager>().OnClickRequestPage(slot);
     }
     public void OpenGive()
     {

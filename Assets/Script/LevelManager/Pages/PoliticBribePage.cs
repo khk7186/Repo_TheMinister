@@ -111,6 +111,7 @@ public class PoliticBribePage : PoliticPage
         if (slot.GateHolder.bribed == true)
         {
             SetBribed();
+            slot.GetComponent<PoliticSlotInteraction>().politicPopup.Setup(slot);
         }
         ResetBribeMoney();
     }

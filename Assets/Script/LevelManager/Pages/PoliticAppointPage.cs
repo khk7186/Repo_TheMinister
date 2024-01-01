@@ -133,6 +133,7 @@ public class PoliticAppointPage : PoliticPage, IPoliticSelectionAction
         currentOnHold.sprite = politicCharacterSelect.characterHead.sprite;
         target.hireStage = HireStage.OnCourt;
         target.transform.parent = slot.transform;
+        slot.GetComponent<PoliticSlotInteraction>().politicPopup.Setup(slot);
         //TODO: Show Message
         LevelManager.UpdateLevel();
     }

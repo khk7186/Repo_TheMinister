@@ -28,6 +28,8 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     public Sprite HighlightFrame;
     public List<Image> upLines = new List<Image>();
     public List<Image> lowerLines = new List<Image>();
+    public GovernorType governorType;
+    public int requestAmount = 0;
     public int Level = 0;
     public bool unlocked
     {

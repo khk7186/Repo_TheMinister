@@ -261,6 +261,7 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler, IPointerEnterH
 
     public virtual void OnPointerClick(PointerEventData eventData)
     {
+        if (!CanClick) return;
         AudioManager.Play("°´Å¥");
         if (!InUse)
             return;
