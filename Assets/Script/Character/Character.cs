@@ -410,11 +410,6 @@ public class Character : MonoBehaviour, IRound
             { OndutyType.Gobang, false }
         };
     #endregion
-    #region wealth
-    public int Money = 250;
-    public int Influence = 200;
-    public int Prestige = 200;
-    #endregion
     #region away data
     public CharacterAwaitTribute characterAwaitTribute = null;
     public int waitTime => characterAwaitTribute != null ? characterAwaitTribute.WaitTime : 0;
