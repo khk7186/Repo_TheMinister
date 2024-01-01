@@ -323,7 +323,9 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler, IPointerEnterH
         string SpritePath = ("Art/ItemIcon/" + item.ToString()).Replace(" ", string.Empty);
         icon.sprite = Resources.Load<Sprite>(SpritePath);
         if (amount == 0)
+        {
             this.amount.transform.parent.gameObject.SetActive(false);
+        }
         else
         {
             this.amount.text = amount.ToString();

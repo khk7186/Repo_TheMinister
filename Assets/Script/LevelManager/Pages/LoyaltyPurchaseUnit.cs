@@ -41,6 +41,7 @@ public class LoyaltyPurchaseUnit : MonoBehaviour
         slot.requestAmount += 1;
         ShowMessage($"»ñµÃ {itemNameText.text}*1");
         page.UpdateAfterPurchase();
+        FindObjectOfType<ItemInventory>().AddItem(itemName);
     }
     public void ShowMessage(string messageString)
     {

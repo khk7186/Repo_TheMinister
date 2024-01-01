@@ -93,7 +93,7 @@ public class PoliticPopup : MonoBehaviour
     }
     public void OpenGive()
     {
-
+        FindObjectOfType<PoliticPageManager>().OnClickGivePage(slot);
     }
     public void OpenAppoint()
     {

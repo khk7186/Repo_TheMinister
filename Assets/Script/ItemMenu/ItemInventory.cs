@@ -30,6 +30,7 @@ public class ItemInventory : MonoBehaviour
         ////    AddItem(item);
         ////    AddItem(item);
          AddItem(ItemName.µ¯ÛÀÎÄÊé);
+         AddItem(ItemName.½ğ¶§);
     }
     public void Reset()
     {

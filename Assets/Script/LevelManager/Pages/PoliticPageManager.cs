@@ -11,6 +11,7 @@ public class PoliticPageManager : MonoBehaviour, IPointerClickHandler
     public PoliticBribePage BribePage = null;
     public PoliticImpeachPage ImpeachPage = null;
     public PoliticRequestPage requestPage = null;
+    public PoliticGivePage givePage = null;
     public PoliticPage currentPage = null;
     public Image mask = null;
 
@@ -48,6 +49,13 @@ public class PoliticPageManager : MonoBehaviour, IPointerClickHandler
         requestPage.Setup(slot);
         requestPage.Show();
         currentPage = requestPage;
+        mask.gameObject.SetActive(true);
+    }
+    public void OnClickGivePage(PoliticSlot slot)
+    {
+        givePage.Setup(slot);
+        givePage.Show();
+        currentPage = givePage;
         mask.gameObject.SetActive(true);
     }
     public void OnPointerClick(PointerEventData eventData)
