@@ -18,7 +18,8 @@ public class PoliticPurchaseItem : MonoBehaviour
         {ItemName.文官状, 2},
         {ItemName.武官状, 2},
         {ItemName.弹劾文书, 1},
-        {ItemName.御马官印, 1 }
+        {ItemName.御马官印, 1},
+        {ItemName.金锭, 2}
     };
 
     public static Dictionary<GovernorType, List<ItemName>> GovernorShop = new Dictionary<GovernorType, List<ItemName>>()
