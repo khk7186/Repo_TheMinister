@@ -935,6 +935,7 @@ public class Player : MonoBehaviour
         {ItemName.医圣的药箱,Tag.妙手丹心},
         {ItemName.鸽血红,Tag.侵略如火},
         {ItemName.木佐绿,Tag.仁人君子},
+        {ItemName.金锭,Tag.珠光宝气 },
         {ItemName.撕风赤兔马,Tag.宝马良驹},
         {ItemName.亮云白龙驹,Tag.宝马良驹},
         {ItemName.堕云虎,Tag.虎猛},

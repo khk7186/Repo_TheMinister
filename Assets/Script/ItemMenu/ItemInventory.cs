@@ -29,7 +29,7 @@ public class ItemInventory : MonoBehaviour
         ////    AddItem(item);
         ////    AddItem(item);
         ////    AddItem(item);
-        ////    AddItem(item);
+         AddItem(ItemName.µØ€¿Œƒ È);
     }
     public void Reset()
     {
