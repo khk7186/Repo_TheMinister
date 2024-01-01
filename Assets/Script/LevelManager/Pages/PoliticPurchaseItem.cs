@@ -2,6 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GovernorType 
+{
+    文贞,
+    文正,
+    文,
+    武勇,
+    武忠,
+    武
+};
 public class PoliticPurchaseItem : MonoBehaviour
 {
     public static Dictionary<ItemName, int> LoyaltyShopPrice = new Dictionary<ItemName, int>()
