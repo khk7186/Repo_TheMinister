@@ -20,7 +20,7 @@ public class PoliticAssassinEvent
 
     public static PoliticAssassinEvent StartAssassin(PoliticCharacter politicCharacter, Character assasin)
     {
-        int totalRate = politicCharacter.difficulty;
+        int totalRate = politicCharacter.AssassinDifficulty;
         int asssinValue = assasin.CharactersValueDict[CharacterValueType.´Ì];
         var output = new PoliticAssassinEvent(totalRate, asssinValue, politicCharacter);
         politicCharacter.Assassin = assasin;

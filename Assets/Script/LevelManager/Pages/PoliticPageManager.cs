@@ -9,6 +9,7 @@ public class PoliticPageManager : MonoBehaviour, IPointerClickHandler
     public PoliticAssassinPage assassinPage = null;
     public PoliticAppointPage appointPage = null;
     public PoliticBribePage politicBribePage = null;
+    public PoliticImpeachPage politicImpeachPage = null;
     public PoliticPage currentPage = null;
     public Image mask = null;
 
@@ -26,12 +27,19 @@ public class PoliticPageManager : MonoBehaviour, IPointerClickHandler
         currentPage = appointPage;
         mask.gameObject.SetActive(true);
     }
-    
+
     public void OnClickBribePage(PoliticSlot slot)
     {
         politicBribePage.Setup(slot);
         politicBribePage.Show();
         currentPage = politicBribePage;
+        mask.gameObject.SetActive(true);
+    }
+    public void OnClickImpeachPage(PoliticSlot slot)
+    {
+        politicImpeachPage.Setup(slot);
+        politicImpeachPage.Show();
+        currentPage = politicImpeachPage;
         mask.gameObject.SetActive(true);
     }
     public void OnPointerClick(PointerEventData eventData)

@@ -761,7 +761,7 @@ public class Character : MonoBehaviour, IRound
             this.spawnAfterAway = spawnAfterAway;
             e.AddListener(() => Instantiate(spawnAfterAway.gameObject));
         }
-        characterAwaitTribute = CharacterAwaitTributeManager.Instance.AddTribute(this, rounds * 3, e);
+        characterAwaitTribute = CharacterAwaitTributeManager.Instance.AddTribute(this, rounds, e);
     }
     public void Back()
     {

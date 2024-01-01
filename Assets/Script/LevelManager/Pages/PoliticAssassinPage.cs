@@ -24,7 +24,7 @@ public class PoliticAssassinPage : PoliticPage, IPoliticSelectionAction
         gateHolderImage.sprite = Resources.Load<Sprite>(spritePath);
         gateHolderNameText.text = slot.GateHolder.CharacterName;
         titleText.text = slot.slotName;
-        SetDifficulty(slot.GateHolder.difficulty);
+        SetDifficulty(slot.GateHolder.AssassinDifficulty);
         politicCharacterSelect.politicSelectionAction = this;
         politicCharacterSelect.SetupEmpty();
         winRateObject.SetActive(false);
@@ -115,7 +115,7 @@ public class PoliticAssassinPage : PoliticPage, IPoliticSelectionAction
     public void AfterPoliticSelectionEvent()
     {
         int value = PoliticCharacterSelect.SelectedCharacter.CharactersValueDict[CharacterValueType.´Ì];
-        int total = slot.GateHolder.difficulty;
+        int total = slot.GateHolder.AssassinDifficulty;
         SetWinRate((float)value / (float)total);
         ConfirmButton.gameObject.SetActive(true);
     }
