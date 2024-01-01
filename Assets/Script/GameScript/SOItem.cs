@@ -54,6 +54,7 @@ public class SOItem : ScriptableObject
         {ItemName.医圣的药箱,Tag.妙手丹心},
         {ItemName.鸽血红,Tag.侵略如火},
         {ItemName.木佐绿,Tag.仁人君子},
+        {ItemName. 金锭,Tag.珠光宝气},
         {ItemName.撕风赤兔马,Tag.宝马良驹},
         {ItemName.亮云白龙驹,Tag.宝马良驹},
         {ItemName.堕云虎,Tag.虎猛},
@@ -134,7 +135,6 @@ public class SOItem : ScriptableObject
         {ItemName.小刀,Tag.毒师},
         {ItemName.背剑,Tag.武艺精湛},
         {ItemName.文官状,Tag.文贞},
-
         {ItemName.武官状,Tag.武勇},
         {ItemName.蓑衣,Tag.平平无奇},
         {ItemName.布衣,Tag.平平无奇},
@@ -467,6 +467,7 @@ public class SOItem : ScriptableObject
                 ItemName.和氏璧,
                 ItemName.钻石,
                 ItemName.鸽血红,
+                ItemName.金锭,
                 ItemName.木佐绿,
                 ItemName.金绿宝石,
                 ItemName.红宝石,
@@ -1055,6 +1056,7 @@ public class SOItem : ScriptableObject
                 ItemName.金绿宝石,
                 ItemName.木佐绿,
                 ItemName.鸽血红,
+                ItemName.金锭,
                 ItemName.钻石
 }
         },
@@ -1776,6 +1778,7 @@ public class SOItem : ScriptableObject
         {ItemName.养气筑基散,"江湖武者中流传甚广的丹药。获得词条<color=#694F70>武功小成</color>"},
         {ItemName.医圣的药箱,"古代医生遗留下的药箱。获得词条<color=#694F70>妙手丹心</color>"},
         {ItemName.鸽血红,"色泽纯净如同燃烧的火。获得词条<color=#694F70>侵略如火</color>"},
+        {ItemName.金锭,"士族商贾之间的硬通货，深受官员喜爱<color=#535D77>珠光宝气</color>" },
         {ItemName.木佐绿,"苍翠刚劲，如文人雅士。获得词条<color=#694F70>仁人君子</color>"},
         {ItemName.撕风赤兔马,"赤兔马中可以撕裂飓风的存在。获得词条<color=#694F70>宝马良驹</color>"},
         {ItemName.亮云白龙驹,"传说此白马一出可和月亮比亮度 。获得词条<color=#694F70>宝马良驹</color>"},
