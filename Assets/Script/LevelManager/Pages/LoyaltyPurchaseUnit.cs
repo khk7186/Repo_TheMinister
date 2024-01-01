@@ -53,6 +53,6 @@ public class LoyaltyPurchaseUnit : MonoBehaviour
     internal void SetupPrice()
     {
         price = PoliticPurchaseItem.LoyaltyShopPrice[itemName] + slot.requestAmount;
-        priceText.text = price.ToString();
+        priceText.text = $"{price}÷“≥œ";
     }
 }

@@ -59,7 +59,7 @@ public class LoyaltyGiveUnit : MonoBehaviour
     internal void SetupPrice()
     {
         price = PoliticPurchaseItem.GovLoyaltyRecovery[itemName];
-        priceText.text = price.ToString();
+        priceText.text = $"{price}÷“≥œ";
     }
     public void SetupAmount()
     {

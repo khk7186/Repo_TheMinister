@@ -37,13 +37,13 @@ public class PoliticImpeachPage : PoliticPage
         var itemInv = FindObjectOfType<ItemInventory>();
         int contain = 0;
         int request = slot.GateHolder.ImpeachItemRequstNumber - slot.GateHolder.ImpeachTime;
-        if (request < 0) request = 0;
+        if (request < 1) request = 1;
         string requestString = $"<color=green>{request}</color>";
         if (itemInv.CheckItem(impeachItem))
         {
             contain = itemInv.ItemDict[impeachItem];
         }
-        if (request < contain)
+        if (request > contain)
         {
             requestString = $"<color=red>{request}</color>";
         }
@@ -78,7 +78,7 @@ public class PoliticImpeachPage : PoliticPage
         int contain = 0;
         var itemInv = FindObjectOfType<ItemInventory>();
         int request = slot.GateHolder.ImpeachItemRequstNumber - slot.GateHolder.ImpeachTime;
-        if (request < 0) request = 0;
+        if (request < 1) request = 1;
         if (itemInv.CheckItem(impeachItem))
         {
             contain = itemInv.ItemDict[impeachItem];
@@ -88,6 +88,7 @@ public class PoliticImpeachPage : PoliticPage
             ShowMessage("你需要更多的弹劾文书");
             return;
         }
+        for (int i = 0; i < request; i++) itemInv.RemoveItem(impeachItem);
         ShowMessage($"成功弹劾{slot.GateHolder.CharacterName}，贿赂难度降低");
         slot.GateHolder.ImpeachTime += 1;
         SetAlreadyImpeachedTimes(slot.GateHolder.ImpeachTime);
