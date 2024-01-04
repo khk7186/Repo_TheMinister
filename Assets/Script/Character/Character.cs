@@ -749,14 +749,14 @@ public class Character : MonoBehaviour, IRound
         OnDutyState[OndutyType.Combat] = false;
         OnDutyState[OndutyType.Debate] = false;
         OnDutyState[OndutyType.Gobang] = false;
-        var e = new UnityEvent();
-        e.AddListener(() => Back());
-        if (spawnAfterAway != null)
-        {
-            this.spawnAfterAway = spawnAfterAway;
-            e.AddListener(() => Instantiate(spawnAfterAway.gameObject));
-        }
-        characterAwaitTribute = CharacterAwaitTributeManager.Instance.AddTribute(this, rounds, e, spawnAfterAway == null);
+        //var e = new UnityEvent();
+        //e.AddListener(() => Back());
+        //if (spawnAfterAway != null)
+        //{
+        //    this.spawnAfterAway = spawnAfterAway;
+        //    e.AddListener(() => Instantiate(spawnAfterAway.gameObject));
+        //}
+        characterAwaitTribute = CharacterAwaitTributeManager.Instance.AddTribute(this, rounds, null, spawnAfterAway == null);
     }
     public void Back()
     {

@@ -32,7 +32,6 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
         tribute.gameObject.SetActive(true);
         tribute.character = character;
         tribute.WaitTime = WaitTime;
-        tribute.@event.AddListener(@event.Invoke);
         UnfinishedTributes.Add(tribute);
         GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "任务信息系统", WaitTime, auto);
         return tribute;

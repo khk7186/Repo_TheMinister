@@ -41,6 +41,13 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
         this.characterName = character.CharacterName;
         var spritePath = ReturnAssetPath.ReturnCharacterSpritePath(character.characterArtCode, false);
         Head.sprite = Resources.Load<Sprite>(spritePath);
+        var e = new UnityEvent();
+        e.AddListener(() => character.Back());
+        if (character.spawnAfterAway != null)
+        {
+            e.AddListener(() => Instantiate(character.spawnAfterAway.gameObject));
+        }
+        unityEvent = e;
         smallViewImage.color = Color.red;
         Show();
     }
