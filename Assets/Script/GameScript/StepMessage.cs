@@ -26,8 +26,37 @@ public class StepMessage : MonoBehaviour
          "正在进行冥想，以稳定心态和集中精神。"
     };
 
+    public static string[] AssassinCompleteMessages = new string[]
+    {
+        "正在清理现场",
+        "正在伪装成下人撤离现场",
+        "躲在满载干草的马车中离开。",
+        "正在用河水清洗掉衣物上的血迹。",
+        "在林中掩埋已使用的刺杀工具。",
+        "暂时隐匿在偏僻的庙宇内。"
+    };
+
+    public static string[] AssassinFailMessages = new string[]
+    {
+        "在一条死胡同被敌人围困，无路可逃。",
+        "为了保密，吞下藏有毒药的假牙。",
+        "在潜藏时身份被揭露。",
+        "刺杀时发出响声被守卫发现。",
+        "与清除守卫时引起了注意。"
+
+    };
     public static string AssassinStepMessage()
     {
         return AssassinStepMessages[Random.Range(0, AssassinStepMessages.Length - 1)];
+    }
+
+    public static string AssassinCompleteStepMessage()
+    {
+        return AssassinCompleteMessages[Random.Range(0, AssassinCompleteMessages.Length - 1)];
+    }
+
+    public static string AssassinFailStepMessage()
+    {
+        return AssassinFailMessages[Random.Range(0, AssassinFailMessages.Length - 1)];
     }
 }
