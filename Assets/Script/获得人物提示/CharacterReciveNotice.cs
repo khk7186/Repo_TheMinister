@@ -42,7 +42,7 @@ public class CharacterReciveNotice : MonoBehaviour
         foreach (Tag tag in character.tagList)
         {
             Image tagObj = Instantiate(Resources.Load<Image>("Tag/Tag"), tags);
-            tagObj.sprite = Resources.Load<Sprite>(ReturnAssetPath.ReturnTagPath(tag));
+            tagObj.GetComponentInChildren<TagWithDescribetion>().Setup(tag);
         }
         var wisdom = (int)character.characterValueRareDict[CharacterValueType.ÖÇ] / 2;
         Wisdom.color = RarityColors[wisdom > 0 ? wisdom : 0];
@@ -56,7 +56,6 @@ public class CharacterReciveNotice : MonoBehaviour
         Sneak.color = RarityColors[sneak > 0 ? sneak : 0];
         var defense = (int)character.characterValueRareDict[CharacterValueType.ÊØ] / 2;
         Defense.color = RarityColors[defense > 0 ? defense : 0];
-
     }
     public void SelfDestroy()
     {

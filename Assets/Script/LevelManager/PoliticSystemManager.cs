@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PoliticSystemManager : MonoBehaviour, IDiceRollEvent
@@ -22,13 +23,22 @@ public class PoliticSystemManager : MonoBehaviour, IDiceRollEvent
                 toRemove.Add(item);
             }
         }
-        foreach (PoliticAssassinEvent item in toRemove)
-        {
-            PoliticAssassinEvent.EndAssassin(item);
-            OngoingAssassinEvents.Remove(item);
-        }
+        //foreach (PoliticAssassinEvent item in toRemove)
+        //{
+        //    PoliticAssassinEvent.EndAssassin(item);
+        //    OngoingAssassinEvents.Remove(item);
+        //}
     }
-
+    public PoliticAssassinEvent FindEventByAssassin(Character assassin)
+    {
+        return OngoingAssassinEvents.FirstOrDefault(x => x.politicCharacter.Assassin == assassin);
+    }
+    public void EndAssassin(Character assassin)
+    {
+        var targetEvent = FindEventByAssassin(assassin);
+        PoliticAssassinEvent.EndAssassin(targetEvent);
+        OngoingAssassinEvents.Remove(targetEvent);
+    }
     private void Awake()
     {
         if (Instance == null)

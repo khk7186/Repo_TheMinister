@@ -24,6 +24,7 @@ public class PoliticAssassinEvent
         int asssinValue = assasin.CharactersValueDict[CharacterValueType.¥Ã];
         var output = new PoliticAssassinEvent(totalRate, asssinValue, politicCharacter);
         politicCharacter.Assassin = assasin;
+        assasin.OnAssassinEvent = true;
         assasin.Away(output.duration);
         return output;
     }
@@ -42,6 +43,6 @@ public class PoliticAssassinEvent
             var message = GameObject.Instantiate<Text>(sampleText, MainCanvas.FindMainCanvas());
             message.text = $"¥Ã…±{assassinEvent.politicCharacter.CharacterName} ß∞‹";
         }
+        assassinEvent.politicCharacter.Assassin.OnAssassinEvent = false;
     }
-
 }

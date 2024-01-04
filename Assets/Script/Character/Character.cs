@@ -415,6 +415,7 @@ public class Character : MonoBehaviour, IRound
     public int waitTime => characterAwaitTribute != null ? characterAwaitTribute.WaitTime : 0;
     public int alreadyWait => characterAwaitTribute != null ? characterAwaitTribute.AlreadyWait : 0;
     public SpawnAfterAwayGuest spawnAfterAway = null;
+    public bool OnAssassinEvent = false;
     #endregion
     private void Awake()
     {
@@ -751,37 +752,42 @@ public class Character : MonoBehaviour, IRound
         OnDutyState[OndutyType.Gobang] = false;
         //var e = new UnityEvent();
         //e.AddListener(() => Back());
-        //if (spawnAfterAway != null)
-        //{
-        //    this.spawnAfterAway = spawnAfterAway;
-        //    e.AddListener(() => Instantiate(spawnAfterAway.gameObject));
-        //}
-        characterAwaitTribute = CharacterAwaitTributeManager.Instance.AddTribute(this, rounds, null, spawnAfterAway == null);
+        if (spawnAfterAway != null)
+        {
+            this.spawnAfterAway = spawnAfterAway;
+            //e.AddListener(() => Instantiate(spawnAfterAway.gameObject));
+        }
+        characterAwaitTribute = CharacterAwaitTributeManager.Instance.AddTribute(this, rounds, spawnAfterAway == null);
+    }
+    public void AwayForAssassin()
+    {
+        OnAssassinEvent = true;
+
     }
     public void Back()
     {
         hireStage = HireStage.Hired;
         CurrencyInvAnimationManager.Instance.PrestigeChange(1);
     }
-    public IEnumerator AwayCoroutine(int rounds, GameObject spawnAfterAway = null)
-    {
-        hireStage = HireStage.Away;
-        OnCombatDuty = false;
-        OnDebateDuty = false;
-        OnGobangDuty = false;
-        var map = FindObjectOfType<Map>();
-        int targetTime = map.DayTime;
-        int targetDay = map.Day + rounds;
-        CurrencyInvAnimationManager.Instance.PrestigeChange(-1);
-        yield return new WaitUntil(() => (map.Day == targetDay) && (map.DayTime == targetTime));
-        hireStage = HireStage.Hired;
-        TryRetire();
-        yield return new WaitForFixedUpdate();
-        if (hireStage == HireStage.Hired) TryDeath();
-        if (hireStage == HireStage.Hired) CurrencyInvAnimationManager.Instance.PrestigeChange(1);
-        //if (hireStage == HireStage.Hired) NotifyReturn();
-        if (spawnAfterAway != null) Instantiate(spawnAfterAway);
-    }
+    //public IEnumerator AwayCoroutine(int rounds, GameObject spawnAfterAway = null)
+    //{
+    //    hireStage = HireStage.Away;
+    //    OnCombatDuty = false;
+    //    OnDebateDuty = false;
+    //    OnGobangDuty = false;
+    //    var map = FindObjectOfType<Map>();
+    //    int targetTime = map.DayTime;
+    //    int targetDay = map.Day + rounds;
+    //    CurrencyInvAnimationManager.Instance.PrestigeChange(-1);
+    //    yield return new WaitUntil(() => (map.Day == targetDay) && (map.DayTime == targetTime));
+    //    hireStage = HireStage.Hired;
+    //    TryRetire();
+    //    yield return new WaitForFixedUpdate();
+    //    if (hireStage == HireStage.Hired) TryDeath();
+    //    if (hireStage == HireStage.Hired) CurrencyInvAnimationManager.Instance.PrestigeChange(1);
+    //    //if (hireStage == HireStage.Hired) NotifyReturn();
+    //    if (spawnAfterAway != null) Instantiate(spawnAfterAway);
+    //}
 
     public void ReturnToHand()
     {
@@ -810,7 +816,7 @@ public class Character : MonoBehaviour, IRound
     {
         yield return StartCoroutine(TryRetire());
         if (hireStage == HireStage.Hired)
-            StartCoroutine(TryDeath());
+            TryDeath();
     }
 
     public IEnumerator TryRetire()
@@ -823,7 +829,7 @@ public class Character : MonoBehaviour, IRound
         }
         yield return null;
     }
-    public IEnumerator TryDeath()
+    public void TryDeath()
     {
         if (health <= 0)
         {
@@ -831,7 +837,6 @@ public class Character : MonoBehaviour, IRound
             transform.parent = GameObject.FindGameObjectWithTag("InGameCharacterInventory").transform;
             LostCharacterAlertManager.CallDeathAlert(this);
         }
-        yield return null;
     }
     public IEnumerator TryMergeTags(bool Changed = true)
     {
@@ -907,7 +912,7 @@ public class Character : MonoBehaviour, IRound
         if (loyalty < 0)
         {
             loyalty = 0;
-            TryRetire();
+            StartCoroutine(TryLeavePlayer());
         }
         if (loyalty > 20)
         {

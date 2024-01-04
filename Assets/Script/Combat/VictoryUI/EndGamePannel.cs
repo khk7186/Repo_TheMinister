@@ -140,8 +140,7 @@ public class EndGamePannel : MonoBehaviour
         var lostAlly = generalEventTrigger.LostCharacters;
         foreach (Character character in lostAlly)
         {
-            character.StartCoroutine(character.TryDeath());
-            character.StartCoroutine(character.TryRetire());
+            character.TryLeavePlayer();
         }
     }
 }

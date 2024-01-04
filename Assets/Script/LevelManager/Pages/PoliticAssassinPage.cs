@@ -72,31 +72,31 @@ public class PoliticAssassinPage : PoliticPage, IPoliticSelectionAction
     public void SetWinRate(float rate)
     {
         string output = string.Empty;
-        if (rate > 100)
+        if (rate > 100 / 100)
         {
             output = "必杀";
         }
-        else if (rate > 80)
+        else if (rate > 80 / 100)
         {
             output = "极高";
         }
-        else if (rate > 60)
+        else if (rate > 60 / 100)
         {
             output = "较高";
         }
-        else if (rate > 40)
+        else if (rate > 40 / 100)
         {
             output = "中等";
         }
-        else if (rate > 20)
+        else if (rate > 20 / 100)
         {
             output = "较低";
         }
-        else if (rate > 10)
+        else if (rate > 10 / 100)
         {
             output = "低";
         }
-        else if (rate > 5)
+        else if (rate > 5 / 100)
         {
             output = "极低";
         }

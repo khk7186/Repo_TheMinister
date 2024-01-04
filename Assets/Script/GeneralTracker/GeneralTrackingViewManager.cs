@@ -15,7 +15,7 @@ public class GeneralTrackingViewManager : MonoBehaviour, IPointerExitHandler
     {
         Reset();
     }
-    public void PushTracker(Character character, string trackerName, string message, int turnLeft, bool auto)
+    public GeneralTrackingView PushTracker(Character character, string trackerName, string message, int turnLeft, bool auto)
     {
         foreach (GeneralTrackingView view in trackingViews)
         {
@@ -25,10 +25,10 @@ public class GeneralTrackingViewManager : MonoBehaviour, IPointerExitHandler
                 {
                     trackingViews.Remove(view);
                     view.Hide();
-                    return;
+                    return null;
                 }
                 view.Setup(trackerName, message, turnLeft);
-                return;
+                return view;
             }
         }
         var clone = Instantiate(trackingView, viewHolder);
@@ -36,6 +36,7 @@ public class GeneralTrackingViewManager : MonoBehaviour, IPointerExitHandler
         clone.OnSpawn(character, auto);
         clone.Setup(trackerName, message, turnLeft);
         trackingViews.Add(clone);
+        return clone;
     }
     public void PopUpTracker(GeneralTrackingView focusView)
     {

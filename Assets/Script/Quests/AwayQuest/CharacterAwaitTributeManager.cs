@@ -26,14 +26,22 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
     {
         Dice.Instance.RegisterObserver(this);
     }
-    public CharacterAwaitTribute AddTribute(Character character, int WaitTime, UnityEvent @event, bool auto)
+    public CharacterAwaitTribute AddTribute(Character character, int WaitTime, bool auto)
     {
         var tribute = Instantiate(awaitTributePrefab, transform);
         tribute.gameObject.SetActive(true);
         tribute.character = character;
         tribute.WaitTime = WaitTime;
         UnfinishedTributes.Add(tribute);
-        GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "任务信息系统", WaitTime, auto);
+        if (character.OnAssassinEvent == false)
+        {
+            GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "任务信息系统", WaitTime, auto);
+        }
+        else
+        {
+            var view = GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, StepMessage.AssassinStepMessage(), WaitTime, false);
+            view.assassinEvent = PoliticSystemManager.Instance.FindEventByAssassin(character);
+        }
         return tribute;
     }
     public void OnNotify(object value, NotificationType notificationType)

@@ -27,6 +27,7 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
     public bool Finish = false;
     public bool NoAction = false;
     public UnityEvent unityEvent = new UnityEvent();
+    public PoliticAssassinEvent assassinEvent = null;
     public void SetFinish()
     {
         Finish = true;
@@ -42,7 +43,14 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
         var spritePath = ReturnAssetPath.ReturnCharacterSpritePath(character.characterArtCode, false);
         Head.sprite = Resources.Load<Sprite>(spritePath);
         var e = new UnityEvent();
-        e.AddListener(() => character.Back());
+        if (character.OnAssassinEvent == false)
+        {
+            e.AddListener(() => character.Back());
+        }
+        else
+        {
+            e.AddListener(() => PoliticSystemManager.Instance.EndAssassin(character));
+        }
         if (character.spawnAfterAway != null)
         {
             e.AddListener(() => Instantiate(character.spawnAfterAway.gameObject));
