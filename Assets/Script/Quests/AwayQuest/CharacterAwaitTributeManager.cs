@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
     {
         Dice.Instance.RegisterObserver(this);
     }
-    public CharacterAwaitTribute AddTribute(Character character, int WaitTime, UnityEvent @event)
+    public CharacterAwaitTribute AddTribute(Character character, int WaitTime, UnityEvent @event, bool auto)
     {
         var tribute = Instantiate(awaitTributePrefab, transform);
         tribute.gameObject.SetActive(true);
@@ -33,6 +34,7 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
         tribute.WaitTime = WaitTime;
         tribute.@event.AddListener(@event.Invoke);
         UnfinishedTributes.Add(tribute);
+        GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "任务信息系统", WaitTime, auto);
         return tribute;
     }
     public void OnNotify(object value, NotificationType notificationType)
@@ -47,17 +49,18 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
                 toDestroy.Add(UnfinishedTributes[i]);
             }
         }
-        if (toDestroy.Count > 0) { StartCoroutine(DestroyAfterSec(toDestroy)); }
+        if (toDestroy.Count > 0) { DestroyAfterSec(toDestroy); }
     }
-    IEnumerator DestroyAfterSec(List<CharacterAwaitTribute> toDestroy)
+    public void DestroyAfterSec(List<CharacterAwaitTribute> toDestroy)
     {
         if (toDestroy.Where(x => x != null).Count() >= 0)
         {
-            yield return new WaitForSeconds(20);
             foreach (var tribute in toDestroy)
             {
                 if (tribute != null)
+                {
                     Destroy(tribute.gameObject);
+                }
             }
             UnfinishedTributes.RemoveAll(x => x == null);
         }

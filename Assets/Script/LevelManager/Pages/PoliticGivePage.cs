@@ -18,6 +18,7 @@ public class PoliticGivePage : PoliticPage
     {
         Reset();
         this.slot = slot;
+        this.titleText.text = slot.slotName;
         character = slot.GateHolder;
         if (character == null)
         {

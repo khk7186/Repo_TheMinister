@@ -24,6 +24,7 @@ public class PoliticBribePage : PoliticPage
         if (inventory == null)
             inventory = FindObjectOfType<CurrencyInventory>();
         this.slot = slot;
+        this.titleText.text = slot.slotName;
         var gateHolder = slot.GateHolder;
         var spritePath = ReturnAssetPath.ReturnCharacterSpritePath(gateHolder.characterArtCode, false);
         gateHolderImage.sprite = Resources.Load<Sprite>(spritePath);

@@ -756,7 +756,7 @@ public class Character : MonoBehaviour, IRound
             this.spawnAfterAway = spawnAfterAway;
             e.AddListener(() => Instantiate(spawnAfterAway.gameObject));
         }
-        characterAwaitTribute = CharacterAwaitTributeManager.Instance.AddTribute(this, rounds, e);
+        characterAwaitTribute = CharacterAwaitTributeManager.Instance.AddTribute(this, rounds, e, spawnAfterAway == null);
     }
     public void Back()
     {
@@ -779,7 +779,7 @@ public class Character : MonoBehaviour, IRound
         yield return new WaitForFixedUpdate();
         if (hireStage == HireStage.Hired) TryDeath();
         if (hireStage == HireStage.Hired) CurrencyInvAnimationManager.Instance.PrestigeChange(1);
-        if (hireStage == HireStage.Hired) NotifyReturn();
+        //if (hireStage == HireStage.Hired) NotifyReturn();
         if (spawnAfterAway != null) Instantiate(spawnAfterAway);
     }
 

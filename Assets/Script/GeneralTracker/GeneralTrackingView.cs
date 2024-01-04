@@ -1,0 +1,109 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
+using DG.Tweening;
+
+public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
+{
+    public GeneralTrackingViewManager Manager = null;
+    [SerializeField] public Animator moveAnimator = null;
+    [SerializeField] public Animator sizeAnimator = null;
+    public string trackerName = "";
+    public Image Head = null;
+    public Image Frame = null;
+    public Image Background = null;
+    public Character character = null;
+    public string characterName = string.Empty;
+    public string message = string.Empty;
+    public int timeLeft = 0;
+    public bool isUp = false;
+    public bool isDown = false;
+    public Text roundLeft = null;
+    public Image smallViewImage = null;
+    public GeneralTrackingInfo InfoPage = null;
+    public bool Finish = false;
+    public bool NoAction = false;
+    public UnityEvent unityEvent = new UnityEvent();
+    public void SetAutoFinish()
+    {
+
+    }
+    public void SetFinish()
+    {
+        Finish = true;
+        smallViewImage.color = Color.green;
+    }
+    public void OnSpawn(Character character, bool noAction = false)
+    {
+        NoAction = noAction;
+        this.character = character;
+        InfoPage.gameObject.SetActive(false);
+        this.characterName = character.CharacterName;
+        var spritePath = ReturnAssetPath.ReturnCharacterSpritePath(character.characterArtCode, false);
+        Head.sprite = Resources.Load<Sprite>(spritePath);
+        Frame.color = Color.red;
+        Show();
+    }
+    public void Setup(string trackerName, string message, int timeLeft)
+    {
+        this.trackerName = trackerName;
+        this.message = message;
+        this.timeLeft = timeLeft;
+        InfoPage.Setup(characterName, message, timeLeft);
+        roundLeft.text = timeLeft.ToString();
+
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Manager.PopUpTracker(this);
+        InfoPage.gameObject.SetActive(true);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Manager.PopOffTracker(this);
+        InfoPage.gameObject.SetActive(false);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (Finish)
+        {
+            unityEvent.Invoke();
+        }
+        else
+        {
+            ShowMessage("ÐÐ¶¯ÉÐÎ´½áÊø");
+        }
+    }
+    public void ShowMessage(string messageString)
+    {
+        var sampleText = Resources.Load<Text>("Hiring/Message");
+        var message = GameObject.Instantiate<Text>(sampleText, MainCanvas.FindMainCanvas());
+        message.text = messageString;
+    }
+
+    public void Show()
+    {
+        var rect = GetComponent<RectTransform>();
+        rect.localScale = Vector3.zero;
+        rect.DOScale(1, 0.1f).OnComplete(() => StartCoroutine(ShowOnSpawn()));
+    }
+    public IEnumerator ShowOnSpawn()
+    {
+        Manager.PopUpTracker(this);
+        yield return new WaitForSeconds(2f);
+        Manager.PopOffTracker(this);
+        Manager.MoveReturns();
+    }
+    public void Hide()
+    {
+        var rect = GetComponent<RectTransform>();
+        rect.DOScale(0, 0.5f).OnComplete(() => Destroy(gameObject));
+    }
+
+}

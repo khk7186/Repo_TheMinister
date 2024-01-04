@@ -7,7 +7,6 @@ using DG.Tweening;
 public class RiseUpTextAnimation : MonoBehaviour
 {
     public float duration = 1.5f;
-    private float range = 50f;
     public float MoveToY = 80f;
     public Color FadeColor = new Color(253, 197, 0, 0);
     public AnimationCurve SpeedCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);

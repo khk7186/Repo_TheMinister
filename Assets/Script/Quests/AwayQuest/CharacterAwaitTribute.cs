@@ -23,6 +23,8 @@ public class CharacterAwaitTribute : MonoBehaviour
                 @event.Invoke();
             }
             character.StartCoroutine(character.TryLeavePlayer());
+            character.NotifyReturn();
+            GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "destroy", 0, false);
             destroyNext = true;
         }
     }
