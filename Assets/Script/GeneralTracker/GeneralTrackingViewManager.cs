@@ -15,13 +15,13 @@ public class GeneralTrackingViewManager : MonoBehaviour, IPointerExitHandler
     {
         Reset();
     }
-    public void PushTracker(Character character, string trackerName, string message, int turnLeft,bool auto)
+    public void PushTracker(Character character, string trackerName, string message, int turnLeft, bool auto)
     {
         foreach (GeneralTrackingView view in trackingViews)
         {
             if (view.trackerName == trackerName)
             {
-                if (message == "destroy")
+                if (message == "destroy" && view.NoAction)
                 {
                     trackingViews.Remove(view);
                     view.Hide();
@@ -33,7 +33,7 @@ public class GeneralTrackingViewManager : MonoBehaviour, IPointerExitHandler
         }
         var clone = Instantiate(trackingView, viewHolder);
         clone.Manager = this;
-        clone.OnSpawn(character,auto);
+        clone.OnSpawn(character, auto);
         clone.Setup(trackerName, message, turnLeft);
         trackingViews.Add(clone);
     }

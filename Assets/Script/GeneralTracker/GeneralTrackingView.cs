@@ -27,14 +27,11 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
     public bool Finish = false;
     public bool NoAction = false;
     public UnityEvent unityEvent = new UnityEvent();
-    public void SetAutoFinish()
-    {
-
-    }
     public void SetFinish()
     {
         Finish = true;
         smallViewImage.color = Color.green;
+        //TODO: Find finish line for info
     }
     public void OnSpawn(Character character, bool noAction = false)
     {
@@ -44,7 +41,7 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
         this.characterName = character.CharacterName;
         var spritePath = ReturnAssetPath.ReturnCharacterSpritePath(character.characterArtCode, false);
         Head.sprite = Resources.Load<Sprite>(spritePath);
-        Frame.color = Color.red;
+        smallViewImage.color = Color.red;
         Show();
     }
     public void Setup(string trackerName, string message, int timeLeft)
@@ -54,7 +51,11 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
         this.timeLeft = timeLeft;
         InfoPage.Setup(characterName, message, timeLeft);
         roundLeft.text = timeLeft.ToString();
-
+        if (timeLeft == 0 && NoAction == false)
+        {
+            SetFinish();
+            smallViewImage.color = Color.green;
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -74,6 +75,7 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
         if (Finish)
         {
             unityEvent.Invoke();
+            Hide();
         }
         else
         {
