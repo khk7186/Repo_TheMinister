@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class PoliticAssassinPage : PoliticPage, IPoliticSelectionAction
@@ -29,16 +30,39 @@ public class PoliticAssassinPage : PoliticPage, IPoliticSelectionAction
         politicCharacterSelect.SetupEmpty();
         winRateObject.SetActive(false);
         ConfirmButton.SetActive(false);
+        if (slot.GateHolder.Assassin != null)
+        {
+            SetOnGoing();
+        }
+        else
+        {
+            
+            ConfirmButton.SetActive(true);
+            OngoingView.SetActive(false);
+        }
     }
     public void TryStartEvent()
     {
+        ShowMessage($"{target.CharacterName}ÒÑ³ö·¢");
+
         StartEvent();
     }
     public void StartEvent()
     {
         PoliticSystemManager.Instance.OngoingAssassinEvents.Add(PoliticAssassinEvent.StartAssassin(slot.GateHolder, target));
+        SetOnGoing();
+    }
+    public void SetOnGoing()
+    {
+        politicCharacterSelect.SetOnGoing(slot.GateHolder.Assassin);
         ConfirmButton.SetActive(false);
         OngoingView.SetActive(true);
+    }
+    public void SetOffGoing()
+    {
+        politicCharacterSelect.SetupEmpty();
+        ConfirmButton.SetActive(false);
+        OngoingView.SetActive(false);
     }
     public void SetDifficulty(int difficulty)
     {
@@ -118,5 +142,11 @@ public class PoliticAssassinPage : PoliticPage, IPoliticSelectionAction
         int total = slot.GateHolder.AssassinDifficulty;
         SetWinRate((float)value / (float)total);
         ConfirmButton.gameObject.SetActive(true);
+    }
+    public void ShowMessage(string messageString)
+    {
+        var sampleText = Resources.Load<Text>("Hiring/Message");
+        var message = GameObject.Instantiate<Text>(sampleText, MainCanvas.FindMainCanvas());
+        message.text = messageString;
     }
 }

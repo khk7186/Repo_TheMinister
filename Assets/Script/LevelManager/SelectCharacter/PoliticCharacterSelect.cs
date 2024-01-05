@@ -13,6 +13,7 @@ public class PoliticCharacterSelect : MonoBehaviour, ICharacterSelect, IPointerE
     public Sprite LightFrame;
     public Sprite DarkFrame;
     public Sprite DarkFace = null;
+    public bool OnGoing = false;
     private void OnEnable()
     {
         SetupEmpty();
@@ -22,6 +23,7 @@ public class PoliticCharacterSelect : MonoBehaviour, ICharacterSelect, IPointerE
         SelectedCharacter = null;
         characterFrame.sprite = DarkFrame;
         characterHead.sprite = DarkFace;
+        OnGoing = false;
     }
     public void SetCharacter(Character character)
     {
@@ -30,6 +32,14 @@ public class PoliticCharacterSelect : MonoBehaviour, ICharacterSelect, IPointerE
         characterHead.sprite = Resources.Load<Sprite>(spritePath);
         if (politicSelectionAction != null) politicSelectionAction.AfterPoliticSelectionEvent();
     }
+    public void SetOnGoing(Character character)
+    {
+        SelectedCharacter = character;
+        var spritePath = ReturnAssetPath.ReturnCharacterSpritePath(character.characterArtCode, false);
+        characterHead.sprite = Resources.Load<Sprite>(spritePath);
+        OnGoing = true;
+    }
+
     public void ChooseCharacter(Character character)
     {
         SetCharacter(character);
@@ -52,6 +62,7 @@ public class PoliticCharacterSelect : MonoBehaviour, ICharacterSelect, IPointerE
     }
     public void OpenInventory()
     {
+        if (OnGoing) return;
         var target = GetComponent<SpawnUI>();
         if (target.CurrentTarget != null)
         {
@@ -67,16 +78,19 @@ public class PoliticCharacterSelect : MonoBehaviour, ICharacterSelect, IPointerE
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        characterFrame.sprite = LightFrame;
+        if (!OnGoing)
+            characterFrame.sprite = LightFrame;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        characterFrame.sprite = DarkFrame;
+        if (!OnGoing)
+            characterFrame.sprite = DarkFrame;
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        characterFrame.sprite = DarkFrame;
+        if (!OnGoing)
+            characterFrame.sprite = DarkFrame;
     }
 }
