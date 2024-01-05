@@ -39,12 +39,15 @@ public class ShakeObject : MonoBehaviour
         {
             // Reset the object's position when the shake duration is over
             target.transform.localPosition = initialPosition;
+            enabled = false;
         }
     }
 
     // Trigger the shake effect
     public void StartShake()
     {
+        enabled = true;
         shakeTimer = shakeDuration;
+
     }
 }
