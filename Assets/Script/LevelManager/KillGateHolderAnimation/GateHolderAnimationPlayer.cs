@@ -14,6 +14,7 @@ public class GateHolderAnimationPlayer : MonoBehaviour
     public RectTransform page = null;
     public IEnumerator StartAnimationSequence()
     {
+        animations.RemoveAll(x => x == null);
         for (int i = 0; i < Yvalues.Count; i++)
         {
             var playList = FindAnimationInLevel(i);
