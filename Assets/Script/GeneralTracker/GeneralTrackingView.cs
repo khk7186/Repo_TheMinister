@@ -120,7 +120,7 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
     public void Hide()
     {
         var rect = GetComponent<RectTransform>();
+        Manager.trackingViews.Remove(this);
         rect.DOScale(0, 0.5f).OnComplete(() => Destroy(gameObject));
     }
-
 }
