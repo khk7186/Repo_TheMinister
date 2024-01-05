@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -28,26 +29,28 @@ public class LevelManager : MonoBehaviour
     public static void UpdateLevel()
     {
         var politicSlots = FindObjectsOfType<PoliticSlot>();
+        int unlockCount = 0;
         foreach (var slot in politicSlots)
         {
             if (slot.unlocked)
             {
+                unlockCount++;
                 Instance.ApplyExp(slot.exp);
             }
         }
-        if (Instance.level < Instance.expPerLevel.Count)
-        {
-            FindObjectOfType<PoliticLevelView>().SetView(Instance.level, Instance.exp / Instance.expPerLevel[Instance.level + 1]);
-        }
-        else
-        {
-            FindObjectOfType<PoliticLevelView>().SetView(Instance.level, Instance.exp / 1);
-        }
+        //if (Instance.level < Instance.expPerLevel.Count)
+        //{
+        //    FindObjectOfType<PoliticLevelView>().SetView(Instance.level, Instance.exp / Instance.expPerLevel[Instance.level + 1]);
+        //}
+        //else
+        //{
+        FindObjectOfType<PoliticLevelView>().SetView(Instance.level, (float)Instance.exp / Instance.expPerLevel[Instance.level]);
+        //}
     }
     public void ApplyExp(int increase)
     {
         exp += increase;
-        var maxExp = expPerLevel[level - 1];
+        var maxExp = expPerLevel[level];
         if (exp >= maxExp)
         {
             level++;

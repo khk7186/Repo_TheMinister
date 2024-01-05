@@ -106,7 +106,6 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     public void CloneList()
     {
         QuestCountZero();
-        Debug.Log(chapterCounter.Chapter);
         ActiveQuestsGivers = new List<QuestGiverAI>();
         InactiveQuestGivers = new List<QuestGiverAI>(CurrentQuestList.questGivers);
     }
