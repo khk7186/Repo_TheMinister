@@ -49,7 +49,7 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
         }
         else if (characterOnHold != null)
         {
-           OnHoldModeSetup();
+            OnHoldModeSetup();
         }
         else
         {
@@ -80,6 +80,7 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     public void EmptySlotModeSetup()
     {
         CharacterHead.gameObject.SetActive(false);
+        GetComponentInChildren<PoliticPopup>().Setup(this);
     }
 
     public void SetupTags()

@@ -25,6 +25,7 @@ public class GateHolderAnimationPlayer : MonoBehaviour
                 {
                     play.transform.position = play.slot.transform.position;
                     play.ObjectToOpen.gameObject.SetActive(true);
+                    page.GetComponent<ShakeObject>().StartShake();
                     yield return new WaitForSeconds(animationDuration / 2);
                     Destroy(play.slot.GateHolder.gameObject);
                     yield return new WaitForSeconds(animationDuration / 2);
@@ -42,7 +43,7 @@ public class GateHolderAnimationPlayer : MonoBehaviour
     {
         //StartSequence();
     }
-    private void StartSequence()
+    public void StartSequence()
     {
         StartCoroutine(StartAnimationSequence());
     }

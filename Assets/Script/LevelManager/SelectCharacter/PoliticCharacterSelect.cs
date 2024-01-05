@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PoliticCharacterSelect : MonoBehaviour, ICharacterSelect, IPointerEnterHandler, IPointerExitHandler,IPointerClickHandler
+public class PoliticCharacterSelect : MonoBehaviour, ICharacterSelect, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     public static Character SelectedCharacter = null;
     public IPoliticSelectionAction politicSelectionAction = null;
@@ -53,14 +53,15 @@ public class PoliticCharacterSelect : MonoBehaviour, ICharacterSelect, IPointerE
     public void OpenInventory()
     {
         var target = GetComponent<SpawnUI>();
-        if (target.CurrentTarget == null)
+        if (target.CurrentTarget != null)
         {
-            target.SpawnHere();
-            var invUI = target.CurrentTarget.GetComponent<PlayerCharactersInventory>();
-            invUI.SetupMode(CardMode.UpgradeSelectMode);
-            invUI.SetupSelection(gameObject);
-            target.CurrentTarget.GetComponent<Canvas>().sortingOrder = 104;
+            Destroy(target.CurrentTarget.gameObject);
         }
+        target.SpawnHere();
+        var invUI = target.CurrentTarget.GetComponent<PlayerCharactersInventory>();
+        invUI.SetupMode(CardMode.UpgradeSelectMode);
+        invUI.SetupSelection(gameObject);
+        target.CurrentTarget.GetComponent<Canvas>().sortingOrder = 104;
         target.CurrentTarget.gameObject.SetActive(true);
     }
 

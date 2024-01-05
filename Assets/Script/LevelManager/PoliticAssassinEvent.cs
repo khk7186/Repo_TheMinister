@@ -8,7 +8,7 @@ public class PoliticAssassinEvent
 {
     public int totalRate = 10;
     public int asssinValue = 1;
-    public int duration = 6;
+    public int duration = 1;
     public PoliticCharacter politicCharacter = null;
     public PoliticAssassinEvent(int totalRate, int successRate, PoliticCharacter politicCharacter)
     {
@@ -33,7 +33,9 @@ public class PoliticAssassinEvent
         bool result = Random.Range(0, assassinEvent.totalRate) < assassinEvent.asssinValue;
         if (result == true)
         {
+            assassinEvent.politicCharacter.Assassin.Back();
             GateHolderAnimationPlayer.AddAnimation(true, assassinEvent.politicCharacter.slot);
+            GameObject.FindObjectOfType<PoliticActionUI>().StartAssassinSuccessAnimation();
         }
         else
         {
@@ -45,4 +47,5 @@ public class PoliticAssassinEvent
         }
         assassinEvent.politicCharacter.Assassin.OnAssassinEvent = false;
     }
+
 }
