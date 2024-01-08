@@ -416,6 +416,7 @@ public class Character : MonoBehaviour, IRound
     public int alreadyWait => characterAwaitTribute != null ? characterAwaitTribute.AlreadyWait : 0;
     public SpawnAfterAwayGuest spawnAfterAway = null;
     public bool OnAssassinEvent = false;
+    public string awayMessage = "";
     #endregion
     private void Awake()
     {

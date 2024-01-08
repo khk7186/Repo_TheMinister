@@ -40,7 +40,7 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
         else
         {
             var view = GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, StepMessage.AssassinStepMessage(), WaitTime, false);
-            view.assassinEvent = PoliticSystemManager.Instance.FindEventByAssassin(character);
+            view.assassinEvent = PoliticSystemManager.FindEventByAssassin(character);
         }
         return tribute;
     }

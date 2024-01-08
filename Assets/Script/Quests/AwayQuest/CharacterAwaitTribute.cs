@@ -24,8 +24,30 @@ public class CharacterAwaitTribute : MonoBehaviour
             }
             character.StartCoroutine(character.TryLeavePlayer());
             character.NotifyReturn();
-            GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "destroy", 0, false);
+            if (character.OnAssassinEvent == true)
+            {
+                string message = StepMessage.AssassinCompleteStepMessage();
+                var targetEvent = PoliticSystemManager.FindEventByAssassin(character);
+                targetEvent.GetResult();
+                if (targetEvent.result == false) message = StepMessage.AssassinFailStepMessage();
+                GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, message, 0, false);
+            }
+            else
+            {
+
+            }
             destroyNext = true;
+        }
+        else
+        {
+            if (character.OnAssassinEvent == true)
+            {
+                GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, StepMessage.AssassinStepMessage(), WaitTime - AlreadyWait, false);
+            }
+            else
+            {
+                GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "∂Ã–≈œµÕ≥", WaitTime - AlreadyWait, false);
+            }
         }
     }
 }

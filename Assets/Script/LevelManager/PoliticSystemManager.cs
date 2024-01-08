@@ -29,9 +29,9 @@ public class PoliticSystemManager : MonoBehaviour, IDiceRollEvent
         //    OngoingAssassinEvents.Remove(item);
         //}
     }
-    public PoliticAssassinEvent FindEventByAssassin(Character assassin)
+    public static PoliticAssassinEvent FindEventByAssassin(Character assassin)
     {
-        return OngoingAssassinEvents.FirstOrDefault(x => x.politicCharacter.Assassin == assassin);
+        return Instance.OngoingAssassinEvents.FirstOrDefault(x => x.politicCharacter.Assassin == assassin);
     }
     public void EndAssassin(Character assassin)
     {

@@ -106,6 +106,7 @@ public class AwayQuestUI : MonoBehaviour, ICharacterSelect
             message.text = "角色启程去执行任务了";
             foreach (Character character in characters.Where(x => x != null).ToList())
             {
+                character.awayMessage = QuestID;
                 character.Away(AwayDays, spawnAfterQuest.GetComponent<SpawnAfterAwayGuest>());
                 character.health -= health;
                 character.loyalty -= loyalty;

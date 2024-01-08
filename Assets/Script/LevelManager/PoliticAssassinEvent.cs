@@ -10,6 +10,7 @@ public class PoliticAssassinEvent
     public int totalRate = 10;
     public int asssinValue = 1;
     public int duration = 1;
+    public bool result = false;
     public PoliticCharacter politicCharacter = null;
     public PoliticAssassinEvent(int totalRate, int successRate, PoliticCharacter politicCharacter)
     {
@@ -29,10 +30,13 @@ public class PoliticAssassinEvent
         assasin.Away(output.duration);
         return output;
     }
+    public void GetResult()
+    {
+        result = Random.Range(0, totalRate) < asssinValue;
+    }
     public static void EndAssassin(PoliticAssassinEvent assassinEvent)
     {
-        bool result = Random.Range(0, assassinEvent.totalRate) < assassinEvent.asssinValue;
-        if (result == true)
+        if (assassinEvent.result == true)
         {
             PixelCrushers.MessageSystem.SendMessage(null, "Assassin", assassinEvent.politicCharacter.CharacterName, 1);
             assassinEvent.politicCharacter.Assassin.Back();

@@ -183,7 +183,6 @@ public class HotelUI : MonoBehaviour, ICharacterSelect
         foreach (Character character in Characters[index])
         {
             if (character == null) continue;
-            Debug.Log(character.characterArtCode);
             RecoverHealth(character);
             if (Residents != string.Empty) Residents += ",";
             Residents += character.CharacterName;
@@ -196,6 +195,7 @@ public class HotelUI : MonoBehaviour, ICharacterSelect
     public void RecoverHealth(Character character)
     {
         character.health += 2;
+        character.awayMessage = "hotel";
         character.Away(1);
     }
 
