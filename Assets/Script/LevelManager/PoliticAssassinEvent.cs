@@ -49,6 +49,4 @@ public class PoliticAssassinEvent
         }
         assassinEvent.politicCharacter.Assassin.OnAssassinEvent = false;
     }
-
-
 }

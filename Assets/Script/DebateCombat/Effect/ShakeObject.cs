@@ -12,7 +12,7 @@ public class ShakeObject : MonoBehaviour
 
     private float shakeTimer = 0f;
 
-    void Start()
+    void OnEnable()
     {
         if (target == null)
         {

@@ -36,7 +36,7 @@ public class PoliticAssassinPage : PoliticPage, IPoliticSelectionAction
         }
         else
         {
-            
+
             ConfirmButton.SetActive(true);
             OngoingView.SetActive(false);
         }
@@ -44,7 +44,6 @@ public class PoliticAssassinPage : PoliticPage, IPoliticSelectionAction
     public void TryStartEvent()
     {
         ShowMessage($"{target.CharacterName}ÒÑ³ö·¢");
-
         StartEvent();
     }
     public void StartEvent()
