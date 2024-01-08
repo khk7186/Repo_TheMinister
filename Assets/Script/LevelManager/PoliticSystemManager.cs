@@ -23,11 +23,6 @@ public class PoliticSystemManager : MonoBehaviour, IDiceRollEvent
                 toRemove.Add(item);
             }
         }
-        //foreach (PoliticAssassinEvent item in toRemove)
-        //{
-        //    PoliticAssassinEvent.EndAssassin(item);
-        //    OngoingAssassinEvents.Remove(item);
-        //}
     }
     public static PoliticAssassinEvent FindEventByAssassin(Character assassin)
     {
