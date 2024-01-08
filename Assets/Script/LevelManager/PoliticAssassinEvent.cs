@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using PixelCrushers.QuestMachine;
 
 [System.Serializable]
 public class PoliticAssassinEvent
@@ -33,6 +34,7 @@ public class PoliticAssassinEvent
         bool result = Random.Range(0, assassinEvent.totalRate) < assassinEvent.asssinValue;
         if (result == true)
         {
+            PixelCrushers.MessageSystem.SendMessage(null, "Assassin", assassinEvent.politicCharacter.CharacterName, 1);
             assassinEvent.politicCharacter.Assassin.Back();
             GateHolderAnimationPlayer.AddAnimation(true, assassinEvent.politicCharacter.slot);
             GameObject.FindObjectOfType<PoliticActionUI>().StartAssassinSuccessAnimation();
