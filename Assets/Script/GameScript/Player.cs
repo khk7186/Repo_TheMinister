@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
         {Tag.ÖÒÕêÖ®Ö¾,new List<int>(){0,0,0,2,0,5}},
         {Tag.¾°ĞÇÇìÔÆ,new List<int>(){0,0,6,0,0,0}},
         {Tag.³¤ĞäÉÆÎè,new List<int>(){1,6,0,0,0,0}},
-        {Tag.½ğÇ®ïÚ,new List<int>(){0,0,0,0,7,0}},
+        {Tag.½ğÇ®ïÚ,new List<int>(){0,0,0,2,3,0}},
         {Tag.ĞäÅÚ,new List<int>(){2,0,0,0,6,0}},
         {Tag.ÑªµÎ×Ó,new List<int>(){0,0,0,0,8,0}},
         {Tag.ÎÄÕı,new List<int>(){2,2,2,-1,-1,0}},
