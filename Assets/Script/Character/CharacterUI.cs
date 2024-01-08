@@ -421,21 +421,27 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void SetupSign()
     {
-
+        int loyaltyExtraPerTurn = 0;
+        if (character.OnDutyState[OndutyType.Combat] == true) loyaltyExtraPerTurn++;
+        if (character.OnDutyState[OndutyType.Debate] == true) loyaltyExtraPerTurn++;
         hungrySign.Find("¼õ").gameObject.SetActive(true);
 
         if (character.hungry < 1)
         {
-            loyaltySign.Find("¼õ¼õ").gameObject.SetActive(true);
+            if (loyaltyExtraPerTurn == 0) loyaltySign.Find("¼õ¼õ").gameObject.SetActive(true);
+            else if (loyaltyExtraPerTurn == 1) loyaltySign.Find("¼õ").gameObject.SetActive(true);
             healthSign.Find("¼õ").gameObject.SetActive(true);
         }
         else if (character.hungry <= 5)
         {
-            loyaltySign.Find("¼õ").gameObject.SetActive(true);
+            if (loyaltyExtraPerTurn == 0) loyaltySign.Find("¼õ").gameObject.SetActive(true);
+            else if (loyaltyExtraPerTurn == 1) ;
+            else if (loyaltyExtraPerTurn == 2) loyaltySign.Find("¼Ó").gameObject.SetActive(true);
         }
         else if (character.hungry >= 15)
         {
-            loyaltySign.Find("¼Ó").gameObject.SetActive(true);
+            if (loyaltyExtraPerTurn == 0) loyaltySign.Find("¼Ó").gameObject.SetActive(true);
+            else if (loyaltyExtraPerTurn == 1 || loyaltyExtraPerTurn == 2) loyaltySign.Find("¼Ó¼Ó").gameObject.SetActive(true);
         }
     }
     public void SetupSignOnEat(int hungryUp, int loyaltySignUp, int healthUp)

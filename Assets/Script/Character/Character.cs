@@ -538,6 +538,11 @@ public class Character : MonoBehaviour, IRound
         if (thisCharacterCard != null) thisCharacterCard.Setup();
         FindObjectOfType<CharacterInfoUI>()?.SetHealthAndLoyalty(this);
     }
+    public void FollowerLoyaltyEvent()
+    {
+        if (OnDutyState[OndutyType.Combat] == true) ApplyLoyalty(1);
+        if (OnDutyState[OndutyType.Debate] == true) ApplyLoyalty(1);
+    }
     public CharacterUI BelongCheck()
     {
         if (hireStage == HireStage.Hired || hireStage == HireStage.Away)

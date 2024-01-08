@@ -28,6 +28,7 @@ public class HungryManager : MonoBehaviour, IDiceRollEvent
         foreach (Transform character in characterInv)
         {
             character.gameObject.GetComponent<Character>().HungryEvent();
+            character.gameObject.GetComponent<Character>().FollowerLoyaltyEvent();
         }
     }
 }
