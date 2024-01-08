@@ -438,6 +438,11 @@ public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
             else if (loyaltyExtraPerTurn == 1) ;
             else if (loyaltyExtraPerTurn == 2) loyaltySign.Find("加").gameObject.SetActive(true);
         }
+        else if (character.hungry < 15)
+        {
+            if (loyaltyExtraPerTurn == 1) loyaltySign.Find("加").gameObject.SetActive(true);
+            if (loyaltyExtraPerTurn == 2) loyaltySign.Find("加加").gameObject.SetActive(true);
+        }
         else if (character.hungry >= 15)
         {
             if (loyaltyExtraPerTurn == 0) loyaltySign.Find("加").gameObject.SetActive(true);
