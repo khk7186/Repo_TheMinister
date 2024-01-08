@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using PixelCrushers.QuestMachine;
+using PixelCrushers;
 
 public class PoliticBribePage : PoliticPage
 {
@@ -98,6 +100,7 @@ public class PoliticBribePage : PoliticPage
     {
         int bribeMoney = Mathf.RoundToInt(newOfferSlider.value);
         inventory.MoneySpend(bribeMoney);
+        MessageSystem.SendMessage(null, "Bribe", slot.slotName, bribeMoney);
         slot.GateHolder.BribeAlreadySpent += bribeMoney;
         int bribePrice = slot.GateHolder.BribePrice;
         if (slot.GateHolder.ImpeachTime > 0)
