@@ -7,6 +7,7 @@ using UnityEngine;
 public class PoliticCharacter : Character
 {
     public static int ImpeachPriceMultiplier = 2;
+    public FactionType FactionType = FactionType.Œﬁµ≥≈…;
     public int BribePrice = 100;
     public int BribeAlreadySpent = 0;
     public int ImpeachTime = 0;
