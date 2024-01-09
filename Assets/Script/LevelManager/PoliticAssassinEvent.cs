@@ -41,7 +41,7 @@ public class PoliticAssassinEvent
             PixelCrushers.MessageSystem.SendMessage(null, "Assassin", assassinEvent.politicCharacter.CharacterName, 1);
             assassinEvent.politicCharacter.Assassin.Back();
             GateHolderAnimationPlayer.AddAnimation(true, assassinEvent.politicCharacter.slot);
-            GameObject.FindObjectOfType<PoliticActionUI>().StartAssassinSuccessAnimation();
+            GameObject.FindObjectOfType<PoliticActionUI>().StartAssassinSuccessAnimation(assassinEvent.politicCharacter.slot.page.name);
         }
         else
         {
