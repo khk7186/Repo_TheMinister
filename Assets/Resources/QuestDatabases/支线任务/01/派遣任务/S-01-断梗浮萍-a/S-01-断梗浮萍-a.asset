@@ -412,6 +412,41 @@ MonoBehaviour:
         m_textTableFieldID: 0
       m_operation: 1
       m_literalValue: 1
+  - m_name:
+      m_text: Bribe
+      m_stringAsset: {fileID: 0}
+      m_textTable: {fileID: 0}
+      m_textTableFieldID: 0
+    m_currentValue: 0
+    m_randomizeInitialValue: 0
+    m_minValue: 0
+    m_maxValue: 200
+    m_updateMode: 1
+    m_messageEventList:
+    - m_senderSpecifier: 0
+      m_senderID:
+        m_text: 
+        m_stringAsset: {fileID: 0}
+        m_textTable: {fileID: 0}
+        m_textTableFieldID: 0
+      m_targetSpecifier: 0
+      m_targetID:
+        m_text: 
+        m_stringAsset: {fileID: 0}
+        m_textTable: {fileID: 0}
+        m_textTableFieldID: 0
+      m_message:
+        m_text: Bribe
+        m_stringAsset: {fileID: 0}
+        m_textTable: {fileID: 0}
+        m_textTableFieldID: 0
+      m_parameter:
+        m_text: "\u95E8\u4EBA"
+        m_stringAsset: {fileID: 0}
+        m_textTable: {fileID: 0}
+        m_textTableFieldID: 0
+      m_operation: 0
+      m_literalValue: 1
   m_nodeList:
   - m_id:
       m_text: Quest-11684.start
@@ -501,7 +536,8 @@ MonoBehaviour:
       - m_contentList: []
       - m_contentList: []
     m_conditionSet:
-      m_conditionList: []
+      m_conditionList:
+      - {fileID: 9176971747442480417}
       m_conditionCountMode: 1
       m_minConditionCount: 0
       m_numTrueConditions: 0
@@ -509,7 +545,7 @@ MonoBehaviour:
     m_canvasRect:
       serializedVersion: 2
       x: 177.79494
-      y: 105.53192
+      y: 104.53192
       width: 120
       height: 48
   - m_id:
@@ -561,7 +597,7 @@ MonoBehaviour:
     m_childIndexList: 03000000
     m_canvasRect:
       serializedVersion: 2
-      x: 175.68085
+      x: 174.68085
       y: 290.85107
       width: 120
       height: 48
@@ -661,7 +697,7 @@ MonoBehaviour:
     m_canvasRect:
       serializedVersion: 2
       x: 169.79492
-      y: 207.53192
+      y: 206.53192
       width: 120
       height: 48
   - m_id:
@@ -942,3 +978,21 @@ MonoBehaviour:
     m_textTable: {fileID: 0}
     m_textTableFieldID: 0
   m_useOriginalName: 0
+--- !u!114 &9176971747442480417
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a976671aaa12c2e428b2aac89a260302, type: 3}
+  m_Name: CounterQuestCondition
+  m_EditorClassIdentifier: 
+  m_counterIndex: 1
+  m_counterValueMode: 0
+  m_requiredCounterValue:
+    m_valueType: 3
+    m_literalValue: 0
+    m_counterIndex: 1
