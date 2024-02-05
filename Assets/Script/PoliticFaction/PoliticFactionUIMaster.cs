@@ -12,11 +12,13 @@ public enum FactionType
     ΣΪµ³,
     Αυµ³
 }
-public class PoliticFactionManager : MonoBehaviour
+public class PoliticFactionUIMaster : MonoBehaviour
 {
-    public static PoliticFactionManager Instance;
-    public SOPoliticFaction db = null;
-    public List<PoliticFaction> factions = new List<PoliticFaction>();
+    public static PoliticFactionUIMaster Instance;
+    public SOPoliticFaction model = null;
+    public PoliticFactionInfoUI infoUI = null;
+    public PoliticFactionMenuUI menuUI = null;
+    public List<PoliticFaction> factions => model.politicFactions;
     public void Awake()
     {
         if (Instance == null) Instance = this;
@@ -28,11 +30,10 @@ public class PoliticFactionManager : MonoBehaviour
     }
     public void Setup()
     {
-        factions = db.politicFactions;
+       menuUI.Setup(factions);
     }
-    public void Load(GameSave save)
+    public void OpenInfo()
     {
 
     }
-
 }

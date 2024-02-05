@@ -27,6 +27,7 @@ public class PoliticSlotInteraction : MonoBehaviour, IPointerEnterHandler, IPoin
 
     private void OpenSelectMenu()
     {
+        
     }
 
     public void OnPointerEnter(PointerEventData eventData)

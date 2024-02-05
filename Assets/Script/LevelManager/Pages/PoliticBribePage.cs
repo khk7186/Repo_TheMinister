@@ -99,6 +99,7 @@ public class PoliticBribePage : PoliticPage
     public void TryBribe()
     {
         int bribeMoney = Mathf.RoundToInt(newOfferSlider.value);
+        if (bribeMoney <= 0) return;
         inventory.MoneySpend(bribeMoney);
         MessageSystem.SendMessage(null, "Bribe", slot.slotName, bribeMoney);
         slot.GateHolder.BribeAlreadySpent += bribeMoney;

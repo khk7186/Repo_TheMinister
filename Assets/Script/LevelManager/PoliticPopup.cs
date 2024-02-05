@@ -68,7 +68,6 @@ public class PoliticPopup : MonoBehaviour
             RequestButton.gameObject.SetActive(true);
             GiveButton.gameObject.SetActive(true);
         }
-
         SetPosition(politicSlot.transform);
     }
     public void SetPosition(Transform targetTransform)

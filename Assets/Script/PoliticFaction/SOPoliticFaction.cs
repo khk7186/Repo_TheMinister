@@ -7,6 +7,7 @@ using UnityEngine;
 public class SOPoliticFaction : ScriptableObject
 {
     public List<PoliticFaction> politicFactions = new List<PoliticFaction>();
+    public List<PoliticFaction> politicFactionsOrigin = new List<PoliticFaction>();
     [Serializable]
     public struct PersonalDetailString
     {

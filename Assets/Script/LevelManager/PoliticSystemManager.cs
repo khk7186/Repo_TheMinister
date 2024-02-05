@@ -8,6 +8,7 @@ public class PoliticSystemManager : MonoBehaviour, IDiceRollEvent
     public static PoliticSystemManager Instance;
     public int AssassinDuration = 6;
     public List<PoliticAssassinEvent> OngoingAssassinEvents = new List<PoliticAssassinEvent>();
+    public SOPoliticFaction SOPoliticFaction = null;
     private void Start()
     {
         Dice.Instance.RegisterObserver(this);
