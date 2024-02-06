@@ -14,6 +14,7 @@ public class PoliticFactionSelectionUI : MonoBehaviour, IPointerClickHandler, IP
     public Image ParentMask = null;
     public Image Idel = null;
     public Text level = null;
+    public Text FactionName = null;
     public FactionType factionType;
     private PoliticFaction politicFaction;
     private float moveDuration = 0.2f;
@@ -21,12 +22,27 @@ public class PoliticFactionSelectionUI : MonoBehaviour, IPointerClickHandler, IP
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        PoliticFactionMenuUI.CurrentOnSelect = this;
-        OnSelectAction.Invoke();
-        var infoUI = FindObjectOfType<PoliticFactionInfoUI>(true);
-        infoUI.Show();
-        infoUI.Setup(politicFaction);
-        MoveLeft();
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            PoliticFactionMenuUI.CurrentOnSelect = this;
+            OnSelectAction.Invoke();
+            var infoUI = FindObjectOfType<PoliticFactionInfoUI>(true);
+            infoUI.Show();
+            infoUI.Setup(politicFaction);
+            MoveLeft();
+        }
+        else if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            var infoUI = FindObjectOfType<PoliticFactionInfoUI>();
+            if (infoUI != null)
+            {
+                infoUI.Hide();
+            }
+            else
+            {
+                FindObjectOfType<PoliticFactionMenuUI>()?.Hide();
+            }
+        }
     }
     public void Hide()
     {
@@ -56,9 +72,10 @@ public class PoliticFactionSelectionUI : MonoBehaviour, IPointerClickHandler, IP
     public void Setup(PoliticFaction faction)
     {
         SetIdel(faction.factionType);
-        level.text = faction.level.ToString();
+        level.text = $"<size=5>ÊÆÁ¦</size>{faction.level.ToString()}";
         this.politicFaction = faction;
         //OriginX = GetComponent<RectTransform>().anchoredPosition.x;
+        FactionName.text = MakeVertical(faction.factionType.ToString());
     }
     public void SetIdel(FactionType factionType)
     {
@@ -81,6 +98,13 @@ public class PoliticFactionSelectionUI : MonoBehaviour, IPointerClickHandler, IP
                 break;
             default: break;
         }
+    }
+    static string MakeVertical(string input)
+    {
+        if (string.IsNullOrEmpty(input)) return string.Empty;
+
+        // Use Environment.NewLine for compatibility with different OS newline conventions
+        return string.Join(Environment.NewLine, input.ToCharArray());
     }
 
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)

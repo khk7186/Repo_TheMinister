@@ -1,9 +1,11 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PoliticFactionMenuUI : MonoBehaviour
+public class PoliticFactionMenuUI : MonoBehaviour,IPointerClickHandler
 {
     public static PoliticFactionSelectionUI CurrentOnSelect = null;
     public List<PoliticFaction> FactionList = null;
@@ -12,6 +14,8 @@ public class PoliticFactionMenuUI : MonoBehaviour
     public Transform selectionHolder = null;
     public SOPoliticFaction SOPoliticFaction = null;
     public HorizontalLayoutGroup horizontalLayoutGroup = null;
+    public float AnimationSpeed = 0.2f;
+    private RectTransform rect => GetComponent<RectTransform>();
     private void Start()
     {
         FactionList = SOPoliticFaction.politicFactions;
@@ -21,6 +25,14 @@ public class PoliticFactionMenuUI : MonoBehaviour
     public void Reset()
     {
         TransformEx.Clear(selectionHolder);
+    }
+    public void Show()
+    {
+        rect.DOAnchorPosY(0, AnimationSpeed);
+    }
+    public void Hide()
+    {
+        rect.DOAnchorPosY(-450, AnimationSpeed);
     }
     public void Setup(List<PoliticFaction> factionList)
     {
@@ -66,6 +78,14 @@ public class PoliticFactionMenuUI : MonoBehaviour
         foreach (var target in FactionUIList)
         {
             target.OnSelectAction.RemoveListener(OnSelect);
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            Hide();
         }
     }
 }
