@@ -65,5 +65,6 @@ public class LevelManager : MonoBehaviour
             exp = expPerLevel[level - 1];
             ApplyExp(gap);
         }
+        FindObjectOfType<PoliticLevelView>().SetView(Instance.level, (float)Instance.exp / Instance.expPerLevel[Instance.level]);
     }
 }
