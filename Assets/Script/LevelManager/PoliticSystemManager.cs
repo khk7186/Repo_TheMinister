@@ -46,4 +46,6 @@ public class PoliticSystemManager : MonoBehaviour, IDiceRollEvent
             Destroy(gameObject);
         }
     }
+
+    
 }
