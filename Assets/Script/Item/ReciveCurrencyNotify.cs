@@ -38,9 +38,9 @@ public class ReciveCurrencyNotify : MonoBehaviour
     private void OnDestroy()
     {
         var inv = FindObjectOfType<CurrencyInventory>();
-        inv.Money += Money;
+        inv.MoneyAdd(Money);
         PressureEventHandler.OnPressureChange(Pressure);
-        inv.Influence += Influence;
         CurrencyInventory.SetCurrencyUI();
+        LevelManager.Instance.ApplyExp(Influence);
     }
 }
