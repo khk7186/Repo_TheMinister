@@ -94,6 +94,9 @@ namespace SaveSystem
             //save quest day counter
             newGameSave.questDayCounters = new List<QuestDayCounter>(manager.questDayCounterManager.QuestDayCounters);
 
+            //politic page data
+            newGameSave.politicPages = manager.politicActionUI.Save();
+
             return newGameSave;
         }
 

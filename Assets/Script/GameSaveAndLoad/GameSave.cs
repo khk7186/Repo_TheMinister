@@ -51,6 +51,9 @@ namespace SaveSystem
         public List<string> delayToSpawn = null;
 
         public List<QuestDayCounter> questDayCounters = new List<QuestDayCounter>();
+
+        //Politic Slots
+        public List<SerializedPoliticPages> politicPages = null;
     }
     [System.Serializable]
     public class ItemInString

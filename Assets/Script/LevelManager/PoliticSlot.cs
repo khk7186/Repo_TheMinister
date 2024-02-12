@@ -22,6 +22,7 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     public Rarerity Defense = Rarerity.Null;
     public List<PoliticSlot> preSlots = new List<PoliticSlot>();
     public PoliticCharacter GateHolder = null;
+    public PoliticCharacter GateHolderOrigin = null;
     public Image Frame;
     public Sprite PlayerFrame;
     public Sprite NonPlayerFrame;
@@ -43,6 +44,11 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     public void Start()
     {
         SetupTags();
+        if (GateHolderOrigin != null)
+        {
+            GateHolder = Instantiate(GateHolderOrigin, transform);
+            GateHolder.gameObject.SetActive(true);
+        }
         if (GateHolder != null)
         {
             GateHolderModeSetup();

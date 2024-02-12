@@ -1,6 +1,8 @@
+using SaveSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -70,5 +72,51 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
         DocumentDepartment.gameObject.SetActive(false);
         PopulationDepartment.gameObject.SetActive(true);
         animPlayer.page = PopulationDepartment.GetComponent<GateholderAnimationPageRef>().targetRect;
+    }
+
+    public List<SerializedPoliticPages> Save()
+    {
+        var output = new List<SerializedPoliticPages>();
+        output.Add(SerializedPoliticPages.Serialize(MoneyDepartment.GetComponentsInChildren<PoliticSlot>().ToList(), "金钱司"));
+        output.Add(SerializedPoliticPages.Serialize(DocumentDepartment.GetComponentsInChildren<PoliticSlot>().ToList(), "档案司"));
+        output.Add(SerializedPoliticPages.Serialize(PopulationDepartment.GetComponentsInChildren<PoliticSlot>().ToList(), "户部司"));
+        return output;
+    }
+    public void Load(GameSave gameSave)
+    {
+        var data = gameSave.politicPages;
+        foreach (var page in data)
+        {
+            LoadPage(page);
+        }
+        return;
+    }
+    public void LoadPage(SerializedPoliticPages serializedPoliticPages)
+    {
+        var slots = new List<PoliticSlot>();
+        if (serializedPoliticPages.pageName == "金钱司")
+        {
+            slots = MoneyDepartment.GetComponentsInChildren<PoliticSlot>().ToList();
+        }
+        else if (serializedPoliticPages.pageName == "档案司")
+        {
+            slots = DocumentDepartment.GetComponentsInChildren<PoliticSlot>().ToList();
+
+        }
+        else if (serializedPoliticPages.pageName == "户部司")
+        {
+            slots = PopulationDepartment.GetComponentsInChildren<PoliticSlot>().ToList();
+
+        }
+        if (slots.Count == 0) return;
+
+        foreach (var slot in slots)
+        {
+            var index = serializedPoliticPages.slotNames.IndexOf(slot.slotName);
+           //if (serializedPoliticPages.!=null)
+           // {
+           //     slot.GateHolder.GetComponent
+           // }
+        }
     }
 }

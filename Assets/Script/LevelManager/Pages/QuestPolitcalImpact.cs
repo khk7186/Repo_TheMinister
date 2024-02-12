@@ -21,7 +21,6 @@ public class QuestPolitcalImpact : MonoBehaviour
         }
         else
             return null;
-
     } 
 }
 
