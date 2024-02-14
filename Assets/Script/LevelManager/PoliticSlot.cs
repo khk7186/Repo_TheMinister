@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class PoliticSlot : MonoBehaviour, ICharacterSelect
 {
     public string slotName;
+    public string slotID;
     public GameObject page = null;
     public Image CharacterHead = null;
     public Character characterOnHold = null;
@@ -47,6 +48,7 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
         if (GateHolderOrigin != null)
         {
             GateHolder = Instantiate(GateHolderOrigin, transform);
+            GateHolderOrigin.gameObject.SetActive(false);
             GateHolder.gameObject.SetActive(true);
         }
         if (GateHolder != null)
