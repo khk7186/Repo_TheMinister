@@ -23,6 +23,26 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
         AudioManager.Play("·­Ò³");
         animator.Play("Hide");
     }
+    public void Reset()
+    {
+        var allSlots = FindObjectsOfType<PoliticSlot>();
+        foreach (var slot in allSlots)
+        {
+            if (slot.characterOnHold != null)
+            {
+                Destroy(slot.characterOnHold.gameObject);
+            }
+            if (slot.GateHolderOrigin != null)
+            {
+                if (slot.GateHolder != null)
+                {
+                    Destroy(slot.GateHolder.gameObject);
+                }
+                slot.GateHolder = Instantiate(slot.GateHolderOrigin, slot.transform);
+                slot.GateHolder.gameObject.SetActive(true);
+            }
+        }
+    }
     public void OnPointerClick(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Right)
@@ -112,11 +132,34 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
 
         foreach (var slot in slots)
         {
-            var index = serializedPoliticPages.slotNames.IndexOf(slot.slotName);
-           //if (serializedPoliticPages.!=null)
-           // {
-           //     slot.GateHolder.GetComponent
-           // }
+            var index = serializedPoliticPages.slotIDs.IndexOf(slot.slotName);
+            if (slot.GateHolderOrigin != null)
+            {
+                LoadGateHolder(index, slot, serializedPoliticPages);
+            }
+            var serializedCharacter = serializedPoliticPages.serializedCharacters[index];
+            if (serializedCharacter != null)
+            {
+                if (slot.characterOnHold != null)
+                {
+                    Destroy(slot.characterOnHold.gameObject);
+                }
+                slot.characterOnHold = SerializedCharacter.DeserializingCharacter(serializedCharacter);
+                slot.characterOnHold.transform.SetParent(slot.transform);
+            }
         }
+    }
+    public void LoadGateHolder(int index, PoliticSlot slot, SerializedPoliticPages serializedPoliticPages)
+    {
+        if (slot.GateHolder != null)
+        {
+            Destroy(slot.GateHolder.gameObject);
+        }
+        slot.GateHolder = Instantiate(slot.GateHolderOrigin);
+        slot.GateHolder.loyalty = serializedPoliticPages.LoyaltyLeft[index];
+        slot.GateHolder.BribeAlreadySpent = serializedPoliticPages.AlreadyBribeAmount[index];
+        slot.GateHolder.AssassinDifficulty = serializedPoliticPages.AssassinDifficulty[index];
+        slot.GateHolder.ImpeachTime = serializedPoliticPages.ImpeachTimes[index];
+        slot.GateHolder.BribePrice = serializedPoliticPages.BribeDifficulty[index];
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 namespace SaveSystem
 {
@@ -15,6 +16,8 @@ namespace SaveSystem
         public string loyalty;
         public string hungry = "20";
         public string HireStage;
+        public bool OnAssassinEvent = false;
+        public string AssassinTargetID = string.Empty;
         public string characterType;
         public bool HaveAI = false;
         public bool OnCombatDuty = false;
@@ -34,6 +37,8 @@ namespace SaveSystem
             output.CharacterName = character.CharacterName;
             output.rarerity = character.rarerity;
             output.edibleFavor = character.edibleFavor;
+            output.OnAssassinEvent = character.OnAssassinEvent;
+            output.AssassinTargetID = character.AssasinTarget;
             //Tags
             output.Tags = new List<string>();
             foreach (var tag in character.tagList)
@@ -82,8 +87,16 @@ namespace SaveSystem
                 output.transform.parent = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
                 if (output.hireStage == global::HireStage.Away)
                 {
-                    var spawnAfterAwayDB = Resources.Load<SOSpawnAfterAwayDB>("Data/SpawnAfterAwayDB");
-                    output.Away(output.waitTime - output.alreadyWait, spawnAfterAwayDB.Find(characterData.spawnAfterAwayGuestName));
+                    if (output.OnAssassinEvent == true)
+                    {
+                        var politicCharater = GameObject.FindObjectsOfType<PoliticCharacter>(true).FirstOrDefault(x => x.slot.slotID == characterData.AssassinTargetID);
+                        PoliticSystemManager.Instance.OngoingAssassinEvents.Add(PoliticAssassinEvent.StartAssassinInLoad(politicCharater, output, output.waitTime - output.alreadyWait));
+                    }
+                    else
+                    {
+                        var spawnAfterAwayDB = Resources.Load<SOSpawnAfterAwayDB>("Data/SpawnAfterAwayDB");
+                        output.Away(output.waitTime - output.alreadyWait, spawnAfterAwayDB.Find(characterData.spawnAfterAwayGuestName));
+                    }
                 }
             }
             output.OnDutyState[OndutyType.Combat] = characterData.OnCombatDuty;

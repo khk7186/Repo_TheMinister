@@ -18,6 +18,7 @@ namespace SaveSystem
             LoadPlayer(manager, save);
             LoadQuestMachine(save);
             LoadMain(manager, save);
+            LoadPoliticSlots(manager, save);
             manager.questionAIManager.Load(save);
             manager.lightController.ConstantLight(Map.Instance.DayTime);
             LoadDelayToSpawn(manager, save);
@@ -104,6 +105,11 @@ namespace SaveSystem
                 SpawnAfterAwayGuest origin = spawnAfterAwayDB.Find(item).GetComponent<SpawnAfterAwayGuest>();
                 SpawnAfterAwayGuest clone = UnityEngine.Object.Instantiate(origin);
             }
+        }
+
+        public static void LoadPoliticSlots(SaveAndLoadManager manager, GameSave save)
+        {
+            manager.politicActionUI.Load(save);
         }
     }
 }

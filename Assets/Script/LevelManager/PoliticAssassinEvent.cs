@@ -27,6 +27,19 @@ public class PoliticAssassinEvent
         var output = new PoliticAssassinEvent(totalRate, asssinValue, politicCharacter);
         politicCharacter.Assassin = assasin;
         assasin.OnAssassinEvent = true;
+        assasin.AssasinTarget = politicCharacter.GetComponentInParent<PoliticSlot>().slotName;
+        assasin.Away(output.duration);
+        return output;
+    }
+    public static PoliticAssassinEvent StartAssassinInLoad(PoliticCharacter politicCharacter, Character assasin, int duration)
+    {
+        int totalRate = politicCharacter.AssassinDifficulty;
+        int asssinValue = assasin.CharactersValueDict[CharacterValueType.´Ì];
+        var output = new PoliticAssassinEvent(totalRate, asssinValue, politicCharacter);
+        output.duration = duration;
+        politicCharacter.Assassin = assasin;
+        assasin.OnAssassinEvent = true;
+        assasin.AssasinTarget = politicCharacter.GetComponentInParent<PoliticSlot>().slotName;
         assasin.Away(output.duration);
         return output;
     }
@@ -42,6 +55,8 @@ public class PoliticAssassinEvent
             assassinEvent.politicCharacter.Assassin.Back();
             GateHolderAnimationPlayer.AddAnimation(true, assassinEvent.politicCharacter.slot);
             GameObject.FindObjectOfType<PoliticActionUI>().StartAssassinSuccessAnimation(assassinEvent.politicCharacter.slot.page.name);
+            assassinEvent.politicCharacter.Assassin.OnAssassinEvent = false;
+            assassinEvent.politicCharacter.Assassin.AssasinTarget = string.Empty;
         }
         else
         {
