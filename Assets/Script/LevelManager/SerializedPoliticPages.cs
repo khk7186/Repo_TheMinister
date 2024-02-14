@@ -17,6 +17,7 @@ public class SerializedPoliticPages
     public List<int> AlreadyBribeAmount = new List<int>();
     public List<int> ImpeachTimes = new List<int>();
     public List<int> LoyaltyLeft = new List<int>();
+    public List<bool> Dead = new List<bool>();
 
     public static SerializedPoliticPages Serialize(List<PoliticSlot> politicSlots, string pageName)
     {
@@ -32,12 +33,14 @@ public class SerializedPoliticPages
             output.AlreadyBribeAmount.Add(0);
             output.ImpeachTimes.Add(0);
             output.LoyaltyLeft.Add(0);
+            output.Dead.Add(true);
             //end
 
             //Assign vars to index
             var targetGateHolder = politicSlots[index].GateHolder;
             if (targetGateHolder != null)
             {
+                output.Dead[index] = false;
                 output.AssassinDifficulty[index] = targetGateHolder.AssassinDifficulty;
                 output.AlreadyBribeAmount[index] = targetGateHolder.BribeAlreadySpent;
                 output.BribeDifficulty[index] = targetGateHolder.BribePrice;

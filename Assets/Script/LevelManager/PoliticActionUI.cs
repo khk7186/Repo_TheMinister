@@ -155,11 +155,14 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
         {
             Destroy(slot.GateHolder.gameObject);
         }
-        slot.GateHolder = Instantiate(slot.GateHolderOrigin);
-        slot.GateHolder.loyalty = serializedPoliticPages.LoyaltyLeft[index];
-        slot.GateHolder.BribeAlreadySpent = serializedPoliticPages.AlreadyBribeAmount[index];
-        slot.GateHolder.AssassinDifficulty = serializedPoliticPages.AssassinDifficulty[index];
-        slot.GateHolder.ImpeachTime = serializedPoliticPages.ImpeachTimes[index];
-        slot.GateHolder.BribePrice = serializedPoliticPages.BribeDifficulty[index];
+        if (serializedPoliticPages.Dead[index] == false)
+        {
+            slot.GateHolder = Instantiate(slot.GateHolderOrigin);
+            slot.GateHolder.loyalty = serializedPoliticPages.LoyaltyLeft[index];
+            slot.GateHolder.BribeAlreadySpent = serializedPoliticPages.AlreadyBribeAmount[index];
+            slot.GateHolder.AssassinDifficulty = serializedPoliticPages.AssassinDifficulty[index];
+            slot.GateHolder.ImpeachTime = serializedPoliticPages.ImpeachTimes[index];
+            slot.GateHolder.BribePrice = serializedPoliticPages.BribeDifficulty[index];
+        }
     }
 }

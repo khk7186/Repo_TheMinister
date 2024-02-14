@@ -76,6 +76,7 @@ namespace SaveSystem
             gameEventManager.Reset();
             playerCharacterInventory.Clear();
             characterAwaitTributeManager.Reset();
+            politicActionUI.Reset();
             questionAIManager.Reset();
             map.ReloadPlayer();
             player = FindObjectOfType<Player>();
