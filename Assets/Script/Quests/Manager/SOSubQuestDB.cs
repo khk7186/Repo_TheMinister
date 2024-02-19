@@ -9,7 +9,7 @@ public class SOSubQuestDB : ScriptableObject
 {
     public List<QUEST_GIVER_BY_ORDER> QUEST_GIVER_BY_ORDER;
     public QuestChainStateWrap ORIGIN;
-    public QuestChainStateWrap CURRENT;
+    public QuestChainStateWrap CURRENT = new QuestChainStateWrap();
     public string CurrentSave = string.Empty;
 
 
@@ -20,9 +20,10 @@ public class SOSubQuestDB : ScriptableObject
     }
     public void NewCurrent()
     {
-        CURRENT = new QuestChainStateWrap() ;
+        CURRENT = new QuestChainStateWrap();
         foreach (QuestChainState chainState in ORIGIN.questChainStates)
         {
+            Debug.Log("NewCurrent: " + chainState.QuestChainName);
             QuestChainState newChainState = new QuestChainState();
             newChainState.QuestChainName = chainState.QuestChainName;
             newChainState.QuestChainOrder = chainState.QuestChainOrder;
@@ -45,7 +46,7 @@ public class SOSubQuestDB : ScriptableObject
 [Serializable]
 public class QuestChainStateWrap : ICloneable
 {
-    public List<QuestChainState> questChainStates;
+    public List<QuestChainState> questChainStates = new List<QuestChainState>();
 
     public object Clone()
     {
