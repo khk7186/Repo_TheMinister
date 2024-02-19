@@ -38,10 +38,11 @@ public class CharacterAwaitTribute : MonoBehaviour
                     {
                         @event.Invoke();
                     }
-                    else
-                    {
-                        GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "destroy", 0, true);
-                    }
+                    //else
+                    //{
+                    //    GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "destroy", 0, true);
+                    //}
+                    GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "destroy", 0, true);
                 }
                 destroyNext = true;
             }
