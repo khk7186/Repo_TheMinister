@@ -22,22 +22,24 @@ public class CharacterAwaitTribute : MonoBehaviour
             {
                 @event.Invoke();
             }
-            Debug.Log(character == null);
-            character?.StartCoroutine(character.TryLeavePlayer());
-            character?.NotifyReturn();
-            if (character.OnAssassinEvent == true)
+            if (character != null)
             {
-                string message = StepMessage.AssassinCompleteStepMessage();
-                var targetEvent = PoliticSystemManager.FindEventByAssassin(character);
-                targetEvent.GetResult();
-                if (targetEvent.result == false) message = StepMessage.AssassinFailStepMessage();
-                GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, message, 0, false);
-            }
-            else
-            {
+                character?.StartCoroutine(character.TryLeavePlayer());
+                character?.NotifyReturn();
+                if (character.OnAssassinEvent == true)
+                {
+                    string message = StepMessage.AssassinCompleteStepMessage();
+                    var targetEvent = PoliticSystemManager.FindEventByAssassin(character);
+                    targetEvent.GetResult();
+                    if (targetEvent.result == false) message = StepMessage.AssassinFailStepMessage();
+                    GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, message, 0, false);
+                }
+                else
+                {
 
+                }
+                destroyNext = true;
             }
-            destroyNext = true;
         }
         else
         {
