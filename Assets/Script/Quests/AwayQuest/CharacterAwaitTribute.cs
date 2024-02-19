@@ -22,8 +22,8 @@ public class CharacterAwaitTribute : MonoBehaviour
             {
                 @event.Invoke();
             }
-            character.StartCoroutine(character.TryLeavePlayer());
-            character.NotifyReturn();
+            character?.StartCoroutine(character.TryLeavePlayer());
+            character?.NotifyReturn();
             if (character.OnAssassinEvent == true)
             {
                 string message = StepMessage.AssassinCompleteStepMessage();
