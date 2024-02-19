@@ -22,6 +22,7 @@ public class CharacterAwaitTribute : MonoBehaviour
             {
                 @event.Invoke();
             }
+            Debug.Log(character == null);
             character?.StartCoroutine(character.TryLeavePlayer());
             character?.NotifyReturn();
             if (character.OnAssassinEvent == true)
