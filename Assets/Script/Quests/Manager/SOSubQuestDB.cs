@@ -20,7 +20,14 @@ public class SOSubQuestDB : ScriptableObject
     }
     public void NewCurrent()
     {
-        CURRENT = ORIGIN;
+        CURRENT = new QuestChainStateWrap() ;
+        foreach (QuestChainState chainState in ORIGIN.questChainStates)
+        {
+            QuestChainState newChainState = new QuestChainState();
+            newChainState.QuestChainName = chainState.QuestChainName;
+            newChainState.QuestChainOrder = chainState.QuestChainOrder;
+            CURRENT.questChainStates.Add(newChainState);
+        }
     }
 
     public int CurrentQuestChainOrder(string questChainName)
