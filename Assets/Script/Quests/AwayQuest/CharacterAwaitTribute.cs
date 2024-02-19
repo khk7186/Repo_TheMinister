@@ -49,7 +49,7 @@ public class CharacterAwaitTribute : MonoBehaviour
             }
             else
             {
-                GeneralTrackingViewManager.Instance.PushTracker(character, character.AssasinTarget, "短信系统", WaitTime - AlreadyWait, false);
+                GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "短信系统", WaitTime - AlreadyWait, false);
             }
         }
     }
