@@ -32,7 +32,7 @@ public class CharacterAwaitTribute : MonoBehaviour
                     var targetEvent = PoliticSystemManager.FindEventByAssassin(character);
                     targetEvent.GetResult();
                     if (targetEvent.result == false) message = StepMessage.AssassinFailStepMessage();
-                    GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, message, 0, false);
+                    GeneralTrackingViewManager.Instance.PushTracker(character, character.AssasinTarget, message, 0, false);
                 }
                 else
                 {
@@ -45,11 +45,11 @@ public class CharacterAwaitTribute : MonoBehaviour
         {
             if (character.OnAssassinEvent == true)
             {
-                GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, StepMessage.AssassinStepMessage(), WaitTime - AlreadyWait, false);
+                GeneralTrackingViewManager.Instance.PushTracker(character, character.AssasinTarget, StepMessage.AssassinStepMessage(), WaitTime - AlreadyWait, false);
             }
             else
             {
-                GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "短信系统", WaitTime - AlreadyWait, false);
+                GeneralTrackingViewManager.Instance.PushTracker(character, character.AssasinTarget, "短信系统", WaitTime - AlreadyWait, false);
             }
         }
     }
