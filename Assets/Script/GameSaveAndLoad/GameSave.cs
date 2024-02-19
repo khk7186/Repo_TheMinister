@@ -41,6 +41,8 @@ namespace SaveSystem
         public List<string> UntriggeredQuestGiverID = new List<string>();
         //public List<QuestGiverAI> TriggeredQuestGivers = new List<QuestGiverAI>();
         public List<string> TriggeredQuestGiverID = new List<string>();
+        //Quest Chain
+        public QuestChainStateWrap questChainState = null;
 
         //QuestMachine Data
         [SerializeField]

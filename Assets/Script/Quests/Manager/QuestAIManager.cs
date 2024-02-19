@@ -141,6 +141,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
                 //    (CurrentQuestList.questGivers.Find(x => x.QuestID == questGiver.QuestID));
                 gameSave.UntriggeredQuestGiverID.Add(questGiver.QuestID);
             }
+            gameSave.questChainStateWrapper = subQuestDB.CURRENT;
         }
     }
 
@@ -168,6 +169,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
             ActiveQuestsGivers.Add(clone.GetComponent<QuestGiverPointer>().questGiverAI);
         }
         inGameQuestCount = ActiveQuestsGivers.Count();
+        subQuestDB.CURRENT = gameSave.questChainStateWrapper;
         //ActiveQuestsGivers = new List<QuestGiverAI>();
 
         //var untriggereds = subQuestDB.QUEST_GIVER_BY_ORDER[gameSave.chapter].questGivers.Where(x => gameSave.UntriggeredQuestGiverID.Contains(x.QuestID));
