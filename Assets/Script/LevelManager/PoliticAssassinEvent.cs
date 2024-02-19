@@ -49,6 +49,7 @@ public class PoliticAssassinEvent
     }
     public static void EndAssassin(PoliticAssassinEvent assassinEvent)
     {
+        assassinEvent.GetResult();
         if (assassinEvent.result == true)
         {
             PixelCrushers.MessageSystem.SendMessage(null, "Assassin", assassinEvent.politicCharacter.CharacterName, 1);
