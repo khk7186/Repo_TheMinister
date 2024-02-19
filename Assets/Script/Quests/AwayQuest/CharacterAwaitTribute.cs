@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,10 +19,7 @@ public class CharacterAwaitTribute : MonoBehaviour
         AlreadyWait += 1;
         if (EndWait)
         {
-            //if (@event != null)
-            //{
-            //    @event.Invoke();
-            //}
+
             if (character != null)
             {
                 character?.StartCoroutine(character.TryLeavePlayer());
@@ -36,7 +34,14 @@ public class CharacterAwaitTribute : MonoBehaviour
                 }
                 else
                 {
-
+                    if (@event != null)
+                    {
+                        @event.Invoke();
+                    }
+                    else
+                    {
+                        GeneralTrackingViewManager.Instance.PushTracker(character, character.AssasinTarget, "destroy", 0, true);
+                    }
                 }
                 destroyNext = true;
             }
