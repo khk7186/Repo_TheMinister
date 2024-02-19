@@ -27,7 +27,7 @@ public class PoliticAssassinEvent
         var output = new PoliticAssassinEvent(totalRate, asssinValue, politicCharacter);
         politicCharacter.Assassin = assasin;
         assasin.OnAssassinEvent = true;
-        assasin.AssasinTarget = politicCharacter.GetComponentInParent<PoliticSlot>().slotName;
+        assasin.AssasinTarget = politicCharacter.GetComponentInParent<PoliticSlot>().slotID;
         assasin.Away(output.duration);
         return output;
     }
@@ -39,7 +39,7 @@ public class PoliticAssassinEvent
         output.duration = duration;
         politicCharacter.Assassin = assasin;
         assasin.OnAssassinEvent = true;
-        assasin.AssasinTarget = politicCharacter.GetComponentInParent<PoliticSlot>().slotName;
+        assasin.AssasinTarget = politicCharacter.GetComponentInParent<PoliticSlot>().slotID;
         assasin.Away(output.duration);
         return output;
     }

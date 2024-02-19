@@ -11,17 +11,17 @@ public class CharacterAwaitTribute : MonoBehaviour
     public UnityEvent @event;
     public bool destroyNext = false;
 
-    public bool EndWait => AlreadyWait > WaitTime;
+    public bool EndWait => AlreadyWait >= WaitTime;
 
     public void TimePlus()
     {
         AlreadyWait += 1;
         if (EndWait)
         {
-            if (@event != null)
-            {
-                @event.Invoke();
-            }
+            //if (@event != null)
+            //{
+            //    @event.Invoke();
+            //}
             if (character != null)
             {
                 character?.StartCoroutine(character.TryLeavePlayer());
