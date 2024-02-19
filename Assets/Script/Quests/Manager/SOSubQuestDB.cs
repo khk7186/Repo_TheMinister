@@ -18,7 +18,7 @@ public class SOSubQuestDB : ScriptableObject
         NewCurrent();
         CurrentSave = currentSaveName;
     }
-    protected void NewCurrent()
+    public void NewCurrent()
     {
         CURRENT = ORIGIN;
     }

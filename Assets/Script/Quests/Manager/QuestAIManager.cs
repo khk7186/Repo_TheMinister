@@ -108,6 +108,8 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         QuestCountZero();
         ActiveQuestsGivers = new List<QuestGiverAI>();
         InactiveQuestGivers = new List<QuestGiverAI>(CurrentQuestList.questGivers);
+        subQuestDB.NewCurrent();
+
     }
     public void Reset()
     {
