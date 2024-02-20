@@ -42,7 +42,7 @@ public class CharacterAwaitTribute : MonoBehaviour
                     //{
                     //    GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "destroy", 0, true);
                     //}
-                    GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "destroy", 0, true);
+                    GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "destroy", 0, false);
                 }
                 destroyNext = true;
             }
