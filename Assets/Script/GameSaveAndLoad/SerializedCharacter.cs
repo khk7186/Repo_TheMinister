@@ -90,7 +90,7 @@ namespace SaveSystem
                     if (output.OnAssassinEvent == true)
                     {
                         var politicCharater = GameObject.FindObjectsOfType<PoliticCharacter>(true).FirstOrDefault(x => x.slot.slotID == characterData.AssassinTargetID);
-                        PoliticSystemManager.Instance.OngoingAssassinEvents.Add(PoliticAssassinEvent.StartAssassinInLoad(politicCharater, output, characterData.waitTime - characterData.alreadyWait));
+                        PoliticAssassinEvent.StartAssassinInLoad(politicCharater, output, characterData.waitTime - characterData.alreadyWait);
                     }
                     else
                     {
@@ -108,7 +108,7 @@ namespace SaveSystem
             }
             output.UpdateVariables();
             output.rarerity = characterData.rarerity;
-            output.edibleFavor = characterData.edibleFavor;
+            output.edibleFavor = characterData.edibleFavor; 
             output.temporaryTags = characterData.temporaryTags;
             return (output);
         }
