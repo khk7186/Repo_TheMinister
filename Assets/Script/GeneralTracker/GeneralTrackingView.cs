@@ -33,11 +33,11 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
         Finish = true;
         smallViewImage.color = Color.green;
         //TODO: Find finish line for info
-        if (NoAction)
-        {
-            character.Back();
-            StartCoroutine(HideInSec());
-        }
+        //if (NoAction)
+        //{
+        //    character.Back();
+        //    StartCoroutine(HideInSec());
+        //}
     }
     public void OnSpawn(Character character, bool noAction = false)
     {
