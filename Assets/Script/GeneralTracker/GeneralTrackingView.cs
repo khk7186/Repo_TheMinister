@@ -36,6 +36,7 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
         if (NoAction)
         {
             unityEvent.Invoke();
+            character.Back();
             Hide();
         }
     }
