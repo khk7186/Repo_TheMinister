@@ -13,6 +13,10 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
     public GameObject MoneyDepartment;
     public GameObject DocumentDepartment;
     public GameObject PopulationDepartment;
+    private void Awake()
+    {
+        FindObjectOfType<SaveAndLoadManager>().politicActionUI = this;
+    }
     public void Show()
     {
         AudioManager.Play("·­Ò³");
