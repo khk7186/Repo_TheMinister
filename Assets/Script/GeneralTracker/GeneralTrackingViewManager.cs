@@ -24,7 +24,7 @@ public class GeneralTrackingViewManager : MonoBehaviour, IPointerExitHandler
                 if (message == "destroy" && view.NoAction)
                 {
                     trackingViews.Remove(view);
-                    //view.Hide();
+                    view.Hide();
                     return null;
                 }
                 view.Setup(trackerName, message, turnLeft);
