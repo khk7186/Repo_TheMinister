@@ -35,9 +35,8 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
         //TODO: Find finish line for info
         if (NoAction)
         {
-            unityEvent.Invoke();
             character.Back();
-            Hide();
+            StartCoroutine(HideInSec());
         }
     }
     public void OnSpawn(Character character, bool noAction = false)
@@ -128,5 +127,10 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
         var rect = GetComponent<RectTransform>();
         Manager.trackingViews.Remove(this);
         rect.DOScale(0, 0.5f).OnComplete(() => Destroy(gameObject));
+    }
+    public IEnumerator HideInSec()
+    {
+        yield return new WaitForSeconds(1);
+        Hide();
     }
 }
