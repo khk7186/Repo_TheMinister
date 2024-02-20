@@ -87,7 +87,7 @@ namespace SaveSystem
                 output.transform.parent = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
                 if (output.hireStage == global::HireStage.Away)
                 {
-                    if (output.OnAssassinEvent == true)
+                    if (characterData.OnAssassinEvent == true)
                     {
                         var politicCharater = GameObject.FindObjectsOfType<PoliticCharacter>(true).FirstOrDefault(x => x.slot.slotID == characterData.AssassinTargetID);
                         PoliticAssassinEvent.StartAssassinInLoad(politicCharater, output, characterData.waitTime - characterData.alreadyWait);
