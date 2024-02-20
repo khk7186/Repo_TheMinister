@@ -64,8 +64,8 @@ namespace SaveSystem
             //AwayTime
             if (character.characterAwaitTribute != null)
             {
-                output.waitTime = character.waitTime;
-                output.alreadyWait = character.alreadyWait;
+                output.waitTime = character.characterAwaitTribute.WaitTime;
+                output.alreadyWait = character.characterAwaitTribute.AlreadyWait;
                 if (character.spawnAfterAway != null)
                 {
                     output.spawnAfterAwayGuestName = character.spawnAfterAway.guestName;
@@ -90,12 +90,12 @@ namespace SaveSystem
                     if (output.OnAssassinEvent == true)
                     {
                         var politicCharater = GameObject.FindObjectsOfType<PoliticCharacter>(true).FirstOrDefault(x => x.slot.slotID == characterData.AssassinTargetID);
-                        PoliticSystemManager.Instance.OngoingAssassinEvents.Add(PoliticAssassinEvent.StartAssassinInLoad(politicCharater, output, output.waitTime - output.alreadyWait));
+                        PoliticSystemManager.Instance.OngoingAssassinEvents.Add(PoliticAssassinEvent.StartAssassinInLoad(politicCharater, output, characterData.waitTime - characterData.alreadyWait));
                     }
                     else
                     {
                         var spawnAfterAwayDB = Resources.Load<SOSpawnAfterAwayDB>("Data/SpawnAfterAwayDB");
-                        output.Away(output.waitTime - output.alreadyWait, spawnAfterAwayDB.Find(characterData.spawnAfterAwayGuestName));
+                        output.Away(characterData.waitTime - characterData.alreadyWait, spawnAfterAwayDB.Find(characterData.spawnAfterAwayGuestName));
                     }
                 }
             }
