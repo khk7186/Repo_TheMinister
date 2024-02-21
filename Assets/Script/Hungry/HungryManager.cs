@@ -25,10 +25,12 @@ public class HungryManager : MonoBehaviour, IDiceRollEvent
     public void OnNotify(object value, NotificationType notificationType)
     {
         if (characterInv == null) return;
-        foreach (Transform character in characterInv)
+        foreach (Transform characterTransform in characterInv)
         {
-            character.gameObject.GetComponent<Character>().HungryEvent();
-            character.gameObject.GetComponent<Character>().FollowerLoyaltyEvent();
+            var character = characterTransform.gameObject.GetComponent<Character>();
+            if (character.hireStage == HireStage.Away) continue;
+            character.HungryEvent();
+            character.FollowerLoyaltyEvent();
         }
     }
 }
