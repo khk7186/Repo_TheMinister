@@ -56,6 +56,9 @@ namespace SaveSystem
 
         //Politic Slots
         public List<SerializedPoliticPages> politicPages = null;
+
+        //Politic Factions
+        public List<PoliticFaction> politicFactions = new List<PoliticFaction>();
     }
     [System.Serializable]
     public class ItemInString

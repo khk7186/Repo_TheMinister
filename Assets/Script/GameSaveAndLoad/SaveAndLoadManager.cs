@@ -32,6 +32,7 @@ namespace SaveSystem
         public List<SpawnAfterAwayGuest> gameGuests = new List<SpawnAfterAwayGuest>();
         public QuestDayCounterManager questDayCounterManager = null;
         public PoliticActionUI politicActionUI = null;
+        public SOPoliticFaction SOPoliticFactionDB = null;
         private void Start()
         {
             GameSaveDatabase.FindAllSaves();

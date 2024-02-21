@@ -97,6 +97,9 @@ namespace SaveSystem
             //politic page data
             newGameSave.politicPages = manager.politicActionUI.Save();
 
+            //politic factions data
+            newGameSave.politicFactions = manager.SOPoliticFactionDB.politicFactions;
+
             return newGameSave;
         }
 

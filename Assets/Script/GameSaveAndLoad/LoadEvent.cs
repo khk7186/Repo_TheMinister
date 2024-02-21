@@ -111,5 +111,9 @@ namespace SaveSystem
         {
             manager.politicActionUI.Load(save);
         }
+        public static void LoadPoliticFactions(SaveAndLoadManager manager, GameSave save)
+        {
+            manager.SOPoliticFactionDB.politicFactions = save.politicFactions;
+        }
     }
 }
