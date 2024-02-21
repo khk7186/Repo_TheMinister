@@ -11,14 +11,14 @@ namespace SaveSystem
     {
         public static void Load(SaveAndLoadManager manager, GameSave save)
         {
-            LoadPlayerCharacters(save);
+            LoadPoliticSlots(manager, save);
             LoadMap(manager, save);
+            LoadPlayerCharacters(save);
             LoadOtherCharacters(save);
             LoadInventory(manager, save);
             LoadPlayer(manager, save);
             LoadQuestMachine(save);
             LoadMain(manager, save);
-            LoadPoliticSlots(manager, save);
             manager.questionAIManager.Load(save);
             manager.lightController.ConstantLight(Map.Instance.DayTime);
             LoadDelayToSpawn(manager, save);
