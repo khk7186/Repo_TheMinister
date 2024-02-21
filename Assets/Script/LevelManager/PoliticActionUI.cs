@@ -147,9 +147,9 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
             {
                 LoadGateHolder(index, slot, serializedPoliticPages);
             }
-            var serializedCharacter = serializedPoliticPages.serializedCharacters[index];
-            if (serializedCharacter != null)
+            if (serializedPoliticPages.characterOnHoldExist[index] != false)
             {
+                var serializedCharacter = serializedPoliticPages.serializedCharacters[index];
                 if (slot.characterOnHold != null)
                 {
                     Destroy(slot.characterOnHold.gameObject);
@@ -161,12 +161,12 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
     }
     public void LoadGateHolder(int index, PoliticSlot slot, SerializedPoliticPages serializedPoliticPages)
     {
-        Debug.Log("loading index :" + index);
+        //Debug.Log("loading index :" + index);
         if (slot.GateHolder != null)
         {
             Destroy(slot.GateHolder.gameObject);
         }
-        if (serializedPoliticPages.Dead[index] == false)
+        if (serializedPoliticPages.GateHolderDead[index] == false)
         {
             slot.GateHolder = Instantiate(slot.GateHolderOrigin);
             slot.GateHolder.gameObject.SetActive(true);
