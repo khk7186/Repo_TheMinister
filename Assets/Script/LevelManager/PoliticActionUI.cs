@@ -168,7 +168,7 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
         }
         if (serializedPoliticPages.GateHolderDead[index] == false)
         {
-            slot.GateHolder = Instantiate(slot.GateHolderOrigin);
+            slot.GateHolder = Instantiate(slot.GateHolderOrigin, slot.transform);
             slot.GateHolder.gameObject.SetActive(true);
             slot.GateHolder.loyalty = serializedPoliticPages.LoyaltyLeft[index];
             slot.GateHolder.BribeAlreadySpent = serializedPoliticPages.AlreadyBribeAmount[index];
