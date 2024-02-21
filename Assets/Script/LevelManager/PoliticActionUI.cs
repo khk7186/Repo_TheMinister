@@ -142,7 +142,7 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
 
         foreach (var slot in slots)
         {
-            var index = serializedPoliticPages.slotIDs.IndexOf(slot.slotName);
+            var index = serializedPoliticPages.slotIDs.IndexOf(slot.slotID);
             if (slot.GateHolderOrigin != null)
             {
                 LoadGateHolder(index, slot, serializedPoliticPages);
