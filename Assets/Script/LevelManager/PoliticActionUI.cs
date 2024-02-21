@@ -161,6 +161,7 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
     }
     public void LoadGateHolder(int index, PoliticSlot slot, SerializedPoliticPages serializedPoliticPages)
     {
+        Debug.Log("loading index :" + index);
         if (slot.GateHolder != null)
         {
             Destroy(slot.GateHolder.gameObject);
@@ -168,6 +169,7 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
         if (serializedPoliticPages.Dead[index] == false)
         {
             slot.GateHolder = Instantiate(slot.GateHolderOrigin);
+            slot.GateHolder.gameObject.SetActive(true);
             slot.GateHolder.loyalty = serializedPoliticPages.LoyaltyLeft[index];
             slot.GateHolder.BribeAlreadySpent = serializedPoliticPages.AlreadyBribeAmount[index];
             slot.GateHolder.AssassinDifficulty = serializedPoliticPages.AssassinDifficulty[index];
