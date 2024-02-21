@@ -54,6 +54,7 @@ public class SerializedPoliticPages
             }
             //end
         }
-        return null;
+        //Debug.Log(output.slotIDs.Count);
+        return output;
     }
 }

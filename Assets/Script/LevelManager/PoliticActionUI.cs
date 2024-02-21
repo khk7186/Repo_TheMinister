@@ -101,9 +101,15 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
     public List<SerializedPoliticPages> Save()
     {
         var output = new List<SerializedPoliticPages>();
-        output.Add(SerializedPoliticPages.Serialize(MoneyDepartment.GetComponentsInChildren<PoliticSlot>(true).ToList(), "金钱司"));
-        output.Add(SerializedPoliticPages.Serialize(DocumentDepartment.GetComponentsInChildren<PoliticSlot>(true).ToList(), "档案司"));
-        output.Add(SerializedPoliticPages.Serialize(PopulationDepartment.GetComponentsInChildren<PoliticSlot>(true).ToList(), "户部司"));
+        var MoneyDepartmentSlots = MoneyDepartment.GetComponentsInChildren<PoliticSlot>(true).ToList();
+
+        var DocumentDepartmentSlots = DocumentDepartment.GetComponentsInChildren<PoliticSlot>(true).ToList();
+
+        var PopulationDepartmentSlots = PopulationDepartment.GetComponentsInChildren<PoliticSlot>(true).ToList();
+
+        output.Add(SerializedPoliticPages.Serialize(MoneyDepartmentSlots, "金钱司"));
+        output.Add(SerializedPoliticPages.Serialize(DocumentDepartmentSlots.ToList(), "档案司"));
+        output.Add(SerializedPoliticPages.Serialize(PopulationDepartmentSlots, "户部司"));
         return output;
     }
     public void Load(GameSave gameSave)
