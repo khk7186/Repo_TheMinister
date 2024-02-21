@@ -39,6 +39,17 @@ public class PoliticFactionInfoUI : MonoBehaviour, IPointerClickHandler
         FriendlyLevel.fillAmount = (float)politicFaction.friendly / 100;
         FriendlyLevelText.text = $"{politicFaction.friendly}/100";
     }
+    public void SetMessage(PoliticFaction politicFaction)
+    {
+        TransformEx.Clear(MessageHolder);
+        foreach (var message in politicFaction.messages)
+        {
+            var parts = message.Split('@');
+            var clone = Instantiate(MessagePref, MessageHolder);
+            clone.transform.Find("reason").GetComponent<Text>().text = parts[0];
+            clone.transform.Find("value").GetComponent<Text>().text = parts[1];
+        }
+    }
     public void Show()
     {
         gameObject.SetActive(true);
