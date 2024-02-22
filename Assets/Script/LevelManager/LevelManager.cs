@@ -10,6 +10,8 @@ public class LevelManager : MonoBehaviour
     public List<int> expPerLevel = new List<int>();
     public int level = 1;
     public int exp = 0;
+    internal int ExtraExp = 0;
+
     public float currentMultiplier => (level) * TaxPerLevelMultiplier + 1;
     private void Awake()
     {
