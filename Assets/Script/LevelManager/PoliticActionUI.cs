@@ -157,6 +157,7 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
                 slot.characterOnHold = SerializedCharacter.DeserializingCharacter(serializedCharacter);
                 slot.characterOnHold.transform.SetParent(slot.transform);
             }
+            slot.GetComponent<PoliticSlotInteraction>().politicPopup.Setup(slot);
         }
     }
     public void LoadGateHolder(int index, PoliticSlot slot, SerializedPoliticPages serializedPoliticPages)
