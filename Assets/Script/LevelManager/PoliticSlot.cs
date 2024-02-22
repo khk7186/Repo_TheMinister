@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.iOS;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -84,6 +85,7 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
         {
             line.raycastTarget = false;
         }
+        SetupLineSprites();
     }
 
     private void OnHoldModeSetup()
@@ -103,7 +105,28 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
         CharacterHead.gameObject.SetActive(false);
         GetComponentInChildren<PoliticPopup>(true).Setup(this);
     }
-
+    public void SetupLineSprites()
+    {
+        Sprite uplineSource = Resources.Load<Sprite>("Art/RoadMapLvling/pathwayµ„¡¡");
+        if (unlocked) uplineSource = Resources.Load<Sprite>("Art/RoadMapLvling/pathway");
+        foreach (var line in upLines)
+        {
+            line.sprite = uplineSource;
+        }
+        Sprite lowerSource = Resources.Load<Sprite>("Art/RoadMapLvling/pathwayµ„¡¡");
+        foreach (var preSlot in preSlots)
+        {
+            if (preSlot.unlocked == false)
+            {
+                lowerSource = Resources.Load<Sprite>("Art/RoadMapLvling/pathway");
+                break;
+            }
+        }
+        foreach (var line in lowerLines)
+        {
+            line.sprite = lowerSource;
+        }
+    }
     public void SetupTags()
     {
         List<Tag> tags = new List<Tag>();

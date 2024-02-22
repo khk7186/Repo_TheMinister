@@ -32,6 +32,7 @@ public class PoliticPopup : MonoBehaviour
     public void Setup(PoliticSlot politicSlot)
     {
         slot = politicSlot;
+        slot.SetupLineSprites();
         if (politicSlot.GateHolder != null && politicSlot.GateHolder.bribed == false)
         {
             AssassinButton.gameObject.SetActive(true);
