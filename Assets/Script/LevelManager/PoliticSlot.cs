@@ -110,7 +110,8 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
         if (unlocked == false || NotInteractable == true) uplineSource = Resources.Load<Sprite>("Art/RoadMapLvling/pathway");
         foreach (var line in upLines)
         {
-            line.sprite = uplineSource;
+            if (line != null)
+                line.sprite = uplineSource;
         }
         Sprite lowerSource = Resources.Load<Sprite>("Art/RoadMapLvling/pathwayµ„¡¡");
         foreach (var preSlot in preSlots)
@@ -123,7 +124,8 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
         }
         foreach (var line in lowerLines)
         {
-            line.sprite = lowerSource;
+            if (line != null)
+                line.sprite = lowerSource;
         }
     }
     public void SetupTags()
