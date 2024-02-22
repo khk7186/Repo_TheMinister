@@ -19,25 +19,6 @@ MonoBehaviour:
     m_textTable: {fileID: 0}
     m_textTableFieldID: 0
   m_useOriginalName: 0
---- !u!114 &-7215385529872328947
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f05643b85c87be547af5871e9bf6e10a, type: 3}
-  m_Name: InstantiatePrefabQuestAction
-  m_EditorClassIdentifier: 
-  m_prefab: {fileID: 8515848889038813075, guid: 6ba49f3f0b3914e409b27a403e9eec53, type: 3}
-  m_locationTransform:
-    m_text: 
-    m_stringAsset: {fileID: 0}
-    m_textTable: {fileID: 0}
-    m_textTableFieldID: 0
-  m_useOriginalName: 0
 --- !u!114 &-7149476468339889008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -110,6 +91,33 @@ MonoBehaviour:
     m_stringAsset: {fileID: 0}
     m_textTable: {fileID: 0}
     m_textTableFieldID: 0
+--- !u!114 &-3180572122185655678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9840a28297a53d449903f34dc60157bb, type: 3}
+  m_Name: UnityEventQuestAction
+  m_EditorClassIdentifier: 
+  m_onExecute:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8515848889038813072, guid: 6ba49f3f0b3914e409b27a403e9eec53, type: 3}
+        m_TargetAssemblyTypeName: CheckChapterStatus, Assembly-CSharp
+        m_MethodName: OnEnable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-1409742474755476779
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,7 +136,7 @@ MonoBehaviour:
     m_stringAsset: {fileID: 0}
     m_textTable: {fileID: 0}
     m_textTableFieldID: 0
---- !u!114 &-1069524588281043059
+--- !u!114 &-581665286912892983
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f05643b85c87be547af5871e9bf6e10a, type: 3}
   m_Name: InstantiatePrefabQuestAction
   m_EditorClassIdentifier: 
-  m_prefab: {fileID: 8515848889038813075, guid: 6ba49f3f0b3914e409b27a403e9eec53, type: 3}
+  m_prefab: {fileID: 7610734206474757851, guid: fb6e3913624f1014da89949ddde6513e, type: 3}
   m_locationTransform:
     m_text: 
     m_stringAsset: {fileID: 0}
@@ -384,7 +392,7 @@ MonoBehaviour:
       - m_contentList: []
     - m_actionList:
       - {fileID: 5398938478180437379}
-      - {fileID: -7215385529872328947}
+      - {fileID: 5542078917122701181}
       m_categorizedContentList:
       - m_contentList: []
       - m_contentList:
@@ -438,8 +446,9 @@ MonoBehaviour:
       - m_contentList: []
     - m_actionList:
       - {fileID: 2283089564876689054}
-      - {fileID: -1069524588281043059}
       - {fileID: 7380775483170621589}
+      - {fileID: -3180572122185655678}
+      - {fileID: -581665286912892983}
       m_categorizedContentList:
       - m_contentList: []
       - m_contentList:
@@ -450,7 +459,6 @@ MonoBehaviour:
       - m_contentList: []
     - m_actionList:
       - {fileID: 2087014580198960620}
-      - {fileID: 2618177121533295756}
       m_categorizedContentList:
       - m_contentList: []
       - m_contentList: []
@@ -498,6 +506,7 @@ MonoBehaviour:
       - m_contentList: []
     - m_actionList:
       - {fileID: 1048320404119789895}
+      - {fileID: 2809192947565674838}
       m_categorizedContentList:
       - m_contentList: []
       - m_contentList: []
@@ -510,7 +519,7 @@ MonoBehaviour:
     m_childIndexList: 
     m_canvasRect:
       serializedVersion: 2
-      x: 170.46413
+      x: 169.46413
       y: 273.7754
       width: 120
       height: 35
@@ -701,7 +710,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2618177121533295756
+--- !u!114 &2809192947565674838
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -822,6 +831,33 @@ MonoBehaviour:
     m_textTable: {fileID: 0}
     m_textTableFieldID: 0
   m_useOriginalName: 0
+--- !u!114 &5542078917122701181
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9840a28297a53d449903f34dc60157bb, type: 3}
+  m_Name: UnityEventQuestAction
+  m_EditorClassIdentifier: 
+  m_onExecute:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8515848889038813072, guid: 6ba49f3f0b3914e409b27a403e9eec53, type: 3}
+        m_TargetAssemblyTypeName: CheckChapterStatus, Assembly-CSharp
+        m_MethodName: OnEnable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6567721161458487132
 MonoBehaviour:
   m_ObjectHideFlags: 1
