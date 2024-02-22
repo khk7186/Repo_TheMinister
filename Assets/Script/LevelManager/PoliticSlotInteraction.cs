@@ -21,7 +21,11 @@ public class PoliticSlotInteraction : MonoBehaviour, IPointerEnterHandler, IPoin
         }
         else if (eventData.button == PointerEventData.InputButton.Left)
         {
-            OpenSelectMenu();
+            var interactable = InteractableCheck();
+            if (interactable)
+            {
+                OpenSelectMenu();
+            }
         }
     }
     public bool InteractableCheck()
@@ -40,6 +44,11 @@ public class PoliticSlotInteraction : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        var interactable = InteractableCheck();
+        if (interactable == false)
+        {
+            return;
+        }
         politicSlot.Frame.sprite = politicSlot.HighlightFrame;
 
         politicPopup.ShowPopup();
@@ -47,6 +56,11 @@ public class PoliticSlotInteraction : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        var interactable = InteractableCheck();
+        if (interactable == false)
+        {
+            return;
+        }
         SetFrame();
         politicPopup.HidePopup();
     }
