@@ -54,7 +54,7 @@ public class SerializedPoliticPages
             if (targetCharacterOnHold != null)
             {
                 output.characterOnHoldExist[index] = true;
-                output.serializedCharacters[index] = SerializedCharacter.SerializingCharacter(targetGateHolder);
+                output.serializedCharacters[index] = SerializedCharacter.SerializingCharacter(targetCharacterOnHold);
             }
             //end
         }
