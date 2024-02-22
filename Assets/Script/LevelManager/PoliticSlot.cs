@@ -134,8 +134,10 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
         characterOnHold = character;
     }
 
-    public void SetupSlotIcon()
+    public void SetupSlotIcon(CharacterArtCode characterArtCode)
     {
-
+        var spritePath = ReturnAssetPath.ReturnCharacterSpritePath(characterArtCode, false);
+        CharacterHead.sprite = Resources.Load<Sprite>(spritePath);
+        CharacterHead.gameObject.SetActive(true);
     }
 }
