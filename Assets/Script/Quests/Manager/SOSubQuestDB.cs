@@ -23,7 +23,7 @@ public class SOSubQuestDB : ScriptableObject
         CURRENT = new QuestChainStateWrap();
         foreach (QuestChainState chainState in ORIGIN.questChainStates)
         {
-            Debug.Log("NewCurrent: " + chainState.QuestChainName);
+            //Debug.Log("NewCurrent: " + chainState.QuestChainName);
             QuestChainState newChainState = new QuestChainState();
             newChainState.QuestChainName = chainState.QuestChainName;
             newChainState.QuestChainOrder = chainState.QuestChainOrder;

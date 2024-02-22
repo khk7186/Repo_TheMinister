@@ -49,7 +49,7 @@ public class PoliticFactionMenuUI : MonoBehaviour,IPointerClickHandler
     IEnumerator BuildLayout()
     {
         horizontalLayoutGroup.enabled = true;
-        Debug.Log("true");
+        //Debug.Log("true");
         yield return new WaitForEndOfFrame();
         LayoutRebuilder.ForceRebuildLayoutImmediate(selectionHolder.GetComponent<RectTransform>());
         yield return new WaitForEndOfFrame();

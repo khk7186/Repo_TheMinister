@@ -140,4 +140,9 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
         CharacterHead.sprite = Resources.Load<Sprite>(spritePath);
         CharacterHead.gameObject.SetActive(true);
     }
+
+    public void SetupSlotIcon()
+    {
+        throw new NotImplementedException();
+    }
 }
