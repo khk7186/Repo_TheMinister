@@ -107,7 +107,7 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     public void SetupLineSprites()
     {
         Sprite uplineSource = Resources.Load<Sprite>("Art/RoadMapLvling/pathwayµ„¡¡");
-        if (unlocked == false ||) uplineSource = Resources.Load<Sprite>("Art/RoadMapLvling/pathway");
+        if (unlocked == false || NotInteractable == true) uplineSource = Resources.Load<Sprite>("Art/RoadMapLvling/pathway");
         foreach (var line in upLines)
         {
             line.sprite = uplineSource;
