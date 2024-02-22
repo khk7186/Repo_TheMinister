@@ -175,6 +175,10 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
             slot.GateHolder.AssassinDifficulty = serializedPoliticPages.AssassinDifficulty[index];
             slot.GateHolder.ImpeachTime = serializedPoliticPages.ImpeachTimes[index];
             slot.GateHolder.BribePrice = serializedPoliticPages.BribeDifficulty[index];
+            if (slot.GateHolder.BribeAlreadySpent >= slot.GateHolder.BribePrice)
+            {
+                slot.GateHolder.bribed = true;
+            }
         }
     }
 }

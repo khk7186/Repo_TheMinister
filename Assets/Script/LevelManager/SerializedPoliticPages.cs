@@ -46,10 +46,6 @@ public class SerializedPoliticPages
                 output.GateHolderDead[index] = false;
                 output.AssassinDifficulty[index] = targetGateHolder.AssassinDifficulty;
                 output.AlreadyBribeAmount[index] = targetGateHolder.BribeAlreadySpent;
-                if (output.AlreadyBribeAmount[index] >= targetGateHolder.BribePrice)
-                {
-                    targetGateHolder.bribed = true;
-                }
                 output.BribeDifficulty[index] = targetGateHolder.BribePrice;
                 output.ImpeachTimes[index] = targetGateHolder.ImpeachTime;
                 output.LoyaltyLeft[index] = targetGateHolder.loyalty;
@@ -57,7 +53,6 @@ public class SerializedPoliticPages
             var targetCharacterOnHold = politicSlots[index].characterOnHold;
             if (targetCharacterOnHold != null)
             {
-
                 output.characterOnHoldExist[index] = true;
                 output.serializedCharacters[index] = SerializedCharacter.SerializingCharacter(targetGateHolder);
             }
