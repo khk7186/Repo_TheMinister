@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class PoliticSlot : MonoBehaviour, ICharacterSelect
@@ -33,6 +34,8 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     public GovernorType governorType;
     public int requestAmount = 0;
     public int Level = 0;
+    public UnityEvent SpecialEffectAfterFirstUnlock = new UnityEvent();
+    private bool firstTimeUnlock = false;
     public bool unlocked
     {
         get
@@ -40,6 +43,15 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
             if (GateHolder != null && GateHolder.bribed) return true;
             else if (characterOnHold != null) return true;
             return false;
+        }
+    }
+    public void TrySpecialEffect()
+    {
+        if (firstTimeUnlock) return;
+        if (SpecialEffectAfterFirstUnlock != null)
+        {
+            SpecialEffectAfterFirstUnlock.Invoke();
+            firstTimeUnlock = true;
         }
     }
     public void Start()

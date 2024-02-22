@@ -111,6 +111,7 @@ public class PoliticBribePage : PoliticPage
         if (slot.GateHolder.BribeAlreadySpent >= bribePrice)
         {
             slot.GateHolder.bribed = true;
+            slot.TrySpecialEffect();
             LevelManager.UpdateLevel();
         }
         if (slot.GateHolder.bribed == true)

@@ -135,6 +135,7 @@ public class PoliticAppointPage : PoliticPage, IPoliticSelectionAction
         target.transform.parent = slot.transform;
         slot.GetComponent<PoliticSlotInteraction>().politicPopup.Setup(slot);
         //TODO: Show Message
+        slot.TrySpecialEffect();
         LevelManager.UpdateLevel();
     }
     public bool TestCharacter()
