@@ -36,7 +36,7 @@ public class SerializedPoliticPages
             output.LoyaltyLeft.Add(0);
             output.GateHolderDead.Add(true);
             output.characterOnHoldExist.Add(false);
-            
+
             //end
 
             //Assign vars to index
@@ -46,6 +46,10 @@ public class SerializedPoliticPages
                 output.GateHolderDead[index] = false;
                 output.AssassinDifficulty[index] = targetGateHolder.AssassinDifficulty;
                 output.AlreadyBribeAmount[index] = targetGateHolder.BribeAlreadySpent;
+                if (output.AlreadyBribeAmount[index] >= targetGateHolder.BribePrice)
+                {
+                    targetGateHolder.bribed = true;
+                }
                 output.BribeDifficulty[index] = targetGateHolder.BribePrice;
                 output.ImpeachTimes[index] = targetGateHolder.ImpeachTime;
                 output.LoyaltyLeft[index] = targetGateHolder.loyalty;
