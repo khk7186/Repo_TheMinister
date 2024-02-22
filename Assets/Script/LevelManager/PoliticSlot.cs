@@ -36,6 +36,7 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     public int Level = 0;
     public UnityEvent SpecialEffectAfterFirstUnlock = new UnityEvent();
     private bool firstTimeUnlock = false;
+    public bool NotInteractable = false;
     public bool unlocked
     {
         get
