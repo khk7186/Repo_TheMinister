@@ -24,10 +24,18 @@ public class PoliticSlotInteraction : MonoBehaviour, IPointerEnterHandler, IPoin
             OpenSelectMenu();
         }
     }
-
+    public bool InteractableCheck()
+    {
+        if (politicSlot.NotInteractable) return false;
+        foreach (var preSlot in politicSlot.preSlots)
+        {
+            if (preSlot.unlocked == false) return false;
+        }
+        return true;
+    }
     private void OpenSelectMenu()
     {
-        
+
     }
 
     public void OnPointerEnter(PointerEventData eventData)
