@@ -56,7 +56,7 @@ public class CharacterAwaitTribute : MonoBehaviour
             }
             else
             {
-                GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, StepMessage.AppointMessage(QuestID, WaitTime - AlreadyWait), 0, false);
+                GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, StepMessage.AppointMessage(QuestID, WaitTime - AlreadyWait), WaitTime - AlreadyWait, false);
             }
         }
     }
