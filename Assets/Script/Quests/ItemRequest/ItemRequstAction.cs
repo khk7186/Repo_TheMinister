@@ -26,10 +26,21 @@ public class ItemRequstAction : MonoBehaviour
             inventory.RemoveItem(item);
             questActive.Invoke();
             haveItem.OnUse();
+            HideJournal();
         }
         else
         {
             noItem.OnUse();
+            HideJournal();
+        }
+    }
+
+    public void HideJournal()
+    {
+        var journalUI = FindObjectOfType<UnityUIQuestJournalUI>();
+            if (journalUI != null)
+        {
+            journalUI.Hide();
         }
     }
 }

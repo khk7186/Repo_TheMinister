@@ -58,7 +58,7 @@ public class PoliticFriendlyNotify : MonoBehaviour, IPointerClickHandler
     public void Hide()
     {
         animator.Play("Hide");
-        Destroy(gameObject);
+        Destroy(gameObject.transform.parent.gameObject);
     }
 
     public void OnPointerClick(PointerEventData eventData)
