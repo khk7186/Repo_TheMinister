@@ -315,7 +315,7 @@ public class Building : MonoBehaviour
         int outputAmount;
         if (shop != null)
         {
-            outputAmount = UnityEngine.Random.Range(1, shop.itemUIs.Count);
+            outputAmount = shop.itemUIs.Count;
         }
         else
         {
