@@ -12,7 +12,8 @@ public class PoliticPage : MonoBehaviour
 
     public void Show()
     {
-        rectTransform.DOAnchorPosX(originX, duration).OnComplete(()=> gameObject.SetActive(true));
+        gameObject.SetActive(true);
+        rectTransform.DOAnchorPosX(originX, duration);
         
     }
     public void Hide()
