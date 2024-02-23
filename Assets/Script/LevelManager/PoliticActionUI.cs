@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 
 public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
 {
+    public static PoliticActionUI Instance;
     public Animator animator;
     public GateHolderAnimationPlayer animPlayer;
     public GameObject MoneyDepartment;
@@ -15,7 +16,15 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
     public GameObject PopulationDepartment;
     private void Awake()
     {
-        FindObjectOfType<SaveAndLoadManager>().politicActionUI = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            FindObjectOfType<SaveAndLoadManager>().politicActionUI = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
     public void Show()
     {
