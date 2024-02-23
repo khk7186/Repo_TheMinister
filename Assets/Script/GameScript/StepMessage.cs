@@ -106,13 +106,21 @@ public class StepMessage : MonoBehaviour
 
     public static string AppointMessage(string QuestID, int Step)
     {
+        Step--;
         List<string> smessages = new List<string>();
         var target = StepMessage.AppointQuestMessages;
         if (target.ContainsKey(QuestID))
         {
             target.TryGetValue(QuestID, out smessages);
-            return smessages[Step];
+            var targetList = smessages;
+            targetList.Reverse();
+            return targetList[Step];
         }
+        else
+        {
         return null;
+
+
+        }
     }
 }
