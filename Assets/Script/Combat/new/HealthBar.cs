@@ -52,6 +52,7 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
+        if (followCharacter == null) Destroy(gameObject);
         var Position = followCharacter.position;
         Vector2 AP = WorldToCanvasPosition.GetCanvasPosition(canvas, MainCamera, Position);
         AP.y += 100;
