@@ -88,7 +88,8 @@ public class StepMessage : MonoBehaviour
         {"S-01-爱学习的歪果仁-a", new List<string>()
         {
             "正在交流写诗的心得。",
-            "正在纠正弥赛亚的发音。"
+            "正在纠正弥赛亚的发音。",
+            "正在教授弥赛亚大靖的礼仪。"
         } },
         {"S-01-解决纠纷-a", new List<string>()
         {
@@ -102,25 +103,49 @@ public class StepMessage : MonoBehaviour
             "正在挑选花朵。"
         } },
 
+
+
+
+    };
+    public static Dictionary<string, string> AppointSuccessQuestMessages = new Dictionary<string, string>
+    {
+        {"S-01-偷吃贡品-a", "发现偷吃贡品的窃贼。" },
+        {"S-01-医闹-a", "罗夫人的孩子吃下药后稍有好转。" },
+        {"S-01-抓贼-a", "最终未能找到贼人。" },
+        {"S-01-施粥-a", "孙小姐的施粥圆满成功。" },
+        {"S-01-爱学习的歪果仁-a", "弥赛亚对此次的交流很满意。" },
+        {"S-01-解决纠纷-a","混混供出了幕后主使。" },
+        {"S-01-采花-a" ,"阿花拿到花后十分高兴。"}
     };
 
     public static string AppointMessage(string QuestID, int Step)
     {
-        Step--;
-        List<string> smessages = new List<string>();
+        string succMessage;
+        List<string> stepMessages = new List<string>();
         var target = StepMessage.AppointQuestMessages;
-        if (target.ContainsKey(QuestID))
+        if (Step != 0)
         {
-            target.TryGetValue(QuestID, out smessages);
-            var targetList = smessages;
-            targetList.Reverse();
-            return targetList[Step];
+            if (target.ContainsKey(QuestID))
+            {
+                Step--;
+                target.TryGetValue(QuestID, out stepMessages);
+                var targetList = stepMessages;
+                targetList.Reverse();
+                return targetList[Step];
+            }
+            else
+            {
+                return null;
+
+            }
+
+
         }
         else
         {
-        return null;
-
-
+            var sucTarget = StepMessage.AppointSuccessQuestMessages;
+            sucTarget.TryGetValue(QuestID, out succMessage);
+            return succMessage;
         }
     }
 }
