@@ -154,7 +154,7 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
                     form = "贿赂任务/";
                     break;
                 case ("c"):
-                    form = "击杀任务/";
+                    form = "刺杀任务/";
                     break;
                 default:
                     break;
