@@ -135,13 +135,18 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
             {
                 //gameSave.TriggeredQuestGivers.Add
                 //    (CurrentQuestList.questGivers.Find(x => x.QuestID == questGiver.QuestID));
-                gameSave.TriggeredQuestGiverID.Add(questGiver.QuestID);
+                if (questGiver.Assign == false)
+                {
+                    gameSave.TriggeredQuestGiverID.Add(questGiver.QuestID);
+                }
             }
             else
             {
                 //gameSave.UntriggeredQuestGivers.Add
-                //    (CurrentQuestList.questGivers.Find(x => x.QuestID == questGiver.QuestID));
-                gameSave.UntriggeredQuestGiverID.Add(questGiver.QuestID);
+                //    (CurrentQuestList.questGivers.Find(x => x.QuestID == questGiver.QuestID));if (questGiver.Assign == false)
+                {
+                    gameSave.UntriggeredQuestGiverID.Add(questGiver.QuestID);
+                }
             }
             gameSave.questChainStateWrapper = subQuestDB.CURRENT;
         }
