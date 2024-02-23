@@ -81,7 +81,7 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
         {
             this.Frame.sprite = recoveryFrame;
         }
-        else
+        else if (TrackerType == "quest")
         {
             this.Frame.sprite = questFrame;
         }
@@ -93,7 +93,6 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
             smallViewImage.color = Color.green;
         }
     }
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         Manager.PopUpTracker(this);

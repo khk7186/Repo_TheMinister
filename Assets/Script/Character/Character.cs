@@ -751,7 +751,7 @@ public class Character : MonoBehaviour, IRound
             else if (loyalty <= 0) TryDeath();
         }
     }
-    public void Away(int rounds, SpawnAfterAwayGuest spawnAfterAway = null)
+    public void Away(int rounds, SpawnAfterAwayGuest spawnAfterAway = null, string questID = "")
     {
         hireStage = HireStage.Away;
         OnDutyState[OndutyType.Combat] = false;
@@ -764,7 +764,7 @@ public class Character : MonoBehaviour, IRound
             this.spawnAfterAway = spawnAfterAway;
             //e.AddListener(() => Instantiate(spawnAfterAway.gameObject));
         }
-        characterAwaitTribute = CharacterAwaitTributeManager.Instance.AddTribute(this, rounds, spawnAfterAway == null);
+        characterAwaitTribute = CharacterAwaitTributeManager.Instance.AddTribute(this, rounds, spawnAfterAway == null, questID);
     }
     public void AwayForAssassin()
     {

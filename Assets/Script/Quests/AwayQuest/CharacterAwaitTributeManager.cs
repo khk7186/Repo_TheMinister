@@ -26,16 +26,24 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
     {
         Dice.Instance.RegisterObserver(this);
     }
-    public CharacterAwaitTribute AddTribute(Character character, int WaitTime, bool auto)
+    public CharacterAwaitTribute AddTribute(Character character, int WaitTime, bool auto, string questID = "")
     {
         var tribute = Instantiate(awaitTributePrefab, transform);
         tribute.gameObject.SetActive(true);
         tribute.character = character;
         tribute.WaitTime = WaitTime;
-        UnfinishedTributes.Add(tribute);
+        UnfinishedTributes.Add(tribute); 
+        tribute.QuestID = questID;
         if (character.OnAssassinEvent == false)
         {
-            GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "任务信息系统", WaitTime, auto);
+            if (questID != "")
+            {
+                GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, StepMessage.AppointMessage(questID, WaitTime), WaitTime, auto);
+            }
+            else
+            {
+                GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "任务信息系统", WaitTime, auto);
+            }
         }
         else
         {

@@ -28,7 +28,7 @@ public class GeneralTrackingViewManager : MonoBehaviour, IPointerExitHandler
                     character.Back();
                     return null;
                 }
-                view.Setup(trackerName, message, turnLeft, "recovery");
+                view.Setup(trackerName, message, turnLeft,string.Empty);
                 return view;
             }
         }
@@ -38,6 +38,10 @@ public class GeneralTrackingViewManager : MonoBehaviour, IPointerExitHandler
         if (character.OnAssassinEvent)
         {
             clone.Setup(trackerName, message, turnLeft, "assassin");
+        }
+        else if (character.awayMessage == "recovery")
+        {
+            clone.Setup(trackerName, message, turnLeft, "recovery");
         }
         else
         {

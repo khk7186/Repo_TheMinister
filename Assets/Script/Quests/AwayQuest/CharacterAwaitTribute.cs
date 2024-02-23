@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class CharacterAwaitTribute : MonoBehaviour
 {
     public Character character;
+    public string QuestID = "";
     public int WaitTime;
     public int AlreadyWait = 0;
     public UnityEvent @event;
@@ -42,7 +43,7 @@ public class CharacterAwaitTribute : MonoBehaviour
                     //{
                     //    GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "destroy", 0, true);
                     //}
-                    GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "destroy", 0, false);
+                    GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, StepMessage.AppointMessage(QuestID, WaitTime - AlreadyWait), 0, false);
                 }
                 destroyNext = true;
             }
@@ -55,7 +56,7 @@ public class CharacterAwaitTribute : MonoBehaviour
             }
             else
             {
-                GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "∂Ã–≈œµÕ≥", WaitTime - AlreadyWait, false);
+                GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, StepMessage.AppointMessage(QuestID, WaitTime - AlreadyWait), 0, false);
             }
         }
     }
