@@ -162,7 +162,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         subQuestDB.CURRENT = gameSave.questChainStateWrapper;
         var originInactive = subQuestDB.QUEST_GIVER_BY_ORDER[gameSave.chapter].questGivers.Where(x => gameSave.InactiveQuestGiverID.Contains(x.QuestID));
         ChapterCounter.Instance.Chapter = gameSave.chapter;
-
+        InactiveQuestGivers = new List<QuestGiverAI>(originInactive);
         foreach (var id in gameSave.UntriggeredQuestGiverID)
         {
             var origin = InactiveQuestGivers.Find(x => x.QuestID == id);
