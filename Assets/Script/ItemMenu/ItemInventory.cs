@@ -29,8 +29,8 @@ public class ItemInventory : MonoBehaviour
         ////    AddItem(item);
         ////    AddItem(item);
         ////    AddItem(item);
-         AddItem(ItemName.弹劾文书);
-         AddItem(ItemName.金锭);
+        //AddItem(ItemName.弹劾文书);
+        //AddItem(ItemName.金锭);
     }
     public void Reset()
     {
