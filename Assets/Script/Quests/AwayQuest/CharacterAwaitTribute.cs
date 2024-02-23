@@ -33,6 +33,10 @@ public class CharacterAwaitTribute : MonoBehaviour
                     if (targetEvent.result == false) message = StepMessage.AssassinFailStepMessage();
                     GeneralTrackingViewManager.Instance.PushTracker(character, character.AssasinTarget, message, 0, false);
                 }
+                else if (character.awayMessage == "recovery")
+                {
+                    GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, string.Empty, 0, true);
+                }
                 else
                 {
                     if (@event != null)
