@@ -197,6 +197,7 @@ public class HotelUI : MonoBehaviour, ICharacterSelect
         character.health += 2;
         character.awayMessage = "hotel";
         character.Away(1);
+        character.awayMessage = "recovery";
     }
 
     public void RegisterRoom(int index)

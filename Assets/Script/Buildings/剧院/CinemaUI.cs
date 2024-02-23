@@ -56,6 +56,7 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
                 message += character.CharacterName;
                 UpgradeCharacter(character);
                 character.Away(1);
+                character.awayMessage = "recovery";
             }
             var alert = Instantiate<Text>(Resources.Load<Text>("Hiring/Message"), MainCanvas.FindMainCanvas());
             alert.text = message + "将在一天后回归并提升忠诚度";
