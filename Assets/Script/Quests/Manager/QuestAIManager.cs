@@ -144,6 +144,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
             {
                 //gameSave.UntriggeredQuestGivers.Add
                 //    (CurrentQuestList.questGivers.Find(x => x.QuestID == questGiver.QuestID));if (questGiver.Assign == false)
+                if (questGiver.Assign == false)
                 {
                     gameSave.UntriggeredQuestGiverID.Add(questGiver.QuestID);
                 }
