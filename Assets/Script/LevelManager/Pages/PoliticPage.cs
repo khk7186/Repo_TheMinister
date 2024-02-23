@@ -6,7 +6,7 @@ using DG.Tweening;
 public class PoliticPage : MonoBehaviour
 {
     RectTransform rectTransform => GetComponent<RectTransform>();
-    float originX = 31f;
+    float originX = 0f;
     float zeroX = 210f;
     float duration = 0.2f;
 
