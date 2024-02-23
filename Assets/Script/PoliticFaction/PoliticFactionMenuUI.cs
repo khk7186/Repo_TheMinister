@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PoliticFactionMenuUI : MonoBehaviour,IPointerClickHandler
+public class PoliticFactionMenuUI : MonoBehaviour, IPointerClickHandler
 {
     public static PoliticFactionSelectionUI CurrentOnSelect = null;
     public List<PoliticFaction> FactionList = null;
@@ -40,8 +40,16 @@ public class PoliticFactionMenuUI : MonoBehaviour,IPointerClickHandler
         foreach (var faction in factionList)
         {
             var clone = Instantiate(SelectionPref, selectionHolder);
-            clone.Setup(faction);
-            clone.OnSelectAction.AddListener(OnSelect);
+            if (faction.factionType == FactionType.¿Óµ≥)
+            {
+                clone.SetupPlayer(faction);
+                clone.OnSelectAction.AddListener(OnSelect);
+            }
+            else
+            {
+                clone.Setup(faction);
+                clone.OnSelectAction.AddListener(OnSelect);
+            }
         }
         StartCoroutine(BuildLayout());
         FindObjectOfType<PoliticFactionInfoUI>().gameObject.SetActive(false);
