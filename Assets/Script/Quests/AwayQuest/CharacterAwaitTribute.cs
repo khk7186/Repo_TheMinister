@@ -28,6 +28,7 @@ public class CharacterAwaitTribute : MonoBehaviour
                 if (character.OnAssassinEvent == true)
                 {
                     string message = StepMessage.AssassinCompleteStepMessage();
+                    Debug.Log("PoliticSystemManager instance = " + PoliticSystemManager.Instance == null);
                     var targetEvent = PoliticSystemManager.FindEventByAssassin(character);
                     targetEvent.GetResult();
                     if (targetEvent.result == false) message = StepMessage.AssassinFailStepMessage();
