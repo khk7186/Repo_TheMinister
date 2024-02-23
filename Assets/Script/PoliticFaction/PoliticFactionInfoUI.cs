@@ -16,6 +16,7 @@ public class PoliticFactionInfoUI : MonoBehaviour, IPointerClickHandler
     public Text CharacterName = null;
     public Text Level = null;
     public Text CharacterStory = null;
+    public Transform FriendlyHolder = null;
     public Image FriendlyLevel = null;
     public Text FriendlyLevelText = null;
     private void Awake()
@@ -34,10 +35,21 @@ public class PoliticFactionInfoUI : MonoBehaviour, IPointerClickHandler
         factionType = politicFaction.factionType;
         JobTittle.text = politicFaction.factionJobTitle;
         CharacterName.text = politicFaction.factionName;
-        Level.text = politicFaction.level.ToString();
+        
         CharacterStory.text = politicFaction.factionStory;
-        FriendlyLevel.fillAmount = (float)politicFaction.friendly / 100;
-        FriendlyLevelText.text = $"{politicFaction.friendly}/100";
+
+        if (politicFaction.factionType == FactionType.¿Óµ≥)
+        {
+            FriendlyHolder.gameObject.SetActive(false);
+            Level.text = LevelManager.Instance.level.ToString();
+        }
+        else
+        {
+            Level.text = politicFaction.level.ToString();
+            FriendlyHolder.gameObject.SetActive(true);
+            FriendlyLevel.fillAmount = (float)politicFaction.friendly / 100;
+            FriendlyLevelText.text = $"{politicFaction.friendly}/100";
+        }
     }
     public void SetMessage(PoliticFaction politicFaction)
     {

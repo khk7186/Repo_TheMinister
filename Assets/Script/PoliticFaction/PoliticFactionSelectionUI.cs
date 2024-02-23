@@ -76,6 +76,15 @@ public class PoliticFactionSelectionUI : MonoBehaviour, IPointerClickHandler, IP
         this.politicFaction = faction;
         //OriginX = GetComponent<RectTransform>().anchoredPosition.x;
         FactionName.text = MakeVertical(faction.factionType.ToString());
+
+    }
+    public void SetupPlayer(PoliticFaction faction)
+    {
+        SetIdel(faction.factionType);
+        level.text = $"<size=5>ÊÆÁ¦</size>{LevelManager.Instance.level}";
+        this.politicFaction = faction;
+        //OriginX = GetComponent<RectTransform>().anchoredPosition.x;
+        FactionName.text = MakeVertical(faction.factionType.ToString());
     }
     public void SetIdel(FactionType factionType)
     {
