@@ -28,6 +28,10 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
     public bool NoAction = false;
     public UnityEvent unityEvent = new UnityEvent();
     public PoliticAssassinEvent assassinEvent = null;
+    public Sprite recoveryFrame = null;
+    public Sprite assassinFrame = null;
+    public Sprite questFrame = null;
+    public Sprite EndFrame = null;
     public void SetFinish()
     {
         Finish = true;
@@ -64,11 +68,23 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
         smallViewImage.color = Color.red;
         Show();
     }
-    public void Setup(string trackerName, string message, int timeLeft)
+    public void Setup(string trackerName, string message, int timeLeft, string TrackerType)
     {
         this.trackerName = trackerName;
         this.message = message;
         this.timeLeft = timeLeft;
+        if (TrackerType == "assassin")
+        {
+            this.Frame.sprite = assassinFrame;
+        }
+        else if (TrackerType == "recovery")
+        {
+            this.Frame.sprite = recoveryFrame;
+        }
+        else
+        {
+            this.Frame.sprite = questFrame;
+        }
         InfoPage.Setup(characterName, message, timeLeft);
         roundLeft.text = timeLeft.ToString();
         if (timeLeft == 0 && NoAction == false)

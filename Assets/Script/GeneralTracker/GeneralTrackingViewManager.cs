@@ -28,14 +28,21 @@ public class GeneralTrackingViewManager : MonoBehaviour, IPointerExitHandler
                     character.Back();
                     return null;
                 }
-                view.Setup(trackerName, message, turnLeft);
+                view.Setup(trackerName, message, turnLeft, "recovery");
                 return view;
             }
         }
         var clone = Instantiate(trackingView, viewHolder);
         clone.Manager = this;
         clone.OnSpawn(character, auto);
-        clone.Setup(trackerName, message, turnLeft);
+        if (character.OnAssassinEvent)
+        {
+            clone.Setup(trackerName, message, turnLeft, "assassin");
+        }
+        else
+        {
+            clone.Setup(trackerName, message, turnLeft, "quest");
+        }
         trackingViews.Add(clone);
         return clone;
     }
