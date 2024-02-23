@@ -166,7 +166,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         foreach (var id in gameSave.UntriggeredQuestGiverID)
         {
             var origin = InactiveQuestGivers.Find(x => x.QuestID == id);
-            if (origin.QuestSpawnPref == null)
+            if (origin == null || origin.QuestSpawnPref == null)
             {
                 Debug.Log(id);
             }
