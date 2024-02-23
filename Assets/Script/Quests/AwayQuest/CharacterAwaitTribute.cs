@@ -35,7 +35,7 @@ public class CharacterAwaitTribute : MonoBehaviour
                 }
                 else if (character.awayMessage == "recovery")
                 {
-                    GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, string.Empty, 0, true);
+                    GeneralTrackingViewManager.Instance.PushTracker(character, character.CharacterName, "destroy", 0, true);
                 }
                 else
                 {
