@@ -59,4 +59,60 @@ public class StepMessage : MonoBehaviour
     {
         return AssassinFailMessages[Random.Range(0, AssassinFailMessages.Length - 1)];
     }
+
+    public static Dictionary<string, List<string>> AppointQuestMessages = new Dictionary<string, List<string>>
+    {
+        {"S-01-偷吃贡品-a", new List<string>()
+        {
+            "正在前往白云寺。",
+            "正在布下诱饵。",
+            "正在布下诱饵。"
+        } },
+        {"S-01-医闹-a", new List<string>()
+        {
+            "正在前往罗夫人家中。",
+            "正在为罗夫人孩子把脉诊断。",
+            "正在考虑药方。"
+        } },
+        {"S-01-抓贼-a", new List<string>()
+        {
+            "正在围追盗贼。",
+            "正在搀扶黄东。"
+        } },
+        {"S-01-施粥-a", new List<string>()
+        {
+            "正在帮助孙大小姐分发白粥。",
+            "正在赶走前来闹事的流民。",
+            "正在帮忙收摊。"
+        } },
+        {"S-01-爱学习的歪果仁-a", new List<string>()
+        {
+            "正在交流写诗的心得。",
+            "正在纠正弥赛亚的发音。"
+        } },
+        {"S-01-解决纠纷-a", new List<string>()
+        {
+            "正在赶往王伟家中。",
+            "正在抓捕围住王伟家的混混。",
+            "正在与审问混混。"
+        } },
+        {"S-01-采花-a", new List<string>()
+        {
+            "正在前往城郊。",
+            "正在挑选花朵。"
+        } },
+
+    };
+
+    public static string AppointMessage(string QuestID, int Step)
+    {
+        List<string> smessages = new List<string>();
+        var target = StepMessage.AppointQuestMessages;
+        if (target.ContainsKey(QuestID))
+        {
+            target.TryGetValue(QuestID, out smessages);
+            return smessages[Step];
+        }
+        return null;
+    }
 }
