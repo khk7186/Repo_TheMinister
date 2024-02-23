@@ -37,7 +37,7 @@ public class PoliticBribePage : PoliticPage
             int bribePrice = gateHolder.BribePrice;
             if (gateHolder.ImpeachTime > 0)
             {
-                bribePrice = bribePrice / gateHolder.ImpeachTime * PoliticCharacter.ImpeachPriceMultiplier;
+                bribePrice = bribePrice / (gateHolder.ImpeachTime * PoliticCharacter.ImpeachPriceMultiplier);
             }
             SetDifficulty(bribePrice);
             ResetBribeMoney();
@@ -106,7 +106,7 @@ public class PoliticBribePage : PoliticPage
         int bribePrice = slot.GateHolder.BribePrice;
         if (slot.GateHolder.ImpeachTime > 0)
         {
-            bribePrice = bribePrice / slot.GateHolder.ImpeachTime * PoliticCharacter.ImpeachPriceMultiplier;
+            bribePrice = bribePrice / (slot.GateHolder.ImpeachTime * PoliticCharacter.ImpeachPriceMultiplier);
         }
         if (slot.GateHolder.BribeAlreadySpent >= bribePrice)
         {
