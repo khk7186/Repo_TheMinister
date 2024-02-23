@@ -25,6 +25,17 @@ public class PoliticPopup : MonoBehaviour
         gameObject.SetActive(true);
         animator.Play("Show");
     }
+    public void ShowAssassinOnly()
+    {
+        AssassinButton.gameObject.SetActive(true);
+        BribeButton.gameObject.SetActive(false);
+        ImpeachButton.gameObject.SetActive(false);
+        AppointButton.gameObject.SetActive(false);
+        RequestButton.gameObject.SetActive(false);
+        GiveButton.gameObject.SetActive(false);
+        gameObject.SetActive(true);
+        animator.Play("Show");
+    }
     public void HidePopup()
     {
         animator.Play("Hide");

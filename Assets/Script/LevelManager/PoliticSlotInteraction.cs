@@ -1,3 +1,4 @@
+using Spine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -47,8 +48,10 @@ public class PoliticSlotInteraction : MonoBehaviour, IPointerEnterHandler, IPoin
         var interactable = InteractableCheck();
         if (interactable == false)
         {
+            politicPopup.ShowAssassinOnly();
             return;
         }
+        politicPopup.Setup(politicSlot);
         politicSlot.Frame.sprite = politicSlot.HighlightFrame;
 
         politicPopup.ShowPopup();
@@ -61,6 +64,7 @@ public class PoliticSlotInteraction : MonoBehaviour, IPointerEnterHandler, IPoin
         {
             return;
         }
+
         SetFrame();
         politicPopup.HidePopup();
     }
