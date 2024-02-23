@@ -118,6 +118,10 @@ public class PoliticBribePage : PoliticPage
         {
             SetBribed();
             slot.GetComponent<PoliticSlotInteraction>().politicPopup.Setup(slot);
+            foreach (var slot in FindObjectsOfType<PoliticSlot>())
+            {
+                slot.SetupLineSprites();
+            }
         }
         ResetBribeMoney();
     }

@@ -134,6 +134,10 @@ public class PoliticAppointPage : PoliticPage, IPoliticSelectionAction
         target.hireStage = HireStage.OnCourt;
         target.transform.parent = slot.transform;
         slot.GetComponent<PoliticSlotInteraction>().politicPopup.Setup(slot);
+        foreach (var slot in FindObjectsOfType<PoliticSlot>())
+        {
+            slot.SetupLineSprites();
+        }
         //TODO: Show Message
         slot.TrySpecialEffect();
         LevelManager.UpdateLevel();
