@@ -11,17 +11,6 @@ public class GeneralTrackingViewManager : MonoBehaviour, IPointerExitHandler
     public List<GeneralTrackingView> trackingViews = new List<GeneralTrackingView>();
     public Transform viewHolder = null;
     public GeneralTrackingView trackingView = null;
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
-    }
     private void Start()
     {
         Reset();
