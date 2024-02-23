@@ -60,10 +60,6 @@ public class PoliticSlotInteraction : MonoBehaviour, IPointerEnterHandler, IPoin
     public void OnPointerExit(PointerEventData eventData)
     {
         var interactable = InteractableCheck();
-        if (interactable == false)
-        {
-            return;
-        }
 
         SetFrame();
         politicPopup.HidePopup();

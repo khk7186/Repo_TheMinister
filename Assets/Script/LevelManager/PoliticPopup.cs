@@ -27,7 +27,6 @@ public class PoliticPopup : MonoBehaviour
     }
     public void ShowAssassinOnly()
     {
-        AssassinButton.gameObject.SetActive(true);
         BribeButton.gameObject.SetActive(false);
         ImpeachButton.gameObject.SetActive(false);
         AppointButton.gameObject.SetActive(false);
