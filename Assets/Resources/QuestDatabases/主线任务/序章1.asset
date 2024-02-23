@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7934790338529528056
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05643b85c87be547af5871e9bf6e10a, type: 3}
+  m_Name: InstantiatePrefabQuestAction
+  m_EditorClassIdentifier: 
+  m_prefab: {fileID: 1985287479014128839, guid: fbeba47a76f31404bb501d93459fb88a, type: 3}
+  m_locationTransform:
+    m_text: 
+    m_stringAsset: {fileID: 0}
+    m_textTable: {fileID: 0}
+    m_textTableFieldID: 0
+  m_useOriginalName: 0
 --- !u!114 &-7607358930584406925
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -176,25 +195,6 @@ MonoBehaviour:
     m_textTable: {fileID: 0}
     m_textTableFieldID: 0
   m_headingLevel: 1
---- !u!114 &-1415217092365479811
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f05643b85c87be547af5871e9bf6e10a, type: 3}
-  m_Name: InstantiatePrefabQuestAction
-  m_EditorClassIdentifier: 
-  m_prefab: {fileID: 1985287479014128839, guid: fbeba47a76f31404bb501d93459fb88a, type: 3}
-  m_locationTransform:
-    m_text: 
-    m_stringAsset: {fileID: 0}
-    m_textTable: {fileID: 0}
-    m_textTableFieldID: 0
-  m_useOriginalName: 0
 --- !u!114 &-1344281951601941928
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_contentID: -1
   m_bodyText:
-    m_text: "\u4E00\u6279\u5B98\u94F6\u5728\u9001\u5F80\u5185\u5E93\u65F6\u4E0D\u7FFC\u800C\u98DE\uFF0C\u73B0\u573A\u5E76\u672A\u53D1\u73B0\u660E\u663E\u7684\u75D5\u8FF9\uFF0C\u8BF7\u6D3E\u51FA\u968F\u4ECE\u518D\u8FDB\u884C\u4E00\u6B21\u73B0\u573A\u52D8\u67E5\uFF0C\u627E\u51FA\u6709\u7528\u7684\u7EBF\u7D22\u3002"
+    m_text: "\u4E00\u6279\u5B98\u94F6\u5728\u9001\u5F80\u5185\u5E93\u65F6\u4E0D\u7FFC\u800C\u98DE\uFF0C\u73B0\u573A\u5E76\u672A\u53D1\u73B0\u660E\u663E\u7684\u75D5\u8FF9\uFF0C\u8BF7\u6D3E\u51FA\u968F\u4ECE\u518D\u8FDB\u884C\u4E00\u6B21\u73B0\u573A\u52D8\u67E5\uFF0C\u627E\u51FA\u6709\u7528\u7684\u7EBF\u7D22\u3002\n"
     m_stringAsset: {fileID: 0}
     m_textTable: {fileID: 0}
     m_textTableFieldID: 0
@@ -584,7 +584,8 @@ MonoBehaviour:
       - m_contentList: []
       - m_contentList: []
       - m_contentList: []
-    - m_actionList: []
+    - m_actionList:
+      - {fileID: -7934790338529528056}
       m_categorizedContentList:
       - m_contentList: []
       - m_contentList:
@@ -592,7 +593,6 @@ MonoBehaviour:
         - {fileID: -1344281951601941928}
         - {fileID: 426636607348346296}
         - {fileID: -3530845516284459536}
-        - {fileID: 5704817131180437931}
       - m_contentList: []
     - m_actionList:
       - {fileID: 2099253496767741633}
@@ -647,7 +647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_contentID: -1
   m_bodyText:
-    m_text: "\u7F6A\u72AF\u660E\u663E\u505A\u8DB3\u4E86\u51C6\u5907\uFF0C\u73B0\u573A\u5E76\u6CA1\u6709\u53D1\u73B0\u660E\u663E\u7684\u4EBA\u4E3A\u75D5\u8FF9\uFF0C\u53EA\u627E\u5230\u4E86\u5C11\u91CF\u7684\u94C5\u7C89\u3002"
+    m_text: "\u7F6A\u72AF\u660E\u663E\u505A\u8DB3\u4E86\u51C6\u5907\uFF0C\u73B0\u573A\u5E76\u6CA1\u6709\u53D1\u73B0\u660E\u663E\u7684\u4EBA\u4E3A\u75D5\u8FF9\uFF0C\u53EA\u627E\u5230\u4E86\u5C11\u91CF\u7684\u94C5\u7C89\u3002\n"
     m_stringAsset: {fileID: 0}
     m_textTable: {fileID: 0}
     m_textTableFieldID: 0
@@ -742,33 +742,6 @@ MonoBehaviour:
     m_stringAsset: {fileID: 0}
     m_textTable: {fileID: 0}
     m_textTableFieldID: 0
---- !u!114 &5704817131180437931
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 005ad42cc1945d043becd6daacec5a25, type: 3}
-  m_Name: ButtonQuestContent
-  m_EditorClassIdentifier: 
-  m_contentID: -1
-  m_image: {fileID: 21300000, guid: 4aa7d0ab3d17a5445b4060bdc6fdaf63, type: 3}
-  m_color: {r: 1, g: 1, b: 1, a: 1}
-  m_caption:
-    m_text: 
-    m_stringAsset: {fileID: 0}
-    m_textTable: {fileID: 0}
-    m_textTableFieldID: 0
-  m_count: 0
-  m_imageNameProxy: "\u5956\u52B1"
-  m_groupNumber: -1
-  m_actionList:
-  - {fileID: -1415217092365479811}
-  m_actionsProxy:
-    actions: []
 --- !u!114 &7144759924306341970
 MonoBehaviour:
   m_ObjectHideFlags: 1
