@@ -77,6 +77,7 @@ namespace SaveSystem
             gameEventManager.Reset();
             playerCharacterInventory.Clear();
             characterAwaitTributeManager.Reset();
+            GeneralTrackingViewManager.Instance.Reset();
             politicActionUI.Reset();
             questionAIManager.Reset();
             map.ReloadPlayer();
@@ -108,7 +109,7 @@ namespace SaveSystem
             playerQuestJournal = player.GetComponent<QuestJournal>();
             GameSaveDatabase.currentGameSave = save;
             LoadEvent.Load(this, GameSaveDatabase.currentGameSave);
-            
+
         }
         public static void SetGameLoadMode(GameSave save)
         {
