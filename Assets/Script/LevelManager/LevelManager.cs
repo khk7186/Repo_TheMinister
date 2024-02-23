@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void Start()
+    public void OnEnable()
     {
         UpdateLevel();
     }
@@ -40,6 +40,7 @@ public class LevelManager : MonoBehaviour
                 Instance.ApplyExp(slot.exp);
             }
         }
+        Instance.ApplyExp(Instance.ExtraExp);
         //if (Instance.level < Instance.expPerLevel.Count)
         //{
         //    FindObjectOfType<PoliticLevelView>().SetView(Instance.level, Instance.exp / Instance.expPerLevel[Instance.level + 1]);
