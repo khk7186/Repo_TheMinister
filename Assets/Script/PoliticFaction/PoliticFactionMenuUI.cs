@@ -16,18 +16,14 @@ public class PoliticFactionMenuUI : MonoBehaviour, IPointerClickHandler
     public HorizontalLayoutGroup horizontalLayoutGroup = null;
     public float AnimationSpeed = 0.2f;
     private RectTransform rect => GetComponent<RectTransform>();
-    private void OnEnable()
-    {
-        FactionList = SOPoliticFaction.politicFactions;
-        Setup(FactionList);
-        //horizontalLayoutGroup.enabled = false;
-    }
     public void Reset()
     {
         TransformEx.Clear(selectionHolder);
     }
     public void Show()
     {
+        FactionList = SOPoliticFaction.politicFactions;
+        Setup(FactionList);
         rect.DOAnchorPosY(0, AnimationSpeed);
     }
     public void Hide()

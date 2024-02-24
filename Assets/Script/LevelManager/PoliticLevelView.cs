@@ -10,7 +10,7 @@ public class PoliticLevelView : MonoBehaviour
 
     private void OnEnable()
     {
-        SetView(LevelManager.Instance.level, (float)LevelManager.Instance.exp / LevelManager.Instance.expPerLevel[LevelManager.Instance.level]);
+        SetView(LevelManager.Instance.level, (float)LevelManager.Instance.exp / LevelManager.Instance.expPerLevel[LevelManager.Instance.level]);    
     }
     public void SetView(int Level, float expPercentage)
     {

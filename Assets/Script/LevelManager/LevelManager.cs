@@ -22,9 +22,6 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    public void Start()
-    {
         UpdateLevel();
     }
     public static void UpdateLevel()
