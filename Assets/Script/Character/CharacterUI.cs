@@ -5,7 +5,6 @@ using UnityEngine.UI;
 using System;
 using UnityEngine.EventSystems;
 using System.Linq;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 
 public class CharacterUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
