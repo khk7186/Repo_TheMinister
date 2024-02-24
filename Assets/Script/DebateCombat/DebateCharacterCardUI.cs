@@ -66,7 +66,7 @@ public class DebateCharacterCardUI : MonoBehaviour, IPointerClickHandler
         {
             Image tagUI = Instantiate(Resources.Load<Image>("Tag/Tag"));
             tagUI.transform.SetParent(tagPannel, false);
-            tagUI.sprite = Resources.Load<Sprite>($"Art/Tags/{tag.ToString()}");
+            tagUI.GetComponentInChildren<TagWithDescribetion>().Setup(tag);
         }
     }
     public void ModifyCharacterStats()
