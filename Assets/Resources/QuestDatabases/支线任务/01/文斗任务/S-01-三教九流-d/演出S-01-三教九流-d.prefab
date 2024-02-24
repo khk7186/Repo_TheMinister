@@ -95,8 +95,6 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: -386704373821619012, guid: b42aa873fded71c4d8b65ff09852d644, type: 2}
     value: {fileID: 3568517064324273187}
-  - key: {fileID: 8160146661398022914, guid: b42aa873fded71c4d8b65ff09852d644, type: 2}
-    value: {fileID: 2622800959133088859}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &4179570714198729705
@@ -159,9 +157,106 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca2a3ed41ca564d4a9af40db4697a225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goToActive: []
+  goToActive:
+  - {fileID: 5048815207398413662}
+  - {fileID: 6361641554358828054}
   stopPlayer: 1
   stayblock: 33
+--- !u!1 &5048815207398413662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 560414197515073259}
+  - component: {fileID: 2241449204895704680}
+  m_Layer: 0
+  m_Name: timeline2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &560414197515073259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5048815207398413662}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.09643692, y: -0.37505203, z: -0.14134574}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8425539584827597738}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!320 &2241449204895704680
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5048815207398413662}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 11400000, guid: cda2998bb4bb9fa40905a21eed1fe0c6, type: 2}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings:
+  - key: {fileID: 8080945380220676552, guid: cda2998bb4bb9fa40905a21eed1fe0c6, type: 2}
+    value: {fileID: 2622800959133088859}
+  m_ExposedReferences:
+    m_References: []
+--- !u!1 &6361641554358828054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2800105844654340619}
+  - component: {fileID: 5500595944679019151}
+  m_Layer: 0
+  m_Name: Endplay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2800105844654340619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6361641554358828054}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.09643692, y: -0.37505203, z: -0.14134574}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8425539584827597738}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5500595944679019151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6361641554358828054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f448dbb31e4f5194a83bac3567c1f478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MarkOnEnable: 1
+  questGiverAI: {fileID: 2678388001806939094}
 --- !u!1 &6448762369751526093
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,6 +359,8 @@ Transform:
   - {fileID: 3296727236972551057}
   - {fileID: 965930964710861460}
   - {fileID: 2374475222401687166}
+  - {fileID: 2800105844654340619}
+  - {fileID: 560414197515073259}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -287,6 +384,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8425539584827597738}
     m_Modifications:
+    - target: {fileID: 656854644282230630, guid: 3662fbf807ff37b408690e4817bb9cbe, type: 3}
+      propertyPath: _objectsToActive.Array.data[0]
+      value: 
+      objectReference: {fileID: 3186636111130834307}
+    - target: {fileID: 3409824698579618184, guid: 3662fbf807ff37b408690e4817bb9cbe, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3409824699082121989, guid: 3662fbf807ff37b408690e4817bb9cbe, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4981306858229791323, guid: 3662fbf807ff37b408690e4817bb9cbe, type: 3}
       propertyPath: m_RootOrder
       value: 3
