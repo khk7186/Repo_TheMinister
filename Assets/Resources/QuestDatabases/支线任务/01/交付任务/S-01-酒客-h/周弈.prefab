@@ -1087,7 +1087,7 @@ MonoBehaviour:
   trigger: 2
   condition:
     luaConditions:
-    - Variable["tryHandIn"] == true
+    - Variable["Assign"] == true
     questConditions: []
     acceptedTags: []
     acceptedGameObjects: []
@@ -1137,9 +1137,21 @@ MonoBehaviour:
   onExecute:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7029228443377415378}
-        m_TargetAssemblyTypeName: ItemRequstAction, Assembly-CSharp
-        m_MethodName: HandInAction
+      - m_Target: {fileID: 36357328868516240}
+        m_TargetAssemblyTypeName: QuestGiverAI, Assembly-CSharp
+        m_MethodName: AssignTrue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6747035665546225057, guid: bbd57561e3708cb42a2156f7f02abfbc, type: 3}
+        m_TargetAssemblyTypeName: GiveQuestOnActive, Assembly-CSharp
+        m_MethodName: Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
