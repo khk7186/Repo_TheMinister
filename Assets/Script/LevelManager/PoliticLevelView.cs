@@ -8,6 +8,10 @@ public class PoliticLevelView : MonoBehaviour
     public Image fillImage;
     public Text LevelText;
 
+    private void OnEnable()
+    {
+        LevelManager.UpdateLevel();
+    }
     public void SetView(int Level, float expPercentage)
     {
         LevelText.text = "<size=15>ÊÆÁ¦</size>" + Level.ToString();
