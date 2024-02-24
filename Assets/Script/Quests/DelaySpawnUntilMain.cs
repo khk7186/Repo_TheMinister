@@ -17,5 +17,6 @@ public class DelaySpawnUntilMain : MonoBehaviour
         {
             Instantiate(item);
         }
+        yield return null;
     }
 }
