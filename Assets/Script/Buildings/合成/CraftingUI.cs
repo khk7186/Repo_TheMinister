@@ -21,6 +21,7 @@ public class CraftingUI : MonoBehaviour
     {
         this.CraftingList = CraftingList;
         ItemName first = ItemName.Null;
+        TransformEx.Clear(CraftingListTransform);
         foreach (ItemName item in CraftingList)
         {
             if (first == ItemName.Null) first = item;
