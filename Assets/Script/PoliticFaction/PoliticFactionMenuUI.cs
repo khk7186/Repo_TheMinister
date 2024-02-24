@@ -16,7 +16,7 @@ public class PoliticFactionMenuUI : MonoBehaviour, IPointerClickHandler
     public HorizontalLayoutGroup horizontalLayoutGroup = null;
     public float AnimationSpeed = 0.2f;
     private RectTransform rect => GetComponent<RectTransform>();
-    private void Start()
+    private void OnEnable()
     {
         FactionList = SOPoliticFaction.politicFactions;
         Setup(FactionList);
