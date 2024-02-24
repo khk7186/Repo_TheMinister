@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void OnEnable()
+    public void Start()
     {
         UpdateLevel();
     }
@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
     {
         var politicSlots = FindObjectsOfType<PoliticSlot>();
         int unlockCount = 0;
+        
         foreach (var slot in politicSlots)
         {
             if (slot.unlocked)
