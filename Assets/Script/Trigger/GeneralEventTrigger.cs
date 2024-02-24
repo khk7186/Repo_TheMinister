@@ -19,6 +19,7 @@ public class GeneralEventTrigger : MonoBehaviour
     public int moneyPunishment = -100;
     public int pressurePunishment = 10;
     public List<ItemName> itemRewards = new List<ItemName>();
+    public List<string> itemNames = new List<string>();
     public List<Character> playerCharacters = new List<Character>();
     public List<Character> enemyCharacters = new List<Character>();
     // {CharacterUnit, Cards}
@@ -80,8 +81,13 @@ public class GeneralEventTrigger : MonoBehaviour
                 StartCoroutine(JumpToScene(scene));
                 currencyInventory.MoneyAdd(moneyRewards);
                 PressureEventHandler.OnPressureChange(pressureRewards);
-                if (itemRewards.Count > 0)
+                if (itemNames.Count > 0)
                 {
+                    itemRewards = new List<ItemName>();
+                    foreach (var itemName in itemNames)
+                    {
+                        itemRewards.Add((ItemName)Enum.Parse(typeof(ItemName), itemName));
+                    }
                     ItemInventory itemInventory = FindObjectOfType<ItemInventory>();
                     itemInventory.AddItem(itemRewards);
                 }
