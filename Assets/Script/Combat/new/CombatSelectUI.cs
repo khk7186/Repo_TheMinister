@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CombatSelectUI : MonoBehaviour
 {
@@ -9,8 +10,49 @@ public class CombatSelectUI : MonoBehaviour
     public Canvas displayCanvas;
     public float xDiff = 60;
     public float yDiff = 60;
+    public GameObject AttackGO;
+    public GameObject DefenceGO;
+    public GameObject AssassinateGO;
+    public GameObject ShinePref = null;
+    public GameObject CurrentShineObject = null;
+    public bool TutorialLevel => CombatTutorManager.TutorialLevelIsOn;
     public void Setup(Transform targetUnit)
     {
+        if (TutorialLevel == true)
+        {
+            var currentSelect = FindObjectOfType<ShowOnlyChoice>().CombatAction;
+            if (CurrentShineObject != null)
+            {
+                Destroy(CurrentShineObject.gameObject);
+            }
+            if (currentSelect == CombatAction.Attack)
+            {
+                AttackGO.GetComponent<GraphicRaycaster>().enabled = true;
+                AssassinateGO.GetComponent<GraphicRaycaster>().enabled = false;
+                DefenceGO.GetComponent<GraphicRaycaster>().enabled = false;
+                CurrentShineObject = Instantiate(ShinePref, AttackGO.transform);
+            }
+            else if (currentSelect == CombatAction.Defence)
+            {
+                AttackGO.GetComponent<GraphicRaycaster>().enabled = false;
+                DefenceGO.GetComponent<GraphicRaycaster>().enabled = true;
+                AssassinateGO.GetComponent<GraphicRaycaster>().enabled = false;
+                CurrentShineObject = Instantiate(ShinePref, DefenceGO.transform);
+            }
+            else if (currentSelect == CombatAction.Assassin)
+            {
+                AttackGO.GetComponent<GraphicRaycaster>().enabled = false;
+                DefenceGO.GetComponent<GraphicRaycaster>().enabled = false;
+                AssassinateGO.GetComponent<GraphicRaycaster>().enabled = true;
+                CurrentShineObject = Instantiate(ShinePref, AssassinateGO.transform);
+            }
+            else
+            {
+                AttackGO.GetComponent<GraphicRaycaster>().enabled = true;
+                DefenceGO.GetComponent<GraphicRaycaster>().enabled = true;
+                AssassinateGO.GetComponent<GraphicRaycaster>().enabled = true;
+            }
+        }
         SetPosition(targetUnit);
         unit = targetUnit.GetComponent<CombatCharacterUnit>();
     }

@@ -58,6 +58,10 @@ public class Combat : MonoBehaviour
         CombatInteractableUnit.SetActiveAllLine(true);
         FindObjectOfType<CombatUI>().BlackFrameAnimation(true);
         ReprocessLineRenderIfTargetOff();
+        if (CombatTutorManager.TutorialLevelIsOn)
+        {
+            FindObjectOfType<CombatTutorManager>().RountIndex += 1;
+        }
         Destroy(gameObject);
     }
     public void ReprocessLineRenderIfTargetOff()

@@ -17,7 +17,7 @@ public class CombatTrigger : MonoBehaviour
 
     public void Update()
     {
-        
+
     }
 
 }
