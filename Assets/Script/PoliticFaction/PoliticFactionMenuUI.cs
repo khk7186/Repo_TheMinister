@@ -48,7 +48,7 @@ public class PoliticFactionMenuUI : MonoBehaviour, IPointerClickHandler
             }
         }
         StartCoroutine(BuildLayout());
-        FindObjectOfType<PoliticFactionInfoUI>().gameObject.SetActive(false);
+        FindObjectOfType<PoliticFactionInfoUI>()?.gameObject.SetActive(false);
     }
     IEnumerator BuildLayout()
     {

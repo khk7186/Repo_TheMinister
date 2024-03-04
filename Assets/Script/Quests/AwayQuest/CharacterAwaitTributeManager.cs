@@ -24,7 +24,7 @@ public class CharacterAwaitTributeManager : MonoBehaviour, IDiceRollEvent
     }
     private void OnEnable()
     {
-        Dice.Instance.RegisterObserver(this);
+        Dice.Instance?.RegisterObserver(this);
     }
     public CharacterAwaitTribute AddTribute(Character character, int WaitTime, bool auto, string questID = "")
     {

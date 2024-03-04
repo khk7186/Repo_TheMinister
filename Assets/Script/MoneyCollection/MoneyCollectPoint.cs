@@ -48,7 +48,7 @@ public class MoneyCollectPoint : MonoBehaviour
         var handler = new MoneyCollectAnimationHandler(Wrapper.GetComponent<RectTransform>(), manager.YChange, manager.duration, manager.delay);
         handler.Play();
         if (Value > 0)
-            CurrencyInvAnimationManager.Instance.MoneyChange(Value);
+            CurrencyInvAnimationManager.Instance?.MoneyChange(Value);
     }
     public void OnDrawGizmosSelected()
     {

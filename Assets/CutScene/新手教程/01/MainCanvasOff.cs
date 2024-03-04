@@ -6,6 +6,6 @@ public class MainCanvasOff : MonoBehaviour
 {
     private void Start()
     {
-        GameObject.FindGameObjectWithTag("MainUICanvas").SetActive(false);
+        GameObject.FindGameObjectWithTag("MainUICanvas")?.SetActive(false);
     }
 }
