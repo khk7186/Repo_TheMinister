@@ -163,6 +163,7 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
                 {
                     Destroy(slot.characterOnHold.gameObject);
                 }
+                slot.NotInteractable = serializedPoliticPages.notInteractables[index];
                 slot.characterOnHold = SerializedCharacter.DeserializingCharacter(serializedCharacter);
                 slot.characterOnHold.transform.SetParent(slot.transform);
                 slot.SetupSlotIcon(slot.characterOnHold.characterArtCode);

@@ -178,7 +178,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         {
             var origin = InactiveQuestGivers.Find(x => x.QuestID == id);
             var clone = Instantiate(origin.ReloadPref, transform);
-                Debug.Log(id);
+            Debug.Log(id);
             InactiveQuestGivers.Remove(origin);
             ActiveQuestsGivers.Add(clone.GetComponent<QuestGiverPointer>().questGiverAI);
         }
@@ -212,4 +212,5 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     {
         TryActiveNextQuest();
     }
+
 }

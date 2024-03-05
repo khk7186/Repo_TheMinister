@@ -1,4 +1,5 @@
 using SaveSystem;
+using Spine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ public class SerializedPoliticPages
     public List<int> LoyaltyLeft = new List<int>();
     public List<bool> GateHolderDead = new List<bool>();
     public List<bool> characterOnHoldExist = new List<bool>();
+    public List<bool> notInteractables = new List<bool>();
 
     public static SerializedPoliticPages Serialize(List<PoliticSlot> politicSlots, string pageName)
     {
@@ -36,6 +38,7 @@ public class SerializedPoliticPages
             output.LoyaltyLeft.Add(0);
             output.GateHolderDead.Add(true);
             output.characterOnHoldExist.Add(false);
+            output.notInteractables.Add(politicSlots[index].NotInteractable);
 
             //end
 
@@ -61,4 +64,5 @@ public class SerializedPoliticPages
         //Debug.Log(output.slotIDs.Count);
         return output;
     }
+
 }
