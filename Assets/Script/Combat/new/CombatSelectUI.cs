@@ -20,37 +20,57 @@ public class CombatSelectUI : MonoBehaviour
     {
         if (TutorialLevel == true)
         {
-            var currentSelect = FindObjectOfType<ShowOnlyChoice>().CombatAction;
+            var showOnlyChoice = FindObjectOfType<ShowOnlyChoice>();
             if (CurrentShineObject != null)
             {
                 Destroy(CurrentShineObject.gameObject);
             }
-            if (currentSelect == CombatAction.Attack)
+            if (showOnlyChoice != null)
             {
-                AttackGO.GetComponent<GraphicRaycaster>().enabled = true;
-                AssassinateGO.GetComponent<GraphicRaycaster>().enabled = false;
-                DefenceGO.GetComponent<GraphicRaycaster>().enabled = false;
-                CurrentShineObject = Instantiate(ShinePref, AttackGO.transform);
-            }
-            else if (currentSelect == CombatAction.Defence)
-            {
-                AttackGO.GetComponent<GraphicRaycaster>().enabled = false;
-                DefenceGO.GetComponent<GraphicRaycaster>().enabled = true;
-                AssassinateGO.GetComponent<GraphicRaycaster>().enabled = false;
-                CurrentShineObject = Instantiate(ShinePref, DefenceGO.transform);
-            }
-            else if (currentSelect == CombatAction.Assassin)
-            {
-                AttackGO.GetComponent<GraphicRaycaster>().enabled = false;
-                DefenceGO.GetComponent<GraphicRaycaster>().enabled = false;
-                AssassinateGO.GetComponent<GraphicRaycaster>().enabled = true;
-                CurrentShineObject = Instantiate(ShinePref, AssassinateGO.transform);
+                var currentSelect = showOnlyChoice.CombatAction;
+
+                if (currentSelect == CombatAction.Attack)
+                {
+                    AttackGO.GetComponent<Button>().enabled = true;
+                    AttackGO.transform.Find("mask").gameObject.SetActive(false);
+                    DefenceGO.GetComponent<Button>().enabled = false;
+                    DefenceGO.transform.Find("mask").gameObject.SetActive(true);
+                    AssassinateGO.GetComponent<Button>().enabled = false;
+                    AssassinateGO.transform.Find("mask").gameObject.SetActive(true);
+                    CurrentShineObject = Instantiate(ShinePref, AttackGO.transform);
+                    CurrentShineObject.SetActive(true);
+                }
+                else if (currentSelect == CombatAction.Defence)
+                {
+                    AttackGO.GetComponent<Button>().enabled = false;
+                    AttackGO.transform.Find("mask").gameObject.SetActive(true);
+                    DefenceGO.GetComponent<Button>().enabled = true;
+                    DefenceGO.transform.Find("mask").gameObject.SetActive(false);
+                    AssassinateGO.GetComponent<Button>().enabled = false;
+                    AssassinateGO.transform.Find("mask").gameObject.SetActive(true);
+                    CurrentShineObject = Instantiate(ShinePref, DefenceGO.transform);
+                    CurrentShineObject.SetActive(true);
+                }
+                else if (currentSelect == CombatAction.Assassin)
+                {
+                    AttackGO.GetComponent<Button>().enabled = false;
+                    AttackGO.transform.Find("mask").gameObject.SetActive(true);
+                    DefenceGO.GetComponent<Button>().enabled = false;
+                    DefenceGO.transform.Find("mask").gameObject.SetActive(true);
+                    AssassinateGO.GetComponent<Button>().enabled = true;
+                    AssassinateGO.transform.Find("mask").gameObject.SetActive(false);
+                    CurrentShineObject = Instantiate(ShinePref, AssassinateGO.transform).gameObject;
+                    CurrentShineObject.SetActive(true);
+                }
             }
             else
             {
-                AttackGO.GetComponent<GraphicRaycaster>().enabled = true;
-                DefenceGO.GetComponent<GraphicRaycaster>().enabled = true;
-                AssassinateGO.GetComponent<GraphicRaycaster>().enabled = true;
+                AttackGO.GetComponent<Button>().enabled = true;
+                DefenceGO.GetComponent<Button>().enabled = true;
+                AssassinateGO.GetComponent<Button>().enabled = true;
+                AttackGO.transform.Find("mask").gameObject.SetActive(false);
+                DefenceGO.transform.Find("mask").gameObject.SetActive(false);
+                AssassinateGO.transform.Find("mask").gameObject.SetActive(false);
             }
         }
         SetPosition(targetUnit);

@@ -27,12 +27,11 @@ public class CombatSelectUIController : MonoBehaviour, IPointerEnterHandler, IPo
         var ui = GameObject.FindObjectOfType<CombatSelectUIController>(true);
         if (ui.gameObject.activeSelf == false) ui.gameObject.SetActive(true);
         ui.onCCU = true;
-        if (ui.Target != target)
-        {
-            ui.Target = target;
-            ui.ccu.unit = target;
-            ui.ccu.Setup(target.transform);
-        }
+
+        ui.Target = target;
+        ui.ccu.unit = target;
+        ui.ccu.Setup(target.transform);
+
         //if (ui.UIAnimator.GetBool("Show") == true)
         //{
         //    ui.UIAnimator.Play("Show", 0, 0f);

@@ -60,7 +60,7 @@ public class Combat : MonoBehaviour
         ReprocessLineRenderIfTargetOff();
         if (CombatTutorManager.TutorialLevelIsOn)
         {
-            FindObjectOfType<CombatTutorManager>().RountIndex += 1;
+            FindObjectOfType<CombatTutorManager>().NextEvent();
         }
         Destroy(gameObject);
     }
