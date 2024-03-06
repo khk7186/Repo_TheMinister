@@ -21,6 +21,9 @@ public class ItemRequstAction : MonoBehaviour
         ItemInventory inventory = FindObjectOfType<ItemInventory>();
         bool carryItem = inventory.CheckItem(item);
         bool enoughItem = carryItem ? inventory.ItemDict[item] >= requestCount : false;
+        var DSC = FindObjectOfType<DialogueSystemController>();
+        DSC.initialDatabase = haveItem.selectedDatabase;
+        DSC.Awake();
         if (carryItem && enoughItem)
         {
             inventory.RemoveItem(item);
