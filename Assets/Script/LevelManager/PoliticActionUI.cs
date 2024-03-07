@@ -155,10 +155,7 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
             {
                 LoadGateHolder(index, slot, serializedPoliticPages);
             }
-            if (slot.characterOnHold != null)
-            {
-                Destroy(slot.characterOnHold.gameObject);
-            }
+
             if (serializedPoliticPages.characterOnHoldExist[index] != false)
             {
                 var serializedCharacter = serializedPoliticPages.serializedCharacters[index];
@@ -167,6 +164,14 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
                 slot.characterOnHold = SerializedCharacter.DeserializingCharacter(serializedCharacter);
                 slot.characterOnHold.transform.SetParent(slot.transform);
                 slot.SetupSlotIcon(slot.characterOnHold.characterArtCode);
+            }
+            else
+            {
+                if (slot.characterOnHold != null)
+                {
+                    Destroy(slot.characterOnHold.gameObject);
+                }
+                slot.EmptySlotModeSetup();
             }
             slot.GetComponent<PoliticSlotInteraction>().politicPopup.Setup(slot);
         }
