@@ -81,7 +81,18 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
             character.loyalty += 1;
         }
     }
-
+    private void FixedUpdate()
+    {
+        count = 0;
+        foreach (Character character in CharacterList)
+        {
+            if (NullCheck(character))
+            {
+                count += 1;
+            }
+        }
+        Total.text = count.ToString();
+    }
     private int TagPair(Character character)
     {
         int output = 0;
@@ -136,21 +147,11 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
     }
     public void CloseInventory()
     {
-        count = 0;
-        foreach (var character in CharacterList)
-        {
-            if (character != null) count++;
-        }
         var target = GetComponent<SpawnUI>();
         target.CurrentTarget.gameObject.SetActive(false);
     }
     public void CloseInventory(CharacterUI current)
     {
-        count = 0;
-        foreach (var character in CharacterList)
-        {
-            if (character != null) count++;
-        }
         Destroy(current.gameObject);
         CloseInventory();
     }
@@ -172,12 +173,6 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
         var ui = target.SetupNewCharacter(CharacterList[index]);
         ui.cardMode = CardMode.UpgradeSelectMode;
         ui.characterSelectUI = gameObject;
-        count = 0;
-        foreach (var character in CharacterList)
-        {
-            if (character != null) count++;
-        }
-        Total.text = (count * Price).ToString();
         CharacterList[index] = null;
         CharacterIconList[index].SetupEmpty();
     }
