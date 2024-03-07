@@ -127,6 +127,7 @@ public class ServeFoodUI : MonoBehaviour, ICharacterSelect
         if (characterInv == null) return;
         foreach (Transform character in characterInv)
         {
+            if (character.GetComponent<Character>().hireStage == HireStage.Away) continue;
             var target = character.gameObject.GetComponent<Character>();
             target.ApplyFood(hungryIncrase);
             target.ApplyLoyalty(LoyaltyIncrase);
