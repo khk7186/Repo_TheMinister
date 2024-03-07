@@ -88,9 +88,9 @@ public class HotelUI : MonoBehaviour, ICharacterSelect
     public void RemoveFromRoom(int roomIndex, int spotIndex)
     {
         var last = Characters[roomIndex][spotIndex];
-        //var target = GetComponent<SpawnUI>().CurrentTarget.GetComponent<PlayerCharactersInventory>().SetupNewCharacter(last);
-        //target.cardMode = CardMode.UpgradeSelectMode;
-        //target.characterSelectUI = gameObject;
+        var target = GetComponent<SpawnUI>().CurrentTarget.GetComponent<PlayerCharactersInventory>().SetupNewCharacter(last);
+        target.cardMode = CardMode.UpgradeSelectMode;
+        target.characterSelectUI = gameObject;
         Characters[roomIndex][spotIndex] = null;
     }
     public void ChooseCharacter(Character character)

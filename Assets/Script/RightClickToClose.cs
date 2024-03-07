@@ -20,6 +20,15 @@ public class RightClickToClose : MonoBehaviour, IPointerClickHandler
         //    FindObjectOfType<CombatSceneController>().OnAction = false;
         //}
         AudioManager.Play("·­Ò³");
+        if (TryGetComponent<PlayerCharactersInventory>(out var inv))
+        {
+            var card = GetComponentInChildren<CharacterUI>();
+            if (card != null && card.cardMode == CardMode.UpgradeSelectMode)
+            {
+                gameObject.SetActive(false);
+                return;
+            }
+        }
         var iib = FindObjectOfType<ItemInvBackgroundAnimation>();
         if (iib != null)
         {
