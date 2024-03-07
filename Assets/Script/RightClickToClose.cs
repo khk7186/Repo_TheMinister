@@ -26,6 +26,7 @@ public class RightClickToClose : MonoBehaviour, IPointerClickHandler
             if (card != null && card.cardMode == CardMode.UpgradeSelectMode)
             {
                 gameObject.SetActive(false);
+                Debug.Log("hide");
                 return;
             }
         }
