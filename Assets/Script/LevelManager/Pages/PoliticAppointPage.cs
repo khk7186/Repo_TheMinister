@@ -124,6 +124,7 @@ public class PoliticAppointPage : PoliticPage, IPoliticSelectionAction
     }
     public void StartEvent()
     {
+        slot.requestAmount = 0;
         slot.characterOnHold = target;
         slot.CharacterHead.sprite = politicCharacterSelect.characterHead.sprite;
         slot.CharacterHead.gameObject.SetActive(true);

@@ -18,6 +18,7 @@ public class SerializedPoliticPages
     public List<int> AlreadyBribeAmount = new List<int>();
     public List<int> ImpeachTimes = new List<int>();
     public List<int> LoyaltyLeft = new List<int>();
+    public List<int> RequestAmount = new List<int>();
     public List<bool> GateHolderDead = new List<bool>();
     public List<bool> characterOnHoldExist = new List<bool>();
     public List<bool> notInteractables = new List<bool>();
@@ -36,6 +37,7 @@ public class SerializedPoliticPages
             output.AlreadyBribeAmount.Add(0);
             output.ImpeachTimes.Add(0);
             output.LoyaltyLeft.Add(0);
+            output.RequestAmount.Add(politicSlots[index].requestAmount);
             output.GateHolderDead.Add(true);
             output.characterOnHoldExist.Add(false);
             output.notInteractables.Add(politicSlots[index].NotInteractable);
