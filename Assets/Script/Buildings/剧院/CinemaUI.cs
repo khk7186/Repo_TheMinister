@@ -132,11 +132,6 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
             invUI.SetupMode(CardMode.UpgradeSelectMode);
             invUI.SetupSelection(gameObject);
         }
-        if (CharacterList[(int)currentESlot - 1] == null)
-        {
-            count += 1;
-            Total.text = (count * Price).ToString();
-        }
         target.CurrentTarget.gameObject.SetActive(true);
     }
     public void CloseInventory()
