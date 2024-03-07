@@ -105,6 +105,10 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
 
     public void ChooseCharacter(Character character)
     {
+        if (CharacterList[(int)currentESlot - 1] != null)
+        {
+            Remove((int)currentESlot - 1);
+        }
         CharacterList[(int)currentESlot - 1] = character;
     }
 
@@ -137,6 +141,7 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
     }
     public void CloseInventory()
     {
+        count = 0;
         foreach (var character in CharacterList)
         {
             if (character != null) count++;
