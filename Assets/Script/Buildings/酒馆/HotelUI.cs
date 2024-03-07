@@ -194,7 +194,7 @@ public class HotelUI : MonoBehaviour, ICharacterSelect
 
     public void RecoverHealth(Character character)
     {
-        character.health += 2;
+        character.ApplyHealth(2);
         character.awayMessage = "hotel";
         character.Away(1);
         character.awayMessage = "recovery";
