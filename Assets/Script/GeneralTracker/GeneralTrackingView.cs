@@ -31,6 +31,10 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
     public Sprite recoveryFrame = null;
     public Sprite assassinFrame = null;
     public Sprite questFrame = null;
+    public Sprite recoveryMask = null;
+    public Sprite assassinMask = null;
+    public Sprite questMask = null;
+    public Sprite completeMask = null;
     public Sprite EndFrame = null;
     public void SetFinish()
     {
@@ -76,21 +80,24 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
         if (TrackerType == "assassin")
         {
             this.Frame.sprite = assassinFrame;
+            smallViewImage.sprite = assassinMask;
         }
         else if (TrackerType == "recovery")
         {
             this.Frame.sprite = recoveryFrame;
+            smallViewImage.sprite = recoveryMask;
         }
         else if (TrackerType == "quest")
         {
             this.Frame.sprite = questFrame;
+            smallViewImage.sprite = questMask;
         }
         InfoPage.Setup(characterName, message, timeLeft);
         roundLeft.text = timeLeft.ToString();
         if (timeLeft == 0 && NoAction == false)
         {
             SetFinish();
-            smallViewImage.color = Color.green;
+            smallViewImage.sprite = completeMask;
         }
     }
     public void OnPointerEnter(PointerEventData eventData)

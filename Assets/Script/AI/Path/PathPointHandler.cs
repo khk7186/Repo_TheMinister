@@ -47,6 +47,7 @@ public class PathPointHandler
 
     public void RandomNextPoint()
     {
+        //if (currentPoint == null) { return; }
         List<PathPoint> targetList = currentPoint.ApproachablePoints.ToList();
         targetList.Add(currentPoint);
         int rd = UnityEngine.Random.Range(0, targetList.Count);
@@ -64,6 +65,7 @@ public class PathPointHandler
     public void PlanPath()
     {
         RandomNextPoint();
+        if (currentPoint == null) { return; }
         if (targetPoint == currentPoint)
         {
             ready = true;

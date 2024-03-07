@@ -1,3 +1,4 @@
+using PixelCrushers.QuestMachine.Wrappers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -89,6 +90,8 @@ public class CharacterMovement : MonoBehaviour, IStopAllCoroutine
     private void Awake()
     {
         modelController = GetComponent<CharacterModelController>();
+        var DontNeed = GetComponentInChildren<QuestIndicatorManager>();
+        if (DontNeed != null) DestroyImmediate(DontNeed.gameObject);
     }
     private void Start()
     {

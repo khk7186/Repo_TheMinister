@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Spine.Unity;
 using PixelCrushers.DialogueSystem;
+using PixelCrushers.QuestMachine;
 
 public enum AIInteractType
 {
@@ -42,6 +43,8 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     {
         map = FindObjectOfType<Map>();
         GetComponent<Collider2D>().enabled = false;
+        var DontNeed = GetComponentInChildren<QuestIndicatorManager>();
+        if (DontNeed != null) DestroyImmediate(DontNeed.gameObject);
         //CapsuleCollider2D
     }
     private void Start()
