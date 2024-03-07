@@ -13,5 +13,6 @@ public class JustCurrencyOn : MonoBehaviour
         GameUI.transform.Find("ÈÕÆÚ").gameObject.SetActive(false);
         GameUI.transform.Find("ButtomPart").gameObject.SetActive(false);
         GameUI.transform.Find("SaveButton").gameObject.SetActive(false);
+        GameUI.transform.Find("LowerButton").gameObject.SetActive(false);
     }
 }
