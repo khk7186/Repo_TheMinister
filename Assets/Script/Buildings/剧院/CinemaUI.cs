@@ -137,10 +137,9 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
     }
     public void CloseInventory()
     {
-        if (CharacterList[(int)currentESlot - 1] == null)
+        foreach (var character in CharacterList)
         {
-            count -= 1;
-            Total.text = (count * Price).ToString();
+            if (character != null) count++;
         }
         var target = GetComponent<SpawnUI>();
         target.CurrentTarget.gameObject.SetActive(false);
@@ -165,8 +164,14 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
     public void Remove(int index)
     {
         var target = GetComponent<SpawnUI>().CurrentTarget.GetComponent<PlayerCharactersInventory>();
-        target.SetupNewCharacter(CharacterList[index]);
-        count -= 1;
+        var ui = target.SetupNewCharacter(CharacterList[index]);
+        ui.cardMode = CardMode.UpgradeSelectMode;
+        ui.characterSelectUI = gameObject;
+        count = 0;
+        foreach (var character in CharacterList)
+        {
+            if (character != null) count++;
+        }
         Total.text = (count * Price).ToString();
         CharacterList[index] = null;
         CharacterIconList[index].SetupEmpty();
