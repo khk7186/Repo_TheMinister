@@ -43,7 +43,8 @@ public class DefaultInGameAI : MonoBehaviour, IAIMovementStrategy, IDiceRollEven
     {
         map = FindObjectOfType<Map>();
         GetComponent<Collider2D>().enabled = false;
-        GetComponentInChildren<QuestIndicatorManager>().enabled = false;
+        var DontNeed = GetComponentInChildren<QuestIndicatorManager>();
+        if (DontNeed != null) DestroyImmediate(DontNeed.gameObject);
         //CapsuleCollider2D
     }
     private void Start()
