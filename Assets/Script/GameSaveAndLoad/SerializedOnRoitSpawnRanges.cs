@@ -22,6 +22,7 @@ namespace SaveSystem
             foreach (RoitCharacter rc in spawnRange.roitCharacters)
             {
                 var rcAI = rc.InGameAI as RoitInGameAI;
+                if (rcAI == null) continue;
                 output.serializedCharacters.Add(SerializedCharacter.SerializingCharacter(rc));
                 output.roitCharacterStartPoints.Add(rcAI.startPoint.name);
                 output.roitCharacterEndPoints.Add(rcAI.endPoint.name);
