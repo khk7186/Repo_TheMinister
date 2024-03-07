@@ -27,6 +27,7 @@ public class QuestGiverAI : MonoBehaviour, IDiceRollEvent
     protected void Awake()
     {
         GetComponent<SideChanger>().ChangeSideViaData(front, right);
+        GetComponentInChildren<QuestIndicatorManager>().enabled = false;
         transform.position = position;
     }
     protected void Start()
