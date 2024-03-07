@@ -91,7 +91,7 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
                 count += 1;
             }
         }
-        Total.text = count.ToString();
+        Total.text = (count * Price).ToString();
     }
     private int TagPair(Character character)
     {
