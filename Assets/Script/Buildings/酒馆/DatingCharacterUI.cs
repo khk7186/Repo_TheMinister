@@ -49,7 +49,7 @@ public class DatingCharacterUI : MonoBehaviour, IPointerClickHandler
     {
         Rarerity topRarerity = Rarerity.N;
         var targetDict = character.characterValueRareDict;
-        CharacterImage.sprite = Resources.Load<Sprite>(ReturnAssetPath.ReturnCharacterSpritePath(character.characterArtCode)); 
+        CharacterImage.sprite = Resources.Load<Sprite>(ReturnAssetPath.ReturnCharacterSpritePath(character.characterArtCode));
         foreach (CharacterValueType type in targetDict.Keys)
         {
             if ((int)targetDict[type] > (int)topRarerity)
@@ -62,8 +62,15 @@ public class DatingCharacterUI : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        CharacterHiringEvent hireEvent = new GameObject().AddComponent<CharacterHiringEvent>();
-        hireEvent.character = character;
-        hireEvent.StartHiring();
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            CharacterHiringEvent hireEvent = new GameObject().AddComponent<CharacterHiringEvent>();
+            hireEvent.character = character;
+            hireEvent.StartHiring();
+        }
+        else if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            FindObjectOfType<BuildingUI>().gameObject.SetActive(false);
+        }
     }
 }
