@@ -51,23 +51,26 @@ MonoBehaviour:
   characterArtCode: 5
   loyalty: 0
   health: 20
+  hungry: 10
   rarerity: 0
   characterCard: {fileID: 6978759770948470115, guid: bcb976df68f93ec4ba4682e0d891984c, type: 3}
   thisCharacterCard: {fileID: 0}
   characterCardInvUI: {fileID: 0}
   InGameAI: {fileID: 0}
   Deserializing: 0
+  edibleFavor: 5
   tagList: 640000009c0000006800000074000000dd000000
+  temporaryTags: []
   ReturnRounds: 0
   hireStage: 3
   OnCombatDuty: 0
   OnDebateDuty: 0
   OnGobangDuty: 0
-  Money: 250
-  Influence: 200
-  Prestige: 200
   characterAwaitTribute: {fileID: 0}
   spawnAfterAway: {fileID: 0}
+  OnAssassinEvent: 0
+  AssasinTarget: 
+  awayMessage: 
 --- !u!1 &1302518154508691495
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,6 +143,7 @@ MonoBehaviour:
   moneyPunishment: -100
   pressurePunishment: 10
   itemRewards: 44000000
+  itemNames: []
   playerCharacters: []
   enemyCharacters:
   - {fileID: 4336169764796096461}
@@ -151,6 +155,7 @@ MonoBehaviour:
   NoDebateEvent:
     m_PersistentCalls:
       m_Calls: []
+  canSurrender: 1
 --- !u!114 &3130782310445775611
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,23 +219,26 @@ MonoBehaviour:
   characterArtCode: 2
   loyalty: 0
   health: 20
+  hungry: 10
   rarerity: 0
   characterCard: {fileID: 6978759770948470115, guid: bcb976df68f93ec4ba4682e0d891984c, type: 3}
   thisCharacterCard: {fileID: 0}
   characterCardInvUI: {fileID: 0}
   InGameAI: {fileID: 0}
   Deserializing: 0
+  edibleFavor: 5
   tagList: 8b000000180000003200000056000000ae000000
+  temporaryTags: []
   ReturnRounds: 0
   hireStage: 3
   OnCombatDuty: 0
   OnDebateDuty: 0
   OnGobangDuty: 0
-  Money: 250
-  Influence: 200
-  Prestige: 200
   characterAwaitTribute: {fileID: 0}
   spawnAfterAway: {fileID: 0}
+  OnAssassinEvent: 0
+  AssasinTarget: 
+  awayMessage: 
 --- !u!1 &2360081560218415492
 GameObject:
   m_ObjectHideFlags: 0
@@ -1092,7 +1100,7 @@ MonoBehaviour:
       acceptedGameObjects: []
       luaWizardIndex: 0
       lastEvaluationValue: 0
-    target: {fileID: 0}
+    target: {fileID: 4448812150993926625}
     state: 0
   - condition:
       luaConditions: []
@@ -1977,6 +1985,7 @@ MonoBehaviour:
   goToActive:
   - {fileID: 5331984889302207556}
   - {fileID: 5331984890242215020}
+  stopPlayer: 1
   stayblock: 53
 --- !u!1 &5331984889114907120
 GameObject:
