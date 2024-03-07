@@ -58,6 +58,7 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     public void Start()
     {
         SetupTags();
+        SetupTitle();
         if (GateHolderOrigin != null)
         {
             GateHolder = Instantiate(GateHolderOrigin, transform);
@@ -85,6 +86,14 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
             line.raycastTarget = false;
         }
         SetupLineSprites();
+    }
+
+    private void SetupTitle()
+    {
+        var origin = Resources.Load<GameObject>("ÊÆÁ¦/Title");
+        var clone = Instantiate(origin, transform);
+        origin.GetComponentInChildren<Text>().text = slotName;
+        origin.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 24);
     }
 
     private void OnHoldModeSetup()
