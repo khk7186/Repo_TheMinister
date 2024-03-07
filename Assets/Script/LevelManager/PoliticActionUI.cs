@@ -145,7 +145,6 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
         else if (serializedPoliticPages.pageName == "»§²¿Ë¾")
         {
             slots = PopulationDepartment.GetComponentsInChildren<PoliticSlot>().ToList();
-
         }
         if (slots.Count == 0) return;
 
@@ -156,13 +155,14 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
             {
                 LoadGateHolder(index, slot, serializedPoliticPages);
             }
+            if (slot.characterOnHold != null)
+            {
+                Destroy(slot.characterOnHold.gameObject);
+            }
             if (serializedPoliticPages.characterOnHoldExist[index] != false)
             {
                 var serializedCharacter = serializedPoliticPages.serializedCharacters[index];
-                if (slot.characterOnHold != null)
-                {
-                    Destroy(slot.characterOnHold.gameObject);
-                }
+
                 slot.NotInteractable = serializedPoliticPages.notInteractables[index];
                 slot.characterOnHold = SerializedCharacter.DeserializingCharacter(serializedCharacter);
                 slot.characterOnHold.transform.SetParent(slot.transform);
