@@ -171,7 +171,10 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
                 {
                     Destroy(slot.characterOnHold.gameObject);
                 }
-                slot.EmptySlotModeSetup();
+                if (slot.GateHolder == null)
+                {
+                    slot.EmptySlotModeSetup();
+                }
             }
             slot.GetComponent<PoliticSlotInteraction>().politicPopup.Setup(slot);
         }
