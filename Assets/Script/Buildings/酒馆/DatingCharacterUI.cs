@@ -68,7 +68,7 @@ public class DatingCharacterUI : MonoBehaviour, IPointerClickHandler
             hireEvent.character = character;
             hireEvent.StartHiring();
         }
-        else if (eventData.button == PointerEventData.InputButton.Left)
+        else if (eventData.button == PointerEventData.InputButton.Right)
         {
             FindObjectOfType<BuildingUI>().gameObject.SetActive(false);
         }
