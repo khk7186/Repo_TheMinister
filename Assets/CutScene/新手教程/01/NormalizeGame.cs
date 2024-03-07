@@ -15,6 +15,7 @@ public class NormalizeGame : MonoBehaviour
         GameUI.transform.Find("²Æ²ú").gameObject.SetActive(On);
         GameUI.transform.Find("ButtomPart").gameObject.SetActive(On);
         GameUI.transform.Find("SaveButton").gameObject.SetActive(On);
+        GameUI.transform.Find("LowerButton").gameObject.SetActive(On);
         GameObject.FindObjectOfType<PressureView>()?.SetPercentage(PressureManager.Instance.pressure);
         //In-game character spawn normalize
         var igcs = InGameCharacterStorage.Instance;
