@@ -151,6 +151,11 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
     }
     public void CloseInventory(CharacterUI current)
     {
+        count = 0;
+        foreach (var character in CharacterList)
+        {
+            if (character != null) count++;
+        }
         Destroy(current.gameObject);
         CloseInventory();
     }
