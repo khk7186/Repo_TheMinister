@@ -81,7 +81,18 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
             character.loyalty += 1;
         }
     }
-
+    private void FixedUpdate()
+    {
+        count = 0;
+        foreach (Character character in CharacterList)
+        {
+            if (NullCheck(character))
+            {
+                count += 1;
+            }
+        }
+        Total.text = (count * Price).ToString();
+    }
     private int TagPair(Character character)
     {
         int output = 0;
@@ -105,6 +116,10 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
 
     public void ChooseCharacter(Character character)
     {
+        if (CharacterList[(int)currentESlot - 1] != null)
+        {
+            Remove((int)currentESlot - 1);
+        }
         CharacterList[(int)currentESlot - 1] = character;
     }
 
@@ -128,20 +143,10 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
             invUI.SetupMode(CardMode.UpgradeSelectMode);
             invUI.SetupSelection(gameObject);
         }
-        if (CharacterList[(int)currentESlot - 1] == null)
-        {
-            count += 1;
-            Total.text = (count * Price).ToString();
-        }
         target.CurrentTarget.gameObject.SetActive(true);
     }
     public void CloseInventory()
     {
-        if (CharacterList[(int)currentESlot - 1] == null)
-        {
-            count -= 1;
-            Total.text = (count * Price).ToString();
-        }
         var target = GetComponent<SpawnUI>();
         target.CurrentTarget.gameObject.SetActive(false);
     }
@@ -165,9 +170,9 @@ public class CinemaUI : MonoBehaviour, ICharacterSelect
     public void Remove(int index)
     {
         var target = GetComponent<SpawnUI>().CurrentTarget.GetComponent<PlayerCharactersInventory>();
-        target.SetupNewCharacter(CharacterList[index]);
-        count -= 1;
-        Total.text = (count * Price).ToString();
+        var ui = target.SetupNewCharacter(CharacterList[index]);
+        ui.cardMode = CardMode.UpgradeSelectMode;
+        ui.characterSelectUI = gameObject;
         CharacterList[index] = null;
         CharacterIconList[index].SetupEmpty();
     }

@@ -338,7 +338,7 @@ public class Character : MonoBehaviour, IRound
     public CharacterArtCode characterArtCode;
     public int loyalty = 20;
     public int health = 20;
-    public int hungry = 20;
+    public int hungry = 10;
     public Rarerity rarerity = Rarerity.Null;
     public CharacterUI characterCard;
     public CharacterUI thisCharacterCard;

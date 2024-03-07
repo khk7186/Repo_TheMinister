@@ -343,7 +343,8 @@ public class RoitCharacter : Character
     {
         characterType = CharacterType.Roit;
         hireStage = HireStage.InCity;
-
+        health = UnityEngine.Random.Range(5, 20);
+        hungry = UnityEngine.Random.Range(0, 7);
     }
     public override void StartAction()
     {

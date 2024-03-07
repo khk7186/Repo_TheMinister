@@ -22,12 +22,15 @@ public class RightClickToClose : MonoBehaviour, IPointerClickHandler
         AudioManager.Play("·­Ò³");
         if (TryGetComponent<PlayerCharactersInventory>(out var inv))
         {
-            var card = GetComponentInChildren<CharacterUI>();
-            if (card != null && card.cardMode == CardMode.UpgradeSelectMode)
+            //var card = GetComponentInChildren<CharacterUI>();
+            //if (card != null && card.cardMode == CardMode.UpgradeSelectMode)
+            //{
+            //}
+            if (inv != null && inv.uiMode == CardMode.UpgradeSelectMode)
             {
                 gameObject.SetActive(false);
-                Debug.Log("hide");
                 return;
+
             }
         }
         var iib = FindObjectOfType<ItemInvBackgroundAnimation>();

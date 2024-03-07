@@ -49,7 +49,7 @@ public class ReciveItemNotify : MonoBehaviour
             itemUIwithNameCount.Setup(item.itemName, item.amount);
 
         }
-        LayoutRebuilder.ForceRebuildLayoutImmediate(ItemHolderTransform);
+        StartCoroutine(Wait());
     }
 
     private void SetupItemWithString()
@@ -77,5 +77,9 @@ public class ReciveItemNotify : MonoBehaviour
         }
     }
 
-
+    IEnumerator Wait()
+    {
+        yield return new WaitForFixedUpdate();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(ItemHolderTransform);
+    }
 }

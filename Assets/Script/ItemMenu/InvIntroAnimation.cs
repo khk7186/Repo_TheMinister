@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class InvIntroAnimation : MonoBehaviour, IPointerClickHandler
+public class InvIntroAnimation : MonoBehaviour
 {
     private bool disable = false;
     public delegate void diableEvent();
