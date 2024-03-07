@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-4161518332446227917
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9840a28297a53d449903f34dc60157bb, type: 3}
+  m_Name: UnityEventQuestAction
+  m_EditorClassIdentifier: 
+  m_onExecute:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -1638001666346611685, guid: db40eb6d18ba8ea45a223e0294f9ff62, type: 3}
+        m_TargetAssemblyTypeName: EndQuestNotify, Assembly-CSharp
+        m_MethodName: Notify
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-869836755269557172
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -46,18 +73,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 641a501636ec3644993211c008d9a8a4, type: 3}
-  m_Name: "\u9759\u89C2\u4E8B\u53D8"
+  m_Name: "\u9759\u89C2\u5176\u53D8"
   m_EditorClassIdentifier: 
   m_isInstance: 0
   m_originalAsset: {fileID: 0}
   m_fileVersion: 1
   m_id:
-    m_text: M-03-06-f
+    m_text: M-03-08-f
     m_stringAsset: {fileID: 0}
     m_textTable: {fileID: 0}
     m_textTableFieldID: 0
   m_title:
-    m_text: "\u9759\u89C2\u65F6\u53D8"
+    m_text: "\u9759\u89C2\u5176\u53D8"
     m_stringAsset: {fileID: 0}
     m_textTable: {fileID: 0}
     m_textTableFieldID: 0
@@ -106,8 +133,7 @@ MonoBehaviour:
   - m_actionList: []
     m_categorizedContentList:
     - m_contentList: []
-    - m_contentList:
-      - {fileID: 4621733387003380518}
+    - m_contentList: []
     - m_contentList: []
   - m_actionList: []
     m_categorizedContentList:
@@ -201,7 +227,8 @@ MonoBehaviour:
       - m_contentList: []
       - m_contentList: []
       - m_contentList: []
-    - m_actionList: []
+    - m_actionList:
+      - {fileID: 8900968327630632008}
       m_categorizedContentList:
       - m_contentList: []
       - m_contentList:
@@ -255,7 +282,8 @@ MonoBehaviour:
       - m_contentList: []
       - m_contentList: []
       - m_contentList: []
-    - m_actionList: []
+    - m_actionList:
+      - {fileID: -4161518332446227917}
       m_categorizedContentList:
       - m_contentList: []
       - m_contentList: []
@@ -274,24 +302,6 @@ MonoBehaviour:
       height: 35
   m_goalEntityTypeName: 
   m_nextContentID: 0
---- !u!114 &4621733387003380518
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0ed0c4e68ee98946bb5016adda42373, type: 3}
-  m_Name: BodyTextQuestContent
-  m_EditorClassIdentifier: 
-  m_contentID: -1
-  m_bodyText:
-    m_text: 
-    m_stringAsset: {fileID: 0}
-    m_textTable: {fileID: 0}
-    m_textTableFieldID: 0
 --- !u!114 &7620439356159623606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -312,3 +322,30 @@ MonoBehaviour:
     m_textTable: {fileID: 0}
     m_textTableFieldID: 0
   m_headingLevel: 1
+--- !u!114 &8900968327630632008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9840a28297a53d449903f34dc60157bb, type: 3}
+  m_Name: UnityEventQuestAction
+  m_EditorClassIdentifier: 
+  m_onExecute:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8552708707944413395, guid: 6750fa1cd7979324f98f049cb7c3639d, type: 3}
+        m_TargetAssemblyTypeName: ActiveNextMainEvent, Assembly-CSharp
+        m_MethodName: Active
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
