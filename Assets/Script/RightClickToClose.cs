@@ -29,12 +29,10 @@ public class RightClickToClose : MonoBehaviour, IPointerClickHandler
             if (inv != null && inv.uiMode == CardMode.UpgradeSelectMode)
             {
                 gameObject.SetActive(false);
-                Debug.Log("hide");
                 return;
 
             }
         }
-        Debug.Log("next");
         var iib = FindObjectOfType<ItemInvBackgroundAnimation>();
         if (iib != null)
         {
