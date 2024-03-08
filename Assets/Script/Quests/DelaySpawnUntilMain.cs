@@ -13,6 +13,7 @@ public class DelaySpawnUntilMain : MonoBehaviour
     public IEnumerator Start()
     {
         yield return new WaitUntil(IsMainScene);
+        yield return new WaitForFixedUpdate();
         foreach (var item in spawnList)
         {
             Instantiate(item);
