@@ -1696,6 +1696,7 @@ Transform:
   - {fileID: 452591743981178103}
   - {fileID: 6503091035375182004}
   - {fileID: 8066956898528637537}
+  - {fileID: 5915661166191720213}
   m_Father: {fileID: 5797609354183115746}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1802,6 +1803,53 @@ MonoBehaviour:
   m_hasQuestToOfferState: 4
   m_hasQuestButCannotOfferState: 0
   m_checkSinglePlayerJournal: 1
+--- !u!1 &1984194505231750275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5915661166191720213}
+  - component: {fileID: 266303788937560780}
+  m_Layer: 0
+  m_Name: DestroyCombat
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5915661166191720213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984194505231750275}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5567647990190351310}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &266303788937560780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1984194505231750275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0165a88f3c75a049a2ba7b74b61d95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GameObjectsToDestroy:
+  - {fileID: 3847343539774940558}
+  DestroyOnEnable: 1
+  destroyMainProfile: 
 --- !u!1 &2020605546477888607
 GameObject:
   m_ObjectHideFlags: 0
@@ -2583,7 +2631,7 @@ MonoBehaviour:
       acceptedGameObjects: []
       luaWizardIndex: 0
       lastEvaluationValue: 0
-    target: {fileID: 0}
+    target: {fileID: 5915661166191720213}
     state: 0
   setEnabledActions: []
   setAnimatorStateActions: []
@@ -2638,10 +2686,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeQuestStructs:
-  - QuestID: "S-02-\u56A3\u5F20\u8DCB\u6248-k"
+  - QuestID: "S-02-\u5931\u7B56\u5931\u7B56-k"
     questNode: Reward
     questNodeState: 1
-  - QuestID: "S-02-\u56A3\u5F20\u8DCB\u6248-k"
+  - QuestID: "S-02-\u5931\u7B56\u5931\u7B56-k"
     questNode: InProgress
     questNodeState: 0
 --- !u!1 &7964897196995912133
@@ -5233,11 +5281,6 @@ PrefabInstance:
       objectReference: {fileID: 5797609354183115746}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2168550aa1957f459f87db441278b36, type: 3}
---- !u!4 &7929102820705226466 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4945487052966313592, guid: b2168550aa1957f459f87db441278b36, type: 3}
-  m_PrefabInstance: {fileID: 3073763116840349850}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7929102820705226465 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4945487052966313595, guid: b2168550aa1957f459f87db441278b36, type: 3}
@@ -5249,3 +5292,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d9dedad596e2dc45a02ecd50f5c5481, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &7929102820705226466 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4945487052966313592, guid: b2168550aa1957f459f87db441278b36, type: 3}
+  m_PrefabInstance: {fileID: 3073763116840349850}
+  m_PrefabAsset: {fileID: 0}
