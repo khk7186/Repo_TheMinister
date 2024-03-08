@@ -69,7 +69,6 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
             e.AddListener(() => Instantiate(character.spawnAfterAway.gameObject));
         }
         unityEvent = e;
-        smallViewImage.color = Color.red;
         Show();
     }
     public void Setup(string trackerName, string message, int timeLeft, string TrackerType)
