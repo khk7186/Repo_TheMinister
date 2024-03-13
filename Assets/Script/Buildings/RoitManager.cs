@@ -91,6 +91,7 @@ public class RoitManager : MonoBehaviour, IDiceRollEvent
         {
             foreach (var rc in spawnRange.roitCharacters)
             {
+                if (rc == null) continue;
                 Destroy(rc.InGameAI.gameObject);
                 Destroy(rc.gameObject);
             }
