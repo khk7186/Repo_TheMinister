@@ -34,7 +34,7 @@ public class TagFromWhere : MonoBehaviour
             else if (Rarity == Rarerity.SR) rareColor = SRColor;
             else if (Rarity == Rarerity.SSR) rareColor = SSRColor;
             else if (Rarity == Rarerity.UR) rareColor = URColor;
-            output += $"<color=#{ColorUtility.ToHtmlStringRGBA(rareColor)}>{WhatItem(tag).ToString()}</color>";
+            output += $"<color=#{ColorUtility.ToHtmlStringRGBA(rareColor)}>{WhatItem(tag).ToString()}</color>\n";
         }
         if (TryMerge())
         {
