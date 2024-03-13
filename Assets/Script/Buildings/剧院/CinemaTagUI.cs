@@ -24,6 +24,7 @@ public class CinemaTagUI : MonoBehaviour
             target.gameObject.SetActive(true);
             string path = ("Art/Tags/" + tag.ToString()).Replace(" ", string.Empty);
             target.sprite = Resources.Load<Sprite>(path);
+            target.GetComponentInChildren<TagWithDescribetion>().Setup(tag);
         }
     }
 }
