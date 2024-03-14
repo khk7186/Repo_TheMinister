@@ -25,6 +25,7 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
     public List<PoliticSlot> preSlots = new List<PoliticSlot>();
     public PoliticCharacter GateHolder = null;
     public PoliticCharacter GateHolderOrigin = null;
+    public GameObject ShineObject = null;
     public Image Frame;
     public Sprite PlayerFrame;
     public Sprite NonPlayerFrame;
