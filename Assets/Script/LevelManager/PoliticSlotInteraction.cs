@@ -66,6 +66,7 @@ public class PoliticSlotInteraction : MonoBehaviour, IPointerEnterHandler, IPoin
         SetFrame();
         politicPopup.HidePopup();
     }
+
     public void SetFrame()
     {
         politicSlot.Frame.sprite = politicSlot.GateHolder != null ? politicSlot.NonPlayerFrame : politicSlot.PlayerFrame;

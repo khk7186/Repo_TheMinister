@@ -35,6 +35,7 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
     {
         AudioManager.Play("·­Ò³");
         animator.Play("Hide");
+        PoliticSlotPopDescription.Hide();
     }
     public void Reset()
     {

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TagFromWhere : MonoBehaviour
 {
     public Tag tag;
+    public Text TagName;
     public Text Where;
     public Color NColor = Color.white;
     public Color RColor = Color.white;
@@ -20,6 +21,7 @@ public class TagFromWhere : MonoBehaviour
     public void Setup(Tag tag)
     {
         this.tag = tag;
+        this.TagName.text = $"<{tag.ToString()}>";
         string output = string.Empty;
         if (TryGiven())
         {

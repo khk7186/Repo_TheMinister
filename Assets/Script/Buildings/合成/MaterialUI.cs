@@ -37,7 +37,7 @@ public class MaterialUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHand
     }
     public void SetOnDetail(string target)
     {
-        ItemDetailUI.Show(ItemName.ToString());
+        ItemDetailUI.Show(ItemName.ToString(), this.gameObject);
     }
 
     public void SetOffDetail()

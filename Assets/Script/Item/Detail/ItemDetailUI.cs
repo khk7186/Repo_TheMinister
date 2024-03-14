@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,7 @@ public class ItemDetailUI : MonoBehaviour
     private RectTransform canvasRectTransform;
     public ItemFromWhere itemFromWhere;
     public ItemToWhere itemToWhere;
+    public GameObject dependent = null;
     private void Awake()
     {
         imageRectTransform = GetComponent<RectTransform>();
@@ -37,6 +39,10 @@ public class ItemDetailUI : MonoBehaviour
     private void Update()
     {
         SetPositionNextToMouse();
+        if (dependent == null || dependent.activeSelf == false)
+        {
+            Hide();
+        }
     }
     public void SetPositionNextToMouse()
     {
@@ -60,15 +66,18 @@ public class ItemDetailUI : MonoBehaviour
         clampedPosition.y = Mathf.Clamp(clampedPosition.y, -canvasRectTransform.sizeDelta.y / 2 + imageRectTransform.sizeDelta.y / 2, canvasRectTransform.sizeDelta.y / 2 - imageRectTransform.sizeDelta.y / 2);
         imageRectTransform.anchoredPosition = clampedPosition;
     }
-    public static void Show(string target)
+    public static void Show(string target, GameObject dependent)
     {
         var ui = GameObject.FindObjectOfType<ItemDetailUI>(true);
         ui.itemName = (ItemName)Enum.Parse(typeof(ItemName), target);
+        ui.dependent = dependent;
         ui.gameObject.SetActive(true);
     }
     public static void Hide()
     {
         GameObject.FindObjectOfType<ItemDetailUI>(true).gameObject.SetActive(false);
+        var ui = GameObject.FindObjectOfType<ItemDetailUI>(true);
+        ui.dependent = null;
     }
 }
 

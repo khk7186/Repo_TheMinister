@@ -366,7 +366,7 @@ public class ItemUI : MonoBehaviour, IIcon, IPointerClickHandler, IPointerEnterH
 
     public void SetOnDetail(string target)
     {
-        ItemDetailUI.Show(ItemName.ToString());
+        ItemDetailUI.Show(ItemName.ToString(), this.gameObject);
     }
 
     public void SetOffDetail()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,8 @@ public class PoliticSlotPopDescription : MonoBehaviour
     public Vector2 offset = new Vector2(85, -35);  // Offset from the mouse position
     private RectTransform imageRectTransform;
     private RectTransform canvasRectTransform;
+    public TagFromWhere tagFromWherePref;
+    public Transform tagSourceParent;
     public void Setup(PoliticSlot slot)
     {
         string whoString = "在职人员：";
@@ -36,13 +39,14 @@ public class PoliticSlotPopDescription : MonoBehaviour
             nobodyHere = true;
         }
         who.text = whoString;
+        var tagList = slot.requestTagsInString;
+        SetupTagFromWhere(tagList);
         if (nobodyHere)
         {
             serveTo.gameObject.SetActive(false);
             tagNeeds.gameObject.SetActive(true);
             variableNeeds.gameObject.SetActive(true);
             string tagNeedsText = "需要词条:";
-            var tagList = slot.requestTagsInString;
             foreach (var tag in tagList)
             {
                 tagNeedsText += $"\n {tag}";
@@ -72,6 +76,15 @@ public class PoliticSlotPopDescription : MonoBehaviour
             {
                 serveTo.text = $"效忠于：{slot.GateHolder.FactionType}";
             }
+        }
+    }
+    public void SetupTagFromWhere(List<string> tags)
+    {
+        TransformEx.Clear(tagSourceParent.transform);
+        foreach (var tag in tags)
+        {
+            var clone = Instantiate(tagFromWherePref, tagSourceParent);
+            clone.Setup((Tag)Enum.Parse(typeof(Tag), tag));
         }
     }
     IEnumerator WaitToRebuildLayout()
