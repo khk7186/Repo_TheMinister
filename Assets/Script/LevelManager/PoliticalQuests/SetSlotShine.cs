@@ -6,9 +6,11 @@ using UnityEngine;
 public class SetSlotShine : MonoBehaviour
 {
     public string slotID;
+    public string slotName;
     public string actionKeyToShine = "»ßÂ¸";
     public bool ShineOn = false;
     public bool SetOnEnable = false;
+    public bool UseSlotName = false;
     public void OnEnable()
     {
         if (SetOnEnable)
