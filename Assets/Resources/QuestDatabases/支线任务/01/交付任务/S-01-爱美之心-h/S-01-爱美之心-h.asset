@@ -1,24 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9182678198714134266
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f05643b85c87be547af5871e9bf6e10a, type: 3}
-  m_Name: InstantiatePrefabQuestAction
-  m_EditorClassIdentifier: 
-  m_prefab: {fileID: 1763080223937155532, guid: c11527df8db596d488239961cdd42631, type: 3}
-  m_locationTransform:
-    m_text: 
-    m_stringAsset: {fileID: 0}
-    m_textTable: {fileID: 0}
-    m_textTableFieldID: 0
-  m_useOriginalName: 0
 --- !u!114 &-5371056133543804310
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -37,7 +18,26 @@ MonoBehaviour:
     m_stringAsset: {fileID: 0}
     m_textTable: {fileID: 0}
     m_textTableFieldID: 0
---- !u!114 &-3368887279670814670
+--- !u!114 &-1957194446945078936
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05643b85c87be547af5871e9bf6e10a, type: 3}
+  m_Name: InstantiatePrefabQuestAction
+  m_EditorClassIdentifier: 
+  m_prefab: {fileID: 2583671549510193502, guid: d1a4527ba983ffb4a8152e917172f663, type: 3}
+  m_locationTransform:
+    m_text: 
+    m_stringAsset: {fileID: 0}
+    m_textTable: {fileID: 0}
+    m_textTableFieldID: 0
+  m_useOriginalName: 0
+--- !u!114 &-1278868617774026475
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -52,9 +52,9 @@ MonoBehaviour:
   m_onExecute:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6449213166141911161, guid: e68de5331a01e7243a17c58eaf33561e, type: 3}
-        m_TargetAssemblyTypeName: EndQuestNotify, Assembly-CSharp
-        m_MethodName: OnEnable
+      - m_Target: {fileID: 8489363472900968349, guid: dbb14b5edccdd9648bfeece617850b69, type: 3}
+        m_TargetAssemblyTypeName: ItemRequstAction, Assembly-CSharp
+        m_MethodName: HandInAction
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -64,7 +64,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &-1957194446945078936
+--- !u!114 &-868949792477551317
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f05643b85c87be547af5871e9bf6e10a, type: 3}
   m_Name: InstantiatePrefabQuestAction
   m_EditorClassIdentifier: 
-  m_prefab: {fileID: 2583671549510193502, guid: d1a4527ba983ffb4a8152e917172f663, type: 3}
+  m_prefab: {fileID: 1763080223937155532, guid: c11527df8db596d488239961cdd42631, type: 3}
   m_locationTransform:
     m_text: 
     m_stringAsset: {fileID: 0}
@@ -269,7 +269,7 @@ MonoBehaviour:
       m_conditionCountMode: 0
       m_minConditionCount: 0
       m_numTrueConditions: 0
-    m_childIndexList: 0100000004000000
+    m_childIndexList: 0500000004000000
     m_canvasRect:
       serializedVersion: 2
       x: 200
@@ -301,7 +301,6 @@ MonoBehaviour:
       - m_contentList: []
       - m_contentList: []
     - m_actionList:
-      - {fileID: -3368887279670814670}
       - {fileID: -1957194446945078936}
       m_categorizedContentList:
       - m_contentList: []
@@ -311,8 +310,7 @@ MonoBehaviour:
         - {fileID: 7735690500362694291}
         - {fileID: 7007713924792772678}
       - m_contentList: []
-    - m_actionList:
-      - {fileID: -9182678198714134266}
+    - m_actionList: []
       m_categorizedContentList:
       - m_contentList: []
       - m_contentList: []
@@ -325,8 +323,8 @@ MonoBehaviour:
     m_childIndexList: 02000000
     m_canvasRect:
       serializedVersion: 2
-      x: 202
-      y: 136
+      x: 144
+      y: 219
       width: 120
       height: 48
   - m_id:
@@ -360,6 +358,7 @@ MonoBehaviour:
       - m_contentList: []
     - m_actionList:
       - {fileID: 5874036596794997395}
+      - {fileID: -868949792477551317}
       m_categorizedContentList:
       - m_contentList: []
       - m_contentList: []
@@ -372,8 +371,8 @@ MonoBehaviour:
     m_childIndexList: 
     m_canvasRect:
       serializedVersion: 2
-      x: 204
-      y: 232
+      x: 178
+      y: 328
       width: 120
       height: 35
   - m_id:
@@ -470,6 +469,57 @@ MonoBehaviour:
       y: 125
       width: 120
       height: 48
+  - m_id:
+      m_text: "\u4EA4\u4ED8"
+      m_stringAsset: {fileID: 0}
+      m_textTable: {fileID: 0}
+      m_textTableFieldID: 0
+    m_internalName:
+      m_text: 
+      m_stringAsset: {fileID: 0}
+      m_textTable: {fileID: 0}
+      m_textTableFieldID: 0
+    m_nodeType: 4
+    m_isOptional: 0
+    m_state: 0
+    m_speaker:
+      m_text: 
+      m_stringAsset: {fileID: 0}
+      m_textTable: {fileID: 0}
+      m_textTableFieldID: 0
+    m_stateInfoList:
+    - m_actionList: []
+      m_categorizedContentList:
+      - m_contentList: []
+      - m_contentList: []
+      - m_contentList: []
+    - m_actionList: []
+      m_categorizedContentList:
+      - m_contentList: []
+      - m_contentList:
+        - {fileID: 1893164463148192505}
+        - {fileID: -5371056133543804310}
+        - {fileID: 7735690500362694291}
+        - {fileID: 7007713924792772678}
+        - {fileID: 5774370721852369631}
+      - m_contentList: []
+    - m_actionList: []
+      m_categorizedContentList:
+      - m_contentList: []
+      - m_contentList: []
+      - m_contentList: []
+    m_conditionSet:
+      m_conditionList: []
+      m_conditionCountMode: 1
+      m_minConditionCount: 0
+      m_numTrueConditions: 0
+    m_childIndexList: 01000000
+    m_canvasRect:
+      serializedVersion: 2
+      x: 125
+      y: 111
+      width: 120
+      height: 48
   m_goalEntityTypeName: 
   m_nextContentID: 0
 --- !u!114 &1326802342506846596
@@ -519,6 +569,33 @@ MonoBehaviour:
     m_textTable: {fileID: 0}
     m_textTableFieldID: 0
   m_headingLevel: 1
+--- !u!114 &5774370721852369631
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 005ad42cc1945d043becd6daacec5a25, type: 3}
+  m_Name: ButtonQuestContent
+  m_EditorClassIdentifier: 
+  m_contentID: -1
+  m_image: {fileID: 21300000, guid: 57d465df870c760459a2bf630170d529, type: 3}
+  m_color: {r: 1, g: 1, b: 1, a: 1}
+  m_caption:
+    m_text: 
+    m_stringAsset: {fileID: 0}
+    m_textTable: {fileID: 0}
+    m_textTableFieldID: 0
+  m_count: 0
+  m_imageNameProxy: 
+  m_groupNumber: -1
+  m_actionList:
+  - {fileID: -1278868617774026475}
+  m_actionsProxy:
+    actions: []
 --- !u!114 &5874036596794997395
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -537,6 +614,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1637922500447821330, guid: 5c18e7c2e8484a049a7506e1abe566c2, type: 3}
         m_TargetAssemblyTypeName: QuestCountHandler, Assembly-CSharp
         m_MethodName: QuestCountMinus
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6449213166141911161, guid: e68de5331a01e7243a17c58eaf33561e, type: 3}
+        m_TargetAssemblyTypeName: EndQuestNotify, Assembly-CSharp
+        m_MethodName: Notify
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
