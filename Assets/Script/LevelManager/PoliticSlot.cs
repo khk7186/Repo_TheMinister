@@ -94,7 +94,7 @@ public class PoliticSlot : MonoBehaviour, ICharacterSelect
         var origin = Resources.Load<GameObject>("ÊÆÁ¦/Title");
         var clone = Instantiate(origin, transform);
         clone.GetComponentInChildren<Text>().text = slotName;
-        clone.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 24);
+        clone.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 22.4f);
     }
 
     private void OnHoldModeSetup()
