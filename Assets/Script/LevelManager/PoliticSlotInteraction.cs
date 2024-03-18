@@ -9,6 +9,7 @@ public class PoliticSlotInteraction : MonoBehaviour, IPointerEnterHandler, IPoin
 {
     public PoliticSlot politicSlot;
     public PoliticPopup politicPopup;
+    public bool DisableAllInteractions = false;
     private void OnEnable()
     {
         politicPopup.gameObject.SetActive(false);
@@ -46,6 +47,10 @@ public class PoliticSlotInteraction : MonoBehaviour, IPointerEnterHandler, IPoin
     public void OnPointerEnter(PointerEventData eventData)
     {
         PoliticSlotPopDescription.Show(politicSlot);
+        if (DisableAllInteractions)
+        {
+            return;
+        }
         var interactable = InteractableCheck();
         if (interactable == false)
         {
