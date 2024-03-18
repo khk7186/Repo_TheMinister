@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -61,7 +62,7 @@ public class PoliticSlotPopDescription : MonoBehaviour
             if (slot.Sneak != Rarerity.Null) variableNeedsText += $"刺 >= {slot.Sneak}";
             variableNeeds.text = variableNeedsText;
             if (variableNeedsText == "需要词条:") variableNeeds.gameObject.SetActive(false);
-            StartCoroutine(WaitToRebuildLayout());
+
         }
         else
         {
@@ -77,6 +78,27 @@ public class PoliticSlotPopDescription : MonoBehaviour
                 serveTo.text = $"效忠于：{slot.GateHolder.FactionType}";
             }
         }
+        if (gameObject.activeSelf)
+        {
+            OnEnable();
+        }
+    }
+    private void OnEnable()
+    {
+        StartCoroutine(WaitToRebuildLayout(GetComponent<RectTransform>()));
+        if (tagSourceParent.childCount != 0)
+        {
+            StartCoroutine(WaitToRebuildLayout(tagSourceParent.GetComponent<RectTransform>()));
+        }
+        foreach (Transform child in tagSourceParent)
+        {
+            StartCoroutine(WaitToRebuildLayout(child.GetComponent<RectTransform>()));
+        }
+        if (tagNeeds.gameObject.activeSelf)
+        {
+            StartCoroutine(WaitToRebuildLayout(tagNeeds.GetComponent<RectTransform>()));
+        }
+
     }
     public void SetupTagFromWhere(List<string> tags)
     {
@@ -85,12 +107,14 @@ public class PoliticSlotPopDescription : MonoBehaviour
         {
             var clone = Instantiate(tagFromWherePref, tagSourceParent);
             clone.Setup((Tag)Enum.Parse(typeof(Tag), tag));
+            //StartCoroutine(WaitToRebuildLayout(clone.GetComponent<RectTransform>()));
         }
     }
-    IEnumerator WaitToRebuildLayout()
+    IEnumerator WaitToRebuildLayout(RectTransform rectTransform)
     {
+        yield return new WaitUntil(() => rectTransform.gameObject.activeSelf == true);
         yield return new WaitForEndOfFrame();
-        LayoutRebuilder.ForceRebuildLayoutImmediate(tagNeeds.GetComponent<RectTransform>());
+        LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
     }
     private void Awake()
     {
