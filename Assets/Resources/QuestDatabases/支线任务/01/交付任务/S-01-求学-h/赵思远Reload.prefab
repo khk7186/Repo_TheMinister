@@ -69,9 +69,9 @@ MonoBehaviour:
   _readyToFight: {fileID: 0}
   _notReadyToFight: {fileID: 0}
   Assign: 0
-  QuestSpawnPref: {fileID: 8383943446029921867, guid: 31ecbd653bafc6e45916f46d9cf7bd43, type: 3}
-  ReloadPref: {fileID: 6814995655846264174, guid: 2d86cf71ad6fe60469a8300d318a63eb, type: 3}
-  triggered: 0
+  QuestSpawnPref: {fileID: 0}
+  ReloadPref: {fileID: 0}
+  triggered: 1
   battleQuest: 0
   AfterShow: 0
   battleType: 0
@@ -381,9 +381,21 @@ MonoBehaviour:
   onExecute:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ItemRequstAction, Assembly-CSharp
-        m_MethodName: HandInAction
+      - m_Target: {fileID: 36357328868516240}
+        m_TargetAssemblyTypeName: QuestGiverAI, Assembly-CSharp
+        m_MethodName: AssignTrue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: -5190409881794178215, guid: aa50b6c9d5d1392468380b705777e996, type: 3}
+        m_TargetAssemblyTypeName: GiveQuestOnActive, Assembly-CSharp
+        m_MethodName: Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
