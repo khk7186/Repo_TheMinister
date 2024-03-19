@@ -27,7 +27,7 @@ public class SetSlotShine : MonoBehaviour
             politicSlot.ShineObject.transform.SetSiblingIndex(0);
         }
         var popup = politicSlot.GetComponentInChildren<PoliticPopup>();
-        var group = popup.GetComponentsInChildren<Animator>().Where(x => x.runtimeAnimatorController.name == "ShineRed");
+        var group = popup.GetComponentsInChildren<Animator>(true).Where(x => x.runtimeAnimatorController.name == "ShineRed");
         foreach (var anim in group)
         {
             if (anim.gameObject.name == actionKeyToShine)
@@ -41,7 +41,7 @@ public class SetSlotShine : MonoBehaviour
         if (politicSlot.ShineObject != null)
         {
             var popup = politicSlot.GetComponentInChildren<PoliticPopup>();
-            var group = popup.GetComponentsInChildren<Animator>().Where(x => x.runtimeAnimatorController.name == "ShineRed");
+            var group = popup.GetComponentsInChildren<Animator>(true).Where(x => x.runtimeAnimatorController.name == "ShineRed");
             bool stillActive = false;
             foreach (var anim in group)
             {

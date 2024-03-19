@@ -101,7 +101,7 @@ public class PoliticBribePage : PoliticPage
         int bribeMoney = Mathf.RoundToInt(newOfferSlider.value);
         if (bribeMoney <= 0) return;
         inventory.MoneySpend(bribeMoney);
-        MessageSystem.SendMessage(null, "Bribe", slot.slotName, bribeMoney);
+        MessageSystem.SendMessage(null, "Bribe", slot.slotID, bribeMoney);
         slot.GateHolder.BribeAlreadySpent += bribeMoney;
         int bribePrice = slot.GateHolder.BribePrice;
         if (slot.GateHolder.ImpeachTime > 0)
