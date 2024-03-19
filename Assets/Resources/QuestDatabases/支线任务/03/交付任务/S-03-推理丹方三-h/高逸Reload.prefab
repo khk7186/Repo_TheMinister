@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 36357328868516254}
   - component: {fileID: 2575900012601231919}
   m_Layer: 0
-  m_Name: "\u9AD8\u9038Reload"
+  m_Name: "\u9AD8\u9038reload"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
   _readyToFight: {fileID: 0}
   _notReadyToFight: {fileID: 0}
   Assign: 0
-  QuestSpawnPref: {fileID: 0}
+  QuestSpawnPref: {fileID: 8383943446029921867, guid: ab1aa3965b5abd545b1fc0480499de37, type: 3}
   ReloadPref: {fileID: 1219023760200135607, guid: c11ee466bfb048b419bf413804b21f9f, type: 3}
   triggered: 0
   battleQuest: 0
@@ -559,9 +559,21 @@ MonoBehaviour:
   onExecute:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ItemRequstAction, Assembly-CSharp
-        m_MethodName: HandInAction
+      - m_Target: {fileID: 36357328868516240}
+        m_TargetAssemblyTypeName: QuestGiverAI, Assembly-CSharp
+        m_MethodName: AssignTrue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6747035665546225057, guid: c768899b76f55494b9ac88a246606fa9, type: 3}
+        m_TargetAssemblyTypeName: GiveQuestOnActive, Assembly-CSharp
+        m_MethodName: Start
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
