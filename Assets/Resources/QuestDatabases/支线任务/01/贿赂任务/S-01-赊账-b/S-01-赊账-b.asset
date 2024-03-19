@@ -55,24 +55,6 @@ MonoBehaviour:
     m_stringAsset: {fileID: 0}
     m_textTable: {fileID: 0}
     m_textTableFieldID: 0
---- !u!114 &-6116184935486889554
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a976671aaa12c2e428b2aac89a260302, type: 3}
-  m_Name: CounterQuestCondition
-  m_EditorClassIdentifier: 
-  m_counterIndex: 1
-  m_counterValueMode: 0
-  m_requiredCounterValue:
-    m_valueType: 0
-    m_literalValue: 2
-    m_counterIndex: 0
 --- !u!114 &-3529566194697217707
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -278,7 +260,7 @@ MonoBehaviour:
         m_textTable: {fileID: 0}
         m_textTableFieldID: 0
       m_parameter:
-        m_text: "\u5C0F\u5352"
+        m_text: H-01-03
         m_stringAsset: {fileID: 0}
         m_textTable: {fileID: 0}
         m_textTableFieldID: 0
@@ -359,7 +341,7 @@ MonoBehaviour:
       m_conditionCountMode: 0
       m_minConditionCount: 0
       m_numTrueConditions: 0
-    m_childIndexList: 0100000005000000
+    m_childIndexList: 01000000
     m_canvasRect:
       serializedVersion: 2
       x: 176.59573
@@ -393,6 +375,7 @@ MonoBehaviour:
     - m_actionList:
       - {fileID: 5398938478180437379}
       - {fileID: 5542078917122701181}
+      - {fileID: 6606018325663019690}
       m_categorizedContentList:
       - m_contentList: []
       - m_contentList:
@@ -507,6 +490,7 @@ MonoBehaviour:
     - m_actionList:
       - {fileID: 1048320404119789895}
       - {fileID: 2809192947565674838}
+      - {fileID: 6976652666112423598}
       m_categorizedContentList:
       - m_contentList: []
       - m_contentList: []
@@ -570,53 +554,6 @@ MonoBehaviour:
       y: 204
       width: 120
       height: 35
-  - m_id:
-      m_text: ChapterCount
-      m_stringAsset: {fileID: 0}
-      m_textTable: {fileID: 0}
-      m_textTableFieldID: 0
-    m_internalName:
-      m_text: 
-      m_stringAsset: {fileID: 0}
-      m_textTable: {fileID: 0}
-      m_textTableFieldID: 0
-    m_nodeType: 4
-    m_isOptional: 0
-    m_state: 0
-    m_speaker:
-      m_text: 
-      m_stringAsset: {fileID: 0}
-      m_textTable: {fileID: 0}
-      m_textTableFieldID: 0
-    m_stateInfoList:
-    - m_actionList: []
-      m_categorizedContentList:
-      - m_contentList: []
-      - m_contentList: []
-      - m_contentList: []
-    - m_actionList: []
-      m_categorizedContentList:
-      - m_contentList: []
-      - m_contentList: []
-      - m_contentList: []
-    - m_actionList: []
-      m_categorizedContentList:
-      - m_contentList: []
-      - m_contentList: []
-      - m_contentList: []
-    m_conditionSet:
-      m_conditionList:
-      - {fileID: -6116184935486889554}
-      m_conditionCountMode: 1
-      m_minConditionCount: 0
-      m_numTrueConditions: 0
-    m_childIndexList: 04000000
-    m_canvasRect:
-      serializedVersion: 2
-      x: 382.59573
-      y: 101.87234
-      width: 120
-      height: 48
   m_goalEntityTypeName: 
   m_nextContentID: 0
 --- !u!114 &866886694049929098
@@ -878,6 +815,60 @@ MonoBehaviour:
     m_stringAsset: {fileID: 0}
     m_textTable: {fileID: 0}
     m_textTableFieldID: 0
+--- !u!114 &6606018325663019690
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9840a28297a53d449903f34dc60157bb, type: 3}
+  m_Name: UnityEventQuestAction
+  m_EditorClassIdentifier: 
+  m_onExecute:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8787670166371698833, guid: 38042ad6c84e453478c00b9a1c65414d, type: 3}
+        m_TargetAssemblyTypeName: SetSlotShine, Assembly-CSharp
+        m_MethodName: OnEnable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6976652666112423598
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9840a28297a53d449903f34dc60157bb, type: 3}
+  m_Name: UnityEventQuestAction
+  m_EditorClassIdentifier: 
+  m_onExecute:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8787670166371698833, guid: ac6fc35cde574c44bb364e9429bdd737, type: 3}
+        m_TargetAssemblyTypeName: SetSlotShine, Assembly-CSharp
+        m_MethodName: OnEnable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7190509728901576083
 MonoBehaviour:
   m_ObjectHideFlags: 1
