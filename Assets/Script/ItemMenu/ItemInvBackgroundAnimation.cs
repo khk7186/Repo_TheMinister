@@ -46,10 +46,12 @@ public class ItemInvBackgroundAnimation : MonoBehaviour
         BackGroundShift(true);
         var Animation = GetComponentInParent<InvIntroAnimation>();
         Animation.SetDisable(true);
+        Debug.Log("setDisable");
         Animation.SetDiableDelegate(() =>
         {
             BackGroundShift(false);
             Animation.SetDisable(false);
+            
         });
     }
 

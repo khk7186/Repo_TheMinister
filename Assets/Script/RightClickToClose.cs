@@ -36,12 +36,13 @@ public class RightClickToClose : MonoBehaviour, IPointerClickHandler
         var iib = FindObjectOfType<ItemInvBackgroundAnimation>();
         if (iib != null)
         {
+            Debug.Log("IIB not null");
             iib.FrontDown(false);
         }
         if (!TryGetComponent<InvIntroAnimation>(out var IIA))
         {
             Destroy(gameObject);
         }
-        else { IIA.Outro(); }
+        else { IIA.RightClickOutro(); Debug.Log("Outro"); }
     }
 }

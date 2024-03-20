@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
+using System;
 
 public class InvIntroAnimation : MonoBehaviour
 {
@@ -43,15 +44,22 @@ public class InvIntroAnimation : MonoBehaviour
     {
         if (eventData.button == PointerEventData.InputButton.Right)
         {
-            AudioManager.Play("·­Ò³");
-            if (!disable)
-            {
-                Outro();
-            }
-            else
-            {
-                disableEvent();
-            }
+            RightClickOutro();
+        }
+    }
+
+    internal void RightClickOutro()
+    {
+        AudioManager.Play("·­Ò³");
+        if (!disable)
+        {
+            Outro();
+            Debug.Log("Able");
+        }
+        else
+        {
+            Debug.Log("Disable");
+            disableEvent();
         }
     }
 }
