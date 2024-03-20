@@ -54,11 +54,9 @@ public class InvIntroAnimation : MonoBehaviour
         if (!disable)
         {
             Outro();
-            Debug.Log("Able");
         }
         else
         {
-            Debug.Log("Disable");
             disableEvent();
         }
     }
