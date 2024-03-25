@@ -47,6 +47,7 @@ public class EventAfterConversation : MonoBehaviour
             Trigger.pressureRewards = pressureRewards;
             Trigger.moneyPunishment = moneyPunishment;
             Trigger.moneyRewards = moneyRewards;
+            Trigger.itemRewards = itemRewards;
             Trigger.TriggerEvent();
         }
         else
