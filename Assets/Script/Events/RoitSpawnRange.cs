@@ -46,6 +46,7 @@ public class RoitSpawnRange : MonoBehaviour, IDiceRollEvent
     {
         foreach (var character in roitCharacters)
         {
+            Destroy(character.InGameAI.gameObject);
             Destroy(character.gameObject);
         }
         roitCharacters = new List<Character>();
