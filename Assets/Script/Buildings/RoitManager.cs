@@ -68,6 +68,10 @@ public class RoitManager : MonoBehaviour, IDiceRollEvent
     {
         spawnRanges = FindObjectsOfType<RoitSpawnRange>().ToList();
         Dice.Instance.RegisterObserver(this);
+        
+    }
+    public void SetWar()
+    {
         if (WarChapter && WarModeOn == false)
         {
             foreach (var range in spawnRanges)
