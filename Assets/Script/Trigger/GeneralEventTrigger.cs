@@ -89,6 +89,7 @@ public class GeneralEventTrigger : MonoBehaviour
                         itemRewards.Add((ItemName)Enum.Parse(typeof(ItemName), itemName));
                     }
                     ItemInventory itemInventory = FindObjectOfType<ItemInventory>();
+                    Debug.Log(string.Join(",", itemRewards));
                     itemInventory.AddItem(itemRewards);
                 }
             }
