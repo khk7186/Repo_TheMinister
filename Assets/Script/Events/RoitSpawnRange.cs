@@ -8,6 +8,7 @@ public class RoitSpawnRange : MonoBehaviour, IDiceRollEvent
     public PathPoint[] pathPoints;
     public List<PathPoint> takenStartPoint = new List<PathPoint>();
     public List<Character> roitCharacters = new List<Character>();
+    public bool WarChapter => ChapterCounter.Instance.Chapter == 3;
     public int MaxRoit => 3;
     public bool Full
     {
@@ -40,6 +41,15 @@ public class RoitSpawnRange : MonoBehaviour, IDiceRollEvent
     public void Start()
     {
         Dice.Instance.RegisterObserver(this);
+    }
+    public void WarModeInitialize()
+    {
+        foreach (var character in roitCharacters)
+        {
+            Destroy(character.gameObject);
+        }
+        roitCharacters = new List<Character>();
+        SpawnRoit();
     }
     public void DetectRangeVariable()
     {

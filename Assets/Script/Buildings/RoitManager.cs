@@ -8,6 +8,8 @@ public class RoitManager : MonoBehaviour, IDiceRollEvent
     public static RoitManager Instance;
     public List<RoitSpawnRange> spawnRanges;
     public int RoitMax = 20;
+    public bool WarChapter => ChapterCounter.Instance.Chapter == 3;
+    public bool WarModeOn = false;
     public int RoitTotal
     {
         get
@@ -56,6 +58,7 @@ public class RoitManager : MonoBehaviour, IDiceRollEvent
         if (Instance == null)
         {
             Instance = this;
+            WarModeOn = WarChapter;
             spawnRanges = FindObjectsOfType<RoitSpawnRange>().ToList();
         }
         else if (Instance != this)
@@ -65,6 +68,15 @@ public class RoitManager : MonoBehaviour, IDiceRollEvent
     {
         spawnRanges = FindObjectsOfType<RoitSpawnRange>().ToList();
         Dice.Instance.RegisterObserver(this);
+        if (WarChapter && WarModeOn == false)
+        {
+            foreach (var range in spawnRanges)
+            {
+                if (range.gameObject.activeSelf == false) range.gameObject.SetActive(true);
+                range.WarModeInitialize();
+            }
+            WarModeOn = true;
+        }
     }
 
     public void SpawnRoit()

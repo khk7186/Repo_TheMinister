@@ -51,7 +51,6 @@ public class ItemInvBackgroundAnimation : MonoBehaviour
         {
             BackGroundShift(false);
             Animation.SetDisable(false);
-            
         });
     }
 

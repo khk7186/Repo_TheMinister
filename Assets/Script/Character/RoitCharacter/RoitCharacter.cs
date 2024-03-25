@@ -373,6 +373,14 @@ public class RoitCharacter : Character
                 inGameAiString = "醉鬼";
                 break;
         }
+        if (ChapterCounter.Instance.Chapter == 3)
+        {
+            var index = UnityEngine.Random.Range(0, 4);
+            if (index == 1) inGameAiString = "残忍的叛军";
+            else if (index == 2) inGameAiString = "瘦弱的叛军";
+            else if (index == 3) inGameAiString = "迷茫的叛军";
+            else if (index == 4) inGameAiString = "慌张的叛军";
+        }
         var cloneTarget = Resources.Load<RoitInGameAI>($"InGameNPC/RoitCharacter/{inGameAiString}");
         RoitInGameAI inGameAi = Instantiate(cloneTarget, spawnRange.transform);
         InGameAI = inGameAi;
