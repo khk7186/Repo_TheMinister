@@ -96,6 +96,7 @@ public class EdiblesItems : MonoBehaviour
         {ItemName.阴阳玄龙丹,new List<int>(){10,0}},
         {ItemName.长生不老药,new List<int>(){20,0}},
         {ItemName.十全大补丸,new List<int>(){20,0}},
+        {ItemName.干粮,new List<int>(){0,10}},
     };
     public static EdibleType RandomFavor()
     {
@@ -173,7 +174,8 @@ public class EdiblesItems : MonoBehaviour
                 ItemName.清炒豆芽,
                 ItemName.拍黄瓜,
                 ItemName.蛋炒饭,
-                ItemName.清蒸白萝卜
+                ItemName.清蒸白萝卜,
+                ItemName.干粮
         }
 
         },

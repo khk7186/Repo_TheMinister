@@ -229,6 +229,7 @@ public enum ItemName
     青织飞鱼袍,
     祈天玄衣,
     步辇袍衫,
+    干粮,
 }
 
 public enum ItemType

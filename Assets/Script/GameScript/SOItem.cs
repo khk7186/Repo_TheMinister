@@ -229,6 +229,7 @@ public class SOItem : ScriptableObject
         {ItemName.皮毛,Tag.鸠工庀材},
         {ItemName.麻布,Tag.鸠工庀材},
         {ItemName.弹劾文书,Tag.惹人嫌 },
+        {ItemName.干粮,Tag.饱腹},
             };
     public static Dictionary<ItemType, List<ItemName>> ItemTypeDict = new Dictionary<ItemType, List<ItemName>>()
     {
@@ -516,7 +517,8 @@ public class SOItem : ScriptableObject
                 ItemName.清炒豆芽,
                 ItemName.拍黄瓜,
                 ItemName.蛋炒饭,
-                ItemName.清蒸白萝卜
+                ItemName.清蒸白萝卜,
+                ItemName.干粮
 
             }
         }
