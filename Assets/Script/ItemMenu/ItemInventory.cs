@@ -29,11 +29,6 @@ public class ItemInventory : MonoBehaviour
         ////    AddItem(item);
         ////    AddItem(item);
         ////    AddItem(item);
-        AddItem(ItemName.Í­¿ó);
-        AddItem(ItemName.Í­¿ó);
-        AddItem(ItemName.Í­¿ó);
-        AddItem(ItemName.Í­¿ó);
-        AddItem(ItemName.Í­¿ó);
     }
     public void Reset()
     {
