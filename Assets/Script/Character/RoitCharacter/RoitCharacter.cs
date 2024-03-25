@@ -355,7 +355,6 @@ public class RoitCharacter : Character
         this.Area = spawnRange.Area;
         this.spawnRange = spawnRange;
         characterArtCode = RoitCharacterArtCode;
-        SpawnTagOnStart(RoitManager.Instance.Difficulty);
         rarerity = RoitManager.Instance.Difficulty;
         string inGameAiString = "";
         switch (Area)
@@ -381,6 +380,7 @@ public class RoitCharacter : Character
             else if (index == 3) inGameAiString = "迷茫的叛军";
             else if (index == 4) inGameAiString = "慌张的叛军";
         }
+        SpawnTagOnStart(RoitManager.Instance.Difficulty);
         var cloneTarget = Resources.Load<RoitInGameAI>($"InGameNPC/RoitCharacter/{inGameAiString}");
         RoitInGameAI inGameAi = Instantiate(cloneTarget, spawnRange.transform);
         InGameAI = inGameAi;
@@ -424,13 +424,29 @@ public class RoitCharacter : Character
             default:
                 break;
         }
+        List<Tag> RoitPool = null;
+        List<Tag> BadPool = null;
+        if (ChapterCounter.Instance.Chapter != 3)
+        {
+            if (Area == 'A') { RoitPool = RoitTagsA; BadPool = badTags; }
+            else if (Area == 'B') { RoitPool = RoitTagsB; BadPool = badTagsB; }
+            else if (Area == 'C') { RoitPool = RoitTagsC; BadPool = badTagsC; }
+            else if (Area == 'D') { RoitPool = RoitTagsD; BadPool = badTagsD; }
+        }
+        else
+        {
+            if (Area == 'A') { RoitPool = RoitTagsA; BadPool = badTags; }
+            else if (Area == 'B') { RoitPool = RoitTagsB; BadPool = badTagsB; }
+            else if (Area == 'C') { RoitPool = RoitTagsC; BadPool = badTagsC; }
+            else if (Area == 'D') { RoitPool = RoitTagsD; BadPool = badTagsD; }
+        }
         for (int i = 0; i < level; i++)
         {
-            tagList.Add(RoitTags[UnityEngine.Random.Range(0, RoitTags.Count)]);
+            tagList.Add(RoitPool[UnityEngine.Random.Range(0, RoitPool.Count)]);
         }
         for (int i = 0; i < (5 - level); i++)
         {
-            tagList.Add(badTags[UnityEngine.Random.Range(0, badTags.Count)]);
+            tagList.Add(BadPool[UnityEngine.Random.Range(0, BadPool.Count)]);
         }
         UpdateVariables();
     }
