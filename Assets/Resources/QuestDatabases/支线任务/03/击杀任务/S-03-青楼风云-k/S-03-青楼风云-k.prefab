@@ -50,6 +50,9 @@ MonoBehaviour:
   generalEventTrigger: {fileID: 6455529624729957043}
   InactiveGameobjs: []
   ActiveGameobjs: []
+  EventIfNoDuty:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &6455529624729957043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,6 +71,7 @@ MonoBehaviour:
   moneyPunishment: -100
   pressurePunishment: 10
   itemRewards: 
+  itemNames: []
   playerCharacters: []
   enemyCharacters:
   - {fileID: 6455529626083443908}
@@ -75,6 +79,10 @@ MonoBehaviour:
   endGamePannel: {fileID: 1808533205442087187, guid: a2363c9350157ea4a89f6d51650f4998, type: 3}
   dontPopEndGamePannel: 0
   EventAC: {fileID: 1038574893802127883}
+  NoDebateEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  canSurrender: 1
 --- !u!114 &8876715088244837758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,31 +140,218 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   CharacterName: "\u53DB\u519B"
-  loyaltyMax: 20
-  healthMax: 20
   tagMax: 5
   TagSpawnRareRate: c8000000cc0100004a0100003200000001000000
   characterType: 0
   characterArtCode: 2
   loyalty: 0
   health: 20
+  hungry: 10
   rarerity: 0
   characterCard: {fileID: 6978759770948470115, guid: bcb976df68f93ec4ba4682e0d891984c, type: 3}
   thisCharacterCard: {fileID: 0}
   characterCardInvUI: {fileID: 0}
   InGameAI: {fileID: 0}
   Deserializing: 0
+  edibleFavor: 5
   tagList: 8b00000075000000b300000078000000c2000000
+  temporaryTags: []
   ReturnRounds: 0
   hireStage: 3
   OnCombatDuty: 0
   OnDebateDuty: 0
   OnGobangDuty: 0
-  Money: 250
-  Influence: 200
-  Prestige: 200
   characterAwaitTribute: {fileID: 0}
   spawnAfterAway: {fileID: 0}
+  OnAssassinEvent: 0
+  AssasinTarget: 
+  awayMessage: 
+--- !u!1 &7025995171710208158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 257080778981081432}
+  - component: {fileID: 6205544417067058913}
+  - component: {fileID: 5801882966824096728}
+  m_Layer: 0
+  m_Name: "\u5BF9\u8BDD  (1)"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &257080778981081432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025995171710208158}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1853282618236941584}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6205544417067058913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025995171710208158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: 32
+  condition:
+    luaConditions: []
+    questConditions: []
+    acceptedTags: []
+    acceptedGameObjects: []
+    luaWizardIndex: -1
+    lastEvaluationValue: 0
+  setQuestState: 1
+  questName: 
+  questState: 0
+  setQuestEntryState: 0
+  questEntryNumber: 1
+  questEntryState: 0
+  luaCode: 
+  sequence: 
+  sequenceSpeaker: {fileID: 0}
+  sequenceListener: {fileID: 0}
+  waitOneFrameOnStartOrEnable: 1
+  alertMessage: 
+  textTable: {fileID: 0}
+  alertDuration: 0
+  sendMessages: []
+  barkSource: 0
+  barkConversation: 
+  barkText: 
+  barkTextSequence: 
+  barker: {fileID: 0}
+  barkTarget: {fileID: 0}
+  barkOrder: 0
+  allowBarksDuringConversations: 0
+  skipBarkIfNoValidEntries: 0
+  cacheBarkLines: 0
+  conversation: dialogueTriggercollected
+  conversationConversant: {fileID: 0}
+  conversationActor: {fileID: 0}
+  startConversationEntryID: -1
+  exclusive: 0
+  replace: 0
+  skipIfNoValidEntries: 0
+  stopConversationOnTriggerExit: 0
+  stopConversationIfTooFar: 0
+  maxConversationDistance: 5
+  monitorConversationDistanceFrequency: 1
+  showCursorDuringConversation: 0
+  pauseGameDuringConversation: 0
+  setActiveActions: []
+  setEnabledActions: []
+  setAnimatorStateActions: []
+  onExecute:
+    m_PersistentCalls:
+      m_Calls: []
+  useConversationTitlePicker: 1
+  useBarkTitlePicker: 1
+  useQuestNamePicker: 1
+  selectedDatabase: {fileID: 11400000, guid: df08980173d5a884d98765be7491cd37, type: 2}
+--- !u!114 &5801882966824096728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7025995171710208158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: 2
+  condition:
+    luaConditions: []
+    questConditions: []
+    acceptedTags: []
+    acceptedGameObjects: []
+    luaWizardIndex: -1
+    lastEvaluationValue: 0
+  setQuestState: 1
+  questName: 
+  questState: 0
+  setQuestEntryState: 0
+  questEntryNumber: 1
+  questEntryState: 0
+  luaCode: 
+  sequence: 
+  sequenceSpeaker: {fileID: 0}
+  sequenceListener: {fileID: 0}
+  waitOneFrameOnStartOrEnable: 1
+  alertMessage: 
+  textTable: {fileID: 0}
+  alertDuration: 0
+  sendMessages: []
+  barkSource: 0
+  barkConversation: 
+  barkText: 
+  barkTextSequence: 
+  barker: {fileID: 0}
+  barkTarget: {fileID: 0}
+  barkOrder: 0
+  allowBarksDuringConversations: 0
+  skipBarkIfNoValidEntries: 0
+  cacheBarkLines: 0
+  conversation: 
+  conversationConversant: {fileID: 0}
+  conversationActor: {fileID: 0}
+  startConversationEntryID: -1
+  exclusive: 0
+  replace: 0
+  skipIfNoValidEntries: 0
+  stopConversationOnTriggerExit: 0
+  stopConversationIfTooFar: 0
+  maxConversationDistance: 5
+  monitorConversationDistanceFrequency: 1
+  showCursorDuringConversation: 0
+  pauseGameDuringConversation: 0
+  setActiveActions:
+  - condition:
+      luaConditions: []
+      questConditions: []
+      acceptedTags: []
+      acceptedGameObjects: []
+      luaWizardIndex: 0
+      lastEvaluationValue: 0
+    target: {fileID: 0}
+    state: 0
+  - condition:
+      luaConditions: []
+      questConditions: []
+      acceptedTags: []
+      acceptedGameObjects: []
+      luaWizardIndex: 0
+      lastEvaluationValue: 0
+    target: {fileID: 0}
+    state: 0
+  setEnabledActions: []
+  setAnimatorStateActions: []
+  onExecute:
+    m_PersistentCalls:
+      m_Calls: []
+  useConversationTitlePicker: 1
+  useBarkTitlePicker: 1
+  useQuestNamePicker: 1
+  selectedDatabase: {fileID: 11400000, guid: df08980173d5a884d98765be7491cd37, type: 2}
 --- !u!1001 &1514042502273818601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -218,19 +413,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4162124619621036389, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
       propertyPath: changeQuestStructs.Array.data[0].QuestID
-      value: "S-03-\u5357\u7586\u4E4B\u5973-k"
+      value: "S-03-\u9752\u697C\u98CE\u4E91-k"
       objectReference: {fileID: 0}
     - target: {fileID: 4162124619621036389, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
       propertyPath: changeQuestStructs.Array.data[1].QuestID
-      value: "S-03-\u5357\u7586\u4E4B\u5973-k"
+      value: "S-03-\u9752\u697C\u98CE\u4E91-k"
       objectReference: {fileID: 0}
     - target: {fileID: 7290142840620276390, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
       propertyPath: changeQuestStructs.Array.data[0].QuestID
-      value: "S-03-\u5357\u7586\u4E4B\u5973-k"
+      value: "S-03-\u9752\u697C\u98CE\u4E91-k"
       objectReference: {fileID: 0}
     - target: {fileID: 7290142840620276390, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
       propertyPath: changeQuestStructs.Array.data[1].QuestID
-      value: "S-03-\u5357\u7586\u4E4B\u5973-k"
+      value: "S-03-\u9752\u697C\u98CE\u4E91-k"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
