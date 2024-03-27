@@ -72,6 +72,7 @@ public class GeneralEventTrigger : MonoBehaviour
     {
         CurrencyInventory currencyInventory = FindObjectOfType<CurrencyInventory>();
         gameTracker.gameWin = result > 0;
+        Debug.Log($"gameTracker is null == {gameTracker != null}");
         if (gameTracker != null)
         {
             //Win
