@@ -383,7 +383,7 @@ public class RoitCharacter : Character
                     break;
             }
         }
-        Debug.Log($"chapter is {ChapterCounter.Instance.Chapter} and name is {inGameAiString}");
+        //Debug.Log($"chapter is {ChapterCounter.Instance.Chapter} and name is {inGameAiString}");
         SpawnTagOnStart(RoitManager.Instance.Difficulty);
         var cloneTarget = Resources.Load<RoitInGameAI>($"InGameNPC/RoitCharacter/{inGameAiString}");
         RoitInGameAI inGameAi = Instantiate(cloneTarget, spawnRange.transform);

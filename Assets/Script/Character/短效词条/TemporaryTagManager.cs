@@ -30,6 +30,7 @@ public class TemporaryTagManager : MonoBehaviour, IDiceRollEvent
     }
     public void OnNotify(object value, NotificationType notificationType)
     {
+        Debug.Log("TempTagOnNotify");
         if (characterInv == null) return;
         foreach (Transform character in characterInv)
         {
