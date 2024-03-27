@@ -93,6 +93,12 @@ public class GeneralEventTrigger : MonoBehaviour
                     Debug.Log(string.Join(",", itemRewards));
                     itemInventory.AddItem(itemRewards);
                 }
+                else if (itemRewards.Count > 0)
+                {
+                    ItemInventory itemInventory = FindObjectOfType<ItemInventory>();
+                    Debug.Log(string.Join(",", itemRewards));
+                    itemInventory.AddItem(itemRewards);
+                }
             }
             //Lose
             else
