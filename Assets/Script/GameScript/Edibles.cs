@@ -236,6 +236,11 @@ public class EdiblesItems : MonoBehaviour
         {ItemName.神气丹,Tag.淬体},
         {ItemName.养气筑基散,Tag.淬体},
         {ItemName.天机造化丹,Tag.养神},
+        {ItemName.当归,Tag.益血},
+        {ItemName.沉香,Tag.提神},
+        {ItemName.水翁花,Tag.提神 },
+        {ItemName.守宫,Tag.固肾 },
+        {ItemName.何首乌,Tag.益血 }
     };
     public static Dictionary<ItemName, int> ItemTempDuration = new Dictionary<ItemName, int>()
     {
