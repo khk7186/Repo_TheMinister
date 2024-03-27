@@ -380,6 +380,7 @@ public class RoitCharacter : Character
             else if (index == 3) inGameAiString = "迷茫的叛军";
             else if (index == 4) inGameAiString = "慌张的叛军";
         }
+        Debug.Log($"chapter is {ChapterCounter.Instance.Chapter} and name is {inGameAiString}");
         SpawnTagOnStart(RoitManager.Instance.Difficulty);
         var cloneTarget = Resources.Load<RoitInGameAI>($"InGameNPC/RoitCharacter/{inGameAiString}");
         RoitInGameAI inGameAi = Instantiate(cloneTarget, spawnRange.transform);
