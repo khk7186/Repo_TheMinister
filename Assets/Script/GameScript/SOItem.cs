@@ -1953,6 +1953,7 @@ public class SOItem : ScriptableObject
         {ItemName.核桃粉,"日常用品。获得词条<color=#785E57>杂七杂八</color>"},
         {ItemName.过山龙,"药材吃了会中毒。获得词条<color=#785E57>药毒</color>"},
         {ItemName.星辰花,"药材吃了会中毒。获得词条<color=#785E57>药毒</color>"},
+        {ItemName.干粮,"行军吃的干粮。获得词条<color=#5E5D41>饱腹</color>"},
     };
     public static ItemType FindType(ItemName item)
     {
