@@ -26,6 +26,7 @@ public class TemporaryTagManager : MonoBehaviour, IDiceRollEvent
     private void OnEnable()
     {
         Dice.Instance.RegisterObserver(Instance);
+        characterInv = GameObject.FindGameObjectWithTag("PlayerCharacterInventory").transform;
     }
     public void OnNotify(object value, NotificationType notificationType)
     {
