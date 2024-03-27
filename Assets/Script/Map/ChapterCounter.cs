@@ -47,7 +47,7 @@ public class ChapterCounter : MonoBehaviour
                 WarAssets.SetActive(true);
                 RegularAssets.SetActive(false);
             }
-            FindObjectOfType<PressureView>().SetAddPerDay();
+            FindObjectOfType<PressureView>(true).SetAddPerDay();
             LastChapterAIExitGame();
             QuestAIManager.Instance.CloneList();
         }
