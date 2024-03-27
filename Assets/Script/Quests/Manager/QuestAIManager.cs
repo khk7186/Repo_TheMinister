@@ -18,6 +18,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
     public QUEST_GIVER_BY_ORDER CurrentQuestList => subQuestDB.QUEST_GIVER_BY_ORDER[chapterCounter.Chapter];
     public List<QuestGiverAI> InactiveQuestGivers = new List<QuestGiverAI>();
     public List<QuestGiverAI> ActiveQuestsGivers = new List<QuestGiverAI>();
+    public List<QuestGiverAI> OnEventQuestGivers = new List<QuestGiverAI>();
     public int inGameQuestCount = 0;
     public bool themeMode = false;
     private void Start()
@@ -155,6 +156,10 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         {
             gameSave.InactiveQuestGiverID.Add(questGiver.QuestID);
         }
+        foreach (var questGiver in OnEventQuestGivers)
+        {
+            gameSave.OnEventQuestGiverID.Add(questGiver.QuestID);
+        }
     }
 
     public void Load(GameSave gameSave)
@@ -163,6 +168,11 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         var originInactive = subQuestDB.QUEST_GIVER_BY_ORDER[gameSave.chapter].questGivers;
         ChapterCounter.Instance.Chapter = gameSave.chapter;
         InactiveQuestGivers = new List<QuestGiverAI>(originInactive);
+        foreach (var id in gameSave.OnEventQuestGiverID)
+        {
+            var origin = InactiveQuestGivers.Find(x => x.QuestID == id);
+            var clone = Instantiate(origin.QuestSpawnPref, transform);
+        }
         foreach (var id in gameSave.UntriggeredQuestGiverID)
         {
             var origin = InactiveQuestGivers.Find(x => x.QuestID == id);
@@ -182,6 +192,7 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
             InactiveQuestGivers.Remove(origin);
             ActiveQuestsGivers.Add(clone.GetComponent<QuestGiverPointer>().questGiverAI);
         }
+
         for (int i = 0; i < InactiveQuestGivers.Count; i++)
         {
             if (gameSave.InactiveQuestGiverID.Contains(InactiveQuestGivers[i].QuestID) == false)
