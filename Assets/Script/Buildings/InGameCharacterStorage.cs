@@ -31,7 +31,7 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
         OffForTheme = Off;
         if (Off == true)
         {
-            foreach(var ch in GetComponentsInChildren<Character>())
+            foreach (var ch in GetComponentsInChildren<Character>())
             {
                 ch.gameObject.SetActive(false);
             }
@@ -141,7 +141,8 @@ public class InGameCharacterStorage : MonoBehaviour, IDiceRollEvent, IAreaChange
         var map = FindObjectOfType<Map>();
         if (map.DayTime == 0)
         {
-            AdjustCharacterStorage();
+            if (ChapterCounter.Instance.Chapter != 3)
+                AdjustCharacterStorage();
         }
         int multi = map.DayTime == 2 ? 2 : 1;
         int result = Random.Range(0, spawnTotal) * multi;
