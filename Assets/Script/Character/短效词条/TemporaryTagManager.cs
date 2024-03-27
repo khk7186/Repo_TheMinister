@@ -31,13 +31,13 @@ public class TemporaryTagManager : MonoBehaviour, IDiceRollEvent
     public void OnNotify(object value, NotificationType notificationType)
     {
         if (characterInv == null) return;
-        foreach (Transform character in characterInv)
+        foreach (var character in characterInv.GetComponentsInChildren<Character>())
         {
-            var list = character.GetComponent<Character>().temporaryTags;
+            var list = character.temporaryTags;
             if (list == null || list.Count < 1) { Debug.Log("list == null"); return; }
             else
             {
-                Debug.Log($"Changing for {character.GetComponent<Character>().CharacterName}");
+                Debug.Log($"Changing for {character.CharacterName}");
                 var removeList = new List<TemporaryTag>();
                 foreach (var tempTag in list)
                 {
@@ -47,7 +47,7 @@ public class TemporaryTagManager : MonoBehaviour, IDiceRollEvent
                         removeList.Add(tempTag);
                     }
                 }
-                character.GetComponent<Character>().UpdateVariables();
+                character.UpdateVariables();
                 foreach (var tempTag in removeList)
                 {
                     list.Remove(tempTag);
