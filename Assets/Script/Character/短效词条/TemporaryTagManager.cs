@@ -31,6 +31,7 @@ public class TemporaryTagManager : MonoBehaviour, IDiceRollEvent
     public void OnNotify(object value, NotificationType notificationType)
     {
         if (characterInv == null) return;
+        Debug.Log($"about to checking {characterInv.GetComponentsInChildren<Character>().Length} characters");
         foreach (var character in characterInv.GetComponentsInChildren<Character>())
         {
             var list = character.temporaryTags;
