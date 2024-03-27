@@ -360,10 +360,10 @@ public class RoitCharacter : Character
         if (ChapterCounter.Instance.Chapter == 3)
         {
             var index = UnityEngine.Random.Range(0, 4);
-            if (index == 1) inGameAiString = "残忍的叛军";
-            else if (index == 2) inGameAiString = "瘦弱的叛军";
-            else if (index == 3) inGameAiString = "迷茫的叛军";
-            else if (index == 4) inGameAiString = "慌张的叛军";
+            if (index == 0) inGameAiString = "残忍的叛军";
+            else if (index == 1) inGameAiString = "瘦弱的叛军";
+            else if (index == 2) inGameAiString = "迷茫的叛军";
+            else if (index == 3) inGameAiString = "慌张的叛军";
         }
         else
         {
