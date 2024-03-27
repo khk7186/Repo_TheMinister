@@ -35,7 +35,7 @@ public class TemporaryTagManager : MonoBehaviour, IDiceRollEvent
         foreach (var character in characterInv.GetComponentsInChildren<Character>())
         {
             var list = character.temporaryTags;
-            if (list == null || list.Count < 1) { Debug.Log("list == null"); return; }
+            if (list == null || list.Count < 1) { Debug.Log("list == null"); continue; }
             else
             {
                 Debug.Log($"Changing for {character.CharacterName}");
