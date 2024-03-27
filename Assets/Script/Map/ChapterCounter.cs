@@ -2,6 +2,7 @@ using PixelCrushers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class ChapterCounter : MonoBehaviour
 {
@@ -46,6 +47,7 @@ public class ChapterCounter : MonoBehaviour
                 InGameCharacterStorage.Instance.ThemeMode(true);
                 WarAssets.SetActive(true);
                 RegularAssets.SetActive(false);
+                GameObject.FindGameObjectsWithTag("DisableOnWar").ToList().ForEach(x => x.SetActive(false));
             }
             FindObjectOfType<PressureView>(true).SetAddPerDay();
             LastChapterAIExitGame();
