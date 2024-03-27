@@ -253,6 +253,11 @@ public class EdiblesItems : MonoBehaviour
         {ItemName.神气丹,3},
         {ItemName.养气筑基散,3},
         {ItemName.天机造化丹,4},
+        {ItemName.当归,4 },
+         {ItemName.沉香,4},
+        {ItemName.水翁花,3},
+        {ItemName.守宫,3 },
+        {ItemName.何首乌,3 }
 
     };
     public static bool IsEdible(ItemName item)
