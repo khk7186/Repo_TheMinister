@@ -60,7 +60,7 @@ MonoBehaviour:
   QuestID: "S-03-\u4E71\u4E16\u707E\u7978-k"
   QuestChainName: 
   QuestChainOrder: 0
-  position: {x: 164.47, y: 52.08}
+  position: {x: 174.6, y: 47.2}
   front: 0
   right: 0
   _dialogueTriggerUncollected: {fileID: 7706260950033482437}
@@ -71,7 +71,7 @@ MonoBehaviour:
   QuestSpawnPref: {fileID: 4589762202799252501, guid: 05df13dfd76b2ba4b85b8900c3d15db2, type: 3}
   ReloadPref: {fileID: 5357050543491260498, guid: b7380746ac581a84884becb0f0aec313, type: 3}
   triggered: 0
-  battleQuest: 1
+  battleQuest: 0
   AfterShow: 0
   battleType: 0
 --- !u!70 &36357328868516242
@@ -764,6 +764,30 @@ MonoBehaviour:
       - m_Target: {fileID: 36357328868516240}
         m_TargetAssemblyTypeName: QuestGiverAI, Assembly-CSharp
         m_MethodName: AssignTrue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6314716713428874753, guid: cebde04934654d2419efb5272a625a09, type: 3}
+        m_TargetAssemblyTypeName: GiveQuestOnActive, Assembly-CSharp
+        m_MethodName: Start
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SpawnPrefabOnEnable, Assembly-CSharp
+        m_MethodName: OnEnable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
