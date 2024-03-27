@@ -357,21 +357,6 @@ public class RoitCharacter : Character
         characterArtCode = RoitCharacterArtCode;
         rarerity = RoitManager.Instance.Difficulty;
         string inGameAiString = "";
-        switch (Area)
-        {
-            case 'A':
-                inGameAiString = "街霸";
-                break;
-            case 'B':
-                inGameAiString = "强盗";
-                break;
-            case 'C':
-                inGameAiString = "逃难者";
-                break;
-            case 'D':
-                inGameAiString = "醉鬼";
-                break;
-        }
         if (ChapterCounter.Instance.Chapter == 3)
         {
             var index = UnityEngine.Random.Range(0, 4);
@@ -379,6 +364,24 @@ public class RoitCharacter : Character
             else if (index == 2) inGameAiString = "瘦弱的叛军";
             else if (index == 3) inGameAiString = "迷茫的叛军";
             else if (index == 4) inGameAiString = "慌张的叛军";
+        }
+        else
+        {
+            switch (Area)
+            {
+                case 'A':
+                    inGameAiString = "街霸";
+                    break;
+                case 'B':
+                    inGameAiString = "强盗";
+                    break;
+                case 'C':
+                    inGameAiString = "逃难者";
+                    break;
+                case 'D':
+                    inGameAiString = "醉鬼";
+                    break;
+            }
         }
         Debug.Log($"chapter is {ChapterCounter.Instance.Chapter} and name is {inGameAiString}");
         SpawnTagOnStart(RoitManager.Instance.Difficulty);
