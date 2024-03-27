@@ -31,11 +31,10 @@ public class TemporaryTagManager : MonoBehaviour, IDiceRollEvent
     public void OnNotify(object value, NotificationType notificationType)
     {
         if (characterInv == null) return;
-        Debug.Log("TempTagOnNotify");
         foreach (Transform character in characterInv)
         {
             var list = character.GetComponent<Character>().temporaryTags;
-            if (list == null || list.Count < 1) { return; }
+            if (list == null || list.Count < 1) { Debug.Log("list == null"); return; }
             else
             {
                 Debug.Log($"Changing for {character.GetComponent<Character>().CharacterName}");
