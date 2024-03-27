@@ -58,16 +58,14 @@ public class TagDescriptionUI : MonoBehaviour
     private void SetupTemp(string tag, int timeLeft)
     {
         var targetTag = (Tag)Enum.Parse(typeof(Tag), tag);
-        if (currentTag != targetTag)
-        {
-            currentTag = targetTag;
-            tagImage.sprite = Resources.Load<Sprite>(ReturnAssetPath.ReturnTagPath(currentTag));
-            tagStats.text = ItemStatPrinter.PrintAllStats(currentTag);
-            timeLeftGO.SetActive(true);
-            timeLeftText.text = timeLeft.ToString();
-            tagFromWhere.Setup(targetTag);
-            SetMergeInfo(targetTag);
-        }
+
+        currentTag = targetTag;
+        tagImage.sprite = Resources.Load<Sprite>(ReturnAssetPath.ReturnTagPath(currentTag));
+        tagStats.text = ItemStatPrinter.PrintAllStats(currentTag);
+        timeLeftGO.SetActive(true);
+        timeLeftText.text = timeLeft.ToString();
+        tagFromWhere.Setup(targetTag);
+        SetMergeInfo(targetTag);
     }
     public void ResetMergeInfo()
     {
