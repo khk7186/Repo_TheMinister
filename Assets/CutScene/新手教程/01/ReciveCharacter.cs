@@ -9,6 +9,7 @@ public class ReciveCharacter : MonoBehaviour
     public string Name;
     public int health;
     public int loyalty;
+    public int hungry;
     public Canvas canvas;
     public List<GameObject> _objectToActive;
     private void Start()
@@ -26,8 +27,10 @@ public class ReciveCharacter : MonoBehaviour
         character.tagList = tags;
         character.health = health;
         character.loyalty = loyalty;
+        character.hungry = hungry;
         character.UpdateVariables();
-        var congrat = Instantiate(Resources.Load<CharacterReciveNotice>("MainUI/CharacterReciveConfirmWindow"), canvas.transform);
+        var targetCanvasTransform = canvas ? canvas.transform : MainCanvas.FindMainCanvas();
+        var congrat = Instantiate(Resources.Load<CharacterReciveNotice>("MainUI/CharacterReciveConfirmWindow"), targetCanvasTransform);
         congrat.Setup(character);
         congrat.GetComponent<CharacterRetireNotice>().Show();
         //congrat.destroyEvents.AddListener(() => SetCharacterToInv(character));

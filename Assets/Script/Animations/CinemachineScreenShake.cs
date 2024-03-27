@@ -31,6 +31,10 @@ public class CinemachineScreenShake : MonoBehaviour
 
     void Update()
     {
+        if (virtualCameraNoise == null)
+        {
+            return;
+        }
         // If there is noise profile present and time remaining on our shake
         if (virtualCameraNoise != null && shakeElapsedTime > 0)
         {
