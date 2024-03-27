@@ -36,6 +36,7 @@ public class TemporaryTagManager : MonoBehaviour, IDiceRollEvent
             if (list == null || list.Count < 1) { return; }
             else
             {
+                Debug.Log($"Changing for {character.GetComponent<Character>().CharacterName}");
                 var removeList = new List<TemporaryTag>();
                 foreach (var tempTag in list)
                 {
