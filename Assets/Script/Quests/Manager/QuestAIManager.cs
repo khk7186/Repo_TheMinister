@@ -168,10 +168,12 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         var originInactive = subQuestDB.QUEST_GIVER_BY_ORDER[gameSave.chapter].questGivers;
         ChapterCounter.Instance.Chapter = gameSave.chapter;
         InactiveQuestGivers = new List<QuestGiverAI>(originInactive);
+        OnEventQuestGivers = new List<QuestGiverAI>();
         foreach (var id in gameSave.OnEventQuestGiverID)
         {
             var origin = InactiveQuestGivers.Find(x => x.QuestID == id);
-            var clone = Instantiate(origin.QuestSpawnPref, transform);
+            var clone = Instantiate(origin.ReloadPref, transform);
+            OnEventQuestGivers.Add(origin);
         }
         foreach (var id in gameSave.UntriggeredQuestGiverID)
         {
