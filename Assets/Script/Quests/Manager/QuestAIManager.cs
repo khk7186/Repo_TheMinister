@@ -173,7 +173,6 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         {
             var origin = InactiveQuestGivers.Find(x => x.QuestID == id);
             var clone = Instantiate(origin.ReloadPref, transform);
-            OnEventQuestGivers.Add(origin);
         }
         foreach (var id in gameSave.UntriggeredQuestGiverID)
         {
