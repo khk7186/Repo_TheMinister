@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5463432314521746423
+--- !u!1 &3669013218763949226
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,55 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7419871192092182792}
-  - component: {fileID: 2329261772890660355}
-  - component: {fileID: 8486551375401878853}
+  - component: {fileID: 2232160137684359526}
+  - component: {fileID: 9032422196093980980}
+  m_Layer: 0
+  m_Name: DeathTrigger (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2232160137684359526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3669013218763949226}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1853282618236941584}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9032422196093980980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3669013218763949226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67dd9a62b780d9f4fa3b4826c1893951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerOnEnable: 0
+  characterModelController: {fileID: 0}
+  triggerName: Death
+--- !u!1 &6009573432954868029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4550790457026387203}
+  - component: {fileID: 6851521097292227397}
+  - component: {fileID: 1524863969350140816}
   m_Layer: 0
   m_Name: "\u5BF9\u8BDD"
   m_TagString: Untagged
@@ -18,27 +64,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7419871192092182792
+--- !u!4 &4550790457026387203
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5463432314521746423}
+  m_GameObject: {fileID: 6009573432954868029}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 115.73, y: 40.42, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1853282618236941584}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2329261772890660355
+--- !u!114 &6851521097292227397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5463432314521746423}
+  m_GameObject: {fileID: 6009573432954868029}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
@@ -77,7 +123,7 @@ MonoBehaviour:
   allowBarksDuringConversations: 0
   skipBarkIfNoValidEntries: 0
   cacheBarkLines: 0
-  conversation: DialogueAC W
+  conversation: DialogueAC
   conversationConversant: {fileID: 0}
   conversationActor: {fileID: 0}
   startConversationEntryID: -1
@@ -98,7 +144,7 @@ MonoBehaviour:
       acceptedGameObjects: []
       luaWizardIndex: 0
       lastEvaluationValue: 0
-    target: {fileID: 0}
+    target: {fileID: 1589806317760278657}
     state: 0
   - condition:
       luaConditions: []
@@ -107,16 +153,7 @@ MonoBehaviour:
       acceptedGameObjects: []
       luaWizardIndex: 0
       lastEvaluationValue: 0
-    target: {fileID: 0}
-    state: 0
-  - condition:
-      luaConditions: []
-      questConditions: []
-      acceptedTags: []
-      acceptedGameObjects: []
-      luaWizardIndex: 0
-      lastEvaluationValue: 0
-    target: {fileID: 0}
+    target: {fileID: 2232160137684359526}
     state: 0
   setEnabledActions: []
   setAnimatorStateActions: []
@@ -126,14 +163,14 @@ MonoBehaviour:
   useConversationTitlePicker: 1
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
-  selectedDatabase: {fileID: 11400000, guid: 2e508eb6a6e5fb6489259f53aa302add, type: 2}
---- !u!114 &8486551375401878853
+  selectedDatabase: {fileID: 11400000, guid: 682ac45f9efeddb4fa3bc256289d0804, type: 2}
+--- !u!114 &1524863969350140816
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5463432314521746423}
+  m_GameObject: {fileID: 6009573432954868029}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c593457cd8105e148906690e1707c592, type: 3}
@@ -185,16 +222,7 @@ MonoBehaviour:
   monitorConversationDistanceFrequency: 1
   showCursorDuringConversation: 0
   pauseGameDuringConversation: 0
-  setActiveActions:
-  - condition:
-      luaConditions: []
-      questConditions: []
-      acceptedTags: []
-      acceptedGameObjects: []
-      luaWizardIndex: 0
-      lastEvaluationValue: 0
-    target: {fileID: 0}
-    state: 0
+  setActiveActions: []
   setEnabledActions: []
   setAnimatorStateActions: []
   onExecute:
@@ -203,7 +231,7 @@ MonoBehaviour:
   useConversationTitlePicker: 1
   useBarkTitlePicker: 1
   useQuestNamePicker: 1
-  selectedDatabase: {fileID: 11400000, guid: 2e508eb6a6e5fb6489259f53aa302add, type: 2}
+  selectedDatabase: {fileID: 11400000, guid: 1b7839419e240f74f990b19dc452b524, type: 2}
 --- !u!1 &6455529624729957052
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,7 +245,7 @@ GameObject:
   - component: {fileID: 6455529624729957043}
   - component: {fileID: 8876715088244837758}
   m_Layer: 0
-  m_Name: "\u6218\u6597S-03-\u5FC3\u6000\u4F5B\u53F7-k"
+  m_Name: "\u6218\u6597S-03-\u52AB\u63A0\u533B\u751F-k"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,6 +263,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6455529626083443899}
+  - {fileID: 2310890843393491374}
   - {fileID: 1853282618236941584}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -270,11 +299,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   battleType: 1
-  moneyRewards: 1400
-  pressureRewards: -100
+  moneyRewards: 0
+  pressureRewards: 0
   moneyPunishment: -100
   pressurePunishment: 10
-  itemRewards: 2a00000004000000
+  itemRewards: 
   itemNames: []
   playerCharacters: []
   enemyCharacters:
@@ -370,6 +399,123 @@ MonoBehaviour:
   OnAssassinEvent: 0
   AssasinTarget: 
   awayMessage: 
+--- !u!1 &7335651269797899451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2310890843393491374}
+  - component: {fileID: 8453463183562118751}
+  m_Layer: 0
+  m_Name: Character (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2310890843393491374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7335651269797899451}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6455529624729957041}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8453463183562118751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7335651269797899451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a43da38c5ea844983f41f6351c9a00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 0
+  CharacterName: "\u53DB\u519B"
+  tagMax: 5
+  TagSpawnRareRate: c8000000cc0100004a0100003200000001000000
+  characterType: 0
+  characterArtCode: 2
+  loyalty: 0
+  health: 20
+  hungry: 10
+  rarerity: 0
+  characterCard: {fileID: 6978759770948470115, guid: bcb976df68f93ec4ba4682e0d891984c, type: 3}
+  thisCharacterCard: {fileID: 0}
+  characterCardInvUI: {fileID: 0}
+  InGameAI: {fileID: 0}
+  Deserializing: 0
+  edibleFavor: 5
+  tagList: 8b00000075000000b300000078000000c2000000
+  temporaryTags: []
+  ReturnRounds: 0
+  hireStage: 3
+  OnCombatDuty: 0
+  OnDebateDuty: 0
+  OnGobangDuty: 0
+  characterAwaitTribute: {fileID: 0}
+  spawnAfterAway: {fileID: 0}
+  OnAssassinEvent: 0
+  AssasinTarget: 
+  awayMessage: 
+--- !u!1 &8478169948663595624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1589806317760278657}
+  - component: {fileID: 1208003599931775760}
+  m_Layer: 0
+  m_Name: DeathTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1589806317760278657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478169948663595624}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1853282618236941584}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1208003599931775760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8478169948663595624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67dd9a62b780d9f4fa3b4826c1893951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerOnEnable: 0
+  characterModelController: {fileID: 0}
+  triggerName: Death
 --- !u!1001 &1514042502273818601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -379,7 +525,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 917286381837150969, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 917286381837150969, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
       propertyPath: m_LocalPosition.x
@@ -430,15 +576,31 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
+      propertyPath: LostEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
       propertyPath: WinEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
+      propertyPath: LostEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
       propertyPath: WinEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 2329261772890660355}
+      objectReference: {fileID: 6851521097292227397}
+    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
+      propertyPath: LostEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
       propertyPath: WinEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
+      propertyPath: LostEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
@@ -446,11 +608,27 @@ PrefabInstance:
       value: OnUse
       objectReference: {fileID: 0}
     - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
+      propertyPath: LostEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
       propertyPath: WinEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: PixelCrushers.DialogueSystem.DialogueSystemTrigger, Assembly-CSharp-firstpass
       objectReference: {fileID: 0}
     - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
+      propertyPath: LostEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
+      propertyPath: LostEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
       propertyPath: WinEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
+      propertyPath: LostEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2573510057837774819, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
@@ -459,19 +637,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4162124619621036389, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
       propertyPath: changeQuestStructs.Array.data[0].QuestID
-      value: "S-03-\u5FC3\u6000\u4F5B\u53F7-k"
+      value: "S-03-\u52AB\u63A0\u533B\u751F-k"
       objectReference: {fileID: 0}
     - target: {fileID: 4162124619621036389, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
       propertyPath: changeQuestStructs.Array.data[1].QuestID
-      value: "S-03-\u5FC3\u6000\u4F5B\u53F7-k"
+      value: "S-03-\u52AB\u63A0\u533B\u751F-k"
       objectReference: {fileID: 0}
     - target: {fileID: 7290142840620276390, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
       propertyPath: changeQuestStructs.Array.data[0].QuestID
-      value: "S-03-\u5FC3\u6000\u4F5B\u53F7-k"
+      value: "S-03-\u52AB\u63A0\u533B\u751F-k"
       objectReference: {fileID: 0}
     - target: {fileID: 7290142840620276390, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
       propertyPath: changeQuestStructs.Array.data[1].QuestID
-      value: "S-03-\u5FC3\u6000\u4F5B\u53F7-k"
+      value: "S-03-\u52AB\u63A0\u533B\u751F-k"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
