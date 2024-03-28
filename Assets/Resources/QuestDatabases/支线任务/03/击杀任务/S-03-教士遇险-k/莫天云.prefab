@@ -61,17 +61,17 @@ MonoBehaviour:
   QuestChainName: 
   QuestChainOrder: 0
   position: {x: 59, y: 108}
-  front: 1
+  front: 0
   right: 1
   _dialogueTriggerUncollected: {fileID: 7706260950033482437}
   _dialogueTriggerCollected: {fileID: 7706260949890951885}
   _readyToFight: {fileID: 0}
   _notReadyToFight: {fileID: 0}
   Assign: 0
-  QuestSpawnPref: {fileID: 831755522115731693, guid: f0726eaf30b6da24b8f16aa0009c20eb, type: 3}
-  ReloadPref: {fileID: 3336784001818731104, guid: d743202b03a0265418f4505b6c44df55, type: 3}
+  QuestSpawnPref: {fileID: 831755522115731693, guid: f75066e44f1ab3f40b28bb29919518d0, type: 3}
+  ReloadPref: {fileID: 831755522115731693, guid: db4b638b8fa07ef498e22362a69edaf4, type: 3}
   triggered: 0
-  battleQuest: 1
+  battleQuest: 0
   AfterShow: 0
   battleType: 0
 --- !u!70 &36357328868516242
@@ -764,6 +764,18 @@ MonoBehaviour:
       - m_Target: {fileID: 36357328868516240}
         m_TargetAssemblyTypeName: QuestGiverAI, Assembly-CSharp
         m_MethodName: AssignTrue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SpawnPrefabOnEnable, Assembly-CSharp
+        m_MethodName: OnEnable
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
