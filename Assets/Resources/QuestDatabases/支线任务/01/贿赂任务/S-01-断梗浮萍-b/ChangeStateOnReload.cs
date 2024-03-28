@@ -12,7 +12,7 @@ public class ChangeStateOnReload : MonoBehaviour
 
     public void OnEnable()
     {
-        if (switchOnEnable && questID == string.Empty)
+        if (switchOnEnable && questID != string.Empty)
         {
             SwitchState();
         }
@@ -22,7 +22,7 @@ public class ChangeStateOnReload : MonoBehaviour
     {
         var journal = FindObjectOfType<QuestJournal>();
         var quest = journal.FindQuest(questID);
-        if(quest == null)
+        if (quest == null)
         {
             return false;
         }
@@ -35,26 +35,31 @@ public class ChangeStateOnReload : MonoBehaviour
     public void SwitchState()
     {
         var result = CheckIfCollected();
+        Debug.Log(result);
         if (result == true)
         {
             foreach (var target in defaultObjects)
             {
-                target.SetActive(false);
+                if (target != null)
+                    target.SetActive(false);
             }
-            foreach(var target in triggeredObjects)
+            foreach (var target in triggeredObjects)
             {
-                target.SetActive(true);
-            }    
+                if (target != null)
+                    target.SetActive(true);
+            }
         }
         else
         {
             foreach (var target in defaultObjects)
             {
-                target.SetActive(true);
+                if (target != null)
+                    target.SetActive(true);
             }
             foreach (var target in triggeredObjects)
             {
-                target.SetActive(false);
+                if (target != null)
+                    target.SetActive(false);
             }
         }
 

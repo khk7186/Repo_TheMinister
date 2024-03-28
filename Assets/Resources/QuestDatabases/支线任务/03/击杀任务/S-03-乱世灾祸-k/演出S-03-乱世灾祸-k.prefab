@@ -48,6 +48,8 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: 2201202657520526624, guid: 87b3d393920f6ef4c8e5be3226481e55, type: 2}
     value: {fileID: 6335142934490430823}
+  - key: {fileID: -6062107409610956850, guid: 87b3d393920f6ef4c8e5be3226481e55, type: 2}
+    value: {fileID: 4589762202033670892}
   m_ExposedReferences:
     m_References: []
 --- !u!1 &1948500692426942432
@@ -94,8 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameObjectsToDestroy:
-  - {fileID: 8183476153147584391}
-  - {fileID: 0}
+  - {fileID: 4589762202799252501}
   DestroyOnEnable: 1
   destroyMainProfile: 
 --- !u!1 &4535592222033630171
@@ -265,6 +266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4589762202799252499}
   - component: {fileID: 4589762202799252500}
+  - component: {fileID: 311171205783397014}
   m_Layer: 0
   m_Name: "\u6F14\u51FAS-03-\u4E71\u4E16\u707E\u7978-k"
   m_TagString: Untagged
@@ -307,6 +309,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questGiverAI: {fileID: 5869450266219810490}
+--- !u!114 &311171205783397014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4589762202799252501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b19a4ae625a4d144799b267c58b70517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questID: "S-03-\u4E71\u4E16\u707E\u7978-k"
+  defaultObjects:
+  - {fileID: 4589762201417770168}
+  - {fileID: 5869450266219810495}
+  triggeredObjects:
+  - {fileID: 7797088581905040124}
+  - {fileID: 1948500692426942432}
+  switchOnEnable: 1
 --- !u!95 &6335142934490430823
 Animator:
   serializedVersion: 3
@@ -437,11 +459,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2375273534029406222, guid: bee09c26720b2ed45ab78838a0e6dfdf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bee09c26720b2ed45ab78838a0e6dfdf, type: 3}
---- !u!1 &8183476153147584391 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8472772229398237825, guid: bee09c26720b2ed45ab78838a0e6dfdf, type: 3}
-  m_PrefabInstance: {fileID: 289595177778969862}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5533408480843207467 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5246206437505723949, guid: bee09c26720b2ed45ab78838a0e6dfdf, type: 3}

@@ -118,6 +118,20 @@ MonoBehaviour:
       value: 
       type: 0
       typeString: 
+  - id: 3
+    fields:
+    - title: Name
+      value: Check
+      type: 0
+      typeString: 
+    - title: Initial Value
+      value: False
+      type: 2
+      typeString: CustomFieldType_Boolean
+    - title: Description
+      value: 
+      type: 0
+      typeString: 
   conversations:
   - id: 1
     fields:
@@ -884,7 +898,7 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 
+      userScript: Variable["Check"] = true
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -896,7 +910,7 @@ MonoBehaviour:
         height: 30
     entryGroups: []
     canvasScrollPosition: {x: 0, y: 0}
-    canvasZoom: 0.73000026
+    canvasZoom: 0.8200002
   - id: 2
     fields:
     - title: Title
@@ -1138,8 +1152,8 @@ MonoBehaviour:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 148
-        y: 290
+        x: 134
+        y: 252
         width: 160
         height: 30
     - id: 3
@@ -1193,7 +1207,7 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 
+      userScript: Variable["Check"] = false
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -1435,9 +1449,9 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 'Variable["Uncollect"] = true;
+      userScript: 'Variable["Assign"] = true;
 
-'
+        Variable["Check"] = false'
       onExecute:
         m_PersistentCalls:
           m_Calls: []
@@ -1498,14 +1512,14 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 
+      userScript: Variable["Check"] = false
       onExecute:
         m_PersistentCalls:
           m_Calls: []
       canvasRect:
         serializedVersion: 2
-        x: 266.57526
-        y: 302.39728
+        x: 265.57526
+        y: 303.39728
         width: 160
         height: 30
     - id: 17
@@ -1880,7 +1894,7 @@ MonoBehaviour:
       conditionPriority: 2
       outgoingLinks: []
       conditionsString: 
-      userScript: 
+      userScript: Variable["Check"] = false
       onExecute:
         m_PersistentCalls:
           m_Calls: []
