@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &997801050686355756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2647215214196339155}
+  - component: {fileID: 8082061287994459471}
+  m_Layer: 0
+  m_Name: fail
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2647215214196339155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997801050686355756}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1853282618236941584}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8082061287994459471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997801050686355756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ddb07be7ce6ac4f87013e17a2c4566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeQuestStructs:
+  - QuestID: "S-03-\u52AB\u63A0\u533B\u751F-k"
+    questNode: Failure
+    questNodeState: 2
+  - QuestID: "S-03-\u52AB\u63A0\u533B\u751F-k"
+    questNode: InProgress
+    questNodeState: 0
 --- !u!1 &3669013218763949226
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,6 +96,160 @@ MonoBehaviour:
   triggerOnEnable: 0
   characterModelController: {fileID: 0}
   triggerName: Death
+--- !u!1 &3941780390218242058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1853282618236941584}
+  - component: {fileID: 1038574893802127883}
+  m_Layer: 0
+  m_Name: EventAC
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1853282618236941584
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3941780390218242058}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 6833713466694143733}
+  - {fileID: 2647215214196339155}
+  - {fileID: 4550790457026387203}
+  - {fileID: 1589806317760278657}
+  - {fileID: 2232160137684359526}
+  m_Father: {fileID: 6455529624729957041}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1038574893802127883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3941780390218242058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96111ea2f435f3a41ad014b9050bf6de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trigger: {fileID: 6455529624729957043}
+  WinEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3224616814511435404}
+        m_TargetAssemblyTypeName: ChangeQuestStageOnEnable, Assembly-CSharp
+        m_MethodName: ChangeStage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 6851521097292227397}
+        m_TargetAssemblyTypeName: PixelCrushers.DialogueSystem.DialogueSystemTrigger,
+          Assembly-CSharp-firstpass
+        m_MethodName: OnUse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  LostEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8082061287994459471}
+        m_TargetAssemblyTypeName: ChangeQuestStageOnEnable, Assembly-CSharp
+        m_MethodName: ChangeStage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!1 &4815735850407425653
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6833713466694143733}
+  - component: {fileID: 3224616814511435404}
+  m_Layer: 0
+  m_Name: changeQuestState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &6833713466694143733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4815735850407425653}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1853282618236941584}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3224616814511435404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4815735850407425653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ddb07be7ce6ac4f87013e17a2c4566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeQuestStructs:
+  - QuestID: "S-03-\u52AB\u63A0\u533B\u751F-k"
+    questNode: Reward
+    questNodeState: 1
+  - QuestID: "S-03-\u52AB\u63A0\u533B\u751F-k"
+    questNode: InProgress
+    questNodeState: 0
 --- !u!1 &6009573432954868029
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,156 +720,3 @@ MonoBehaviour:
   triggerOnEnable: 0
   characterModelController: {fileID: 0}
   triggerName: Death
---- !u!1001 &1514042502273818601
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 6455529624729957041}
-    m_Modifications:
-    - target: {fileID: 917286381837150969, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 917286381837150969, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 917286381837150969, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 917286381837150969, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 917286381837150969, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 917286381837150969, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 917286381837150969, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 917286381837150969, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 917286381837150969, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 917286381837150969, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 917286381837150969, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: trigger
-      value: 
-      objectReference: {fileID: 6455529624729957043}
-    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: WinEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: LostEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: WinEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: LostEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: WinEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 6851521097292227397}
-    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: LostEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: WinEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: LostEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: WinEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: OnUse
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: LostEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: WinEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: PixelCrushers.DialogueSystem.DialogueSystemTrigger, Assembly-CSharp-firstpass
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: LostEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: LostEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: WinEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: LostEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 2573510057837774819, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: m_Name
-      value: EventAC
-      objectReference: {fileID: 0}
-    - target: {fileID: 4162124619621036389, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: changeQuestStructs.Array.data[0].QuestID
-      value: "S-03-\u52AB\u63A0\u533B\u751F-k"
-      objectReference: {fileID: 0}
-    - target: {fileID: 4162124619621036389, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: changeQuestStructs.Array.data[1].QuestID
-      value: "S-03-\u52AB\u63A0\u533B\u751F-k"
-      objectReference: {fileID: 0}
-    - target: {fileID: 7290142840620276390, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: changeQuestStructs.Array.data[0].QuestID
-      value: "S-03-\u52AB\u63A0\u533B\u751F-k"
-      objectReference: {fileID: 0}
-    - target: {fileID: 7290142840620276390, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-      propertyPath: changeQuestStructs.Array.data[1].QuestID
-      value: "S-03-\u52AB\u63A0\u533B\u751F-k"
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
---- !u!4 &1853282618236941584 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 917286381837150969, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-  m_PrefabInstance: {fileID: 1514042502273818601}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1038574893802127883 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1975734431287664098, guid: 4ebb27421ef274741bd7fe6789035408, type: 3}
-  m_PrefabInstance: {fileID: 1514042502273818601}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96111ea2f435f3a41ad014b9050bf6de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
