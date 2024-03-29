@@ -18,7 +18,7 @@ public class DebateMainEventManager : MonoBehaviour
     }
     public void Reset()
     {
-        var pool = FindObjectOfType<DebateTopicPool>();
+        var pool = DebateTopicPool.CurrentPool;
         var topicPoolList = pool ? pool.topics : null;
 
         if (topicPool == null)
