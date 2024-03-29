@@ -42,7 +42,7 @@ public class CombatEndingAnimationController : MonoBehaviour
     }
     public void ChangeScene()
     {
-        var trigger = FindObjectOfType<GeneralEventTrigger>();
+        var trigger = GeneralEventTrigger.CurrentGET;
         trigger.TriggerEnd(result);
     }
     public void Win()

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
+using static PixelCrushers.DialogueSystem.UnityGUI.GUIProgressBar;
 
 public class QuestAIManager : MonoBehaviour, IDiceRollEvent
 {
@@ -171,8 +172,11 @@ public class QuestAIManager : MonoBehaviour, IDiceRollEvent
         OnEventQuestGivers = new List<QuestGiverAI>();
         foreach (var id in gameSave.OnEventQuestGiverID)
         {
-            var origin = InactiveQuestGivers.Find(x => x.QuestID == id);
-            var clone = Instantiate(origin.QuestSpawnPref, transform);
+            if (id != string.Empty)
+            {
+                var origin = InactiveQuestGivers.Find(x => x.QuestID == id);
+                var clone = Instantiate(origin.QuestSpawnPref, transform);
+            }
         }
         foreach (var id in gameSave.UntriggeredQuestGiverID)
         {
