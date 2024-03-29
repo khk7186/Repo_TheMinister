@@ -26,7 +26,17 @@ public class ItemInventory : MonoBehaviour
         //    AddItem(ItemName.Îä¹Ù×´);
         //}
 
-        ////    AddItem(item);
+        for(int i = 0; i < 11; i ++)
+        {
+            AddItem(ItemName.ÈýÆß);
+            AddItem(ItemName.ÂÞºº¹û);
+            AddItem(ItemName.ÁéÖ¥);
+            AddItem(ItemName.´¸×Ó);
+            AddItem(ItemName.»ÆµÛÄÚ¾­);
+            AddItem(ItemName.ÏÉÈË×í);
+            AddItem(ItemName.ºÎÊ×ÎÚ);
+            AddItem(ItemName.½ð´¯Ò©);
+        }
         ////    AddItem(item);
         ////    AddItem(item);
     }
