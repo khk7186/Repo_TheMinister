@@ -1140,6 +1140,7 @@ public class Player : MonoBehaviour
         {ItemName.麻布,Tag.鸠工庀材},
         {ItemName.棍子,Tag.无用之人},
         {ItemName.干粮,Tag.饱腹},
+        {ItemName.和氏璧,Tag.碧血丹心 }
 
     };
     public static Dictionary<Tag, GameObject> TagPrefabDict = new Dictionary<Tag, GameObject> { };
