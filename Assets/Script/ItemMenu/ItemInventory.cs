@@ -26,17 +26,6 @@ public class ItemInventory : MonoBehaviour
         //    AddItem(ItemName.武官状);
         //}
 
-        for(int i = 0; i < 11; i ++)
-        {
-            AddItem(ItemName.三七);
-            AddItem(ItemName.罗汉果);
-            AddItem(ItemName.灵芝);
-            AddItem(ItemName.锤子);
-            AddItem(ItemName.黄帝内经);
-            AddItem(ItemName.仙人醉);
-            AddItem(ItemName.何首乌);
-            AddItem(ItemName.金疮药);
-        }
         ////    AddItem(item);
         ////    AddItem(item);
     }
