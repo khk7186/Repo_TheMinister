@@ -32,6 +32,7 @@ public class GeneralEventTrigger : MonoBehaviour
     public EventAfterCombatBasedOnResult EventAC;
     public UnityEvent NoDebateEvent = new UnityEvent();
     public bool canSurrender = true;
+    public DebateTopicPool debateTopicPool;
     private void Awake()
     {
         var pannelPath = "CombatScene/VictoryUI";
@@ -41,6 +42,10 @@ public class GeneralEventTrigger : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         CurrentGET = this;
+        if (battleType == BattleType.Debate)
+        {
+            DebateTopicPool.CurrentPool = debateTopicPool;
+        }
         switch (battleType)
         {
             case BattleType.Combat:

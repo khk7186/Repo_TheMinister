@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class DebateTopicPool : MonoBehaviour
 {
+    public static DebateTopicPool CurrentPool = null;
     public List<DebateTopic> topics = new List<DebateTopic>();
     public bool ManualSetup = false;
     private void Awake()
