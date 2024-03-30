@@ -9,4 +9,11 @@ public class PoliticPageOpen : MonoBehaviour
 
         FindObjectOfType<PoliticActionUI>().Show();
     }
+    private void OnEnable()
+    {
+        if (ChapterCounter.Instance.Chapter == 3)
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }
