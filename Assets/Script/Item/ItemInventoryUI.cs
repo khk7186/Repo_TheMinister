@@ -72,25 +72,15 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
     }
     public void Sort(List<Image> items)
     {
-        List<Image> nList = (List<Image>)items.Where(x => x.GetComponent<ItemUI>().framRarity == Rarerity.N);
-        List<Image> rList = (List<Image>)items.Where<Image>(x => x.GetComponent<ItemUI>().framRarity == Rarerity.R);
-        List<Image> srList = (List<Image>)items.Where(x => x.GetComponent<ItemUI>().framRarity == Rarerity.SR);
-        List<Image> ssrList = (List<Image>)items.Where<Image>(x => x.GetComponent<ItemUI>().framRarity == Rarerity.SSR);
-        List<Image> urList = (List<Image>)items.Where<Image>(x => x.GetComponent<ItemUI>().framRarity == Rarerity.UR);
+        var nList = items.Where(x => x.GetComponent<ItemUI>().framRarity == Rarerity.N).ToList();
+        var rList = items.Where<Image>(x => x.GetComponent<ItemUI>().framRarity == Rarerity.R).ToList();
+        var srList = items.Where(x => x.GetComponent<ItemUI>().framRarity == Rarerity.SR).ToList();
+        var ssrList = items.Where<Image>(x => x.GetComponent<ItemUI>().framRarity == Rarerity.SSR).ToList();
+        var urList = items.Where<Image>(x => x.GetComponent<ItemUI>().framRarity == Rarerity.UR).ToList();
         int index = 0;
-        for (int i = 0; i < nList.Count(); i++)
+        for (int i = 0; i < urList.Count(); i++)
         {
-            nList[i].transform.SetSiblingIndex(index);
-            index++;
-        }
-        for (int i = 0; i < rList.Count(); i++)
-        {
-            rList[i].transform.SetSiblingIndex(index);
-            index++;
-        }
-        for (int i = 0; i < srList.Count(); i++)
-        {
-            srList[i].transform.SetSiblingIndex(index);
+            urList[i].transform.SetSiblingIndex(index);
             index++;
         }
         for (int i = 0; i < ssrList.Count(); i++)
@@ -98,9 +88,21 @@ public class ItemInventoryUI : MonoBehaviour, IPointerClickHandler
             ssrList[i].transform.SetSiblingIndex(index);
             index++;
         }
-        for (int i = 0; i < urList.Count(); i++)
+        for (int i = 0; i < srList.Count(); i++)
         {
-            urList[i].transform.SetSiblingIndex(index);
+            srList[i].transform.SetSiblingIndex(index);
+            index++;
+        }
+        for (int i = 0; i < rList.Count(); i++)
+        {
+            rList[i].transform.SetSiblingIndex(index);
+            index++;
+        }
+
+
+        for (int i = 0; i < nList.Count(); i++)
+        {
+            nList[i].transform.SetSiblingIndex(index);
             index++;
         }
 
