@@ -503,7 +503,7 @@ MonoBehaviour:
       - m_contentList: []
     - m_actionList:
       - {fileID: -1262036803873030419}
-      - {fileID: 7962524137660073500}
+      - {fileID: 7359458770261912005}
       m_categorizedContentList:
       - m_contentList: []
       - m_contentList:
@@ -832,7 +832,7 @@ MonoBehaviour:
   - {fileID: 8686218731111752598}
   m_actionsProxy:
     actions: []
---- !u!114 &7962524137660073500
+--- !u!114 &7359458770261912005
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -841,16 +841,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f05643b85c87be547af5871e9bf6e10a, type: 3}
-  m_Name: InstantiatePrefabQuestAction
+  m_Script: {fileID: 11500000, guid: 9840a28297a53d449903f34dc60157bb, type: 3}
+  m_Name: UnityEventQuestAction
   m_EditorClassIdentifier: 
-  m_prefab: {fileID: 1012259993181686646, guid: 48ce8f03f32659548a8219ee1da351d3, type: 3}
-  m_locationTransform:
-    m_text: 
-    m_stringAsset: {fileID: 0}
-    m_textTable: {fileID: 0}
-    m_textTableFieldID: 0
-  m_useOriginalName: 0
+  m_onExecute:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7917806786697207571, guid: 48ce8f03f32659548a8219ee1da351d3, type: 3}
+        m_TargetAssemblyTypeName: ChangeQuestStageOnEnable, Assembly-CSharp
+        m_MethodName: ChangeStage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8686218731111752598
 MonoBehaviour:
   m_ObjectHideFlags: 1
