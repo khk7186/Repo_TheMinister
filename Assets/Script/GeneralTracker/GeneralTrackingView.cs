@@ -48,6 +48,11 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
         //    StartCoroutine(HideInSec());
         //}
     }
+    private IEnumerator Start()
+    {
+        yield return new WaitForFixedUpdate();
+        CheckFinish();
+    }
     public void OnSpawn(Character character, bool noAction = false)
     {
         NoAction = noAction;
@@ -95,6 +100,10 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
         }
         InfoPage.Setup(characterName, message, timeLeft);
         roundLeft.text = timeLeft.ToString();
+        CheckFinish();
+    }
+    public void CheckFinish()
+    {
         if (timeLeft == 0 && NoAction == false)
         {
             SetFinish();
