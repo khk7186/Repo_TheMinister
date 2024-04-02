@@ -101,6 +101,7 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
         InfoPage.Setup(characterName, message, timeLeft);
         roundLeft.text = timeLeft.ToString();
         CheckFinish();
+        Debug.Log(TrackerType);
     }
     public void CheckFinish()
     {
