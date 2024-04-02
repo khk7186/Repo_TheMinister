@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5960006671186664760}
-  - component: {fileID: 6924993453649301142}
   - component: {fileID: 4875222107908767773}
   m_Layer: 0
   m_Name: "\u63A5\u53D7"
@@ -28,26 +27,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4447635502667048526}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6924993453649301142
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7263329327806346520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06ddb07be7ce6ac4f87013e17a2c4566, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  changeQuestStructs:
-  - QuestID: "S-01-\u7231\u5B66\u4E60\u7684\u6B6A\u679C\u4EC1-a"
-    questNode: "\u7B49\u5F85\u6D3E\u9063"
-    questNodeState: 2
 --- !u!114 &4875222107908767773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,3 +45,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   guestName: "S-01-\u7231\u5B66\u4E60\u7684\u6B6A\u679C\u4EC1-a \u56DE\u5F52"
+--- !u!1 &7529682025071691949
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4447635502667048526}
+  - component: {fileID: 1364940616290792548}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4447635502667048526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7529682025071691949}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5960006671186664760}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1364940616290792548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7529682025071691949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ddb07be7ce6ac4f87013e17a2c4566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  changeQuestStructs:
+  - QuestID: "S-01-\u7231\u5B66\u4E60\u7684\u6B6A\u679C\u4EC1-a"
+    questNode: "\u7B49\u5F85\u6D3E\u9063"
+    questNodeState: 2
