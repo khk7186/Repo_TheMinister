@@ -6,8 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuTrigger : MonoBehaviour
 {
+    bool Main = false;
     public void JumpToMainMenu()
     {
+        if (Main == true) return;
+        Main = true;
         string path = $"SceneTransPrefab/{SceneType.MainGame}/{SceneType.MainGame}Animation";
         var canvas = Instantiate(Resources.Load<Canvas>("SceneTransPrefab/Canvas"));
         DontDestroyOnLoad(canvas);
@@ -30,5 +33,6 @@ public class MainMenuTrigger : MonoBehaviour
         yield return WaitUntilSceneLoad.WaitUntilScene(1);
         yield return new WaitForSeconds(0.5f);
         animation.Open();
+        Main = false;
     }
 }
