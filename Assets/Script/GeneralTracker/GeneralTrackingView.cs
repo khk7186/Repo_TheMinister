@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using DG.Tweening;
+using SaveSystem;
 
 public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -66,7 +67,8 @@ public class GeneralTrackingView : MonoBehaviour, IPointerEnterHandler, IPointer
         }
         if (character.spawnAfterAway != null)
         {
-            e.AddListener(() => Instantiate(character.spawnAfterAway.gameObject));
+            var db = Resources.Load<SOSpawnAfterAwayDB>("Data/SpawnAfterAwayDB");
+            e.AddListener(() => Instantiate(db.Find(character.spawnAfterAway.guestName)));
         }
         unityEvent = e;
         Show();
