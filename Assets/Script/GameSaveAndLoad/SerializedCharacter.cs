@@ -62,7 +62,7 @@ namespace SaveSystem
                 output.SerializedInGameAI = SerializedInGameAI.SerializingCharacterInGameAI(character);
             }
             //AwayTime
-            if (character.characterAwaitTribute != null)
+            if (character.hireStage == global::HireStage.Away)
             {
                 output.waitTime = character.characterAwaitTribute.WaitTime;
                 output.alreadyWait = character.characterAwaitTribute.AlreadyWait;
