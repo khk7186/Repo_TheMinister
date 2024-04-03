@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class UpdateJournalUI : MonoBehaviour
 {
     public UnityUIQuestJournalUI journalUI;
+    public GameObject NoTemplete;
+    public GameObject NoQuest;
 
     private void OnEnable()
     {
