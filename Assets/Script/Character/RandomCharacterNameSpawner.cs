@@ -91,7 +91,7 @@ public static class RandomCharacterNameSpawner
             "îÚ",
             "Óñ",
             "Ñ©",
-            "è÷«h",
+            "è÷ÔÂ",
             "Íñâù",
             "Ý¼Ý¼",
             "¿ÉÐÄ",
