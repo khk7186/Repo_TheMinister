@@ -1,5 +1,6 @@
 ﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
+using PixelCrushers.QuestMachine.Wrappers;
 using UnityEngine;
 
 namespace PixelCrushers.QuestMachine
@@ -108,6 +109,7 @@ namespace PixelCrushers.QuestMachine
         public override void OnEnable()
         {
             base.OnEnable();
+            RepaintUIs();
             if (!includeInSavedGameData) SaveSystem.UnregisterSaver(this);
             MessageSystem.AddListener(this, QuestMachineMessages.QuestStateChangedMessage, string.Empty);
             MessageSystem.AddListener(this, QuestMachineMessages.QuestCounterChangedMessage, string.Empty);
