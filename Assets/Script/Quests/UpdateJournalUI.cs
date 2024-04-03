@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class UpdateJournalUI : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class UpdateJournalUI : MonoBehaviour
         {
             NoQuest.GetComponent<Text>().text = "Journal Not Found";
         }
-        NoQuest.GetComponent<Text>().text = $"{questJournal.questList.Count} Quest";
+        NoQuest.GetComponent<Text>().text = $"{questJournal.questList.Where(x => x.GetState() == QuestState.Active).ToList().Count} Quest";
         if (journalUI.activeQuestNameTemplate == null)
         {
             NoTemplete.gameObject.SetActive(true);
