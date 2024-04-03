@@ -237,7 +237,10 @@ namespace PixelCrushers.QuestMachine
             detailsPanelContentManager = new UnityUIInstancedContentManager();
             m_hasInitialized = true;
         }
-
+        private void OnEnable()
+        {
+            Repaint();
+        }
         protected virtual void OnDisable()
         {
             m_refreshCoroutine = null;
@@ -264,7 +267,7 @@ namespace PixelCrushers.QuestMachine
             }
             if (questGroupTemplate != null) questGroupTemplate.gameObject.SetActive(false);
             if (activeQuestNameTemplate != null) activeQuestNameTemplate.gameObject.SetActive(false);
-            if (completedQuestNameTemplate!= null) completedQuestNameTemplate.gameObject.SetActive(false);
+            if (completedQuestNameTemplate != null) completedQuestNameTemplate.gameObject.SetActive(false);
             if (questHeadingTextTemplate != null) questHeadingTextTemplate.gameObject.SetActive(false);
             if (questBodyTextTemplate != null) questBodyTextTemplate.gameObject.SetActive(false);
             if (iconListTemplate != null) iconListTemplate.gameObject.SetActive(false);
@@ -543,7 +546,7 @@ namespace PixelCrushers.QuestMachine
         }
 
         protected virtual void AddQuestsToUI(List<Quest> quests, string requiredGroupName, RectTransform container, bool onlyAddActive)
-        { 
+        {
             foreach (var quest in quests)
             {
                 if (quest == null) continue;
@@ -613,7 +616,7 @@ namespace PixelCrushers.QuestMachine
         }
 
         public virtual void SelectQuest(Quest quest)
-        { 
+        {
             selectedQuest = quest;
             RepaintSelectedQuest();
         }
@@ -638,7 +641,7 @@ namespace PixelCrushers.QuestMachine
                 if (m_questDetailsButtonContainer != null) m_questDetailsButtonContainer.transform.SetAsLastSibling();
 
                 if (m_questDetailsButtonContainer == null) m_questDetailsButtonContainer = null; // Silence warning about never assigned.
-                
+
                 //{
                 //    var instance = Instantiate<UnityUIButtonTemplate>(abandonButtonTemplate);  //[TODO] Pool.
                 //    detailsPanelContentManager.Add(instance, questDetailsContentContainer);
