@@ -12,12 +12,21 @@ public class UpdateJournalUI : MonoBehaviour
 
     private void OnEnable()
     {
-        LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
         UpdateJournal();
+        //LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());
     }
     public void UpdateJournal()
     {
         QuestJournal questJournal = FindObjectOfType<QuestJournal>();
+        if (questJournal == null)
+        {
+            NoQuest.GetComponent<Text>().text = "Journal Not Found";
+        }
+        NoQuest.GetComponent<Text>().text = $"{questJournal.questList.Count} Quest";
+        if (journalUI.activeQuestNameTemplate == null)
+        {
+            NoTemplete.gameObject.SetActive(true);
+        }
         if (journalUI.questSelectionContentContainer.childCount == 0 && questJournal.questList.Count > 0)
             journalUI.Repaint();
     }
