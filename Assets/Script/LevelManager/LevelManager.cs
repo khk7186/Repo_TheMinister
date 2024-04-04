@@ -47,6 +47,10 @@ public class LevelManager : MonoBehaviour
         //{
         FindObjectOfType<PoliticLevelView>().SetView(Instance.level, (float)Instance.exp / Instance.expPerLevel[Instance.level]);
         //}
+        
+    }
+    public void Update()
+    {
         PixelCrushers.MessageSystem.SendMessage(null, "PoliticLevelUp", string.Empty, Instance.level);
     }
     public void ApplyExp(int increase)
