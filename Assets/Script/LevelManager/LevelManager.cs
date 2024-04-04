@@ -49,7 +49,7 @@ public class LevelManager : MonoBehaviour
         //}
         
     }
-    public void Update()
+    public void FixedUpdate()
     {
         PixelCrushers.MessageSystem.SendMessage(null, "PoliticLevelUp", string.Empty, Instance.level);
     }
