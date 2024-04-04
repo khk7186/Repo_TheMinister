@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PixelCrushers.QuestMachine;
 
 public class LevelManager : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class LevelManager : MonoBehaviour
     {
         var politicSlots = FindObjectsOfType<PoliticSlot>();
         int unlockCount = 0;
-        
+
         foreach (var slot in politicSlots)
         {
             if (slot.unlocked)
@@ -46,6 +47,7 @@ public class LevelManager : MonoBehaviour
         //{
         FindObjectOfType<PoliticLevelView>().SetView(Instance.level, (float)Instance.exp / Instance.expPerLevel[Instance.level]);
         //}
+        PixelCrushers.MessageSystem.SendMessage(null, "PoliticLevel", string.Empty, Instance.level);
     }
     public void ApplyExp(int increase)
     {
