@@ -27,7 +27,7 @@ public class LevelManager : MonoBehaviour
     }
     public static void UpdateLevel()
     {
-        var politicSlots = FindObjectsOfType<PoliticSlot>(t);
+        var politicSlots = FindObjectsOfType<PoliticSlot>(true);
         int unlockCount = 0;
 
         foreach (var slot in politicSlots)
