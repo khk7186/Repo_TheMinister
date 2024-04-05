@@ -8,7 +8,10 @@ public class SetThemeMode : MonoBehaviour
     public bool ThemeModeOn = false;
     public void Set()
     {
-        InGameCharacterStorage.Instance?.ThemeMode(ThemeModeOn);
+        if (ChapterCounter.Instance.Chapter != 3)
+        {
+            InGameCharacterStorage.Instance?.ThemeMode(ThemeModeOn);
+        }
         QuestAIManager.Instance?.ThemeMode(ThemeModeOn);
     }
     private void OnEnable()
@@ -18,7 +21,10 @@ public class SetThemeMode : MonoBehaviour
     }
     public void OnDestroy()
     {
-        InGameCharacterStorage.Instance?.ThemeMode(false);
+        if (ChapterCounter.Instance.Chapter != 3)
+        {
+            InGameCharacterStorage.Instance?.ThemeMode(false);
+        }
         QuestAIManager.Instance?.ThemeMode(false);
     }
 }
