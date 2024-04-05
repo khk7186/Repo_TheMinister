@@ -29,7 +29,8 @@ public class LevelManager : MonoBehaviour
     {
         var politicSlots = FindObjectsOfType<PoliticSlot>(true);
         int unlockCount = 0;
-
+        Instance.level = 1;
+        Instance.exp = 0;
         foreach (var slot in politicSlots)
         {
             if (slot.unlocked)
