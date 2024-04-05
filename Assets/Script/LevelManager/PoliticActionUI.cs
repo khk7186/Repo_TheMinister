@@ -179,6 +179,7 @@ public class PoliticActionUI : MonoBehaviour, IPointerClickHandler
             }
             slot.GetComponent<PoliticSlotInteraction>().politicPopup.Setup(slot);
             slot.requestAmount = serializedPoliticPages.RequestAmount[index];
+            slot.SetupLineSprites();
         }
     }
     public void LoadGateHolder(int index, PoliticSlot slot, SerializedPoliticPages serializedPoliticPages)
