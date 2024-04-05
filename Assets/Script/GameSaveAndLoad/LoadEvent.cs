@@ -25,6 +25,8 @@ namespace SaveSystem
             GameObject.FindObjectOfType<BackgoundMusicController>()?.OnEnable();
             manager.questDayCounterManager.QuestDayCounters = new List<QuestDayCounter>(save.questDayCounters);
             manager.questDayCounterManager.Load();
+            LevelManager.Instance.ExtraExp = save.extraExp;
+            LevelManager.UpdateLevel();
         }
         public static void LoadPlayerCharacters(GameSave save)
         {

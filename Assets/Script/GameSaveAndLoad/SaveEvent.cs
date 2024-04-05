@@ -100,6 +100,7 @@ namespace SaveSystem
             //politic factions data
             newGameSave.politicFactions = manager.SOPoliticFactionDB.politicFactions;
 
+            newGameSave.extraExp = LevelManager.Instance.ExtraExp;
             return newGameSave;
         }
 

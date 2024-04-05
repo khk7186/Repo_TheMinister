@@ -41,6 +41,6 @@ public class ReciveCurrencyNotify : MonoBehaviour
         inv.MoneyAdd(Money);
         PressureEventHandler.OnPressureChange(Pressure);
         CurrencyInventory.SetCurrencyUI();
-        LevelManager.Instance.ApplyExp(Influence);
+        LevelManager.Instance.ApplyExtraExp(Influence);
     }
 }

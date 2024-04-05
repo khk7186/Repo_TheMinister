@@ -60,6 +60,7 @@ namespace SaveSystem
 
         //Politic Factions
         public List<PoliticFaction> politicFactions = new List<PoliticFaction>();
+        internal int extraExp = 0;
     }
     [System.Serializable]
     public class ItemInString
