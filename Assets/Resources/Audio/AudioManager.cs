@@ -23,6 +23,11 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Start()
+    {
+        var settingsController = FindObjectOfType<SettingsController>(true);
+        settingsController.SetEverything();
+    }
     private AudioSource SpawnAudioSource(AudioClip clip, bool loop = false)
     {
         var audioSource = new GameObject().AddComponent<AudioSource>();

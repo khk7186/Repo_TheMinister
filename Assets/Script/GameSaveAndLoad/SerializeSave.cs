@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 
 public class SerializeSave
 {
@@ -25,4 +26,41 @@ public class SerializeSave
         System.IO.File.WriteAllText(filePath, jsonData);
         return false;
     }
+    public static bool SaveSetting(SettingSave settingSave)
+    {
+        string jsonData = JsonUtility.ToJson(settingSave);
+        string path = $"{Application.persistentDataPath}/Settings";
+        if (!Directory.Exists(path))
+        {
+            Directory.CreateDirectory(path);
+        }
+        if (System.IO.File.Exists($"{path}/Setting.json"))
+        {
+            System.IO.File.Delete($"{path}/Setting.json");
+        }
+        Debug.Log(Application.persistentDataPath);
+        string filePath = $"{path}/Setting.json";
+        System.IO.File.WriteAllText(filePath, jsonData);
+        return false;
+    }
+    public static SettingSave LoadSetting()
+    {
+        string path = $"{Application.persistentDataPath}/Settings/Setting.json";
+        if (!System.IO.File.Exists(path))
+        {
+            SaveSetting(new SettingSave());
+        }
+        var file = System.IO.File.ReadAllText(path);
+        var settingSave = JsonUtility.FromJson(file, typeof(SettingSave)) as SettingSave;
+        return settingSave;
+    }
+}
+[Serializable]
+public class SettingSave
+{
+    public float musicVolume = 0.8f;
+    public float sfxVolume = 0.8f;
+    public float masterVolume = 0.8f;
+    public int resolutionIndex = 1;
+    public int displayIndex = 0;
 }

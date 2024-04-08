@@ -16,6 +16,7 @@ public class SOAudio : ScriptableObject
     public float SFXVolume = 0.8f;
 
     public int resolutionIndex = -1;
+    public int displayIndex = -1;
 
     public List<AuidioAndName> audioAndNames = new List<AuidioAndName>();
     public AudioClip GetAudio(string name)

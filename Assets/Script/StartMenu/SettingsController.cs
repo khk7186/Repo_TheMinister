@@ -25,7 +25,7 @@ public class SettingsController : MonoBehaviour
     private void Start()
     {
         // You can load saved settings here, if any
-
+        LoadSettings();
         // Add listeners to sliders
         musicVolumeSlider.onValueChanged.AddListener(SetMusicVolume);
         sfxVolumeSlider.onValueChanged.AddListener(SetSFXVolume);
@@ -36,13 +36,24 @@ public class SettingsController : MonoBehaviour
         displayModeDropdown.AddOptions(new List<string> { "È«ÆÁ", "´°¿Ú" });
         displayModeDropdown.onValueChanged.AddListener(SetDisplayMode);
     }
-    private void OnEnable()
+    public void SetEverything()
     {
+        SetMasterVolume(sOAudio.MasterVolume);
+        SetMusicVolume(sOAudio.MusicVolume);
+        SetSFXVolume(sOAudio.SFXVolume);
+        SetResolution(sOAudio.resolutionIndex);
+        SetDisplayMode(sOAudio.displayIndex);
+    }
+    public void OnEnable()
+    {
+        SetEverything();
         masterVolumeSlider.value = sOAudio.MasterVolume;
         musicVolumeSlider.value = sOAudio.MusicVolume;
         sfxVolumeSlider.value = sOAudio.SFXVolume;
-
+        resolutionDropdown.value = sOAudio.resolutionIndex;
+        displayModeDropdown.value = sOAudio.displayIndex;
     }
+
     public void SetMasterVolume(float volume)
     {
         sOAudio.MasterVolume = volume;
@@ -56,6 +67,7 @@ public class SettingsController : MonoBehaviour
             mainMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
             sOAudio.MasterVolume = volume;
         }
+        SaveSettings();
     }
 
     public void SetMusicVolume(float volume)
@@ -71,6 +83,7 @@ public class SettingsController : MonoBehaviour
             mainMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
             sOAudio.MusicVolume = volume;
         }
+        SaveSettings();
     }
 
     public void SetSFXVolume(float volume)
@@ -85,6 +98,7 @@ public class SettingsController : MonoBehaviour
             mainMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
             sOAudio.SFXVolume = volume;
         }
+        SaveSettings();
     }
 
 
@@ -128,10 +142,35 @@ public class SettingsController : MonoBehaviour
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        sOAudio.resolutionIndex = resolutionIndex;
+        SaveSettings();
     }
 
     public void SetDisplayMode(int modeIndex)
     {
         Screen.fullScreen = (modeIndex == 0) ? true : false;
+        SaveSettings();
+    }
+    public void SaveSettings()
+    {
+        var saveSetting = new SettingSave
+        {
+            musicVolume = sOAudio.MusicVolume,
+            sfxVolume = sOAudio.SFXVolume,
+            masterVolume = sOAudio.MasterVolume,
+            resolutionIndex = sOAudio.resolutionIndex,
+            displayIndex = displayModeDropdown.value
+        };
+        SerializeSave.SaveSetting(saveSetting);
+    }
+    public void LoadSettings()
+    {
+        var settings = SerializeSave.LoadSetting();
+        sOAudio.MasterVolume = settings.masterVolume;
+        sOAudio.SFXVolume = settings.sfxVolume;
+        sOAudio.MusicVolume = settings.musicVolume;
+        sOAudio.resolutionIndex = settings.resolutionIndex;
+        sOAudio.displayIndex = settings.displayIndex;
+        displayModeDropdown.value = settings.displayIndex;
     }
 }
