@@ -45,33 +45,52 @@ public class SettingsController : MonoBehaviour
     }
     public void SetMasterVolume(float volume)
     {
+        sOAudio.MasterVolume = volume;
         if (volume == 0)
+        {
             mainMixer.SetFloat("MasterVolume", -80);
+            sOAudio.MasterVolume = -80;
+        }
         else
+        {
             mainMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
+            sOAudio.MasterVolume = volume;
+        }
     }
 
     public void SetMusicVolume(float volume)
     {
         if (volume == 0)
+        {
             mainMixer.SetFloat("MusicVolume", -80);
+            sOAudio.MusicVolume = -80;
+        }
+
         else
+        {
             mainMixer.SetFloat("MusicVolume", Mathf.Log10(volume) * 20);
+            sOAudio.MusicVolume = volume;
+        }
     }
 
     public void SetSFXVolume(float volume)
     {
         if (volume == 0)
+        {
             mainMixer.SetFloat("SFXVolume", -80);
+            sOAudio.SFXVolume = -80;
+        }
         else
+        {
             mainMixer.SetFloat("SFXVolume", Mathf.Log10(volume) * 20);
+            sOAudio.SFXVolume = volume;
+        }
     }
 
 
     public void SetBrightness(float brightness)
     {
         RenderSettings.ambientLight = Color.white * brightness;
-        // You might want to adjust other settings for more noticeable brightness changes
     }
 
     private void SetupResolutionDropdown()
