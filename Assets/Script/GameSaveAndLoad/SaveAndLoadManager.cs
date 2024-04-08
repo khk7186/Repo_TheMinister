@@ -135,7 +135,7 @@ namespace SaveSystem
             var save = SaveEvent.Save(this);
             if (SaveName == null || SaveName == string.Empty)
             {
-                save.saveName = System.DateTime.Now.ToString()
+                save.saveName = System.String.Format("{0:yyyy-MM}", System.DateTime.Now)
                                     .Replace("/", string.Empty).Replace(" ", string.Empty).Replace(":", string.Empty);
             }
             else
