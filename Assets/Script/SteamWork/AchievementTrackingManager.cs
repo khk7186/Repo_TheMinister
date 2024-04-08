@@ -14,6 +14,8 @@ public class AchievementTrackingManager : MonoBehaviour
         {
             currentIndex = 0;
             //DO Stuff;
+            if (HaveFiveCharacters())
+                UnlockAchievement("FiveCharacters");
         }
     }
     public void UnlockAchievement(string achievementName)
@@ -23,5 +25,13 @@ public class AchievementTrackingManager : MonoBehaviour
             SteamUserStats.SetAchievement(achievementName);
             SteamUserStats.StoreStats();
         }
+    }
+    public bool HaveFiveCharacters()
+    {
+        var inv = GameObject.FindGameObjectWithTag("PlayerCharactersInventory");
+        if (inv == null) return false;
+        if (inv.transform.childCount >= 5)
+            return true;
+        return false;
     }
 }
