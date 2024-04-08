@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Steamworks;
 
 public class AchievementTrackingManager : MonoBehaviour
 {
@@ -13,6 +14,14 @@ public class AchievementTrackingManager : MonoBehaviour
         {
             currentIndex = 0;
             //DO Stuff;
+        }
+    }
+    public void UnlockAchievement(string achievementName)
+    {
+        if (SteamManager.Initialized)
+        {
+            SteamUserStats.SetAchievement(achievementName);
+            SteamUserStats.StoreStats();
         }
     }
 }
