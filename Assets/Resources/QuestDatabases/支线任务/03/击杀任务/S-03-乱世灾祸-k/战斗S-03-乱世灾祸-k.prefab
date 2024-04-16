@@ -282,6 +282,77 @@ MonoBehaviour:
   TriggerOn: 0
   questID: "S-03-\u4E71\u4E16\u707E\u7978-k"
   subQuestDB: {fileID: 11400000, guid: 5fb07d1f755f64e438dee178bd7206c9, type: 2}
+--- !u!1 &4346741103821449555
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6930285107473248187}
+  - component: {fileID: 7977106266364556310}
+  m_Layer: 0
+  m_Name: Character (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6930285107473248187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346741103821449555}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5246206437505723949}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7977106266364556310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4346741103821449555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a43da38c5ea844983f41f6351c9a00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 0
+  CharacterName: "\u738B\u67AB"
+  tagMax: 5
+  TagSpawnRareRate: c8000000cc0100004a0100003200000001000000
+  characterType: 0
+  characterArtCode: 2
+  loyalty: 0
+  health: 20
+  hungry: 10
+  rarerity: 0
+  characterCard: {fileID: 6978759770948470115, guid: bcb976df68f93ec4ba4682e0d891984c, type: 3}
+  thisCharacterCard: {fileID: 0}
+  characterCardInvUI: {fileID: 0}
+  InGameAI: {fileID: 0}
+  Deserializing: 0
+  edibleFavor: 5
+  tagList: 8b000000180000003200000056000000ae000000
+  temporaryTags: []
+  ReturnRounds: 0
+  hireStage: 3
+  OnCombatDuty: 0
+  OnDebateDuty: 0
+  OnGobangDuty: 0
+  characterAwaitTribute: {fileID: 0}
+  spawnAfterAway: {fileID: 0}
+  OnAssassinEvent: 0
+  AssasinTarget: 
+  awayMessage: 
 --- !u!1 &5522234989777936891
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,6 +435,7 @@ Transform:
   m_Children:
   - {fileID: 6642740976057476346}
   - {fileID: 8978265565611475291}
+  - {fileID: 6930285107473248187}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -407,6 +479,7 @@ MonoBehaviour:
   playerCharacters: []
   enemyCharacters:
   - {fileID: 7566669044755894988}
+  - {fileID: 7977106266364556310}
   LostCharacters: []
   endGamePannel: {fileID: 1808533205442087187, guid: a2363c9350157ea4a89f6d51650f4998, type: 3}
   dontPopEndGamePannel: 1
